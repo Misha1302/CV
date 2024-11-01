@@ -13,7 +13,7 @@
 - Создал 5 проектов для курсовых работ на unity и python, каждый из которых получил отлично
 - Разработал и поддерживаю приложение для обучения детей таблице умножения с большим количеством функций
 - Разработал игру "ХайпиЛенд" ([тык](https://vk.com/club_event_market?z=video45503913_456240541%2F3f924ebecd7d4b11d6%2Fpl_wall_-93355641), [тык](https://vk.com/market/product/khaypilend-226436610-9590082), [тык](https://v21.skladchik.org/threads/xajpilend-igra-s-proektorom-mixail-gorshenin.442154/))) для проведения вечеринок, праздников с детьми
-- Разработал игру "Слово Пацана" для проведения вечеринок и праздников
+- Разработал игру ["Слово Пацана"](https://vk.com/video/@djmichael93?z=video45503913_456240462%2Fpl_45503913_-2) для проведения вечеринок и праздников
 - Разработал игру ["Crazy Квиз"](https://vk.com/club_event_market?z=video45503913_456240723%2Fpl_wall_-93355641)
 - Знаю английский на уровне чтения документации, форумов
 - Стараюсь соблюдать принципы SOLID и практики написания чистого кода
@@ -24,17 +24,20 @@
 - Летняя Олимпиадная Школа МФТИ (2024 год)
 - Udemy курс "Complete C# Unity Game Developer 3D" (2021 год)
 
+### Посмотрите проект [BuildTower](https://github.com/Misha1302/BuildTower), чтобы оценить, как я пишу код
+
 
 # Скриншоты моих проектов
 ## ХайпиЛенд
 - - -
-![изображение](https://github.com/user-attachments/assets/d7d59687-e9ca-4ac7-b1dd-2d12da0d2767)
+![изображение](https://github.com/user-attachments/assets/479cda88-5f86-403d-a749-b46ded41312e)
 - - -
-![изображение](https://github.com/user-attachments/assets/486e0ec8-37da-43d7-9b90-f9004e339370)
+![изображение](https://github.com/user-attachments/assets/4ee03008-4751-485d-9948-7141f2478a11)
 - - -
-![изображение](https://github.com/user-attachments/assets/c2fc7972-7cb2-4da3-9349-d0b30f30720c)
+![изображение](https://github.com/user-attachments/assets/dae63aba-4dc2-4567-a002-7ba337e2bb3d)
 - - -
-
+![изображение](https://github.com/user-attachments/assets/1e8b0dc2-eede-452a-be91-dd2d4acb2a1c)
+подольше
 - - -
 - - -
 - - -
@@ -42,9 +45,11 @@
 
 ## Слово Пацана
 - - -
-![изображение](https://github.com/user-attachments/assets/b59cee9d-0da9-4f4e-8078-5468d495bbb7)
+![изображение](https://github.com/user-attachments/assets/2c70426f-5709-487f-baf2-b56dc802de1a)
 - - -
-![изображение](https://github.com/user-attachments/assets/5aa629ee-c2da-444f-835e-a40734973aaf)
+![изображение](https://github.com/user-attachments/assets/210c2744-45f4-468f-b21f-7f96fa7e98a7)
+- - -
+![изображение](https://github.com/user-attachments/assets/f978ef29-4846-4b5c-9ec2-7345fa67831e)
 - - -
 
 - - -
@@ -54,9 +59,11 @@
 
 ## Crazy Квиз
 - - -
-![изображение](https://github.com/user-attachments/assets/06ba81b5-05df-4cf3-a32c-b6738789bcdf)
+![изображение](https://github.com/user-attachments/assets/c99bd746-b021-482c-a64b-4bb362cc4c89)
 - - -
-![изображение](https://github.com/user-attachments/assets/97b8d37a-e6ff-4496-9a76-575ea3b7318c)
+![изображение](https://github.com/user-attachments/assets/291a983f-7252-41ce-9d8f-e8cf00629d44)
+- - -
+![изображение](https://github.com/user-attachments/assets/6d8ac431-572e-40fe-aa38-db57426312ed)
 - - -
 
 - - -
@@ -66,12 +73,12 @@
 
 ## Приложение таблицы умножения:
 - - - 
-![изображение](https://github.com/user-attachments/assets/69dd1c51-a332-4738-9b9f-da868c7c5177)
+![изображение](https://github.com/user-attachments/assets/078120d9-bb20-4842-8f0c-5115adb26a7a)
 - - -
-![изображение](https://github.com/user-attachments/assets/91f935a7-f076-4b42-ab91-ba18ac10b560)
+![изображение](https://github.com/user-attachments/assets/7faf9d36-c9f3-402d-8346-0aadf3d44231)
 - - -
-![изображение](https://github.com/user-attachments/assets/546a1762-545a-4d87-80ce-06a2d6958544)
+![изображение](https://github.com/user-attachments/assets/0e05e1f2-c531-4b6b-a1e3-4e7e2c20d0a4)
 - - -
-![изображение](https://github.com/user-attachments/assets/b6c4f337-6369-4da8-851a-9eacd52af344)
+![изображение](https://github.com/user-attachments/assets/730b419f-01cf-4992-9e73-1c1792b970fa)
 - - -
 
