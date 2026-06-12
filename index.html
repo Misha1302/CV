@@ -3,24 +3,33 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Михаил Разаков — стажёр C#/.NET-разработчик. Backend, developer tools, compiler/runtime-системы, Unity/C#, алгоритмы и анализ производительности." />
-  <meta name="theme-color" content="#f7f4ef" />
-  <title>Михаил Разаков — стажёр C#/.NET-разработчик</title>
+  <meta name="description" content="Михаил Разаков — начинающий Compiler/Runtime Engineer. C#/.NET, компиляторы, промежуточные представления, интерпретаторы, CIL backend и developer tools." />
+  <meta name="theme-color" content="#f4f1eb" />
+  <meta property="og:title" content="Михаил Разаков — Compiler/Runtime Engineer" />
+  <meta property="og:description" content="C#/.NET, UniversalToolchain / Wist2, компиляторы, runtime-системы и developer tools." />
+  <meta property="og:type" content="website" />
+  <title>Михаил Разаков — Compiler/Runtime Engineer</title>
   <style>
     :root {
-      --bg: #f7f4ef;
+      --bg: #f4f1eb;
       --paper: #fffdf9;
-      --text: #1f1c19;
-      --muted: #655d55;
-      --soft: #8a8076;
-      --line: #ded7cf;
-      --accent: #a95f35;
-      --accent-soft: #f2e5dc;
-      --max: 920px;
+      --text: #1d1b19;
+      --muted: #655f58;
+      --soft: #8b837a;
+      --line: #ded8cf;
+      --accent: #95512d;
+      --accent-hover: #733b20;
+      --accent-soft: #f3e6dc;
+      --chip: #f8f4ee;
+      --max: 980px;
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -35,77 +44,173 @@
     a {
       color: var(--accent);
       text-decoration: none;
+      text-underline-offset: 3px;
     }
 
-    a:hover {
+    a:hover,
+    a:focus-visible {
+      color: var(--accent-hover);
       text-decoration: underline;
+    }
+
+    button,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 9px 14px;
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-weight: 650;
+      line-height: 1.2;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    button:hover,
+    button:focus-visible,
+    .button:hover,
+    .button:focus-visible {
+      background: var(--accent-hover);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .button.secondary:hover,
+    .button.secondary:focus-visible {
+      background: var(--accent-soft);
+      color: var(--accent-hover);
     }
 
     .page {
       width: min(var(--max), calc(100% - 32px));
       margin: 0 auto;
-      padding: 42px 0 56px;
+      padding: 36px 0 56px;
     }
 
     .resume {
+      overflow: hidden;
       background: var(--paper);
       border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 42px;
-      box-shadow: 0 18px 55px rgba(44, 35, 27, 0.08);
+      border-radius: 20px;
+      box-shadow: 0 18px 58px rgba(44, 35, 27, 0.09);
     }
 
-    header {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      padding-bottom: 26px;
+    .hero {
+      padding: 42px;
+      background:
+        radial-gradient(circle at top right, rgba(149, 81, 45, 0.12), transparent 38%),
+        var(--paper);
       border-bottom: 1px solid var(--line);
     }
 
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: start;
+    }
+
     h1 {
-      margin: 0 0 8px;
-      font-size: clamp(34px, 6vw, 52px);
-      line-height: 1.05;
-      letter-spacing: -0.045em;
+      margin: 0 0 10px;
+      font-size: clamp(36px, 6vw, 56px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
     }
 
     .role {
       margin: 0;
+      color: var(--accent);
+      font-size: clamp(20px, 3vw, 25px);
+      font-weight: 720;
+      line-height: 1.25;
+    }
+
+    .focus {
+      margin: 8px 0 0;
       color: var(--muted);
-      font-size: 19px;
+      font-size: 17px;
+    }
+
+    .summary {
+      max-width: 760px;
+      margin: 24px 0 0;
+      font-size: 18px;
+      line-height: 1.6;
     }
 
     .contacts {
       display: grid;
-      gap: 6px;
-      min-width: 230px;
+      gap: 7px;
+      min-width: 250px;
       color: var(--muted);
       font-size: 15px;
       font-style: normal;
     }
 
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 8px 11px;
+      border: 1px solid #dfc4b4;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: #543727;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .status::before {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      content: "";
+    }
+
+    .content {
+      padding: 0 42px 42px;
+    }
+
     section {
-      padding: 26px 0;
+      padding: 30px 0;
       border-bottom: 1px solid var(--line);
     }
 
     section:last-child {
-      border-bottom: 0;
       padding-bottom: 0;
+      border-bottom: 0;
     }
 
     h2 {
-      margin: 0 0 12px;
-      font-size: 22px;
+      margin: 0 0 16px;
+      font-size: 24px;
       line-height: 1.2;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.03em;
     }
 
     h3 {
       margin: 0 0 6px;
       font-size: 18px;
-      line-height: 1.3;
+      line-height: 1.35;
     }
 
     p {
@@ -120,23 +225,44 @@
       color: var(--muted);
     }
 
-    .lead {
-      max-width: 790px;
-      font-size: 17px;
-    }
-
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px 28px;
+      gap: 20px 30px;
     }
 
-    .item {
-      margin-top: 18px;
+    .item + .item {
+      margin-top: 22px;
     }
 
-    .item:first-child {
-      margin-top: 0;
+    .meta {
+      margin: 0 0 8px;
+      color: var(--soft);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .project-card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fffefa;
+    }
+
+    .project-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px 20px;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 650;
     }
 
     ul {
@@ -145,7 +271,7 @@
     }
 
     li {
-      margin: 6px 0;
+      margin: 7px 0;
     }
 
     .tags {
@@ -158,42 +284,43 @@
     .tag {
       display: inline-flex;
       align-items: center;
-      padding: 4px 9px;
+      padding: 5px 9px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: #faf7f2;
+      background: var(--chip);
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.4;
+      line-height: 1.3;
     }
 
-    .note {
-      padding: 14px 16px;
-      border-left: 3px solid var(--accent);
-      background: var(--accent-soft);
-      color: #4b372b;
-      border-radius: 10px;
+    .achievement-list a {
+      font-weight: 650;
     }
 
     .footer-note {
-      margin-top: 18px;
+      margin: 18px 0 0;
       color: var(--soft);
       font-size: 14px;
       text-align: center;
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 780px) {
       .page {
         width: min(100% - 20px, var(--max));
-        padding: 18px 0 32px;
+        padding: 12px 0 28px;
       }
 
       .resume {
-        padding: 24px;
         border-radius: 14px;
       }
 
-      header,
+      .hero,
+      .content {
+        padding-right: 24px;
+        padding-left: 24px;
+      }
+
+      .hero-grid,
       .grid {
         grid-template-columns: 1fr;
       }
@@ -204,9 +331,14 @@
     }
 
     @media print {
+      :root {
+        --bg: #fff;
+        --paper: #fff;
+      }
+
       body {
-        background: white;
-        font-size: 13px;
+        background: #fff;
+        font-size: 12px;
       }
 
       .page {
@@ -216,16 +348,39 @@
 
       .resume {
         border: 0;
+        border-radius: 0;
         box-shadow: none;
-        padding: 0;
+      }
+
+      .hero,
+      .content {
+        padding-right: 0;
+        padding-left: 0;
+      }
+
+      .hero {
+        padding-top: 0;
+        padding-bottom: 18px;
+        background: #fff;
       }
 
       section {
-        padding: 16px 0;
+        padding: 15px 0;
       }
 
+      .project-card,
+      .item,
+      .grid > div {
+        break-inside: avoid;
+      }
+
+      .actions,
       .footer-note {
         display: none;
+      }
+
+      a {
+        color: inherit;
       }
     }
   </style>
@@ -233,194 +388,218 @@
 <body>
   <main class="page">
     <article class="resume">
-      <header>
-        <div>
-          <h1>Михаил Разаков</h1>
-          <p class="role">Стажёр C#/.NET-разработчик</p>
-          <p class="muted">Backend · Developer Tools · Compiler/Runtime-системы · Unity/C# · Производительность</p>
+      <header class="hero">
+        <div class="hero-grid">
+          <div>
+            <h1>Михаил Разаков</h1>
+            <p class="role">Начинающий Compiler/Runtime Engineer · C#/.NET</p>
+            <p class="focus">Компиляторы · Runtime-системы · Developer Tools · Производительность</p>
+
+            <p class="summary">
+              Разрабатываю <strong>UniversalToolchain / Wist2</strong> — модульный .NET-фреймворк
+              для создания небольших DSL с настраиваемым frontend, промежуточным представлением,
+              оптимизаторами, интерпретатором и CIL backend.
+            </p>
+
+            <div class="status">Стажёр в МЦСТ по разработке LLVM-компилятора</div>
+
+            <div class="actions" aria-label="Основные ссылки">
+              <a class="button" href="https://misha1302.github.io/Wist2/" target="_blank" rel="noopener noreferrer">Документация Wist2</a>
+              <a class="button secondary" href="https://github.com/Misha1302/Wist2" target="_blank" rel="noopener noreferrer">Исходный код</a>
+              <button class="button secondary" type="button" onclick="window.print()">Сохранить в PDF</button>
+            </div>
+          </div>
+
+          <address class="contacts">
+            <span><a href="mailto:misha13022008@gmail.com">misha13022008@gmail.com</a></span>
+            <span><a href="https://t.me/Micodiy" target="_blank" rel="noopener noreferrer">Telegram: @Micodiy</a></span>
+            <span><a href="https://github.com/Misha1302" target="_blank" rel="noopener noreferrer">github.com/Misha1302</a></span>
+            <span>Владимир, Россия</span>
+            <span>Удалённо · готов к переезду в Москву</span>
+          </address>
         </div>
-        <address class="contacts">
-          <span><a href="mailto:misha13022008@gmail.com">misha13022008@gmail.com</a></span>
-          <span><a href="https://t.me/Micodiy" target="_blank" rel="noreferrer">Telegram: @Micodiy</a></span>
-          <span><a href="https://github.com/Misha1302" target="_blank" rel="noreferrer">github.com/Misha1302</a></span>
-          <span>Владимир, Россия · удалённо / гибрид</span>
-        </address>
       </header>
 
-      <section aria-labelledby="about-title">
-        <h2 id="about-title">О себе</h2>
-        <p class="lead">
-          Начинающий C#/.NET-разработчик. Больше всего интересуют backend-разработка,
-          developer tools, компиляторы, runtime-системы, производительность, алгоритмы и структуры данных.
-          Уверенно работаю с Unity/C#: делал законченные игровые и образовательные проекты,
-          в том числе приложения для детских занятий, викторины, party games и обучающие тренажёры.
-        </p>
-        <p>
-          Мой главный проект — <a href="https://github.com/Misha1302/Wist2" target="_blank" rel="noreferrer">UniversalToolchain / Wist2</a>:
-          модульный .NET-фреймворк для создания DSL и исполняемой runtime-логики.
-          В проекте я работаю с лексером, парсером, AST, bytecode, IR, оптимизациями,
-          интерпретатором и CIL/DynamicMethod backend.
-        </p>
-        <p class="note">
-          Не позиционирую себя как готового архитектора, но моя сильная сторона — архитектурное мышление:
-          аккуратные абстракции, тестируемость, расширяемость и понимание, где hardcode ломает систему.
-        </p>
-      </section>
+      <div class="content">
+        <section aria-labelledby="about-title">
+          <h2 id="about-title">О себе</h2>
+          <p>
+            Уже несколько лет изучаю архитектуру компиляторов, языков программирования и runtime-систем.
+            На практике работаю с полным компиляторным конвейером: lexer/parser, AST, bytecode,
+            Abstract IR, оптимизации и два пути исполнения — интерпретатор и CIL-компиляция через DynamicMethod.
+          </p>
+          <p>
+            Моя сильная сторона — системное мышление: разделение ответственности между слоями,
+            расширяемые абстракции, тестируемость, сохранение семантической согласованности backend’ов
+            и поиск архитектурных решений без локального hardcode.
+          </p>
+        </section>
 
-      <section id="skills" aria-labelledby="skills-title">
-        <h2 id="skills-title">Навыки</h2>
-        <div class="grid">
-          <div>
-            <h3>Основное</h3>
-            <p class="muted">C#, .NET, Git, GitHub, unit tests, Linux/Fedora.</p>
-            <div class="tags">
+        <section id="projects" aria-labelledby="projects-title">
+          <h2 id="projects-title">Основной проект</h2>
+
+          <div class="project-card">
+            <div class="project-head">
+              <h3>UniversalToolchain / Wist2</h3>
+              <div class="project-links">
+                <a href="https://misha1302.github.io/Wist2/" target="_blank" rel="noopener noreferrer">Документация</a>
+                <a href="https://github.com/Misha1302/Wist2" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+            <p class="muted">
+              Расширяемый .NET-фреймворк для построения небольших предметно-ориентированных языков.
+              Wist используется как эталонный язык и интеграционная поверхность проекта.
+            </p>
+            <ul>
+              <li>Конвейер: source → lexer → parser → AST → bytecode → Abstract IR → optimizers → backend.</li>
+              <li>Интерпретатор Abstract IR и compiled execution через CIL / DynamicMethod.</li>
+              <li>Композиция языковых возможностей через модули и декларативные dialect-конфигурации.</li>
+              <li>Backend-aware intrinsics, IR-оптимизации и тесты semantic parity между способами исполнения.</li>
+              <li>CLI, BenchmarkDotNet-бенчмарки, профилирование и подробная developer-документация.</li>
+            </ul>
+            <div class="tags" aria-label="Технологии проекта">
               <span class="tag">C#</span>
-              <span class="tag">.NET</span>
-              <span class="tag">Git</span>
-              <span class="tag">Unit tests</span>
-              <span class="tag">Linux</span>
-            </div>
-          </div>
-          <div>
-            <h3>Backend и tooling</h3>
-            <p class="muted">Основы ASP.NET Core, проектирование API, CI/CD, BenchmarkDotNet, профилировщики производительности, VitePress.</p>
-            <div class="tags">
-              <span class="tag">ASP.NET Core</span>
-              <span class="tag">GitHub Actions</span>
-              <span class="tag">BenchmarkDotNet</span>
-              <span class="tag">Профилирование</span>
-              <span class="tag">VitePress</span>
-            </div>
-          </div>
-          <div>
-            <h3>Компиляторы и runtime</h3>
-            <p class="muted">Лексер, парсер, AST, bytecode, IR, интерпретатор, CIL/DynamicMethod backend, анализ производительности runtime.</p>
-            <div class="tags">
-              <span class="tag">Лексер</span>
-              <span class="tag">Парсер</span>
-              <span class="tag">AST</span>
-              <span class="tag">IR</span>
+              <span class="tag">.NET 10</span>
+              <span class="tag">Compiler pipeline</span>
+              <span class="tag">Abstract IR</span>
+              <span class="tag">Interpreter</span>
               <span class="tag">CIL</span>
-              <span class="tag">Производительность runtime</span>
+              <span class="tag">DynamicMethod</span>
+              <span class="tag">BenchmarkDotNet</span>
             </div>
           </div>
-          <div>
-            <h3>Unity/C#</h3>
-            <p class="muted">Уверенная работа с Unity и C#: gameplay logic, UI, сцены, обработка ввода, аудио, сохранения, визуальные эффекты, шейдеры/particles на уровне учебных и небольших коммерчески-прикладных проектов.</p>
-            <div class="tags">
-              <span class="tag">Unity</span>
-              <span class="tag">C#</span>
-              <span class="tag">Gameplay</span>
-              <span class="tag">UI</span>
-              <span class="tag">Audio</span>
-              <span class="tag">Save system</span>
-              <span class="tag">Particles</span>
-              <span class="tag">Educational apps</span>
+        </section>
+
+        <section id="experience" aria-labelledby="experience-title">
+          <h2 id="experience-title">Опыт</h2>
+
+          <div class="item">
+            <h3>Стажёр по разработке LLVM-компилятора · АО «МЦСТ»</h3>
+            <p class="meta">Лето 2026</p>
+            <p class="muted">
+              Работаю стажёром в МЦСТ по программе «Основы разработки языкового компилятора с использованием инфраструктуры LLVM».
+              Программа включает устройство backend’а, промежуточное представление LLVM и разработку оптимизаций.
+              <a href="https://www.mcst.ru/student#topic_llvm" target="_blank" rel="noopener noreferrer">Описание программы</a>.
+            </p>
+          </div>
+
+          <div class="item">
+            <h3>Преподавание программирования</h3>
+            <p class="meta">5+ лет · дистанционно</p>
+            <p class="muted">
+              Преподаю Python, C#, Unity, алгоритмы и структуры данных детям и взрослым.
+              Декомпозирую сложные темы, составляю практические задания и сопровождаю учебные проекты.
+            </p>
+          </div>
+
+          <div class="item">
+            <h3>Самостоятельная и проектная разработка</h3>
+            <p class="muted">
+              Проектирую, реализую и документирую приложения и developer tools на C#/.NET.
+              Работал также с игровыми и образовательными приложениями на Unity: gameplay logic, UI,
+              сцены, ввод, аудио, сохранения и визуальные эффекты.
+            </p>
+          </div>
+        </section>
+
+        <section id="skills" aria-labelledby="skills-title">
+          <h2 id="skills-title">Навыки</h2>
+          <div class="grid">
+            <div>
+              <h3>Компиляторы и runtime</h3>
+              <p class="muted">Lexer, parser, AST, bytecode, Abstract IR, интерпретаторы, CIL/DynamicMethod backend, intrinsics, оптимизации и semantic parity.</p>
+              <div class="tags">
+                <span class="tag">Lexer / Parser</span>
+                <span class="tag">AST</span>
+                <span class="tag">Bytecode</span>
+                <span class="tag">AIR</span>
+                <span class="tag">CIL</span>
+                <span class="tag">Optimizers</span>
+              </div>
+            </div>
+
+            <div>
+              <h3>Языки и платформа</h3>
+              <p class="muted">Основной стек — C#/.NET. Также использую C++, C, Python и NASM x86 для учебных и системных задач.</p>
+              <div class="tags">
+                <span class="tag">C#</span>
+                <span class="tag">.NET</span>
+                <span class="tag">C++</span>
+                <span class="tag">C</span>
+                <span class="tag">Python</span>
+                <span class="tag">NASM x86</span>
+              </div>
+            </div>
+
+            <div>
+              <h3>Инженерная практика</h3>
+              <p class="muted">Git, GitHub Actions, unit и integration tests, CI/CD, профилирование, BenchmarkDotNet, Linux/Fedora и техническая документация.</p>
+              <div class="tags">
+                <span class="tag">Git</span>
+                <span class="tag">Testing</span>
+                <span class="tag">CI/CD</span>
+                <span class="tag">Profiling</span>
+                <span class="tag">Linux</span>
+                <span class="tag">VitePress</span>
+              </div>
+            </div>
+
+            <div>
+              <h3>Алгоритмы и архитектура</h3>
+              <p class="muted">Алгоритмы и структуры данных, модульная архитектура, DI, API design, расширяемость, детерминизм и разделение ответственности.</p>
+              <div class="tags">
+                <span class="tag">Algorithms</span>
+                <span class="tag">Data structures</span>
+                <span class="tag">Architecture</span>
+                <span class="tag">DI</span>
+                <span class="tag">API design</span>
+              </div>
             </div>
           </div>
-          <div>
-            <h3>Алгоритмы, структуры данных и другие языки</h3>
-            <p class="muted">Алгоритмы, структуры данных, C++, C, Python, базово x86 assembly: NASM и fasm.</p>
-            <div class="tags">
-              <span class="tag">C++</span>
-              <span class="tag">C</span>
-              <span class="tag">Python</span>
-              <span class="tag">Алгоритмы</span>
-              <span class="tag">Структуры данных</span>
-              <span class="tag">NASM</span>
-              <span class="tag">fasm</span>
+        </section>
+
+        <section aria-labelledby="achievements-title">
+          <h2 id="achievements-title">Достижения и образование</h2>
+          <div class="grid">
+            <div>
+              <h3>Олимпиады и конкурсы</h3>
+              <ul class="achievement-list">
+                <li><a href="https://olymp.mephi.ru/junior/winners/2025" target="_blank" rel="noopener noreferrer">Абсолютный победитель олимпиады «Юниор» НИЯУ МИФИ</a>.</li>
+                <li>Абсолютный победитель Инженерно-научного Балтийского конкурса.</li>
+                <li><a href="https://olymp.hse.ru/mmo/it" target="_blank" rel="noopener noreferrer">Призёр «Высшей пробы» по информатике</a>.</li>
+                <li><a href="https://olymp.hse.ru/mmo/devcode" target="_blank" rel="noopener noreferrer">Призёр «Высшей пробы» по промышленному программированию</a>.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3>Образование</h3>
+              <ul>
+                <li>Гимназия № 3, Владимир · выпуск в 2026 году.</li>
+                <li>Поступление в технический вуз в Москве в 2026 году.</li>
+                <li>Летняя олимпиадная школа МФТИ, 2024.</li>
+                <li>Самостоятельное изучение compiler/runtime engineering, архитектуры ПО и низкоуровневого программирования.</li>
+              </ul>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="projects" aria-labelledby="projects-title">
-        <h2 id="projects-title">Проекты</h2>
-
-        <div class="item">
-          <h3>
-            <a href="https://github.com/Misha1302/Wist2" target="_blank" rel="noreferrer">UniversalToolchain / Wist2</a>
-          </h3>
-          <p class="muted">
-            Модульный .NET-фреймворк для создания DSL и runtime-пайплайнов.
-            Wist — эталонный язык внутри проекта, на котором проверяется архитектура.
+        <section id="contact" aria-labelledby="contact-title">
+          <h2 id="contact-title">Что ищу</h2>
+          <p>
+            Ищу стажировку, проектную работу или начальную позицию в области компиляторов,
+            языков программирования, runtime-систем и developer tools. Особенно интересны задачи,
+            связанные с промежуточными представлениями, оптимизациями, интерпретаторами,
+            JIT/AOT-компиляцией, производительностью и архитектурой расширяемых инструментов.
           </p>
-          <ul>
-            <li>Пайплайн: исходный текст → лексер → парсер → AST → bytecode → IR → backend.</li>
-            <li>Два backend-направления: interpreter и CIL/DynamicMethod compiled execution.</li>
-            <li>IR-оптимизаторы, backend-aware intrinsics, тесты на совпадение семантики.</li>
-            <li>BenchmarkDotNet-бенчмарки, профилирование, анализ узких мест и developer-документация через VitePress.</li>
-          </ul>
-        </div>
-
-        <div class="item">
-          <h3>Unity/C# проекты</h3>
-          <p class="muted">
-            Unity/C# — мой сильный практический стек до перехода к более системным .NET-проектам.
-            Делал законченные игровые и образовательные приложения: проекты для курсовых работ,
-            party games для детских праздников, викторины и тренажёр таблицы умножения.
-          </p>
-          <ul>
-            <li>Разрабатывал игровую логику, управление сценами, UI, обработку ввода, аудио и сохранение результатов.</li>
-            <li>Делал детские образовательные механики: визуализации умножения, исправление ошибок внутри приложения, озвучку действий и интерфейс с минимумом текста.</li>
-            <li>Работал с проектами формата party game / quiz: задания, темы, очки, взаимодействие игроков, мультимедийные элементы.</li>
-            <li>В одном из проектов использовал визуальные эффекты вроде шейдеров и particles для улучшения внешнего вида.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="experience" aria-labelledby="experience-title">
-        <h2 id="experience-title">Опыт</h2>
-        <div class="item">
-          <h3>Преподавание программирования · 5+ лет</h3>
-          <p class="muted">
-            Дистанционно преподаю программирование детям и взрослым: Python, C#, Unity, основы алгоритмов,
-            структуры данных и разработку небольших проектов. Этот опыт помогает понятно объяснять сложные темы,
-            декомпозировать задачи и быстро видеть, где человек или система “не понимает” задачу.
-          </p>
-        </div>
-        <div class="item">
-          <h3>Самостоятельная разработка C#/.NET-проектов</h3>
-          <p class="muted">
-            Проектирую, реализую и документирую собственные проекты. Особое внимание уделяю архитектуре,
-            тестам, CI, профилированию производительности, анализу узких мест и удобству поддержки.
-          </p>
-        </div>
-      </section>
-
-      <section aria-labelledby="achievements-title">
-        <h2 id="achievements-title">Достижения и образование</h2>
-        <div class="grid">
-          <div>
-            <h3>Олимпиады</h3>
-            <ul>
-              <li>Абсолютный победитель олимпиады «Юниор» МИФИ.</li>
-              <li>Абсолютный победитель Инженерно-научного Балтийского конкурса.</li>
-              <li>Призёр олимпиад ВШЭ по олимпиадному и промышленному программированию.</li>
-            </ul>
+          <div class="actions">
+            <a class="button" href="mailto:misha13022008@gmail.com">Написать по email</a>
+            <a class="button secondary" href="https://t.me/Micodiy" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
           </div>
-          <div>
-            <h3>Образование</h3>
-            <ul>
-              <li>Гимназия №3, Владимир.</li>
-              <li>Летняя олимпиадная школа МФТИ, 2024.</li>
-              <li>Самостоятельное изучение C#/.NET, архитектуры, алгоритмов и compiler/runtime engineering.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" aria-labelledby="contact-title">
-        <h2 id="contact-title">Что ищу</h2>
-        <p>
-          Ищу стажировку в C#/.NET, backend-разработке, developer tools, compiler/runtime engineering
-          или Unity/C# разработке. Интересны задачи, где важны качество кода, тесты,
-          профилирование производительности, алгоритмы, структуры данных и аккуратная работа со сложной кодовой базой.
-        </p>
-      </section>
+        </section>
+      </div>
     </article>
 
-    <p class="footer-note">Статическая страница-резюме для GitHub Pages · 2026</p>
+    <p class="footer-note">Резюме обновлено в 2026 году · версия для GitHub Pages и печати в PDF</p>
   </main>
 </body>
 </html>
