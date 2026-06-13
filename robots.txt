@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://misha1302.github.io/CV/sitemap.xml
