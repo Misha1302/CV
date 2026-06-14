@@ -3,65 +3,178 @@
 @import url("style-content.css") screen;
 @import url("style-narrow.css") screen;
 
-/* Keep the decorative portrait frame tied to the image, not the caption. */
-.portrait-frame {
-  isolation: isolate;
+@media screen {
+  /* Keep the decorative portrait frame tied to the image, not the caption. */
+  .portrait-frame {
+    isolation: isolate;
+  }
+
+  .portrait-frame::before {
+    top: -22px;
+    right: -24px;
+    bottom: auto;
+    left: 22px;
+    aspect-ratio: 4 / 5;
+  }
+
+  /* Coherent readable scale for compact interface text and supporting copy. */
+  :root {
+    --type-micro: 12px;
+    --type-label: 12.5px;
+    --type-small: 13.5px;
+    --type-copy-compact: 15.5px;
+    --faint-readable: #a79f94;
+  }
+
+  .eyebrow,
+  .section-heading > span,
+  .section-heading p,
+  .principles h3,
+  .work-top,
+  .context-grid span,
+  .stack-ribbon span,
+  .decision-grid span,
+  .research-grid > article > span,
+  .recognition-list > article > span,
+  .public-grid > a > span,
+  .public-static > span,
+  .sidebar-download,
+  .timeline time,
+  .timeline .meta,
+  .work-card footer,
+  .evidence-links,
+  .public-grid b,
+  .public-static b,
+  .portrait-caption span {
+    font-size: var(--type-label);
+    line-height: 1.5;
+  }
+
+  .eyebrow,
+  .section-heading p {
+    letter-spacing: 0.075em;
+  }
+
+  .principles h3,
+  .work-top,
+  .context-grid span,
+  .stack-ribbon span,
+  .decision-grid span,
+  .research-grid > article > span,
+  .recognition-list > article > span,
+  .public-grid > a > span,
+  .public-static > span,
+  .timeline .meta {
+    letter-spacing: 0.06em;
+  }
+
+  .timeline b {
+    padding: 6px 9px;
+    font-size: var(--type-micro);
+    line-height: 1.4;
+  }
+
+  .language-switch {
+    font-size: var(--type-micro);
+  }
+
+  .sidebar nav a {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .sidebar nav a span {
+    font-size: var(--type-label);
+    line-height: 1;
+  }
+
+  .contact-grid a,
+  .portrait-caption strong {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .proof-strip span {
+    font-size: var(--type-small);
+    line-height: 1.55;
+  }
+
+  .actions a,
+  .actions button {
+    font-size: 13px;
+  }
+
+  .principles p,
+  .context-grid p,
+  .decision-grid p,
+  .stack-ribbon p,
+  .capability-grid p,
+  .research-grid p,
+  .recognition-list p,
+  .public-grid p,
+  .public-static p,
+  .work-card > p,
+  .work-card ul,
+  .teaching-proof p {
+    font-size: var(--type-copy-compact);
+    line-height: 1.68;
+  }
+
+  .timeline p {
+    font-size: 16.5px;
+    line-height: 1.72;
+  }
+
+  .timeline h3 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .context-grid strong {
+    font-size: 18.5px;
+    line-height: 1.34;
+  }
+
+  .teaching-proof span {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .page-footer {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .section-heading p,
+  .sidebar nav a span,
+  .timeline .meta,
+  .timeline b,
+  .work-card footer,
+  .evidence-links,
+  .proof-strip span,
+  .teaching-proof span,
+  .page-footer {
+    color: var(--faint-readable);
+  }
 }
 
-.portrait-frame::before {
-  top: -22px;
-  right: -24px;
-  bottom: auto;
-  left: 22px;
-  aspect-ratio: 4 / 5;
+@media screen and (width <= 67.5rem) {
+  .mobile-identity span {
+    font-size: 12.5px;
+  }
+
+  .mobile-primary-link,
+  .mobile-menu summary {
+    font-size: 12.5px;
+  }
+
+  .mobile-contact-list a,
+  .mobile-contact-list button {
+    font-size: 13.5px;
+  }
 }
 
-/* Improve Experience readability without changing any typeface. */
-.timeline time {
-  font-size: 12.5px;
-}
-
-.timeline h3 {
-  font-size: 24px;
-  line-height: 1.3;
-}
-
-.timeline .meta {
-  font-size: 11.5px;
-  line-height: 1.5;
-}
-
-.timeline p {
-  font-size: 16.5px;
-  line-height: 1.72;
-}
-
-.timeline b {
-  padding: 6px 9px;
-  font-size: 11px;
-  line-height: 1.35;
-}
-
-/* Make the profile fact cards easier to scan without affecting other sections. */
-.context-grid span {
-  font-size: 11.5px;
-  letter-spacing: 0.06em;
-}
-
-.context-grid strong {
-  font-family: var(--sans);
-  font-size: 18.5px;
-  font-weight: 600;
-  line-height: 1.36;
-  letter-spacing: -0.012em;
-}
-
-.context-grid p {
-  font-size: 14.5px;
-  line-height: 1.65;
-}
-
-@media (width <= 28.75rem) {
+@media screen and (width <= 28.75rem) {
   .portrait-frame::before {
     top: -14px;
     right: -14px;
