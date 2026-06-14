@@ -2,3 +2,25 @@
 @import url("style-foundation.css") screen;
 @import url("style-content.css") screen;
 @import url("style-narrow.css") screen;
+
+/* Keep the decorative portrait frame tied to the image, not the caption. */
+.portrait-frame {
+  isolation: isolate;
+}
+
+.portrait-frame::before {
+  top: -22px;
+  right: -24px;
+  bottom: auto;
+  left: 22px;
+  aspect-ratio: 4 / 5;
+}
+
+@media (width <= 28.75rem) {
+  .portrait-frame::before {
+    top: -14px;
+    right: -14px;
+    bottom: auto;
+    left: 14px;
+  }
+}
