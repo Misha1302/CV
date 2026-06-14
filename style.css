@@ -1,3 +1,4 @@
+/* Portfolio stylesheet entrypoint. */
 @import url("style-foundation.css") screen;
 @import url("style-content.css") screen;
 @import url("style-narrow.css") screen;
