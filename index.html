@@ -3,14 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Михаил Разаков — Compiler/Runtime Engineer, стажёр МЦСТ и создатель UniversalToolchain/Wist. C#/.NET, CIL, JIT, DSL, IR, алгоритмы и системное программирование." />
+  <meta name="description" content="Михаил Разаков — Compiler/Runtime Engineer, стажёр МЦСТ и создатель UniversalToolchain/Wist. .NET/CIL, C/C++, JIT, DSL, IR, program analysis и системное программирование." />
   <meta name="theme-color" content="#075985" />
   <meta property="og:title" content="Михаил Разаков — Compiler/Runtime Engineer" />
-  <meta property="og:description" content="Стажёр МЦСТ, создатель UniversalToolchain/Wist, призёр Высшей пробы по промышленному и олимпиадному программированию." />
+  <meta property="og:description" content="Стажёр МЦСТ, создатель UniversalToolchain/Wist и победитель отбора по направлению LLVM-компилятора." />
   <meta property="og:type" content="profile" />
   <meta property="og:url" content="https://misha1302.github.io/CV/" />
   <link rel="canonical" href="https://misha1302.github.io/CV/" />
-  <link rel="alternate" hreflang="en" href="en.html" />
+  <link rel="alternate" hreflang="ru" href="https://misha1302.github.io/CV/" />
+  <link rel="alternate" hreflang="en" href="https://misha1302.github.io/CV/en.html" />
+  <link rel="alternate" hreflang="x-default" href="https://misha1302.github.io/CV/en.html" />
   <link rel="stylesheet" href="styles.css" />
   <title>Михаил Разаков — Compiler/Runtime Engineer</title>
   <script type="application/ld+json">
@@ -26,7 +28,11 @@
       "https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/"
     ],
     "jobTitle": "Compiler/Runtime Engineer",
-    "knowsAbout": ["C#", ".NET", "compilers", "runtime systems", "CIL", "JIT", "DSL", "algorithms"]
+    "knowsAbout": [
+      "C#", ".NET", "C", "C++", "compilers", "runtime systems", "CIL", "JIT",
+      "domain-specific languages", "intermediate representations", "program analysis",
+      "computational complexity", "formal languages", "algorithms"
+    ]
   }
   </script>
 </head>
@@ -38,7 +44,8 @@
       <span>Резюме · обновлено в июне 2026</span>
       <div class="topbar-links">
         <a href="#experience">Опыт</a>
-        <a href="#projects">Проекты</a>
+        <a href="#projects">Технические работы</a>
+        <a href="#skills">Компетенции</a>
         <a href="#achievements">Достижения</a>
         <a href="en.html" lang="en">English</a>
       </div>
@@ -49,19 +56,19 @@
         <header class="hero">
           <div class="hero-grid">
             <div>
-              <p class="eyebrow">Compiler · Runtime · R&amp;D</p>
+              <p class="eyebrow">Compiler · Runtime · Program Analysis</p>
               <h1>Михаил Разаков</h1>
-              <p class="role">Compiler/Runtime Engineer · C#/.NET</p>
-              <p class="focus">Компиляторы, JIT, DSL, developer tools, производительность и алгоритмы</p>
+              <p class="role">Compiler/Runtime Engineer · .NET/CIL · C/C++</p>
+              <p class="focus">Компиляторы, JIT, анализ программ, DSL, производительность и developer tooling</p>
 
               <p class="summary">
                 Создаю <strong>UniversalToolchain/Wist</strong> — модульный .NET-фреймворк для встраиваемых DSL
-                с интерпретатором и typed CIL execution. Принят на стажировку МЦСТ по направлению
-                «Системы программирования: компилятор LLVM» после первого места в конкурсном отборе.
+                с отдельными слоями Bytecode и AIR, интерпретатором и typed CIL backend. Работаю стажёром МЦСТ
+                по направлению «Системы программирования: компилятор LLVM» после первого места в конкурсном отборе.
               </p>
 
               <div class="status-row">
-                <span class="status">Принят на стажировку в МЦСТ</span>
+                <span class="status">Стажёр МЦСТ · LLVM-компилятор</span>
                 <span class="badge">Призёр двух направлений «Высшей пробы»</span>
               </div>
 
@@ -77,8 +84,6 @@
               <span><a href="mailto:misha13022008@gmail.com">misha13022008@gmail.com</a></span>
               <span><a href="https://t.me/Micodiy" target="_blank" rel="noopener noreferrer">Telegram: @Micodiy</a></span>
               <span><a href="https://github.com/Misha1302" target="_blank" rel="noopener noreferrer">GitHub: Misha1302</a></span>
-              <span><a href="https://t.me/shizaicompilers" target="_blank" rel="noopener noreferrer">Канал: «Шиза и компиляторы»</a></span>
-              <span><a href="https://habr.com/ru/users/misha13022008/" target="_blank" rel="noopener noreferrer">Habr</a></span>
               <span><a href="https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>
               <span>Владимир → Москва</span>
               <span>Офис · гибрид · удалённо</span>
@@ -93,15 +98,15 @@
           </div>
           <div class="metric">
             <span class="metric-value">104/104</span>
-            <span class="metric-label">теста прошёл единственный конкурсный solution</span>
+            <span class="metric-label">тестов прошло единственное полностью корректное решение</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">1-е / 2-е</span>
+            <span class="metric-label">места в России на «Юниоре» в 2025 и 2026 годах</span>
           </div>
           <div class="metric">
             <span class="metric-value">5 лет</span>
             <span class="metric-label">преподавания, около 50 учеников</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">2 профиля</span>
-            <span class="metric-label">«Высшей пробы»: олимпиадное и промышленное программирование</span>
           </div>
         </div>
 
@@ -111,14 +116,15 @@
               <h2 id="profile-title">Профиль</h2>
               <div>
                 <p>
-                  Моя основная специализация — compiler/runtime engineering на .NET: языковые frontend-ы,
-                  промежуточные представления, интерпретаторы, CIL-кодогенерация, JIT-поведение и оптимизация hot path.
-                  При этом я не ограничиваюсь компиляторами: призёрство по промышленному и олимпиадному программированию
-                  подтверждает сочетание software engineering и алгоритмической подготовки.
+                  Специализируюсь на compiler/runtime engineering: проектирую языковые frontend-ы,
+                  промежуточные представления, интерпретаторы, CIL-кодогенерацию, оптимизации и проверки
+                  семантического паритета. Отдельно развиваюсь в program analysis, solver engineering,
+                  generative/metamorphic testing и исследовании производительности.
                 </p>
                 <p>
-                  Сильнее всего мне интересны теория графов, теория чисел, low-level и performance-задачи,
-                  архитектура сложных систем и R&amp;D, где требуется не только написать код, но и доказать корректность решения.
+                  Сочетаю системную разработку с сильной алгоритмической и дискретно-математической базой.
+                  Мне особенно интересны задачи, где нужно формализовать семантику, разделить точные и
+                  консервативные методы и подтвердить корректность тестами или воспроизводимыми измерениями.
                 </p>
               </div>
             </div>
@@ -132,23 +138,23 @@
                   <h3>Стажёр МЦСТ · компилятор LLVM</h3>
                   <p class="meta">2026 · направление «Системы программирования»</p>
                   <p>
-                    Принят по итогам жёсткого отбора: 87 заявок, 49 присланных решений и 6 мест.
-                    Получил максимальные <strong>5,0/5,0</strong>, занял первое место и стал единственным кандидатом,
-                    чьё решение прошло все 104 закрытых и открытых теста.
+                    Прошёл конкурсный отбор с 87 заявками, 49 присланными решениями и 6 местами.
+                    Получил максимальные <strong>5,0/5,0</strong>, занял первое место и представил единственное
+                    решение, прошедшее все 104 теста.
                   </p>
                   <p class="muted">
-                    Задача требовала решения на C, анализа диофантовых ограничений, корректной работы с краевыми случаями,
-                    безопасного ввода и защиты решения на собеседовании.
+                    Отборочная работа на C была посвящена параметрическому анализу зависимостей обращений к памяти,
+                    целочисленным ограничениям и построению корректного ответа <code>yes/no/maybe</code>.
                   </p>
                 </article>
 
                 <article class="timeline-item">
-                  <h3>Разработчик UniversalToolchain/Wist</h3>
+                  <h3>Создатель и ведущий разработчик UniversalToolchain/Wist</h3>
                   <p class="meta">Собственный open-source проект · активная разработка</p>
                   <p>
                     Проектирую архитектуру framework-а, semantic boundaries между Bytecode и AIR,
-                    модульную композицию языка, два backend-а и проверки их семантического паритета.
-                    Отвечаю за техническое направление, ключевые решения, тестовую стратегию, документацию и релизный контур.
+                    модульную композицию языка, interpreter/CIL backends и capability-driven оптимизации.
+                    Отвечаю за API, тестовую стратегию, документацию, NuGet-пакет и релизные проверки.
                   </p>
                 </article>
 
@@ -157,7 +163,7 @@
                   <p class="meta">С 2021 года · около 50 учеников</p>
                   <p>
                     Преподаю Python, C#, C/C++, Unity, алгоритмы и проектную разработку школьникам, взрослым и студентам.
-                    Консультирую студентов НИУ ВШЭ по курсовым проектам: архитектура, алгоритмы, отладка, code review и подготовка к защите.
+                    Консультирую студентов НИУ ВШЭ по архитектуре, алгоритмам, отладке, code review и подготовке проектов к защите.
                   </p>
                 </article>
               </div>
@@ -166,7 +172,7 @@
 
           <section id="projects" aria-labelledby="projects-title">
             <div class="section-head">
-              <h2 id="projects-title">Проекты</h2>
+              <h2 id="projects-title">Технические работы</h2>
               <div class="stack">
                 <article class="card primary">
                   <div class="card-head">
@@ -177,23 +183,46 @@
                       <a href="https://www.nuget.org/packages/UniversalToolchain.Wist/0.1.0-preview.1" target="_blank" rel="noopener noreferrer">NuGet</a>
                     </div>
                   </div>
-                  <p class="meta">.NET 10 · compiler-first DSL/runtime framework</p>
+                  <p class="meta">.NET 10 · modular DSL/compiler/runtime framework</p>
                   <p>
-                    Фреймворк для создания встраиваемых предметно-ориентированных языков. Wist — reference language,
-                    на котором проверяются универсальность архитектуры и одинаковая семантика разных способов исполнения.
+                    Framework для построения встраиваемых DSL. Wist служит reference language и proving ground
+                    для проверки универсальности архитектуры, оптимизаций и одинаковой семантики разных способов исполнения.
                   </p>
                   <ul>
-                    <li>Pipeline: Source → Lexer/Parser → AST → Bytecode → AIR → optimizers → backend → execution.</li>
-                    <li>Interpreter backend и compiled typed execution через CIL/DynamicMethod.</li>
-                    <li>Композиция языковых возможностей из модулей и декларативные dialect-конфигурации.</li>
-                    <li>Backend capabilities, intrinsics, IR-оптимизации и semantic-parity regression tests.</li>
-                    <li>CLI, public facade API, NuGet preview, GitHub Actions, package smoke tests и VitePress-документация.</li>
-                    <li>BenchmarkDotNet и анализ generated CIL/assembly для оптимизации горячих путей.</li>
+                    <li>Спроектировал pipeline Source → Lexer/Parser → AST → Bytecode → AIR → Optimization → Backend → Execution.</li>
+                    <li>Разделил frontend-oriented Bytecode и backend-oriented AIR, чтобы языковые модули не зависели от конкретного backend.</li>
+                    <li>Реализовал interpreter backend и compiled typed execution через CIL/<code>DynamicMethod</code>.</li>
+                    <li>Перевёл legality оптимизаций с hardcode конкретных backend-ов на capabilities и supported intrinsics.</li>
+                    <li>Защитил семантику cross-backend parity, module-combination и architecture-guardrail тестами.</li>
+                    <li>Подготовил public facade API, CLI, NuGet preview, package smoke tests, GitHub Actions и VitePress-документацию.</li>
+                    <li>Исследую hot path через BenchmarkDotNet, generated CIL и assembly.</li>
                   </ul>
                   <div class="tags">
-                    <span class="tag">C#</span><span class="tag">.NET 10</span><span class="tag">CIL</span>
-                    <span class="tag">JIT</span><span class="tag">AST</span><span class="tag">Bytecode</span>
-                    <span class="tag">AIR</span><span class="tag">DynamicMethod</span><span class="tag">BenchmarkDotNet</span>
+                    <span class="tag">C#/.NET</span><span class="tag">CIL/JIT</span>
+                    <span class="tag">IR</span><span class="tag">DSL</span><span class="tag">Performance</span>
+                  </div>
+                </article>
+
+                <article class="card">
+                  <div class="card-head">
+                    <h3>Solver и test harness для отбора МЦСТ</h3>
+                    <span class="meta">C · Python · program analysis</span>
+                  </div>
+                  <p>
+                    Построил portfolio solver для параметрической зависимости двух обращений к памяти
+                    на независимых итерациях цикла при неизвестных loop-invariant переменных.
+                  </p>
+                  <ul class="compact-list">
+                    <li>Символьная нормализация сумм произведений и канонизация эквивалентных мономов.</li>
+                    <li>Range, residue и GCD abstractions для sound-доказательств отсутствия зависимости.</li>
+                    <li>Точный affine solver с подсчётом lattice points через <code>floor_sum</code>.</li>
+                    <li>Монотонный two-pointer анализ, ограниченный точный fallback и one-sided witness search.</li>
+                    <li>Генеративный harness с exact oracles, metamorphic transformations и mutation-guided поиском WA/TL случаев.</li>
+                  </ul>
+                  <div class="tags">
+                    <span class="tag">C17</span><span class="tag">Python</span>
+                    <span class="tag">Program Analysis</span><span class="tag">Constraint Solving</span>
+                    <span class="tag">Metamorphic Testing</span>
                   </div>
                 </article>
 
@@ -212,7 +241,7 @@
                   </ul>
                   <div class="tags">
                     <span class="tag">C#/.NET</span><span class="tag">Python</span><span class="tag">Telegram</span>
-                    <span class="tag">Linux</span><span class="tag">systemd</span><span class="tag">SQLite/PostgreSQL</span>
+                    <span class="tag">Linux</span><span class="tag">systemd</span><span class="tag">Databases</span>
                   </div>
                 </article>
 
@@ -238,20 +267,45 @@
               <div class="skills-grid">
                 <div class="skill-group">
                   <h3>Языки и платформа</h3>
-                  <p>C#, .NET, C, C++, Python; базовый NASM/x86-64.</p>
+                  <p>C#, .NET, C, C++, Python; NASM/x86-64 на учебно-практическом уровне; Linux и Git.</p>
                 </div>
                 <div class="skill-group">
                   <h3>Compiler / Runtime</h3>
-                  <p>Lexer, parser, AST, bytecode, IR/AIR, interpreters, CIL, DynamicMethod, intrinsics, JIT, optimizer legality.</p>
+                  <p>Lexer/parser, AST, Bytecode, IR/AIR, interpreters, CIL, DynamicMethod, intrinsics, JIT behavior, optimizer legality.</p>
                 </div>
                 <div class="skill-group">
-                  <h3>Алгоритмы</h3>
-                  <p>Графы, теория чисел, структуры данных, бинарный поиск по ответу, динамическое программирование, комбинаторика.</p>
+                  <h3>Program Analysis / Solvers</h3>
+                  <p>Dependence analysis, symbolic normalization, affine integer constraints, modular/GCD abstractions, exact и conservative algorithms.</p>
+                </div>
+                <div class="skill-group">
+                  <h3>Testing / Performance</h3>
+                  <p>Exact oracles, property-based и metamorphic testing, mutation-guided fuzzing, BenchmarkDotNet, profiling, CIL/assembly inspection.</p>
+                </div>
+                <div class="skill-group">
+                  <h3>Алгоритмы и математика</h3>
+                  <p>Графы, теория чисел, модульная арифметика, диофантовы ограничения, структуры данных, дискретные алгоритмы.</p>
                 </div>
                 <div class="skill-group">
                   <h3>Engineering</h3>
-                  <p>Архитектура, unit/integration tests, CI/CD, GitHub Actions, BenchmarkDotNet, профилирование, документация, Linux.</p>
+                  <p>Архитектурные границы, unit/integration tests, CI/CD, GitHub Actions, NuGet packaging, документация и эксплуатация Linux-сервисов.</p>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          <section aria-labelledby="research-title">
+            <div class="section-head">
+              <h2 id="research-title">Теоретические интересы</h2>
+              <div>
+                <p>
+                  Вычислительная теория сложности: классы <code>P</code>, <code>NP</code>, <code>coNP</code> и <code>FP</code>,
+                  полиномиальные сводимости, NP-полнота и отношения между задачами принятия решений,
+                  поиска и вычисления функций.
+                </p>
+                <p>
+                  Также интересуюсь теорией конечных автоматов и формальных языков, лямбда-исчислением,
+                  семантикой языков программирования; дополнительный математический интерес — сюрреальные числа.
+                </p>
               </div>
             </div>
           </section>
@@ -264,14 +318,21 @@
                   <span class="year">2026</span>
                   <div>
                     <h3>Первое место в отборе МЦСТ на стажировку по LLVM-компилятору</h3>
-                    <p>5,0/5,0; единственный результат 104/104 теста среди 49 присланных решений.</p>
+                    <p>5,0/5,0; единственное решение, прошедшее 104/104 тестов среди 49 присланных работ.</p>
                   </div>
                 </div>
                 <div class="achievement">
-                  <span class="year">2025–26</span>
+                  <span class="year">2026</span>
                   <div>
-                    <h3>Двукратный абсолютный победитель олимпиады «Юниор» НИЯУ МИФИ</h3>
-                    <p>Проекты по созданию эффективных DSL и UniversalToolchain.</p>
+                    <h3>2-е место в России на олимпиаде «Юниор» НИЯУ МИФИ</h3>
+                    <p>Проект «Universal Toolchain — мета-система для создания расширяемых языков программирования».</p>
+                  </div>
+                </div>
+                <div class="achievement">
+                  <span class="year">2025</span>
+                  <div>
+                    <h3>1-е место в России на олимпиаде «Юниор» НИЯУ МИФИ</h3>
+                    <p>Проект «Фреймворк для создания эффективных DSL».</p>
                   </div>
                 </div>
                 <div class="achievement">
@@ -329,7 +390,8 @@
                 <p class="meta">11 класс · выпуск 2026</p>
                 <p>
                   Планирую обучение в Москве по направлению программной инженерии или информатики и вычислительной техники.
-                  Продолжаю самостоятельное углублённое изучение compiler engineering, .NET runtime, алгоритмов и системного программирования.
+                  Продолжаю самостоятельное углублённое изучение compiler engineering, .NET runtime,
+                  анализа программ, алгоритмов и системного программирования.
                 </p>
               </div>
             </div>
@@ -337,15 +399,15 @@
 
           <section aria-labelledby="goal-title">
             <div class="section-head">
-              <h2 id="goal-title">Профессиональная цель</h2>
+              <h2 id="goal-title">Профессиональный фокус</h2>
               <div>
                 <p>
-                  Развиваться в технически сложных направлениях с высоким потолком: compiler/runtime/JIT,
-                  performance и low-latency engineering, database/query engines, developer infrastructure и системное R&amp;D.
+                  Развиваюсь в compiler/runtime/JIT, program analysis, performance engineering,
+                  database/query engines, low-latency и developer infrastructure.
                 </p>
                 <div class="note">
-                  Рассматриваю команды, где ценятся алгоритмическая подготовка, измеримый performance work,
-                  строгие инженерные инварианты и возможность расти от реализации компонентов к исследовательским задачам.
+                  Особенно интересны команды с сильным technical review, строгими инженерными инвариантами
+                  и задачами, где результат можно подтвердить улучшением корректности, производительности или качества инструментария.
                 </div>
               </div>
             </div>
