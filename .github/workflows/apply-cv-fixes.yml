@@ -1,0 +1,168 @@
+name: Apply CV fixes
+
+on:
+  push:
+    paths:
+      - .github/workflows/apply-cv-fixes.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Apply requested changes
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          def replace_once(text, pattern, replacement, label, flags=0):
+              result, count = re.subn(pattern, replacement, text, count=1, flags=flags)
+              if count != 1:
+                  raise RuntimeError(f"Expected one {label}, got {count}")
+              return result
+
+          def remove_regional(text, label):
+              pattern = re.compile(
+                  r'\n\s*<div class="achievement">\s*'
+                  r'<span class="year">.*?</span>\s*'
+                  r'<div>.*?(?:региональн|regional).*?</div>\s*</div>',
+                  re.IGNORECASE | re.DOTALL,
+              )
+              result, count = pattern.subn('', text, count=1)
+              if count != 1:
+                  raise RuntimeError(f"Expected one regional achievement in {label}, got {count}")
+              return result
+
+          def sort_achievements(text, label):
+              pattern = re.compile(
+                  r'(?P<block>\s*<div class="achievement">\s*'
+                  r'<span class="year">(?P<year>[^<]+)</span>\s*'
+                  r'<div>.*?</div>\s*</div>)',
+                  re.DOTALL,
+              )
+              matches = list(pattern.finditer(text))
+              if len(matches) < 2:
+                  raise RuntimeError(f"Not enough achievements in {label}")
+              for left, right in zip(matches, matches[1:]):
+                  if text[left.end():right.start()].strip():
+                      raise RuntimeError(f"Non-contiguous achievements in {label}")
+
+              def key(match):
+                  year = re.search(r'\d{4}', match.group('year'))
+                  if year is None:
+                      raise RuntimeError(f"Missing year in {label}")
+                  return int(year.group())
+
+              ordered = sorted(matches, key=key, reverse=True)
+              blocks = ''.join(match.group('block') for match in ordered)
+              return text[:matches[0].start()] + blocks + text[matches[-1].end():]
+
+          ru_path = Path('index.html')
+          en_path = Path('en.html')
+          css_path = Path('styles.css')
+          ru = ru_path.read_text(encoding='utf-8')
+          en = en_path.read_text(encoding='utf-8')
+          css = css_path.read_text(encoding='utf-8')
+
+          ru = replace_once(
+              ru,
+              r'(<h3>Теоретические интересы</h3>\s*<p>).*?(</p>)',
+              r'''\1
+                    Вычислительная теория сложности, теория формальных языков и конечных автоматов,
+                    лямбда-исчисление и семантика языков программирования. Отдельный математический
+                    интерес — сюрреальные числа.
+                  \2''',
+              'Russian theoretical interests',
+              re.DOTALL,
+          )
+          en = replace_once(
+              en,
+              r'(<h3>Theoretical interests</h3>\s*<p>).*?(</p>)',
+              r'''\1
+                    Computational complexity, formal languages and automata theory, lambda calculus
+                    and programming-language semantics. Surreal numbers are an additional mathematical interest.
+                  \2''',
+              'English theoretical interests',
+              re.DOTALL,
+          )
+
+          ru = sort_achievements(remove_regional(ru, 'index.html'), 'index.html')
+          en = sort_achievements(remove_regional(en, 'en.html'), 'en.html')
+
+          ru = replace_once(
+              ru,
+              r'(<h2 id="focus-title">)Профессиональный фокус(</h2>)',
+              r'\1<span class="nowrap">Профессиональный</span><br />фокус\2',
+              'professional focus heading',
+          )
+
+          css = replace_once(
+              css,
+              r'grid-template-columns:\s*230px\s+minmax\(0,\s*1fr\);',
+              'grid-template-columns: 250px minmax(0, 1fr);',
+              'section grid width',
+          )
+          css = replace_once(
+              css,
+              r'(h2\s*\{.*?letter-spacing:\s*-0\.03em;)\s*overflow-wrap:\s*anywhere;',
+              r'''\1
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;''',
+              'heading wrap rules',
+              re.DOTALL,
+          )
+          if '.nowrap {' not in css:
+              css = css.replace(
+                  '\nh3 {',
+                  '\n.nowrap {\n  white-space: nowrap;\n}\n\nh3 {',
+                  1,
+              )
+
+          ru_path.write_text(ru, encoding='utf-8')
+          en_path.write_text(en, encoding='utf-8')
+          css_path.write_text(css, encoding='utf-8')
+
+          for filename in ('index.html', 'en.html'):
+              text = Path(filename).read_text(encoding='utf-8')
+              assert text.startswith('<!doctype html>')
+              assert text.count('<html') == 1
+              assert text.count('</html>') == 1
+              assert 'региональный этап' not in text.lower()
+              assert 'regional stage' not in text.lower()
+              ids = re.findall(r'\bid="([^"]+)"', text)
+              assert len(ids) == len(set(ids))
+              json_ld = re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.DOTALL)
+              assert json_ld
+              json.loads(json_ld.group(1))
+              years = [int(year) for year in re.findall(
+                  r'<div class="achievement">\s*<span class="year">[^<]*?(\d{4})',
+                  text,
+                  re.DOTALL,
+              )]
+              assert years == sorted(years, reverse=True), (filename, years)
+
+          assert 'классы <code>P</code>' not in ru
+          assert 'polynomial-time reductions and completeness' not in en
+          assert '<span class="nowrap">Профессиональный</span><br />фокус' in ru
+          assert 'grid-template-columns: 250px minmax(0, 1fr);' in css
+          assert 'overflow-wrap: normal;' in css
+          assert 'word-break: normal;' in css
+          assert 'hyphens: none;' in css
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html en.html styles.css
+          git diff --cached --check
+          git commit -m "Refine CV interests, chronology, and heading layout"
+          git push
