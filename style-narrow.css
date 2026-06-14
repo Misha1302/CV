@@ -1,0 +1,5 @@
+@media (width <= 45rem) {
+  .hero { padding: 54px 24px 48px; }
+  .hero h1 { font-size: clamp(43px, 12vw, 56px); }
+  .section { padding: 64px 24px; }
+}
