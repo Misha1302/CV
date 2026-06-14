@@ -99,7 +99,7 @@ jobs:
 
           ru = replace_once(
               ru,
-              r'(<h2 id="focus-title">)Профессиональный фокус(</h2>)',
+              r'(<h2 id="goal-title">)Профессиональный фокус(</h2>)',
               r'\1<span class="nowrap">Профессиональный</span><br />фокус\2',
               'professional focus heading',
           )
