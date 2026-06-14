@@ -1,0 +1,46 @@
+name: Apply CV rewrite
+
+on:
+  push:
+    paths:
+      - .github/workflows/apply-cv-rewrite.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rewrite CV pages
+        run: python .github/scripts/apply_cv_rewrite.py
+      - name: Validate generated pages
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+          for name in ("index.html", "en.html"):
+              text = Path(name).read_text(encoding="utf-8")
+              assert text.startswith("<!doctype html>")
+              assert text.count("<html") == 1
+              assert text.count("</html>") == 1
+              assert "UniversalToolchain" in text
+              assert "104/104" in text
+              match = re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
+              assert match, f"JSON-LD missing in {name}"
+              json.loads(match.group(1))
+          PY
+      - name: Commit rewritten pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html en.html
+          git diff --cached --check
+          git commit -m "Refine CV positioning and technical case studies"
+          git push
