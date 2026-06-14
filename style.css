@@ -4,89 +4,91 @@
 @import url("style-narrow.css") screen;
 
 /* Readability and density refinements. */
-:root {
-  --display: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Arial, sans-serif;
-  --mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  --muted: #c9c0b5;
-  --faint: #a79f94;
-  --content-pad: clamp(32px, 4.5vw, 68px);
+@media screen {
+  :root {
+    --display: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Arial, sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    --muted: #c9c0b5;
+    --faint: #a79f94;
+    --content-pad: clamp(32px, 4.5vw, 68px);
+  }
+
+  body {
+    font-family: var(--sans);
+  }
+
+  .summary,
+  .timeline p,
+  .work-card > p,
+  .capability-grid p,
+  .research-grid p,
+  .recognition-list p,
+  .public-grid p,
+  .public-static p,
+  .context-grid p,
+  .principles p,
+  .decision-grid p,
+  .stack-ribbon p,
+  .teaching-proof p {
+    color: var(--muted);
+  }
+
+  .section-heading h2,
+  .lead,
+  .timeline h3,
+  .work-card h3,
+  .decision-grid h3,
+  .capability-grid h3,
+  .research-grid h3,
+  .recognition-list h3,
+  .public-grid h3,
+  .public-static h3,
+  .closing h2 {
+    font-family: var(--sans);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .eyebrow,
+  .section-heading > span,
+  .section-heading p,
+  .principles h3,
+  .work-top,
+  .context-grid span,
+  .stack-ribbon span,
+  .decision-grid span,
+  .research-grid > article > span,
+  .recognition-list > article > span,
+  .public-grid > a > span,
+  .public-static > span,
+  .sidebar-download,
+  .timeline time,
+  .timeline .meta,
+  .timeline b,
+  .work-card footer,
+  .evidence-links,
+  .public-grid b,
+  .public-static b {
+    letter-spacing: 0.055em;
+  }
+
+  .sidebar nav a {
+    color: #c2b9ad;
+    font-size: 13.5px;
+  }
+
+  .sidebar nav a span {
+    font-size: 12px;
+  }
+
+  .proof-strip span {
+    color: #aaa196;
+    font-size: 13px;
+  }
 }
 
-body {
-  font-family: var(--sans);
-}
-
-.summary,
-.timeline p,
-.work-card > p,
-.capability-grid p,
-.research-grid p,
-.recognition-list p,
-.public-grid p,
-.public-static p,
-.context-grid p,
-.principles p,
-.decision-grid p,
-.stack-ribbon p,
-.teaching-proof p {
-  color: var(--muted);
-}
-
-.section-heading h2,
-.lead,
-.timeline h3,
-.work-card h3,
-.decision-grid h3,
-.capability-grid h3,
-.research-grid h3,
-.recognition-list h3,
-.public-grid h3,
-.public-static h3,
-.closing h2 {
-  font-family: var(--sans);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-}
-
-.eyebrow,
-.section-heading > span,
-.section-heading p,
-.principles h3,
-.work-top,
-.context-grid span,
-.stack-ribbon span,
-.decision-grid span,
-.research-grid > article > span,
-.recognition-list > article > span,
-.public-grid > a > span,
-.public-static > span,
-.sidebar-download,
-.timeline time,
-.timeline .meta,
-.timeline b,
-.work-card footer,
-.evidence-links,
-.public-grid b,
-.public-static b {
-  letter-spacing: 0.055em;
-}
-
-.sidebar nav a {
-  color: #c2b9ad;
-  font-size: 13.5px;
-}
-
-.sidebar nav a span {
-  font-size: 12px;
-}
-
-.proof-strip span {
-  color: #aaa196;
-  font-size: 13px;
-}
-
-@media (min-width: 1081px) {
+@media screen and (min-width: 1081px) {
   .layout {
     grid-template-columns: 220px minmax(0, 1fr);
   }
@@ -163,7 +165,7 @@ body {
   }
 }
 
-@media (max-width: 1080px) {
+@media screen and (max-width: 1080px) {
   body {
     font-size: 16px;
   }
