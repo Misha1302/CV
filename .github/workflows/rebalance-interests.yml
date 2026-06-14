@@ -1,98 +1,20 @@
-name: Normalize CV interests
+name: Validate CV interests
 
 on:
-  push:
-    paths:
-      - .github/workflows/rebalance-interests.yml
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  update:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Normalize Russian and English interests sections
-        run: |
-          python - <<'PY'
-          import re
-          import textwrap
-          from pathlib import Path
-
-          sections = {
-              "index.html": """
-              <section aria-labelledby="interests-title">
-                <div class="section-head">
-                  <h2 id="interests-title">Интересы</h2>
-                  <div class="stack">
-                    <div>
-                      <h3>Инженерные интересы</h3>
-                      <p>
-                        Алгоритмы и оптимизации, компиляторы и runtime-системы, внутреннее устройство
-                        .NET/CLR и CIL, JIT-компиляция, промежуточные представления, анализ и формальная
-                        верификация программ.
-                      </p>
-                    </div>
-                    <div>
-                      <h3>Теоретические интересы</h3>
-                      <p>
-                        Вычислительная теория сложности — классы <code>P</code>, <code>NP</code>, <code>coNP</code>
-                        и <code>FP</code>, полиномиальные сводимости и полнота; теория формальных языков и
-                        конечных автоматов, лямбда-исчисление и семантика языков программирования.
-                        Отдельный математический интерес — сюрреальные числа.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              """,
-              "en.html": """
-              <section aria-labelledby="interests-title">
-                <div class="section-head">
-                  <h2 id="interests-title">Interests</h2>
-                  <div class="stack">
-                    <div>
-                      <h3>Engineering interests</h3>
-                      <p>
-                        Algorithms and optimization, compiler and runtime engineering, .NET/CLR internals
-                        and CIL, JIT compilation, intermediate representations, program analysis and formal verification.
-                      </p>
-                    </div>
-                    <div>
-                      <h3>Theoretical interests</h3>
-                      <p>
-                        Computational complexity — <code>P</code>, <code>NP</code>, <code>coNP</code> and <code>FP</code>,
-                        polynomial-time reductions and completeness; formal languages and automata theory,
-                        lambda calculus and programming-language semantics. Surreal numbers are an additional
-                        mathematical interest.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              """,
-          }
-
-          pattern = re.compile(
-              r'^\s*<section aria-labelledby="interests-title">.*?^\s*</section>',
-              re.DOTALL | re.MULTILINE,
-          )
-
-          for filename, section in sections.items():
-              path = Path(filename)
-              source = path.read_text(encoding="utf-8")
-              replacement = textwrap.indent(textwrap.dedent(section).strip(), "          ")
-              updated, count = pattern.subn(lambda _: replacement, source, count=1)
-              if count != 1:
-                  raise RuntimeError(f"Expected one interests section in {filename}, replaced {count}")
-              path.write_text(updated, encoding="utf-8")
-          PY
-      - name: Validate generated HTML
+      - name: Validate interests sections
         run: |
           python - <<'PY'
           import json
@@ -100,8 +22,20 @@ jobs:
           from pathlib import Path
 
           expected = {
-              "index.html": ("Инженерные интересы", "Теоретические интересы", "сюрреальные числа"),
-              "en.html": ("Engineering interests", "Theoretical interests", "Surreal numbers"),
+              "index.html": (
+                  "Инженерные интересы",
+                  "Теоретические интересы",
+                  "Алгоритмы и оптимизации",
+                  "формальная верификация",
+                  "сюрреальные числа",
+              ),
+              "en.html": (
+                  "Engineering interests",
+                  "Theoretical interests",
+                  "Algorithms and optimization",
+                  "formal verification",
+                  "Surreal numbers",
+              ),
           }
 
           for filename, markers in expected.items():
@@ -116,11 +50,3 @@ jobs:
               assert match
               json.loads(match.group(1))
           PY
-      - name: Commit changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html en.html
-          git diff --cached --check
-          git commit -m "Normalize CV interests section"
-          git push
