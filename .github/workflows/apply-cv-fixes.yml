@@ -1,15 +1,15 @@
 name: Apply CV fixes
 
 on:
-  push:
-    paths:
-      - .github/workflows/apply-cv-fixes.yml
+  issues:
+    types: [opened]
 
 permissions:
   contents: write
 
 jobs:
   apply:
+    if: github.event.issue.title == 'Apply requested CV fixes'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -158,10 +158,11 @@ jobs:
           assert 'word-break: normal;' in css
           assert 'hyphens: none;' in css
           PY
-      - name: Commit changes
+      - name: Commit changes and remove one-shot workflow
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/apply-cv-fixes.yml
           git add index.html en.html styles.css
           git diff --cached --check
           git commit -m "Refine CV interests, chronology, and heading layout"
