@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mikhail Razakov — Compiler / Runtime Engineer</title>
   <link rel="stylesheet" href="cv.css">
 </head>
@@ -12,7 +13,7 @@
         <p class="kicker">Compiler engineering · Runtime systems · Program analysis</p>
         <h1>Mikhail Razakov</h1>
         <p class="role">Compiler / Runtime Engineer</p>
-        <p class="summary">I build compiler and runtime infrastructure, intermediate representations and program-analysis systems. My work combines language semantics, CIL/JIT execution, exact and conservative solvers, adversarial validation and performance analysis.</p>
+        <p class="summary">I build compiler infrastructure on .NET, including intermediate representations, interpreters, CIL code generation and program-analysis tooling. Creator of UniversalToolchain/Wist and an MCST LLVM compiler intern.</p>
         <div class="contact-row">
           <a href="mailto:misha13022008@gmail.com">misha13022008@gmail.com</a>
           <a href="https://github.com/Misha1302">github.com/Misha1302</a>
@@ -25,9 +26,9 @@
 
     <div class="evidence-strip">
       <div><strong>#1</strong><span>MCST LLVM selection</span></div>
-      <div><strong>104/104</strong><span>Only fully correct submission</span></div>
+      <div><strong>104/104</strong><span>Official selection tests</span></div>
       <div><strong>2 tracks</strong><span>Vysshaya Proba prize-winner</span></div>
-      <div><strong>5 years</strong><span>Teaching · ~50 students</span></div>
+      <div><strong>~50</strong><span>Students · 10 verified reviews</span></div>
     </div>
 
     <section class="cv-section">
@@ -35,15 +36,19 @@
       <div class="section-body timeline">
         <article>
           <div class="date">2026</div>
-          <div><h2>MCST intern · LLVM compiler</h2><p class="meta">Programming Systems track</p><p>Ranked first among 49 submitted solutions after a selection with 87 applicants. Built the only solution passing all 104 tests for a parametric memory-dependence analysis task over integer constraints.</p></div>
+          <div><h2>MCST intern · LLVM compiler</h2><p class="meta">Programming Systems track</p><p>Ranked first among 49 submitted solutions after a selection with 87 applicants. Built the only solution that passed all 104 official tests for a parametric memory-dependence analysis task over integer constraints.</p></div>
         </article>
         <article>
           <div class="date">Active</div>
-          <div><h2>Creator and maintainer · UniversalToolchain/Wist</h2><p class="meta">Open-source compiler/runtime framework</p><p>Own architecture, semantic boundaries, modular composition, interpreter and CIL execution, optimizer legality, public APIs, tests, packaging, documentation and release gates.</p></div>
+          <div><h2>Creator and maintainer · UniversalToolchain/Wist</h2><p class="meta">Open-source compiler/runtime framework</p><p>Designed and maintain the framework architecture, IR boundaries, interpreter and CIL backend, optimizer contracts, public APIs, tests and release tooling.</p></div>
+        </article>
+        <article>
+          <div class="date">Active</div>
+          <div><h2>Architecture and backend · CompilationLab</h2><p class="meta">Co-developed with a full-stack engineer · pre-user stage</p><p>Designed the backend architecture and implemented the data model, persistence layer and API contracts. Architectural decisions and frontend–backend boundaries are reviewed jointly.</p></div>
         </article>
         <article>
           <div class="date">2021—</div>
-          <div><h2>Programming teacher and mentor</h2><p class="meta">Around 50 students · rating 5.0 · 10 verified reviews</p><p>Teach C#, C/C++, Python, Unity, algorithms and project engineering; mentor school and HSE students on architecture, debugging, code review and project-defense preparation.</p></div>
+          <div><h2>Programming teacher and mentor</h2><p class="meta">Around 50 students · 5.0 rating on Avito · 10 verified reviews</p><p>Teach C#, C/C++, Python, Unity, algorithms and project engineering; mentor school students and students at HSE University on architecture, debugging, code review, and preparing to present and defend their projects.</p></div>
         </article>
       </div>
     </section>
@@ -53,18 +58,18 @@
       <div class="section-body project-list">
         <article>
           <div class="project-head"><h2>UniversalToolchain / Wist</h2><span>.NET · CIL · IR · JIT</span></div>
-          <p>Modular framework for embeddable languages with frontend-oriented Bytecode, backend-oriented AIR, interpreter and typed CIL execution.</p>
-          <ul><li>Capability-driven optimizers and runtime selection.</li><li>Semantic-parity and architecture-guardrail tests.</li><li>NuGet preview, CLI, documentation and release smoke gates.</li></ul>
+          <p>Modular framework for embeddable languages with frontend-oriented Bytecode, backend-oriented AIR, an interpreter and typed CIL execution.</p>
+          <ul><li>Capability-driven optimizer and runtime selection.</li><li>Semantic-parity tests and architecture constraints enforced by tests.</li><li>NuGet preview, CLI, documentation and release smoke checks.</li></ul>
         </article>
         <article>
-          <div class="project-head"><h2><a href="https://github.com/Misha1302/ps_form_analizer">MCST selection solver and harness</a></h2><span>C17 · Python · 104/104</span></div>
-          <p>Portfolio solver for parametric dependence between memory accesses over independent loop iterations and unknown invariants.</p>
-          <ul><li>Symbolic normalization, range/residue/GCD abstractions and exact affine counting.</li><li>Exact oracles, metamorphic transformations and mutation-guided WA/TL hunting.</li></ul>
+          <div class="project-head"><h2><a href="https://github.com/Misha1302/ps_form_analizer">MCST selection solver and test harness</a></h2><span>C17 · Python · 104/104</span></div>
+          <p>System for parametric dependence analysis between memory accesses over independent loop iterations and unknown invariants.</p>
+          <ul><li>Symbolic normalization, range/residue/GCD abstractions and exact affine counting.</li><li>Exact oracles, metamorphic transformations and adaptive search for correctness and performance failures.</li></ul>
         </article>
         <article>
           <div class="project-head"><h2>VpnMediator / Razaltush VPN</h2><span>.NET · Python · Linux</span></div>
-          <p>Early commercial subscription service combining backend workflows, Telegram UX, upstream integration and Linux operations.</p>
-          <ul><li>Transactional purchase and renewal flows, idempotency and stale-state validation.</li><li>Incident diagnostics, systemd, rollback and compatibility-aware changes.</li></ul>
+          <p>Small production VPN subscription service with its first paying users, Telegram flows and Linux operations.</p>
+          <ul><li>Purchase and renewal workflows, idempotent retry handling and stale-state validation.</li><li>Incident diagnostics, systemd, rollback and compatibility-aware changes.</li></ul>
         </article>
       </div>
     </section>
@@ -78,10 +83,10 @@
       <div class="section-body">
         <div class="stack"><strong>Core stack</strong><span>C# · .NET 10 · CIL · DynamicMethod · C/C++ · Python · NASM x86-64 · Linux</span></div>
         <div class="expertise-grid">
-          <article><h2>Compiler & runtime</h2><p>Lexers, parsers, AST, Bytecode, AIR/IR, interpreters, intrinsics, JIT behavior and optimizer legality.</p></article>
+          <article><h2>Compiler &amp; runtime</h2><p>Lexers, parsers, AST, Bytecode, AIR/IR, interpreters, intrinsics, JIT behavior and optimizer legality.</p></article>
           <article><h2>Program analysis</h2><p>Dependence analysis, symbolic normalization, affine constraints, modular arithmetic and sound solver composition.</p></article>
-          <article><h2>Validation & performance</h2><p>Exact and differential oracles, metamorphic testing, fuzzing, BenchmarkDotNet, profiling and assembly inspection.</p></article>
-          <article><h2>Architecture & delivery</h2><p>Modular systems, APIs, CI/CD, NuGet, documentation, Linux services, incident analysis and release validation.</p></article>
+          <article><h2>Validation &amp; performance</h2><p>Exact oracles, metamorphic testing, adaptive fuzzing, BenchmarkDotNet, profiling and assembly inspection.</p></article>
+          <article><h2>Architecture &amp; delivery</h2><p>Modular systems, APIs, CI/CD, NuGet, documentation, Linux services, incident analysis and release validation.</p></article>
         </div>
       </div>
     </section>
@@ -89,22 +94,20 @@
     <section class="cv-section compact">
       <div class="section-label">Research</div>
       <div class="section-body research-list">
-        <p><strong>Computational complexity:</strong> P, NP, coNP, FP, reductions, completeness, certificates and decision/search/function problems.</p>
-        <p><strong>Programming-language foundations:</strong> formal languages, automata, lambda calculus, binding, normalization, type systems and semantics.</p>
-        <p><strong>Program analysis & testing:</strong> exact and conservative reasoning, dependence analysis, generative/metamorphic testing and evolutionary fuzzing.</p>
-        <p><strong>Discrete mathematics:</strong> graph theory, number theory, Diophantine constraints, modular arithmetic, discrete geometry and surreal numbers.</p>
+        <p><strong>Computational complexity:</strong> P, NP, coNP, FP, reductions, completeness and decision/search/function problems.</p>
+        <p><strong>Formal languages and semantics:</strong> automata, parsing theory, binding, normalization and the relationship between syntax, semantics and execution.</p>
+        <p><strong>Program analysis and testing:</strong> exact and conservative reasoning, integer constraints, generative/metamorphic testing and regression search.</p>
       </div>
     </section>
 
     <section class="cv-section compact">
       <div class="section-label">Recognition</div>
       <div class="section-body award-grid">
-        <article><span>2026</span><h2>MCST LLVM compiler selection</h2><p>First place, only 5.0/5.0 result and only 104/104 submission.</p></article>
-        <article><span>2025–26</span><h2>MEPhI Junior</h2><p>First nationally in 2025, second nationally in 2026; first-degree diplomas both years.</p></article>
+        <article><span>2025–26</span><h2>MEPhI Junior</h2><p>Ranked 1st nationally in 2025 and 2nd in 2026; first-degree diplomas in both years.</p></article>
         <article><span>2026</span><h2>Vysshaya Proba · Industrial Programming</h2><p>Prize-winner, second-degree diploma.</p></article>
-        <article><span>2026</span><h2>Vysshaya Proba · Informatics</h2><p>Prize-winner, third-degree diploma in the Level 1 profile.</p></article>
-        <article><span>2026</span><h2>Baltic Science & Engineering Competition</h2><p>First-degree diploma and “Excellence as Hope” award.</p></article>
-        <article><span>2025/26</span><h2>HSE Higher Pilotage · Computer Science</h2><p>Winner of the Computer Science track among grade 11 students. <a href="https://olymp.hse.ru/projects/papers">Official results</a></p></article>
+        <article><span>2026</span><h2>Vysshaya Proba · Informatics</h2><p>Prize-winner, third-degree diploma in the Level 1 track.</p></article>
+        <article><span>2026</span><h2>Baltic Science &amp; Engineering Competition</h2><p>First-degree diploma and “Excellence as Hope” award.</p></article>
+        <article><span>2025/26</span><h2>HSE Higher Pilotage Student Research Competition · Computer Science</h2><p>Winner of the Computer Science track among grade 11 students. <a href="https://olymp.hse.ru/projects/papers">Official results</a></p></article>
       </div>
     </section>
 
@@ -121,8 +124,7 @@
       <div class="section-body public-list">
         <p><strong>Habr:</strong> “My View of a Universal Programming Language” — extensible languages, compiler architecture and DSL design.</p>
         <p><strong>Shiza and Compilers:</strong> engineering notes on CIL, RyuJIT, PGO, IRs and virtual machines.</p>
-        <p><strong>CompilationLab:</strong> team-developed educational platform in active development before external launch. I own the architecture, backend, database model, persistence layer and API contracts.</p>
-        <p><strong>Talk proposals:</strong> “Build the Language, Then Make the Abstractions Disappear” submitted to LangDev 2026, .NET Developer Conference ’26 and Update Conference Prague 2026.</p>
+        <p><strong>CompilationLab:</strong> co-developed educational platform in active development before external launch. Designed the backend architecture and implemented the data model, persistence layer and API contracts.</p>
       </div>
     </section>
 
