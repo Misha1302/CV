@@ -159,6 +159,19 @@
   .closing h2 { font-size: 29px; }
 }
 
+/* Center the portrait whenever the hero has collapsed to a single column. */
+@media (width <= 53.75rem) {
+  .hero-aside {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .portrait-frame {
+    justify-self: center;
+    margin-inline: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
