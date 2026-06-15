@@ -1,0 +1,45 @@
+name: Replace olympiad name
+
+on:
+  push:
+    branches:
+      - replace-vysshaya-proba-name
+    paths:
+      - .github/workflows/replace-olympiad-name.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: replace-vysshaya-proba-name
+          fetch-depth: 0
+      - name: Replace name consistently
+        run: python3 .github/scripts/replace_olympiad_name.py
+      - name: Validate HTML and diff
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+
+          for filename in ('en.html', 'index.html'):
+              parser = HTMLParser()
+              parser.feed(Path(filename).read_text(encoding='utf-8'))
+
+          assert Path('en.html').read_bytes() == Path('index.html').read_bytes()
+          assert 'Vysshaya Proba' not in Path('en.html').read_text(encoding='utf-8')
+          assert Path('en.html').read_text(encoding='utf-8').count('HSE “Highest Standard” Olympiad') == 3
+          PY
+          git diff --check
+      - name: Commit update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add en.html index.html
+          git commit -m "Use English name for Highest Standard Olympiad"
+          git push origin HEAD:replace-vysshaya-proba-name
