@@ -1,0 +1,51 @@
+name: Apply RSOSH evidence links
+
+on:
+  push:
+    branches:
+      - add-rsosh-evidence
+    paths:
+      - .github/workflows/apply-rsosh-evidence.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: add-rsosh-evidence
+          fetch-depth: 0
+      - name: Apply evidence links
+        run: python3 .github/scripts/add_rsosh_evidence.py
+      - name: Validate and commit
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          import re
+
+          class Parser(HTMLParser):
+              pass
+
+          for name in ('ru.html', 'en.html', 'index.html', 'cv.html'):
+              text = Path(name).read_text(encoding='utf-8')
+              Parser().feed(text)
+              assert text.count('https://diploma.rsr-olymp.ru/check') == 3
+
+          assert Path('en.html').read_bytes() == Path('index.html').read_bytes()
+          assert 'class="evidence-links"></div>' not in Path('ru.html').read_text(encoding='utf-8')
+          assert 'class="evidence-links"></div>' not in Path('en.html').read_text(encoding='utf-8')
+          assert re.search(r'Проверить диплом РСОШ · 414 8554-64780', Path('ru.html').read_text(encoding='utf-8'))
+          assert re.search(r'Проверить диплом РСОШ · 414 8680-58542', Path('ru.html').read_text(encoding='utf-8'))
+          assert re.search(r'Проверить диплом РСОШ · 415 7412-33532', Path('ru.html').read_text(encoding='utf-8'))
+          PY
+          git diff --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ru.html en.html index.html cv.html
+          git commit -m "Add official RSOSH diploma verification links"
+          git push origin HEAD:add-rsosh-evidence
