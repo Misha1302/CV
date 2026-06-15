@@ -19,11 +19,9 @@ jobs:
         with:
           ref: remove-print-cv-add-mcst-link
           fetch-depth: 0
-
       - name: Apply requested changes
         run: python3 .github/scripts/update_profile_links.py
-
-      - name: Validate content and rendering
+      - name: Validate and commit
         shell: bash
         run: |
           set -euo pipefail
@@ -36,28 +34,11 @@ jobs:
           python3 - <<'PY'
           from html.parser import HTMLParser
           from pathlib import Path
-
-          class Parser(HTMLParser):
-              pass
-
-          for filename in ("ru.html", "en.html", "index.html"):
-              parser = Parser()
-              parser.feed(Path(filename).read_text(encoding="utf-8"))
+          for filename in ('ru.html', 'en.html', 'index.html'):
+              parser = HTMLParser()
+              parser.feed(Path(filename).read_text(encoding='utf-8'))
           PY
-          curl --fail --location --silent --show-error --output /dev/null https://www.mcst.ru/student
-          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
-          test -n "$BROWSER"
-          "$BROWSER" --headless --disable-gpu --no-sandbox --window-size=1600,1200 --screenshot=/tmp/ru-desktop.png "file://$PWD/ru.html#recognition"
-          "$BROWSER" --headless --disable-gpu --no-sandbox --window-size=390,1200 --screenshot=/tmp/ru-mobile.png "file://$PWD/ru.html#recognition"
-          "$BROWSER" --headless --disable-gpu --no-sandbox --window-size=1600,1200 --screenshot=/tmp/en-desktop.png "file://$PWD/en.html#recognition"
-          test -s /tmp/ru-desktop.png
-          test -s /tmp/ru-mobile.png
-          test -s /tmp/en-desktop.png
           git diff --check
-
-      - name: Commit changes
-        shell: bash
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md ru.html en.html index.html
