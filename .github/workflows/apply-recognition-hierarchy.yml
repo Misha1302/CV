@@ -1,0 +1,32 @@
+name: Apply recognition hierarchy update
+
+on:
+  push:
+    branches:
+      - fix-recognition-hierarchy
+    paths:
+      - .github/workflows/apply-recognition-hierarchy.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix-recognition-hierarchy
+          fetch-depth: 0
+      - name: Apply content changes
+        run: python3 .github/scripts/rebalance_cv.py
+      - name: Validate diff and commit
+        run: |
+          git diff --check
+          git diff --exit-code -- . ':!ru.html' ':!en.html' ':!index.html' ':!cv.html' ':!.github/scripts/rebalance_cv.py' ':!.github/workflows/apply-recognition-hierarchy.yml'
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ru.html en.html index.html cv.html
+          git commit -m "Rebalance MCST evidence across CV sections"
+          git push origin HEAD:fix-recognition-hierarchy
