@@ -50,9 +50,9 @@
 <summary aria-label="Меню — открыть навигацию и контакты">Меню</summary>
 <div class="mobile-menu-panel">
 <nav aria-label="Мобильная навигация по профилю">
-<a href="#profile">Профиль</a>
-<a href="#experience">Опыт</a>
 <a href="#work">Избранные проекты</a>
+<a href="#experience">Опыт</a>
+<a href="#profile">Профиль</a>
 <a href="#capabilities">Компетенции</a>
 <a href="#research">Исследования</a>
 <a href="#recognition">Достижения</a>
@@ -71,9 +71,9 @@
 <p class="eyebrow">Профессиональный профиль · 2026</p>
 </div><div aria-label="Язык" class="language-switch" role="group"><a href="en.html" hreflang="en" lang="en">EN</a><span aria-current="page">RU</span></div>
 <nav aria-label="Основная навигация по профилю">
-<a data-nav="" href="#profile"><span>01</span>Профиль</a>
+<a data-nav="" href="#work"><span>01</span>Избранные проекты</a>
 <a data-nav="" href="#experience"><span>02</span>Опыт</a>
-<a data-nav="" href="#work"><span>03</span>Избранные проекты</a>
+<a data-nav="" href="#profile"><span>03</span>Профиль</a>
 <a data-nav="" href="#capabilities"><span>04</span>Компетенции</a>
 <a data-nav="" href="#research"><span>05</span>Исследования</a>
 <a data-nav="" href="#recognition"><span>06</span>Достижения</a>
@@ -97,9 +97,10 @@
 <p class="headline">Инженер компиляторов и runtime-систем</p>
 <p class="summary">Я создаю инфраструктуру компиляторов и runtime-систем, промежуточные представления и инструменты анализа программ. В моей работе соединяются семантика языков, исполнение через CIL/JIT, точные и консервативные решатели, adversarial-тестирование и анализ производительности.</p>
 <div class="actions">
-<a class="primary" href="mailto:misha13022008@gmail.com">Связаться</a>
-<a href="https://github.com/Misha1302" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
+<a class="primary" href="#work">Смотреть проекты</a>
 <a href="cv.html">Открыть CV на английском</a>
+<a href="https://github.com/Misha1302" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
+<a href="mailto:misha13022008@gmail.com">Почта</a>
 </div>
 </div>
 <div class="hero-aside">
@@ -118,33 +119,8 @@
 <div><strong>2 направления</strong><span>Призёр «Высшей пробы»</span></div>
 <div><strong>5 лет</strong><span>Преподавание · около 50 учеников</span></div>
 </section>
-<section class="section" id="profile">
-<header class="section-heading"><span>01</span><div><p>Профиль</p><h2>Проектирую языковые системы, в которых семантика, исполнение и доказательства согласованы.</h2></div></header>
-<div class="profile-layout">
-<p class="lead">Я работаю на всём пути от смысла программы до исполняемого поведения: определяю, где живёт семантика, какое представление отвечает за каждое решение, когда оптимизация допустима и как доказать согласованность независимых runtime-систем.</p>
-<div class="principles">
-<article><h3>Проектирование семантики</h3><p>Разделяю ответственность frontend, IR и runtime, не позволяя одному представлению случайно стать единственным источником истины.</p></article>
-<article><h3>Корректность, подтверждённая фактами</h3><p>Использую точные оракулы, проверку паритета backend-ов, метаморфное тестирование и анализ сгенерированного кода, чтобы превращать утверждения в проверяемые доказательства.</p></article>
-<article><h3>Системы, устойчивые к изменениям</h3><p>Для меня важны детерминированная композиция, явные capabilities, совместимость и дисциплина релизов, а не только первая работающая реализация.</p></article>
-</div>
-</div>
-<div aria-label="Образование и доступность" class="context-grid" role="group">
-<article><span>Образование</span><strong>Гимназия № 3, Владимир</strong><p>Окончание школы в июне 2026 года; обучение в университете в Москве с 2026 года.</p></article>
-<article><span>Текущая роль</span><strong>МЦСТ · направление LLVM-компилятора</strong><p>Стажировка в разработке компиляторов после первого места в отборе.</p></article>
-<article><span>Локация</span><strong>Владимир → Москва</strong><p>Открыт к очному, гибридному и удалённому сотрудничеству.</p></article>
-<article><span>Возможности</span><strong>Компиляторы · Runtime · JIT · R&amp;D</strong><p>Рассматриваю стажировки, junior-позиции и исследовательское сотрудничество.</p></article>
-</div>
-</section>
-<section class="section" id="experience">
-<header class="section-heading"><span>02</span><div><p>Опыт</p><h2>Роли, ответственность и профессиональная траектория.</h2></div></header>
-<div class="timeline">
-<article><time>2026</time><div><h3>Стажёр МЦСТ · LLVM-компилятор</h3><p class="meta">Направление «Системы программирования»</p><p>Занял первое место среди 49 присланных решений при 87 заявках. Разработал единственное решение, прошедшее все 104 теста задачи параметрического анализа зависимостей обращений к памяти над целочисленными ограничениями.</p><b>Компиляторы · Анализ программ</b></div></article>
-<article><time>Сейчас</time><div><h3>Независимый инженер компиляторов и runtime-систем</h3><p class="meta">Создатель UniversalToolchain/Wist</p><p>Проектирую и поддерживаю семантические границы, модульную композицию, интерпретатор и CIL-исполнение, корректность оптимизаторов, API, тесты, упаковку, документацию и release-gates.</p><b>Open source · Инструменты разработчика</b></div></article>
-<article><time>2021—</time><div><h3>Преподаватель программирования и наставник</h3><p class="meta">Около 50 учеников · рейтинг 5,0 · 10 подтверждённых отзывов</p><p>Преподаю C#, C/C++, Python, Unity, алгоритмы и проектную разработку; помогаю школьникам и студентам НИУ ВШЭ с архитектурой, отладкой, code review и подготовкой к защите проектов.</p><b>Образование · Наставничество</b></div></article>
-</div>
-</section>
 <section class="section" id="work">
-<header class="section-heading"><span>03</span><div><p>Избранные проекты</p><h2>Три системы — три типа инженерной работы.</h2></div></header>
+<header class="section-heading"><span>01</span><div><p>Избранные проекты</p><h2>Три системы — три типа инженерной работы.</h2></div></header>
 <div class="work-grid">
 <article class="work-card">
 <div class="work-top"><span>Фреймворк компиляторов и runtime</span><span>01</span></div>
@@ -158,7 +134,7 @@
 <h3>Решатель и test harness для отбора МЦСТ</h3>
 <p>Портфель решателей для анализа зависимости между двумя параметрическими обращениями к памяти при независимых итерациях цикла и неизвестных инвариантах.</p>
 <ul><li>Символьная нормализация и канонические формы.</li><li>Анализ диапазонов, остатков и НОД, точный аффинный решатель.</li><li>Точные оракулы и метаморфные преобразования.</li><li>Mutation-guided поиск wrong answer и превышений лимита времени.</li></ul>
-<footer><span>C17</span><span>Python</span><strong>104/104</strong></footer>
+<footer><a href="https://github.com/Misha1302/ps_form_analizer" rel="noopener noreferrer" target="_blank">Исходный код ↗</a><span>C17</span><span>Python</span><strong>104/104</strong></footer>
 </article>
 <article class="work-card">
 <div class="work-top"><span>Продуктовая эксплуатация</span><span>03</span></div>
@@ -172,6 +148,32 @@
 <article><span>Архитектура</span><h3>Capabilities вместо имён backend-ов</h3><p>Перенёс проверку допустимости оптимизаций и выбор runtime с конкретных backend-ов на явные контракты поддерживаемых capabilities.</p></article>
 <article><span>Корректность</span><h3>Сила доказательства остаётся явной</h3><p>Разделил точные, консервативные и witness-only стратегии, чтобы неизвестный результат никогда не превращался в выдуманное «да» или «нет».</p></article>
 <article><span>Эксплуатация</span><h3>Изменения состояния выдерживают повторы</h3><p>Спроектировал процессы подписок и платежей вокруг транзакционности, идемпотентности, совместимости и восстановления.</p></article>
+</div>
+</section>
+<section class="section" id="experience">
+<header class="section-heading"><span>02</span><div><p>Опыт</p><h2>Роли, ответственность и профессиональная траектория.</h2></div></header>
+<div class="timeline">
+<article><time>2026</time><div><h3>Стажёр МЦСТ · LLVM-компилятор</h3><p class="meta">Направление «Системы программирования»</p><p>Занял первое место среди 49 присланных решений при 87 заявках. Разработал единственное решение, прошедшее все 104 теста задачи параметрического анализа зависимостей обращений к памяти над целочисленными ограничениями.</p><b>Компиляторы · Анализ программ</b></div></article>
+<article><time>Сейчас</time><div><h3>Создатель и maintainer · UniversalToolchain/Wist</h3><p class="meta">Open-source фреймворк компиляторов и runtime</p><p>Проектирую и поддерживаю семантические границы, модульную композицию, интерпретатор и CIL-исполнение, корректность оптимизаторов, API, тесты, упаковку, документацию и release-gates.</p><b>Open source · Инструменты разработчика</b></div></article>
+<article><time>Сейчас</time><div><h3>Архитектура и backend · CompilationLab</h3><p class="meta">Совместная разработка с full-stack-инженером · до запуска</p><p>Спроектировал архитектуру системы и реализовал весь backend, модель базы данных, слой хранения и API-контракты. Архитектурные решения и границы frontend/backend согласуем совместно; отдельные frontend-сценарии просматриваем вместе.</p><b>Командная разработка · Backend-системы</b></div></article>
+<article><time>2021—</time><div><h3>Преподаватель программирования и наставник</h3><p class="meta">Около 50 учеников · рейтинг 5,0 · 10 подтверждённых отзывов</p><p>Преподаю C#, C/C++, Python, Unity, алгоритмы и проектную разработку; помогаю школьникам и студентам НИУ ВШЭ с архитектурой, отладкой, code review и подготовкой к защите проектов.</p><b>Образование · Наставничество</b></div></article>
+</div>
+</section>
+<section class="section" id="profile">
+<header class="section-heading"><span>03</span><div><p>Профиль</p><h2>Проектирую языковые системы, в которых семантика, исполнение и доказательства согласованы.</h2></div></header>
+<div class="profile-layout">
+<p class="lead">Я работаю на всём пути от смысла программы до исполняемого поведения: определяю, где живёт семантика, какое представление отвечает за каждое решение, когда оптимизация допустима и как доказать согласованность независимых runtime-систем.</p>
+<div class="principles">
+<article><h3>Проектирование семантики</h3><p>Разделяю ответственность frontend, IR и runtime, не позволяя одному представлению случайно стать единственным источником истины.</p></article>
+<article><h3>Корректность, подтверждённая фактами</h3><p>Использую точные оракулы, проверку паритета backend-ов, метаморфное тестирование и анализ сгенерированного кода, чтобы превращать утверждения в проверяемые доказательства.</p></article>
+<article><h3>Системы, устойчивые к изменениям</h3><p>Для меня важны детерминированная композиция, явные capabilities, совместимость и дисциплина релизов, а не только первая работающая реализация.</p></article>
+</div>
+</div>
+<div aria-label="Образование и доступность" class="context-grid" role="group">
+<article><span>Образование</span><strong>Гимназия № 3, Владимир</strong><p>Окончание школы в июне 2026 года; обучение в университете в Москве с 2026 года.</p></article>
+<article><span>Текущая роль</span><strong>МЦСТ · направление LLVM-компилятора</strong><p>Стажировка в разработке компиляторов после первого места в отборе.</p></article>
+<article><span>Локация</span><strong>Владимир → Москва</strong><p>Открыт к очному, гибридному и удалённому сотрудничеству.</p></article>
+<article><span>Возможности</span><strong>Компиляторы · Runtime · JIT · R&amp;D</strong><p>Рассматриваю стажировки, junior-позиции и исследовательское сотрудничество.</p></article>
 </div>
 </section>
 <section class="section" id="capabilities">
@@ -204,7 +206,7 @@
 <section class="section" id="recognition">
 <header class="section-heading"><span>06</span><div><p>Достижения и подтверждения</p><h2>Независимые результаты, официальные дипломы и проверяемые источники.</h2></div></header>
 <div class="recognition-list recognition-evidence">
-<article><span>2026 · МЦСТ</span><h3>Отбор на стажировку по LLVM-компилятору</h3><p>Первое место, единственный результат 5,0/5,0 и единственное решение, прошедшее все 104 теста.</p><div class="evidence-links"><strong>87 заявок · 49 решений</strong></div></article>
+<article><span>2026 · МЦСТ</span><h3>Отбор на стажировку по LLVM-компилятору</h3><p>Первое место, единственный результат 5,0/5,0 и единственное решение, прошедшее все 104 теста.</p><div class="evidence-links"><strong>87 заявок · 49 решений</strong><a href="https://github.com/Misha1302/ps_form_analizer" rel="noopener noreferrer" target="_blank">Исходный код ↗</a></div></article>
 <article><span>2025–26 · НИЯУ МИФИ</span><h3>Конкурс «Юниор»</h3><p>Первое место по России в 2025 году и второе в 2026-м; дипломы I степени в оба года.</p><div class="evidence-links"><a href="https://olymp.mephi.ru/junior/winners/2026" rel="noopener noreferrer" target="_blank">Официальные результаты ↗</a></div></article>
 <article><span>2026 · «Высшая проба»</span><h3>Промышленное программирование</h3><p>Призёр, диплом II степени по профилю второго уровня «Промышленное программирование».</p><div class="evidence-links"></div></article>
 <article><span>2026 · «Высшая проба»</span><h3>Информатика</h3><p>Призёр, диплом III степени по профилю первого уровня «Информатика».</p><div class="evidence-links"></div></article>
@@ -217,7 +219,7 @@
 <div class="public-grid public-grid-four">
 <a href="https://habr.com/ru/articles/942134/" rel="noopener noreferrer" target="_blank"><span>Статья</span><h3>Моё видение универсального языка программирования</h3><p>Компиляторы, расширяемые языки, архитектура и проектирование DSL.</p><b>Читать на Хабре ↗</b></a>
 <a href="https://t.me/shizaicompilers" rel="noopener noreferrer" target="_blank"><span>Инженерные заметки</span><h3>Шиза и компиляторы</h3><p>CIL, RyuJIT, PGO, промежуточные представления и виртуальные машины.</p><b>Открыть канал ↗</b></a>
-<a href="https://github.com/Misha1302/CompilationLab" rel="noopener noreferrer" target="_blank"><span>Образование</span><h3>CompilationLab</h3><p>Проектная лаборатория для школьников, изучающих компиляторы, JIT, алгоритмы и инженерную практику.</p><b>Открыть проект ↗</b></a>
+<a href="https://github.com/Misha1302/CompilationLab" rel="noopener noreferrer" target="_blank"><span>Командный проект · до запуска</span><h3>CompilationLab</h3><p>Совместно разрабатываемая образовательная платформа. Я отвечаю за архитектуру, весь backend, модель БД, хранение данных и API-контракты.</p><b>Открыть проект ↗</b></a>
 <article class="public-static"><span>Заявки на конференции · 2026</span><h3>Build the Language, Then Make the Abstractions Disappear</h3><p>Доклад подан на LangDev 2026, .NET Developer Conference ’26 и Update Conference Prague 2026.</p><b>Композиция компилятора · CIL · семантический паритет</b></article>
 </div>
 <div class="teaching-proof">

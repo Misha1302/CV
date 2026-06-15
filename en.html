@@ -49,9 +49,9 @@
 <summary aria-label="Menu — open navigation and contacts">Menu</summary>
 <div class="mobile-menu-panel">
 <nav aria-label="Mobile profile navigation">
-<a href="#profile">Profile</a>
-<a href="#experience">Experience</a>
 <a href="#work">Selected work</a>
+<a href="#experience">Experience</a>
+<a href="#profile">Profile</a>
 <a href="#capabilities">Expertise</a>
 <a href="#research">Research</a>
 <a href="#recognition">Recognition</a>
@@ -70,9 +70,9 @@
 <p class="eyebrow">Professional profile · 2026</p>
 </div><div aria-label="Language" class="language-switch" role="group"><span aria-current="page">EN</span><a href="ru.html" hreflang="ru" lang="ru">RU</a></div>
 <nav aria-label="Primary profile navigation">
-<a data-nav="" href="#profile"><span>01</span>Profile</a>
+<a data-nav="" href="#work"><span>01</span>Selected work</a>
 <a data-nav="" href="#experience"><span>02</span>Experience</a>
-<a data-nav="" href="#work"><span>03</span>Selected work</a>
+<a data-nav="" href="#profile"><span>03</span>Profile</a>
 <a data-nav="" href="#capabilities"><span>04</span>Expertise</a>
 <a data-nav="" href="#research"><span>05</span>Research</a>
 <a data-nav="" href="#recognition"><span>06</span>Recognition</a>
@@ -96,9 +96,10 @@
 <p class="headline">Compiler / Runtime Engineer</p>
 <p class="summary">I build compiler and runtime infrastructure, intermediate representations and program-analysis systems. My work combines language semantics, CIL/JIT execution, exact and conservative solvers, adversarial validation and performance analysis.</p>
 <div class="actions">
-<a class="primary" href="mailto:misha13022008@gmail.com">Contact me</a>
-<a href="https://github.com/Misha1302" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
+<a class="primary" href="#work">View selected work</a>
 <a href="cv.html">Open CV</a>
+<a href="https://github.com/Misha1302" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
+<a href="mailto:misha13022008@gmail.com">Email</a>
 </div>
 </div>
 <div class="hero-aside">
@@ -117,33 +118,8 @@
 <div><strong>2 tracks</strong><span>Vysshaya Proba prize-winner</span></div>
 <div><strong>5 years</strong><span>Teaching · around 50 students</span></div>
 </section>
-<section class="section" id="profile">
-<header class="section-heading"><span>01</span><div><p>Profile</p><h2>I design language systems where semantics, execution and evidence stay aligned.</h2></div></header>
-<div class="profile-layout">
-<p class="lead">I work on the path from language meaning to executable behavior: deciding where semantics live, which representation owns each decision, when an optimization is legal, and how independent runtimes can be shown to agree.</p>
-<div class="principles">
-<article><h3>Semantic design</h3><p>I separate frontend, IR and runtime responsibilities instead of letting one representation become an accidental source of truth.</p></article>
-<article><h3>Evidence-driven correctness</h3><p>I use exact oracles, cross-backend parity, metamorphic testing and generated-code inspection to turn claims into evidence.</p></article>
-<article><h3>Systems under change</h3><p>I care about deterministic composition, explicit capabilities, compatibility and release discipline—not only the first working implementation.</p></article>
-</div>
-</div>
-<div aria-label="Education and availability" class="context-grid" role="group">
-<article><span>Education</span><strong>Gymnasium No. 3, Vladimir</strong><p>High school graduation in June 2026; university studies in Moscow from 2026.</p></article>
-<article><span>Current role</span><strong>MCST · LLVM compiler track</strong><p>Compiler engineering internship following the #1 selection result.</p></article>
-<article><span>Location</span><strong>Vladimir → Moscow</strong><p>Available for on-site, hybrid and remote collaboration.</p></article>
-<article><span>Opportunities</span><strong>Compiler · Runtime · JIT · R&amp;D</strong><p>Open to internships, junior roles and research-oriented collaboration.</p></article>
-</div>
-</section>
-<section class="section" id="experience">
-<header class="section-heading"><span>02</span><div><p>Experience</p><h2>Roles, responsibility and trajectory.</h2></div></header>
-<div class="timeline">
-<article><time>2026</time><div><h3>MCST intern · LLVM compiler</h3><p class="meta">Programming Systems track</p><p>Ranked first among 49 submitted solutions after a selection with 87 applicants. Built the only solution passing all 104 tests for a parametric memory-dependence analysis task over integer constraints.</p><b>Compiler engineering · Program analysis</b></div></article>
-<article><time>Active</time><div><h3>Independent compiler/runtime engineer</h3><p class="meta">Creator of UniversalToolchain/Wist</p><p>Design and maintain semantic boundaries, modular composition, interpreter and CIL execution, optimizer legality, APIs, tests, packaging, documentation and release gates.</p><b>Open source · Developer tooling</b></div></article>
-<article><time>2021—</time><div><h3>Programming teacher and mentor</h3><p class="meta">Around 50 students · rating 5.0 · 10 verified reviews</p><p>Teach C#, C/C++, Python, Unity, algorithms and project engineering; mentor school students and HSE students on architecture, debugging, code review and project-defense preparation.</p><b>Education · Mentorship</b></div></article>
-</div>
-</section>
 <section class="section" id="work">
-<header class="section-heading"><span>03</span><div><p>Selected work</p><h2>Three systems, three kinds of engineering.</h2></div></header>
+<header class="section-heading"><span>01</span><div><p>Selected work</p><h2>Three systems, three kinds of engineering.</h2></div></header>
 <div class="work-grid">
 <article class="work-card">
 <div class="work-top"><span>Compiler / runtime framework</span><span>01</span></div>
@@ -157,7 +133,7 @@
 <h3>MCST selection solver and harness</h3>
 <p>A portfolio solver for dependence between two parametric memory accesses over independent loop iterations and unknown invariants.</p>
 <ul><li>Symbolic normalization and canonical forms.</li><li>Range, residue, GCD and exact affine reasoning.</li><li>Exact oracles and metamorphic transformations.</li><li>Mutation-guided wrong-answer and time-limit hunting.</li></ul>
-<footer><span>C17</span><span>Python</span><strong>104/104</strong></footer>
+<footer><a href="https://github.com/Misha1302/ps_form_analizer" rel="noopener noreferrer" target="_blank">Source code ↗</a><span>C17</span><span>Python</span><strong>104/104</strong></footer>
 </article>
 <article class="work-card">
 <div class="work-top"><span>Production engineering</span><span>03</span></div>
@@ -171,6 +147,32 @@
 <article><span>Architecture</span><h3>Capabilities instead of backend names</h3><p>Moved optimizer legality and runtime selection from concrete backend checks to explicit supported-capability contracts.</p></article>
 <article><span>Correctness</span><h3>Proof strength stays explicit</h3><p>Separated exact, conservative and witness-only solver strategies so an unknown result never becomes an invented yes or no.</p></article>
 <article><span>Operations</span><h3>State changes survive retries</h3><p>Designed subscription and payment workflows around transactionality, idempotency, compatibility and recovery.</p></article>
+</div>
+</section>
+<section class="section" id="experience">
+<header class="section-heading"><span>02</span><div><p>Experience</p><h2>Roles, responsibility and trajectory.</h2></div></header>
+<div class="timeline">
+<article><time>2026</time><div><h3>MCST intern · LLVM compiler</h3><p class="meta">Programming Systems track</p><p>Ranked first among 49 submitted solutions after a selection with 87 applicants. Built the only solution passing all 104 tests for a parametric memory-dependence analysis task over integer constraints.</p><b>Compiler engineering · Program analysis</b></div></article>
+<article><time>Active</time><div><h3>Creator and maintainer · UniversalToolchain/Wist</h3><p class="meta">Open-source compiler/runtime framework</p><p>Design and maintain semantic boundaries, modular composition, interpreter and CIL execution, optimizer legality, APIs, tests, packaging, documentation and release gates.</p><b>Open source · Developer tooling</b></div></article>
+<article><time>Active</time><div><h3>Architecture and backend · CompilationLab</h3><p class="meta">Co-developed with a full-stack engineer · pre-user stage</p><p>Designed the system architecture and implemented the complete backend, database model, persistence layer and API contracts. Architectural decisions and frontend–backend boundaries are reviewed jointly; selected frontend flows are reviewed together.</p><b>Team engineering · Backend systems</b></div></article>
+<article><time>2021—</time><div><h3>Programming teacher and mentor</h3><p class="meta">Around 50 students · rating 5.0 · 10 verified reviews</p><p>Teach C#, C/C++, Python, Unity, algorithms and project engineering; mentor school students and HSE students on architecture, debugging, code review and project-defense preparation.</p><b>Education · Mentorship</b></div></article>
+</div>
+</section>
+<section class="section" id="profile">
+<header class="section-heading"><span>03</span><div><p>Profile</p><h2>I design language systems where semantics, execution and evidence stay aligned.</h2></div></header>
+<div class="profile-layout">
+<p class="lead">I work on the path from language meaning to executable behavior: deciding where semantics live, which representation owns each decision, when an optimization is legal, and how independent runtimes can be shown to agree.</p>
+<div class="principles">
+<article><h3>Semantic design</h3><p>I separate frontend, IR and runtime responsibilities instead of letting one representation become an accidental source of truth.</p></article>
+<article><h3>Evidence-driven correctness</h3><p>I use exact oracles, cross-backend parity, metamorphic testing and generated-code inspection to turn claims into evidence.</p></article>
+<article><h3>Systems under change</h3><p>I care about deterministic composition, explicit capabilities, compatibility and release discipline—not only the first working implementation.</p></article>
+</div>
+</div>
+<div aria-label="Education and availability" class="context-grid" role="group">
+<article><span>Education</span><strong>Gymnasium No. 3, Vladimir</strong><p>High school graduation in June 2026; university studies in Moscow from 2026.</p></article>
+<article><span>Current role</span><strong>MCST · LLVM compiler track</strong><p>Compiler engineering internship following the #1 selection result.</p></article>
+<article><span>Location</span><strong>Vladimir → Moscow</strong><p>Available for on-site, hybrid and remote collaboration.</p></article>
+<article><span>Opportunities</span><strong>Compiler · Runtime · JIT · R&amp;D</strong><p>Open to internships, junior roles and research-oriented collaboration.</p></article>
 </div>
 </section>
 <section class="section" id="capabilities">
@@ -203,7 +205,7 @@
 <section class="section" id="recognition">
 <header class="section-heading"><span>06</span><div><p>Recognition &amp; evidence</p><h2>Independent results, official diplomas and verifiable records.</h2></div></header>
 <div class="recognition-list recognition-evidence">
-<article><span>2026 · MCST</span><h3>LLVM compiler internship selection</h3><p>First place, the only 5.0/5.0 result and the only submission passing all 104 tests.</p><div class="evidence-links"><strong>87 applicants · 49 submissions</strong></div></article>
+<article><span>2026 · MCST</span><h3>LLVM compiler internship selection</h3><p>First place, the only 5.0/5.0 result and the only submission passing all 104 tests.</p><div class="evidence-links"><strong>87 applicants · 49 submissions</strong><a href="https://github.com/Misha1302/ps_form_analizer" rel="noopener noreferrer" target="_blank">Source code ↗</a></div></article>
 <article><span>2025–26 · MEPhI</span><h3>Junior Olympiad</h3><p>First nationwide in 2025 and second nationwide in 2026; first-degree diplomas in both years.</p><div class="evidence-links"><a href="https://olymp.mephi.ru/junior/winners/2026" rel="noopener noreferrer" target="_blank">Official results ↗</a></div></article>
 <article><span>2026 · Vysshaya Proba</span><h3>Industrial Programming</h3><p>Prize-winner, second-degree diploma in the Level 2 industrial-programming profile.</p><div class="evidence-links"></div></article>
 <article><span>2026 · Vysshaya Proba</span><h3>Informatics</h3><p>Prize-winner, third-degree diploma in the Level 1 informatics profile.</p><div class="evidence-links"></div></article>
@@ -216,7 +218,7 @@
 <div class="public-grid public-grid-four">
 <a href="https://habr.com/ru/articles/942134/" rel="noopener noreferrer" target="_blank"><span>Essay</span><h3>My View of a Universal Programming Language</h3><p>Compilers, extensible languages, architecture and DSL design.</p><b>Read on Habr ↗</b></a>
 <a href="https://t.me/shizaicompilers" rel="noopener noreferrer" target="_blank"><span>Engineering notes</span><h3>Shiza and Compilers</h3><p>CIL, RyuJIT, PGO, intermediate representations and virtual machines.</p><b>Open channel ↗</b></a>
-<a href="https://github.com/Misha1302/CompilationLab" rel="noopener noreferrer" target="_blank"><span>Education</span><h3>CompilationLab</h3><p>A project laboratory for school students studying compilers, JITs, algorithms and engineering practice.</p><b>View project ↗</b></a>
+<a href="https://github.com/Misha1302/CompilationLab" rel="noopener noreferrer" target="_blank"><span>Team project · pre-user stage</span><h3>CompilationLab</h3><p>Co-developed educational platform. I own the system architecture, backend, database model, persistence layer and API contracts.</p><b>View project ↗</b></a>
 <article class="public-static"><span>Talk proposals · 2026</span><h3>Build the Language, Then Make the Abstractions Disappear</h3><p>Submitted to LangDev 2026, .NET Developer Conference ’26 and Update Conference Prague 2026.</p><b>Compiler composition · CIL · semantic parity</b></article>
 </div>
 <div class="teaching-proof">
