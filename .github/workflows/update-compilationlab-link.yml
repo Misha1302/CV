@@ -1,0 +1,78 @@
+name: Update CompilationLab public link
+
+on:
+  push:
+    paths:
+      - .github/workflows/update-compilationlab-link.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    if: github.event.head_commit.message == 'Apply temporary CompilationLab link updater'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Replace private repository link
+        shell: bash
+        run: |
+          python3 <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+
+          old = 'https://github.com/Misha1302/CompilationLab'
+          new = 'https://lms-185-102-139-43.sslip.io/'
+          paths = [Path('en.html'), Path('index.html'), Path('ru.html')]
+
+          class Parser(HTMLParser):
+              pass
+
+          for path in paths:
+              content = path.read_text(encoding='utf-8')
+              count = content.count(old)
+              if count != 1:
+                  raise RuntimeError(f'{path}: expected exactly one old CompilationLab link, found {count}')
+              content = content.replace(old, new, 1)
+              if old in content:
+                  raise RuntimeError(f'{path}: private repository link remains')
+              if content.count(new) != 1:
+                  raise RuntimeError(f'{path}: expected exactly one public LMS link')
+
+              parser = Parser(convert_charrefs=True)
+              parser.feed(content)
+              parser.close()
+              path.write_text(content, encoding='utf-8')
+
+          if Path('en.html').read_text(encoding='utf-8') != Path('index.html').read_text(encoding='utf-8'):
+              raise RuntimeError('index.html and en.html diverged')
+          PY
+
+          git diff --check
+          grep -R --fixed-strings 'https://github.com/Misha1302/CompilationLab' en.html index.html ru.html && exit 1 || true
+          test "$(grep -R --fixed-strings 'https://lms-185-102-139-43.sslip.io/' en.html index.html ru.html | wc -l)" -eq 3
+
+      - name: Verify public LMS endpoint
+        shell: bash
+        run: |
+          curl --fail --location --silent --show-error --max-time 30 \
+            --output /tmp/compilationlab-home.html \
+            https://lms-185-102-139-43.sslip.io/
+          test -s /tmp/compilationlab-home.html
+
+      - name: Commit verified link update
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add en.html index.html ru.html
+          git diff --cached --quiet && {
+            echo "No link changes were produced." >&2
+            exit 1
+          }
+          git commit -m "Point CompilationLab profile links to public LMS"
+          git push origin HEAD:main
