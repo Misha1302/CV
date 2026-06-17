@@ -20,7 +20,10 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
 body {
   margin: 0;
   background: var(--bg);
@@ -311,10 +314,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
   padding: 25px 0;
   border-bottom: 1px solid var(--border);
 }
+.timeline article > * { min-width: 0; }
 .timeline time { color: var(--accent); }
 .timeline h3 { margin: 0; font-size: 20px; line-height: 1.25; }
 .timeline .org { margin: 5px 0 0; color: var(--quiet); font-size: 13px; }
 .timeline .details { margin: 0; color: var(--muted); }
+.timeline h3,
+.timeline .org,
+.timeline .details { overflow-wrap: anywhere; }
 
 .approach-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .approach-item { padding: 24px 24px 26px 0; }
