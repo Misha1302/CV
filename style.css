@@ -299,7 +299,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .project-links { display: flex; flex-wrap: wrap; gap: 9px 15px; margin-top: 24px; }
 .project-links a { color: var(--text); text-decoration-thickness: 1px; text-underline-offset: 4px; font-size: 14px; }
 .project-links a:hover { color: var(--accent-hover); }
-.project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+.project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
 .project-compact { padding: 27px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
 .project-compact h3 { font-size: clamp(25px, 2.5vw, 31px); }
 .project-compact p { margin-bottom: 18px; }
@@ -443,14 +443,18 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .teaching-metric {
   min-width: 0;
-  padding: 6px 20px 8px;
+  padding: 6px clamp(14px, 1.4vw, 20px) 8px;
 }
 .teaching-metric + .teaching-metric { border-left: 1px solid var(--border); }
 .teaching-metric strong {
   display: block;
-  font-size: clamp(25px, 2.6vw, 34px);
-  line-height: 1;
-  letter-spacing: -0.035em;
+  max-width: 100%;
+  font-size: clamp(22px, 2.15vw, 30px);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
 }
 .teaching-metric span {
   display: block;
@@ -470,6 +474,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .hero { grid-template-columns: minmax(0, 1fr) 300px; gap: 22px 42px; }
   .section-heading { grid-template-columns: 150px 1fr; }
   .project-featured { grid-template-columns: 1fr; }
+  .project-grid { grid-template-columns: 1fr 1fr; }
   .fact-row { grid-template-columns: 1fr 1fr; }
   .recognition-item { grid-template-columns: 175px 1fr; }
   .recognition-item .evidence-links { grid-column: 2; flex-direction: row; flex-wrap: wrap; }
