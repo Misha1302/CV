@@ -1,117 +1,158 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+
+<html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0f0c0d">
-<meta property="og:type" content="profile">
-<meta property="og:image" content="https://misha1302.github.io/CV/assets/avatar.jpg">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
-<meta name="description" content="Mikhail Razakov — compiler and runtime engineer, creator of UniversalToolchain/Wist, selected for an MCST LLVM compiler internship; algorithms instructor and freelance software developer.">
-<meta property="og:title" content="Mikhail Razakov — Compiler / Runtime Engineer">
-<meta property="og:description" content="Compiler infrastructure on .NET, CIL code generation, program analysis, algorithms teaching, client software and technical mentoring.">
-<meta property="og:url" content="https://misha1302.github.io/CV/">
-<title>Mikhail Razakov — Compiler / Runtime Engineer</title>
-<link rel="canonical" href="https://misha1302.github.io/CV/">
-<link rel="alternate" hreflang="ru" href="https://misha1302.github.io/CV/ru.html">
-<link rel="alternate" hreflang="en" href="https://misha1302.github.io/CV/en.html">
-<link rel="alternate" hreflang="x-default" href="https://misha1302.github.io/CV/">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Mikhail Razakov",
-  "alternateName": "Михаил Разаков",
-  "jobTitle": "Compiler / Runtime Engineer",
-  "url": "https://misha1302.github.io/CV/",
-  "image": "https://misha1302.github.io/CV/assets/avatar.jpg",
-  "sameAs": [
-    "https://github.com/Misha1302",
-    "https://habr.com/ru/users/misha13022008/",
-    "https://t.me/Micodiy",
-    "https://t.me/shizaicompilers",
-    "https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/"
-  ],
-  "knowsAbout": [
-    "Compiler engineering", "Runtime systems", ".NET", "CIL", "JIT compilation",
-    "Intermediate representations", "Program analysis", "Computational complexity",
-    "Formal languages", "Lambda calculus", "Type systems", "Software testing",
-    "Competitive programming", "Technical education", "Client software"
-  ]
-}
-</script>
-</head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#0f0c0d" name="theme-color"/>
+<meta content="Целевые русские и английские версии резюме Михаила Разакова с подробным опытом в .NET-бэкенде, компиляторах, инструментах разработчика, надёжности сервисов и EdTech." name="description"/>
+<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="style.css" rel="stylesheet"/>
+<title>
+   Михаил Разаков — целевые версии CV
+  </title>
+<link href="index.html" hreflang="x-default" rel="alternate"/><meta content="website" property="og:type"/><meta content="Михаил Разаков — целевые версии CV" property="og:title"/><meta content="Целевые русские и английские версии инженерного резюме." property="og:description"/><meta content="https://misha1302.github.io/CV/" property="og:url"/><meta content="https://misha1302.github.io/CV/assets/og-card.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/></head>
+<body class="selector-page">
 <header class="site-header">
-  <div class="shell header-inner">
-    <a class="brand" href="#top" aria-label="Mikhail Razakov"><span class="brand-mark">MR</span><span class="brand-copy"><strong>Mikhail Razakov</strong><span>Compiler / Runtime Engineer</span></span></a>
-    <nav class="primary-nav" aria-label="Primary navigation"><a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Capabilities</a><a href="#recognition">Recognition</a><a href="#public">Public work</a></nav>
-    <div class="header-actions"><div class="language-switch"><a href="ru.html" hreflang="ru">RU</a><span>/</span><span aria-current="page">EN</span></div><a class="button compact" href="mailto:misha13022008@gmail.com">Contact</a><details class="mobile-menu"><summary>Menu</summary><div class="mobile-panel"><nav><a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Capabilities</a><a href="#recognition">Recognition</a><a href="#public">Public work</a></nav><div class="mobile-links"><a href="ru.html" hreflang="ru">RU</a><a href="https://github.com/Misha1302" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://t.me/Micodiy" target="_blank" rel="noopener noreferrer">Telegram ↗</a><a href="mailto:misha13022008@gmail.com">Email</a></div></div></details></div>
-  </div>
+<div class="shell header-inner">
+<a class="brand" href="index.html">
+<span class="brand-mark">
+      MR
+     </span>
+<span class="brand-copy">
+<strong>
+       Михаил Разаков
+      </strong>
+<span>
+       целевые резюме
+      </span>
+</span>
+</a>
+<div>
+</div>
+<div class="header-actions">
+<a class="button compact" href="mailto:razakov.misha@mail.ru">
+      Связаться
+     </a>
+</div>
+</div>
 </header>
-<main id="main">
-<section class="shell hero" id="top">
-  <div class="hero-intro reveal"><p class="eyebrow">Compilers · Runtime · Program analysis</p><h1>Mikhail Razakov</h1><p class="hero-role">Compiler / Runtime Engineer</p></div>
-  <div class="hero-detail reveal"><p class="hero-summary">I build compiler infrastructure on .NET: intermediate representations, interpreters, CIL code generation and program-analysis tooling. Creator of UniversalToolchain/Wist, selected for an MCST internship on the LLVM compiler track. I also teach algorithms and deliver custom software for educational and business clients.</p><div class="hero-actions"><a class="button primary" href="#work">Selected work</a><a class="button" href="https://github.com/Misha1302" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><div class="hero-context"><span>Vladimir → Moscow</span><span>Open to internships, junior roles and R&amp;D</span></div></div>
-  <figure class="portrait-card reveal"><div class="portrait-frame"><img src="assets/avatar.jpg" width="460" height="575" alt="Portrait of Mikhail Razakov" fetchpriority="high" decoding="async"></div><figcaption><strong>Incoming MCST intern · LLVM compiler</strong><span>Creator of UniversalToolchain/Wist</span></figcaption></figure>
+<main class="shell">
+<section class="selector-intro">
+<p class="eyebrow">Целевые версии для HR, технического руководителя и международных откликов</p>
+<h1>Выберите резюме под вакансию.</h1>
+<p>Целевые версии сохраняют подробный опыт и меняют порядок доказательств под конкретную роль; полная версия собирает весь инженерный контекст в одном месте.</p>
 </section>
-<section class="shell proof-strip" aria-label="Key evidence"><div class="proof-item"><strong>#1 · 104/104</strong><span>MCST LLVM compiler selection</span></div><div class="proof-item"><strong>2 tracks</strong><span>HSE “Highest Standard” Olympiad prize-winner</span></div><div class="proof-item"><strong>Algorithms</strong><span>Gran.Potuplenie instructor · ≈50 students taught</span></div></section>
-
-<section class="shell section" id="work">
-  <header class="section-heading reveal"><p class="section-label">01 · Work</p><div><h2>Systems where architecture and demonstrable correctness matter.</h2><p class="section-intro">My main focus is language infrastructure, program analysis and reliable backend processes.</p></div></header>
-  <article class="project-featured reveal"><div><span class="project-type">Flagship · Compiler/runtime framework</span><h3>UniversalToolchain / Wist</h3><p>A modular .NET framework for embedded languages with explicit semantic boundaries between frontend, Bytecode, AIR, optimizations and execution backends.</p><div class="project-links"><a href="https://github.com/Misha1302/Wist2" target="_blank" rel="noopener noreferrer">Code ↗</a><a href="https://misha1302.github.io/Wist2/" target="_blank" rel="noopener noreferrer">Documentation ↗</a><a href="https://www.nuget.org/packages/UniversalToolchain.Wist/0.1.0-preview.1" target="_blank" rel="noopener noreferrer">NuGet ↗</a></div></div><ul class="project-points"><li><strong>Separated pipeline</strong>Frontend-oriented Bytecode and backend-oriented AIR remain distinct semantic layers.</li><li><strong>2 backends</strong>An AIR interpreter and typed CIL generation through DynamicMethod.</li><li><strong>Explicit capability contracts</strong>Runtime selection and legal optimizations do not depend on concrete-name hardcoding.</li><li><strong>Testable semantics</strong>Parity tests, stack discipline, deterministic module composition and negative scenarios.</li></ul></article>
-  <div class="project-grid">
-    <article class="project-compact reveal"><span class="project-type">Program analysis</span><h3>MCST solver and test harness</h3><p>A system for dependency analysis between parametric memory accesses across independent loop iterations with unknown invariants.</p><ul class="project-detail-list"><li>Symbolic normalization and canonical forms.</li><li>Ranges, modular residues, GCD reasoning and an exact affine solver.</li><li>Exact oracles, metamorphic transformations and adaptive search for correctness and performance defects.</li></ul><ul class="inline-meta"><li>104/104</li><li>C17</li><li>Python</li><li>Exact oracles</li></ul><div class="project-links"><a href="https://github.com/Misha1302/ps_form_analizer" target="_blank" rel="noopener noreferrer">Source code ↗</a></div></article>
-    <article class="project-compact reveal"><span class="project-type">Production systems</span><h3>VpnMediator / Razaltush VPN</h3><p>A commercial VPN subscription service with a Telegram interface and Linux operations.</p><ul class="project-detail-list"><li>Purchase, renewal, device-limit expansion and discount flows.</li><li>Transactions, idempotency, stale-state validation and recovery from partial external failure.</li><li>Incident diagnosis, systemd, rollback and compatibility for existing users.</li></ul><ul class="inline-meta"><li>.NET</li><li>Python</li><li>systemd</li><li>Paying users</li></ul></article>
-    <article class="project-compact reveal"><span class="project-type">Client software</span><h3>Custom education and presentation tools</h3><p>Software components and interactive tools built for university project contexts and business clients.</p><ul class="project-detail-list"><li>Working prototypes and application modules for coursework and graduation-project contexts.</li><li>Interactive presentation and entertainment software beyond static slide decks.</li><li>Requirements clarification, implementation, debugging, delivery support and post-delivery adjustments.</li></ul><ul class="inline-meta"><li>C#/.NET</li><li>Unity</li><li>Client delivery</li><li>Interactive UI</li></ul></article>
-  </div>
+<section class="selector-grid">
+<article class="selector-card">
+<span>
+      RU / EN
+     </span>
+<h2>
+      Полный инженерный профиль
+     </h2>
+<p>Полная история опыта: стажировка МЦСТ, Wist2 с 2024 года, работающие backend-системы, клиентская разработка, EdTech и преподавание с 2021 года.</p>
+<div aria-label="Языковые версии: Полный инженерный профиль" class="selector-links">
+<a href="ru-master.html">
+       Русская версия
+      </a>
+<a href="en-master.html">
+       Английская версия
+      </a>
+</div>
+</article>
+<article class="selector-card">
+<span>
+      RU / EN
+     </span>
+<h2>
+      Компиляторы / среды исполнения
+     </h2>
+<p>Wist2 с 2024 года, стажировка МЦСТ, анализ программ, C17/C++23 и дополнительный опыт эксплуатации .NET-сервисов.</p>
+<div aria-label="Языковые версии: Компиляторы / среды исполнения" class="selector-links">
+<a href="ru-compiler.html">
+       Русская версия
+      </a>
+<a href="en-compiler.html">
+       Английская версия
+      </a>
+</div><div class="selector-pdf-links"><a download="" href="pdf/Mikhail_Razakov_Compiler_RU.pdf">PDF RU</a><a download="" href="pdf/Mikhail_Razakov_Compiler_EN.pdf">PDF EN</a></div>
+</article>
+<article class="selector-card">
+<span>
+      RU / EN
+     </span>
+<h2>
+      .NET-бэкенд
+     </h2>
+<p>Клиентский бэкенд с 2023 года, два работающих продукта в 2026 году, платежи, миграции, PostgreSQL, восстановление и поддержка после запуска.</p>
+<div aria-label="Языковые версии: .NET-бэкенд" class="selector-links">
+<a href="ru-backend.html">
+       Русская версия
+      </a>
+<a href="en-backend.html">
+       Английская версия
+      </a>
+</div><div class="selector-pdf-links"><a download="" href="pdf/Mikhail_Razakov_Backend_RU.pdf">PDF RU</a><a download="" href="pdf/Mikhail_Razakov_Backend_EN.pdf">PDF EN</a></div>
+</article>
+<article class="selector-card">
+<span>
+      RU / EN
+     </span>
+<h2>Надёжность .NET-сервисов</h2>
+<p>Практика владения состоянием: идемпотентность, recovery, backup/restore, health checks, развёртывание и откат.</p>
+<div aria-label="Языковые версии: Бэкенд / внутренние платформы" class="selector-links">
+<a href="ru-platform.html">
+       Русская версия
+      </a>
+<a href="en-platform.html">
+       Английская версия
+      </a>
+</div><div class="selector-pdf-links"><a download="" href="pdf/Mikhail_Razakov_Reliability_RU.pdf">PDF RU</a><a download="" href="pdf/Mikhail_Razakov_Reliability_EN.pdf">PDF EN</a></div>
+</article>
+<article class="selector-card">
+<span>
+      RU / EN
+     </span>
+<h2>
+      Инструменты разработчика
+     </h2>
+<p>Публичный compiler/runtime SDK, CLI-анализатор, тестовая инфраструктура, автоматизация и production-диагностика.</p>
+<div aria-label="Языковые версии: Инструменты разработчика" class="selector-links">
+<a href="ru-devtools.html">
+       Русская версия
+      </a>
+<a href="en-devtools.html">
+       Английская версия
+      </a>
+</div><div class="selector-pdf-links"><a download="" href="pdf/Mikhail_Razakov_DevTools_RU.pdf">PDF RU</a><a download="" href="pdf/Mikhail_Razakov_DevTools_EN.pdf">PDF EN</a></div>
+</article>
+<article class="selector-card">
+<span>
+      RU / EN
+     </span>
+<h2>
+      EdTech-бэкенд
+     </h2>
+<p>Преподавание с 2021 года, около 50 учеников, LMS-бэкенд, поддержка публичной платформы и production-инженерия.</p>
+<div aria-label="Языковые версии: EdTech-бэкенд" class="selector-links">
+<a href="ru-edtech.html">
+       Русская версия
+      </a>
+<a href="en-edtech.html">
+       Английская версия
+      </a>
+</div><div class="selector-pdf-links"><a download="" href="pdf/Mikhail_Razakov_EdTech_RU.pdf">PDF RU</a><a download="" href="pdf/Mikhail_Razakov_EdTech_EN.pdf">PDF EN</a></div>
+</article>
 </section>
-
-<section class="shell section" id="experience">
-  <header class="section-heading reveal"><p class="section-label">02 · Experience</p><div><h2>Roles and responsibility.</h2><p class="section-intro">Compilers, program analysis, backend architecture and technical mentoring.</p></div></header>
-  <div class="timeline">
-    <article class="reveal"><time>2026</time><div><h3>Incoming MCST intern · LLVM compiler</h3><p class="org">Programming systems track</p></div><p class="details">Selected for compiler-engineering and program-analysis work after ranking first in the internal technical selection.</p></article>
-    <article class="reveal"><time>Current</time><div><h3>Creator and maintainer · UniversalToolchain/Wist</h3><p class="org">Open-source compiler/runtime framework</p></div><p class="details">Pipeline and IR architecture, interpreter, CIL backend, optimizer contracts, public APIs, tests, documentation and release gates.</p></article>
-    <article class="reveal"><time>Current</time><div><h3>Architecture and backend · CompilationLab</h3><p class="org">Team development with a full-stack engineer · pre-launch</p></div><p class="details">Designed the backend architecture and implemented the data model, persistence layer and API contracts; frontend/backend boundaries and architectural decisions are agreed jointly.</p></article>
-    <article class="reveal"><time>Current</time><div><h3>Algorithms and competitive programming instructor</h3><p class="org">Gran.Potuplenie · education project</p></div><p class="details">Teach algorithms and olympiad-style problem solving to students preparing for programming contests and CS challenges, with a focus on implementation discipline, debugging and contest reasoning.</p></article>
-    <article class="reveal"><time>Client work</time><div><h3>Freelance software developer</h3><p class="org">Educational and business clients</p></div><p class="details">Delivered custom software components, working university-project prototypes and interactive presentation/event tools; handled requirements clarification, implementation, debugging and delivery support.</p></article>
-    <article class="reveal"><time>2021—</time><div><h3>Programming teacher and mentor</h3><p class="org">About 50 students · 5.0 rating · 10 verified reviews</p></div><p class="details">I teach C#, C/C++, Python, Unity and algorithms to school and university students; I also support architecture, debugging, code review and project-defense preparation. One school student was admitted to a selective physics and technology lyceum after one-to-one entrance preparation.</p></article>
-  </div>
-</section>
-
-<section class="shell section" id="approach">
-  <header class="section-heading reveal"><p class="section-label">03 · Approach</p><div><h2>Engineering decisions should be explicit and testable.</h2></div></header>
-  <div class="approach-grid"><article class="approach-item reveal"><h3>Semantic boundaries</h3><p>Frontend, IR and runtime have distinct responsibilities and do not create competing sources of truth.</p></article><article class="approach-item reveal"><h3>Inference strength stays explicit</h3><p>I separate exact, conservative and witness-based strategies so that “unknown” never becomes an unjustified “yes” or “no”.</p></article><article class="approach-item reveal"><h3>Change without surprises</h3><p>Deterministic composition, idempotency, compatibility, recovery and reproducible release gates.</p></article></div>
-  <div class="fact-row"><div class="fact reveal"><span class="meta-label">Incoming internship</span><strong>MCST · LLVM compiler</strong><small>Programming systems and program analysis</small></div><div class="fact reveal"><span class="meta-label">Education</span><strong>Gymnasium No. 3 · graduating 2026</strong><small>University study in Moscow from 2026</small></div><div class="fact reveal"><span class="meta-label">Location</span><strong>Vladimir → Moscow</strong><small>Planning to relocate for study and work</small></div><div class="fact reveal"><span class="meta-label">Format</span><strong>On-site · hybrid · remote</strong><small>Internships, junior roles and research collaboration</small></div></div>
-</section>
-
-<section class="shell section" id="skills">
-  <header class="section-heading reveal"><p class="section-label">04 · Capabilities</p><div><h2>Language infrastructure and systems engineering.</h2></div></header>
-  <div class="stack-lines"><div class="stack-line reveal"><strong>Core stack</strong><p>C# · .NET 10 · CIL · DynamicMethod · C/C++ · Python · NASM x86-64 · Linux</p></div><div class="stack-line reveal"><strong>Tooling</strong><p>BenchmarkDotNet · GitHub Actions · NuGet · VitePress · systemd · profiling · assembly analysis</p></div></div>
-  <div class="capability-list"><article class="capability reveal"><h3>Compilers and runtime</h3><p>Lexers, parsers, AST, Bytecode, AIR/IR, interpreters, CIL, intrinsics, JIT behavior and optimizer-legality reasoning.</p></article><article class="capability reveal"><h3>Program analysis</h3><p>Dependency analysis, symbolic normalization, affine constraints, ranges, modular arithmetic, GCD-based abstractions and solver portfolios.</p></article><article class="capability reveal"><h3>Correctness testing</h3><p>Exact oracles, property-based and metamorphic tests, adaptive fuzzing, semantic parity and regression protection.</p></article><article class="capability reveal"><h3>Performance</h3><p>Benchmark design, profiling, CIL and machine-code inspection, allocations and hot paths.</p></article><article class="capability reveal"><h3>Architecture and delivery</h3><p>Modular composition, dependency boundaries, API design, CI/CD, packaging, documentation and release validation.</p></article><article class="capability reveal"><h3>Operations</h3><p>Linux services, systemd, logging, deployment, incident analysis, rollback and compatibility-aware change.</p></article></div>
-</section>
-
-<section class="shell section" id="research">
-  <header class="section-heading reveal"><p class="section-label">05 · Research</p><div><h2>Formal models and executable systems.</h2><p class="section-intro">I am interested in problems where a formal model can be implemented, validated against real system behavior and compared with performance constraints.</p></div></header>
-  <div class="research-list"><article class="research-item reveal"><span>01</span><div><h3>Computational complexity</h3><p>P, NP, coNP and FP, polynomial reductions, completeness, and the distinction between decision, search and function-computation problems.</p></div></article><article class="research-item reveal"><span>02</span><div><h3>Formal languages and semantics</h3><p>Automata, parsing theory, binding and normalization, and the connection between syntax, semantics and execution.</p></div></article><article class="research-item reveal"><span>03</span><div><h3>Program analysis and testing</h3><p>Exact and conservative methods, integer constraints, metamorphic and generative testing, and correctness/performance regression discovery.</p></div></article><article class="research-item reveal"><span>04</span><div><h3>Lambda calculus and type-system foundations</h3><p>Untyped and simply typed lambda calculus, normal forms and evaluation strategies, combinatory logic, fixed points, products, sums and recursive types; introductory familiarity with polymorphic and dependent types.</p></div></article></div>
-</section>
-
-<section class="shell section" id="recognition">
-  <header class="section-heading reveal"><p class="section-label">06 · Recognition</p><div><h2>Results and supporting materials.</h2><p class="section-intro">Each result is listed separately and paired with the available official links or source materials.</p></div></header>
-  <div class="recognition-list"><article class="recognition-item reveal"><span class="recognition-year">2026 · MCST</span><div><h3>LLVM compiler selection</h3><p>According to the internal technical selection results, ranked first among 49 submitted solutions; the only entry to score 5.0/5.0 and pass all 104 tests.</p></div><div class="evidence-links"><a href="https://www.mcst.ru/student" target="_blank" rel="noopener noreferrer">Internship program ↗</a><a href="https://github.com/Misha1302/ps_form_analizer" target="_blank" rel="noopener noreferrer">Solution code ↗</a></div></article><article class="recognition-item reveal"><span class="recognition-year">2025–26 · MEPhI</span><div><h3>Junior Olympiad</h3><p>Ranked first nationally in 2025 and second in 2026; first-degree diplomas in both years.</p></div><div class="evidence-links"><a href="https://olymp.mephi.ru/junior/winners/2026" target="_blank" rel="noopener noreferrer">Official results ↗</a><a href="https://diploma.rsr-olymp.ru/check" target="_blank" rel="noopener noreferrer">RSOSH diploma · 415 7412-33532 ↗</a></div></article><article class="recognition-item reveal"><span class="recognition-year">2026 · HSE “Highest Standard”</span><div><h3>Industrial Programming</h3><p>Prize-winner, second-degree diploma in the Level 2 Industrial Programming track.</p></div><div class="evidence-links"><a href="https://diploma.rsr-olymp.ru/check" target="_blank" rel="noopener noreferrer">RSOSH diploma · 414 8554-64780 ↗</a></div></article><article class="recognition-item reveal"><span class="recognition-year">2026 · HSE “Highest Standard”</span><div><h3>Informatics</h3><p>Prize-winner, third-degree diploma in the Level 1 Informatics track.</p></div><div class="evidence-links"><a href="https://diploma.rsr-olymp.ru/check" target="_blank" rel="noopener noreferrer">RSOSH diploma · 414 8680-58542 ↗</a></div></article><article class="recognition-item reveal"><span class="recognition-year">2026 · Baltic Competition</span><div><h3>Science and engineering</h3><p>First-degree diploma and the “Excellence as Hope” award for UniversalToolchain.</p></div><div class="evidence-links"><a href="https://baltkonkurs.ru/features/po-godam/xxii-konkurs-2026/" target="_blank" rel="noopener noreferrer">Official page ↗</a></div></article><article class="recognition-item reveal"><span class="recognition-year">2025/26 · HSE University</span><div><h3>Higher Pilotage · Computer Science</h3><p>Winner of the Computer Science track among grade 11 students.</p></div><div class="evidence-links"><a href="https://olymp.hse.ru/projects/papers" target="_blank" rel="noopener noreferrer">Official results ↗</a></div></article></div>
-</section>
-
-<section class="shell section" id="public">
-  <header class="section-heading reveal"><p class="section-label">07 · Public work</p><div><h2>Writing, teaching and technical communication.</h2></div></header>
-  <div class="public-list"><a class="public-item reveal" href="https://habr.com/ru/articles/942134/" target="_blank" rel="noopener noreferrer"><span class="public-kind">Article</span><div><h3>My vision of a universal programming language</h3><p>Compilers, extensible languages, architecture and DSL design.</p></div><span class="public-arrow" aria-hidden="true">↗</span></a><a class="public-item reveal" href="https://t.me/shizaicompilers" target="_blank" rel="noopener noreferrer"><span class="public-kind">Engineering notes</span><div><h3>Shiza and compilers</h3><p>CIL, RyuJIT, PGO, intermediate representations and virtual machines.</p></div><span class="public-arrow" aria-hidden="true">↗</span></a><a class="public-item reveal" href="https://lms-185-102-139-43.sslip.io" target="_blank" rel="noopener noreferrer"><span class="public-kind">Team project · pre-launch</span><div><h3>CompilationLab</h3><p>An educational platform developed with a full-stack engineer: backend architecture, data model, persistence layer and API contracts.</p></div><span class="public-arrow" aria-hidden="true">↗</span></a></div>
-  <div class="teaching-panel reveal"><div class="teaching-copy"><span class="public-kind">Teaching and client delivery</span><h3>Algorithms, contests and practical software outcomes.</h3><p>I teach algorithms and olympiad-style programming, work with school and university students, and support projects from requirements to working code. Client work includes university-project prototypes and interactive presentation tools for business use cases.</p></div><div class="teaching-metrics" aria-label="Teaching and client outcomes"><div class="teaching-metric"><strong>≈50</strong><span>programming students</span></div><div class="teaching-metric"><strong>Gran.</strong><span>Gran.Potuplenie algorithms and olympiad programming</span></div><div class="teaching-metric"><strong>Client tools</strong><span>university prototypes and business software</span></div></div></div>
-</section>
-
-<section class="shell contact-section"><div class="contact-panel reveal"><div><h2>Let’s discuss compiler, runtime, program-analysis or developer-tooling work.</h2><p>Open to internships, junior roles and research collaboration.</p></div><div class="contact-links"><a class="button primary" href="mailto:misha13022008@gmail.com">Email me</a><a class="button" href="https://t.me/Micodiy" target="_blank" rel="noopener noreferrer">Telegram ↗</a><a class="button" href="https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div></section>
 </main>
-<footer class="shell site-footer"><span>Mikhail Razakov · Compiler / Runtime Engineer</span><span>Updated June 2026</span></footer>
+<footer class="shell site-footer">
+<span>
+    Михаил Разаков · целевые версии резюме
+   </span>
+<span>
+    Обновлено 10 июля 2026
+   </span>
+</footer>
 </body>
 </html>

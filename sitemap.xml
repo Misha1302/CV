@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://misha1302.github.io/CV/</loc></url>
-  <url><loc>https://misha1302.github.io/CV/en.html</loc></url>
-  <url><loc>https://misha1302.github.io/CV/ru.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/index.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/ru-backend.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/en-backend.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/ru-platform.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/en-platform.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/ru-compiler.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/en-compiler.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/ru-devtools.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/en-devtools.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/ru-edtech.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/en-edtech.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/ru-master.html</loc></url>
+  <url><loc>https://misha1302.github.io/CV/en-master.html</loc></url>
 </urlset>
