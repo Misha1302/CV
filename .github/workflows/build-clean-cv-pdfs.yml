@@ -37,20 +37,24 @@ jobs:
       - name: Validate copy, links and PDFs
         run: python tools/check_cv_copy.py
 
-      - name: Commit generated PDFs
+      - name: Record validation
+        run: printf 'CV validation passed for %s\n' "$GITHUB_SHA" > CV_VALIDATION.txt
+
+      - name: Commit generated PDFs and validation record
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pdf/Mikhail_Razakov_Compiler_RU.pdf \
+          git add CV_VALIDATION.txt \
+                  pdf/Mikhail_Razakov_Compiler_RU.pdf \
                   pdf/Mikhail_Razakov_Compiler_EN.pdf \
                   pdf/Mikhail_Razakov_Backend_RU.pdf \
                   pdf/Mikhail_Razakov_Backend_EN.pdf \
                   pdf/Mikhail_Razakov_EdTech_RU.pdf \
                   pdf/Mikhail_Razakov_EdTech_EN.pdf
           if git diff --cached --quiet; then
-            echo "PDFs are already up to date."
+            echo "Generated files are already up to date."
             exit 0
           fi
-          git commit -m "Regenerate clean CV PDFs"
+          git commit -m "Validate clean CV copy and PDFs"
           git push origin "HEAD:${GITHUB_REF_NAME}"
