@@ -6,7 +6,9 @@ on:
       - feature/short-profile-landing
     paths:
       - tools/build_cv_pdfs.py
+      - tools/check_cv_copy.py
       - .github/workflows/build-clean-cv-pdfs.yml
+      - '*.html'
   workflow_dispatch:
 
 permissions:
@@ -26,11 +28,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install PDF dependency
-        run: python -m pip install --disable-pip-version-check reportlab==4.4.3
+      - name: Install PDF dependencies
+        run: python -m pip install --disable-pip-version-check reportlab==4.4.3 pypdf==5.9.0
 
       - name: Generate PDFs
         run: python tools/build_cv_pdfs.py
+
+      - name: Validate copy, links and PDFs
+        run: python tools/check_cv_copy.py
 
       - name: Commit generated PDFs
         shell: bash
