@@ -1,0 +1,60 @@
+name: Build clean CV PDFs
+
+on:
+  push:
+    branches:
+      - feature/short-profile-landing
+    paths:
+      - tools/build_cv_pdfs.py
+      - tools/check_cv_copy.py
+      - .github/workflows/build-clean-cv-pdfs.yml
+      - '*.html'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install PDF dependencies
+        run: python -m pip install --disable-pip-version-check reportlab==4.4.3 pypdf==5.9.0
+
+      - name: Generate PDFs
+        run: python tools/build_cv_pdfs.py
+
+      - name: Validate copy, links and PDFs
+        run: python tools/check_cv_copy.py
+
+      - name: Record validation
+        run: printf 'CV validation passed for %s\n' "$GITHUB_SHA" > CV_VALIDATION.txt
+
+      - name: Commit generated PDFs and validation record
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CV_VALIDATION.txt \
+                  pdf/Mikhail_Razakov_Compiler_RU.pdf \
+                  pdf/Mikhail_Razakov_Compiler_EN.pdf \
+                  pdf/Mikhail_Razakov_Backend_RU.pdf \
+                  pdf/Mikhail_Razakov_Backend_EN.pdf \
+                  pdf/Mikhail_Razakov_EdTech_RU.pdf \
+                  pdf/Mikhail_Razakov_EdTech_EN.pdf
+          if git diff --cached --quiet; then
+            echo "Generated files are already up to date."
+            exit 0
+          fi
+          git commit -m "Validate clean CV copy and PDFs"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
