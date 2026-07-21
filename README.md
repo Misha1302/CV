@@ -1,10 +1,11 @@
-# Mikhail Razakov — targeted CV variants v17-preview
+# Mikhail Razakov — targeted CV variants v18-quant
 
-Статический пакет целевых инженерных резюме на русском и английском языках. Ветка `feature/algorithmic-cv-track-2026-07-17` добавляет отдельный алгоритмический профиль, не меняя опубликованные PDF до отдельной проверки вёрстки.
+Статический пакет целевых инженерных резюме на русском и английском языках. Версия `v18-quant` добавляет отдельный профиль для software-engineering ролей в quantitative research и trading infrastructure, не выдавая целевую область за уже полученный профессиональный опыт.
 
 ## Страницы
 
 - `ru-master.html` / `en-master.html` — полный инженерный профиль.
+- `ru-quant.html` / `en-quant.html` — C++/Python, solver engineering, compiler/runtime infrastructure и differential validation для quantitative/trading infrastructure.
 - `ru-compiler.html` / `en-compiler.html` — компиляторы, среды исполнения и анализ программ.
 - `ru-algorithms.html` / `en-algorithms.html` — алгоритмы, C++23, solver engineering и анализ программ.
 - `ru-backend.html` / `en-backend.html` — .NET-бэкенд, API, платежи и надёжность сервисов.
@@ -13,41 +14,36 @@
 - `ru-edtech.html` / `en-edtech.html` — EdTech/LMS и преподавательский опыт.
 - `index.html` — выбор роли, языка и доступных PDF.
 
-## Алгоритмический профиль
+## Quantitative & trading infrastructure profile
 
-Новая версия перестраивает доказательства под algorithmic / C++ / program-analysis позиции:
+Профиль построен для ранних software-engineering позиций, где важны алгоритмы, корректность и execution infrastructure:
 
-- стажировка МЦСТ и публичный репозиторий графовых алгоритмов идут первым опытом;
-- отдельно показаны RPO с cycle detection, Dijkstra, Dinic maximum flow и Tarjan SCC;
-- результат отбора МЦСТ 1-е место / 5,0 из 5,0 / 104 из 104 раскрыт как solver engineering, а не только награда;
-- выделены exact oracle, генеративное, метаморфное и mutation-guided тестирование;
-- добавлен `x86-64-codegen-ra-playground` с SSA-подобной IR, liveness, live intervals, linear scan и x86-64 codegen;
-- Wist2 остаётся связкой между алгоритмами, анализом программ и production-style compiler/runtime engineering;
-- олимпиадные и инженерные награды разделены по смыслу и снабжены публичными подтверждениями.
+- на первом месте находятся PS-form Memory Dependence Analyzer, UniversalToolchain/Wist2 и x86-64 codegen lab;
+- результат отбора МЦСТ сформулирован как проверяемое достижение: 1-е место среди 49, единственная оценка 5,0/5,0 и единственный результат 104/104;
+- Wist2 описан через фактические архитектурные результаты: lexer/parser → AST → Bytecode → AIR, interpreter/CIL execution, verifier-gated AIR → SSA → AIR и manifest-backed runtime composition;
+- число 1 325 привязано к verification baseline от 14 июля 2026 года, а не представлено как постоянно актуальное состояние репозитория;
+- x86-64 codegen project явно обозначен как educational laboratory;
+- профиль не заявляет production trading, HFT, low-latency networking, alpha research, pricing models, PnL, Sharpe или профессиональный quant experience.
+
+Новые страницы используют общие `style.css`, `script.js` и assets репозитория; существующие профили не изменены.
 
 ## PDF для откликов
 
-Каталог `pdf/` по-прежнему содержит 10 проверенных двухстраничных A4-резюме для пяти ранее выпущенных профилей. Для алгоритмической версии PDF намеренно не добавлен в этой ветке: сначала требуется браузерная проверка, контроль двухстраничности, выделяемого текста и кликабельных ссылок.
+Каталог `pdf/` содержит ранее проверенные двухстраничные A4-резюме. Для quantitative/trading infrastructure профиля PDF пока не добавлен: опубликована только браузерная RU/EN версия.
 
-## Что изменено относительно v16
+## Проверки
 
-- добавлены `ru-algorithms.html` и `en-algorithms.html`;
-- на страницу выбора добавлена карточка «Алгоритмы / C++ / анализ программ»;
-- в алгоритмическом CV опубликованы ссылки на `MCST-tasks-on-graphs-algorithms`, `ps_form_analizer`, `x86-64-codegen-ra-playground` и Wist2;
-- усилены формулировки об алгоритмической инженерии, проверке корректности и program analysis;
-- дата страницы выбора обновлена до 17 июля 2026 года;
-- существующие целевые страницы и PDF не изменялись.
+Self-review нового профиля находится в `QUANT_SELF_REVIEW.md`. Проверены:
+
+- фактическая сдержанность и позиционирование;
+- порядок чтения для HR и технического интервьюера;
+- desktop/tablet/mobile layout;
+- отсутствие горизонтального overflow;
+- внутренние anchors и локальные assets;
+- JSON-LD, языковые ссылки и mobile menu.
 
 ## Использование
 
-Откройте `index.html` локально либо разместите содержимое каталога в корне GitHub Pages. Внутренние ссылки относительные. Внешние ссылки открываются в новой вкладке с `noopener`.
+Откройте `index.html` локально либо разместите содержимое каталога в корне GitHub Pages. Внутренние ссылки относительные. Внешние ссылки открываются в новой вкладке с `noopener noreferrer`.
 
 Контактный email: `razakov.misha@mail.ru`.
-
-## Проверки перед слиянием
-
-- проверить обе новые страницы в desktop и mobile viewport;
-- проверить все внутренние и внешние ссылки;
-- убедиться, что формулировки не обещают незавершённые graph-coloring, PBQP или exact-allocation части backend playground;
-- после утверждения текста сгенерировать RU/EN PDF и проверить двухстраничность;
-- обновить `LINK-AUDIT.md`, `FACT-RETENTION.md`, QA-отчёт и `SHA256SUMS.txt` только при подготовке релиза.
