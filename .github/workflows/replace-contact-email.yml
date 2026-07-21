@@ -6,12 +6,16 @@ on:
       - main
     paths:
       - .github/workflows/replace-contact-email.yml
+  issues:
+    types:
+      - opened
 
 permissions:
   contents: write
 
 jobs:
   replace-contact-email:
+    if: github.event_name == 'push' || github.event.issue.title == '[automation] Replace CV contact email'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
