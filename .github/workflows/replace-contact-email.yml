@@ -1,0 +1,183 @@
+name: Replace contact email
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/replace-contact-email.yml
+
+permissions:
+  contents: write
+
+jobs:
+  replace-contact-email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install PDF tooling
+        run: python3 -m pip install --disable-pip-version-check pymupdf
+
+      - name: Replace email in text and PDFs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import fitz
+
+          root = Path('.')
+          old = 'razakov.misha@mail.ru'
+          new = 'misha13022008@gmail.com'
+          text_suffixes = {'.html', '.md', '.txt', '.xml', '.yml', '.yaml', '.js', '.css', '.svg'}
+
+          changed_text = []
+          for path in root.rglob('*'):
+              if not path.is_file() or '.git' in path.parts or path.suffix.lower() not in text_suffixes:
+                  continue
+              try:
+                  text = path.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              if old in text:
+                  path.write_text(text.replace(old, new), encoding='utf-8')
+                  changed_text.append(path.as_posix())
+
+          pdf_count = 0
+          for pdf in sorted((root / 'pdf').glob('*.pdf')):
+              doc = fitz.open(pdf)
+              replacements = 0
+              for page in doc:
+                  rects = page.search_for(old)
+                  if not rects:
+                      continue
+
+                  spans = []
+                  for block in page.get_text('dict')['blocks']:
+                      for line in block.get('lines', []):
+                          for span in line.get('spans', []):
+                              if old in span['text']:
+                                  spans.append(span)
+
+                  old_links = [dict(link) for link in page.get_links() if link.get('uri') == f'mailto:{old}']
+                  for link in old_links:
+                      page.delete_link(link)
+
+                  for rect in rects:
+                      page.add_redact_annot(
+                          fitz.Rect(rect.x0 - 0.5, rect.y0 - 0.5, rect.x1 + 0.5, rect.y1 + 0.5),
+                          fill=(1, 1, 1),
+                      )
+                  page.apply_redactions(images=fitz.PDF_REDACT_IMAGE_NONE)
+
+                  inserted_link_rects = []
+                  for span in spans:
+                      color = span['color']
+                      rgb = (
+                          ((color >> 16) & 255) / 255,
+                          ((color >> 8) & 255) / 255,
+                          (color & 255) / 255,
+                      )
+                      page.insert_text(
+                          span['origin'],
+                          new,
+                          fontname='CVRegular',
+                          fontsize=7.5,
+                          color=rgb,
+                          overlay=True,
+                      )
+                      inserted_link_rects.append(
+                          fitz.Rect(span['origin'][0], span['bbox'][1], span['origin'][0] + 110, span['bbox'][3])
+                      )
+                      replacements += 1
+
+                  for index, link in enumerate(old_links):
+                      link_rect = inserted_link_rects[min(index, len(inserted_link_rects) - 1)]
+                      page.insert_link({'kind': fitz.LINK_URI, 'from': link_rect, 'uri': f'mailto:{new}'})
+
+              if replacements != 1:
+                  raise RuntimeError(f'{pdf}: expected exactly one email replacement, got {replacements}')
+
+              temp = pdf.with_suffix('.tmp.pdf')
+              doc.save(temp, garbage=4, deflate=True)
+              doc.close()
+              temp.replace(pdf)
+              pdf_count += 1
+
+          print(f'Updated {len(changed_text)} text files and {pdf_count} PDFs')
+          PY
+
+      - name: Verify replacement and PDF integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -aR -n --exclude-dir=.git --exclude=SHA256SUMS.txt 'razakov.misha@mail.ru' .; then
+            echo 'Old email still exists' >&2
+            exit 1
+          fi
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import fitz
+
+          new = 'misha13022008@gmail.com'
+          pdfs = sorted(Path('pdf').glob('*.pdf'))
+          if len(pdfs) != 10:
+              raise RuntimeError(f'Expected 10 PDFs, found {len(pdfs)}')
+
+          for pdf in pdfs:
+              doc = fitz.open(pdf)
+              if len(doc) != 2:
+                  raise RuntimeError(f'{pdf}: expected 2 pages, found {len(doc)}')
+              text = '\n'.join(page.get_text() for page in doc)
+              if text.count(new) != 1:
+                  raise RuntimeError(f'{pdf}: expected one visible new email, found {text.count(new)}')
+              links = [
+                  link.get('uri', '')
+                  for page in doc
+                  for link in page.get_links()
+                  if link.get('uri', '').startswith('mailto:')
+              ]
+              if f'mailto:{new}' not in links:
+                  raise RuntimeError(f'{pdf}: new mailto link is missing')
+
+              first_page = doc[0]
+              email_rects = first_page.search_for(new)
+              telegram_rects = first_page.search_for('t.me/Micodiy')
+              if not email_rects or not telegram_rects:
+                  raise RuntimeError(f'{pdf}: contact-line text not found')
+              gap = telegram_rects[0].x0 - email_rects[0].x1
+              if gap < 2.0:
+                  raise RuntimeError(f'{pdf}: email overlaps the next contact item, gap={gap}')
+
+          print(f'Verified {len(pdfs)} two-page PDFs')
+          PY
+
+      - name: Rebuild recursive checksum manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          find . -type f ! -path './.git/*' ! -path './SHA256SUMS.txt' -print0 \
+            | sort -z \
+            | xargs -0 sha256sum \
+            | sed 's#  \./#  #' \
+            > SHA256SUMS.txt
+          sha256sum -c SHA256SUMS.txt
+
+      - name: Commit replacement
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No changes to commit'
+            exit 0
+          fi
+          git commit -m 'Replace CV contact email across site and PDFs'
+          git push
