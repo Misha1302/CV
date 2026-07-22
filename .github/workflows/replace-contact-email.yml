@@ -1,6 +1,8 @@
 name: Replace contact email
 
 on:
+  pull_request:
+    types: [opened, synchronize, reopened]
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
@@ -15,6 +17,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
 
       - name: Install PDF tooling
         run: python3 -m pip install --disable-pip-version-check pymupdf
@@ -55,13 +58,7 @@ jobs:
                   rects = page.search_for(old)
                   if not rects:
                       continue
-                  spans = [
-                      span
-                      for block in page.get_text('dict').get('blocks', [])
-                      for line in block.get('lines', [])
-                      for span in line.get('spans', [])
-                      if old in span.get('text', '')
-                  ]
+                  spans = [span for block in page.get_text('dict').get('blocks', []) for line in block.get('lines', []) for span in line.get('spans', []) if old in span.get('text', '')]
                   if len(rects) != 1 or len(spans) != 1:
                       raise RuntimeError(f'{pdf}: ambiguous email placement')
 
@@ -83,7 +80,6 @@ jobs:
 
                   page.add_redact_annot(fitz.Rect(rect.x0 - .5, rect.y0 - .5, rect.x1 + .5, rect.y1 + .5), fill=(1, 1, 1))
                   page.apply_redactions(images=fitz.PDF_REDACT_IMAGE_NONE)
-
                   color = int(span.get('color', 0))
                   rgb = (((color >> 16) & 255) / 255, ((color >> 8) & 255) / 255, (color & 255) / 255)
                   origin = span['origin']
@@ -144,8 +140,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -f .github/workflows/replace-contact-email.yml
-          find . -type f ! -path './.git/*' ! -path './SHA256SUMS.txt' -print0 \
-            | sort -z | xargs -0 sha256sum | sed 's#  \./#  #' > SHA256SUMS.txt
+          find . -type f ! -path './.git/*' ! -path './SHA256SUMS.txt' -print0 | sort -z | xargs -0 sha256sum | sed 's#  \./#  #' > SHA256SUMS.txt
           sha256sum -c SHA256SUMS.txt
 
       - name: Commit changes
@@ -156,4 +151,4 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git commit -m 'Replace obsolete CV contact email everywhere'
-          git push
+          git push origin HEAD:${{ github.event.pull_request.head.ref || github.ref_name }}
