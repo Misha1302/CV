@@ -46,4 +46,4 @@ Self-review нового профиля находится в `QUANT_SELF_REVIEW
 
 Откройте `index.html` локально либо разместите содержимое каталога в корне GitHub Pages. Внутренние ссылки относительные. Внешние ссылки открываются в новой вкладке с `noopener noreferrer`.
 
-Контактный email: `razakov.misha@mail.ru`.
+Контактный email: `misha13022008@gmail.com`.
