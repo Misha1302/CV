@@ -1,0 +1,45 @@
+name: Inspect PDF education spans
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 -m pip install --disable-pip-version-check pymupdf
+      - name: Inspect education-related PDF spans
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import fitz
+
+          needles = ("HSE", "НИУ", "ВШЭ", "2030", "graduation", "выпуск", "Software Engineering", "Программная инженерия")
+          for path in sorted(Path("pdf").glob("*.pdf")):
+              doc = fitz.open(path)
+              print(f"=== {path} pages={len(doc)} size={doc[0].rect if doc else None} ===")
+              for page_index, page in enumerate(doc):
+                  data = page.get_text("dict")
+                  for block in data.get("blocks", []):
+                      for line in block.get("lines", []):
+                          line_text = "".join(span.get("text", "") for span in line.get("spans", []))
+                          if any(needle.casefold() in line_text.casefold() for needle in needles):
+                              print(f"page={page_index} line={line_text!r}")
+                              for span in line.get("spans", []):
+                                  print(
+                                      "  span="
+                                      f"text={span.get('text')!r} "
+                                      f"bbox={span.get('bbox')} origin={span.get('origin')} "
+                                      f"font={span.get('font')!r} size={span.get('size')} "
+                                      f"color={span.get('color')} flags={span.get('flags')}"
+                                  )
+              doc.close()
+          PY
