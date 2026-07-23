@@ -1,17 +1,16 @@
 name: Remove Rust from declared CV stacks
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - .github/workflows/remove-rust-from-stack-main.yml
+  issues:
+    types:
+      - opened
 
 permissions:
   contents: write
 
 jobs:
   update-cv:
+    if: github.event.issue.title == 'Run CV Rust stack cleanup'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
