@@ -1,22 +1,24 @@
 name: Anonymize HSE education details
 
 on:
-  push:
-    branches:
-      - main
+  pull_request_target:
+    types: [opened, reopened, synchronize]
     paths:
-      - .github/workflows/anonymize-hse-student-main.yml
+      - .cv-anonymize-request
 
 permissions:
   contents: write
+  pull-requests: read
 
 jobs:
   update-cv:
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
-      - name: Check out CV repository
+      - name: Check out the review branch
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
       - name: Set up Python
@@ -135,7 +137,6 @@ jobs:
 
           exporter = Path(".exporter/export_cv_html_to_pdf.py")
           for html, pdf in mappings.items():
-              Path(pdf).parent.mkdir(parents=True, exist_ok=True)
               subprocess.run(
                   [
                       "python3",
@@ -200,7 +201,10 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf .exporter
+          rm -f .cv-anonymize-request
           rm -f .github/workflows/anonymize-hse-student-main.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
           find . -type f \
             ! -path './.git/*' \
             ! -name 'MANIFEST.sha256' \
@@ -209,10 +213,12 @@ jobs:
 
       - name: Commit anonymized CV variants
         shell: bash
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git commit -m 'Anonymize HSE education details in CV'
-          git push
+          git push origin "HEAD:${HEAD_REF}"
