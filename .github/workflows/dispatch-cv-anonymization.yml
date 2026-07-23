@@ -21,4 +21,4 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          gh run view 30041291258 --repo "$GITHUB_REPOSITORY" --log-failed | tail -n 70
+          gh run view 30041291258 --repo "$GITHUB_REPOSITORY" --log-failed | tail -n 20
