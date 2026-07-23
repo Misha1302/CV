@@ -7,7 +7,7 @@ on:
       - .cv-anonymize-request
 
 permissions:
-  actions: read
+  actions: write
   contents: read
 
 jobs:
@@ -15,10 +15,7 @@ jobs:
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
-      - name: Show PDF export error
+      - name: Dispatch PDF education inspector
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
-        run: |
-          set -o pipefail
-          gh run view 30040393234 --repo "$GITHUB_REPOSITORY" --log-failed | tail -n 45
+        run: gh workflow run inspect-pdf-education.yml --repo "$GITHUB_REPOSITORY" --ref main
