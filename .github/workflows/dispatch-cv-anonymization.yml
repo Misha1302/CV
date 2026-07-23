@@ -7,7 +7,7 @@ on:
       - .cv-anonymize-request
 
 permissions:
-  actions: read
+  actions: write
   contents: read
 
 jobs:
@@ -15,11 +15,7 @@ jobs:
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
-      - name: Show complete PDF education blocks
+      - name: Dispatch final HSE anonymization workflow
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
-        run: |
-          set -o pipefail
-          gh run view 30041032722 --repo "$GITHUB_REPOSITORY" --log \
-            | grep -E '=== pdf/|BLOCK [0-9]+|LINE text='
+        run: gh workflow run anonymize-hse-student-v3.yml --repo "$GITHUB_REPOSITORY" --ref main
