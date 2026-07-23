@@ -42,6 +42,7 @@ jobs:
               (', Rust, SQL', ', SQL'),
               (', Rust; CMake', '; CMake'),
               (', Rust, GitHub Actions', ', GitHub Actions'),
+              (', Python, Rust;', ', Python;'),
               ('; Rust and x86-64 code-generation experiments', '; x86-64 code-generation experiments'),
               ('; эксперименты с Rust и генерацией x86-64', '; эксперименты с генерацией x86-64'),
           ]
