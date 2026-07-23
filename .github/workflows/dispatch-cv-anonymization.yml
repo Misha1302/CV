@@ -7,7 +7,7 @@ on:
       - .cv-anonymize-request
 
 permissions:
-  actions: write
+  actions: read
   contents: read
 
 jobs:
@@ -15,7 +15,10 @@ jobs:
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
-      - name: Dispatch robust anonymization workflow
+      - name: Show failed PDF export log tail
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run anonymize-hse-student-v2.yml --repo "$GITHUB_REPOSITORY" --ref main
+        shell: bash
+        run: |
+          set -o pipefail
+          gh run view 30040393234 --repo "$GITHUB_REPOSITORY" --log-failed | tail -n 220
