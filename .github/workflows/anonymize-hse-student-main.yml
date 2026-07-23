@@ -1,0 +1,218 @@
+name: Anonymize HSE education details
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/anonymize-hse-student-main.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update-cv:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out CV repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Replace education wording in all HTML variants
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          en_pages = [
+              "en.html",
+              "en-compiler.html",
+              "en-algorithms.html",
+              "en-cpp-systems.html",
+              "en-devtools.html",
+              "en-backend.html",
+              "en-platform.html",
+              "en-edtech.html",
+          ]
+          ru_pages = [
+              "ru.html",
+              "ru-compiler.html",
+              "ru-algorithms.html",
+              "ru-cpp-systems.html",
+              "ru-devtools.html",
+              "ru-backend.html",
+              "ru-platform.html",
+              "ru-edtech.html",
+          ]
+
+          en_replacements = {
+              "HSE University · Software Engineering · 2026–2030": "HSE University student",
+              "Officially admitted to HSE University's bachelor's programme in Software Engineering; studies begin in September 2026.": "HSE University student.",
+              '<article><time datetime="2026">2026–2030</time><div><h3><a href="https://www.hse.ru/ba/se/" rel="noopener noreferrer" target="_blank">HSE University</a> · Software Engineering</h3><p class="org">Faculty of Computer Science · bachelor\'s programme 09.03.04 · Moscow</p></div><p class="details">Officially admitted; full-time studies begin in September 2026. Expected graduation: 2030.</p></article>': '<article><time>Current</time><div><h3><a href="https://www.hse.ru/" rel="noopener noreferrer" target="_blank">HSE University</a></h3><p class="org">Moscow</p></div><p class="details">HSE University student.</p></article>',
+          }
+          ru_replacements = {
+              "НИУ ВШЭ · Программная инженерия · 2026–2030": "Студент НИУ ВШЭ",
+              "Официально зачислен на бакалаврскую программу НИУ ВШЭ; обучение начинается в сентябре 2026 года.": "Студент НИУ ВШЭ.",
+              '<article><time datetime="2026">2026–2030</time><div><h3><a href="https://www.hse.ru/ba/se/" rel="noopener noreferrer" target="_blank">НИУ ВШЭ</a> · Программная инженерия</h3><p class="org">Факультет компьютерных наук · бакалавриат 09.03.04 · Москва</p></div><p class="details">Официально зачислен; начало очного обучения — сентябрь 2026 года. Ожидаемый выпуск — 2030 год.</p></article>': '<article><time>Сейчас</time><div><h3><a href="https://www.hse.ru/" rel="noopener noreferrer" target="_blank">НИУ ВШЭ</a></h3><p class="org">Москва</p></div><p class="details">Студент НИУ ВШЭ.</p></article>',
+          }
+
+          def update_page(filename: str, replacements: dict[str, str], marker: str) -> None:
+              path = Path(filename)
+              text = path.read_text(encoding="utf-8")
+              for old, new in replacements.items():
+                  count = text.count(old)
+                  if count != 1:
+                      raise RuntimeError(f"{filename}: expected one occurrence of {old!r}, found {count}")
+                  text = text.replace(old, new)
+
+              forbidden = (
+                  "2030",
+                  "2026–2030",
+                  "Expected graduation",
+                  "Ожидаемый выпуск",
+                  "Software Engineering · 2026",
+                  "Программная инженерия · 2026",
+              )
+              for value in forbidden:
+                  if value in text:
+                      raise RuntimeError(f"{filename}: forbidden education detail remains: {value}")
+              if text.count(marker) < 2:
+                  raise RuntimeError(f"{filename}: generic HSE student wording is missing")
+              path.write_text(text, encoding="utf-8")
+
+          for page in en_pages:
+              update_page(page, en_replacements, "HSE University student")
+          for page in ru_pages:
+              update_page(page, ru_replacements, "Студент НИУ ВШЭ")
+
+          print(f"Updated and verified {len(en_pages) + len(ru_pages)} HTML pages")
+          PY
+
+      - name: Check out PDF exporter
+        uses: actions/checkout@v4
+        with:
+          repository: Misha1302/cv-html-to-pdf-exporter
+          path: .exporter
+
+      - name: Install PDF exporter dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check -r .exporter/requirements.txt
+          python3 -m playwright install --with-deps chromium
+
+      - name: Rebuild all targeted PDF variants
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          mappings = {
+              "en-algorithms.html": "pdf/Mikhail_Razakov_Algorithms_EN.pdf",
+              "ru-algorithms.html": "pdf/Mikhail_Razakov_Algorithms_RU.pdf",
+              "en-backend.html": "pdf/Mikhail_Razakov_Backend_EN.pdf",
+              "ru-backend.html": "pdf/Mikhail_Razakov_Backend_RU.pdf",
+              "en-cpp-systems.html": "pdf/Mikhail_Razakov_CPP_Systems_EN.pdf",
+              "ru-cpp-systems.html": "pdf/Mikhail_Razakov_CPP_Systems_RU.pdf",
+              "en-compiler.html": "pdf/Mikhail_Razakov_Compiler_EN.pdf",
+              "ru-compiler.html": "pdf/Mikhail_Razakov_Compiler_RU.pdf",
+              "en-devtools.html": "pdf/Mikhail_Razakov_DevTools_EN.pdf",
+              "ru-devtools.html": "pdf/Mikhail_Razakov_DevTools_RU.pdf",
+              "en-edtech.html": "pdf/Mikhail_Razakov_EdTech_EN.pdf",
+              "ru-edtech.html": "pdf/Mikhail_Razakov_EdTech_RU.pdf",
+              "en-platform.html": "pdf/Mikhail_Razakov_Reliability_EN.pdf",
+              "ru-platform.html": "pdf/Mikhail_Razakov_Reliability_RU.pdf",
+          }
+
+          exporter = Path(".exporter/export_cv_html_to_pdf.py")
+          for html, pdf in mappings.items():
+              Path(pdf).parent.mkdir(parents=True, exist_ok=True)
+              subprocess.run(
+                  [
+                      "python3",
+                      str(exporter),
+                      html,
+                      pdf,
+                      "--viewport-width",
+                      "1440",
+                      "--link-base-url",
+                      f"https://misha1302.github.io/CV/{html}",
+                      "--require-links",
+                      "--min-text-chars",
+                      "1000",
+                      "--timeout-ms",
+                      "60000",
+                      "--wait-ms",
+                      "250",
+                  ],
+                  check=True,
+              )
+
+          print(f"Rebuilt {len(mappings)} PDF files")
+          PY
+
+      - name: Verify rebuilt PDFs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import fitz
+
+          pdfs = sorted(Path("pdf").glob("*.pdf"))
+          if len(pdfs) != 14:
+              raise RuntimeError(f"Expected 14 CV PDFs, found {len(pdfs)}")
+
+          for path in pdfs:
+              doc = fitz.open(path)
+              if len(doc) != 1:
+                  raise RuntimeError(f"{path}: expected one continuous page, found {len(doc)}")
+              text = "\n".join(page.get_text() for page in doc)
+              link_count = sum(len(page.get_links()) for page in doc)
+              doc.close()
+
+              if len(text.strip()) < 1000:
+                  raise RuntimeError(f"{path}: extracted text is unexpectedly short")
+              if link_count == 0:
+                  raise RuntimeError(f"{path}: clickable links are missing")
+              for forbidden in ("2030", "2026–2030", "Expected graduation", "Ожидаемый выпуск"):
+                  if forbidden in text:
+                      raise RuntimeError(f"{path}: forbidden education detail remains: {forbidden}")
+
+              expected = "Студент НИУ ВШЭ" if path.stem.endswith("_RU") else "HSE University student"
+              if expected not in text:
+                  raise RuntimeError(f"{path}: generic HSE student wording is missing")
+
+          print("Verified text layer, links, page count and anonymized education wording in all PDFs")
+          PY
+
+      - name: Remove temporary files and rebuild manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .exporter
+          rm -f .github/workflows/anonymize-hse-student-main.yml
+          find . -type f \
+            ! -path './.git/*' \
+            ! -name 'MANIFEST.sha256' \
+            -print0 | sort -z | xargs -0 sha256sum > MANIFEST.sha256
+          sha256sum -c MANIFEST.sha256
+
+      - name: Commit anonymized CV variants
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Anonymize HSE education details in CV'
+          git push
