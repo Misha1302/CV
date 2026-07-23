@@ -1,25 +1,29 @@
 name: Remove Rust from declared CV stacks
 
 on:
-  push:
-    branches:
-      - fix/remove-rust-from-stack
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: write
 
 jobs:
-  update-stack:
-    if: github.actor != 'github-actions[bot]'
+  update-cv:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out pull-request branch
+        uses: actions/checkout@v4
         with:
-          ref: fix/remove-rust-from-stack
           fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Remove Rust only from skills sections
+      - name: Install PDF tooling
+        run: python3 -m pip install --disable-pip-version-check pymupdf
+
+      - name: Remove Rust from declared HTML stack sections
+        shell: bash
         run: |
+          set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
           import re
@@ -52,40 +56,111 @@ jobs:
               text = path.read_text(encoding='utf-8')
               match = section_re.search(text)
               if not match:
-                  raise SystemExit(f'{page}: #skills section not found')
+                  raise RuntimeError(f'{page}: #skills section not found')
 
               section = match.group(1)
               for old, new in replacements:
                   section = section.replace(old, new)
 
               if re.search(r'\bRust\b', section):
-                  raise SystemExit(f'{page}: Rust remains in #skills')
+                  raise RuntimeError(f'{page}: Rust remains in #skills')
 
               updated = text[:match.start(1)] + section + text[match.end(1):]
               path.write_text(updated, encoding='utf-8')
 
-          print('All declared stack sections are Rust-free.')
+          print(f'Verified {len(pages)} Rust-free skills sections')
+          PY
+
+      - name: Remove Rust from compiler PDF stack lines
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import fitz
+
+          replacements = {
+              Path('pdf/Mikhail_Razakov_Compiler_RU.pdf'): (
+                  'C#/.NET, C++23, C17, Rust, Python; CMake,',
+                  'C#/.NET, C++23, C17, Python; CMake,',
+              ),
+              Path('pdf/Mikhail_Razakov_Compiler_EN.pdf'): (
+                  'C#/.NET, C++23, C17, Rust and Python; CMake,',
+                  'C#/.NET, C++23, C17 and Python; CMake,',
+              ),
+          }
+
+          for path, (old, new) in replacements.items():
+              doc = fitz.open(path)
+              if len(doc) != 1:
+                  raise RuntimeError(f'{path}: expected one page, found {len(doc)}')
+              page = doc[0]
+
+              matches = [
+                  span
+                  for block in page.get_text('dict').get('blocks', [])
+                  for line in block.get('lines', [])
+                  for span in line.get('spans', [])
+                  if span.get('text') == old
+              ]
+              if len(matches) != 1:
+                  raise RuntimeError(f'{path}: expected one exact stack span, found {len(matches)}')
+
+              span = matches[0]
+              rect = fitz.Rect(span['bbox'])
+              page.add_redact_annot(
+                  fitz.Rect(rect.x0 - .5, rect.y0 - .5, rect.x1 + .5, rect.y1 + .5),
+                  fill=(1, 1, 1),
+              )
+              page.apply_redactions(images=fitz.PDF_REDACT_IMAGE_NONE)
+
+              color = int(span.get('color', 0))
+              rgb = (
+                  ((color >> 16) & 255) / 255,
+                  ((color >> 8) & 255) / 255,
+                  (color & 255) / 255,
+              )
+              page.insert_text(
+                  span['origin'],
+                  new,
+                  fontname='XKQQSR',
+                  fontsize=span['size'],
+                  color=rgb,
+                  overlay=True,
+              )
+
+              temp = path.with_suffix('.tmp.pdf')
+              doc.save(temp, garbage=4, deflate=True)
+              doc.close()
+              temp.replace(path)
+
+              check = fitz.open(path)
+              text = '\n'.join(pdf_page.get_text() for pdf_page in check)
+              check.close()
+              if old in text or new not in text:
+                  raise RuntimeError(f'{path}: stack replacement verification failed')
+              if 'Rust / x86-64' not in text:
+                  raise RuntimeError(f'{path}: truthful project-language label was removed')
+
+          print('Updated and verified both compiler PDFs')
           PY
 
       - name: Remove one-shot workflow and rebuild manifest
+        shell: bash
         run: |
+          set -euo pipefail
           rm -f .github/workflows/remove-rust-from-stack.yml
           rmdir .github/workflows 2>/dev/null || true
           rmdir .github 2>/dev/null || true
-          find . -type f \
-            ! -path './.git/*' \
-            ! -name 'MANIFEST.sha256' \
-            -print0 | sort -z | xargs -0 sha256sum > MANIFEST.sha256
+          find . -type f ! -path './.git/*' ! -name 'MANIFEST.sha256' -print0 | sort -z | xargs -0 sha256sum > MANIFEST.sha256
           sha256sum -c MANIFEST.sha256
 
-      - name: Commit repository-wide cleanup
+      - name: Commit changes to pull-request branch
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          if git diff --cached --quiet; then
-            echo 'No changes required.'
-            exit 0
-          fi
           git commit -m 'Remove Rust from declared CV stacks'
-          git push origin HEAD:fix/remove-rust-from-stack
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
