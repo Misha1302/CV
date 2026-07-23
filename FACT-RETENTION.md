@@ -1,46 +1,15 @@
-# Fact-retention matrix — v8 → v16
+# Fact retention — v25
 
-Пакет сохраняет три уровня представления:
-
-- целевые страницы: подробный опыт и доказательства под конкретную роль;
-- `ru-master.html` / `en-master.html`: полный технический профиль;
-- `pdf/`: двухстраничные версии для HR, ATS и пересылки.
-
-## Сильные факты и места их сохранения
-
-| Группа фактов | Целевые страницы | Полная версия |
+| Fact | Primary pages | Evidence boundary |
 |---|---|---|
-| Wist2: лексер/парсер/AST, байткод/AIR, интерпретатор, CIL/DynamicMethod | compiler, backend, devtools, edtech | master |
-| Выбор среды исполнения по манифесту, контракты модулей и возможностей | compiler, devtools, reliability | master |
-| Семантическая эквивалентность, негативные сценарии, BenchmarkDotNet | compiler, backend | master |
-| Необязательная callable-first SSA | compiler | master |
-| Анализатор PS-form: 1/49, 5,0/5,0, 104/104 | compiler, devtools | master |
-| Диапазоны, сравнения по модулю, НОД, аффинный анализ и ограниченный точный поиск | compiler | master |
-| RPO, циклы, Дейкстра, Диниц, Tarjan SCC, CMake и `.in/.out`-тесты | compiler, devtools, backend | master |
-| Подписки, права доступа, устройства и единый источник истины VPN | backend, reliability | master |
-| HMAC от `x-hwid` без хранения исходного HWID | backend, reliability | master |
-| Идемпотентность, транзакционный outbox, аудит и восстановление | backend, reliability | master |
-| Диагностика, резервное копирование, версионированное развёртывание и откат | backend, reliability, devtools | master |
-| LMS: BFF/InternalService, PostgreSQL, аутентификация, CSRF и роли | backend, reliability, edtech | master |
-| Реестр операций LMS, ЮKassa, вебхуки, возвраты и сверка | backend, reliability, edtech | master |
-| API ключей активации и OpenAPI/Swagger | backend, reliability, devtools, edtech | master |
-| Olympiad News Bot: ключевые слова/GigaChat, без Selenium, Linux и диагностика | devtools | master |
-| Diploma.school: адаптивность, материалы, PDF, Telegram и поддержка продукта | backend, edtech | master |
-| Преподавание: с 2021 года, около 50 учеников, рейтинг 5,0 | все целевые версии | master |
-| Habr, публичная документация и канал о компиляторах | — | master |
-| Расширенный список олимпиадных и инженерных достижений | краткий набор | master |
+| `AdvancedAlgorithms` contains 12 C++23 modules across graphs, trees, strings, data structures and optimization | algorithms, compiler, C++ systems, devtools, full portfolio | checked public repository README |
+| `AdvancedAlgorithms` uses differential tests, structural invariants, invalid-input checks, ASan/UBSan and large-input checks | algorithms, compiler, C++ systems, devtools | checked public repository README/testing notes |
+| Wist2 has an experimental verifier-gated AIR → SSA → AIR route | algorithms, compiler, C++ systems, full portfolio | current public architecture status |
+| Wist2 route includes constant folding, SCCP-lite, branch folding/unreachable cleanup and dead pure-instruction elimination | algorithms, compiler, C++ systems, full portfolio | current public architecture status |
+| Wist2 baseline dated 2026-07-14: 75 projects, 1,325 tests, 0 warnings/errors | compiler and full portfolio where cited | public verification record |
+| PS-form Analyzer ranked 1/49 with the only 5.0/5.0 and 104/104 result | algorithms, compiler, C++ systems, full portfolio | public project/result evidence |
+| PS-form harness uses exact, randomized and metamorphic verification | flagship and devtools pages | public repository |
+| x86-64 lab contains liveness, register allocation, codegen and isolated execution | compiler, C++ systems, full portfolio | checked public README; educational scope explicit |
+| MCST uses C++23, CMake, warnings-as-errors, ASan/UBSan, clang-tidy and reproducible I/O tests | experience sections only | internship repository/context |
 
-## Актуализировано в v16
-
-- официальное зачисление в НИУ ВШЭ на программу «Программная инженерия», 2026–2030;
-- подробная профессиональная траектория в каждой специализированной версии;
-- 5–6 записей опыта вместо краткого списка должностей;
-- явное разделение стажировки, open source, собственных продуктов, клиента, поддержки продукта и преподавания;
-- кросс-доменный опыт в каждом таргетированном CV;
-- профессиональное название C++23-работы в МЦСТ;
-- двухстраничные PDF, в которых опыт занимает первую страницу.
-
-Сильные факты предыдущих версий не удалены; v16 сохраняет их видимость и добавляет подтверждённый статус НИУ ВШЭ.
-
-- хронология клиентского API исправлена: проект выполнен в 2023 году;
-- сетки HTML и PDF выровнены для desktop, tablet и mobile.
+Implemented, verified, experimental and planned work remain separated. Algorithm count is not converted into a production-suitability or performance claim.

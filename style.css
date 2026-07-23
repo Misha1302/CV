@@ -474,3 +474,71 @@ a { color: inherit; }
     margin-top: 13px;
   }
 }
+
+/* v24: robust hero composition and cache-safe responsive layout */
+.hero {
+  grid-template-columns: minmax(0, 1fr) 300px;
+  grid-template-areas: none;
+  column-gap: clamp(44px, 7vw, 80px);
+  row-gap: 0;
+}
+.hero-copy {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+  max-width: 760px;
+}
+.hero-intro,
+.hero-detail,
+.identity-card {
+  grid-area: auto;
+}
+.hero-intro {
+  align-self: auto;
+}
+.hero-detail {
+  margin-top: 28px;
+  align-self: auto;
+  min-width: 0;
+}
+.identity-card {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) 270px;
+    column-gap: 38px;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: none;
+    gap: 0;
+    padding: 44px 0 40px;
+  }
+  .hero-copy {
+    grid-column: 1;
+    grid-row: 1;
+    max-width: none;
+  }
+  .hero-detail {
+    margin-top: 24px;
+  }
+  .identity-card {
+    display: none;
+  }
+}
+
+@media print {
+  .hero-copy {
+    display: block;
+    max-width: none;
+  }
+  .hero-detail {
+    margin-top: 6mm;
+  }
+}

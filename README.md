@@ -1,49 +1,39 @@
-# Mikhail Razakov — targeted CV variants v18-quant
+# Mikhail Razakov — targeted CV variants v25
 
-Статический пакет целевых инженерных резюме на русском и английском языках. Версия `v18-quant` добавляет отдельный профиль для software-engineering ролей в quantitative research и trading infrastructure, не выдавая целевую область за уже полученный профессиональный опыт.
+Статический bilingual-пакет целевых инженерных резюме и подробного технического портфолио.
 
-## Страницы
+## Флагманские версии
 
-- `ru-master.html` / `en-master.html` — полный инженерный профиль.
-- `ru-quant.html` / `en-quant.html` — C++/Python, solver engineering, compiler/runtime infrastructure и differential validation для quantitative/trading infrastructure.
-- `ru-compiler.html` / `en-compiler.html` — компиляторы, среды исполнения и анализ программ.
-- `ru-algorithms.html` / `en-algorithms.html` — алгоритмы, C++23, solver engineering и анализ программ.
-- `ru-backend.html` / `en-backend.html` — .NET-бэкенд, API, платежи и надёжность сервисов.
-- `ru-platform.html` / `en-platform.html` — .NET-бэкенд, надёжность и эксплуатация сервисов.
-- `ru-devtools.html` / `en-devtools.html` — инструменты разработчика и автоматизация.
-- `ru-edtech.html` / `en-edtech.html` — EdTech/LMS и преподавательский опыт.
-- `index.html` — выбор роли, языка и доступных PDF.
+- `ru-compiler.html` / `en-compiler.html` — compiler/runtime, IR/SSA, оптимизации, program analysis и проверка семантики.
+- `ru-devtools.html` / `en-devtools.html` — compiler testing, diagnostics, generative testing и release tooling.
+- `ru-cpp-systems.html` / `en-cpp-systems.html` — C++ systems, program analysis, алгоритмические компоненты и low-level backend experiments.
+- `ru-algorithms.html` / `en-algorithms.html` — алгоритмическая инженерия: `AdvancedAlgorithms`, PS-form Analyzer и оптимизации Wist2.
 
-## Quantitative & trading infrastructure profile
+## Дополнительные версии
 
-Профиль построен для ранних software-engineering позиций, где важны алгоритмы, корректность и execution infrastructure:
+- `ru-backend.html` / `en-backend.html` — .NET backend.
+- `ru-platform.html` / `en-platform.html` — service reliability и эксплуатация.
+- `ru-edtech.html` / `en-edtech.html` — EdTech backend.
+- `ru.html` / `en.html` — полное техническое портфолио. Для первого отклика предпочтительнее короткая профильная версия.
 
-- на первом месте находятся PS-form Memory Dependence Analyzer, UniversalToolchain/Wist2 и x86-64 codegen lab;
-- результат отбора МЦСТ сформулирован как проверяемое достижение: 1-е место среди 49, единственная оценка 5,0/5,0 и единственный результат 104/104;
-- Wist2 описан через фактические архитектурные результаты: lexer/parser → AST → Bytecode → AIR, interpreter/CIL execution, verifier-gated AIR → SSA → AIR и manifest-backed runtime composition;
-- число 1 325 привязано к verification baseline от 14 июля 2026 года, а не представлено как постоянно актуальное состояние репозитория;
-- x86-64 codegen project явно обозначен как educational laboratory;
-- профиль не заявляет production trading, HFT, low-latency networking, alpha research, pricing models, PnL, Sharpe или профессиональный quant experience.
+## Изменения v25
 
-Новые страницы используют общие `style.css`, `script.js` и assets репозитория; существующие профили не изменены.
+- Переписан проблемный раздел компетенций в compiler RU/EN: вместо смеси русских и английских заголовков и перечня ключевых слов используются четыре ясных блока — архитектура и IR, анализ и оптимизации, проверка корректности, языки и инструменты.
+- Полные `ru.html` / `en.html` получили такую же содержательную иерархию: основной профиль отделён от дополнительной backend/system-компетенции.
+- На всех 16 страницах резюме неоформленный `skills-grid` заменён на существующий строковый компонент `stack-lines`; разделы теперь имеют устойчивую визуальную структуру на desktop и mobile.
+- В русской compiler-версии дополнительно очищены описания hero и проектов: устранены ненужные англоязычные рекламные вставки, а `AdvancedAlgorithms` описан как самостоятельная библиотека, а не «подтверждение» навыков.
+- Compiler PDF RU/EN пересобраны с теми же исправленными формулировками. Остальные 12 профильных PDF перенесены без изменений из проверенного v24.
+- Cache-busting локальных CSS/JS обновлён до `?v=25`.
 
-## PDF для откликов
+## Контакт
 
-Каталог `pdf/` содержит ранее проверенные двухстраничные A4-резюме. Для quantitative/trading infrastructure профиля PDF пока не добавлен: опубликована только браузерная RU/EN версия.
+misha13022008@gmail.com
 
-## Проверки
+## Baseline
 
-Self-review нового профиля находится в `QUANT_SELF_REVIEW.md`. Проверены:
+Предыдущий release: `mikhail-razakov-targeted-cv-v24-2026-07-23.tar.xz`  
+SHA-256: `ca01f7676fa8bdec3186383fa9e632abcd2e3c93463a92e688436fbd0d3b08bb`
 
-- фактическая сдержанность и позиционирование;
-- порядок чтения для HR и технического интервьюера;
-- desktop/tablet/mobile layout;
-- отсутствие горизонтального overflow;
-- внутренние anchors и локальные assets;
-- JSON-LD, языковые ссылки и mobile menu.
+## Публикация
 
-## Использование
-
-Откройте `index.html` локально либо разместите содержимое каталога в корне GitHub Pages. Внутренние ссылки относительные. Внешние ссылки открываются в новой вкладке с `noopener noreferrer`.
-
-Контактный email: `misha13022008@gmail.com`.
+PDF можно отправлять напрямую. Перед отправкой ссылки `misha1302.github.io/CV/` нужно обновить публичный репозиторий `Misha1302/CV`; этот архив сам по себе GitHub Pages не изменяет.

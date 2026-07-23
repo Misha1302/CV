@@ -1,40 +1,41 @@
-# Experience-positioning audit — v16
+# Experience audit — v25
 
-## Цель
+## Source-of-truth order
 
-После первого просмотра работодатель должен видеть не «школьника с несколькими pet-проектами», а молодого инженера с уже сформированной траекторией:
+1. public repository code, README files and verification records;
+2. current Wist2 architecture status;
+3. included UniversalToolchain technical paper;
+4. prior CV wording only when not contradicted by stronger evidence.
 
-- преподавание и ревью проектов с 2021 года;
-- самостоятельная разработка Wist2 с 2024 года;
-- инженерная стажировка МЦСТ в 2026 году;
-- разработка и эксплуатация VPN-сервиса и LMS;
-- частный клиентский backend-проект 2023 года;
-- поддержка публичного EdTech-продукта;
-- официальное зачисление в НИУ ВШЭ на бакалаврскую программу «Программная инженерия».
+## Confirmed differentiators
 
-## Проверяемые структурные признаки
+- creator and primary developer of UniversalToolchain/Wist2, a multi-stage compiler/runtime framework;
+- Bytecode/AIR/SSA boundaries, reference interpreter, CIL/DynamicMethod backend and module/capability composition;
+- experimental opt-in AIR → SSA → AIR lowering/emission with constant folding, SCCP-lite, branch folding, unreachable cleanup and dead pure-instruction elimination;
+- structural verification around transforms and interpreter/CIL parity for supported semantics;
+- dated Wist2 baseline: 75 projects, 1,325 tests, 0 warnings/errors;
+- creator of `AdvancedAlgorithms`, a header-only C++23 library with 12 graph, tree, string, data-structure and optimization modules;
+- differential tests, structural invariants, invalid-input cases, ASan/UBSan and large-input checks;
+- PS-form Analyzer: 1st out of 49, the only 5.0/5.0 and 104/104 result, with conservative analysis and exact/randomized/metamorphic verification;
+- x86-64 educational lab with liveness, live intervals, linear scan, simulated-annealing allocation, code generation and interpreter-vs-native validation;
+- MCST internship with C++23, CMake, warnings-as-errors, ASan/UBSan, clang-tidy, explicit include dependencies and reproducible I/O tests.
 
-| Профиль | Записей опыта | Сигналы до раздела проектов | Кросс-доменный опыт |
-|---|---:|---|---|
-| Compiler / Runtime | 5 | 2021, 2024, МЦСТ, 3 системы | VPN/LMS, клиентский backend, преподавание |
-| .NET Backend | 6 | 3 системы, эксплуатация, МЦСТ, преподавание | Wist2, C++23, поддержка EdTech |
-| Reliability & Operations | 6 | 2 продукта, recovery, release, широкая база | Wist2, МЦСТ, преподавание |
-| Developer Tools | 6 | Wist2, 104/104, production tooling, МЦСТ | VPN-диагностика, OpenAPI, преподавание |
-| EdTech | 6 | 2021, ≈50 учеников, 2 EdTech-продукта, инженерная база | production backend, Wist2, МЦСТ, клиентский API |
-| Master | 6 | 2021, 2024, клиент 2023 / МЦСТ 2026, 4 направления | полный профиль |
+## Positioning boundary for MCST
 
-Русские и английские пары имеют одинаковую структуру.
+The internship is legitimate experience, but its graph algorithms overlap with `AdvancedAlgorithms`. Therefore:
 
-## Что создаёт ощущение реального опыта
+- keep MCST in Experience;
+- emphasize engineering constraints, review and build/test discipline;
+- do not retain an MCST graph-components project card;
+- do not call it an independent algorithmic proof layer.
 
-1. **Опыт идёт раньше проектов.** Сначала видны период, формат работы, зона ответственности и поддержка после запуска; затем — архитектурные детали проектов.
-2. **Есть временная глубина.** Первые устойчивые практики начинаются в 2021 и 2024 годах, а не только в 2026 году.
-3. **Разделены форматы.** Стажировка не смешана с собственным продуктом, клиентской работой или преподаванием.
-4. **Показано владение результатом.** Тексты говорят о миграциях, восстановлении, релизах, документации, обратной связи и сопровождении, а не только о написании алгоритма.
-5. **Специализация не скрывает широту.** Каждая целевая версия сохраняет 30–40% соседнего опыта, подтверждающего инженерную зрелость.
-6. **Формальный образовательный статус больше не является пробелом.** Во всех версиях явно указано официальное зачисление в НИУ ВШЭ и ожидаемый выпуск в 2030 году.
-7. **Нет самодисквалификации.** Уровень позиции не встроен в профессиональный заголовок; при этом в контакте прямо указано, что рассматриваются стажировки и junior-позиции.
+## Claims intentionally excluded
 
-## Итог
+- HFT, market-data or quant experience;
+- production sandbox guarantees;
+- formal verification;
+- unverified test counts;
+- performance multipliers without a fresh benchmark report;
+- blanket production suitability of `AdvancedAlgorithms`.
 
-Структурный вердикт: **GO**. После чтения любой целевой версии видна последовательная практическая траектория, несколько форматов реальной ответственности и опыт сопровождения систем. Формальная трудовая история не преувеличивается.
+Verdict: GO for compiler/runtime, algorithms/program analysis, compiler tooling and C++ systems targeting after the hierarchy correction, layout hardening and v25 skills rewrite.
