@@ -1,0 +1,91 @@
+name: Remove Rust from declared CV stacks
+
+on:
+  push:
+    branches:
+      - fix/remove-rust-from-stack
+
+permissions:
+  contents: write
+
+jobs:
+  update-stack:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/remove-rust-from-stack
+          fetch-depth: 0
+
+      - name: Remove Rust only from skills sections
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          pages = [
+              'ru.html', 'en.html',
+              'ru-compiler.html', 'en-compiler.html',
+              'ru-algorithms.html', 'en-algorithms.html',
+              'ru-cpp-systems.html', 'en-cpp-systems.html',
+              'ru-devtools.html', 'en-devtools.html',
+          ]
+
+          replacements = [
+              (', Rust and Python', ' and Python'),
+              (', Rust и Python', ' и Python'),
+              (', Rust, SQL', ', SQL'),
+              (', Rust; CMake', '; CMake'),
+              (', Rust, GitHub Actions', ', GitHub Actions'),
+              ('; Rust and x86-64 code-generation experiments', '; x86-64 code-generation experiments'),
+              ('; эксперименты с Rust и генерацией x86-64', '; эксперименты с генерацией x86-64'),
+          ]
+
+          section_re = re.compile(
+              r'(<section\b[^>]*\bid=["\']skills["\'][^>]*>.*?</section>)',
+              re.IGNORECASE | re.DOTALL,
+          )
+
+          for page in pages:
+              path = Path(page)
+              text = path.read_text(encoding='utf-8')
+              match = section_re.search(text)
+              if not match:
+                  raise SystemExit(f'{page}: #skills section not found')
+
+              section = match.group(1)
+              for old, new in replacements:
+                  section = section.replace(old, new)
+
+              if re.search(r'\bRust\b', section):
+                  raise SystemExit(f'{page}: Rust remains in #skills')
+
+              updated = text[:match.start(1)] + section + text[match.end(1):]
+              path.write_text(updated, encoding='utf-8')
+
+          print('All declared stack sections are Rust-free.')
+          PY
+
+      - name: Remove one-shot workflow and rebuild manifest
+        run: |
+          rm -f .github/workflows/remove-rust-from-stack.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+          find . -type f \
+            ! -path './.git/*' \
+            ! -name 'MANIFEST.sha256' \
+            -print0 | sort -z | xargs -0 sha256sum > MANIFEST.sha256
+          sha256sum -c MANIFEST.sha256
+
+      - name: Commit repository-wide cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No changes required.'
+            exit 0
+          fi
+          git commit -m 'Remove Rust from declared CV stacks'
+          git push origin HEAD:fix/remove-rust-from-stack
