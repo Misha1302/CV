@@ -1,0 +1,21 @@
+name: Dispatch CV anonymization
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths:
+      - .cv-anonymize-request
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  dispatch:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch the main anonymization workflow
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run anonymize-hse-student-main.yml --repo "$GITHUB_REPOSITORY" --ref main
