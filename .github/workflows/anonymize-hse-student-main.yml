@@ -1,24 +1,20 @@
 name: Anonymize HSE education details
 
 on:
-  pull_request_target:
-    types: [opened, reopened, synchronize]
-    paths:
-      - .cv-anonymize-request
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
-  pull-requests: read
 
 jobs:
   update-cv:
-    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the review branch
+      - name: Check out CV repository
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
       - name: Set up Python
@@ -201,7 +197,6 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf .exporter
-          rm -f .cv-anonymize-request
           rm -f .github/workflows/anonymize-hse-student-main.yml
           rmdir .github/workflows 2>/dev/null || true
           rmdir .github 2>/dev/null || true
@@ -213,12 +208,10 @@ jobs:
 
       - name: Commit anonymized CV variants
         shell: bash
-        env:
-          HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git commit -m 'Anonymize HSE education details in CV'
-          git push origin "HEAD:${HEAD_REF}"
+          git push
