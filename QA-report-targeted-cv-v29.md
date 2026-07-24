@@ -1,4 +1,4 @@
-# QA report - targeted CV v28
+# QA report - targeted CV v29
 
 This report is finalized by CI after generation.
 
@@ -90,7 +90,7 @@ Automated verdict: PASS. Human render review completed before merge.
 - The Baltic result is stated as a first-degree diploma plus the Grand Prize, without claiming a unique nationwide rank.
 - All 16 RU/EN role/portfolio HTML pages contain the synchronized wording.
 
-## v28 focused-PDF validation
+## v29 focused-PDF validation
 
 ```json
 {
@@ -121,4 +121,46 @@ Automated verdict: PASS. Human render review completed before merge.
 }
 ```
 
-Automated v28 achievement/PDF verdict: PASS. Unchanged role PDFs were checked for one-page integrity and links; the 7.5 pt readability gate applies to the four rebuilt PDFs.
+Automated v29 achievement/PDF verdict: PASS. Unchanged role PDFs were checked for one-page integrity and links; the 7.5 pt readability gate applies to the four rebuilt PDFs.
+
+
+## v29 review scope
+
+- detailed HTML baseline consistency and duplicate-wording checks;
+- Russian C++ systems language pass;
+- focused PDF font floor raised from 7.99 pt to at least 8.45 pt;
+- precise RU/EN achievement wording retained after reflow;
+- before/after render review required before merge.
+
+## v29 automated result
+
+```json
+{
+  "Mikhail_Razakov_CPP_Systems_EN.pdf": {
+    "pages": 1,
+    "min_font_pt": 8.5,
+    "text_chars": 2527,
+    "links": 7
+  },
+  "Mikhail_Razakov_CPP_Systems_RU.pdf": {
+    "pages": 1,
+    "min_font_pt": 8.5,
+    "text_chars": 2832,
+    "links": 7
+  },
+  "Mikhail_Razakov_Compiler_EN.pdf": {
+    "pages": 1,
+    "min_font_pt": 8.5,
+    "text_chars": 2572,
+    "links": 6
+  },
+  "Mikhail_Razakov_Compiler_RU.pdf": {
+    "pages": 1,
+    "min_font_pt": 8.5,
+    "text_chars": 2796,
+    "links": 6
+  }
+}
+```
+
+Automated verdict: PASS. Human before/after render review required before merge.

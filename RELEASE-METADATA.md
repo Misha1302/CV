@@ -1,8 +1,8 @@
 # Release metadata
 
-- Version: v28
+- Version: v29
 - Date: 2026-07-24
-- Previous repository baseline: v26, commit `6a67ea16513f08772a17c3aee19c0135d437cc2b`
+- Previous repository baseline: v28, commit `d655f6854a1d5ac8d87393cc1f4c82567ac1ddee`
 - HTML surface: 17 files
 - Downloadable CV surface: 14 one-page A4 PDFs
 - Rebuilt PDFs: compiler RU/EN and C++ systems RU/EN
@@ -20,3 +20,9 @@
 ## Publication boundary
 
 Role PDFs contain email, Telegram and GitHub. The full HTML portfolio may include LinkedIn and additional evidence links.
+
+## v29 consistency boundary
+
+- Detailed HTML and focused PDFs use the same 1,358/1,358 Wist2 full-run claim.
+- Four focused PDFs remain one A4 page at scale=1.0 with a minimum extracted font size of 8.45 pt.
+- Russian C++ systems headings are localized; conventional identifiers remain unchanged.
