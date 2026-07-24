@@ -1,4 +1,4 @@
-# Targeting guide - v27
+# Targeting guide - v28
 
 ## Compiler / Runtime / Program Analysis
 

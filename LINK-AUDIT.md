@@ -1,4 +1,4 @@
-# Link audit - v27
+# Link audit - v28
 
 - 17 HTML files and 17 sitemap entries are retained.
 - All local HTML/PDF/paper/stylesheet/script/asset paths are checked by CI.
@@ -7,4 +7,4 @@
 - Compiler and C++ systems pages/PDFs include links to PS-form, AdvancedAlgorithms where relevant, Nasm-X86-Course and x86-64 codegen lab.
 - PDF links are validated as clickable annotations after export.
 
-Verdict: PASS only together with the v27 CI report.
+Verdict: PASS only together with the v28 CI report.

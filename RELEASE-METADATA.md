@@ -1,6 +1,6 @@
 # Release metadata
 
-- Version: v27
+- Version: v28
 - Date: 2026-07-24
 - Previous repository baseline: v26, commit `6a67ea16513f08772a17c3aee19c0135d437cc2b`
 - HTML surface: 17 files
