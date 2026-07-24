@@ -11,8 +11,7 @@ jobs:
   harden-export-verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out PR head
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
@@ -21,29 +20,24 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Preserve pre-change focused PDFs
-        shell: bash
+      - name: Preserve v28 focused PDFs
         run: |
-          set -euo pipefail
-          mkdir -p v29-render-evidence/before-pdf
-          cp pdf/Mikhail_Razakov_Compiler_RU.pdf v29-render-evidence/before-pdf/
-          cp pdf/Mikhail_Razakov_Compiler_EN.pdf v29-render-evidence/before-pdf/
-          cp pdf/Mikhail_Razakov_CPP_Systems_RU.pdf v29-render-evidence/before-pdf/
-          cp pdf/Mikhail_Razakov_CPP_Systems_EN.pdf v29-render-evidence/before-pdf/
+          mkdir -p v29-evidence/before-pdf
+          cp pdf/Mikhail_Razakov_Compiler_RU.pdf v29-evidence/before-pdf/
+          cp pdf/Mikhail_Razakov_Compiler_EN.pdf v29-evidence/before-pdf/
+          cp pdf/Mikhail_Razakov_CPP_Systems_RU.pdf v29-evidence/before-pdf/
+          cp pdf/Mikhail_Razakov_CPP_Systems_EN.pdf v29-evidence/before-pdf/
 
       - name: Apply v29 source changes
         run: python3 tools/harden_cv_v29.py
 
-      - name: Check out PDF exporter helpers
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: Misha1302/cv-html-to-pdf-exporter
           path: .exporter
 
       - name: Install validation dependencies
-        shell: bash
         run: |
-          set -euo pipefail
           python3 -m pip install --disable-pip-version-check playwright pymupdf beautifulsoup4 pillow
           python3 -m playwright install --with-deps chromium
 
@@ -53,9 +47,8 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
-          import sys
+          import json, sys
           from playwright.sync_api import sync_playwright
-
           sys.path.insert(0, str(Path('.exporter').resolve()))
           import export_cv_html_to_pdf as helper
 
@@ -65,17 +58,13 @@ jobs:
               'ru-cpp-systems.html': 'pdf/Mikhail_Razakov_CPP_Systems_RU.pdf',
               'en-cpp-systems.html': 'pdf/Mikhail_Razakov_CPP_Systems_EN.pdf',
           }
-          layout_metrics = {}
+          metrics = {}
           with sync_playwright() as p:
               browser = helper.launch_browser(p, None)
               try:
                   for html, output in mappings.items():
-                      page = browser.new_page(
-                          viewport={'width': 1440, 'height': 900},
-                          device_scale_factor=1,
-                          color_scheme='light',
-                          reduced_motion='reduce',
-                      )
+                      page = browser.new_page(viewport={'width': 1440, 'height': 900}, device_scale_factor=1,
+                                              color_scheme='light', reduced_motion='reduce')
                       page.set_default_timeout(60000)
                       page.set_default_navigation_timeout(60000)
                       page.emulate_media(media='print', color_scheme='light', reduced_motion='reduce')
@@ -87,232 +76,199 @@ jobs:
                       layout = page.evaluate('''() => {
                         const cv = document.querySelector('.print-cv');
                         if (!cv) throw new Error('print-cv missing');
-                        const rect = cv.getBoundingClientRect();
+                        const r = cv.getBoundingClientRect();
                         const all = Array.from(cv.querySelectorAll('*'));
-                        const sizes = all.map(el => parseFloat(getComputedStyle(el).fontSize)).filter(Number.isFinite);
-                        let bottom = rect.top;
-                        for (const el of all) bottom = Math.max(bottom, el.getBoundingClientRect().bottom);
-                        return {
-                          clientHeight: cv.clientHeight,
-                          scrollHeight: cv.scrollHeight,
-                          clientWidth: cv.clientWidth,
-                          scrollWidth: cv.scrollWidth,
-                          minCssFontPx: Math.min(...sizes),
-                          usedRatio: (bottom - rect.top) / rect.height
-                        };
+                        const sizes = all.map(x => parseFloat(getComputedStyle(x).fontSize)).filter(Number.isFinite);
+                        let bottom = r.top;
+                        for (const x of all) bottom = Math.max(bottom, x.getBoundingClientRect().bottom);
+                        return {clientHeight: cv.clientHeight, scrollHeight: cv.scrollHeight,
+                                clientWidth: cv.clientWidth, scrollWidth: cv.scrollWidth,
+                                minCssFontPx: Math.min(...sizes), usedRatio: (bottom-r.top)/r.height};
                       }''')
                       if layout['scrollHeight'] > layout['clientHeight'] + 2 or layout['scrollWidth'] > layout['clientWidth'] + 2:
                           raise RuntimeError(f'{html}: print overflow: {layout}')
                       if layout['minCssFontPx'] < 11.2:
-                          raise RuntimeError(f'{html}: CSS font below 8.4 pt gate: {layout}')
-                      if not (0.72 <= layout['usedRatio'] <= 0.97):
-                          raise RuntimeError(f'{html}: implausible page utilization: {layout}')
-                      page.pdf(
-                          path=output,
-                          format='A4',
-                          print_background=True,
-                          display_header_footer=False,
-                          prefer_css_page_size=True,
-                          scale=1.0,
-                          margin={'top': '0', 'right': '0', 'bottom': '0', 'left': '0'},
-                          tagged=True,
-                          outline=True,
-                      )
-                      layout_metrics[html] = layout
+                          raise RuntimeError(f'{html}: CSS font below gate: {layout}')
+                      if not 0.72 <= layout['usedRatio'] <= 0.97:
+                          raise RuntimeError(f'{html}: page utilization outside gate: {layout}')
+                      page.pdf(path=output, format='A4', print_background=True, display_header_footer=False,
+                               prefer_css_page_size=True, scale=1.0,
+                               margin={'top':'0','right':'0','bottom':'0','left':'0'}, tagged=True, outline=True)
+                      metrics[html] = layout
                       page.close()
               finally:
                   browser.close()
-          import json
-          Path('v29-layout-metrics.json').write_text(json.dumps(layout_metrics, ensure_ascii=False, indent=2), encoding='utf-8')
-          print(json.dumps(layout_metrics, ensure_ascii=False, indent=2))
+          Path('v29-layout-metrics.json').write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding='utf-8')
+          print(json.dumps(metrics, ensure_ascii=False, indent=2))
           PY
 
       - name: Validate repository, PDFs and ATS text
         shell: bash
         run: |
           set -euo pipefail
-          python3 - <<'PY'
+          python3 - <<'PY' 2>&1 | tee v29-validation.log
           from pathlib import Path
           from urllib.parse import urlparse, unquote
-          import json
-          import fitz
+          import json, fitz
           from bs4 import BeautifulSoup
 
           html_files = sorted(Path('.').glob('*.html'))
           if len(html_files) != 17:
               raise RuntimeError(f'Expected 17 HTML files, found {len(html_files)}')
-
           ids_by_file = {}
           for path in html_files:
               text = path.read_text(encoding='utf-8')
               soup = BeautifulSoup(text, 'html.parser')
-              ids = [node.get('id') for node in soup.find_all(attrs={'id': True})]
+              ids = [x.get('id') for x in soup.find_all(attrs={'id': True})]
               if len(ids) != len(set(ids)):
                   raise RuntimeError(f'{path}: duplicate IDs')
-              ids_by_file[path.name] = set(ids)
               if 'style.css?v=29' not in text:
-                  raise RuntimeError(f'{path}: stale CSS cache key')
-              for anchor in soup.select('a[target="_blank"]'):
-                  if not {'noopener', 'noreferrer'} <= set(anchor.get('rel') or []):
+                  raise RuntimeError(f'{path}: stale CSS key')
+              ids_by_file[path.name] = set(ids)
+              for a in soup.select('a[target="_blank"]'):
+                  if not {'noopener','noreferrer'} <= set(a.get('rel') or []):
                       raise RuntimeError(f'{path}: unsafe target=_blank')
 
           for path in html_files:
               soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
               for node in soup.select('[href], [src]'):
                   raw = node.get('href') or node.get('src')
-                  if not raw or raw.startswith(('http://', 'https://', 'mailto:', 'tel:', 'data:', 'javascript:')):
+                  if not raw or raw.startswith(('http://','https://','mailto:','tel:','data:','javascript:')):
                       continue
                   parsed = urlparse(raw)
                   target = (path.parent / (unquote(parsed.path) or path.name)).resolve()
                   if not target.exists():
                       raise RuntimeError(f'{path}: missing local target {raw}')
                   if parsed.fragment:
-                      html_name = target.name if target.suffix == '.html' else path.name
-                      if parsed.fragment not in ids_by_file.get(html_name, set()):
+                      name = target.name if target.suffix == '.html' else path.name
+                      if parsed.fragment not in ids_by_file.get(name, set()):
                           raise RuntimeError(f'{path}: missing fragment {raw}')
 
-          corpus = '\n'.join(path.read_text(encoding='utf-8') for path in html_files)
-          for stale in (
-              '75 .NET-проектов', '1 325 тестов', '75 .NET projects', '1,325 passing tests',
-              'differential testing, differential testing',
-          ):
+          corpus = '\n'.join(p.read_text(encoding='utf-8') for p in html_files)
+          for stale in ('75 .NET-проектов','1 325 тестов','75 .NET projects','1,325 passing tests',
+                        'differential testing, differential testing'):
               if stale in corpus:
-                  raise RuntimeError(f'Stale public wording remains: {stale}')
-          for required in ('1 358/1 358', '1,358/1,358', 'метрики spills/code size', 'spill/code-size metrics'):
+                  raise RuntimeError(f'Stale public wording: {stale}')
+          for required in ('1 358/1 358','1,358/1,358','метрики spills/code size','spill/code-size metrics'):
               if required not in corpus:
                   raise RuntimeError(f'Required public wording missing: {required}')
 
-          ru_cpp = Path('ru-cpp-systems.html').read_text(encoding='utf-8')
-          for stale in ('Strict toolchain', '<strong>Program analysis</strong>', '<strong>Low-level</strong>', '<strong>Toolchain</strong>'):
-              if stale in ru_cpp:
-                  raise RuntimeError(f'Russian C++ page still contains {stale}')
-          for required in ('Строгая сборка', 'Анализ программ', 'Низкоуровневая разработка', 'Инструменты и качество'):
-              if required not in ru_cpp:
-                  raise RuntimeError(f'Russian C++ localization missing: {required}')
+          ru_cpp_source = Path('ru-cpp-systems.html').read_text(encoding='utf-8')
+          for stale in ('Strict toolchain','<strong>Program analysis</strong>','<strong>Low-level</strong>','<strong>Toolchain</strong>'):
+              if stale in ru_cpp_source:
+                  raise RuntimeError(f'Russian C++ source still contains {stale}')
+          for required in ('Строгая сборка','Анализ программ','Низкоуровневая разработка','Инструменты и качество'):
+              if required not in ru_cpp_source:
+                  raise RuntimeError(f'Russian C++ source missing {required}')
 
           metadata = Path('RELEASE-METADATA.md').read_text(encoding='utf-8')
           if '- Version: v29' not in metadata or 'v28, commit `d655f6854a1d5ac8d87393cc1f4c82567ac1ddee`' not in metadata:
-              raise RuntimeError('Release metadata baseline/version mismatch')
+              raise RuntimeError('Release metadata mismatch')
 
           pdfs = sorted(Path('pdf').glob('*.pdf'))
           if len(pdfs) != 14:
               raise RuntimeError(f'Expected 14 PDFs, found {len(pdfs)}')
-          changed = {
-              'Mikhail_Razakov_Compiler_RU.pdf',
-              'Mikhail_Razakov_Compiler_EN.pdf',
-              'Mikhail_Razakov_CPP_Systems_RU.pdf',
-              'Mikhail_Razakov_CPP_Systems_EN.pdf',
-          }
-          out = Path('v29-render-evidence')
-          (out / 'before').mkdir(parents=True, exist_ok=True)
-          (out / 'after').mkdir(parents=True, exist_ok=True)
+          changed = {'Mikhail_Razakov_Compiler_RU.pdf','Mikhail_Razakov_Compiler_EN.pdf',
+                     'Mikhail_Razakov_CPP_Systems_RU.pdf','Mikhail_Razakov_CPP_Systems_EN.pdf'}
+          out = Path('v29-evidence')
+          (out/'before').mkdir(parents=True, exist_ok=True)
+          (out/'after').mkdir(parents=True, exist_ok=True)
+          for old in sorted((out/'before-pdf').glob('*.pdf')):
+              with fitz.open(old) as doc:
+                  doc[0].get_pixmap(matrix=fitz.Matrix(2,2), alpha=False).save(out/'before'/f'{old.stem}.png')
+
           metrics = {}
-
-          for before in sorted((out / 'before-pdf').glob('*.pdf')):
-              with fitz.open(before) as doc:
-                  page = doc[0]
-                  page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False).save(out / 'before' / f'{before.stem}.png')
-
           for path in pdfs:
               doc = fitz.open(path)
               if len(doc) != 1:
                   raise RuntimeError(f'{path}: expected one page, found {len(doc)}')
               page = doc[0]
-              if abs(page.rect.width - 595.28) > 3 or abs(page.rect.height - 841.89) > 3:
-                  raise RuntimeError(f'{path}: expected A4, got {page.rect}')
+              if abs(page.rect.width-595.28) > 3 or abs(page.rect.height-841.89) > 3:
+                  raise RuntimeError(f'{path}: not A4: {page.rect}')
               text = page.get_text('text')
               normalized = ' '.join(text.split())
-              links = [link.get('uri') for link in page.get_links() if link.get('uri')]
-              spans = [
-                  span
-                  for block in page.get_text('dict').get('blocks', [])
-                  for line in block.get('lines', [])
-                  for span in line.get('spans', [])
-                  if span.get('text', '').strip()
-              ]
-              if not spans:
-                  raise RuntimeError(f'{path}: text layer missing')
-              min_font = min(float(span['size']) for span in spans)
-              if not links:
-                  raise RuntimeError(f'{path}: clickable links missing')
-
+              links = [x.get('uri') for x in page.get_links() if x.get('uri')]
+              spans = [s for b in page.get_text('dict').get('blocks',[]) for l in b.get('lines',[])
+                       for s in l.get('spans',[]) if s.get('text','').strip()]
+              if not spans or not links:
+                  raise RuntimeError(f'{path}: text layer or links missing')
+              min_font = min(float(s['size']) for s in spans)
               if path.name in changed:
                   if min_font < 8.45:
-                      raise RuntimeError(f'{path}: minimum font below v29 gate: {min_font}')
+                      raise RuntimeError(f'{path}: min font {min_font}')
                   if path.name.endswith('_RU.pdf'):
-                      required = (
-                          'по олимпиадному и промышленному программированию',
-                          '1-е место по итоговому баллу',
-                          'Главная премия',
-                      )
+                      required = ('по олимпиадному и промышленному программированию','1-е место по итоговому баллу','Главная премия')
+                      person = 'Михаил Разаков'
                   else:
-                      required = (
-                          'competitive and industrial programming',
-                          'top total score',
-                          'Grand Prize',
-                      )
-                  missing = [token for token in required if token not in normalized]
+                      required = ('competitive and industrial programming','top total score','Grand Prize')
+                      person = 'Mikhail Razakov'
+                  missing = [x for x in required if x not in normalized]
                   if missing:
-                      raise RuntimeError(f'{path}: achievement wording missing: {missing}')
-                  person = 'Mikhail Razakov' if path.name.endswith('_EN.pdf') else 'Михаил Разаков'
+                      raise RuntimeError(f'{path}: achievement wording missing {missing}')
                   if 'CPP_Systems' in path.name:
-                      expected_order = [person, 'MCST' if path.name.endswith('_EN.pdf') else 'МЦСТ', 'PS-form']
+                      order = [person, 'PS-form', 'MCST' if path.name.endswith('_EN.pdf') else 'МЦСТ']
                   else:
-                      expected_order = [person, 'UniversalToolchain', 'PS-form']
-                  positions = [normalized.find(token) for token in expected_order]
-                  if any(pos < 0 for pos in positions) or positions != sorted(positions):
-                      raise RuntimeError(f'{path}: ATS text order failed: {dict(zip(expected_order, positions))}')
-                  page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False).save(out / 'after' / f'{path.stem}.png')
-
-              metrics[path.name] = {
-                  'pages': len(doc),
-                  'min_font_pt': round(min_font, 2),
-                  'text_chars': len(text.strip()),
-                  'links': len(links),
-              }
+                      order = [person, 'UniversalToolchain', 'PS-form']
+                  positions = [normalized.find(x) for x in order]
+                  if any(x < 0 for x in positions) or positions != sorted(positions):
+                      raise RuntimeError(f'{path}: ATS order failed {dict(zip(order, positions))}')
+                  page.get_pixmap(matrix=fitz.Matrix(2,2), alpha=False).save(out/'after'/f'{path.stem}.png')
+              metrics[path.name] = {'pages': len(doc), 'min_font_pt': round(min_font,2),
+                                    'text_chars': len(text.strip()), 'links': len(links)}
               doc.close()
 
-          ru_cpp_pdf = fitz.open('pdf/Mikhail_Razakov_CPP_Systems_RU.pdf')
-          ru_cpp_text = ' '.join(ru_cpp_pdf[0].get_text('text').split())
-          ru_cpp_pdf.close()
-          for stale in ('Strict toolchain', 'Program analysis', 'Low-level', 'Toolchain'):
-              if stale in ru_cpp_text:
-                  raise RuntimeError(f'Russian C++ PDF still contains unlocalized label: {stale}')
-          for required in ('Строгая сборка', 'Анализ программ', 'Низкоуровневая разработка', 'Инструменты и качество'):
-              if required not in ru_cpp_text:
-                  raise RuntimeError(f'Russian C++ PDF localization missing: {required}')
+          with fitz.open('pdf/Mikhail_Razakov_CPP_Systems_RU.pdf') as doc:
+              ru_cpp = ' '.join(doc[0].get_text('text').split())
+          for stale in ('Strict toolchain','Program analysis','Low-level','Toolchain'):
+              if stale in ru_cpp:
+                  raise RuntimeError(f'Russian C++ PDF still contains {stale}')
+          for required in ('Строгая сборка','Анализ программ','Низкоуровневая разработка','Инструменты и качество'):
+              if required not in ru_cpp:
+                  raise RuntimeError(f'Russian C++ PDF missing {required}')
 
           Path('v29-pdf-metrics.json').write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding='utf-8')
           qa = Path('QA-report-targeted-cv-v29.md')
-          with qa.open('a', encoding='utf-8') as stream:
-              stream.write('\n## v29 automated result\n\n```json\n')
-              stream.write(json.dumps({k: metrics[k] for k in sorted(changed)}, ensure_ascii=False, indent=2))
-              stream.write('\n```\n\nAutomated verdict: PASS. Before/after render review is required before merge.\n')
-          print(json.dumps({k: metrics[k] for k in sorted(changed)}, ensure_ascii=False, indent=2))
+          with qa.open('a', encoding='utf-8') as f:
+              f.write('\n## v29 automated result\n\n```json\n')
+              f.write(json.dumps({k:metrics[k] for k in sorted(changed)}, ensure_ascii=False, indent=2))
+              f.write('\n```\n\nAutomated verdict: PASS. Human before/after render review required before merge.\n')
+          print(json.dumps({k:metrics[k] for k in sorted(changed)}, ensure_ascii=False, indent=2))
           PY
+
+      - name: Upload validation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-v29-validation-diagnostics
+          path: |
+            v29-validation.log
+            v29-layout-metrics.json
+            v29-pdf-metrics.json
+            v29-evidence/after/*.png
+          retention-days: 7
+          if-no-files-found: warn
 
       - name: Upload before/after render evidence
         uses: actions/upload-artifact@v4
         with:
           name: cv-v29-before-after-renders
           path: |
-            v29-render-evidence/before/*.png
-            v29-render-evidence/after/*.png
+            v29-evidence/before/*.png
+            v29-evidence/after/*.png
             v29-layout-metrics.json
             v29-pdf-metrics.json
           retention-days: 7
           if-no-files-found: error
 
       - name: Commit clean v29 release candidate
-        shell: bash
         run: |
           set -euo pipefail
-          rm -rf .exporter v29-render-evidence tools
-          rm -f v29-layout-metrics.json v29-pdf-metrics.json
+          rm -rf .exporter v29-evidence tools
+          rm -f v29-validation.log v29-layout-metrics.json v29-pdf-metrics.json
           rm -f .github/workflows/cv-v29-hardening.yml
           rmdir .github/workflows 2>/dev/null || true
           rmdir .github 2>/dev/null || true
-          find . -type f ! -path './.git/*' ! -name 'MANIFEST.sha256' -print0 | sort -z | xargs -0 sha256sum > MANIFEST.sha256
+          find . -type f ! -path './.git/*' ! -name MANIFEST.sha256 -print0 | sort -z | xargs -0 sha256sum > MANIFEST.sha256
           sha256sum -c MANIFEST.sha256
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
