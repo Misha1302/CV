@@ -12,6 +12,7 @@ on:
 permissions:
   contents: write
 
+# Final consistency pass after PDF and human render review.
 jobs:
   patch-and-verify:
     runs-on: ubuntu-latest
