@@ -1,64 +1,36 @@
-# Targeting guide
+# Targeting guide - v27
 
 ## Compiler / Runtime / Program Analysis
 
-Отправлять `ru-compiler.html` / `en-compiler.html` в compiler, runtime, VM, static-analysis и language-engineering команды.
+Send `ru-compiler.html` / `en-compiler.html` or the corresponding PDF to compiler, runtime, VM, static-analysis and language-engineering teams.
 
-Иерархия доказательств:
+Evidence hierarchy:
+1. UniversalToolchain/Wist2 - multi-IR runtime pipeline, verifier-gated AIR -> SSA -> AIR, optimization passes and interpreter/CIL parity.
+2. PS-form Analyzer - conservative program analysis, exact oracle and 1/49, 104/104 result.
+3. NASM IA-32 plus x86-64 codegen lab - machine-level understanding, liveness, register allocation and native validation.
+4. AdvancedAlgorithms - additional C++23 foundation.
 
-1. UniversalToolchain/Wist2 — многоуровневый IR/runtime pipeline, AIR → SSA → AIR, optimization passes, structural verifiers и interpreter/CIL parity;
-2. PS-form Analyzer — conservative program analysis, exact oracle и результат 1/49, 104/104;
-3. x86-64 Codegen & Register Allocation Playground — liveness, live intervals, register allocation, codegen и interpreter-vs-native validation;
-4. `AdvancedAlgorithms` — дополнительная C++23-основа: 12 reusable modules, differential tests и invariants.
-
-Стажировка МЦСТ остаётся в разделе опыта как C++23/build/test/review context; не использовать её как отдельный проект с повторным перечислением Dinic, Tarjan SCC и Dijkstra.
-
-## Algorithms / Program Analysis
-
-Отправлять `ru-algorithms.html` / `en-algorithms.html` в команды, где нужны algorithm engineering, C++ libraries, graph/tree/string algorithms, program analysis или compiler optimizations.
-
-Основные доказательства:
-
-1. `AdvancedAlgorithms` — 12 переиспользуемых C++23-модулей с контрактами, дифференциальными тестами, структурными инвариантами, sanitizers и крупными входами;
-2. PS-form Analyzer — symbolic/affine reasoning, conservative semantics, exact oracle, randomized and metamorphic tests;
-3. Wist2 — алгоритмы в compiler pipeline: lowering/emission, constant folding, SCCP-lite, branch/unreachable cleanup и DCE.
-
-Не сводить профиль к олимпиадам или задачам стажировки.
-
-## Compiler Tools / Testing
-
-Отправлять `ru-devtools.html` / `en-devtools.html` в compiler testing/fuzzing, language tooling, diagnostics и build/test infrastructure.
-
-Основные доказательства: Wist2 diagnostics/parity/verifiers/release checks, PS-form generative harness, `AdvancedAlgorithms` differential and large-input verification, x86-64 interpreter-vs-native validation.
+Assembly must remain supporting evidence in this version, not the primary headline.
 
 ## C++ Systems / Program Analysis
 
-Отправлять `ru-cpp-systems.html` / `en-cpp-systems.html` в C++ systems internships, algorithm libraries, compiler infrastructure, program analysis и verification tooling.
+Send `ru-cpp-systems.html` / `en-cpp-systems.html` to C++ systems internships, algorithm libraries, compiler infrastructure, program analysis and verification tooling.
+Primary evidence: PS-form Analyzer, AdvancedAlgorithms, MCST internship, x86 codegen lab and Wist2 IR/SSA.
 
-Основные доказательства: PS-form Analyzer, `AdvancedAlgorithms`, x86-64 backend lab и Wist2 IR/SSA. МЦСТ — релевантный опыт, но не дублирующая project card.
+## Algorithms / Compiler Tools / Backend
 
-## Backend / Reliability / EdTech
+- algorithms: `ru/en-algorithms.html`;
+- compiler testing/tooling: `ru/en-devtools.html`;
+- backend/reliability/EdTech: corresponding focused variants.
 
-- `ru-backend.html` / `en-backend.html` — API, payments, state and data modeling.
-- `ru-platform.html` / `en-platform.html` — recovery, diagnostics, deployment and operations.
-- `ru-edtech.html` / `en-edtech.html` — LMS, roles, payments and learner-facing product workflows.
+## Full portfolio
 
-В hero этих версий не использовать нерелевантную стажировку МЦСТ.
+Use `ru.html` / `en.html` after first contact or as a technical-lead follow-up. Do not attach it instead of a focused PDF.
 
-## Full technical portfolio
+## Do not claim without new evidence
 
-`ru.html` / `en.html` использовать после первого контакта, для технического руководителя или как ссылку из короткого CV. Это подробное портфолио, а не замена целевой одностраничной версии.
-
-## Не заявлять без новых доказательств
-
-- HFT / low-latency / market-data experience;
-- quant research;
-- production-ready sandbox;
-- formal verification;
-- production suitability of every reusable algorithm for untrusted inputs;
-- performance multipliers без актуального воспроизводимого benchmark report.
-
-## Отправка
-
-- Для первого контакта отправлять профильный PDF как вложение.
-- HTML использовать локально или после публикации v25. Публичную ссылку `misha1302.github.io/CV/` не отправлять до обновления репозитория `Misha1302/CV`.
+- FASM proficiency;
+- complete System V AMD64 ABI support;
+- HFT/quant experience;
+- production-ready sandbox or formal verification;
+- performance multipliers without a fresh reproducible benchmark.

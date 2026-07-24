@@ -1,38 +1,22 @@
 # Release metadata
 
-- Version: v25
-- Date: 2026-07-23
-- Previous baseline: `mikhail-razakov-targeted-cv-v24-2026-07-23.tar.xz`
-- Previous baseline SHA-256: `ca01f7676fa8bdec3186383fa9e632abcd2e3c93463a92e688436fbd0d3b08bb`
-- Scope: skills-section content and presentation correction, with priority on full RU/EN and compiler RU/EN; compiler PDF regeneration.
-- HTML surface: 17 files.
-- Downloadable CV surface: 14 one-page A4 PDFs.
-- Included technical paper: 1 PDF.
-- Canonical email: `misha13022008@gmail.com`.
-
-## v25 correction
-
-- Replaced the unstyled `skills-grid` / `skill-group` markup with the existing `stack-lines` / `stack-line` component on all 16 resume pages.
-- Rewrote compiler RU/EN expertise sections as coherent prose under four role-relevant headings.
-- Rewrote full RU/EN expertise sections to separate the primary compiler/program-analysis profile from complementary backend and systems work.
-- Removed stale mixed-language headings and the `AdvancedAlgorithms` promotional insertion from the compiler skills block.
-- Polished Russian compiler hero and project wording without changing factual scope.
-- Regenerated compiler RU/EN PDFs; retained the other 12 validated v24 PDFs byte-for-byte.
-- Updated local asset cache keys to `?v=25`.
+- Version: v27
+- Date: 2026-07-24
+- Previous repository baseline: v26, commit `6a67ea16513f08772a17c3aee19c0135d437cc2b`
+- HTML surface: 17 files
+- Downloadable CV surface: 14 one-page A4 PDFs
+- Rebuilt PDFs: compiler RU/EN and C++ systems RU/EN
+- Canonical email: `misha13022008@gmail.com`
 
 ## Evidence boundaries
 
-- `AdvancedAlgorithms`: 12 modules listed by the checked repository snapshot; educational/interview-oriented library, not a blanket production-suitability claim.
-- Wist2: experimental opt-in verifier-gated AIR → SSA → AIR route; no SSA-native-backend or unsupported performance claim.
-- Wist2 numeric baseline: dated 2026-07-14 where retained — 75 .NET projects, 1,325 tests, 0 warnings/errors.
-- PS-form Analyzer: conservative result semantics, exact/randomized/metamorphic verification and the cited 1/49, 104/104 result.
-- x86-64 playground: explicitly educational; native code executes in a separate constrained runner, not a hardened sandbox.
-- MCST: presented as internship experience and engineering discipline, not as an independent algorithm portfolio project.
+- NASM evidence: IA-32 course and buildable examples covering CDECL, stack frames, libc calls, structures/addressing and x87.
+- x86-64 evidence: educational Rust backend lab with liveness, register allocation, SysV emitter through iced-x86, disassembly and interpreter-vs-native validation.
+- No FASM proficiency claim and no blanket full System V AMD64 ABI implementation claim.
+- Wist2 test count 1,358/1,358 and successful build come from the user-reported full rerun on 2026-07-23; the former 75-project/1,325-test public baseline is superseded for CV wording.
+- Wist2 AIR -> SSA -> AIR remains experimental and verifier-gated.
+- x86-64 runner remains constrained but is not presented as a hardened sandbox.
 
 ## Publication boundary
 
-- The archive is sendable as local HTML/PDF material.
-- The public `Misha1302/CV` GitHub Pages deployment was not modified in this task and may still expose an older release; do not send the site URL until that repository is updated.
-- Role PDFs list email, Telegram and GitHub only.
-
-The final archive SHA-256 is reported externally at handoff to avoid self-referential release metadata.
+Role PDFs contain email, Telegram and GitHub. The full HTML portfolio may include LinkedIn and additional evidence links.
