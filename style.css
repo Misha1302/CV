@@ -542,3 +542,54 @@ a { color: inherit; }
     margin-top: 6mm;
   }
 }
+
+
+/* v27: dedicated readable A4 CV layout */
+.print-cv { display: none; }
+@media print {
+  @page { size: A4; margin: 0; }
+  html, body { width: 210mm; height: 297mm; margin: 0 !important; padding: 0 !important; background: #fff !important; }
+  body::before { display: none !important; }
+  body > :not(.print-cv) { display: none !important; }
+  .print-cv {
+    display: block !important;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    padding: 9mm 10mm 8mm;
+    box-sizing: border-box;
+    background: #fff;
+    color: #171717;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: 1.32;
+  }
+  .print-cv *, .print-cv *::before, .print-cv *::after { box-sizing: border-box; }
+  .print-cv a { color: inherit; text-decoration: none; }
+  .pcv-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8mm; padding-bottom: 3mm; border-bottom: 1.3pt solid #852737; }
+  .pcv-header h1 { margin: 0; font-size: 25pt; line-height: 1; letter-spacing: -.5pt; }
+  .pcv-header h2 { margin: 1.5mm 0 0; font-size: 13pt; line-height: 1.15; font-weight: 600; color: #852737; }
+  .pcv-contact { flex: 0 0 61mm; text-align: right; font-size: 9.2pt; line-height: 1.42; overflow-wrap: anywhere; }
+  .pcv-summary { margin: 4mm 0 3.5mm; font-size: 10.2pt; line-height: 1.38; }
+  .pcv-proofs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.8mm; margin-bottom: 4.2mm; }
+  .pcv-proof { min-height: 20mm; padding: 3.2mm 3.3mm; border: .65pt solid #cfcfcf; border-radius: 1.5mm; }
+  .pcv-proof strong { display: block; font-size: 11.4pt; line-height: 1.14; color: #852737; }
+  .pcv-proof span { display: block; margin-top: 1.3mm; font-size: 8.7pt; line-height: 1.25; color: #444; }
+  .pcv-columns { display: grid; grid-template-columns: minmax(0, 1.67fr) minmax(0, 1fr); gap: 6.5mm; }
+  .pcv-main, .pcv-side { min-width: 0; }
+  .pcv-main section + section, .pcv-side section + section { margin-top: 4.5mm; }
+  .pcv-section-title { margin: 0 0 2.2mm; padding-bottom: 1.1mm; border-bottom: .8pt solid #b78c95; color: #852737; font-size: 11.5pt; line-height: 1.16; text-transform: uppercase; letter-spacing: .35pt; }
+  .pcv-entry { display: grid; grid-template-columns: 28mm minmax(0, 1fr); gap: 3mm; padding: 2.2mm 0 3mm; border-bottom: .45pt solid #dedede; break-inside: avoid; }
+  .pcv-date { padding-top: .3mm; font-size: 8.2pt; font-weight: 700; color: #666; text-transform: uppercase; }
+  .pcv-entry h3, .pcv-project h3 { margin: 0; font-size: 10.2pt; line-height: 1.2; }
+  .pcv-entry ul { margin: 1.4mm 0 0; padding-left: 4.2mm; }
+  .pcv-entry li { margin: 0 0 1mm; font-size: 9.15pt; line-height: 1.28; }
+  .pcv-project { padding: 2.2mm 0 2.5mm; border-bottom: .45pt solid #dedede; break-inside: avoid; }
+  .pcv-project-head { display: flex; justify-content: space-between; gap: 2mm; align-items: baseline; }
+  .pcv-project-head span { flex: 0 0 auto; font-size: 8pt; color: #777; text-transform: uppercase; }
+  .pcv-project p { margin: 1.2mm 0 0; font-size: 9.05pt; line-height: 1.3; }
+  .pcv-skill { padding: 1.8mm 0; border-bottom: .45pt solid #dedede; }
+  .pcv-skill strong { display: block; font-size: 9.1pt; line-height: 1.18; }
+  .pcv-skill span { display: block; margin-top: .8mm; font-size: 8.55pt; line-height: 1.28; color: #444; }
+  .pcv-compact p { margin: 0; font-size: 8.9pt; line-height: 1.34; }
+}
