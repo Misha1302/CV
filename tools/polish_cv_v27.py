@@ -15,17 +15,16 @@ def replace(path_name: str, replacements: dict[str, str]) -> None:
 for name in ('en-compiler.html', 'en-cpp-systems.html'):
     replace(name, {
         '<h1>Михаил Разаков</h1>': '<h1>Mikhail Razakov</h1>',
-        'AIR -&gt; SSA -&gt; AIR': 'AIR → SSA → AIR',
-        'AIR -&gt; SSA -&gt; execution': 'AIR → SSA → execution',
+        'AIR -> SSA -> AIR': 'AIR → SSA → AIR',
     })
 
 replace('ru-compiler.html', {
-    'Разрабатываю UniversalToolchain/Wist2 - модульную .NET-платформу с несколькими IR, эталонным интерпретатором, CIL/DynamicMethod backend и проверяемым маршрутом AIR -&gt; SSA -&gt; AIR. Дополнительная глубина: консервативный анализ программ, C++23 и x86 code generation.':
+    'Разрабатываю UniversalToolchain/Wist2 - модульную .NET-платформу с несколькими IR, эталонным интерпретатором, CIL/DynamicMethod backend и проверяемым маршрутом AIR -> SSA -> AIR. Дополнительная глубина: консервативный анализ программ, C++23 и x86 code generation.':
         'Разрабатываю UniversalToolchain/Wist2 — модульную .NET-платформу с несколькими IR, эталонным интерпретатором, backend на CIL/DynamicMethod и проверяемым маршрутом AIR → SSA → AIR. Дополнительная глубина — консервативный анализ программ, C++23 и генерация x86-кода.',
-    'AIR -&gt; SSA -&gt; AIR': 'AIR → SSA → AIR',
-    'Спроектировал Source -&gt; AST -&gt; Bytecode -&gt; AIR -&gt; execution, эталонный интерпретатор и CIL/DynamicMethod backend.':
+    'AIR -> SSA -> AIR': 'AIR → SSA → AIR',
+    'Спроектировал Source -> AST -> Bytecode -> AIR -> execution, эталонный интерпретатор и CIL/DynamicMethod backend.':
         'Спроектировал конвейер Source → AST → Bytecode → AIR → execution, эталонный интерпретатор и backend на CIL/DynamicMethod.',
-    'Реализовал opt-in AIR -&gt; SSA -&gt; AIR: constant folding, SCCP-lite, branch folding, unreachable cleanup и DCE.':
+    'Реализовал opt-in AIR → SSA → AIR: constant folding, SCCP-lite, branch folding, unreachable cleanup и DCE.':
         'Реализовал подключаемый маршрут AIR → SSA → AIR: свёртку констант, SCCP-lite, упрощение ветвлений, удаление недостижимого кода и DCE.',
     'Добавил capability contracts, structural verifiers и сравнение interpreter/CIL для поддерживаемой семантики.':
         'Добавил контракты возможностей, структурные верификаторы и сравнение интерпретатора с CIL для поддерживаемой семантики.',
@@ -57,14 +56,14 @@ replace('ru-cpp-systems.html', {
         'Разработал общее ядро ориентированного графа и компоненты RPO с обнаружением циклов, Dijkstra, Tarjan SCC и Dinic.',
     'C++23/CMake, warnings-as-errors, ASan/UBSan, clang-tidy, явные include-зависимости и I/O-тесты.':
         'Настроил C++23/CMake, warnings-as-errors, ASan/UBSan, clang-tidy, явные include-зависимости и I/O-тесты.',
-    'Несколько IR, interpreter/CIL execution paths и opt-in AIR -&gt; SSA -&gt; AIR.':
+    'Несколько IR, interpreter/CIL execution paths и opt-in AIR -> SSA -> AIR.':
         'Спроектировал несколько IR, пути исполнения через интерпретатор и CIL, а также подключаемый маршрут AIR → SSA → AIR.',
     'Capability contracts, structural verifiers и parity-тесты; последний полный прогон: 1 358/1 358 тестов.':
         'Добавил контракты возможностей, структурные верификаторы и parity-тесты; последний полный прогон — 1 358/1 358 тестов.',
     'Conservative yes/no/maybe semantics; normalization, range/residue/GCD filters, exact affine analysis, bounded search and exact/randomized/metamorphic verification.':
-        'Консервативная семантика yes/no/maybe; нормализация, range/residue/GCD-фильтры, точный аффинный анализ, ограниченный поиск и exact/randomized/metamorphic-проверки.',
+        'Консервативная семантика yes/no/maybe; нормализация, range/residue/GCD-фильтры, точный аффинный анализ, ограниченный поиск, точные, рандомизированные и метаморфные проверки.',
     '12 reusable modules: centroid decomposition, HLD, LCA, Dinic, iterative Tarjan, bridges, Dijkstra, Aho-Corasick, segment tree and others; differential tests, invariants and large inputs.':
-        '12 переиспользуемых модулей: centroid decomposition, HLD, LCA, Dinic, итеративный Tarjan, мосты, Dijkstra, Aho-Corasick, segment tree и другие; дифференциальные тесты, инварианты и крупные входы.',
+        '12 переиспользуемых модулей: центроидная декомпозиция, HLD, LCA, Dinic, итеративный Tarjan, мосты, Dijkstra, Aho-Corasick, дерево отрезков и другие; дифференциальные тесты, инварианты и крупные входы.',
     'CDECL, stack frames, libc, structures/addressing and x87 in NASM IA-32; separate x86-64 SysV emitter with liveness, register allocation, iced-x86 and isolated native execution.':
         'NASM IA-32: CDECL, стековые кадры, libc, структуры, адресация и x87; отдельный x86-64 SysV emitter с анализом живости, распределением регистров, iced-x86 и изолированным запуском нативного кода.',
     'C++23, C17, generic components, explicit contracts and error models':
