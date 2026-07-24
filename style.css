@@ -593,3 +593,17 @@ a { color: inherit; }
   .pcv-skill span { display: block; margin-top: .8mm; font-size: 8.55pt; line-height: 1.28; color: #444; }
   .pcv-compact p { margin: 0; font-size: 8.9pt; line-height: 1.34; }
 }
+
+/* v29: focused-PDF readability hardening; keep scale=1.0 */
+@media print {
+  .pcv-contact { font-size: 9.35pt; }
+  .pcv-summary { font-size: 10.35pt; }
+  .pcv-proof span { font-size: 8.95pt; }
+  .pcv-date { font-size: 8.55pt; }
+  .pcv-entry li { font-size: 9.25pt; }
+  .pcv-project-head span { font-size: 8.5pt; }
+  .pcv-project p { font-size: 9.2pt; }
+  .pcv-skill strong { font-size: 9.3pt; }
+  .pcv-skill span { font-size: 8.75pt; }
+  .pcv-compact p { font-size: 9.05pt; }
+}

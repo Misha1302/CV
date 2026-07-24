@@ -1,4 +1,4 @@
-# Language review - v28
+# Language review - v29
 
 - Russian role headings prefer natural Russian phrasing; IR, SSA, backend, runtime, codegen, SCCP and DCE remain where they are standard role vocabulary.
 - Compiler RU no longer promotes Assembly in the eyebrow or top proof hierarchy.
