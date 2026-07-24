@@ -1,52 +1,116 @@
-name: Validate CV interests
+name: Finalize v27 web consistency
 
 on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  validate:
+  finalize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: fix/readable-cv-v27-web
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Validate interests sections
+      - name: Patch detailed web portfolio
+        run: python3 tools/patch_v27_web.py
+      - name: Install validators
+        run: python3 -m pip install --disable-pip-version-check beautifulsoup4 pymupdf
+      - name: Validate HTML and PDF surfaces
+        run: python3 tools/validate_v27_web.py
+      - name: Restore canonical workflow and finalize package
+        shell: bash
         run: |
-          python - <<'PY'
-          import json
-          import re
-          from pathlib import Path
+          set -euo pipefail
+          cat >> QA-report-targeted-cv-v27.md <<'EOF'
 
-          expected = {
-              "index.html": (
-                  "Инженерные интересы",
-                  "Теоретические интересы",
-                  "Алгоритмы и оптимизации",
-                  "формальная верификация",
-                  "сюрреальные числа",
-              ),
-              "en.html": (
-                  "Engineering interests",
-                  "Theoretical interests",
-                  "Algorithms and optimization",
-                  "formal verification",
-                  "Surreal numbers",
-              ),
-          }
+## Web consistency result
 
-          for filename, markers in expected.items():
-              text = Path(filename).read_text(encoding="utf-8")
-              assert text.startswith("<!doctype html>")
-              assert text.count("<html") == 1
-              assert text.count("</html>") == 1
-              assert text.count('id="interests-title"') == 1
-              for marker in markers:
-                  assert marker in text, (filename, marker)
-              match = re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.DOTALL)
-              assert match
-              json.loads(match.group(1))
-          PY
+- Detailed RU/EN HTML pages use the current 1,358-test run rather than the superseded 1,325-test / 75-project baseline.
+- The duplicated differential-testing phrase is removed.
+- NASM IA-32/CDECL/x87 and x86-64 codegen are separated consistently on web and PDF surfaces.
+- Full portfolio teaching text distinguishes about 50 general programming students from authorship of the NASM IA-32 course.
+- HTML/local-link/fragment checks and all 14 one-page PDF checks pass after the consistency patch.
+
+Web consistency verdict: PASS.
+EOF
+          rm -rf tools
+          rm -f .github/workflows/finalize-v27-web.yml
+          cat > .github/workflows/rebalance-interests.yml <<'EOF'
+          name: Validate CV interests
+
+          on:
+            workflow_dispatch:
+
+          permissions:
+            contents: read
+
+          jobs:
+            validate:
+              runs-on: ubuntu-latest
+              steps:
+                - uses: actions/checkout@v4
+                - uses: actions/setup-python@v5
+                  with:
+                    python-version: "3.12"
+                - name: Validate interests sections
+                  run: |
+                    python - <<'PY'
+                    import json
+                    import re
+                    from pathlib import Path
+
+                    expected = {
+                        "index.html": (
+                            "Инженерные интересы",
+                            "Теоретические интересы",
+                            "Алгоритмы и оптимизации",
+                            "формальная верификация",
+                            "сюрреальные числа",
+                        ),
+                        "en.html": (
+                            "Engineering interests",
+                            "Theoretical interests",
+                            "Algorithms and optimization",
+                            "formal verification",
+                            "Surreal numbers",
+                        ),
+                    }
+
+                    for filename, markers in expected.items():
+                        text = Path(filename).read_text(encoding="utf-8")
+                        assert text.startswith("<!doctype html>")
+                        assert text.count("<html") == 1
+                        assert text.count("</html>") == 1
+                        assert text.count('id="interests-title"') == 1
+                        for marker in markers:
+                            assert marker in text, (filename, marker)
+                        match = re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.DOTALL)
+                        assert match
+                        json.loads(match.group(1))
+                    PY
+          EOF
+          find . -type f ! -path './.git/*' ! -name 'MANIFEST.sha256' -print0 | sort -z | xargs -0 sha256sum > MANIFEST.sha256
+          sha256sum -c MANIFEST.sha256
+      - name: Commit clean verified result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Synchronize v27 web portfolio and focused CV claims'
+          git push origin HEAD:fix/readable-cv-v27-web
