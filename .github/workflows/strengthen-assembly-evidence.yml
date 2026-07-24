@@ -47,7 +47,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 - <<'PY'
+          python3 - <<'PY' 2>&1 | tee exporter.log
           from pathlib import Path
           import subprocess
 
@@ -59,6 +59,7 @@ jobs:
           }
           exporter = Path(".exporter/export_cv_html_to_pdf.py")
           for html, pdf in mappings.items():
+              print(f"EXPORT {html} -> {pdf}", flush=True)
               subprocess.run([
                   "python3", str(exporter), html, pdf,
                   "--viewport-width", "1440",
@@ -68,6 +69,15 @@ jobs:
               ], check=True)
           print(f"Rebuilt {len(mappings)} PDFs")
           PY
+
+      - name: Upload exporter log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: assembly-cv-exporter-log
+          path: exporter.log
+          retention-days: 7
+          if-no-files-found: warn
 
       - name: Verify PDFs and render review images
         shell: bash
@@ -132,7 +142,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf .exporter render-review
+          rm -rf .exporter render-review exporter.log
           rm -f tools/strengthen_assembly_cv.py
           rmdir tools 2>/dev/null || true
           rm -f .github/workflows/strengthen-assembly-evidence.yml
