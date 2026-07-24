@@ -1,0 +1,42 @@
+name: CV v29 source diagnostic
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run source patch with complete log
+        id: patch
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python3 tools/harden_cv_v29.py > v29-source-patch.log 2>&1
+          status=$?
+          cat v29-source-patch.log
+          echo "$status" > v29-source-patch.status
+          exit "$status"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cv-v29-source-patch-log
+          path: |
+            v29-source-patch.log
+            v29-source-patch.status
+          retention-days: 7
+          if-no-files-found: error
+      - name: Fail when patch failed
+        if: steps.patch.outcome == 'failure'
+        run: exit 1
