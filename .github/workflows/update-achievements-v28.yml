@@ -109,14 +109,16 @@ jobs:
               if len(doc) != 1: raise RuntimeError(f'{path}: {len(doc)} pages')
               page = doc[0]
               text = page.get_text('text')
+              normalized = ' '.join(text.split())
               links = [x.get('uri') for x in page.get_links() if x.get('uri')]
               spans = [s for b in page.get_text('dict').get('blocks',[]) for l in b.get('lines',[]) for s in l.get('spans',[]) if s.get('text','').strip()]
               min_font = min(float(s['size']) for s in spans)
               if min_font < 7.5: raise RuntimeError(f'{path}: font {min_font}')
               if not links: raise RuntimeError(f'{path}: no links')
               if path.name in changed:
-                  marker = '1-е место по итоговому баллу' if path.name.endswith('_RU.pdf') else '1st by total score'
-                  if marker not in text: raise RuntimeError(f'{path}: marker missing')
+                  required = ['1-е место', '2025', '2026', 'Главная премия'] if path.name.endswith('_RU.pdf') else ['1st by total score', '2025', '2026', 'Grand Prize']
+                  missing = [token for token in required if token not in normalized]
+                  if missing: raise RuntimeError(f'{path}: achievement tokens missing: {missing}; text={normalized[-700:]}')
                   page.get_pixmap(matrix=fitz.Matrix(2,2), alpha=False).save(out / f'{path.stem}.png')
               metrics[path.name] = {'pages':1,'min_font_pt':round(min_font,2),'text_chars':len(text.strip()),'links':len(links)}
               doc.close()
