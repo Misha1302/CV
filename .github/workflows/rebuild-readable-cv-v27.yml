@@ -1,0 +1,285 @@
+name: Rebuild readable CV v27
+
+on:
+  push:
+    branches:
+      - fix/readable-cv-v27
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out CV
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Apply v27 content and print layouts
+        run: python3 tools/rebuild_cv_v27.py
+
+      - name: Check out local HTML loader
+        uses: actions/checkout@v4
+        with:
+          repository: Misha1302/cv-html-to-pdf-exporter
+          path: .exporter
+
+      - name: Install validation dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check playwright pymupdf beautifulsoup4
+          python3 -m playwright install --with-deps chromium
+
+      - name: Validate HTML and local links
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from urllib.parse import urlparse, unquote
+          from bs4 import BeautifulSoup
+
+          html_files = sorted(Path('.').glob('*.html'))
+          if len(html_files) != 17:
+              raise RuntimeError(f'Expected 17 HTML files, found {len(html_files)}')
+
+          all_ids = {}
+          for path in html_files:
+              soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
+              ids = [node.get('id') for node in soup.find_all(attrs={'id': True})]
+              if len(ids) != len(set(ids)):
+                  raise RuntimeError(f'{path}: duplicate IDs')
+              all_ids[path.name] = set(ids)
+              for anchor in soup.select('a[target="_blank"]'):
+                  rel = set(anchor.get('rel') or [])
+                  if not {'noopener', 'noreferrer'} <= rel:
+                      raise RuntimeError(f'{path}: target=_blank without noopener noreferrer: {anchor}')
+
+          for path in html_files:
+              soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
+              for node in soup.select('[href], [src]'):
+                  raw = node.get('href') or node.get('src')
+                  if not raw or raw.startswith(('http://', 'https://', 'mailto:', 'tel:', 'data:', 'javascript:')):
+                      continue
+                  parsed = urlparse(raw)
+                  target_name = unquote(parsed.path) or path.name
+                  target = (path.parent / target_name).resolve()
+                  if not target.exists():
+                      raise RuntimeError(f'{path}: missing local target {raw}')
+                  if parsed.fragment:
+                      html_name = target.name if target.suffix == '.html' else path.name
+                      if parsed.fragment not in all_ids.get(html_name, set()):
+                          raise RuntimeError(f'{path}: missing fragment target {raw}')
+          print('Validated 17 HTML files, local links, fragments, IDs and target=_blank rel attributes')
+          PY
+
+      - name: Export four focused PDFs at scale 1.0
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' 2>&1 | tee v27-export.log
+          from pathlib import Path
+          import sys
+          import json
+          import fitz
+          from playwright.sync_api import sync_playwright
+
+          sys.path.insert(0, str(Path('.exporter').resolve()))
+          import export_cv_html_to_pdf as helper
+
+          mappings = {
+              'ru-compiler.html': 'pdf/Mikhail_Razakov_Compiler_RU.pdf',
+              'en-compiler.html': 'pdf/Mikhail_Razakov_Compiler_EN.pdf',
+              'ru-cpp-systems.html': 'pdf/Mikhail_Razakov_CPP_Systems_RU.pdf',
+              'en-cpp-systems.html': 'pdf/Mikhail_Razakov_CPP_Systems_EN.pdf',
+          }
+          metrics = {}
+          with sync_playwright() as playwright:
+              browser = helper.launch_browser(playwright, None)
+              try:
+                  for html, pdf in mappings.items():
+                      page = browser.new_page(
+                          viewport={'width': 1440, 'height': 900},
+                          device_scale_factor=1,
+                          color_scheme='light',
+                          reduced_motion='reduce',
+                      )
+                      page.set_default_timeout(60000)
+                      page.emulate_media(media='print', color_scheme='light', reduced_motion='reduce')
+                      helper.load_local_document(page, Path(html).resolve())
+                      helper.wait_for_page_assets(page, 60000, False)
+                      helper.prepare_document(page, f'https://misha1302.github.io/CV/{html}')
+                      page.wait_for_timeout(200)
+
+                      layout = page.evaluate('''() => {
+                        const cv = document.querySelector('.print-cv');
+                        const all = Array.from(cv.querySelectorAll('*'));
+                        const sizes = all.map(el => parseFloat(getComputedStyle(el).fontSize)).filter(Number.isFinite);
+                        const rect = cv.getBoundingClientRect();
+                        return {
+                          clientHeight: cv.clientHeight,
+                          scrollHeight: cv.scrollHeight,
+                          clientWidth: cv.clientWidth,
+                          scrollWidth: cv.scrollWidth,
+                          minCssFontPx: Math.min(...sizes),
+                          widthPx: rect.width,
+                          heightPx: rect.height,
+                        };
+                      }''')
+                      if layout['scrollHeight'] > layout['clientHeight'] + 2:
+                          raise RuntimeError(f'{html}: print CV vertical overflow {layout}')
+                      if layout['scrollWidth'] > layout['clientWidth'] + 2:
+                          raise RuntimeError(f'{html}: print CV horizontal overflow {layout}')
+                      if layout['minCssFontPx'] < 10.0:
+                          raise RuntimeError(f'{html}: CSS font below 7.5pt equivalent: {layout}')
+
+                      out = Path(pdf)
+                      out.parent.mkdir(exist_ok=True)
+                      page.pdf(
+                          path=str(out),
+                          format='A4',
+                          print_background=True,
+                          display_header_footer=False,
+                          prefer_css_page_size=True,
+                          scale=1.0,
+                          margin={'top': '0', 'right': '0', 'bottom': '0', 'left': '0'},
+                          tagged=True,
+                          outline=True,
+                      )
+                      page.close()
+                      with fitz.open(out) as doc:
+                          if len(doc) != 1:
+                              raise RuntimeError(f'{html}: scale=1.0 produced {len(doc)} pages')
+                      metrics[html] = layout
+                      print(f'EXPORT {html} -> {pdf}: scale=1.0, overflow=0', flush=True)
+              finally:
+                  browser.close()
+          Path('v27-layout-metrics.json').write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding='utf-8')
+          PY
+
+      - name: Validate text, font sizes, links and render
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          import fitz
+
+          changed = {
+              'pdf/Mikhail_Razakov_Compiler_RU.pdf': ('Михаил Разаков', '1 358 / 1 358', 'NASM IA-32', 'x86-64'),
+              'pdf/Mikhail_Razakov_Compiler_EN.pdf': ('Михаил Разаков', '1,358 / 1,358', 'NASM IA-32', 'x86-64'),
+              'pdf/Mikhail_Razakov_CPP_Systems_RU.pdf': ('Михаил Разаков', '12 C++23', 'NASM IA-32', 'x86-64'),
+              'pdf/Mikhail_Razakov_CPP_Systems_EN.pdf': ('Михаил Разаков', '12 C++23', 'NASM IA-32', 'x86-64'),
+          }
+          all_pdfs = sorted(Path('pdf').glob('*.pdf'))
+          if len(all_pdfs) != 14:
+              raise RuntimeError(f'Expected 14 role PDFs, found {len(all_pdfs)}')
+
+          renders = Path('v27-render-review')
+          renders.mkdir(exist_ok=True)
+          report = {}
+          for path in all_pdfs:
+              doc = fitz.open(path)
+              if len(doc) != 1:
+                  raise RuntimeError(f'{path}: expected one page, found {len(doc)}')
+              page = doc[0]
+              text = page.get_text('text')
+              links = [link.get('uri') for link in page.get_links() if link.get('uri')]
+              if len(text.strip()) < 900:
+                  raise RuntimeError(f'{path}: text layer too short: {len(text.strip())}')
+              if not links:
+                  raise RuntimeError(f'{path}: no clickable links')
+              if path.as_posix() in changed:
+                  if abs(page.rect.width - 595.28) > 3 or abs(page.rect.height - 841.89) > 3:
+                      raise RuntimeError(f'{path}: not A4: {page.rect}')
+                  for marker in changed[path.as_posix()]:
+                      if marker not in text:
+                          raise RuntimeError(f'{path}: required marker missing: {marker}')
+                  forbidden = ('NASM/FASM', 'System V AMD64 ABI', 'GDB/objdump')
+                  for marker in forbidden:
+                      if marker in text:
+                          raise RuntimeError(f'{path}: forbidden overclaim remains: {marker}')
+                  spans = [
+                      span
+                      for block in page.get_text('dict').get('blocks', [])
+                      for line in block.get('lines', [])
+                      for span in line.get('spans', [])
+                      if span.get('text', '').strip()
+                  ]
+                  min_font = min(float(span['size']) for span in spans)
+                  if min_font < 7.45:
+                      raise RuntimeError(f'{path}: minimum PDF font {min_font:.2f}pt is below 7.5pt')
+                  name_pos = text.find('Михаил Разаков')
+                  exp_label = 'Опыт' if path.stem.endswith('_RU') else 'Experience'
+                  project_label = 'Избранные проекты' if path.stem.endswith('_RU') else 'Selected projects'
+                  if not (0 <= name_pos < text.find(exp_label) < text.find(project_label)):
+                      raise RuntimeError(f'{path}: extracted text order is not header -> experience -> projects')
+                  required_uris = {
+                      'https://github.com/Misha1302',
+                      'https://github.com/Misha1302/x86-64-codegen-ra-playground',
+                  }
+                  if not required_uris <= set(links):
+                      raise RuntimeError(f'{path}: missing required clickable links: {required_uris - set(links)}')
+                  pix = page.get_pixmap(matrix=fitz.Matrix(2.5, 2.5), alpha=False)
+                  pix.save(renders / f'{path.stem}.png')
+                  report[path.name] = {
+                      'pages': len(doc),
+                      'min_font_pt': round(min_font, 2),
+                      'text_chars': len(text.strip()),
+                      'links': len(links),
+                  }
+              doc.close()
+
+          Path('v27-pdf-report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+          qa = Path('QA-report-targeted-cv-v27.md')
+          qa.write_text(qa.read_text(encoding='utf-8') + '\n## Automated result\n\n```json\n' + json.dumps(report, ensure_ascii=False, indent=2) + '\n```\n\nAutomated verdict: PASS. Human render review is still required before merge.\n', encoding='utf-8')
+          print('Validated 14 one-page PDFs; rendered four v27 focused variants')
+          PY
+
+      - name: Upload visual and metric evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-v27-review-evidence
+          path: |
+            v27-render-review/*.png
+            v27-layout-metrics.json
+            v27-pdf-report.json
+            v27-export.log
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: Finalize verified branch
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .exporter v27-render-review
+          rm -f v27-layout-metrics.json v27-pdf-report.json v27-export.log
+          rm -f tools/rebuild_cv_v27.py
+          rmdir tools 2>/dev/null || true
+          rm -f .github/workflows/rebuild-readable-cv-v27.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+          find . -type f \
+            ! -path './.git/*' \
+            ! -name 'MANIFEST.sha256' \
+            -print0 | sort -z | xargs -0 sha256sum > MANIFEST.sha256
+          sha256sum -c MANIFEST.sha256
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Rebuild readable focused CVs and synchronize v27 release'
+          git push origin HEAD:fix/readable-cv-v27
