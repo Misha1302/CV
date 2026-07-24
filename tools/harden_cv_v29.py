@@ -43,15 +43,35 @@ for path in html_files:
     text = text.replace('script.js?v=28', 'script.js?v=29')
     path.write_text(text, encoding='utf-8')
 
-# Remove superseded Wist2 baseline claims from detailed portfolio/devtools pages.
-ru_old = 'Проверенный baseline от 14.07.2026: 75 .NET-проектов собираются, 1 325 тестов проходят, 0 предупреждений и 0 ошибок.'
-ru_new = 'Последний полный прогон от 23.07.2026: 1 358/1 358 тестов пройдены, 0 сбоев; сборка успешна.'
-en_old = 'the verified baseline dated July 14, 2026 covers 75 .NET projects building and 1,325 passing tests, with 0 warnings and 0 errors.'
-en_new = 'the latest full run on July 23, 2026 completed 1,358/1,358 tests with 0 failures; the build succeeded.'
-for name in ('ru.html', 'ru-devtools.html'):
-    replace_exact(Path(name), ru_old, ru_new)
-for name in ('en.html', 'en-devtools.html'):
-    replace_exact(Path(name), en_old, en_new)
+# Remove every superseded Wist2 baseline claim from the detailed portfolio and devtools pages.
+baseline_replacements: dict[str, tuple[tuple[str, str], ...]] = {
+    'ru.html': ((
+        'Проверенный baseline от 14.07.2026: 75 .NET-проектов собираются, 1 325 тестов проходят, 0 предупреждений и 0 ошибок.',
+        'Последний полный прогон от 23.07.2026: 1 358/1 358 тестов пройдены, 0 сбоев; сборка успешна.',
+    ),),
+    'en.html': ((
+        'the verified baseline dated July 14, 2026 covers 75 .NET projects building and 1,325 passing tests, with 0 warnings and 0 errors.',
+        'the latest full run on July 23, 2026 completed 1,358/1,358 tests with 0 failures; the build succeeded.',
+    ),),
+    'ru-devtools.html': (
+        ('<strong>1 325 тестов</strong>', '<strong>1 358 тестов</strong>'),
+        ('Настроил package-surface и clean-consumer smoke tests; проверенный baseline от 14.07.2026 — 75 .NET-проектов и 1 325 тестов.',
+         'Настроил package-surface и clean-consumer smoke tests; последний полный прогон от 23.07.2026 — 1 358/1 358 тестов, 0 сбоев, сборка успешна.'),
+        ('<strong>Результат:</strong> 75 .NET-проектов, 1 325 тестов, 0 предупреждений и 0 ошибок в проверенном отчёте от 14.07.2026.',
+         '<strong>Результат:</strong> полный прогон от 23.07.2026 — 1 358/1 358 тестов, 0 сбоев; сборка успешна.'),
+    ),
+    'en-devtools.html': (
+        ('<strong>1,325 tests</strong>', '<strong>1,358 tests</strong>'),
+        ('Added package-surface and clean-consumer smoke tests; the public baseline covers 75 .NET projects and 1,325 tests.',
+         'Added package-surface and clean-consumer smoke tests; the latest full run on July 23, 2026 completed 1,358/1,358 tests with 0 failures and a successful build.'),
+        ('<strong>Result:</strong> 1,325 tests, 75 .NET projects, 0 warnings and 0 errors in the public verification record.',
+         '<strong>Result:</strong> the July 23, 2026 full run completed 1,358/1,358 tests with 0 failures; the build succeeded.'),
+    ),
+}
+for filename, replacements in baseline_replacements.items():
+    path = Path(filename)
+    for old, new in replacements:
+        replace_exact(path, old, new)
 
 # Remove duplicated testing wording in all public variants while preserving language.
 for path in [p for p in html_files if p.name == 'ru.html' or p.name.startswith('ru-')]:
@@ -229,7 +249,7 @@ qa.write_text(qa_text, encoding='utf-8')
 # Source-level postconditions before PDF export.
 corpus = '\n'.join(path.read_text(encoding='utf-8') for path in html_files)
 for stale in (
-    '75 .NET-проектов', '1 325 тестов', '75 .NET projects', '1,325 passing tests',
+    '75 .NET-проектов', '1 325 тестов', '75 .NET projects', '1,325 tests', '1,325 passing tests',
     'differential testing, differential testing',
 ):
     if stale in corpus:
