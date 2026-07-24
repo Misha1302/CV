@@ -1,4 +1,4 @@
-# QA report - targeted CV v27
+# QA report - targeted CV v28
 
 This report is finalized by CI after generation.
 
@@ -83,3 +83,42 @@ Verdict is assigned only after workflow completion and human render review.
 ```
 
 Automated verdict: PASS. Human render review completed before merge.
+
+## National-achievement wording
+
+- Official MEPhI result tables support the top total score in Engineering Sciences (2025) and Information Technology (2026).
+- The Baltic result is stated as a first-degree diploma plus the Grand Prize, without claiming a unique nationwide rank.
+- All 16 RU/EN role/portfolio HTML pages contain the synchronized wording.
+
+## v28 focused-PDF validation
+
+```json
+{
+  "Mikhail_Razakov_CPP_Systems_EN.pdf": {
+    "pages": 1,
+    "min_font_pt": 7.99,
+    "text_chars": 2431,
+    "links": 7
+  },
+  "Mikhail_Razakov_CPP_Systems_RU.pdf": {
+    "pages": 1,
+    "min_font_pt": 7.99,
+    "text_chars": 2680,
+    "links": 7
+  },
+  "Mikhail_Razakov_Compiler_EN.pdf": {
+    "pages": 1,
+    "min_font_pt": 7.99,
+    "text_chars": 2476,
+    "links": 6
+  },
+  "Mikhail_Razakov_Compiler_RU.pdf": {
+    "pages": 1,
+    "min_font_pt": 7.99,
+    "text_chars": 2697,
+    "links": 6
+  }
+}
+```
+
+Automated v28 achievement/PDF verdict: PASS. Unchanged role PDFs were checked for one-page integrity and links; the 7.5 pt readability gate applies to the four rebuilt PDFs.
