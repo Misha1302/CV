@@ -24,7 +24,31 @@ jobs:
           python-version: "3.12"
 
       - name: Apply achievement and release updates
-        run: python3 tools/update_achievements_v28.py
+        id: apply
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python3 tools/update_achievements_v28.py > achievement-update.log 2>&1
+          status=$?
+          echo "$status" > achievement-update.status
+          cat achievement-update.log
+          exit "$status"
+
+      - name: Upload achievement-update diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-v28-achievement-update-log
+          path: |
+            achievement-update.log
+            achievement-update.status
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Stop after failed update
+        if: steps.apply.outcome == 'failure'
+        run: exit 1
 
       - name: Check out PDF exporter
         uses: actions/checkout@v4
@@ -74,30 +98,13 @@ jobs:
                         const sizes = all.map(el => parseFloat(getComputedStyle(el).fontSize)).filter(Number.isFinite);
                         let bottom = cr.top;
                         for (const el of all) bottom = Math.max(bottom, el.getBoundingClientRect().bottom);
-                        return {
-                          clientHeight: cv.clientHeight,
-                          scrollHeight: cv.scrollHeight,
-                          clientWidth: cv.clientWidth,
-                          scrollWidth: cv.scrollWidth,
-                          minCssFontPx: Math.min(...sizes),
-                          usedRatio: (bottom - cr.top) / cr.height
-                        };
+                        return {clientHeight:cv.clientHeight,scrollHeight:cv.scrollHeight,clientWidth:cv.clientWidth,scrollWidth:cv.scrollWidth,minCssFontPx:Math.min(...sizes),usedRatio:(bottom-cr.top)/cr.height};
                       }''')
                       if layout['scrollHeight'] > layout['clientHeight'] + 2 or layout['scrollWidth'] > layout['clientWidth'] + 2:
                           raise RuntimeError(f'{html}: print overflow {layout}')
                       if layout['minCssFontPx'] < 10.0:
                           raise RuntimeError(f'{html}: CSS font below gate {layout}')
-                      page.pdf(
-                          path=output,
-                          format='A4',
-                          print_background=True,
-                          display_header_footer=False,
-                          prefer_css_page_size=True,
-                          scale=1.0,
-                          margin={'top':'0','right':'0','bottom':'0','left':'0'},
-                          tagged=True,
-                          outline=True,
-                      )
+                      page.pdf(path=output,format='A4',print_background=True,display_header_footer=False,prefer_css_page_size=True,scale=1.0,margin={'top':'0','right':'0','bottom':'0','left':'0'},tagged=True,outline=True)
                       page.close()
               finally:
                   browser.close()
@@ -150,14 +157,8 @@ jobs:
           pdfs = sorted(Path('pdf').glob('*.pdf'))
           if len(pdfs) != 14:
               raise RuntimeError(f'Expected 14 role PDFs, found {len(pdfs)}')
-          changed = {
-              'Mikhail_Razakov_Compiler_RU.pdf',
-              'Mikhail_Razakov_Compiler_EN.pdf',
-              'Mikhail_Razakov_CPP_Systems_RU.pdf',
-              'Mikhail_Razakov_CPP_Systems_EN.pdf',
-          }
-          evidence = Path('v28-achievement-evidence')
-          evidence.mkdir(exist_ok=True)
+          changed = {'Mikhail_Razakov_Compiler_RU.pdf','Mikhail_Razakov_Compiler_EN.pdf','Mikhail_Razakov_CPP_Systems_RU.pdf','Mikhail_Razakov_CPP_Systems_EN.pdf'}
+          evidence = Path('v28-achievement-evidence'); evidence.mkdir(exist_ok=True)
           metrics = {}
           for path in pdfs:
               doc = fitz.open(path)
@@ -176,9 +177,8 @@ jobs:
                   marker = '1-е место по итоговому баллу' if path.name.endswith('_RU.pdf') else '1st by total score'
                   if marker not in text:
                       raise RuntimeError(f'{path}: achievement marker missing')
-                  pix = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
-                  pix.save(evidence / f'{path.stem}.png')
-              metrics[path.name] = {'pages': len(doc), 'min_font_pt': round(min_font,2), 'text_chars': len(text.strip()), 'links': len(links)}
+                  page.get_pixmap(matrix=fitz.Matrix(2,2), alpha=False).save(evidence / f'{path.stem}.png')
+              metrics[path.name] = {'pages':len(doc),'min_font_pt':round(min_font,2),'text_chars':len(text.strip()),'links':len(links)}
               doc.close()
 
           qa = Path('QA-report-targeted-cv-v28.md')
@@ -202,7 +202,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf .exporter v28-achievement-evidence tools
+          rm -rf .exporter v28-achievement-evidence tools achievement-update.log achievement-update.status
           rm -f .github/workflows/update-achievements-v28.yml
           rmdir .github/workflows 2>/dev/null || true
           rmdir .github 2>/dev/null || true
