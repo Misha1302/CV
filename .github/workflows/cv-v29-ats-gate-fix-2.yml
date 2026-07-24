@@ -1,0 +1,44 @@
+name: Patch CV v29 ATS gate v2
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.event.pull_request.head.ref == 'fix/cv-v29-consistency-readability'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Patch ATS order validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          path = Path('.github/workflows/cv-v29-hardening.yml')
+          text = path.read_text(encoding='utf-8')
+          pattern = r"(?m)^(\s*)expected_order = \['Mikhail Razakov'.*?\]\n\1positions = \[normalized\.find\(token\) for token in expected_order\]$"
+          replacement = """\1person = 'Mikhail Razakov' if path.name.endswith('_EN.pdf') else 'Михаил Разаков'
+\1if 'CPP_Systems' in path.name:
+\1    expected_order = [person, 'MCST' if path.name.endswith('_EN.pdf') else 'МЦСТ', 'PS-form']
+\1else:
+\1    expected_order = [person, 'UniversalToolchain', 'PS-form']
+\1positions = [normalized.find(token) for token in expected_order]"""
+          updated, count = re.subn(pattern, replacement, text, count=1)
+          if count != 1:
+              raise RuntimeError(f'Expected one ATS block, patched {count}')
+          path.write_text(updated, encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/cv-v29-hardening.yml
+          git commit -m 'Use robust content markers for PDF ATS order'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
