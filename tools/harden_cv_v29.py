@@ -14,11 +14,12 @@ EN_ACHIEVEMENT = (
 )
 
 
-def regex_replace(path: Path, pattern: str, replacement: str, expected: int = 1) -> None:
+def replace_section(path: Path, heading: str, body: str) -> None:
+    pattern = rf'(<section class="pcv-compact"><h2 class="pcv-section-title">{re.escape(heading)}</h2><p>).*?(</p></section>)'
     text = path.read_text(encoding='utf-8')
-    updated, count = re.subn(pattern, replacement, text, flags=re.DOTALL)
-    if count != expected:
-        raise RuntimeError(f'{path}: expected {expected} match(es), found {count}: {pattern[:100]!r}')
+    updated, count = re.subn(pattern, rf'\1{body}\2', text, flags=re.DOTALL)
+    if count != 1:
+        raise RuntimeError(f'{path}: expected one compact {heading!r} section, found {count}')
     path.write_text(updated, encoding='utf-8')
 
 
@@ -28,44 +29,40 @@ if len(html_files) != 17:
 ru_files = [p for p in html_files if p.name == 'ru.html' or p.name.startswith('ru-')]
 en_files = [p for p in html_files if p.name == 'en.html' or p.name.startswith('en-')]
 
+# Public cache keys.
 for path in html_files:
     text = path.read_text(encoding='utf-8')
-    text = text.replace('style.css?v=28', 'style.css?v=29').replace('script.js?v=28', 'script.js?v=29')
-    path.write_text(text, encoding='utf-8')
+    path.write_text(text.replace('style.css?v=28', 'style.css?v=29').replace('script.js?v=28', 'script.js?v=29'), encoding='utf-8')
 
-# Replace stale detailed Wist2 evidence by structural markers rather than brittle sentence equality.
-regex_replace(
-    Path('ru.html'),
-    r'<li>[^<]*75 \.NET-проектов[^<]*1 325 тестов[^<]*</li>',
-    '<li>Последний полный прогон от 23.07.2026: 1 358/1 358 тестов пройдены, 0 сбоев; сборка успешна.</li>',
-)
-regex_replace(
-    Path('en.html'),
-    r'<li>[^<]*75 \.NET projects[^<]*1,325[^<]*</li>',
-    '<li>The latest full run on July 23, 2026 completed 1,358/1,358 tests with 0 failures; the build succeeded.</li>',
-)
-
-for path, replacements in {
-    Path('ru-devtools.html'): (
-        ('<strong>1 325 тестов</strong>', '<strong>1 358 тестов</strong>'),
-        ('Настроил package-surface и clean-consumer smoke tests; проверенный baseline от 14.07.2026 — 75 .NET-проектов и 1 325 тестов.',
-         'Настроил package-surface и clean-consumer smoke tests; последний полный прогон от 23.07.2026 — 1 358/1 358 тестов, 0 сбоев, сборка успешна.'),
-        ('<strong>Результат:</strong> 75 .NET-проектов, 1 325 тестов, 0 предупреждений и 0 ошибок в проверенном отчёте от 14.07.2026.',
-         '<strong>Результат:</strong> полный прогон от 23.07.2026 — 1 358/1 358 тестов, 0 сбоев; сборка успешна.'),
-    ),
-    Path('en-devtools.html'): (
-        ('<strong>1,325 tests</strong>', '<strong>1,358 tests</strong>'),
-        ('Added package-surface and clean-consumer smoke tests; the public baseline covers 75 .NET projects and 1,325 tests.',
-         'Added package-surface and clean-consumer smoke tests; the latest full run on July 23, 2026 completed 1,358/1,358 tests with 0 failures and a successful build.'),
-        ('<strong>Result:</strong> 1,325 tests, 75 .NET projects, 0 warnings and 0 errors in the public verification record.',
-         '<strong>Result:</strong> the July 23, 2026 full run completed 1,358/1,358 tests with 0 failures; the build succeeded.'),
-    ),
-}.items():
+# Replace all stale Wist2 count claims structurally, regardless of minor sentence wording.
+ru_count_replacements = 0
+for path in ru_files:
     text = path.read_text(encoding='utf-8')
-    for old, new in replacements:
-        text = text.replace(old, new)
+    text, count = re.subn(
+        r'<li>[^<]*(?=[^<]*75 \.NET-проектов)(?=[^<]*1 325 тестов)[^<]*</li>',
+        '<li>Последний полный прогон от 23.07.2026: 1 358/1 358 тестов пройдены, 0 сбоев; сборка успешна.</li>',
+        text,
+    )
+    ru_count_replacements += count
+    text = text.replace('<strong>1 325 тестов</strong>', '<strong>1 358 тестов</strong>')
     path.write_text(text, encoding='utf-8')
 
+en_count_replacements = 0
+for path in en_files:
+    text = path.read_text(encoding='utf-8')
+    text, count = re.subn(
+        r'<li>[^<]*(?=[^<]*75 \.NET projects)(?=[^<]*1,325)[^<]*</li>',
+        '<li>The latest full run on July 23, 2026 completed 1,358/1,358 tests with 0 failures; the build succeeded.</li>',
+        text,
+    )
+    en_count_replacements += count
+    text = text.replace('<strong>1,325 tests</strong>', '<strong>1,358 tests</strong>')
+    path.write_text(text, encoding='utf-8')
+
+if ru_count_replacements < 2 or en_count_replacements < 2:
+    raise RuntimeError(f'Unexpected stale-count replacement totals: RU={ru_count_replacements}, EN={en_count_replacements}')
+
+# Restore the intended codegen evidence instead of duplicated wording.
 for path in ru_files:
     text = path.read_text(encoding='utf-8').replace(
         'Дизассемблирование и анализ compiler output; differential testing, differential testing и изолированный запуск.',
@@ -79,6 +76,7 @@ for path in en_files:
     )
     path.write_text(text, encoding='utf-8')
 
+# Russian C++ systems language pass, including the focused PDF source.
 ru_cpp = Path('ru-cpp-systems.html')
 text = ru_cpp.read_text(encoding='utf-8')
 for old, new in {
@@ -105,11 +103,12 @@ for name in ('en-compiler.html', 'en-cpp-systems.html'):
     path = Path(name)
     path.write_text(path.read_text(encoding='utf-8').replace('cdecl, stack/x87;', 'cdecl, stack frames and x87;'), encoding='utf-8')
 
-for name in ('ru-compiler.html', 'ru-cpp-systems.html'):
-    regex_replace(Path(name), r'(<section class="pcv-compact"><h2 class="pcv-section-title">Достижения</h2><p>).*?(</p></section>)', rf'\1{RU_ACHIEVEMENT}\2')
-for name in ('en-compiler.html', 'en-cpp-systems.html'):
-    regex_replace(Path(name), r'(<section class="pcv-compact"><h2 class="pcv-section-title">Recognition</h2><p>).*?(</p></section>)', rf'\1{EN_ACHIEVEMENT}\2')
+replace_section(Path('ru-compiler.html'), 'Достижения', RU_ACHIEVEMENT)
+replace_section(Path('ru-cpp-systems.html'), 'Достижения', RU_ACHIEVEMENT)
+replace_section(Path('en-compiler.html'), 'Recognition', EN_ACHIEVEMENT)
+replace_section(Path('en-cpp-systems.html'), 'Recognition', EN_ACHIEVEMENT)
 
+# Raise the real print font floor while keeping scale=1.0.
 style = Path('style.css')
 style_text = style.read_text(encoding='utf-8')
 if 'v29: focused-PDF readability hardening' in style_text:
@@ -131,6 +130,7 @@ style.write_text(style_text.rstrip() + '''
 }
 ''', encoding='utf-8')
 
+# Release files.
 for old, new in ((Path('CONTENT-REVIEW-v28.md'), Path('CONTENT-REVIEW-v29.md')), (Path('QA-report-targeted-cv-v28.md'), Path('QA-report-targeted-cv-v29.md'))):
     if not old.exists() or new.exists():
         raise RuntimeError(f'Cannot rename {old} -> {new}')
@@ -138,7 +138,7 @@ for old, new in ((Path('CONTENT-REVIEW-v28.md'), Path('CONTENT-REVIEW-v29.md')),
 
 readme = Path('README.md')
 readme_text = readme.read_text(encoding='utf-8').replace('# Mikhail Razakov - targeted CV variants v28', '# Mikhail Razakov - targeted CV variants v29', 1)
-section = '''## Изменения v29
+v29 = '''## Изменения v29
 
 - Подробные HTML-страницы синхронизированы с актуальным Wist2 baseline: 1 358/1 358 тестов, 0 сбоев, сборка успешна; удалены устаревшие 75 проектов / 1 325 тестов.
 - Удалено дублирование `differential testing`; формулировки про codegen снова содержат метрики spills/code size.
@@ -150,7 +150,7 @@ section = '''## Изменения v29
 '''
 if '## Изменения v28\n' not in readme_text:
     raise RuntimeError('README v28 history missing')
-readme_text = readme_text.replace('## Изменения v28\n', section + '## Изменения v28\n', 1).replace(
+readme_text = readme_text.replace('## Изменения v28\n', v29 + '## Изменения v28\n', 1).replace(
     'Предыдущая версия репозитория: v27, commit `31a7c75144d1555b3c3fa8ca1eb7e14969770561`.',
     'Предыдущая версия репозитория: v28, commit `d655f6854a1d5ac8d87393cc1f4c82567ac1ddee`.',
     1,
@@ -178,6 +178,7 @@ qa.write_text(qa.read_text(encoding='utf-8') + '''
 - before/after render review required before merge.
 ''', encoding='utf-8')
 
+# Source-level gates.
 corpus = '\n'.join(path.read_text(encoding='utf-8') for path in html_files)
 for stale in ('75 .NET-проектов', '1 325 тестов', '75 .NET projects', '1,325 tests', '1,325 passing tests', 'differential testing, differential testing'):
     if stale in corpus:
@@ -192,4 +193,4 @@ for stale in ('Strict toolchain', '<strong>Program analysis</strong>', '<strong>
 for required in ('Строгая сборка', 'Анализ программ', 'Низкоуровневая разработка', 'Инструменты и качество'):
     if required not in ru_cpp_text:
         raise RuntimeError(f'Russian C++ label missing: {required}')
-print('Applied CV v29 source changes')
+print(f'Applied CV v29 source changes; stale count claims replaced: RU={ru_count_replacements}, EN={en_count_replacements}')
