@@ -84,6 +84,9 @@ for path in en_files:
     ).replace(
         'differential tests, differential testing',
         'differential tests, spill/code-size metrics',
+    ).replace(
+        'differential tests, differential testing',
+        'differential tests, spill/code-size metrics',
     )
     write(path, text)
 
