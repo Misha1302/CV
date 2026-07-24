@@ -1,0 +1,59 @@
+name: Finalize v27 web
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/readable-cv-v27-web
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Patch web portfolio
+        run: python3 tools/patch_v27_web.py
+      - name: Install validators
+        run: python3 -m pip install --disable-pip-version-check beautifulsoup4 pymupdf
+      - name: Validate HTML and PDF surfaces
+        run: python3 tools/validate_v27_web.py
+      - name: Finalize QA and manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat >> QA-report-targeted-cv-v27.md <<'EOF'
+
+## Web consistency result
+
+- Detailed RU/EN HTML pages use the current 1,358-test run rather than the superseded 1,325-test / 75-project baseline.
+- The duplicated differential-testing phrase is removed.
+- NASM IA-32/CDECL/x87 and x86-64 codegen are separated consistently on web and PDF surfaces.
+- Full portfolio teaching text distinguishes about 50 general programming students from authorship of the NASM IA-32 course.
+- HTML/local-link/fragment checks and all 14 one-page PDF checks pass after the consistency patch.
+
+Web consistency verdict: PASS.
+EOF
+          rm -rf tools
+          rm -f .github/workflows/finalize-v27-web.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+          find . -type f ! -path './.git/*' ! -name 'MANIFEST.sha256' -print0 | sort -z | xargs -0 sha256sum > MANIFEST.sha256
+          sha256sum -c MANIFEST.sha256
+      - name: Commit clean verified result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Synchronize v27 web portfolio and focused CV claims'
+          git push origin HEAD:fix/readable-cv-v27-web
