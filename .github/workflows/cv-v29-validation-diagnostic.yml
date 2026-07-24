@@ -1,0 +1,75 @@
+name: CV v29 validation diagnostic
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Apply source changes
+        run: python3 tools/harden_cv_v29.py
+      - uses: actions/checkout@v4
+        with:
+          repository: Misha1302/cv-html-to-pdf-exporter
+          path: .exporter
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --disable-pip-version-check playwright pymupdf beautifulsoup4 pillow pyyaml
+          python3 -m playwright install --with-deps chromium
+      - name: Replay export and validation with complete logs
+        id: replay
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          import yaml
+
+          workflow = yaml.safe_load(Path('.github/workflows/cv-v29-hardening.yml').read_text(encoding='utf-8'))
+          steps = workflow['jobs']['harden-export-verify']['steps']
+          selected = {}
+          for step in steps:
+              name = step.get('name')
+              if name in {'Export focused PDFs at scale 1.0', 'Validate repository, PDFs and ATS text'}:
+                  selected[name] = step['run']
+          for name in ('Export focused PDFs at scale 1.0', 'Validate repository, PDFs and ATS text'):
+              script = selected[name]
+              filename = 'v29-export-replay.log' if name.startswith('Export') else 'v29-validation-replay.log'
+              result = subprocess.run(['bash', '-lc', script], text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+              Path(filename).write_text(result.stdout, encoding='utf-8')
+              print(f'=== {name} ===')
+              print(result.stdout)
+              if result.returncode:
+                  raise SystemExit(result.returncode)
+          PY
+          status=$?
+          echo "$status" > v29-validation-replay.status
+          exit "$status"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cv-v29-validation-replay-log
+          path: |
+            v29-export-replay.log
+            v29-validation-replay.log
+            v29-validation-replay.status
+            v29-layout-metrics.json
+            v29-pdf-metrics.json
+          retention-days: 7
+          if-no-files-found: warn
+      - name: Fail when replay failed
+        if: steps.replay.outcome == 'failure'
+        run: exit 1
