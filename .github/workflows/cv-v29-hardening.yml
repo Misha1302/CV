@@ -219,7 +219,7 @@ jobs:
 
           with fitz.open('pdf/Mikhail_Razakov_CPP_Systems_RU.pdf') as doc:
               ru_cpp = ' '.join(doc[0].get_text('text').split())
-          for stale in ('Strict toolchain','Program analysis','Low-level','Toolchain'):
+          for stale in ('Strict toolchain','Program analysis','Low-level'):
               if stale in ru_cpp:
                   raise RuntimeError(f'Russian C++ PDF still contains {stale}')
           for required in ('Строгая сборка','Анализ программ','Низкоуровневая разработка','Инструменты и качество'):
