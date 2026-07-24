@@ -208,7 +208,6 @@ jobs:
           (out / 'after').mkdir(parents=True, exist_ok=True)
           metrics = {}
 
-          # Render preserved v28 PDFs for visual comparison.
           for before in sorted((out / 'before-pdf').glob('*.pdf')):
               with fitz.open(before) as doc:
                   page = doc[0]
@@ -255,7 +254,11 @@ jobs:
                   missing = [token for token in required if token not in normalized]
                   if missing:
                       raise RuntimeError(f'{path}: achievement wording missing: {missing}')
-                  expected_order = ['Mikhail Razakov' if path.name.endswith('_EN.pdf') else 'Михаил Разаков', 'Experience' if path.name.endswith('_EN.pdf') else 'Опыт', 'Selected projects' if path.name.endswith('_EN.pdf') else 'Избранные проекты']
+                  person = 'Mikhail Razakov' if path.name.endswith('_EN.pdf') else 'Михаил Разаков'
+                  if 'CPP_Systems' in path.name:
+                      expected_order = [person, 'MCST' if path.name.endswith('_EN.pdf') else 'МЦСТ', 'PS-form']
+                  else:
+                      expected_order = [person, 'UniversalToolchain', 'PS-form']
                   positions = [normalized.find(token) for token in expected_order]
                   if any(pos < 0 for pos in positions) or positions != sorted(positions):
                       raise RuntimeError(f'{path}: ATS text order failed: {dict(zip(expected_order, positions))}')
