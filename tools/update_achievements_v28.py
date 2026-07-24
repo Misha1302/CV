@@ -16,25 +16,25 @@ EN_TEXT = (
     "Science and Engineering Competition."
 )
 
-ARTICLE = re.compile(
-    r'<article class="recognition-item">(?:(?!</article>).)*?'
-    r'https://olymp\.mephi\.ru/junior/winners/2025(?:(?!</article>).)*?'
-    r'https://olymp\.mephi\.ru/junior/winners/2026(?:(?!</article>).)*?'
-    r'https://baltkonkurs\.ru/features/po-godam/xxii-konkurs-2026/(?:(?!</article>).)*?</article>',
-    re.DOTALL,
-)
+ARTICLE = re.compile(r'<article class="recognition-item">.*?</article>', re.DOTALL)
 
 
 def patch_article(text: str, title: str, body: str, path: Path) -> str:
-    matches = list(ARTICLE.finditer(text))
-    if len(matches) != 1:
-        raise RuntimeError(f"{path}: expected one national-achievements article, found {len(matches)}")
-    article = matches[0].group(0)
+    candidates = []
+    for match in ARTICLE.finditer(text):
+        article = match.group(0)
+        if "olymp.mephi.ru/junior/winners/2025" in article and "olymp.mephi.ru/junior/winners/2026" in article:
+            candidates.append(match)
+    if len(candidates) != 1:
+        summaries = [re.sub(r"\s+", " ", m.group(0))[:180] for m in ARTICLE.finditer(text)]
+        raise RuntimeError(f"{path}: expected one Junior 2025/2026 recognition article, found {len(candidates)}; articles={summaries}")
+    match = candidates[0]
+    article = match.group(0)
     article, h_count = re.subn(r"<h3>.*?</h3>", f"<h3>{title}</h3>", article, count=1, flags=re.DOTALL)
     article, p_count = re.subn(r"<p>.*?</p>", f"<p>{body}</p>", article, count=1, flags=re.DOTALL)
     if h_count != 1 or p_count != 1:
         raise RuntimeError(f"{path}: could not patch recognition title/body")
-    return text[: matches[0].start()] + article + text[matches[0].end() :]
+    return text[: match.start()] + article + text[match.end() :]
 
 
 html_files = sorted(Path(".").glob("*.html"))
@@ -52,6 +52,7 @@ for path in ru_targets:
     )
     text = text.replace("style.css?v=27", "style.css?v=28").replace("script.js?v=27", "script.js?v=28")
     path.write_text(text, encoding="utf-8")
+    print(f"patched {path}")
 
 for path in en_targets:
     text = path.read_text(encoding="utf-8")
@@ -62,6 +63,7 @@ for path in en_targets:
     )
     text = text.replace("style.css?v=27", "style.css?v=28").replace("script.js?v=27", "script.js?v=28")
     path.write_text(text, encoding="utf-8")
+    print(f"patched {path}")
 
 index = Path("index.html")
 index_text = index.read_text(encoding="utf-8").replace("style.css?v=27", "style.css?v=28").replace("script.js?v=27", "script.js?v=28")
@@ -81,8 +83,7 @@ for path in [
     Path("LANGUAGE-REVIEW.md"), Path("EXPERIENCE-AUDIT.md"), Path("FACT-RETENTION.md"),
     Path("LINK-AUDIT.md"), Path("CONTENT-REVIEW-v28.md"), Path("QA-report-targeted-cv-v28.md"),
 ]:
-    text = path.read_text(encoding="utf-8")
-    text = text.replace("v27", "v28")
+    text = path.read_text(encoding="utf-8").replace("v27", "v28")
     path.write_text(text, encoding="utf-8")
 
 readme = Path("README.md")
