@@ -81,6 +81,9 @@ for path in en_files:
     text = path.read_text(encoding='utf-8').replace(
         'Disassembly and compiler-output analysis; differential testing, differential testing and isolated execution.',
         'Disassembly and compiler-output analysis; differential testing, spill/code-size metrics and isolated execution.',
+    ).replace(
+        'differential tests, differential testing',
+        'differential tests, spill/code-size metrics',
     )
     write(path, text)
 
