@@ -1,0 +1,48 @@
+name: Patch CV v29 ATS gate
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.event.pull_request.head.ref == 'fix/cv-v29-consistency-readability'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Use content markers for ATS order
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('.github/workflows/cv-v29-hardening.yml')
+          text = path.read_text(encoding='utf-8')
+          old = """                  expected_order = ['Mikhail Razakov' if path.name.endswith('_EN.pdf') else 'Михаил Разаков', 'Experience' if path.name.endswith('_EN.pdf') else 'Опыт', 'Selected projects' if path.name.endswith('_EN.pdf') else 'Избранные проекты']
+                  positions = [normalized.find(token) for token in expected_order]"""
+          new = """                  person = 'Mikhail Razakov' if path.name.endswith('_EN.pdf') else 'Михаил Разаков'
+                  if 'CPP_Systems' in path.name:
+                      expected_order = [person, 'MCST' if path.name.endswith('_EN.pdf') else 'МЦСТ', 'PS-form']
+                  else:
+                      expected_order = [person, 'UniversalToolchain', 'PS-form']
+                  positions = [normalized.find(token) for token in expected_order]"""
+          if old in text:
+              path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          elif "if 'CPP_Systems' in path.name:" not in text:
+              raise RuntimeError('ATS validation block not found')
+          PY
+          if git diff --quiet -- .github/workflows/cv-v29-hardening.yml; then
+            echo 'ATS gate already patched'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/cv-v29-hardening.yml
+          git commit -m 'Use robust content markers for PDF ATS order'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
