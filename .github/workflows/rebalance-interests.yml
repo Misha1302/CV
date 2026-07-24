@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
 
+# Trigger commit after the workflow already exists on main.
 jobs:
   finalize:
     if: github.event.head_commit.message == 'Run CV v27 finalizer'
