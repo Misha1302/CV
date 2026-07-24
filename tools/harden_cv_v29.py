@@ -29,12 +29,10 @@ if len(html_files) != 17:
 ru_files = [p for p in html_files if p.name == 'ru.html' or p.name.startswith('ru-')]
 en_files = [p for p in html_files if p.name == 'en.html' or p.name.startswith('en-')]
 
-# Public cache keys.
 for path in html_files:
     text = path.read_text(encoding='utf-8')
     path.write_text(text.replace('style.css?v=28', 'style.css?v=29').replace('script.js?v=28', 'script.js?v=29'), encoding='utf-8')
 
-# Replace all stale Wist2 count claims structurally, regardless of minor sentence wording.
 ru_count_replacements = 0
 for path in ru_files:
     text = path.read_text(encoding='utf-8')
@@ -62,7 +60,6 @@ for path in en_files:
 if ru_count_replacements < 2 or en_count_replacements < 2:
     raise RuntimeError(f'Unexpected stale-count replacement totals: RU={ru_count_replacements}, EN={en_count_replacements}')
 
-# Restore the intended codegen evidence instead of duplicated wording.
 for path in ru_files:
     text = path.read_text(encoding='utf-8').replace(
         'Дизассемблирование и анализ compiler output; differential testing, differential testing и изолированный запуск.',
@@ -76,7 +73,6 @@ for path in en_files:
     )
     path.write_text(text, encoding='utf-8')
 
-# Russian C++ systems language pass, including the focused PDF source.
 ru_cpp = Path('ru-cpp-systems.html')
 text = ru_cpp.read_text(encoding='utf-8')
 for old, new in {
@@ -108,7 +104,6 @@ replace_section(Path('ru-cpp-systems.html'), 'Достижения', RU_ACHIEVEM
 replace_section(Path('en-compiler.html'), 'Recognition', EN_ACHIEVEMENT)
 replace_section(Path('en-cpp-systems.html'), 'Recognition', EN_ACHIEVEMENT)
 
-# Raise the real print font floor while keeping scale=1.0.
 style = Path('style.css')
 style_text = style.read_text(encoding='utf-8')
 if 'v29: focused-PDF readability hardening' in style_text:
@@ -130,7 +125,6 @@ style.write_text(style_text.rstrip() + '''
 }
 ''', encoding='utf-8')
 
-# Release files.
 for old, new in ((Path('CONTENT-REVIEW-v28.md'), Path('CONTENT-REVIEW-v29.md')), (Path('QA-report-targeted-cv-v28.md'), Path('QA-report-targeted-cv-v29.md'))):
     if not old.exists() or new.exists():
         raise RuntimeError(f'Cannot rename {old} -> {new}')
@@ -178,7 +172,6 @@ qa.write_text(qa.read_text(encoding='utf-8') + '''
 - before/after render review required before merge.
 ''', encoding='utf-8')
 
-# Source-level gates.
 corpus = '\n'.join(path.read_text(encoding='utf-8') for path in html_files)
 for stale in ('75 .NET-проектов', '1 325 тестов', '75 .NET projects', '1,325 tests', '1,325 passing tests', 'differential testing, differential testing'):
     if stale in corpus:
