@@ -25,6 +25,14 @@ jobs:
           set +e
           python3 tools/harden_cv_v29.py > v29-source-patch.log 2>&1
           status=$?
+          {
+            echo
+            echo '--- stale-count locations after attempted patch ---'
+            grep -nH -E '75 \.NET-проектов|1 325 тестов|75 \.NET projects|1,325 tests' *.html || true
+            echo
+            echo '--- duplicate-wording locations ---'
+            grep -nH 'differential testing, differential testing' *.html || true
+          } >> v29-source-patch.log
           cat v29-source-patch.log
           echo "$status" > v29-source-patch.status
           exit "$status"
