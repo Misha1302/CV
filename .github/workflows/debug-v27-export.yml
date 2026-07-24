@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - fix/readable-cv-v27
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -29,7 +32,7 @@ jobs:
           set -o pipefail
           python3 - <<'PY' 2>&1 | tee debug-v27.log
           from pathlib import Path
-          import sys, json, traceback
+          import sys, json
           from playwright.sync_api import sync_playwright
           sys.path.insert(0, str(Path('.exporter').resolve()))
           import export_cv_html_to_pdf as helper
