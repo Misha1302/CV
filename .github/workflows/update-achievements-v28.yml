@@ -66,10 +66,12 @@ jobs:
                   browser.close()
           PY
       - name: Validate HTML and PDFs
+        id: validate
+        continue-on-error: true
         shell: bash
         run: |
-          set -euo pipefail
-          python3 - <<'PY'
+          set +e
+          python3 - <<'PY' > validation.log 2>&1
           from pathlib import Path
           from urllib.parse import urlparse, unquote
           import json
@@ -118,7 +120,7 @@ jobs:
               if path.name in changed:
                   required = ['1-е место', '2025', '2026', 'Главная премия'] if path.name.endswith('_RU.pdf') else ['1st by total score', '2025', '2026', 'Grand Prize']
                   missing = [token for token in required if token not in normalized]
-                  if missing: raise RuntimeError(f'{path}: achievement tokens missing: {missing}; text={normalized[-700:]}')
+                  if missing: raise RuntimeError(f'{path}: achievement tokens missing: {missing}; text={normalized[-900:]}')
                   page.get_pixmap(matrix=fitz.Matrix(2,2), alpha=False).save(out / f'{path.stem}.png')
               metrics[path.name] = {'pages':1,'min_font_pt':round(min_font,2),'text_chars':len(text.strip()),'links':len(links)}
               doc.close()
@@ -127,18 +129,31 @@ jobs:
               f.write('\n## v28 focused-PDF validation\n\n```json\n')
               f.write(json.dumps({k:v for k,v in metrics.items() if k in changed}, ensure_ascii=False, indent=2))
               f.write('\n```\n\nAutomated v28 achievement/PDF verdict: PASS.\n')
+          print(json.dumps(metrics, ensure_ascii=False, indent=2))
           PY
-      - uses: actions/upload-artifact@v4
+          status=$?
+          echo "$status" > validation.status
+          cat validation.log
+          exit "$status"
+      - name: Upload validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: cv-v28-achievement-renders
-          path: v28-achievement-evidence/*.png
+          name: cv-v28-achievement-diagnostics
+          path: |
+            validation.log
+            validation.status
+            v28-achievement-evidence/*.png
           retention-days: 7
-          if-no-files-found: error
+          if-no-files-found: warn
+      - name: Stop after failed validation
+        if: steps.validate.outcome == 'failure'
+        run: exit 1
       - name: Commit clean result
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf .exporter v28-achievement-evidence tools
+          rm -rf .exporter v28-achievement-evidence tools validation.log validation.status
           rm -f .github/workflows/update-achievements-v28.yml
           rmdir .github/workflows 2>/dev/null || true
           rmdir .github 2>/dev/null || true
