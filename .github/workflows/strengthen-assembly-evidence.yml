@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - feat/assembly-evidence-2026-07-24
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -125,6 +128,7 @@ jobs:
           if-no-files-found: error
 
       - name: Finalize branch commit and manifest
+        if: github.event_name != 'pull_request'
         shell: bash
         run: |
           set -euo pipefail
