@@ -1,0 +1,40 @@
+name: Patch compiler v30 source normalizer
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.event.pull_request.head.ref == 'fix/compiler-cv-v30-final-hardening'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Align source normalizer with v29 English print markup
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('tools/harden_compiler_cv_v30.py')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace('1st out of 49', '1st of 49')
+          old = '<li>Developed C++23 graph-analysis components; used CMake, warnings-as-errors, ASan/UBSan, clang-tidy and explicit include dependencies.</li><li>Implemented RPO with cycle detection, Dijkstra, Tarjan SCC and Dinic over a shared graph model; added reproducible I/O tests.</li>'
+          current = '<li>C++23 graph-analysis components under CMake, warnings-as-errors, ASan/UBSan, clang-tidy and explicit includes.</li><li>RPO with cycle detection, Dijkstra, Tarjan SCC and Dinic over a shared graph model and reproducible I/O tests.</li>'
+          if old not in text:
+              raise RuntimeError('Expected English MCST source literal not found')
+          path.write_text(text.replace(old, current, 1), encoding='utf-8')
+          PY
+          rm -f .github/workflows/compiler-v30-source-diagnostic.yml
+          rm -f .github/workflows/patch-compiler-v30-script.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Align compiler v30 normalizer with current English markup'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
