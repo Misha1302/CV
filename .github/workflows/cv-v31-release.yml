@@ -68,9 +68,27 @@ jobs:
           PY
           python tools/validate_cv.py
       - name: Commit clean v31 release
+        id: release_commit
+        continue-on-error: true
+        shell: bash
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "feat(cv): strengthen Wist2 positioning and rebuild targeted PDFs"
-          git push origin HEAD:feat/wist2-cv-v31-strong-positioning
+          set -o pipefail
+          {
+            git status --short
+            git diff --stat
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git status --short
+            git commit -m "feat(cv): strengthen Wist2 positioning and rebuild targeted PDFs"
+            git push origin HEAD:feat/wist2-cv-v31-strong-positioning
+          } 2>&1 | tee /tmp/cv-v31-commit.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cv-v31-commit-diagnostics
+          path: /tmp/cv-v31-commit.log
+          if-no-files-found: error
+      - name: Fail when release commit failed
+        if: steps.release_commit.outcome != 'success'
+        run: exit 1
