@@ -1,0 +1,115 @@
+name: Finalize CV v32 compact polish
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/cv-v32-review-hardening
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          pip install beautifulsoup4 playwright pymupdf
+          python -m playwright install --with-deps chromium
+      - name: Apply compact final content
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path=Path('data/cv-print-profiles.json')
+          data=json.loads(path.read_text(encoding='utf-8'))
+          p=data['profiles']
+          for key in ['ru-devtools.html','en-devtools.html','ru-cpp-systems.html','en-cpp-systems.html']:
+              p[key]['density']='spacious'; p[key]['min_fill']=0.82
+
+          ru=p['ru-devtools.html']
+          ru['summary']='Разработал экспериментальный PlanFuzz: нейтральное к языку ядро, адаптер Acme и ограниченный адаптер Wist для Int32, семь семейств оракулов, fresh-process replay, точные отпечатки и детерминированное сокращение.'
+          ru['experience'][0][2]=['Нейтральное к языку ядро, адаптер Acme, ограниченный адаптер Wist для Int32 и структурные генераторы.','Строгая семантика исходов и доказательств, fresh-process confirmation и детерминированные reducers.']
+          ru['experience'][1][1]='Инструменты Wist'
+          ru['experience'][1][2]=['Типизированные API, структурированные diagnostics, versioned traces и parity интерпретатора/CIL.','Canonical gate: 1 465/1 465 тестов, 9 packages и два clean-consumer smoke.']
+          ru['skills'][0][0]='Тестирование'; ru['skills'][1][0]='Диагностика'; ru['skills'][2][0]='Релизная проверка'
+          ru['ats_order']=['Михаил Разаков','Инженер по тестированию компиляторов и инструментам разработчика','ОПЫТ','Инструменты Wist','ИЗБРАННЫЕ ПРОЕКТЫ','PS-form Harness']
+
+          ru=p['ru-compiler.html']
+          ru['summary']='Разрабатываю UniversalToolchain/Wist2 — SDK типизированной композиции языковых компонентов и runtime: межпакетные планы, manifest binding, callable-first SSA, Wist facade и экспериментальный PlanFuzz.'
+          ru['proofs'][0]=['Планы композиции','маршруты, проходы, capabilities и exact executor']
+          ru['experience'][0][2]=['Typed SDK: независимые language packages, детерминированные маршруты и schema-v5 lock.','Fail-closed runtime, exact manifest binding и lifecycle ownership.','Callable-first SSA: effects, determinism, trust и verifier-gated roundtrip.','PlanFuzz: language-neutral core, Acme + restricted Wist Int32 adapters, 7 oracles, replay и reducers.']
+          ru['projects'][0][1]='Экспериментальное configuration-aware testing: Acme и restricted Wist Int32 adapters, fresh-process confirmation и deterministic program/plan reduction.'
+
+          path.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+
+          cat >> style.css <<'CSS'
+
+          /* v32 final: bounded larger type for shorter flagship profiles */
+          @media print {
+            .print-cv.pcv-spacious { padding: 10.2mm 10.5mm 9.2mm; font-size: 10.6pt; line-height: 1.38; }
+            .pcv-spacious .pcv-header { padding-bottom: 3.6mm; }
+            .pcv-spacious .pcv-header h1 { font-size: 28pt; }
+            .pcv-spacious .pcv-header h2 { margin-top: 1.9mm; font-size: 14pt; }
+            .pcv-spacious .pcv-contact { font-size: 9.8pt; line-height: 1.47; }
+            .pcv-spacious .pcv-summary { margin: 4.7mm 0 4.2mm; font-size: 10.95pt; line-height: 1.43; }
+            .pcv-spacious .pcv-proofs { gap: 3.3mm; margin-bottom: 5.2mm; }
+            .pcv-spacious .pcv-proof { min-height: 22.8mm; padding: 3.7mm; }
+            .pcv-spacious .pcv-proof strong { font-size: 12.2pt; }
+            .pcv-spacious .pcv-proof span { margin-top: 1.6mm; font-size: 9.4pt; line-height: 1.31; }
+            .pcv-spacious .pcv-columns { gap: 7.1mm; }
+            .pcv-spacious .pcv-main section + section, .pcv-spacious .pcv-side section + section { margin-top: 5.5mm; }
+            .pcv-spacious .pcv-section-title { margin-bottom: 2.8mm; font-size: 12.2pt; }
+            .pcv-spacious .pcv-entry { padding: 3mm 0 3.7mm; }
+            .pcv-spacious .pcv-date { font-size: 9pt; }
+            .pcv-spacious .pcv-entry h3, .pcv-spacious .pcv-project h3 { font-size: 10.85pt; }
+            .pcv-spacious .pcv-entry ul { margin-top: 1.8mm; }
+            .pcv-spacious .pcv-entry li { margin-bottom: 1.2mm; font-size: 9.7pt; line-height: 1.34; }
+            .pcv-spacious .pcv-project { padding: 2.9mm 0 3.3mm; }
+            .pcv-spacious .pcv-project p { margin-top: 1.45mm; font-size: 9.7pt; line-height: 1.36; }
+            .pcv-spacious .pcv-skill { padding: 2.25mm 0; }
+            .pcv-spacious .pcv-skill strong { font-size: 9.85pt; }
+            .pcv-spacious .pcv-skill span { font-size: 9.25pt; line-height: 1.34; }
+            .pcv-spacious .pcv-compact p { font-size: 9.55pt; line-height: 1.4; }
+          }
+          CSS
+      - name: Generate and validate clean release
+        run: |
+          python tools/build_cv.py --write-html
+          python tools/build_cv.py --render-dir pdf --evidence-dir /tmp/cv-v32-final-render --report /tmp/cv-v32-final-report.json
+          rm -f .github/workflows/cv-v32-final-polish.yml .github/workflows/cv-v32-finalize-v2.yml .github/workflows/cv-v32-diagnose.yml .github/workflows/cv-v32-finalize-v3.yml
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          root=Path('.'); manifest=root/'MANIFEST.sha256'; lines=[]
+          for path in sorted(root.rglob('*')):
+              if not path.is_file() or path==manifest or '.git' in path.parts: continue
+              lines.append(f'{hashlib.sha256(path.read_bytes()).hexdigest()}  ./{path.relative_to(root).as_posix()}')
+          manifest.write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          PY
+          rm -rf /tmp/cv-v32-final-clean
+          python tools/build_cv.py --render-dir /tmp/cv-v32-final-clean --evidence-dir /tmp/cv-v32-final-clean-render --report /tmp/cv-v32-final-clean-report.json
+          python tools/validate_cv.py --pdf-dir /tmp/cv-v32-final-clean --compare-dir pdf --skip-manifest
+          python tools/validate_cv.py --pdf-dir pdf
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cv-v32-final-review-evidence
+          path: |
+            /tmp/cv-v32-final-report.json
+            /tmp/cv-v32-final-clean-report.json
+            /tmp/cv-v32-final-render
+          if-no-files-found: error
+      - name: Commit final release
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix(cv): finalize developer-review hardening"
+          git push origin HEAD:feat/cv-v32-review-hardening
