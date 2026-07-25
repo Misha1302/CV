@@ -1,10 +1,9 @@
 name: Build targeted CV v31
 
 on:
-  push:
+  pull_request:
     branches:
-      - feat/wist2-cv-v31-strong-positioning
-  workflow_dispatch:
+      - main
 
 concurrency:
   group: cv-v31-release
