@@ -64,7 +64,7 @@
       ],
       "skills": [
         [
-          "Language architecture",
+          "Архитектура языков",
           "typed artifacts, contribution graphs, routes, passes, manifests"
         ],
         [
@@ -72,11 +72,11 @@
           "Bytecode/AIR, callable descriptors, CFG, dominance, folding, SCCP-lite, DCE"
         ],
         [
-          "Verification",
+          "Верификация",
           "differential/metamorphic testing, exact oracles, replay, reducers, parity"
         ],
         [
-          "Languages",
+          "Языки",
           "C#/.NET, C++23, C17, Python, Rust"
         ]
       ],
@@ -175,19 +175,19 @@
       ],
       "pdf": "Mikhail_Razakov_DevTools_RU.pdf",
       "name": "Михаил Разаков",
-      "role": "Инженер по compiler testing и developer tools",
-      "summary": "Разработал PlanFuzz: language-neutral configuration-aware differential testing с семью oracle families, fresh-process replay, exact fingerprints и deterministic program/plan reduction.",
+      "role": "Инженер по тестированию компиляторов и инструментам разработчика",
+      "summary": "Разработал PlanFuzz — нейтральную к языку систему дифференциального тестирования с учётом конфигурации: семь семейств оракулов, повторное выполнение в свежих процессах, точные отпечатки и детерминированное сокращение программ и планов.",
       "proofs": [
         [
-          "7 oracle families",
+          "7 семейств оракулов",
           "backend/route parity, determinism, surface, extensions, fallback, locks"
         ],
         [
-          "Fresh-process evidence",
+          "Подтверждение в свежих процессах",
           "typed observations, exact fingerprints, replayable artifacts"
         ],
         [
-          "1 459 tests",
+          "1 459 тестов",
           "PlanFuzz + SDK + Wist; 0 failures"
         ]
       ],
@@ -237,7 +237,7 @@
           "package surfaces, clean consumers, manifests, CI"
         ],
         [
-          "Languages",
+          "Языки",
           "C#/.NET, C++23, C17, Python, Rust"
         ]
       ],
@@ -335,19 +335,19 @@
       ],
       "pdf": "Mikhail_Razakov_CPP_Systems_RU.pdf",
       "name": "Михаил Разаков",
-      "role": "C++ Systems / Program Analysis Engineer",
-      "summary": "C++23, program analysis и низкоуровневая разработка: PS-form Analyzer, AdvancedAlgorithms, LLVM-track стажировка, NASM IA-32 и x86-64 codegen.",
+      "role": "Инженер по C++-системам и анализу программ",
+      "summary": "C++23, анализ программ и низкоуровневая разработка: PS-form Analyzer, AdvancedAlgorithms, стажировка на LLVM-направлении, NASM IA-32 и генерация x86-64-кода.",
       "proofs": [
         [
           "1-е место · 104/104",
           "PS-form; единственный максимальный результат из 49"
         ],
         [
-          "12 C++23 modules",
-          "contracts, differential tests, sanitizers and stress"
+          "12 модулей C++23",
+          "контракты, дифференциальные тесты, санитайзеры и stress-тесты"
         ],
         [
-          "Strict toolchain",
+          "Строгая сборка",
           "CMake, -Werror, ASan/UBSan, clang-tidy"
         ]
       ],
@@ -385,19 +385,19 @@
       ],
       "skills": [
         [
-          "C++ systems",
+          "C++-системы",
           "C++23, CMake, contracts, sanitizers, static analysis"
         ],
         [
-          "Program analysis",
+          "Анализ программ",
           "graphs, data flow, memory dependence, liveness"
         ],
         [
-          "Low-level",
+          "Низкоуровневая разработка",
           "NASM IA-32, CDECL, x87, x86-64 codegen"
         ],
         [
-          "Languages",
+          "Языки",
           "C++23, C17, C#/.NET, Python, Rust"
         ]
       ],
@@ -495,20 +495,20 @@
       ],
       "pdf": "Mikhail_Razakov_Algorithms_RU.pdf",
       "name": "Михаил Разаков",
-      "role": "Algorithm / Solver Engineer",
-      "summary": "Разрабатываю переиспользуемые алгоритмические компоненты: AdvancedAlgorithms, PS-form memory-dependence analysis и графовую инфраструктуру для LLVM-track стажировки.",
+      "role": "Инженер по алгоритмам и оптимизации",
+      "summary": "Разрабатываю переиспользуемые алгоритмические компоненты: AdvancedAlgorithms, анализ зависимостей памяти PS-form и графовую инфраструктуру для стажировки на LLVM-направлении.",
       "proofs": [
         [
-          "12 C++23 modules",
-          "graphs, trees, strings and data structures"
+          "12 модулей C++23",
+          "графы, деревья, строки и структуры данных"
         ],
         [
           "1-е место · 104/104",
           "PS-form; единственный максимум из 49"
         ],
         [
-          "500k vertices",
-          "stress tests for recursion and accidental O(n²)"
+          "500 тыс. вершин",
+          "stress-тесты против рекурсии и случайной O(n²)"
         ]
       ],
       "experience": [
@@ -544,19 +544,19 @@
       ],
       "skills": [
         [
-          "Algorithms",
+          "Алгоритмы",
           "graphs, trees, strings, data structures, optimization"
         ],
         [
-          "Correctness",
+          "Корректность",
           "differential tests, exact oracles, invariants, sanitizers"
         ],
         [
-          "Complexity",
+          "Сложность",
           "explicit bounds, large inputs, non-flaky performance gates"
         ],
         [
-          "Languages",
+          "Языки",
           "C++23, C17, Python, C#/.NET, Rust"
         ]
       ],
@@ -653,20 +653,20 @@
       ],
       "pdf": "Mikhail_Razakov_Backend_RU.pdf",
       "name": "Михаил Разаков",
-      "role": ".NET Backend Engineer · reliability-focused systems",
-      "summary": "Проектирую .NET-сервисы с явными моделями состояния: подписки, платежи, роли, устройства, миграции, recovery, health gates и безопасные релизы.",
+      "role": ".NET-бэкенд-разработчик · надёжные системы",
+      "summary": "Проектирую .NET-сервисы с явными моделями состояния: подписки, платежи, роли, устройства, миграции, восстановление, проверки работоспособности и безопасные релизы.",
       "proofs": [
         [
           "2 сервиса + 1 клиентская система",
-          "VPN, LMS and licensing API"
+          "VPN, LMS и API лицензирования"
         ],
         [
-          "Payments & recovery",
-          "idempotency, outbox, audit trail, reconciliation"
+          "Платежи и восстановление",
+          "идемпотентность, outbox, журнал аудита, reconciliation"
         ],
         [
           "ASP.NET · PostgreSQL · Linux",
-          "API, data, deployment and rollback"
+          "API, данные, развёртывание и откат"
         ]
       ],
       "experience": [
@@ -702,19 +702,19 @@
       ],
       "skills": [
         [
-          "Backend",
+          "Бэкенд",
           "C#, .NET, ASP.NET Core, REST, OpenAPI, webhooks"
         ],
         [
-          "Data",
+          "Данные",
           "PostgreSQL, SQLite, migrations, transactions"
         ],
         [
-          "Reliability",
+          "Надёжность",
           "idempotency, outbox, audit, recovery, backup/restore"
         ],
         [
-          "Operations",
+          "Эксплуатация",
           "Docker Compose, nginx, systemd, health gates, rollback"
         ]
       ],
@@ -811,20 +811,20 @@
       ],
       "pdf": "Mikhail_Razakov_Reliability_RU.pdf",
       "name": "Михаил Разаков",
-      "role": ".NET Backend Engineer · корректность состояния и recovery",
-      "summary": "Backend с фокусом на инварианты состояния, идемпотентное восстановление и проверяемые релизы — не отдельная SRE-роль, а ответственность разработчика за поведение сервиса после сбоев.",
+      "role": ".NET-бэкенд-разработчик · корректность состояния и восстановление",
+      "summary": "Бэкенд с фокусом на инварианты состояния, идемпотентное восстановление и проверяемые релизы — не отдельная SRE-роль, а ответственность разработчика за поведение сервиса после сбоев.",
       "proofs": [
         [
-          "State invariants",
-          "subscriptions, payments, balances, devices"
+          "Инварианты состояния",
+          "подписки, платежи, балансы и устройства"
         ],
         [
-          "Fail-safe recovery",
-          "outbox, audit trail, reconciliation"
+          "Восстановление после сбоев",
+          "outbox, журнал аудита и reconciliation"
         ],
         [
-          "Verifiable releases",
-          "backup/restore, health gates, rollback"
+          "Проверяемые релизы",
+          "backup/restore, проверки работоспособности и откат"
         ]
       ],
       "experience": [
@@ -860,11 +860,11 @@
       ],
       "skills": [
         [
-          "State correctness",
+          "Корректность состояния",
           "state machines, invariants, idempotency, transactions"
         ],
         [
-          "Recovery",
+          "Восстановление",
           "outbox, reconciliation, audit trails, restart safety"
         ],
         [
@@ -969,7 +969,7 @@
       ],
       "pdf": "Mikhail_Razakov_EdTech_RU.pdf",
       "name": "Михаил Разаков",
-      "role": ".NET Backend Engineer · EdTech",
+      "role": ".NET-бэкенд-разработчик · EdTech",
       "summary": "Соединяю опыт преподавания примерно 50 учеников с backend-разработкой LMS: роли, группы, занятия, домашние задания, feedback, balances, платежи и эксплуатация.",
       "proofs": [
         [
@@ -1019,19 +1019,19 @@
       ],
       "skills": [
         [
-          "EdTech domain",
+          "Предметная область EdTech",
           "learning workflows, roles, feedback, teacher/admin scenarios"
         ],
         [
-          "Backend",
+          "Бэкенд",
           "C#/.NET, PostgreSQL, REST, payments, webhooks"
         ],
         [
-          "Product support",
+          "Поддержка продукта",
           "user feedback, responsive regressions, production checks"
         ],
         [
-          "Teaching",
+          "Преподавание",
           "C/C++, C#, Python, algorithms, architecture"
         ]
       ],
