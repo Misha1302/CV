@@ -115,13 +115,13 @@ replace_exact(
 )
 replace_exact(
     en,
-    '<div class="pcv-proofs"><div class="pcv-proof"><strong>AIR → SSA → AIR</strong><span>Optimizations and structural verifiers</span></div><div class="pcv-proof"><strong>1,358 / 1,358 tests</strong><span>Latest full run; build succeeded</span></div><div class="pcv-proof"><strong>1st out of 49</strong><span>PS-form Analyzer, 104/104</span></div></div>',
-    '<div class="pcv-proofs"><div class="pcv-proof"><strong>AIR → SSA → AIR</strong><span>Optimizations and structural verifiers</span></div><div class="pcv-proof"><strong>1st out of 49</strong><span>PS-form Analyzer, 104/104</span></div><div class="pcv-proof"><strong>1,358 / 1,358 tests</strong><span>IR transforms, interpreter/CIL parity and contracts</span></div></div>',
+    '<div class="pcv-proofs"><div class="pcv-proof"><strong>AIR → SSA → AIR</strong><span>Optimizations and structural verifiers</span></div><div class="pcv-proof"><strong>1,358 / 1,358 tests</strong><span>Latest full run; build succeeded</span></div><div class="pcv-proof"><strong>1st of 49</strong><span>PS-form Analyzer, 104/104</span></div></div>',
+    '<div class="pcv-proofs"><div class="pcv-proof"><strong>AIR → SSA → AIR</strong><span>Optimizations and structural verifiers</span></div><div class="pcv-proof"><strong>1st of 49</strong><span>PS-form Analyzer, 104/104</span></div><div class="pcv-proof"><strong>1,358 / 1,358 tests</strong><span>IR transforms, interpreter/CIL parity and contracts</span></div></div>',
 )
 replace_exact(en, "MCST - compiler engineering intern</h3>", "MCST - compiler engineering intern, LLVM track</h3>")
 replace_exact(
     en,
-    '<li>Developed C++23 graph-analysis components; used CMake, warnings-as-errors, ASan/UBSan, clang-tidy and explicit include dependencies.</li><li>Implemented RPO with cycle detection, Dijkstra, Tarjan SCC and Dinic over a shared graph model; added reproducible I/O tests.</li>',
+    '<li>C++23 graph-analysis components under CMake, warnings-as-errors, ASan/UBSan, clang-tidy and explicit includes.</li><li>RPO with cycle detection, Dijkstra, Tarjan SCC and Dinic over a shared graph model and reproducible I/O tests.</li>',
     '<li>Developed a shared graph core and C++23 analysis components for the LLVM track.</li><li>Implemented RPO with cycle detection, Dijkstra, Tarjan SCC and Dinic; used CMake, warnings-as-errors, ASan/UBSan, clang-tidy, explicit include dependencies and reproducible I/O tests.</li>',
 )
 replace_exact(
@@ -201,7 +201,7 @@ Path("CONTENT-REVIEW-v30.md").write_text(
 ## Compiler first-contact hierarchy
 
 1. Wist2 and verifier-gated AIR → SSA → AIR.
-2. External program-analysis evidence: PS-form Analyzer, 1st out of 49 and 104/104.
+2. External program-analysis evidence: PS-form Analyzer, 1st of 49 and 104/104.
 3. Correctness evidence: 1,358/1,358 tests covering IR transforms, contracts and interpreter/CIL parity.
 4. LLVM-track C++23 graph-analysis infrastructure at MCST.
 5. NASM IA-32 and the separate x86-64 code-generation laboratory as low-level depth.
