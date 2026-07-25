@@ -1,0 +1,78 @@
+name: Compiler CV v30 text layer diagnostic
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    if: github.event.pull_request.head.ref == 'fix/compiler-cv-v30-final-hardening'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply source hardening
+        run: python3 tools/harden_compiler_cv_v30_v2.py
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --disable-pip-version-check playwright pymupdf
+          python3 -m playwright install --with-deps chromium
+      - name: Export and inspect text layer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import fitz
+          from playwright.sync_api import sync_playwright
+
+          mappings = {
+              'ru-compiler.html': 'pdf/Mikhail_Razakov_Compiler_RU.pdf',
+              'en-compiler.html': 'pdf/Mikhail_Razakov_Compiler_EN.pdf',
+          }
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True, args=['--no-sandbox'])
+              try:
+                  for html, output in mappings.items():
+                      page = browser.new_page(viewport={'width': 1440, 'height': 900}, color_scheme='light')
+                      page.emulate_media(media='print', color_scheme='light')
+                      page.goto(Path(html).resolve().as_uri(), wait_until='networkidle')
+                      page.evaluate('document.fonts.ready')
+                      page.pdf(path=output, format='A4', print_background=True, prefer_css_page_size=True, scale=1.0, margin={'top':'0','right':'0','bottom':'0','left':'0'}, tagged=True, outline=True)
+                      page.close()
+              finally:
+                  browser.close()
+          out = Path('v30-text-layer')
+          out.mkdir()
+          for pdf in mappings.values():
+              path = Path(pdf)
+              with fitz.open(path) as doc:
+                  page = doc[0]
+                  (out / f'{path.stem}.txt').write_text(page.get_text('text'), encoding='utf-8')
+                  blocks = page.get_text('blocks', sort=False)
+                  lines = []
+                  for index, block in enumerate(blocks):
+                      lines.append(f'BLOCK {index} bbox={block[:4]}\n{block[4]}\n')
+                  (out / f'{path.stem}.blocks.txt').write_text('\n'.join(lines), encoding='utf-8')
+                  blocks_sorted = page.get_text('blocks', sort=True)
+                  sorted_lines = []
+                  for index, block in enumerate(blocks_sorted):
+                      sorted_lines.append(f'BLOCK {index} bbox={block[:4]}\n{block[4]}\n')
+                  (out / f'{path.stem}.blocks-sorted.txt').write_text('\n'.join(sorted_lines), encoding='utf-8')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: compiler-cv-v30-text-layer
+          path: |
+            v30-text-layer/*
+            pdf/Mikhail_Razakov_Compiler_RU.pdf
+            pdf/Mikhail_Razakov_Compiler_EN.pdf
+          retention-days: 7
+          if-no-files-found: error
