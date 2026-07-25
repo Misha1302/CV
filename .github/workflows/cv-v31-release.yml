@@ -47,18 +47,21 @@ jobs:
             /tmp/cv-v31-evidence
             QA-report-targeted-cv-v31.md
           if-no-files-found: warn
-      - name: Remove one-shot release machinery
+      - name: Remove payload and verify clean release
         run: |
           rm -rf tools/.cv_v31_payload
-          rm -f tools/cv_v31_release.py .github/workflows/cv-v31-release.yml
+          rm -f tools/cv_v31_release.py
           python - <<'PY'
           import hashlib
           from pathlib import Path
           root = Path('.')
           manifest = root / 'MANIFEST.sha256'
+          ignored = '.github/workflows/cv-v31-release.yml'
           lines = []
           for path in sorted(root.rglob('*')):
               if not path.is_file() or path == manifest or '.git' in path.parts:
+                  continue
+              if path.relative_to(root).as_posix() == ignored:
                   continue
               lines.append(f"{hashlib.sha256(path.read_bytes()).hexdigest()}  ./{path.as_posix()}")
           manifest.write_text('\n'.join(lines) + '\n', encoding='utf-8')
