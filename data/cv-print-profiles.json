@@ -14,19 +14,19 @@
       "pdf": "Mikhail_Razakov_Compiler_RU.pdf",
       "name": "Михаил Разаков",
       "role": "Инженер по компиляторам и языковым платформам",
-      "summary": "Разрабатываю UniversalToolchain/Wist2 — SDK типизированной композиции языковых компонентов и runtime: межпакетные планы, manifest binding, callable-first SSA, Wist facade и экспериментальный PlanFuzz.",
+      "summary": "Разрабатываю UniversalToolchain/Wist2 — SDK для типизированной сборки языков и сред исполнения: межпакетные планы, связывание с манифестом, SSA с явной семантикой вызовов (Callable-first SSA), интерфейс Wist и PlanFuzz.",
       "proofs": [
         [
-          "Планы композиции",
-          "маршруты, проходы, capabilities и exact executor"
+          "Планы типизированной композиции",
+          "межпакетные маршруты, проходы, возможности и точный исполнитель"
         ],
         [
-          "Callable-first SSA",
-          "descriptor semantics и verifier-gated roundtrip"
+          "SSA с семантикой вызовов",
+          "побочные эффекты, детерминизм и цикл под контролем верификатора"
         ],
         [
           "1 465 / 1 465",
-          "0 падений; 9 packages и clean consumers"
+          "0 падений; 9 пакетов и чистые проекты-потребители"
         ]
       ],
       "experience": [
@@ -34,47 +34,47 @@
           "2024 — сейчас",
           "UniversalToolchain / Wist2",
           [
-            "Typed SDK: независимые language packages, детерминированные маршруты и schema-v5 lock.",
-            "Fail-closed runtime, exact manifest binding и lifecycle ownership.",
-            "Callable-first SSA: effects, determinism, trust и verifier-gated roundtrip.",
-            "PlanFuzz: language-neutral core, Acme + restricted Wist Int32 adapters, 7 oracles, replay и reducers."
+            "Типизированный SDK: независимые языковые пакеты, детерминированные маршруты, порядок проходов и lock-файл schema-v5.",
+            "Политики безопасного отказа, точное связывание с манифестом и управление жизненным циклом.",
+            "SSA с семантикой вызовов: побочные эффекты, детерминизм, уровень доверия и проверяемое обратное преобразование.",
+            "PlanFuzz: независимое от языка ядро, адаптеры Acme и Wist Int32, 7 семейств оракулов, воспроизведение и сокращение примеров."
           ]
         ],
         [
           "Июль–август 2026",
           "МЦСТ · LLVM-направление",
           [
-            "C++23 graph-analysis core: RPO/cycles, Dijkstra, Tarjan SCC и Dinic.",
-            "CMake, warnings-as-errors, ASan/UBSan, clang-tidy и I/O tests."
+            "Графовое ядро на C++23: RPO, поиск циклов, Дейкстра, Тарьян SCC и Диниц.",
+            "CMake, предупреждения как ошибки, ASan/UBSan, clang-tidy и тесты ввода-вывода."
           ]
         ]
       ],
       "projects": [
         [
           "PlanFuzz",
-          "Экспериментальное configuration-aware testing: Acme и restricted Wist Int32 adapters, fresh-process confirmation и deterministic program/plan reduction."
+          "Экспериментальное дифференциальное тестирование с учётом конфигурации: адаптеры Acme и Wist Int32, подтверждение в новом процессе и детерминированное сокращение программы и плана."
         ],
         [
           "PS-form Analyzer",
-          "1-е место из 49, 104/104; conservative memory-dependence analysis and exact-oracle harness."
+          "1-е место из 49, 104/104; консервативный анализ зависимостей памяти и точный оракул."
         ],
         [
           "x86-64 Codegen Lab",
-          "SSA-like IR, liveness, linear scan, iced-x86 emission and differential validation."
+          "SSA-подобное IR, анализ живых интервалов, линейное сканирование, генерация через iced-x86 и дифференциальная проверка."
         ]
       ],
       "skills": [
         [
           "Архитектура языков",
-          "typed artifacts, contribution graphs, routes, passes, manifests"
+          "типизированные артефакты, графы вкладов, маршруты, проходы, манифесты"
         ],
         [
           "IR / SSA",
-          "Bytecode/AIR, callable descriptors, CFG, dominance, folding, SCCP-lite, DCE"
+          "байткод/AIR, семантика вызовов, CFG, доминирование, свёртка, SCCP-lite, DCE"
         ],
         [
-          "Верификация",
-          "differential/metamorphic testing, exact oracles, replay, reducers, parity"
+          "Проверка корректности",
+          "дифференциальные и метаморфные тесты, точные оракулы, воспроизведение, сокращение примеров"
         ],
         [
           "Языки",
