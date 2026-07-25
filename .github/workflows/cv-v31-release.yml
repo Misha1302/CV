@@ -29,19 +29,24 @@ jobs:
           pip install beautifulsoup4 playwright pymupdf
           python -m playwright install --with-deps chromium
       - name: Apply strong Wist2 positioning and rebuild all PDFs
-        run: python tools/cv_v31_release.py
+        shell: bash
+        run: |
+          set -o pipefail
+          python tools/cv_v31_release.py 2>&1 | tee /tmp/cv-v31-release.log
       - name: Check source diff
         run: |
           git diff --check
           python tools/build_cv.py --check-html
           python tools/validate_cv.py
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: cv-v31-review-evidence
           path: |
+            /tmp/cv-v31-release.log
             /tmp/cv-v31-evidence
             QA-report-targeted-cv-v31.md
-          if-no-files-found: error
+          if-no-files-found: warn
       - name: Remove one-shot release machinery
         run: |
           rm -rf tools/.cv_v31_payload
