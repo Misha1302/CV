@@ -28,5 +28,6 @@ if old_return not in source:
     raise RuntimeError("v31 bootstrap: print return source marker not found")
 source = source.replace(old_return, new_return)
 source = source.replace("span[3] for block in page.get_text(\"dict\")[\"blocks\"]", "span[\"size\"] for block in page.get_text(\"dict\")[\"blocks\"]")
+source = source.replace('if not path.is_file() or path == manifest or ".git" in path.parts:', 'if not path.is_file() or path == manifest or ".git" in path.parts or path.relative_to(ROOT).as_posix() == ".github/workflows/cv-v31-release.yml":')
 
 exec(compile(source, "cv_v31_release.py", "exec"))
