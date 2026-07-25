@@ -1,11 +1,11 @@
 # Release metadata
 
-- Version: v29
-- Date: 2026-07-24
-- Previous repository baseline: v28, commit `d655f6854a1d5ac8d87393cc1f4c82567ac1ddee`
+- Version: v30
+- Date: 2026-07-25
+- Previous repository baseline: v29, commit `fae03e5adb4152bd1aaa43e56f49d383dc8f9e6d`
 - HTML surface: 17 files
 - Downloadable CV surface: 14 one-page A4 PDFs
-- Rebuilt PDFs: compiler RU/EN and C++ systems RU/EN
+- Rebuilt PDFs: compiler RU/EN
 - Canonical email: `misha13022008@gmail.com`
 
 ## Evidence boundaries
@@ -26,3 +26,11 @@ Role PDFs contain email, Telegram and GitHub. The full HTML portfolio may includ
 - Detailed HTML and focused PDFs use the same 1,358/1,358 Wist2 full-run claim.
 - Four focused PDFs remain one A4 page at scale=1.0 with a minimum extracted font size of 8.45 pt.
 - Russian C++ systems headings are localized; conventional identifiers remain unchanged.
+
+
+## v30 compiler boundary
+
+- Education is user-confirmed on 2026-07-25: Software Engineering student at HSE University.
+- The 1,358/1,358 claim is tied to the full rerun on 2026-07-23; the former July 14 warnings qualifier is not reused.
+- MCST is described as LLVM-track graph-analysis infrastructure without claiming upstream LLVM integration.
+- Compiler RU/EN remain one-page A4 PDFs at scale=1.0 with an extracted font floor of at least 8.45 pt.

@@ -1,4 +1,4 @@
-# Fact retention - v29
+# Fact retention - v30
 
 | Fact | Evidence boundary |
 |---|---|
