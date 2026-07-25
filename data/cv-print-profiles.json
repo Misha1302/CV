@@ -1,5 +1,5 @@
 {
-  "version": 31,
+  "version": 32,
   "verified_at": "2026-07-25",
   "profiles": {
     "ru-compiler.html": {
@@ -14,18 +14,18 @@
       "pdf": "Mikhail_Razakov_Compiler_RU.pdf",
       "name": "Михаил Разаков",
       "role": "Инженер по компиляторам и языковым платформам",
-      "summary": "Разрабатываю UniversalToolchain/Wist2: typed cross-package language plans, exact manifest binding, callable-first SSA, публичный Wist facade и PlanFuzz для configuration-aware differential testing.",
+      "summary": "Разрабатываю UniversalToolchain/Wist2 — SDK типизированной композиции языковых компонентов и runtime: межпакетные планы, manifest binding, callable-first SSA, Wist facade и экспериментальный PlanFuzz.",
       "proofs": [
         [
-          "Typed language plans",
-          "routes, passes, capabilities и exact executor"
+          "Планы композиции",
+          "маршруты, проходы, capabilities и exact executor"
         ],
         [
           "Callable-first SSA",
           "descriptor semantics и verifier-gated roundtrip"
         ],
         [
-          "1 459 / 1 459",
+          "1 465 / 1 465",
           "0 падений; 9 packages и clean consumers"
         ]
       ],
@@ -34,9 +34,10 @@
           "2024 — сейчас",
           "UniversalToolchain / Wist2",
           [
-            "Typed SDK для независимых language packages, deterministic routes/pass ordering и schema-v5 lock identity.",
-            "Fail-closed runtime policies, exact manifest binding и lifecycle ownership.",
-            "Callable-first SSA и PlanFuzz: 7 oracle families, replay, exact fingerprints и reducers."
+            "Typed SDK: независимые language packages, детерминированные маршруты и schema-v5 lock.",
+            "Fail-closed runtime, exact manifest binding и lifecycle ownership.",
+            "Callable-first SSA: effects, determinism, trust и verifier-gated roundtrip.",
+            "PlanFuzz: language-neutral core, Acme + restricted Wist Int32 adapters, 7 oracles, replay и reducers."
           ]
         ],
         [
@@ -51,7 +52,7 @@
       "projects": [
         [
           "PlanFuzz",
-          "Configuration-aware differential testing; fresh-process confirmation and deterministic program/plan reduction."
+          "Экспериментальное configuration-aware testing: Acme и restricted Wist Int32 adapters, fresh-process confirmation и deterministic program/plan reduction."
         ],
         [
           "PS-form Analyzer",
@@ -80,8 +81,19 @@
           "C#/.NET, C++23, C17, Python, Rust"
         ]
       ],
-      "recognition": "1-е место из 49 в отборе МЦСТ; призёр «Высшей пробы»; первые результаты «Юниора» 2025/2026; Главная премия Балтийского конкурса.",
-      "communication": "Около 50 учеников; практический курс NASM IA-32; публичная документация и технические материалы."
+      "recognition": "Призёр «Высшей пробы»; первые результаты «Юниора» 2025/2026; Главная премия Балтийского конкурса.",
+      "communication": "Около 50 учеников; практический курс NASM IA-32; публичная документация и технические материалы.",
+      "density": "roomy",
+      "min_fill": 0.78,
+      "min_links": 6,
+      "ats_order": [
+        "Михаил Разаков",
+        "Инженер по компиляторам и языковым платформам",
+        "ОПЫТ",
+        "МЦСТ · LLVM-направление",
+        "ИЗБРАННЫЕ ПРОЕКТЫ",
+        "PS-form Analyzer"
+      ]
     },
     "en-compiler.html": {
       "lang": "en",
@@ -95,10 +107,10 @@
       "pdf": "Mikhail_Razakov_Compiler_EN.pdf",
       "name": "Mikhail Razakov",
       "role": "Compiler and Language Platform Engineer",
-      "summary": "I develop UniversalToolchain/Wist2: typed cross-package language plans, exact manifest binding, callable-first SSA, the public Wist facade, and PlanFuzz for configuration-aware differential testing.",
+      "summary": "I develop UniversalToolchain/Wist2, a typed language composition and runtime SDK with cross-package plans, exact manifest binding, callable-first SSA, the public Wist facade, and experimental PlanFuzz.",
       "proofs": [
         [
-          "Typed language plans",
+          "Typed composition plans",
           "routes, passes, capabilities, exact executors"
         ],
         [
@@ -106,7 +118,7 @@
           "descriptor semantics and verifier-gated roundtrip"
         ],
         [
-          "1,459 / 1,459",
+          "1,465 / 1,465",
           "0 failures; nine packages and clean consumers"
         ]
       ],
@@ -115,9 +127,10 @@
           "2024 — present",
           "UniversalToolchain / Wist2",
           [
-            "Typed SDK for independent language packages, deterministic routes/pass ordering, and schema-v5 lock identity.",
+            "Typed composition/runtime SDK for independent language packages, deterministic routes/pass ordering, and schema-v5 lock identity.",
             "Fail-closed runtime policies, exact manifest binding, and lifecycle ownership.",
-            "Callable-first SSA and PlanFuzz: seven oracle families, replay, exact fingerprints, and reducers."
+            "Callable-first SSA with descriptor semantics, effects, determinism, trust, and a verifier-gated roundtrip.",
+            "Experimental PlanFuzz with a language-neutral core, an Acme adapter, a restricted Wist Int32 adapter, seven oracle families, replay, and reducers."
           ]
         ],
         [
@@ -132,7 +145,7 @@
       "projects": [
         [
           "PlanFuzz",
-          "Configuration-aware differential testing with fresh-process confirmation and deterministic program/plan reduction."
+          "Experimental configuration-aware differential testing with a language-neutral core, Acme and restricted Wist Int32 adapters, fresh-process confirmation, and deterministic program/plan reduction."
         ],
         [
           "PS-form Analyzer",
@@ -161,8 +174,19 @@
           "C#/.NET, C++23, C17, Python, Rust"
         ]
       ],
-      "recognition": "Ranked 1st of 49 in MCST selection; HSE Vysshaya Proba prize-winner; top MEPhI Junior results in 2025/2026; Baltic Grand Prize.",
-      "communication": "About 50 students; practical NASM IA-32 course; public documentation and technical writing."
+      "recognition": "HSE Vysshaya Proba prize-winner; top MEPhI Junior results in 2025/2026; Baltic Grand Prize.",
+      "communication": "About 50 students; practical NASM IA-32 course; public documentation and technical writing.",
+      "density": "roomy",
+      "min_fill": 0.78,
+      "min_links": 6,
+      "ats_order": [
+        "Mikhail Razakov",
+        "Compiler and Language Platform Engineer",
+        "EXPERIENCE",
+        "MCST · LLVM track",
+        "SELECTED PROJECTS",
+        "PS-form Analyzer"
+      ]
     },
     "ru-devtools.html": {
       "lang": "ru",
@@ -176,7 +200,7 @@
       "pdf": "Mikhail_Razakov_DevTools_RU.pdf",
       "name": "Михаил Разаков",
       "role": "Инженер по тестированию компиляторов и инструментам разработчика",
-      "summary": "Разработал PlanFuzz — нейтральную к языку систему дифференциального тестирования с учётом конфигурации: семь семейств оракулов, повторное выполнение в свежих процессах, точные отпечатки и детерминированное сокращение программ и планов.",
+      "summary": "Разработал экспериментальный PlanFuzz: нейтральное к языку ядро, адаптер Acme и ограниченный адаптер Wist для Int32, семь семейств оракулов, fresh-process replay, точные отпечатки и детерминированное сокращение.",
       "proofs": [
         [
           "7 семейств оракулов",
@@ -187,8 +211,8 @@
           "typed observations, exact fingerprints, replayable artifacts"
         ],
         [
-          "1 459 тестов",
-          "PlanFuzz + SDK + Wist; 0 failures"
+          "Детерминированное сокращение",
+          "program + plan; сохраняет исходный exact fingerprint"
         ]
       ],
       "experience": [
@@ -196,16 +220,16 @@
           "2026 — сейчас",
           "PlanFuzz",
           [
-            "Language-neutral core, Acme/Wist adapters and structured generators.",
-            "Strict outcome/evidence semantics and deterministic reducers."
+            "Нейтральное к языку ядро, адаптер Acme, ограниченный адаптер Wist для Int32 и структурные генераторы.",
+            "Строгая семантика исходов и доказательств, fresh-process confirmation и детерминированные reducers."
           ]
         ],
         [
           "2024 — сейчас",
-          "Wist tooling",
+          "Инструменты Wist",
           [
-            "Typed APIs, structured diagnostics, versioned traces and interpreter/CIL parity.",
-            "Nine-package gate, clean template and cross-package consumer smoke."
+            "Типизированные API, структурированные diagnostics, versioned traces и parity интерпретатора/CIL.",
+            "Canonical gate: 1 465/1 465 тестов, 9 packages и два clean-consumer smoke."
           ]
         ]
       ],
@@ -225,15 +249,15 @@
       ],
       "skills": [
         [
-          "Testing",
+          "Тестирование",
           "differential/metamorphic, oracles, replay, reducers"
         ],
         [
-          "Diagnostics",
+          "Диагностика",
           "stable codes/stages, typed traces, counterexample artifacts"
         ],
         [
-          "Release",
+          "Релизная проверка",
           "package surfaces, clean consumers, manifests, CI"
         ],
         [
@@ -241,8 +265,19 @@
           "C#/.NET, C++23, C17, Python, Rust"
         ]
       ],
-      "recognition": "1-е место из 49 в отборе МЦСТ; призёр «Высшей пробы»; Главная премия Балтийского конкурса.",
-      "communication": "Техническая документация, воспроизводимые отчёты и ревью кода."
+      "recognition": "Призёр «Высшей пробы»; первые результаты «Юниора» 2025/2026; Главная премия Балтийского конкурса.",
+      "communication": "Техническая документация, воспроизводимые отчёты и ревью кода.",
+      "density": "spacious",
+      "min_fill": 0.82,
+      "min_links": 6,
+      "ats_order": [
+        "Михаил Разаков",
+        "Инженер по тестированию компиляторов и инструментам разработчика",
+        "ОПЫТ",
+        "Инструменты Wist",
+        "ИЗБРАННЫЕ ПРОЕКТЫ",
+        "PS-form Harness"
+      ]
     },
     "en-devtools.html": {
       "lang": "en",
@@ -256,7 +291,7 @@
       "pdf": "Mikhail_Razakov_DevTools_EN.pdf",
       "name": "Mikhail Razakov",
       "role": "Compiler Testing and Developer Tools Engineer",
-      "summary": "I built PlanFuzz: language-neutral configuration-aware differential testing with seven oracle families, fresh-process replay, exact fingerprints, and deterministic program/plan reduction.",
+      "summary": "I built experimental PlanFuzz with a language-neutral core, an Acme adapter, a restricted Wist Int32 adapter, seven oracle families, fresh-process replay, exact fingerprints, and deterministic program/plan reduction.",
       "proofs": [
         [
           "7 oracle families",
@@ -267,8 +302,8 @@
           "typed observations, exact fingerprints, replayable artifacts"
         ],
         [
-          "1,459 tests",
-          "PlanFuzz + SDK + Wist; 0 failures"
+          "Deterministic reduction",
+          "program + plan; preserves the original exact fingerprint"
         ]
       ],
       "experience": [
@@ -276,8 +311,8 @@
           "2026 — present",
           "PlanFuzz",
           [
-            "Language-neutral core, Acme/Wist adapters, and structured generators.",
-            "Strict outcome/evidence semantics and deterministic reducers."
+            "Language-neutral core, an Acme adapter, a restricted Wist Int32 adapter, and structured generators.",
+            "Strict outcome/evidence semantics, fresh-process confirmation, and deterministic reducers."
           ]
         ],
         [
@@ -285,7 +320,7 @@
           "Wist tooling",
           [
             "Typed APIs, structured diagnostics, versioned traces, and interpreter/CIL parity.",
-            "Nine-package gate, clean template, and cross-package consumer smoke."
+            "Canonical gate: 1,465/1,465 tests, nine packages, a clean template, and a cross-package consumer smoke."
           ]
         ]
       ],
@@ -321,8 +356,19 @@
           "C#/.NET, C++23, C17, Python, Rust"
         ]
       ],
-      "recognition": "Ranked 1st of 49 in MCST selection; HSE Vysshaya Proba prize-winner; Baltic Grand Prize.",
-      "communication": "Technical documentation, reproducible reports, and code review."
+      "recognition": "HSE Vysshaya Proba prize-winner; top MEPhI Junior results in 2025/2026; Baltic Grand Prize.",
+      "communication": "Technical documentation, reproducible reports, and code review.",
+      "density": "spacious",
+      "min_fill": 0.82,
+      "min_links": 6,
+      "ats_order": [
+        "Mikhail Razakov",
+        "Compiler Testing and Developer Tools Engineer",
+        "EXPERIENCE",
+        "Wist tooling",
+        "SELECTED PROJECTS",
+        "PS-form Harness"
+      ]
     },
     "ru-cpp-systems.html": {
       "lang": "ru",
@@ -347,8 +393,8 @@
           "контракты, дифференциальные тесты, санитайзеры и stress-тесты"
         ],
         [
-          "Строгая сборка",
-          "CMake, -Werror, ASan/UBSan, clang-tidy"
+          "500 тыс. вершин",
+          "stress-gates против рекурсии и случайной O(n²)"
         ]
       ],
       "experience": [
@@ -356,31 +402,31 @@
           "Июль–август 2026",
           "МЦСТ · LLVM-направление",
           [
-            "RPO/cycles, Dijkstra, Tarjan SCC и Dinic над общим graph core.",
-            "Явные contracts, strict build and reproducible I/O tests."
+            "RPO и обнаружение циклов, алгоритм Дейкстры, SCC Тарьяна и поток Диница над общим графовым ядром.",
+            "Явные контракты, строгая сборка и воспроизводимые I/O-тесты."
           ]
         ],
         [
           "2026 — сейчас",
           "AdvancedAlgorithms",
           [
-            "12 reusable C++23 modules with explicit complexity and validation.",
-            "Large tests up to 500k vertices catch recursion and accidental O(n²)."
+            "12 переиспользуемых модулей C++23 с явными оценками сложности и проверкой контрактов.",
+            "Большие тесты до 500 тыс. вершин выявляют рекурсию и случайную O(n²)."
           ]
         ]
       ],
       "projects": [
         [
           "PS-form Analyzer",
-          "Conservative memory-dependence analysis; 1st of 49, 104/104."
+          "Консервативный анализ зависимостей памяти; 1-е место из 49 и 104/104 тестов."
         ],
         [
           "x86-64 Codegen Lab",
-          "SSA-like IR, liveness, linear scan, iced-x86 and isolated execution."
+          "SSA-подобная IR, liveness, linear scan, iced-x86 и изолированное исполнение."
         ],
         [
           "UniversalToolchain/Wist2",
-          "Typed routes, callable-first SSA and PlanFuzz; 1,459-test canonical gate."
+          "Typed routes, callable-first SSA и экспериментальный PlanFuzz; canonical gate 1 465/1 465."
         ]
       ],
       "skills": [
@@ -401,8 +447,19 @@
           "C++23, C17, C#/.NET, Python, Rust"
         ]
       ],
-      "recognition": "1-е место из 49 в отборе МЦСТ; призёр «Высшей пробы»; Главная премия Балтийского конкурса.",
-      "communication": "Ревью решений, документация и практический курс NASM IA-32."
+      "recognition": "Призёр «Высшей пробы»; первые результаты «Юниора» 2025/2026; Главная премия Балтийского конкурса.",
+      "communication": "Ревью решений, документация и практический курс NASM IA-32.",
+      "density": "spacious",
+      "min_fill": 0.82,
+      "min_links": 6,
+      "ats_order": [
+        "Михаил Разаков",
+        "Инженер по C++-системам и анализу программ",
+        "ОПЫТ",
+        "МЦСТ · LLVM-направление",
+        "ИЗБРАННЫЕ ПРОЕКТЫ",
+        "PS-form Analyzer"
+      ]
     },
     "en-cpp-systems.html": {
       "lang": "en",
@@ -427,8 +484,8 @@
           "contracts, differential tests, sanitizers, stress"
         ],
         [
-          "Strict toolchain",
-          "CMake, -Werror, ASan/UBSan, clang-tidy"
+          "500k vertices",
+          "stress gates catch recursion and accidental O(n²)"
         ]
       ],
       "experience": [
@@ -460,7 +517,7 @@
         ],
         [
           "UniversalToolchain/Wist2",
-          "Typed routes, callable-first SSA, and PlanFuzz; 1,459-test canonical gate."
+          "Typed routes, callable-first SSA, and experimental PlanFuzz; 1,465/1,465 canonical gate."
         ]
       ],
       "skills": [
@@ -481,8 +538,19 @@
           "C++23, C17, C#/.NET, Python, Rust"
         ]
       ],
-      "recognition": "Ranked 1st of 49 in MCST selection; HSE Vysshaya Proba prize-winner; Baltic Grand Prize.",
-      "communication": "Code review, documentation, and a practical NASM IA-32 course."
+      "recognition": "HSE Vysshaya Proba prize-winner; top MEPhI Junior results in 2025/2026; Baltic Grand Prize.",
+      "communication": "Code review, documentation, and a practical NASM IA-32 course.",
+      "density": "spacious",
+      "min_fill": 0.82,
+      "min_links": 6,
+      "ats_order": [
+        "Mikhail Razakov",
+        "C++ Systems / Program Analysis Engineer",
+        "EXPERIENCE",
+        "MCST · LLVM track",
+        "SELECTED PROJECTS",
+        "PS-form Analyzer"
+      ]
     },
     "ru-algorithms.html": {
       "lang": "ru",
@@ -1118,5 +1186,25 @@
       "recognition": "Top MEPhI Junior results in 2025/2026; Baltic Grand Prize.",
       "communication": "About 50 students, 5.0 rating, individual programs, and code review."
     }
+  },
+  "facts": {
+    "wist2_tests_passed": 1465,
+    "wist2_tests_failed": 0,
+    "wist2_tests_skipped": 0,
+    "wist2_packages": 9,
+    "wist2_verified_at": "2026-07-25",
+    "wist2_source_commit": "ee218b4b5b5c6648ab74df2d54a8a906bd2e30db"
+  },
+  "project_urls": {
+    "PlanFuzz": "https://github.com/Misha1302/Wist2/blob/main/internal-docs/proposals/planfuzz/README.md",
+    "PS-form Analyzer": "https://github.com/Misha1302/ps_form_analizer",
+    "PS-form Harness": "https://github.com/Misha1302/ps_form_analizer",
+    "x86-64 Codegen Lab": "https://github.com/Misha1302/x86-64-codegen-ra-playground",
+    "x86 Codegen Lab": "https://github.com/Misha1302/x86-64-codegen-ra-playground",
+    "x86 Backend Validation": "https://github.com/Misha1302/x86-64-codegen-ra-playground",
+    "AdvancedAlgorithms Verification": "https://github.com/Misha1302/AdvancedAlgorithms",
+    "UniversalToolchain/Wist2": "https://github.com/Misha1302/Wist2",
+    "Wist SSA": "https://github.com/Misha1302/Wist2",
+    "Wist": "https://github.com/Misha1302/Wist2"
   }
 }

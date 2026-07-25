@@ -1,4 +1,4 @@
-# Targeting guide — v31
+# Targeting guide — v32
 
 ## Flagship variants
 
