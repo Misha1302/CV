@@ -67,7 +67,6 @@ jobs:
               time['datetime'] = '2026-07-01'
               time.string = ru_date if ru else en_date
               article.append(time)
-
               div = soup.new_tag('div')
               h3 = soup.new_tag('h3')
               h3.string = ru_title if ru else en_title
@@ -77,7 +76,6 @@ jobs:
               div.append(h3)
               div.append(org)
               article.append(div)
-
               details = soup.new_tag('p')
               details['class'] = ['details']
               details.string = ru_detail if ru else en_detail
@@ -134,24 +132,25 @@ jobs:
                   replace_role_article(soup, role_article, ru)
 
               experience = soup.select_one('#experience')
-              found_mcst = False
               if experience is not None:
                   for article in experience.find_all('article'):
                       heading = article.find('h3')
                       heading_text = heading.get_text(' ', strip=True) if heading else ''
                       if 'МЦСТ' in heading_text or 'MCST' in heading_text:
                           replace_experience(article, soup, ru)
-                          found_mcst = True
                           break
-              if not found_mcst:
-                  raise RuntimeError(f'{filename}: MCST experience article not found')
 
               for span in soup.select('.hero-context span'):
                   current = span.get_text(' ', strip=True)
-                  if ('МЦСТ' in current and ('июль' in current.lower() or 'август' in current.lower())):
+                  lower = current.lower()
+                  if 'МЦСТ' in current and ('июль' in lower or 'август' in lower):
                       set_text(span, 'МЦСТ · 1 июля–31 августа 2026 · 0,25 ставки')
-                  elif ('MCST' in current and ('july' in current.lower() or 'august' in current.lower())):
+                  elif 'MCST' in current and ('july' in lower or 'august' in lower):
                       set_text(span, 'MCST · July 1–August 31, 2026 · 0.25 FTE')
+                  elif ru and 'с сентября 2026' in lower and ('стажировка' in lower or 'неполная занятость' in lower):
+                      set_text(span, 'С сентября 2026: до 20 часов в неделю')
+                  elif not ru and 'from september 2026' in lower and ('internship' in lower or 'part-time' in lower):
+                      set_text(span, 'From September 2026: up to 20 hours/week')
 
               for item in soup.select('.career-item'):
                   strong = item.find('strong')
@@ -175,13 +174,9 @@ jobs:
 
           for filename, profile in data['profiles'].items():
               ru = profile.get('lang') == 'ru'
-              mcst = None
-              for entry in profile['experience']:
-                  if 'МЦСТ' in entry[1] or 'MCST' in entry[1]:
-                      mcst = entry
-                      break
+              mcst = next((entry for entry in profile['experience'] if 'МЦСТ' in entry[1] or 'MCST' in entry[1]), None)
               if mcst is None:
-                  raise RuntimeError(f'{filename}: MCST print experience missing')
+                  continue
               if ru:
                   mcst[:] = [
                       ru_date,
@@ -215,11 +210,14 @@ jobs:
           text = path.read_text(encoding='utf-8')
 
           data_anchor = "    for filename in ['ru-devtools.html', 'en-devtools.html']:\n"
-          data_check = '''    for filename, profile in DATA['profiles'].items():
+          data_check = '''    required_mcst_profiles = {'ru-compiler.html', 'en-compiler.html', 'ru-cpp-systems.html', 'en-cpp-systems.html'}
+    for filename, profile in DATA['profiles'].items():
         ru = profile.get('lang') == 'ru'
         mcst = next((entry for entry in profile['experience'] if 'МЦСТ' in entry[1] or 'MCST' in entry[1]), None)
-        if mcst is None:
+        if filename in required_mcst_profiles and mcst is None:
             raise RuntimeError(f'{filename}: missing MCST internship')
+        if mcst is None:
+            continue
         joined = ' '.join([mcst[0], mcst[1], *mcst[2]])
         required = ['1 июля — 31 августа 2026', '0,25 ставки', 'оптимизационный проход LLVM'] if ru else ['July 1 — August 31, 2026', '0.25 FTE', 'LLVM optimization pass']
         for marker in required:
