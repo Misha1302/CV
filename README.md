@@ -1,4 +1,4 @@
-# Mikhail Razakov - targeted CV variants v29
+# Mikhail Razakov - targeted CV variants v30
 
 Статический bilingual-пакет целевых инженерных резюме и подробного технического портфолио.
 
@@ -15,6 +15,15 @@
 - `ru-platform.html` / `en-platform.html` - service reliability и эксплуатация.
 - `ru-edtech.html` / `en-edtech.html` - EdTech backend.
 - `ru.html` / `en.html` - полное техническое портфолио для технического follow-up, не замена целевому PDF.
+
+## Изменения v30
+
+- Compiler RU/EN подтверждают актуальный статус: студент программы «Программная инженерия» НИУ ВШЭ / Software Engineering student at HSE University.
+- Wist2 proof strip привязан к полному прогону 23.07.2026 без старых qualifiers от 14 июля.
+- LLVM-направление возвращено в focused PDF и связано с C++23 graph-analysis infrastructure.
+- Proof cards упорядочены как инженерная глубина → внешняя оценка → корректность; тестовый claim раскрывает IR transforms, contracts и interpreter/CIL parity.
+- Русский Compiler PDF языково вычищен, typographic defect в Wist2 project card исправлен, teaching block переосмыслен как technical communication.
+- Compiler RU/EN PDF пересобраны и проверены на A4, одну страницу, scale=1.0, читаемость, ATS-порядок, ссылки и отсутствие overflow.
 
 ## Изменения v29
 
@@ -45,7 +54,7 @@ misha13022008@gmail.com
 
 ## Baseline
 
-Предыдущая версия репозитория: v28, commit `d655f6854a1d5ac8d87393cc1f4c82567ac1ddee`.
+Предыдущая версия репозитория: v29, commit `fae03e5adb4152bd1aaa43e56f49d383dc8f9e6d`.
 
 ## Публикация
 
