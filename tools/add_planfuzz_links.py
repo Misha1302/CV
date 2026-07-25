@@ -21,7 +21,10 @@ CARD_PATTERN = re.compile(
 def add_link(filename: str) -> None:
     path = ROOT / filename
     source = path.read_text(encoding="utf-8")
-    if PLANFUZZ_URL in source:
+    match = CARD_PATTERN.search(source)
+    if match is None:
+        raise RuntimeError(f"{filename}: PlanFuzz project card not found")
+    if PLANFUZZ_URL in match.group(0):
         return
 
     label = "PlanFuzz в Wist2 ↗" if filename.startswith("ru-") else "PlanFuzz in Wist2 ↗"
@@ -32,9 +35,7 @@ def add_link(filename: str) -> None:
         + label
         + "</a></div>"
     )
-    source, count = CARD_PATTERN.subn(r"\1" + link + r"\2", source, count=1)
-    if count != 1:
-        raise RuntimeError(f"{filename}: expected exactly one PlanFuzz project card, got {count}")
+    source = source[: match.start(2)] + link + source[match.start(2) :]
     path.write_text(source, encoding="utf-8")
 
 
