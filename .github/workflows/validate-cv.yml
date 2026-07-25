@@ -1,3 +1,4 @@
+# Triggered after PR creation so the one-shot repair runs on synchronize.
 name: Repair MCST internship facts
 
 on:
