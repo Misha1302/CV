@@ -41,11 +41,11 @@
           ]
         ],
         [
-          "Июль–август 2026",
-          "МЦСТ · LLVM-направление",
+          "1 июля — 31 августа 2026",
+          "МЦСТ · LLVM · 0,25 ставки",
           [
-            "Графовое ядро на C++23: RPO, поиск циклов, Дейкстра, Тарьян SCC и Диниц.",
-            "CMake, предупреждения как ошибки, ASan/UBSan, clang-tidy и тесты ввода-вывода."
+            "0,25 ставки: графовые алгоритмы, устройство компиляторов и LLVM.",
+            "Разрабатываю собственный оптимизационный проход LLVM."
           ]
         ]
       ],
@@ -90,7 +90,7 @@
         "Михаил Разаков",
         "Инженер по компиляторам и языковым платформам",
         "ОПЫТ",
-        "МЦСТ · LLVM-направление",
+        "МЦСТ · LLVM · 0,25 ставки",
         "ИЗБРАННЫЕ ПРОЕКТЫ",
         "PS-form Analyzer"
       ]
@@ -134,11 +134,11 @@
           ]
         ],
         [
-          "Jul–Aug 2026",
-          "MCST · LLVM track",
+          "July 1 — August 31, 2026",
+          "MCST · LLVM · 0.25 FTE",
           [
-            "C++23 graph-analysis core: RPO/cycles, Dijkstra, Tarjan SCC, and Dinic.",
-            "CMake, warnings-as-errors, ASan/UBSan, clang-tidy, and I/O tests."
+            "0.25 FTE: graph algorithms, compiler construction, and LLVM.",
+            "Developing an LLVM optimization pass."
           ]
         ]
       ],
@@ -183,7 +183,7 @@
         "Mikhail Razakov",
         "Compiler and Language Platform Engineer",
         "EXPERIENCE",
-        "MCST · LLVM track",
+        "MCST · LLVM · 0.25 FTE",
         "SELECTED PROJECTS",
         "PS-form Analyzer"
       ]
@@ -399,11 +399,11 @@
       ],
       "experience": [
         [
-          "Июль–август 2026",
-          "МЦСТ · LLVM-направление",
+          "1 июля — 31 августа 2026",
+          "МЦСТ · LLVM · 0,25 ставки",
           [
-            "RPO и обнаружение циклов, алгоритм Дейкстры, SCC Тарьяна и поток Диница над общим графовым ядром.",
-            "Явные контракты, строгая сборка и воспроизводимые I/O-тесты."
+            "0,25 ставки: графовые алгоритмы, устройство компиляторов и LLVM.",
+            "Разрабатываю собственный оптимизационный проход LLVM."
           ]
         ],
         [
@@ -456,7 +456,7 @@
         "Михаил Разаков",
         "Инженер по C++-системам и анализу программ",
         "ОПЫТ",
-        "МЦСТ · LLVM-направление",
+        "МЦСТ · LLVM · 0,25 ставки",
         "ИЗБРАННЫЕ ПРОЕКТЫ",
         "PS-form Analyzer"
       ]
@@ -490,11 +490,11 @@
       ],
       "experience": [
         [
-          "Jul–Aug 2026",
-          "MCST · LLVM track",
+          "July 1 — August 31, 2026",
+          "MCST · LLVM · 0.25 FTE",
           [
-            "RPO/cycles, Dijkstra, Tarjan SCC, and Dinic over a shared graph core.",
-            "Explicit contracts, strict builds, and reproducible I/O tests."
+            "0.25 FTE: graph algorithms, compiler construction, and LLVM.",
+            "Developing an LLVM optimization pass."
           ]
         ],
         [
@@ -547,7 +547,7 @@
         "Mikhail Razakov",
         "C++ Systems / Program Analysis Engineer",
         "EXPERIENCE",
-        "MCST · LLVM track",
+        "MCST · LLVM · 0.25 FTE",
         "SELECTED PROJECTS",
         "PS-form Analyzer"
       ]
@@ -589,10 +589,11 @@
           ]
         ],
         [
-          "Июль–август 2026",
-          "МЦСТ",
+          "1 июля — 31 августа 2026",
+          "МЦСТ · LLVM · 0,25 ставки",
           [
-            "Shared graph model plus RPO/cycles, Dijkstra, Tarjan SCC and Dinic."
+            "0,25 ставки: графовые алгоритмы, устройство компиляторов и LLVM.",
+            "Разрабатываю собственный оптимизационный проход LLVM."
           ]
         ]
       ],
@@ -668,10 +669,11 @@
           ]
         ],
         [
-          "Jul–Aug 2026",
-          "MCST",
+          "July 1 — August 31, 2026",
+          "MCST · LLVM · 0.25 FTE",
           [
-            "Shared graph model plus RPO/cycles, Dijkstra, Tarjan SCC, and Dinic."
+            "0.25 FTE: graph algorithms, compiler construction, and LLVM.",
+            "Developing an LLVM optimization pass."
           ]
         ]
       ],
