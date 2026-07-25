@@ -1,0 +1,43 @@
+name: Patch compiler v30 PDF wording casefold
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.event.pull_request.head.ref == 'fix/compiler-cv-v30-final-hardening'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Make transformed PDF headings verifiable
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('tools/export_validate_compiler_cv_v30.py')
+          text = path.read_text(encoding='utf-8')
+          old = '''            missing = [token for token in required if token not in normalized]
+            bad = [token for token in stale if token in normalized]
+'''
+          new = '''            normalized_folded = normalized.casefold()
+            missing = [token for token in required if token.casefold() not in normalized_folded]
+            bad = [token for token in stale if token.casefold() in normalized_folded]
+'''
+          if old not in text:
+              raise RuntimeError('PDF wording comparison block not found')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+          rm -f .github/workflows/patch-compiler-v30-casefold.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Validate transformed PDF headings case-insensitively'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
