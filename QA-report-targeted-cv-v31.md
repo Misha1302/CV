@@ -8,4 +8,4 @@
 - Canonical Wist2 gate: 1,459/1,459 passed, 0 failed/skipped, 0 build warnings/errors, 9 packages and clean consumers.
 - Claim boundaries retained: PlanFuzz is experimental/non-packable; SSA is opt-in/partial; no sandbox or performance-superiority claim.
 
-PDF metrics are stored in the workflow evidence artifact as `pdf-report.json`; rendered PNGs are included for manual review.
+PDF metrics are stored in the permanent validation artifact as `cv-report.json`; rendered PNGs are included for manual review.
