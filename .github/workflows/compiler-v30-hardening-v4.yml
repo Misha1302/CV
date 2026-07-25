@@ -1,0 +1,86 @@
+name: Compiler CV v30 final hardening v4
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build-verify-release:
+    if: github.event.pull_request.head.ref == 'fix/compiler-cv-v30-final-hardening'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Preserve v29 compiler PDFs
+        run: |
+          mkdir -p v30-evidence/before-pdf
+          cp pdf/Mikhail_Razakov_Compiler_RU.pdf v30-evidence/before-pdf/
+          cp pdf/Mikhail_Razakov_Compiler_EN.pdf v30-evidence/before-pdf/
+      - name: Apply v30 compiler source hardening
+        run: python3 tools/harden_compiler_cv_v30_v2.py
+      - name: Install PDF dependencies
+        run: |
+          python3 -m pip install --disable-pip-version-check playwright pymupdf beautifulsoup4
+          python3 -m playwright install --with-deps chromium
+      - name: Export and validate compiler PDFs
+        id: validation
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          python3 tools/run_export_validate_compiler_cv_v30_casefold.py > compiler-v30-validation.log 2>&1
+          status=$?
+          cat compiler-v30-validation.log
+          echo "$status" > compiler-v30-validation.status
+          exit "$status"
+      - name: Upload validation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiler-cv-v30-validation-diagnostics-v4
+          path: |
+            compiler-v30-validation.log
+            compiler-v30-validation.status
+            v30-evidence/before/*.png
+            v30-evidence/after/*.png
+            v30-layout-metrics.json
+            v30-pdf-metrics.json
+          retention-days: 7
+          if-no-files-found: warn
+      - name: Fail on validation error
+        if: steps.validation.outcome == 'failure'
+        run: exit 1
+      - name: Upload final before/after renders
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiler-cv-v30-before-after-renders
+          path: |
+            v30-evidence/before/*.png
+            v30-evidence/after/*.png
+            v30-layout-metrics.json
+            v30-pdf-metrics.json
+          retention-days: 7
+          if-no-files-found: error
+      - name: Commit clean v30 release candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf tools v30-evidence
+          rm -f compiler-v30-validation.log compiler-v30-validation.status
+          rm -f v30-layout-metrics.json v30-pdf-metrics.json
+          rm -f .github/workflows/compiler-v30*.yml .github/workflows/patch-compiler-v30*.yml
+          find . -type f ! -path './.git/*' ! -name 'MANIFEST.sha256' -print0 | sort -z | xargs -0 sha256sum > MANIFEST.sha256
+          sha256sum -c MANIFEST.sha256
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Finalize compiler CV v30 factual and positioning hardening'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
