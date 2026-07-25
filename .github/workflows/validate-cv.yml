@@ -1,4 +1,3 @@
-# Triggered after PR creation so the one-shot repair runs on synchronize.
 name: Repair MCST internship facts
 
 on:
@@ -28,176 +27,168 @@ jobs:
       - name: Correct internship facts in all CV variants
         run: |
           python - <<'PY'
-          from __future__ import annotations
-
           import json
           from pathlib import Path
-
           from bs4 import BeautifulSoup
 
           root = Path('.')
-          data_path = root / 'data' / 'cv-print-profiles.json'
+          data_path = root / 'data/cv-print-profiles.json'
           data = json.loads(data_path.read_text(encoding='utf-8'))
           targets = list(data['profiles']) + ['ru.html', 'en.html']
 
-          ru_date = '1 июля — 31 августа 2026'
-          en_date = 'July 1 — August 31, 2026'
-          ru_title = 'МЦСТ — стажёр по разработке компиляторов'
-          en_title = 'MCST — Compiler Engineering Intern'
-          ru_org = 'LLVM-направление · 0,25 ставки · удалённо'
-          en_org = 'LLVM track · 0.25 FTE · remote'
-          ru_detail = 'Изучаю алгоритмы на графах и устройство компиляторов; разрабатываю собственный оптимизационный проход для LLVM.'
-          en_detail = 'Studying graph algorithms and compiler construction; developing an LLVM optimization pass.'
-          ru_bullets = [
-              'Стажировка на 0,25 ставки: изучаю алгоритмы на графах, устройство компиляторов и LLVM.',
-              'Разрабатываю собственный оптимизационный проход LLVM; реализую и тестирую графовые алгоритмы на C++23.',
-          ]
-          en_bullets = [
-              '0.25 FTE internship: studying graph algorithms, compiler construction, and LLVM.',
-              'Developing an LLVM optimization pass; implementing and testing graph algorithms in C++23.',
-          ]
+          facts = {
+              'ru': {
+                  'date': '1 июля — 31 августа 2026',
+                  'title': 'МЦСТ — стажёр по разработке компиляторов',
+                  'org': 'LLVM-направление · 0,25 ставки · удалённо',
+                  'detail': 'Изучаю алгоритмы на графах и устройство компиляторов; разрабатываю собственный оптимизационный проход для LLVM.',
+                  'web_bullets': [
+                      'Стажировка на 0,25 ставки: изучаю алгоритмы на графах, устройство компиляторов и LLVM.',
+                      'Разрабатываю собственный оптимизационный проход LLVM; реализую и тестирую графовые алгоритмы на C++23.',
+                  ],
+                  'pdf_title': 'МЦСТ · LLVM · 0,25 ставки',
+                  'pdf_bullets': [
+                      '0,25 ставки: графовые алгоритмы, устройство компиляторов и LLVM.',
+                      'Разрабатываю собственный оптимизационный проход LLVM.',
+                  ],
+              },
+              'en': {
+                  'date': 'July 1 — August 31, 2026',
+                  'title': 'MCST — Compiler Engineering Intern',
+                  'org': 'LLVM track · 0.25 FTE · remote',
+                  'detail': 'Studying graph algorithms and compiler construction; developing an LLVM optimization pass.',
+                  'web_bullets': [
+                      '0.25 FTE internship: studying graph algorithms, compiler construction, and LLVM.',
+                      'Developing an LLVM optimization pass; implementing and testing graph algorithms in C++23.',
+                  ],
+                  'pdf_title': 'MCST · LLVM · 0.25 FTE',
+                  'pdf_bullets': [
+                      '0.25 FTE: graph algorithms, compiler construction, and LLVM.',
+                      'Developing an LLVM optimization pass.',
+                  ],
+              },
+          }
 
-          def set_text(tag, value: str) -> None:
+          def text(tag, value):
               tag.clear()
               tag.append(value)
 
-          def replace_role_article(soup: BeautifulSoup, article, ru: bool) -> None:
+          def replace_role(soup, article, f):
               article.clear()
               time = soup.new_tag('time')
               time['datetime'] = '2026-07-01'
-              time.string = ru_date if ru else en_date
+              time.string = f['date']
               article.append(time)
               div = soup.new_tag('div')
               h3 = soup.new_tag('h3')
-              h3.string = ru_title if ru else en_title
+              h3.string = f['title']
               org = soup.new_tag('p')
               org['class'] = ['org']
-              org.string = ru_org if ru else en_org
-              div.append(h3)
-              div.append(org)
+              org.string = f['org']
+              div.extend([h3, org])
               article.append(div)
               details = soup.new_tag('p')
               details['class'] = ['details']
-              details.string = ru_detail if ru else en_detail
+              details.string = f['detail']
               article.append(details)
 
-          def replace_experience(article, soup: BeautifulSoup, ru: bool) -> None:
+          def replace_experience(soup, article, f):
               time = article.find('time')
-              if time is not None:
+              if time:
                   time.attrs.clear()
-                  set_text(time, ru_date if ru else en_date)
+                  text(time, f['date'])
               h3 = article.find('h3')
-              if h3 is not None:
-                  set_text(h3, ru_title if ru else en_title)
+              if h3:
+                  text(h3, f['title'])
               org = article.find('p', class_='org')
-              if org is not None:
-                  set_text(org, ru_org if ru else en_org)
-              details = article.find('p', class_='details')
-              if details is not None:
-                  details.decompose()
+              if org:
+                  text(org, f['org'])
+              old_details = article.find('p', class_='details')
+              if old_details:
+                  old_details.decompose()
               ul = article.find('ul', class_='timeline-details')
               if ul is None:
                   ul = soup.new_tag('ul')
                   ul['class'] = ['timeline-details']
                   article.append(ul)
               ul.clear()
-              for bullet in (ru_bullets if ru else en_bullets):
+              for value in f['web_bullets']:
                   li = soup.new_tag('li')
-                  li.string = bullet
+                  li.string = value
                   ul.append(li)
 
           for filename in targets:
               path = root / filename
-              soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
               ru = filename.startswith('ru')
+              lang = 'ru' if ru else 'en'
+              f = facts[lang]
+              soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
 
               education = soup.select_one('#education')
-              if education is not None:
+              if education:
                   heading = education.select_one('.section-heading h2')
-                  if heading is not None:
-                      set_text(heading, 'Образование и текущая занятость.' if ru else 'Education and current role.')
-                  role_article = None
+                  if heading:
+                      text(heading, 'Образование и текущая занятость.' if ru else 'Education and current role.')
                   for article in education.find_all('article'):
                       content = article.get_text(' ', strip=True)
-                      if (
-                          'Стажировка или неполная занятость' in content
-                          or 'Internship or part-time role' in content
-                          or 'С сентября 2026' in content
-                          or 'From September 2026' in content
-                      ):
-                          role_article = article
+                      if any(marker in content for marker in ['Стажировка или неполная занятость', 'Internship or part-time role', 'С сентября 2026', 'From September 2026']):
+                          replace_role(soup, article, f)
                           break
-                  if role_article is None:
-                      raise RuntimeError(f'{filename}: current-role article not found')
-                  replace_role_article(soup, role_article, ru)
 
               experience = soup.select_one('#experience')
-              if experience is not None:
+              if experience:
                   for article in experience.find_all('article'):
-                      heading = article.find('h3')
-                      heading_text = heading.get_text(' ', strip=True) if heading else ''
-                      if 'МЦСТ' in heading_text or 'MCST' in heading_text:
-                          replace_experience(article, soup, ru)
+                      h3 = article.find('h3')
+                      title = h3.get_text(' ', strip=True) if h3 else ''
+                      if 'МЦСТ' in title or 'MCST' in title:
+                          replace_experience(soup, article, f)
                           break
 
               for span in soup.select('.hero-context span'):
                   current = span.get_text(' ', strip=True)
                   lower = current.lower()
-                  if 'МЦСТ' in current and ('июль' in lower or 'август' in lower):
-                      set_text(span, 'МЦСТ · 1 июля–31 августа 2026 · 0,25 ставки')
-                  elif 'MCST' in current and ('july' in lower or 'august' in lower):
-                      set_text(span, 'MCST · July 1–August 31, 2026 · 0.25 FTE')
+                  if ru and 'мцст' in lower and ('июль' in lower or 'август' in lower):
+                      text(span, 'МЦСТ · 1 июля–31 августа 2026 · 0,25 ставки')
+                  elif not ru and 'mcst' in lower and ('july' in lower or 'august' in lower):
+                      text(span, 'MCST · July 1–August 31, 2026 · 0.25 FTE')
                   elif ru and 'с сентября 2026' in lower and ('стажировка' in lower or 'неполная занятость' in lower):
-                      set_text(span, 'С сентября 2026: до 20 часов в неделю')
+                      text(span, 'С сентября 2026: до 20 часов в неделю')
                   elif not ru and 'from september 2026' in lower and ('internship' in lower or 'part-time' in lower):
-                      set_text(span, 'From September 2026: up to 20 hours/week')
+                      text(span, 'From September 2026: up to 20 hours/week')
 
               for item in soup.select('.career-item'):
                   strong = item.find('strong')
-                  if strong is None:
-                      continue
-                  label = strong.get_text(' ', strip=True)
-                  if label in {'МЦСТ', 'MCST'}:
+                  if strong and strong.get_text(' ', strip=True) in {'МЦСТ', 'MCST'}:
                       detail = item.find('span')
-                      if detail is not None:
-                          set_text(detail, 'LLVM · оптимизационный проход · графовые алгоритмы' if ru else 'LLVM · optimization pass · graph algorithms')
+                      if detail:
+                          text(detail, 'LLVM · оптимизационный проход · графовые алгоритмы' if ru else 'LLVM · optimization pass · graph algorithms')
 
-              contact_heading = soup.select_one('#contact h2')
-              if contact_heading is not None:
-                  current = contact_heading.get_text(' ', strip=True)
-                  if ru and ('Ищу стажировку' in current or 'стажировку или работу' in current):
-                      set_text(contact_heading, 'С сентября 2026 открыт к работе с неполной занятостью в LLVM, разработке компиляторов и анализе программ.')
-                  elif not ru and ('internship' in current.lower() or 'part-time role' in current.lower()):
-                      set_text(contact_heading, 'Available for part-time LLVM, compiler, or program-analysis work from September 2026.')
+              contact = soup.select_one('#contact h2')
+              if contact:
+                  current = contact.get_text(' ', strip=True).lower()
+                  if ru and 'ищу стажировку' in current:
+                      text(contact, 'С сентября 2026 открыт к работе с неполной занятостью в LLVM, разработке компиляторов и анализе программ.')
+                  elif not ru and 'internship' in current:
+                      text(contact, 'Available for part-time LLVM, compiler, or program-analysis work from September 2026.')
 
               path.write_text(str(soup), encoding='utf-8')
 
           for filename, profile in data['profiles'].items():
-              ru = profile.get('lang') == 'ru'
-              mcst = next((entry for entry in profile['experience'] if 'МЦСТ' in entry[1] or 'MCST' in entry[1]), None)
-              if mcst is None:
+              lang = 'ru' if profile.get('lang') == 'ru' else 'en'
+              f = facts[lang]
+              entry = next((item for item in profile['experience'] if 'МЦСТ' in item[1] or 'MCST' in item[1]), None)
+              if entry is None:
                   continue
-              if ru:
-                  mcst[:] = [
-                      ru_date,
-                      'МЦСТ · LLVM · 0,25 ставки',
-                      [
-                          '0,25 ставки: алгоритмы на графах, устройство компиляторов и LLVM.',
-                          'Разрабатываю собственный оптимизационный проход LLVM; реализую графовые алгоритмы на C++23.',
-                      ],
-                  ]
-              else:
-                  mcst[:] = [
-                      en_date,
-                      'MCST · LLVM · 0.25 FTE',
-                      [
-                          '0.25 FTE: graph algorithms, compiler construction, and LLVM.',
-                          'Developing an LLVM optimization pass; implementing graph algorithms in C++23.',
-                      ],
-                  ]
+              entry[:] = [f['date'], f['pdf_title'], f['pdf_bullets']]
               for index, marker in enumerate(profile.get('ats_order', [])):
                   if 'МЦСТ' in marker or 'MCST' in marker:
-                      profile['ats_order'][index] = mcst[1]
+                      profile['ats_order'][index] = f['pdf_title']
+
+          required_profiles = {'ru-compiler.html', 'en-compiler.html', 'ru-cpp-systems.html', 'en-cpp-systems.html'}
+          for filename in required_profiles:
+              profile = data['profiles'][filename]
+              if not any('МЦСТ' in item[1] or 'MCST' in item[1] for item in profile['experience']):
+                  raise RuntimeError(f'{filename}: MCST experience unexpectedly absent')
 
           data_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           PY
@@ -207,8 +198,7 @@ jobs:
           from pathlib import Path
 
           path = Path('tools/validate_cv.py')
-          text = path.read_text(encoding='utf-8')
-
+          source = path.read_text(encoding='utf-8')
           data_anchor = "    for filename in ['ru-devtools.html', 'en-devtools.html']:\n"
           data_check = '''    required_mcst_profiles = {'ru-compiler.html', 'en-compiler.html', 'ru-cpp-systems.html', 'en-cpp-systems.html'}
     for filename, profile in DATA['profiles'].items():
@@ -224,25 +214,21 @@ jobs:
             if marker.casefold() not in joined.casefold():
                 raise RuntimeError(f'{filename}: incomplete MCST fact {marker!r}')
 '''
-          if data_check not in text:
-              if data_anchor not in text:
-                  raise RuntimeError('validate_data insertion anchor missing')
-              text = text.replace(data_anchor, data_check + data_anchor)
+          if data_check not in source:
+              source = source.replace(data_anchor, data_check + data_anchor)
 
           html_anchor = "    compiler = (ROOT / 'ru-compiler.html').read_text(encoding='utf-8')\n"
-          html_check = '''    for filename in TARGET + ['ru.html', 'en.html']:
+          html_check = '''    current_role_pages = ['ru.html', 'en.html', 'ru-compiler.html', 'en-compiler.html', 'ru-cpp-systems.html', 'en-cpp-systems.html']
+    for filename in current_role_pages:
         page = (ROOT / filename).read_text(encoding='utf-8')
         required = ['1 июля — 31 августа 2026', '0,25 ставки', 'оптимизационный проход'] if filename.startswith('ru') else ['July 1 — August 31, 2026', '0.25 FTE', 'optimization pass']
         for marker in required:
             if marker.casefold() not in page.casefold():
                 raise RuntimeError(f'{filename}: missing current MCST fact {marker!r}')
 '''
-          if html_check not in text:
-              if html_anchor not in text:
-                  raise RuntimeError('validate_html insertion anchor missing')
-              text = text.replace(html_anchor, html_check + html_anchor)
-
-          path.write_text(text, encoding='utf-8')
+          if html_check not in source:
+              source = source.replace(html_anchor, html_check + html_anchor)
+          path.write_text(source, encoding='utf-8')
           PY
       - name: Rebuild all print blocks and PDFs
         run: |
@@ -257,14 +243,11 @@ jobs:
           python - <<'PY'
           import hashlib
           from pathlib import Path
-
           root = Path('.')
           lines = []
           for path in sorted(root.rglob('*')):
-              if not path.is_file() or path.name == 'MANIFEST.sha256' or '.git' in path.parts:
-                  continue
-              digest = hashlib.sha256(path.read_bytes()).hexdigest()
-              lines.append(f'{digest}  ./{path.as_posix()}')
+              if path.is_file() and path.name != 'MANIFEST.sha256' and '.git' not in path.parts:
+                  lines.append(f'{hashlib.sha256(path.read_bytes()).hexdigest()}  ./{path.as_posix()}')
           Path('MANIFEST.sha256').write_text('\n'.join(lines) + '\n', encoding='utf-8')
           PY
       - name: Validate clean final state
