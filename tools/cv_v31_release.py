@@ -3,7 +3,8 @@ import base64
 import zlib
 
 base = Path(__file__).resolve().parent / ".cv_v31_payload"
-encoded = "".join(path.read_text(encoding="utf-8").strip() for path in sorted(base.glob("part*.txt")))
+ordered = [base / "part00a.txt", base / "part00b.txt"] + [base / f"part{i:02d}.txt" for i in range(1, 8)]
+encoded = "".join(path.read_text(encoding="utf-8").strip() for path in ordered)
 source = zlib.decompress(base64.b64decode(encoded)).decode("utf-8")
 
 source = source.replace(
