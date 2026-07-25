@@ -1,14 +1,9 @@
-# Fact retention - v30
+# Canonical CV facts — v31
 
-| Fact | Evidence boundary |
-|---|---|
-| Wist2 has an experimental verifier-gated AIR -> SSA -> AIR route | current architecture/repository evidence |
-| Latest full rerun: 1,358 tests passed, 0 failed; build succeeded | user-reported run, 2026-07-23 |
-| PS-form Analyzer ranked 1/49 with the only 5.0/5.0 and 104/104 | public project/result evidence |
-| AdvancedAlgorithms contains 12 C++23 modules with differential/invariant/sanitizer/large-input checks | checked public repository |
-| NASM course is IA-32 only and covers CDECL, stack, libc, structures/addressing and x87 | checked public course README/examples |
-| x86-64 lab implements a SysV emitter via iced-x86, liveness, allocation and interpreter-vs-native validation | checked public lab README |
-| x86-64 lab does not yet implement calls or callee-saved register allocation | checked public lab limitations |
-| MCST uses C++23, CMake, warnings-as-errors, sanitizers, clang-tidy and reproducible I/O tests | checked internship repository/context |
-
-Implemented, experimental, user-reported and unsupported claims remain explicitly separated.
+- Education RU: Студент программы «Программная инженерия» НИУ ВШЭ.
+- Education EN: Software Engineering student at HSE University.
+- Wist2 canonical gate, 2026-07-25: 1,459/1,459 tests passed, 0 failed, 0 skipped; 0 build warnings/errors; 9 packages; clean template and cross-package consumer smoke.
+- Wist2 public boundary: experimental typed .NET language/runtime platform; Wist public alpha facade; PlanFuzz experimental non-packable research tooling.
+- SSA boundary: callable-first opt-in subset with verifier-gated AIR → SSA → AIR; no claim of universal coverage, SSA-native backend or performance superiority.
+- Baltic award RU: Диплом I степени и Главная премия «Совершенство как надежда» Балтийского научно-инженерного конкурса.
+- Baltic award EN: First-degree diploma and the Grand Prize “Perfection as Hope” at the Baltic Science and Engineering Competition.

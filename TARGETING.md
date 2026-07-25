@@ -1,36 +1,16 @@
-# Targeting guide - v30
+# Targeting guide — v31
 
-## Compiler / Runtime / Program Analysis
+## Flagship variants
 
-Send `ru-compiler.html` / `en-compiler.html` or the corresponding PDF to compiler, runtime, VM, static-analysis and language-engineering teams.
+1. `Compiler / Language Platforms` — compiler/runtime, language SDK, IR/SSA and architecture roles.
+2. `Compiler Testing / Developer Tools` — compiler testing, fuzzing, diagnostics, build/test and research tooling.
+3. `C++ Systems / Program Analysis` — C++ systems, graph/data-flow analysis, low-level and backend roles.
 
-Evidence hierarchy:
-1. UniversalToolchain/Wist2 - multi-IR runtime pipeline, verifier-gated AIR -> SSA -> AIR, optimization passes and interpreter/CIL parity.
-2. PS-form Analyzer - conservative program analysis, exact oracle and 1/49, 104/104 result.
-3. NASM IA-32 plus x86-64 codegen lab - machine-level understanding, liveness, register allocation and native validation.
-4. AdvancedAlgorithms - additional C++23 foundation.
+## Specialized variants
 
-Assembly must remain supporting evidence in this version, not the primary headline.
+- `.NET Backend · Reliability-focused` — product backend roles with state, payments and operations.
+- `Algorithms / Solver Engineering` — algorithm libraries, solver/research engineering and optimization.
+- `EdTech Backend` — only for EdTech/product roles where teaching-domain evidence is relevant.
+- `State Correctness & Recovery` — a narrow backend variant, not an SRE claim.
 
-## C++ Systems / Program Analysis
-
-Send `ru-cpp-systems.html` / `en-cpp-systems.html` to C++ systems internships, algorithm libraries, compiler infrastructure, program analysis and verification tooling.
-Primary evidence: PS-form Analyzer, AdvancedAlgorithms, MCST internship, x86 codegen lab and Wist2 IR/SSA.
-
-## Algorithms / Compiler Tools / Backend
-
-- algorithms: `ru/en-algorithms.html`;
-- compiler testing/tooling: `ru/en-devtools.html`;
-- backend/reliability/EdTech: corresponding focused variants.
-
-## Full portfolio
-
-Use `ru.html` / `en.html` after first contact or as a technical-lead follow-up. Do not attach it instead of a focused PDF.
-
-## Do not claim without new evidence
-
-- FASM proficiency;
-- complete System V AMD64 ABI support;
-- HFT/quant experience;
-- production-ready sandbox or formal verification;
-- performance multipliers without a fresh reproducible benchmark.
+`ru.html` / `en.html` are follow-up technical portfolios, not first-contact resumes.

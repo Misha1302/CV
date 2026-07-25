@@ -14,7 +14,7 @@
 <link href="ru.html" hreflang="ru" rel="alternate"/>
 <link href="en.html" hreflang="en" rel="alternate"/><link href="index.html" hreflang="x-default" rel="alternate"/>
 <link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
-<link href="style.css?v=30" rel="stylesheet"/>
+<link href="style.css?v=31" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Mikhail Razakov","jobTitle":"Software Engineer — Compilers, Program Analysis and .NET Systems","email":"mailto:misha13022008@gmail.com","url":"https://misha1302.github.io/CV/ru.html","sameAs":["https://github.com/Misha1302","https://t.me/Micodiy","https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/"]}</script>
 <title>Михаил Разаков — техническое портфолио: компиляторы, анализ программ и .NET</title>
 <meta content="https://misha1302.github.io/CV/assets/og-card.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="ru_RU" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="Михаил Разаков — техническое портфолио" name="twitter:title"/><meta content="Полное техническое портфолио Михаила Разакова: Wist2, IR/SSA, анализ зависимостей памяти, AdvancedAlgorithms и .NET-сервисы." name="twitter:description"/><meta content="https://misha1302.github.io/CV/assets/og-card.png" name="twitter:image"/></head>
@@ -73,9 +73,9 @@
 <main id="main">
 <section class="shell hero" id="top">
 <div class="hero-copy"><div class="hero-intro"><p class="eyebrow">Полное техническое портфолио · compiler/runtime · анализ программ · x86 Assembly</p><h1>Михаил Разаков</h1><p class="hero-role">Инженер-программист · компиляторы / анализ программ / .NET-системы</p></div><div class="hero-detail">
-<p class="hero-summary">Разрабатываю инфраструктуру компиляторов, анализаторы и переиспользуемые алгоритмические компоненты. В UniversalToolchain/Wist2 спроектировал многоуровневый IR/runtime-конвейер и проверяемый маршрут AIR → SSA → AIR; PS-form Analyzer занял 1-е место среди 49 решений; AdvancedAlgorithms объединяет 12 модулей на C++23. Low-level профиль подтверждают ручной NASM-код, практический курс по IA-32 и x86-64 codegen/register-allocation лаборатория. Также сопровождаю .NET-сервисы с платежами и recovery.</p>
+<p class="hero-summary">Разрабатываю языковые платформы, compiler-testing tooling и системные компоненты. UniversalToolchain/Wist2 включает typed cross-package language plans, exact manifest binding, callable-first SSA, публичный Wist facade и PlanFuzz с семью oracle families, fresh-process replay и reducers. Дополняют профиль PS-form Analyzer, AdvancedAlgorithms, x86 codegen и работающие .NET-сервисы.</p>
 <div class="hero-actions"><a class="button primary" href="mailto:misha13022008@gmail.com">Написать</a><a class="button" href="https://github.com/Misha1302" rel="noopener noreferrer" target="_blank">GitHub</a><a class="button" href="index.html">Целевые версии</a></div>
-<div class="hero-context"><span>Москва / удалённо</span><span>Студент НИУ ВШЭ</span><span>С сентября 2026: стажировка или неполная занятость</span><span>Стажировка МЦСТ · июль–август 2026</span></div>
+<div class="hero-context"><span>Москва / удалённо</span><span>Студент программы «Программная инженерия» НИУ ВШЭ</span><span>С сентября 2026: стажировка или неполная занятость</span><span>Стажировка МЦСТ · июль–август 2026</span></div>
 <div class="hero-contact-line"><a href="mailto:misha13022008@gmail.com">misha13022008@gmail.com</a> · <a href="https://t.me/Micodiy" rel="noopener noreferrer" target="_blank">t.me/Micodiy</a> · <a href="https://github.com/Misha1302" rel="noopener noreferrer" target="_blank">github.com/Misha1302</a> · <a href="https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/" rel="noopener noreferrer" target="_blank">LinkedIn</a></div>
 </div></div>
 <aside aria-label="Профиль" class="identity-card"><div aria-hidden="true" class="identity-mark">MR</div><strong>Компиляторы, анализ программ и сервисные системы</strong><span>IR/SSA · алгоритмы · NASM/x86 · .NET</span></aside>
@@ -92,7 +92,7 @@
 </section><section class="shell section" id="experience">
 <div class="section-heading"><p class="section-label">01 · Опыт</p><div><h2>Инженерный опыт: от IR и анализаторов до работающих сервисов.</h2><p class="section-intro">Форматы работы разделены явно: стажировка, открытые проекты, собственные продукты, клиентская разработка, поддержка публичной платформы и преподавание.</p></div></div>
 <div class="timeline">
-<article><time>2024 — сейчас</time><div><h3>UniversalToolchain / Wist2 — создатель и основной разработчик</h3><p class="org">Открытый compiler/runtime framework · .NET</p></div><ul class="timeline-details"><li>Спроектировал конвейер Source → AST → Bytecode → AIR → Backend → Execution, эталонный интерпретатор, backend на CIL/DynamicMethod и модульную композицию.</li><li>Реализовал экспериментальный opt-in маршрут AIR → SSA → AIR: lowering/emission, constant folding, SCCP-lite, branch folding, unreachable cleanup и DCE.</li><li>Последний полный прогон от 23.07.2026: 1 358/1 358 тестов пройдены, 0 сбоев; сборка успешна.</li></ul></article><article><time>Июль–август 2026</time><div><h3>МЦСТ — стажёр по разработке компиляторов</h3><p class="org">LLVM-направление · C++23 · удалённо</p></div><ul class="timeline-details"><li>Разрабатываю компоненты анализа графов над общей моделью данных и явными контрактами входа, ошибок и результата.</li><li>Поддерживаю CMake-сборку, warnings-as-errors, ASan/UBSan, <code>clang-tidy</code>, явные include-зависимости и воспроизводимые I/O-тесты.</li></ul></article>
+<article><time>2024 — сейчас</time><div><h3>UniversalToolchain / Wist2 — создатель и основной разработчик</h3><p class="org">Открытый compiler/runtime framework · .NET</p></div><ul class="timeline-details"><li>Спроектировал конвейер Source → AST → Bytecode → AIR → Backend → Execution, эталонный интерпретатор, backend на CIL/DynamicMethod и модульную композицию.</li><li>Реализовал экспериментальный opt-in маршрут AIR → SSA → AIR: lowering/emission, constant folding, SCCP-lite, branch folding, unreachable cleanup и DCE.</li><li>Последний полный прогон от 25.07.2026: 1 459/1 459 тестов пройдены, 0 сбоев; сборка успешна.</li></ul></article><article><time>Июль–август 2026</time><div><h3>МЦСТ — стажёр по разработке компиляторов</h3><p class="org">LLVM-направление · C++23 · удалённо</p></div><ul class="timeline-details"><li>Разрабатываю компоненты анализа графов над общей моделью данных и явными контрактами входа, ошибок и результата.</li><li>Поддерживаю CMake-сборку, warnings-as-errors, ASan/UBSan, <code>clang-tidy</code>, явные include-зависимости и воспроизводимые I/O-тесты.</li></ul></article>
 <article><time>2026 — сейчас</time><div><h3>Создатель и сопровождающий разработчик сервисов</h3><p class="org">VpnMediator / Razaltush VPN · CompilationLabLMS</p></div><ul class="timeline-details"><li>Проектирую подписки, роли, платежи, миграции, вебхуки, журналы операций и фоновые процессы восстановления.</li><li>Работаю с PostgreSQL/SQLite, Docker Compose, nginx, systemd, диагностикой, backup/restore, релизами и откатом.</li></ul></article>
 <article><time>2023</time><div><h3>Бэкенд-разработка для клиента</h3><p class="org">Частная система активации приложений</p></div><ul class="timeline-details"><li>Реализовал API лицензирования, статусы активации, OpenAPI/Swagger-контракт, модель ошибок и административные сценарии.</li><li>Исходный код и данные заказчика не публикуются.</li></ul></article>
 <article><time>2026</time><div><h3>Поддержка публичного EdTech-продукта</h3><p class="org">Diploma.school</p></div><ul class="timeline-details"><li>Исправлял кросс-девайсные регрессии, навигацию, адаптивный интерфейс, материалы и Telegram-интеграции.</li><li>Проверял изменения по реальным пользовательским сценариям и обратной связи.</li></ul></article>
@@ -162,20 +162,7 @@
        </a>
 </div>
 </article>
-<article class="recognition-item">
-<span class="recognition-year">
-       2026
-      </span>
-<div>
-<h3>Балтийский научно-инженерный конкурс</h3>
-<p>Диплом I степени и секционная премия «Совершенство как надежда» за проект UniversalToolchain.</p>
-</div>
-<div class="evidence-links">
-<a href="https://baltkonkurs.ru/features/po-godam/xxii-konkurs-2026/" rel="noopener noreferrer" target="_blank">
-        Результаты ↗
-       </a>
-</div>
-</article>
+
 <article class="recognition-item">
 <span class="recognition-year">
        2026
@@ -188,9 +175,9 @@
 </article>
 </div>
 </section><section class="shell section" id="education">
-<div class="section-heading"><p class="section-label">05 · Образование</p><div><h2>Образование и доступность.</h2><p class="section-intro">Студент НИУ ВШЭ.</p></div></div>
+<div class="section-heading"><p class="section-label">05 · Образование</p><div><h2>Образование и доступность.</h2><p class="section-intro">Студент программы «Программная инженерия» НИУ ВШЭ.</p></div></div>
 <div class="timeline">
-<article><time>Студент</time><div><h3><a href="https://www.hse.ru/" rel="noopener noreferrer" target="_blank">НИУ ВШЭ</a></h3><p class="org">Москва</p></div><p class="details">Студент НИУ ВШЭ.</p></article>
+<article><time>Студент</time><div><h3><a href="https://www.hse.ru/" rel="noopener noreferrer" target="_blank">НИУ ВШЭ</a></h3><p class="org">Москва</p></div><p class="details">Студент программы «Программная инженерия» НИУ ВШЭ.</p></article>
 <article><time datetime="2026-09">С сентября 2026</time><div><h3>Стажировка или неполная занятость</h3><p class="org">Москва / удалённо</p></div><p class="details">Готов приступить после завершения летней стажировки МЦСТ. Приоритет — инженерные задачи с ответственностью за результат, тестирование и документацию.</p></article>
 </div></section><section class="shell contact-section" id="contact">
 <div class="contact-panel">
@@ -216,9 +203,9 @@
 </main>
 <footer class="shell site-footer">
 <span>Михаил Разаков · полное техническое портфолио</span>
-<span>Обновлено 24 июля 2026</span>
+<span>Обновлено 25 июля 2026</span>
 </footer>
-<script src="script.js?v=30">
+<script src="script.js?v=31">
 </script>
 </body>
 </html>

@@ -1,0 +1,1122 @@
+{
+  "version": 31,
+  "verified_at": "2026-07-25",
+  "profiles": {
+    "ru-compiler.html": {
+      "lang": "ru",
+      "education": "Студент программы «Программная инженерия» НИУ ВШЭ",
+      "availability": "Москва / удалённо · до 20 часов в неделю с сентября 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_Compiler_RU.pdf",
+      "name": "Михаил Разаков",
+      "role": "Инженер по компиляторам и языковым платформам",
+      "summary": "Разрабатываю UniversalToolchain/Wist2: typed cross-package language plans, exact manifest binding, callable-first SSA, публичный Wist facade и PlanFuzz для configuration-aware differential testing.",
+      "proofs": [
+        [
+          "Typed language plans",
+          "routes, passes, capabilities и exact executor"
+        ],
+        [
+          "Callable-first SSA",
+          "descriptor semantics и verifier-gated roundtrip"
+        ],
+        [
+          "1 459 / 1 459",
+          "0 падений; 9 packages и clean consumers"
+        ]
+      ],
+      "experience": [
+        [
+          "2024 — сейчас",
+          "UniversalToolchain / Wist2",
+          [
+            "Typed SDK для независимых language packages, deterministic routes/pass ordering и schema-v5 lock identity.",
+            "Fail-closed runtime policies, exact manifest binding и lifecycle ownership.",
+            "Callable-first SSA и PlanFuzz: 7 oracle families, replay, exact fingerprints и reducers."
+          ]
+        ],
+        [
+          "Июль–август 2026",
+          "МЦСТ · LLVM-направление",
+          [
+            "C++23 graph-analysis core: RPO/cycles, Dijkstra, Tarjan SCC и Dinic.",
+            "CMake, warnings-as-errors, ASan/UBSan, clang-tidy и I/O tests."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "PlanFuzz",
+          "Configuration-aware differential testing; fresh-process confirmation and deterministic program/plan reduction."
+        ],
+        [
+          "PS-form Analyzer",
+          "1-е место из 49, 104/104; conservative memory-dependence analysis and exact-oracle harness."
+        ],
+        [
+          "x86-64 Codegen Lab",
+          "SSA-like IR, liveness, linear scan, iced-x86 emission and differential validation."
+        ]
+      ],
+      "skills": [
+        [
+          "Архитектура языков",
+          "typed artifacts, contribution graphs, routes, passes, manifests"
+        ],
+        [
+          "IR / SSA",
+          "Bytecode/AIR, callable descriptors, CFG, dominance, folding, SCCP-lite, DCE"
+        ],
+        [
+          "Верификация",
+          "differential/metamorphic testing, exact oracles, replay, reducers, parity"
+        ],
+        [
+          "Языки",
+          "C#/.NET, C++23, C17, Python, Rust"
+        ]
+      ],
+      "recognition": "1-е место из 49 в отборе МЦСТ; призёр «Высшей пробы»; первые результаты «Юниора» 2025/2026; Главная премия Балтийского конкурса.",
+      "communication": "Около 50 учеников; практический курс NASM IA-32; публичная документация и технические материалы."
+    },
+    "en-compiler.html": {
+      "lang": "en",
+      "education": "Software Engineering student at HSE University",
+      "availability": "Moscow / remote · up to 20 hours/week from September 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_Compiler_EN.pdf",
+      "name": "Mikhail Razakov",
+      "role": "Compiler and Language Platform Engineer",
+      "summary": "I develop UniversalToolchain/Wist2: typed cross-package language plans, exact manifest binding, callable-first SSA, the public Wist facade, and PlanFuzz for configuration-aware differential testing.",
+      "proofs": [
+        [
+          "Typed language plans",
+          "routes, passes, capabilities, exact executors"
+        ],
+        [
+          "Callable-first SSA",
+          "descriptor semantics and verifier-gated roundtrip"
+        ],
+        [
+          "1,459 / 1,459",
+          "0 failures; nine packages and clean consumers"
+        ]
+      ],
+      "experience": [
+        [
+          "2024 — present",
+          "UniversalToolchain / Wist2",
+          [
+            "Typed SDK for independent language packages, deterministic routes/pass ordering, and schema-v5 lock identity.",
+            "Fail-closed runtime policies, exact manifest binding, and lifecycle ownership.",
+            "Callable-first SSA and PlanFuzz: seven oracle families, replay, exact fingerprints, and reducers."
+          ]
+        ],
+        [
+          "Jul–Aug 2026",
+          "MCST · LLVM track",
+          [
+            "C++23 graph-analysis core: RPO/cycles, Dijkstra, Tarjan SCC, and Dinic.",
+            "CMake, warnings-as-errors, ASan/UBSan, clang-tidy, and I/O tests."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "PlanFuzz",
+          "Configuration-aware differential testing with fresh-process confirmation and deterministic program/plan reduction."
+        ],
+        [
+          "PS-form Analyzer",
+          "Ranked 1st of 49 with 104/104 tests; conservative memory-dependence analysis and an exact-oracle harness."
+        ],
+        [
+          "x86-64 Codegen Lab",
+          "SSA-like IR, liveness, linear scan, iced-x86 emission, and differential validation."
+        ]
+      ],
+      "skills": [
+        [
+          "Language architecture",
+          "typed artifacts, contribution graphs, routes, passes, manifests"
+        ],
+        [
+          "IR / SSA",
+          "Bytecode/AIR, callable descriptors, CFG, dominance, folding, SCCP-lite, DCE"
+        ],
+        [
+          "Verification",
+          "differential/metamorphic testing, exact oracles, replay, reducers, parity"
+        ],
+        [
+          "Languages",
+          "C#/.NET, C++23, C17, Python, Rust"
+        ]
+      ],
+      "recognition": "Ranked 1st of 49 in MCST selection; HSE Vysshaya Proba prize-winner; top MEPhI Junior results in 2025/2026; Baltic Grand Prize.",
+      "communication": "About 50 students; practical NASM IA-32 course; public documentation and technical writing."
+    },
+    "ru-devtools.html": {
+      "lang": "ru",
+      "education": "Студент программы «Программная инженерия» НИУ ВШЭ",
+      "availability": "Москва / удалённо · до 20 часов в неделю с сентября 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_DevTools_RU.pdf",
+      "name": "Михаил Разаков",
+      "role": "Инженер по тестированию компиляторов и инструментам разработчика",
+      "summary": "Разработал PlanFuzz — нейтральную к языку систему дифференциального тестирования с учётом конфигурации: семь семейств оракулов, повторное выполнение в свежих процессах, точные отпечатки и детерминированное сокращение программ и планов.",
+      "proofs": [
+        [
+          "7 семейств оракулов",
+          "backend/route parity, determinism, surface, extensions, fallback, locks"
+        ],
+        [
+          "Подтверждение в свежих процессах",
+          "typed observations, exact fingerprints, replayable artifacts"
+        ],
+        [
+          "1 459 тестов",
+          "PlanFuzz + SDK + Wist; 0 failures"
+        ]
+      ],
+      "experience": [
+        [
+          "2026 — сейчас",
+          "PlanFuzz",
+          [
+            "Language-neutral core, Acme/Wist adapters and structured generators.",
+            "Strict outcome/evidence semantics and deterministic reducers."
+          ]
+        ],
+        [
+          "2024 — сейчас",
+          "Wist tooling",
+          [
+            "Typed APIs, structured diagnostics, versioned traces and interpreter/CIL parity.",
+            "Nine-package gate, clean template and cross-package consumer smoke."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "PS-form Harness",
+          "Exact oracle, metamorphic generation, strict stdout, timeouts and WA/TL counterexamples."
+        ],
+        [
+          "AdvancedAlgorithms Verification",
+          "Differential oracles, structural invariants, invalid-input cases, sanitizers and stress tests."
+        ],
+        [
+          "x86 Backend Validation",
+          "IR-interpreter/generated-code parity, disassembly and isolated execution."
+        ]
+      ],
+      "skills": [
+        [
+          "Testing",
+          "differential/metamorphic, oracles, replay, reducers"
+        ],
+        [
+          "Diagnostics",
+          "stable codes/stages, typed traces, counterexample artifacts"
+        ],
+        [
+          "Release",
+          "package surfaces, clean consumers, manifests, CI"
+        ],
+        [
+          "Языки",
+          "C#/.NET, C++23, C17, Python, Rust"
+        ]
+      ],
+      "recognition": "1-е место из 49 в отборе МЦСТ; призёр «Высшей пробы»; Главная премия Балтийского конкурса.",
+      "communication": "Техническая документация, воспроизводимые отчёты и ревью кода."
+    },
+    "en-devtools.html": {
+      "lang": "en",
+      "education": "Software Engineering student at HSE University",
+      "availability": "Moscow / remote · up to 20 hours/week from September 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_DevTools_EN.pdf",
+      "name": "Mikhail Razakov",
+      "role": "Compiler Testing and Developer Tools Engineer",
+      "summary": "I built PlanFuzz: language-neutral configuration-aware differential testing with seven oracle families, fresh-process replay, exact fingerprints, and deterministic program/plan reduction.",
+      "proofs": [
+        [
+          "7 oracle families",
+          "backend/route parity, determinism, surface, extensions, fallback, locks"
+        ],
+        [
+          "Fresh-process evidence",
+          "typed observations, exact fingerprints, replayable artifacts"
+        ],
+        [
+          "1,459 tests",
+          "PlanFuzz + SDK + Wist; 0 failures"
+        ]
+      ],
+      "experience": [
+        [
+          "2026 — present",
+          "PlanFuzz",
+          [
+            "Language-neutral core, Acme/Wist adapters, and structured generators.",
+            "Strict outcome/evidence semantics and deterministic reducers."
+          ]
+        ],
+        [
+          "2024 — present",
+          "Wist tooling",
+          [
+            "Typed APIs, structured diagnostics, versioned traces, and interpreter/CIL parity.",
+            "Nine-package gate, clean template, and cross-package consumer smoke."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "PS-form Harness",
+          "Exact oracle, metamorphic generation, strict stdout, timeouts, and WA/TL counterexamples."
+        ],
+        [
+          "AdvancedAlgorithms Verification",
+          "Differential oracles, structural invariants, invalid-input cases, sanitizers, and stress tests."
+        ],
+        [
+          "x86 Backend Validation",
+          "IR-interpreter/generated-code parity, disassembly, and isolated execution."
+        ]
+      ],
+      "skills": [
+        [
+          "Testing",
+          "differential/metamorphic, oracles, replay, reducers"
+        ],
+        [
+          "Diagnostics",
+          "stable codes/stages, typed traces, counterexample artifacts"
+        ],
+        [
+          "Release",
+          "package surfaces, clean consumers, manifests, CI"
+        ],
+        [
+          "Languages",
+          "C#/.NET, C++23, C17, Python, Rust"
+        ]
+      ],
+      "recognition": "Ranked 1st of 49 in MCST selection; HSE Vysshaya Proba prize-winner; Baltic Grand Prize.",
+      "communication": "Technical documentation, reproducible reports, and code review."
+    },
+    "ru-cpp-systems.html": {
+      "lang": "ru",
+      "education": "Студент программы «Программная инженерия» НИУ ВШЭ",
+      "availability": "Москва / удалённо · до 20 часов в неделю с сентября 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_CPP_Systems_RU.pdf",
+      "name": "Михаил Разаков",
+      "role": "Инженер по C++-системам и анализу программ",
+      "summary": "C++23, анализ программ и низкоуровневая разработка: PS-form Analyzer, AdvancedAlgorithms, стажировка на LLVM-направлении, NASM IA-32 и генерация x86-64-кода.",
+      "proofs": [
+        [
+          "1-е место · 104/104",
+          "PS-form; единственный максимальный результат из 49"
+        ],
+        [
+          "12 модулей C++23",
+          "контракты, дифференциальные тесты, санитайзеры и stress-тесты"
+        ],
+        [
+          "Строгая сборка",
+          "CMake, -Werror, ASan/UBSan, clang-tidy"
+        ]
+      ],
+      "experience": [
+        [
+          "Июль–август 2026",
+          "МЦСТ · LLVM-направление",
+          [
+            "RPO/cycles, Dijkstra, Tarjan SCC и Dinic над общим graph core.",
+            "Явные contracts, strict build and reproducible I/O tests."
+          ]
+        ],
+        [
+          "2026 — сейчас",
+          "AdvancedAlgorithms",
+          [
+            "12 reusable C++23 modules with explicit complexity and validation.",
+            "Large tests up to 500k vertices catch recursion and accidental O(n²)."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "PS-form Analyzer",
+          "Conservative memory-dependence analysis; 1st of 49, 104/104."
+        ],
+        [
+          "x86-64 Codegen Lab",
+          "SSA-like IR, liveness, linear scan, iced-x86 and isolated execution."
+        ],
+        [
+          "UniversalToolchain/Wist2",
+          "Typed routes, callable-first SSA and PlanFuzz; 1,459-test canonical gate."
+        ]
+      ],
+      "skills": [
+        [
+          "C++-системы",
+          "C++23, CMake, contracts, sanitizers, static analysis"
+        ],
+        [
+          "Анализ программ",
+          "graphs, data flow, memory dependence, liveness"
+        ],
+        [
+          "Низкоуровневая разработка",
+          "NASM IA-32, CDECL, x87, x86-64 codegen"
+        ],
+        [
+          "Языки",
+          "C++23, C17, C#/.NET, Python, Rust"
+        ]
+      ],
+      "recognition": "1-е место из 49 в отборе МЦСТ; призёр «Высшей пробы»; Главная премия Балтийского конкурса.",
+      "communication": "Ревью решений, документация и практический курс NASM IA-32."
+    },
+    "en-cpp-systems.html": {
+      "lang": "en",
+      "education": "Software Engineering student at HSE University",
+      "availability": "Moscow / remote · up to 20 hours/week from September 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_CPP_Systems_EN.pdf",
+      "name": "Mikhail Razakov",
+      "role": "C++ Systems / Program Analysis Engineer",
+      "summary": "C++23, program analysis, and low-level engineering: the PS-form Analyzer, AdvancedAlgorithms, an LLVM-track internship, NASM IA-32, and x86-64 codegen.",
+      "proofs": [
+        [
+          "1st · 104/104",
+          "PS-form; only maximum result among 49"
+        ],
+        [
+          "12 C++23 modules",
+          "contracts, differential tests, sanitizers, stress"
+        ],
+        [
+          "Strict toolchain",
+          "CMake, -Werror, ASan/UBSan, clang-tidy"
+        ]
+      ],
+      "experience": [
+        [
+          "Jul–Aug 2026",
+          "MCST · LLVM track",
+          [
+            "RPO/cycles, Dijkstra, Tarjan SCC, and Dinic over a shared graph core.",
+            "Explicit contracts, strict builds, and reproducible I/O tests."
+          ]
+        ],
+        [
+          "2026 — present",
+          "AdvancedAlgorithms",
+          [
+            "12 reusable C++23 modules with explicit complexity and validation.",
+            "Large tests up to 500k vertices catch recursion and accidental O(n²)."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "PS-form Analyzer",
+          "Conservative memory-dependence analysis; ranked 1st of 49 with 104/104."
+        ],
+        [
+          "x86-64 Codegen Lab",
+          "SSA-like IR, liveness, linear scan, iced-x86, and isolated execution."
+        ],
+        [
+          "UniversalToolchain/Wist2",
+          "Typed routes, callable-first SSA, and PlanFuzz; 1,459-test canonical gate."
+        ]
+      ],
+      "skills": [
+        [
+          "C++ systems",
+          "C++23, CMake, contracts, sanitizers, static analysis"
+        ],
+        [
+          "Program analysis",
+          "graphs, data flow, memory dependence, liveness"
+        ],
+        [
+          "Low-level",
+          "NASM IA-32, CDECL, x87, x86-64 codegen"
+        ],
+        [
+          "Languages",
+          "C++23, C17, C#/.NET, Python, Rust"
+        ]
+      ],
+      "recognition": "Ranked 1st of 49 in MCST selection; HSE Vysshaya Proba prize-winner; Baltic Grand Prize.",
+      "communication": "Code review, documentation, and a practical NASM IA-32 course."
+    },
+    "ru-algorithms.html": {
+      "lang": "ru",
+      "education": "Студент программы «Программная инженерия» НИУ ВШЭ",
+      "availability": "Москва / удалённо · до 20 часов в неделю с сентября 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_Algorithms_RU.pdf",
+      "name": "Михаил Разаков",
+      "role": "Инженер по алгоритмам и оптимизации",
+      "summary": "Разрабатываю переиспользуемые алгоритмические компоненты: AdvancedAlgorithms, анализ зависимостей памяти PS-form и графовую инфраструктуру для стажировки на LLVM-направлении.",
+      "proofs": [
+        [
+          "12 модулей C++23",
+          "графы, деревья, строки и структуры данных"
+        ],
+        [
+          "1-е место · 104/104",
+          "PS-form; единственный максимум из 49"
+        ],
+        [
+          "500 тыс. вершин",
+          "stress-тесты против рекурсии и случайной O(n²)"
+        ]
+      ],
+      "experience": [
+        [
+          "2026 — сейчас",
+          "AdvancedAlgorithms",
+          [
+            "Explicit contracts, complexity notes, differential oracles and structural invariants.",
+            "ASan/UBSan and separate correctness/performance suites."
+          ]
+        ],
+        [
+          "Июль–август 2026",
+          "МЦСТ",
+          [
+            "Shared graph model plus RPO/cycles, Dijkstra, Tarjan SCC and Dinic."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "PS-form Analyzer",
+          "Conservative memory-dependence analysis with exact and metamorphic testing."
+        ],
+        [
+          "Wist SSA",
+          "Callable-first SSA, CFG/dominance verification and descriptor-driven folding."
+        ],
+        [
+          "x86 Codegen Lab",
+          "Liveness, live intervals and linear-scan register allocation."
+        ]
+      ],
+      "skills": [
+        [
+          "Алгоритмы",
+          "graphs, trees, strings, data structures, optimization"
+        ],
+        [
+          "Корректность",
+          "differential tests, exact oracles, invariants, sanitizers"
+        ],
+        [
+          "Сложность",
+          "explicit bounds, large inputs, non-flaky performance gates"
+        ],
+        [
+          "Языки",
+          "C++23, C17, Python, C#/.NET, Rust"
+        ]
+      ],
+      "recognition": "1-е место из 49 в отборе МЦСТ; призёр «Высшей пробы»; первые результаты «Юниора» 2025/2026.",
+      "communication": "Преподавание алгоритмов и ревью решений с 2021 года."
+    },
+    "en-algorithms.html": {
+      "lang": "en",
+      "education": "Software Engineering student at HSE University",
+      "availability": "Moscow / remote · up to 20 hours/week from September 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_Algorithms_EN.pdf",
+      "name": "Mikhail Razakov",
+      "role": "Algorithm / Solver Engineer",
+      "summary": "I build reusable algorithmic components: AdvancedAlgorithms, PS-form memory-dependence analysis, and graph infrastructure for an LLVM-track internship.",
+      "proofs": [
+        [
+          "12 C++23 modules",
+          "graphs, trees, strings, and data structures"
+        ],
+        [
+          "1st · 104/104",
+          "PS-form; only maximum result among 49"
+        ],
+        [
+          "500k vertices",
+          "stress tests for recursion and accidental O(n²)"
+        ]
+      ],
+      "experience": [
+        [
+          "2026 — present",
+          "AdvancedAlgorithms",
+          [
+            "Explicit contracts, complexity notes, differential oracles, and structural invariants.",
+            "ASan/UBSan and separate correctness/performance suites."
+          ]
+        ],
+        [
+          "Jul–Aug 2026",
+          "MCST",
+          [
+            "Shared graph model plus RPO/cycles, Dijkstra, Tarjan SCC, and Dinic."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "PS-form Analyzer",
+          "Conservative memory-dependence analysis with exact and metamorphic testing."
+        ],
+        [
+          "Wist SSA",
+          "Callable-first SSA, CFG/dominance verification, and descriptor-driven folding."
+        ],
+        [
+          "x86 Codegen Lab",
+          "Liveness, live intervals, and linear-scan register allocation."
+        ]
+      ],
+      "skills": [
+        [
+          "Algorithms",
+          "graphs, trees, strings, data structures, optimization"
+        ],
+        [
+          "Correctness",
+          "differential tests, exact oracles, invariants, sanitizers"
+        ],
+        [
+          "Complexity",
+          "explicit bounds, large inputs, non-flaky performance gates"
+        ],
+        [
+          "Languages",
+          "C++23, C17, Python, C#/.NET, Rust"
+        ]
+      ],
+      "recognition": "Ranked 1st of 49 in MCST selection; HSE Vysshaya Proba prize-winner; top MEPhI Junior results in 2025/2026.",
+      "communication": "Teaching algorithms and reviewing solutions since 2021."
+    },
+    "ru-backend.html": {
+      "lang": "ru",
+      "education": "Студент программы «Программная инженерия» НИУ ВШЭ",
+      "availability": "Москва / удалённо · до 20 часов в неделю с сентября 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_Backend_RU.pdf",
+      "name": "Михаил Разаков",
+      "role": ".NET-бэкенд-разработчик · надёжные системы",
+      "summary": "Проектирую .NET-сервисы с явными моделями состояния: подписки, платежи, роли, устройства, миграции, восстановление, проверки работоспособности и безопасные релизы.",
+      "proofs": [
+        [
+          "2 сервиса + 1 клиентская система",
+          "VPN, LMS и API лицензирования"
+        ],
+        [
+          "Платежи и восстановление",
+          "идемпотентность, outbox, журнал аудита, reconciliation"
+        ],
+        [
+          "ASP.NET · PostgreSQL · Linux",
+          "API, данные, развёртывание и откат"
+        ]
+      ],
+      "experience": [
+        [
+          "2026 — сейчас",
+          "VPN и LMS",
+          [
+            "Subscriptions, roles, balances, payments, webhooks and device state.",
+            "Docker/nginx/systemd, migrations, backup/restore, health checks and rollback."
+          ]
+        ],
+        [
+          "2023",
+          "Client licensing backend",
+          [
+            "Activation lifecycle, OpenAPI contract, explicit errors and admin workflows."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "VpnMediator",
+          "Commercial subscription backend with payments, devices and recovery."
+        ],
+        [
+          "CompilationLabLMS",
+          "Roles, learning workflows, balance ledger and payment operations."
+        ],
+        [
+          "Wist",
+          "Typed .NET API and package/runtime contract discipline."
+        ]
+      ],
+      "skills": [
+        [
+          "Бэкенд",
+          "C#, .NET, ASP.NET Core, REST, OpenAPI, webhooks"
+        ],
+        [
+          "Данные",
+          "PostgreSQL, SQLite, migrations, transactions"
+        ],
+        [
+          "Надёжность",
+          "idempotency, outbox, audit, recovery, backup/restore"
+        ],
+        [
+          "Эксплуатация",
+          "Docker Compose, nginx, systemd, health gates, rollback"
+        ]
+      ],
+      "recognition": "1-е место из 49 в техническом отборе МЦСТ; Главная премия Балтийского конкурса.",
+      "communication": "Около 50 учеников; code review и техническая документация."
+    },
+    "en-backend.html": {
+      "lang": "en",
+      "education": "Software Engineering student at HSE University",
+      "availability": "Moscow / remote · up to 20 hours/week from September 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_Backend_EN.pdf",
+      "name": "Mikhail Razakov",
+      "role": ".NET Backend Engineer · Reliability-Focused Systems",
+      "summary": "I design .NET services with explicit state models: subscriptions, payments, roles, devices, migrations, recovery, health gates, and safe releases.",
+      "proofs": [
+        [
+          "2 services + 1 client system",
+          "VPN, LMS, and licensing API"
+        ],
+        [
+          "Payments & recovery",
+          "idempotency, outbox, audit trails, reconciliation"
+        ],
+        [
+          "ASP.NET · PostgreSQL · Linux",
+          "APIs, data, deployment, rollback"
+        ]
+      ],
+      "experience": [
+        [
+          "2026 — present",
+          "VPN and LMS",
+          [
+            "Subscriptions, roles, balances, payments, webhooks, and device state.",
+            "Docker/nginx/systemd, migrations, backup/restore, health checks, and rollback."
+          ]
+        ],
+        [
+          "2023",
+          "Client licensing backend",
+          [
+            "Activation lifecycle, OpenAPI contract, explicit errors, and admin workflows."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "VpnMediator",
+          "Commercial subscription backend with payments, devices, and recovery."
+        ],
+        [
+          "CompilationLabLMS",
+          "Roles, learning workflows, a balance ledger, and payment operations."
+        ],
+        [
+          "Wist",
+          "Typed .NET API and package/runtime contract discipline."
+        ]
+      ],
+      "skills": [
+        [
+          "Backend",
+          "C#, .NET, ASP.NET Core, REST, OpenAPI, webhooks"
+        ],
+        [
+          "Data",
+          "PostgreSQL, SQLite, migrations, transactions"
+        ],
+        [
+          "Reliability",
+          "idempotency, outbox, audit, recovery, backup/restore"
+        ],
+        [
+          "Operations",
+          "Docker Compose, nginx, systemd, health gates, rollback"
+        ]
+      ],
+      "recognition": "Ranked 1st of 49 in MCST technical selection; Baltic Grand Prize.",
+      "communication": "About 50 students; code review and technical documentation."
+    },
+    "ru-platform.html": {
+      "lang": "ru",
+      "education": "Студент программы «Программная инженерия» НИУ ВШЭ",
+      "availability": "Москва / удалённо · до 20 часов в неделю с сентября 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_Reliability_RU.pdf",
+      "name": "Михаил Разаков",
+      "role": ".NET-бэкенд-разработчик · корректность состояния и восстановление",
+      "summary": "Бэкенд с фокусом на инварианты состояния, идемпотентное восстановление и проверяемые релизы — не отдельная SRE-роль, а ответственность разработчика за поведение сервиса после сбоев.",
+      "proofs": [
+        [
+          "Инварианты состояния",
+          "подписки, платежи, балансы и устройства"
+        ],
+        [
+          "Восстановление после сбоев",
+          "outbox, журнал аудита и reconciliation"
+        ],
+        [
+          "Проверяемые релизы",
+          "backup/restore, проверки работоспособности и откат"
+        ]
+      ],
+      "experience": [
+        [
+          "2026 — сейчас",
+          "VpnMediator",
+          [
+            "Payment state machines, access lifecycle, audit and background recovery.",
+            "Versioned deployments, diagnostics, backup/restore and rollback."
+          ]
+        ],
+        [
+          "2026 — сейчас",
+          "CompilationLabLMS",
+          [
+            "Balance ledger, verified webhooks, idempotent payment completion and critical-flow checks."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "Wist runtime contracts",
+          "Fail-closed policies, per-session ownership and exact manifest identity."
+        ],
+        [
+          "Client licensing API",
+          "Explicit activation states and operator-safe admin scenarios."
+        ],
+        [
+          "Release discipline",
+          "Clean artifacts, manifests, consumer smokes and rollback gates."
+        ]
+      ],
+      "skills": [
+        [
+          "Корректность состояния",
+          "state machines, invariants, idempotency, transactions"
+        ],
+        [
+          "Восстановление",
+          "outbox, reconciliation, audit trails, restart safety"
+        ],
+        [
+          "Release",
+          "migrations, backup/restore, health gates, versioning"
+        ],
+        [
+          "Stack",
+          "C#/.NET, PostgreSQL, SQLite, Docker, nginx, systemd"
+        ]
+      ],
+      "recognition": "1-е место из 49 в техническом отборе МЦСТ; Главная премия Балтийского конкурса.",
+      "communication": "Документация runbooks, критерии готовности и разбор инцидентов."
+    },
+    "en-platform.html": {
+      "lang": "en",
+      "education": "Software Engineering student at HSE University",
+      "availability": "Moscow / remote · up to 20 hours/week from September 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_Reliability_EN.pdf",
+      "name": "Mikhail Razakov",
+      "role": ".NET Backend Engineer · State Correctness & Recovery",
+      "summary": "Backend engineering focused on state invariants, idempotent recovery, and verifiable releases—not a separate SRE claim, but developer ownership of service behavior after failures.",
+      "proofs": [
+        [
+          "State invariants",
+          "subscriptions, payments, balances, devices"
+        ],
+        [
+          "Fail-safe recovery",
+          "outbox, audit trails, reconciliation"
+        ],
+        [
+          "Verifiable releases",
+          "backup/restore, health gates, rollback"
+        ]
+      ],
+      "experience": [
+        [
+          "2026 — present",
+          "VpnMediator",
+          [
+            "Payment state machines, access lifecycle, audit, and background recovery.",
+            "Versioned deployments, diagnostics, backup/restore, and rollback."
+          ]
+        ],
+        [
+          "2026 — present",
+          "CompilationLabLMS",
+          [
+            "Balance ledger, verified webhooks, idempotent payment completion, and critical-flow checks."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "Wist runtime contracts",
+          "Fail-closed policies, per-session ownership, and exact manifest identity."
+        ],
+        [
+          "Client licensing API",
+          "Explicit activation states and operator-safe admin scenarios."
+        ],
+        [
+          "Release discipline",
+          "Clean artifacts, manifests, consumer smokes, and rollback gates."
+        ]
+      ],
+      "skills": [
+        [
+          "State correctness",
+          "state machines, invariants, idempotency, transactions"
+        ],
+        [
+          "Recovery",
+          "outbox, reconciliation, audit trails, restart safety"
+        ],
+        [
+          "Release",
+          "migrations, backup/restore, health gates, versioning"
+        ],
+        [
+          "Stack",
+          "C#/.NET, PostgreSQL, SQLite, Docker, nginx, systemd"
+        ]
+      ],
+      "recognition": "Ranked 1st of 49 in MCST technical selection; Baltic Grand Prize.",
+      "communication": "Runbook documentation, readiness criteria, and incident analysis."
+    },
+    "ru-edtech.html": {
+      "lang": "ru",
+      "education": "Студент программы «Программная инженерия» НИУ ВШЭ",
+      "availability": "Москва / удалённо · до 20 часов в неделю с сентября 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_EdTech_RU.pdf",
+      "name": "Михаил Разаков",
+      "role": ".NET-бэкенд-разработчик · EdTech",
+      "summary": "Соединяю опыт преподавания примерно 50 учеников с backend-разработкой LMS: роли, группы, занятия, домашние задания, feedback, balances, платежи и эксплуатация.",
+      "proofs": [
+        [
+          "≈50 учеников",
+          "диагностика, объяснение, code review"
+        ],
+        [
+          "2 EdTech продукта",
+          "LMS backend and public-platform support"
+        ],
+        [
+          "Correct state",
+          "roles, balances, payments and recovery"
+        ]
+      ],
+      "experience": [
+        [
+          "2021 — сейчас",
+          "Преподаватель и наставник",
+          [
+            "Диагностика знаний, объяснение алгоритмов/архитектуры and measurable checkpoints.",
+            "Code review and project delivery support."
+          ]
+        ],
+        [
+          "2026 — сейчас",
+          "CompilationLabLMS",
+          [
+            "Student/teacher/admin roles, groups, lessons, homework, notifications and chat.",
+            "Balance ledger, payments, verified webhooks and idempotent completion."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "Diploma.school",
+          "Responsive navigation, materials, PDF previews and Telegram integrations."
+        ],
+        [
+          "VpnMediator",
+          "Transferable payment/access/recovery experience."
+        ],
+        [
+          "Wist",
+          "Public API, documentation and controlled execution surfaces."
+        ]
+      ],
+      "skills": [
+        [
+          "Предметная область EdTech",
+          "learning workflows, roles, feedback, teacher/admin scenarios"
+        ],
+        [
+          "Бэкенд",
+          "C#/.NET, PostgreSQL, REST, payments, webhooks"
+        ],
+        [
+          "Поддержка продукта",
+          "user feedback, responsive regressions, production checks"
+        ],
+        [
+          "Преподавание",
+          "C/C++, C#, Python, algorithms, architecture"
+        ]
+      ],
+      "recognition": "Первые результаты «Юниора» 2025/2026; Главная премия Балтийского конкурса.",
+      "communication": "Около 50 учеников, рейтинг 5,0, индивидуальные программы и ревью."
+    },
+    "en-edtech.html": {
+      "lang": "en",
+      "education": "Software Engineering student at HSE University",
+      "availability": "Moscow / remote · up to 20 hours/week from September 2026",
+      "contact": [
+        "misha13022008@gmail.com",
+        "t.me/Micodiy",
+        "github.com/Misha1302"
+      ],
+      "pdf": "Mikhail_Razakov_EdTech_EN.pdf",
+      "name": "Mikhail Razakov",
+      "role": ".NET Backend Engineer · EdTech",
+      "summary": "I combine experience teaching about 50 students with LMS backend engineering: roles, groups, lessons, homework, feedback, balances, payments, and operations.",
+      "proofs": [
+        [
+          "≈50 students",
+          "diagnosis, explanation, code review"
+        ],
+        [
+          "2 EdTech products",
+          "LMS backend and public-platform support"
+        ],
+        [
+          "Correct state",
+          "roles, balances, payments, recovery"
+        ]
+      ],
+      "experience": [
+        [
+          "2021 — present",
+          "Programming tutor and mentor",
+          [
+            "Knowledge diagnosis, explanations of algorithms/architecture, and measurable checkpoints.",
+            "Code review and project-delivery support."
+          ]
+        ],
+        [
+          "2026 — present",
+          "CompilationLabLMS",
+          [
+            "Student/teacher/admin roles, groups, lessons, homework, notifications, and chat.",
+            "Balance ledger, payments, verified webhooks, and idempotent completion."
+          ]
+        ]
+      ],
+      "projects": [
+        [
+          "Diploma.school",
+          "Responsive navigation, materials, PDF previews, and Telegram integrations."
+        ],
+        [
+          "VpnMediator",
+          "Transferable payment/access/recovery experience."
+        ],
+        [
+          "Wist",
+          "Public API, documentation, and controlled execution surfaces."
+        ]
+      ],
+      "skills": [
+        [
+          "EdTech domain",
+          "learning workflows, roles, feedback, teacher/admin scenarios"
+        ],
+        [
+          "Backend",
+          "C#/.NET, PostgreSQL, REST, payments, webhooks"
+        ],
+        [
+          "Product support",
+          "user feedback, responsive regressions, production checks"
+        ],
+        [
+          "Teaching",
+          "C/C++, C#, Python, algorithms, architecture"
+        ]
+      ],
+      "recognition": "Top MEPhI Junior results in 2025/2026; Baltic Grand Prize.",
+      "communication": "About 50 students, 5.0 rating, individual programs, and code review."
+    }
+  }
+}

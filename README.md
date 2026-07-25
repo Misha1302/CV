@@ -1,61 +1,48 @@
-# Mikhail Razakov - targeted CV variants v30
+# Mikhail Razakov — targeted CV variants v31
 
 Статический bilingual-пакет целевых инженерных резюме и подробного технического портфолио.
 
 ## Флагманские версии
 
-- `ru-compiler.html` / `en-compiler.html` - compiler/runtime, IR/SSA, оптимизации и program analysis.
-- `ru-cpp-systems.html` / `en-cpp-systems.html` - C++ systems, program analysis, алгоритмические компоненты и low-level codegen.
-- `ru-devtools.html` / `en-devtools.html` - compiler testing, diagnostics, generative testing и release tooling.
-- `ru-algorithms.html` / `en-algorithms.html` - алгоритмическая инженерия: AdvancedAlgorithms, PS-form Analyzer и оптимизации Wist2.
+- `ru-compiler.html` / `en-compiler.html` — compiler/runtime и языковые платформы: typed cross-package plans, callable-first SSA, Wist и PlanFuzz.
+- `ru-devtools.html` / `en-devtools.html` — compiler testing, configuration-aware fuzzing, diagnostics и reproducible evidence.
+- `ru-cpp-systems.html` / `en-cpp-systems.html` — C++ systems, program analysis, алгоритмические компоненты и low-level codegen.
 
-## Дополнительные версии
+## Специализированные версии
 
-- `ru-backend.html` / `en-backend.html` - .NET backend.
-- `ru-platform.html` / `en-platform.html` - service reliability и эксплуатация.
-- `ru-edtech.html` / `en-edtech.html` - EdTech backend.
-- `ru.html` / `en.html` - полное техническое портфолио для технического follow-up, не замена целевому PDF.
+- `ru-algorithms.html` / `en-algorithms.html` — algorithm / solver engineering.
+- `ru-backend.html` / `en-backend.html` — .NET backend с платежами, состоянием и восстановлением.
+- `ru-platform.html` / `en-platform.html` — reliability-focused .NET backend; не отдельная SRE-специализация.
+- `ru-edtech.html` / `en-edtech.html` — EdTech backend.
+- `ru.html` / `en.html` — полное техническое портфолио для follow-up, не замена целевому PDF.
 
-## Изменения v30
+## Что изменилось в v31
 
-- Compiler RU/EN подтверждают актуальный статус: студент программы «Программная инженерия» НИУ ВШЭ / Software Engineering student at HSE University.
-- Wist2 proof strip привязан к полному прогону 23.07.2026 без старых qualifiers от 14 июля.
-- LLVM-направление возвращено в focused PDF и связано с C++23 graph-analysis infrastructure.
-- Proof cards упорядочены как инженерная глубина → внешняя оценка → корректность; тестовый claim раскрывает IR transforms, contracts и interpreter/CIL parity.
-- Русский Compiler PDF языково вычищен, typographic defect в Wist2 project card исправлен, teaching block переосмыслен как technical communication.
-- Compiler RU/EN PDF пересобраны и проверены на A4, одну страницу, scale=1.0, читаемость, ATS-порядок, ссылки и отсутствие overflow.
+- Compiler RU/EN теперь начинаются с типизированного Language Authoring SDK: cross-package routes, deterministic pass ordering, exact manifest binding и fail-closed runtime selection.
+- Compiler Tools RU/EN перестроены вокруг PlanFuzz: семь oracle families, fresh-process confirmation, exact fingerprints и deterministic program/plan reduction.
+- Callable-first SSA показан как descriptor-driven semantics с effects, determinism и trust, а не как перечень отдельных оптимизаций.
+- Канонический Wist2 gate обновлён до `1 459 / 1 459` тестов, 0 падений, 0 предупреждений/ошибок сборки, 9 проверенных packages и clean consumers.
+- Все версии используют единый статус образования: программа «Программная инженерия» НИУ ВШЭ / Software Engineering at HSE University.
+- Награда Балтийского конкурса унифицирована как диплом I степени и Главная премия «Совершенство как надежда».
+- Selector выделяет три флагманские версии, а продуктовые варианты помечены как специализированные.
+- Все 14 targeted PDF воспроизводимо генерируются из `data/cv-print-profiles.json` через `tools/build_cv.py`.
+- Permanent CI пересобирает PDF в чистой директории и проверяет A4, одну страницу, scale 1.0, текстовый слой, ссылки, минимальный кегль 8.4 pt, канонические факты и `MANIFEST.sha256`.
 
-## Изменения v29
+## Использование
 
-- Подробные HTML-страницы синхронизированы с актуальным Wist2 baseline: 1 358/1 358 тестов, 0 сбоев, сборка успешна; удалены устаревшие 75 проектов / 1 325 тестов.
-- Удалено дублирование `differential testing`; формулировки про codegen снова содержат метрики spills/code size.
-- Русская C++ systems-версия языково вычищена: ключевые заголовки, алгоритмы и toolchain-описания переведены без потери технической точности.
-- В focused PDF восстановлена конкретика по двум профилям «Высшей пробы», сохранены точные категории первых результатов «Юниора» и Балтийская Главная премия.
-- Минимальный шрифт четырёх focused PDF поднят до 8.5 pt при A4, одной странице и `scale=1.0`; ATS-порядок и ссылки перепроверены.
-- README, release metadata, QA, targeting и evidence-аудиты синхронизированы как v29.
+Для первого контакта отправлять профильный PDF. HTML-страницы использовать как подробное публичное портфолио на следующем этапе общения.
 
-## Изменения v28
+## Канонические источники
 
-- В блоке достижений явно указаны два первых результата по итоговому баллу во Всероссийском конкурсе «Юниор»: направление «Инженерные науки» (2025) и секция «Информационные технологии» (2026).
-- Балтийская награда названа точно: диплом I степени и Главная премия «Совершенство как надежда».
-- RU/EN web-версии и focused compiler/C++ systems PDF синхронизированы; формулировка «1-е место в РФ» не используется без категории.
+- Wist2 verification record: 2026-07-25.
+- CV release metadata: `RELEASE-METADATA.md`.
+- Targeting guide: `TARGETING.md`.
+- Release QA: `QA-report-targeted-cv-v31.md`.
 
-- Четыре флагманских PDF получили отдельный print-only A4-макет; полный сайт больше не уменьшается до нечитаемого масштаба.
-- PDF экспортируются строго при scale=1.0; сборка падает при переполнении, шрифте меньше 7.5 pt, второй странице или пропавшем текстовом маркере.
-- Assembly scope уточнён: NASM IA-32/CDECL/x87 отделён от x86-64 SysV code generation через iced-x86; неподтверждённые FASM и обобщённый full-ABI claim удалены.
-- В compiler-профиле восстановлена иерархия Wist2 -> program analysis -> x86 codegen; Assembly остаётся сильным доказательством, но не заменяет основной профиль.
-- Преподавательская формулировка больше не создаёт впечатление, что все около 50 учеников изучали NASM.
-- Wist2 baseline обновлён до пользовательского полного прогона: 1 358 тестов пройдены, 0 сбоев, сборка успешна.
-- README, release metadata, QA, targeting, language/content/fact/link/experience audits синхронизированы как v28.
+## Baseline
+
+Предыдущая версия: v30, merge commit `dd725723029479767fadc788b925ad2dfdcb4f4e`.
 
 ## Контакт
 
 misha13022008@gmail.com
-
-## Baseline
-
-Предыдущая версия репозитория: v29, commit `fae03e5adb4152bd1aaa43e56f49d383dc8f9e6d`.
-
-## Публикация
-
-Для первого контакта отправлять профильный PDF. HTML-страницы остаются подробным публичным портфолио.
