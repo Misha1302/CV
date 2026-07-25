@@ -87,6 +87,16 @@ def validate_html() -> None:
         for marker in required:
             if marker.casefold() not in page.casefold():
                 raise RuntimeError(f'{filename}: missing current MCST fact {marker!r}')
+    planfuzz_url = 'https://github.com/Misha1302/Wist2/blob/main/internal-docs/proposals/planfuzz/README.md'
+    for filename in ['ru-compiler.html', 'en-compiler.html', 'ru-devtools.html', 'en-devtools.html']:
+        page = BeautifulSoup((ROOT / filename).read_text(encoding='utf-8'), 'html.parser')
+        cards = page.select('article.project-card, article.project-featured')
+        card = next((article for article in cards if article.find('h3') and article.find('h3').get_text(' ', strip=True) == 'PlanFuzz'), None)
+        if card is None:
+            raise RuntimeError(f'{filename}: missing visible PlanFuzz card')
+        link = card.select_one(f'a[href="{planfuzz_url}"]')
+        if link is None or not link.get_text(' ', strip=True):
+            raise RuntimeError(f'{filename}: PlanFuzz card has no visible canonical link')
     compiler = (ROOT / 'ru-compiler.html').read_text(encoding='utf-8')
     for marker in ['Callable-first SSA', 'экспериментальный PlanFuzz', '1 465 / 1 465']:
         if marker not in compiler:
