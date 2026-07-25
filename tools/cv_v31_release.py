@@ -27,5 +27,6 @@ new_return = '''        return f"""<div class="print-cv" aria-label="Focused one
 if old_return not in source:
     raise RuntimeError("v31 bootstrap: print return source marker not found")
 source = source.replace(old_return, new_return)
+source = source.replace("span[3] for block in page.get_text(\"dict\")[\"blocks\"]", "span[\"size\"] for block in page.get_text(\"dict\")[\"blocks\"]")
 
 exec(compile(source, "cv_v31_release.py", "exec"))
