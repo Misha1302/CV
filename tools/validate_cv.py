@@ -48,6 +48,19 @@ def validate_data() -> None:
     for title in ['PlanFuzz', 'PS-form Analyzer', 'PS-form Harness', 'x86-64 Codegen Lab', 'AdvancedAlgorithms Verification', 'UniversalToolchain/Wist2']:
         if title not in PROJECT_URLS:
             raise RuntimeError(f'Missing project URL: {title}')
+    required_mcst_profiles = {'ru-compiler.html', 'en-compiler.html', 'ru-cpp-systems.html', 'en-cpp-systems.html'}
+    for filename, profile in DATA['profiles'].items():
+        ru = profile.get('lang') == 'ru'
+        mcst = next((entry for entry in profile['experience'] if 'МЦСТ' in entry[1] or 'MCST' in entry[1]), None)
+        if filename in required_mcst_profiles and mcst is None:
+            raise RuntimeError(f'{filename}: missing MCST internship')
+        if mcst is None:
+            continue
+        joined = ' '.join([mcst[0], mcst[1], *mcst[2]])
+        required = ['1 июля — 31 августа 2026', '0,25 ставки', 'оптимизационный проход LLVM'] if ru else ['July 1 — August 31, 2026', '0.25 FTE', 'LLVM optimization pass']
+        for marker in required:
+            if marker.casefold() not in joined.casefold():
+                raise RuntimeError(f'{filename}: incomplete MCST fact {marker!r}')
     for filename in ['ru-devtools.html', 'en-devtools.html']:
         if 'reduction' not in DATA['profiles'][filename]['proofs'][2][0].lower() and 'сокращение' not in DATA['profiles'][filename]['proofs'][2][0].lower():
             raise RuntimeError(f'{filename}: test-count proof was not replaced by reduction evidence')
@@ -67,6 +80,13 @@ def validate_html() -> None:
             raise RuntimeError(f'{filename}: missing canonical education')
         if 'style.css?v=32' not in text:
             raise RuntimeError(f'{filename}: stale stylesheet version')
+    current_role_pages = ['ru.html', 'en.html', 'ru-compiler.html', 'en-compiler.html', 'ru-cpp-systems.html', 'en-cpp-systems.html']
+    for filename in current_role_pages:
+        page = (ROOT / filename).read_text(encoding='utf-8')
+        required = ['1 июля — 31 августа 2026', '0,25 ставки', 'оптимизационный проход'] if filename.startswith('ru') else ['July 1 — August 31, 2026', '0.25 FTE', 'optimization pass']
+        for marker in required:
+            if marker.casefold() not in page.casefold():
+                raise RuntimeError(f'{filename}: missing current MCST fact {marker!r}')
     compiler = (ROOT / 'ru-compiler.html').read_text(encoding='utf-8')
     for marker in ['Callable-first SSA', 'экспериментальный PlanFuzz', '1 465 / 1 465']:
         if marker not in compiler:
