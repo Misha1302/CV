@@ -1,4 +1,4 @@
-# Mikhail Razakov - targeted CV variants v30
+# Mikhail Razakov - targeted CV variants v31
 
 Статический bilingual-пакет целевых инженерных резюме и подробного технического портфолио.
 
@@ -59,3 +59,20 @@ misha13022008@gmail.com
 ## Публикация
 
 Для первого контакта отправлять профильный PDF. HTML-страницы остаются подробным публичным портфолио.
+
+
+## Current release: v31
+
+v31 performs a strong Wist2 positioning and reproducibility hardening:
+
+- Compiler RU/EN now lead with typed cross-package language plans, exact manifest binding, callable-first SSA, the Wist facade and PlanFuzz;
+- Compiler Tools RU/EN are rebuilt around PlanFuzz, seven oracle families, fresh-process confirmation, exact fingerprints and deterministic program/plan reduction;
+- the canonical Wist2 gate is updated to 1,459/1,459 tests, 0 failures, 0 build warnings/errors, nine verified packages and clean consumers;
+- all targeted variants use the canonical HSE Software Engineering education statement and one Baltic Grand Prize wording;
+- Backend proof cards now prioritize deployed systems, payments/recovery and the actual .NET/PostgreSQL/Linux stack;
+- the selector promotes three flagship variants and marks product variants as specialized;
+- all 14 targeted PDFs now have generated print sources and are rebuilt at scale 1.0 from canonical profile data;
+- `data/cv-print-profiles.json`, `tools/build_cv.py`, `tools/validate_cv.py` and the permanent CI workflow prevent future HTML/PDF/fact drift.
+
+Verified Wist2 source: canonical integration record dated 2026-07-25.
+Previous CV baseline: v30, merge commit `dd725723029479767fadc788b925ad2dfdcb4f4e`.

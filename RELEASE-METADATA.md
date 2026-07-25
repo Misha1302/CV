@@ -1,36 +1,18 @@
-# Release metadata
+# Release metadata — targeted CV v31
 
-- Version: v30
-- Date: 2026-07-25
-- Previous repository baseline: v29, commit `fae03e5adb4152bd1aaa43e56f49d383dc8f9e6d`
-- HTML surface: 17 files
-- Downloadable CV surface: 14 one-page A4 PDFs
-- Rebuilt PDFs: compiler RU/EN
-- Canonical email: `misha13022008@gmail.com`
+- Release date: 2026-07-25
+- Baseline: v30 / `dd725723029479767fadc788b925ad2dfdcb4f4e`
+- Scope: all RU/EN targeted HTML pages, all 14 targeted PDFs, selector, canonical facts, generators, validators and release evidence.
 
-## Evidence boundaries
+## Canonical facts
 
-- NASM evidence: IA-32 course and buildable examples covering CDECL, stack frames, libc calls, structures/addressing and x87.
-- x86-64 evidence: educational Rust backend lab with liveness, register allocation, SysV emitter through iced-x86, disassembly and interpreter-vs-native validation.
-- No FASM proficiency claim and no blanket full System V AMD64 ABI implementation claim.
-- Wist2 test count 1,358/1,358 and successful build come from the user-reported full rerun on 2026-07-23; the former 75-project/1,325-test public baseline is superseded for CV wording.
-- Wist2 AIR -> SSA -> AIR remains experimental and verifier-gated.
-- x86-64 runner remains constrained but is not presented as a hardened sandbox.
+- Education: `Студент программы «Программная инженерия» НИУ ВШЭ` / `Software Engineering student at HSE University`.
+- Wist2 verification: 1,459/1,459 tests, 0 failed, 0 skipped, Release build with 0 warnings/errors, 9 verified packages, clean template and cross-package consumer smoke.
+- Wist2 architecture: typed cross-package language plans, exact manifest binding, fail-closed runtime policies, callable-first SSA and PlanFuzz experimental research tooling.
+- Baltic award: `Диплом I степени и Главная премия «Совершенство как надежда» Балтийского научно-инженерного конкурса.`
 
-## Publication boundary
+## Artifact contract
 
-Role PDFs contain email, Telegram and GitHub. The full HTML portfolio may include LinkedIn and additional evidence links.
-
-## v29 consistency boundary
-
-- Detailed HTML and focused PDFs use the same 1,358/1,358 Wist2 full-run claim.
-- Four focused PDFs remain one A4 page at scale=1.0 with a minimum extracted font size of 8.45 pt.
-- Russian C++ systems headings are localized; conventional identifiers remain unchanged.
-
-
-## v30 compiler boundary
-
-- Education is user-confirmed on 2026-07-25: Software Engineering student at HSE University.
-- The 1,358/1,358 claim is tied to the full rerun on 2026-07-23; the former July 14 warnings qualifier is not reused.
-- MCST is described as LLVM-track graph-analysis infrastructure without claiming upstream LLVM integration.
-- Compiler RU/EN remain one-page A4 PDFs at scale=1.0 with an extracted font floor of at least 8.45 pt.
+- 14 targeted PDFs are generated from `data/cv-print-profiles.json` through `tools/build_cv.py`.
+- CI rebuilds them in a clean directory and checks A4/one page, scale 1.0, text layer, links, minimum 8.4 pt font, canonical facts and recursive manifest equality.
+- Full portfolio pages remain HTML follow-up artifacts and are not first-contact CVs.
