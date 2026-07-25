@@ -1,21 +1,19 @@
-name: Add visible PlanFuzz links
+name: Validate targeted CVs
 
 on:
+  pull_request:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  repair:
-    if: github.actor != 'github-actions[bot]'
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: fix/planfuzz-links-2026-07-26
-          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -24,51 +22,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install beautifulsoup4 playwright pymupdf
           python -m playwright install --with-deps chromium
-      - name: Add links and regression check
-        run: python tools/add_planfuzz_links.py
-      - name: Validate repository and browser state
-        run: |
-          python tools/build_cv.py --check-html
-          python tools/validate_cv.py --pdf-dir pdf
-          python - <<'PY'
-          from pathlib import Path
-          from playwright.sync_api import expect, sync_playwright
-
-          expected = "https://github.com/Misha1302/Wist2/blob/main/internal-docs/proposals/planfuzz/README.md"
-          with sync_playwright() as p:
-              browser = p.chromium.launch()
-              page = browser.new_page(viewport={"width": 1440, "height": 1100})
-              page.goto(Path("ru-compiler.html").resolve().as_uri())
-              card = page.locator("article.project-card").filter(has_text="PlanFuzz").first
-              link = card.get_by_role("link", name="PlanFuzz в Wist2 ↗")
-              expect(link).to_be_visible()
-              assert link.get_attribute("href") == expected
-              card.scroll_into_view_if_needed()
-              card.screenshot(path="/tmp/planfuzz-link.png")
-              browser.close()
-          PY
-          git diff --check
-      - name: Commit corrected branch
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          git commit -m 'Add visible PlanFuzz project links'
-          git push origin HEAD:fix/planfuzz-links-2026-07-26
+      - name: Check generated print sources
+        run: python tools/build_cv.py --check-html
+      - name: Rebuild all targeted PDFs in a clean directory
+        run: python tools/build_cv.py --render-dir /tmp/cv-pdf --evidence-dir /tmp/cv-render --report /tmp/cv-report.json
+      - name: Validate clean rebuild and compare committed PDFs
+        run: python tools/validate_cv.py --pdf-dir /tmp/cv-pdf --compare-dir pdf --skip-manifest
+      - name: Validate recursive manifest
+        run: python tools/validate_cv.py --pdf-dir pdf
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: planfuzz-link-evidence
-          path: /tmp/planfuzz-link.png
+          name: targeted-cv-validation
+          path: |
+            /tmp/cv-report.json
+            /tmp/cv-render
           if-no-files-found: warn
-      - name: Restore canonical validation workflow
-        if: always()
-        run: |
-          git fetch origin main fix/planfuzz-links-2026-07-26
-          git checkout -B main origin/main
-          git checkout origin/fix/planfuzz-links-2026-07-26 -- .github/workflows/validate-cv.yml
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .github/workflows/validate-cv.yml
-          git commit -m 'chore: restore CV validation workflow' || exit 0
-          git push origin main
