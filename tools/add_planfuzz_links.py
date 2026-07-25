@@ -1,9 +1,8 @@
 from __future__ import annotations
 
 import hashlib
+import re
 from pathlib import Path
-
-from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 PLANFUZZ_URL = "https://github.com/Misha1302/Wist2/blob/main/internal-docs/proposals/planfuzz/README.md"
@@ -13,38 +12,30 @@ PAGES = (
     "ru-devtools.html",
     "en-devtools.html",
 )
+CARD_PATTERN = re.compile(
+    r'(<article class="project-card">(?:(?!</article>).)*?<h3>PlanFuzz</h3>(?:(?!</article>).)*?)(</article>)',
+    re.DOTALL,
+)
 
 
 def add_link(filename: str) -> None:
     path = ROOT / filename
-    soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
-    card = next(
-        (
-            article
-            for article in soup.select("article.project-card")
-            if (heading := article.find("h3")) is not None
-            and heading.get_text(" ", strip=True) == "PlanFuzz"
-        ),
-        None,
+    source = path.read_text(encoding="utf-8")
+    if PLANFUZZ_URL in source:
+        return
+
+    label = "PlanFuzz в Wist2 ↗" if filename.startswith("ru-") else "PlanFuzz in Wist2 ↗"
+    link = (
+        '<div class="project-links"><a href="'
+        + PLANFUZZ_URL
+        + '" rel="noopener noreferrer" target="_blank">'
+        + label
+        + "</a></div>"
     )
-    if card is None:
-        raise RuntimeError(f"{filename}: PlanFuzz project card not found")
-
-    existing = card.select_one(f'a[href="{PLANFUZZ_URL}"]')
-    if existing is None:
-        links = card.select_one(".project-links")
-        if links is None:
-            links = soup.new_tag("div")
-            links["class"] = ["project-links"]
-            card.append(links)
-
-        anchor = soup.new_tag("a", href=PLANFUZZ_URL)
-        anchor["target"] = "_blank"
-        anchor["rel"] = "noopener noreferrer"
-        anchor.string = "PlanFuzz в Wist2 ↗" if filename.startswith("ru-") else "PlanFuzz in Wist2 ↗"
-        links.append(anchor)
-
-    path.write_text(str(soup), encoding="utf-8")
+    source, count = CARD_PATTERN.subn(r"\1" + link + r"\2", source, count=1)
+    if count != 1:
+        raise RuntimeError(f"{filename}: expected exactly one PlanFuzz project card, got {count}")
+    path.write_text(source, encoding="utf-8")
 
 
 def add_regression_check() -> None:
