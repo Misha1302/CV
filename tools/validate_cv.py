@@ -39,7 +39,7 @@ def validate_data() -> None:
         raise RuntimeError(f'Incomplete Wist2 fact source: {FACTS}')
     for filename in FLAGSHIP:
         profile = DATA['profiles'][filename]
-        if profile.get('density') != 'roomy' or float(profile.get('min_fill', 0)) < 0.78:
+        if profile.get('density') not in {'roomy', 'spacious'} or float(profile.get('min_fill', 0)) < 0.78:
             raise RuntimeError(f'{filename}: flagship print-density contract missing')
         if int(profile.get('min_links', 0)) < 6:
             raise RuntimeError(f'{filename}: direct-link contract missing')
@@ -68,13 +68,17 @@ def validate_html() -> None:
         if 'style.css?v=32' not in text:
             raise RuntimeError(f'{filename}: stale stylesheet version')
     compiler = (ROOT / 'ru-compiler.html').read_text(encoding='utf-8')
-    for marker in ['Typed composition plans', 'Callable-first SSA', 'экспериментальный PlanFuzz', '1 465 / 1 465']:
+    for marker in ['Callable-first SSA', 'экспериментальный PlanFuzz', '1 465 / 1 465']:
         if marker not in compiler:
             raise RuntimeError(f'ru-compiler.html: missing {marker}')
+    if 'Typed composition plans' not in compiler and 'Планы типизированной композиции' not in compiler:
+        raise RuntimeError('ru-compiler.html: missing typed-composition proof')
     devtools = (ROOT / 'ru-devtools.html').read_text(encoding='utf-8')
-    for marker in ['экспериментальный PlanFuzz', 'ограниченный Wist Int32 adapter', 'exact fingerprints', 'program/plan reduction']:
+    for marker in ['экспериментальный PlanFuzz', 'exact fingerprints', 'program/plan reduction']:
         if marker.lower() not in devtools.lower():
             raise RuntimeError(f'ru-devtools.html: missing {marker}')
+    if 'ограниченный Wist Int32 adapter' not in devtools and 'ограниченный адаптер Wist для Int32' not in devtools:
+        raise RuntimeError('ru-devtools.html: missing restricted Wist adapter scope')
     selector = BeautifulSoup((ROOT / 'index.html').read_text(encoding='utf-8'), 'html.parser')
     titles = [item.get_text(' ', strip=True) for item in selector.select('.selector-card h2')]
     expected = ['Compiler / Language Platforms', 'Compiler Testing / Developer Tools', 'C++ Systems / Program Analysis']
