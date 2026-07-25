@@ -1,0 +1,40 @@
+name: Validate targeted CVs
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install validation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 playwright pymupdf
+          python -m playwright install --with-deps chromium
+      - name: Check generated print sources
+        run: python tools/build_cv.py --check-html
+      - name: Rebuild all targeted PDFs in a clean directory
+        run: python tools/build_cv.py --render-dir /tmp/cv-pdf --evidence-dir /tmp/cv-render --report /tmp/cv-report.json
+      - name: Validate HTML, PDF and canonical facts
+        run: python tools/validate_cv.py --pdf-dir /tmp/cv-pdf --skip-manifest
+      - name: Validate recursive manifest
+        run: python tools/validate_cv.py --pdf-dir pdf
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: targeted-cv-validation
+          path: |
+            /tmp/cv-report.json
+            /tmp/cv-render
+          if-no-files-found: warn
