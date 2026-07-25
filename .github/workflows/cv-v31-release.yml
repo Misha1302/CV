@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - feat/wist2-cv-v31-strong-positioning
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
+
+concurrency:
+  group: cv-v31-release
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -32,7 +33,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          { wc -c tools/.cv_v31_payload/*; sha256sum tools/.cv_v31_payload/*; python tools/cv_v31_release.py; } 2>&1 | tee /tmp/cv-v31-release.log
+          python tools/cv_v31_release.py 2>&1 | tee /tmp/cv-v31-release.log
       - name: Check source diff
         run: |
           git diff --check
