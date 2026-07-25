@@ -14,11 +14,11 @@
       "pdf": "Mikhail_Razakov_Compiler_RU.pdf",
       "name": "Михаил Разаков",
       "role": "Инженер по компиляторам и языковым платформам",
-      "summary": "Разрабатываю UniversalToolchain/Wist2 — SDK для типизированной композиции языковых компонентов и runtime: cross-package plans, exact manifest binding, callable-first SSA, публичный Wist facade и экспериментальный PlanFuzz.",
+      "summary": "Разрабатываю UniversalToolchain/Wist2 — SDK типизированной композиции языковых компонентов и runtime: межпакетные планы, manifest binding, callable-first SSA, Wist facade и экспериментальный PlanFuzz.",
       "proofs": [
         [
-          "Typed composition plans",
-          "routes, passes, capabilities и exact executor"
+          "Планы композиции",
+          "маршруты, проходы, capabilities и exact executor"
         ],
         [
           "Callable-first SSA",
@@ -34,10 +34,10 @@
           "2024 — сейчас",
           "UniversalToolchain / Wist2",
           [
-            "SDK для типизированной композиции независимых language packages: deterministic routes/pass ordering и schema-v5 lock identity.",
-            "Fail-closed runtime policies, exact manifest binding и lifecycle ownership.",
-            "Callable-first SSA: descriptor semantics, effects, determinism, trust и verifier-gated roundtrip.",
-            "Экспериментальный PlanFuzz: language-neutral core, Acme adapter, ограниченный Wist Int32 adapter, 7 oracle families, replay и reducers."
+            "Typed SDK: независимые language packages, детерминированные маршруты и schema-v5 lock.",
+            "Fail-closed runtime, exact manifest binding и lifecycle ownership.",
+            "Callable-first SSA: effects, determinism, trust и verifier-gated roundtrip.",
+            "PlanFuzz: language-neutral core, Acme + restricted Wist Int32 adapters, 7 oracles, replay и reducers."
           ]
         ],
         [
@@ -52,7 +52,7 @@
       "projects": [
         [
           "PlanFuzz",
-          "Экспериментальное configuration-aware differential testing: language-neutral core, Acme и ограниченный Wist Int32 adapter, fresh-process confirmation и deterministic program/plan reduction."
+          "Экспериментальное configuration-aware testing: Acme и restricted Wist Int32 adapters, fresh-process confirmation и deterministic program/plan reduction."
         ],
         [
           "PS-form Analyzer",
@@ -200,7 +200,7 @@
       "pdf": "Mikhail_Razakov_DevTools_RU.pdf",
       "name": "Михаил Разаков",
       "role": "Инженер по тестированию компиляторов и инструментам разработчика",
-      "summary": "Разработал экспериментальный PlanFuzz: language-neutral core, Acme adapter и ограниченный Wist Int32 adapter, семь семейств оракулов, повторное выполнение в свежих процессах, точные отпечатки и детерминированное сокращение программ и планов.",
+      "summary": "Разработал экспериментальный PlanFuzz: нейтральное к языку ядро, адаптер Acme и ограниченный адаптер Wist для Int32, семь семейств оракулов, fresh-process replay, точные отпечатки и детерминированное сокращение.",
       "proofs": [
         [
           "7 семейств оракулов",
@@ -220,16 +220,16 @@
           "2026 — сейчас",
           "PlanFuzz",
           [
-            "Language-neutral core, Acme adapter, ограниченный Wist Int32 adapter и structured generators.",
-            "Strict outcome/evidence semantics, fresh-process confirmation и deterministic reducers."
+            "Нейтральное к языку ядро, адаптер Acme, ограниченный адаптер Wist для Int32 и структурные генераторы.",
+            "Строгая семантика исходов и доказательств, fresh-process confirmation и детерминированные reducers."
           ]
         ],
         [
           "2024 — сейчас",
-          "Wist tooling",
+          "Инструменты Wist",
           [
-            "Typed APIs, structured diagnostics, versioned traces and interpreter/CIL parity.",
-            "Canonical gate: 1 465/1 465 тестов, 9 packages, clean template и cross-package consumer smoke."
+            "Типизированные API, структурированные diagnostics, versioned traces и parity интерпретатора/CIL.",
+            "Canonical gate: 1 465/1 465 тестов, 9 packages и два clean-consumer smoke."
           ]
         ]
       ],
@@ -249,15 +249,15 @@
       ],
       "skills": [
         [
-          "Testing",
+          "Тестирование",
           "differential/metamorphic, oracles, replay, reducers"
         ],
         [
-          "Diagnostics",
+          "Диагностика",
           "stable codes/stages, typed traces, counterexample artifacts"
         ],
         [
-          "Release",
+          "Релизная проверка",
           "package surfaces, clean consumers, manifests, CI"
         ],
         [
@@ -267,14 +267,14 @@
       ],
       "recognition": "Призёр «Высшей пробы»; первые результаты «Юниора» 2025/2026; Главная премия Балтийского конкурса.",
       "communication": "Техническая документация, воспроизводимые отчёты и ревью кода.",
-      "density": "roomy",
-      "min_fill": 0.78,
+      "density": "spacious",
+      "min_fill": 0.82,
       "min_links": 6,
       "ats_order": [
         "Михаил Разаков",
         "Инженер по тестированию компиляторов и инструментам разработчика",
         "ОПЫТ",
-        "Wist tooling",
+        "Инструменты Wist",
         "ИЗБРАННЫЕ ПРОЕКТЫ",
         "PS-form Harness"
       ]
@@ -358,8 +358,8 @@
       ],
       "recognition": "HSE Vysshaya Proba prize-winner; top MEPhI Junior results in 2025/2026; Baltic Grand Prize.",
       "communication": "Technical documentation, reproducible reports, and code review.",
-      "density": "roomy",
-      "min_fill": 0.78,
+      "density": "spacious",
+      "min_fill": 0.82,
       "min_links": 6,
       "ats_order": [
         "Mikhail Razakov",
@@ -449,8 +449,8 @@
       ],
       "recognition": "Призёр «Высшей пробы»; первые результаты «Юниора» 2025/2026; Главная премия Балтийского конкурса.",
       "communication": "Ревью решений, документация и практический курс NASM IA-32.",
-      "density": "roomy",
-      "min_fill": 0.78,
+      "density": "spacious",
+      "min_fill": 0.82,
       "min_links": 6,
       "ats_order": [
         "Михаил Разаков",
@@ -540,8 +540,8 @@
       ],
       "recognition": "HSE Vysshaya Proba prize-winner; top MEPhI Junior results in 2025/2026; Baltic Grand Prize.",
       "communication": "Code review, documentation, and a practical NASM IA-32 course.",
-      "density": "roomy",
-      "min_fill": 0.78,
+      "density": "spacious",
+      "min_fill": 0.82,
       "min_links": 6,
       "ats_order": [
         "Mikhail Razakov",
