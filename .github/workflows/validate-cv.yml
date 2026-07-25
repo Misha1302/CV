@@ -26,8 +26,8 @@ jobs:
         run: python tools/build_cv.py --check-html
       - name: Rebuild all targeted PDFs in a clean directory
         run: python tools/build_cv.py --render-dir /tmp/cv-pdf --evidence-dir /tmp/cv-render --report /tmp/cv-report.json
-      - name: Validate HTML, PDF and canonical facts
-        run: python tools/validate_cv.py --pdf-dir /tmp/cv-pdf --skip-manifest
+      - name: Validate clean rebuild and compare committed PDFs
+        run: python tools/validate_cv.py --pdf-dir /tmp/cv-pdf --compare-dir pdf --skip-manifest
       - name: Validate recursive manifest
         run: python tools/validate_cv.py --pdf-dir pdf
       - uses: actions/upload-artifact@v4
