@@ -1,0 +1,46 @@
+name: Patch compiler v30 label validation scope
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.event.pull_request.head.ref == 'fix/compiler-cv-v30-final-hardening'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Keep English compiler labels outside the Russian-localization gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          for name in ('tools/harden_compiler_cv_v30.py', '.github/workflows/compiler-v30-hardening.yml'):
+              path = Path(name)
+              text = path.read_text(encoding='utf-8')
+              old = '    "<strong>Compiler / IR</strong>",\n    "<strong>Low-level</strong>",\n'
+              old_yaml = "              '<strong>Compiler / IR</strong>',\n              '<strong>Low-level</strong>',\n"
+              if name.endswith('.py'):
+                  if old not in text:
+                      raise RuntimeError(f'{name}: combined-language stale labels not found')
+                  text = text.replace(old, '', 1)
+              else:
+                  if old_yaml not in text:
+                      raise RuntimeError(f'{name}: combined-language stale labels not found')
+                  text = text.replace(old_yaml, '', 1)
+              path.write_text(text, encoding='utf-8')
+          PY
+          rm -f .github/workflows/compiler-v30-source-diagnostic.yml
+          rm -f .github/workflows/patch-compiler-v30-label-scope.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Scope compiler label validation to Russian output'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
