@@ -1,47 +1,47 @@
-# Mikhail Razakov — targeted CV variants v31
+# Mikhail Razakov — targeted CV variants v32
 
 Статический bilingual-пакет целевых инженерных резюме и подробного технического портфолио.
 
 ## Флагманские версии
 
-- `ru-compiler.html` / `en-compiler.html` — compiler/runtime и языковые платформы: typed cross-package plans, callable-first SSA, Wist и PlanFuzz.
+- `ru-compiler.html` / `en-compiler.html` — compiler/runtime и typed language composition: callable-first SSA, Wist и experimental PlanFuzz.
 - `ru-devtools.html` / `en-devtools.html` — compiler testing, configuration-aware fuzzing, diagnostics и reproducible evidence.
 - `ru-cpp-systems.html` / `en-cpp-systems.html` — C++ systems, program analysis, алгоритмические компоненты и low-level codegen.
 
 ## Специализированные версии
 
-- `ru-algorithms.html` / `en-algorithms.html` — algorithm / solver engineering.
-- `ru-backend.html` / `en-backend.html` — .NET backend с платежами, состоянием и восстановлением.
-- `ru-platform.html` / `en-platform.html` — reliability-focused .NET backend; не отдельная SRE-специализация.
-- `ru-edtech.html` / `en-edtech.html` — EdTech backend.
-- `ru.html` / `en.html` — полное техническое портфолио для follow-up, не замена целевому PDF.
+- Algorithms — solver/research engineering.
+- Backend — .NET-сервисы с платежами, состоянием и восстановлением.
+- Reliability — reliability-focused backend, не SRE-overclaim.
+- EdTech — backend для образовательных продуктов.
+- Full portfolio — follow-up материал, не первое вложение.
 
-## Что изменилось в v31
+## Что изменилось в v32
 
-- Compiler RU/EN теперь начинаются с типизированного Language Authoring SDK: cross-package routes, deterministic pass ordering, exact manifest binding и fail-closed runtime selection.
-- Compiler Tools RU/EN перестроены вокруг PlanFuzz: семь oracle families, fresh-process confirmation, exact fingerprints и deterministic program/plan reduction.
-- Callable-first SSA показан как descriptor-driven semantics с effects, determinism и trust, а не как перечень отдельных оптимизаций.
-- Канонический Wist2 gate обновлён до `1 459 / 1 459` тестов, 0 падений, 0 предупреждений/ошибок сборки, 9 проверенных packages и clean consumers.
-- Все версии используют единый статус образования: программа «Программная инженерия» НИУ ВШЭ / Software Engineering at HSE University.
-- Награда Балтийского конкурса унифицирована как диплом I степени и Главная премия «Совершенство как надежда».
-- Selector выделяет три флагманские версии, а продуктовые варианты помечены как специализированные.
-- Все 14 targeted PDF воспроизводимо генерируются из `data/cv-print-profiles.json` через `tools/build_cv.py`.
-- Permanent CI пересобирает PDF в чистой директории и проверяет A4, одну страницу, scale 1.0, текстовый слой, ссылки, минимальный кегль 8.4 pt, канонические факты и `MANIFEST.sha256`.
+- Wist2 сформулирован как typed language composition/runtime SDK, а не как широкий grammar/type-system workbench.
+- PlanFuzz явно обозначен как experimental tooling; указан фактический scope: language-neutral core, Acme adapter и ограниченный Wist Int32 adapter.
+- Canonical gate синхронизирован с Wist2: 1 465/1 465 тестов, 0 failures/skips, 9 packages и clean consumers; source commit `ee218b4b5b5c6648ab74df2d54a8a906bd2e30db`.
+- В Compiler опыт callable-first SSA и PlanFuzz разделён на независимые evidence claims.
+- В DevTools test-count proof заменён на deterministic program/plan reduction.
+- В C++ Systems обязательная гигиена toolchain заменена доказательством масштаба — stress-gates до 500 тыс. вершин.
+- Названия публичных проектов в PDF стали прямыми кликабельными ссылками.
+- Флагманские PDF используют отдельную roomy-плотность и проверяются на заполнение страницы.
+- CI проверяет ATS-порядок, direct project links, актуальные canonical facts, clean rebuild parity и recursive manifest.
 
 ## Использование
 
-Для первого контакта отправлять профильный PDF. HTML-страницы использовать как подробное публичное портфолио на следующем этапе общения.
+Для первого контакта отправлять профильный PDF. HTML использовать как подробное техническое портфолио на следующем этапе.
 
-## Канонические источники
+## Canonical sources
 
-- Wist2 verification record: 2026-07-25.
-- CV release metadata: `RELEASE-METADATA.md`.
-- Targeting guide: `TARGETING.md`.
-- Release QA: `QA-report-targeted-cv-v31.md`.
+- Wist2 verification: `Misha1302/Wist2@ee218b4b5b5c6648ab74df2d54a8a906bd2e30db`.
+- Release metadata: `RELEASE-METADATA.md`.
+- Targeting: `TARGETING.md`.
+- QA: `QA-report-targeted-cv-v32.md`.
 
 ## Baseline
 
-Предыдущая версия: v30, merge commit `dd725723029479767fadc788b925ad2dfdcb4f4e`.
+Предыдущая версия: v31, merge commit `0c13b0617c5e06b09b7223247fb77c6010fa9d8b`.
 
 ## Контакт
 
