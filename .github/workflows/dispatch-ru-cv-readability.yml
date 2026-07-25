@@ -1,4 +1,4 @@
-name: Dispatch Russian CV readability rewrite
+name: Normalize Russian CV artifact diff
 
 on:
   push:
@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  dispatch:
+  normalize:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -19,25 +19,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Execute rewrite payload from branch
+      - name: Restore unrelated PDFs
         run: |
-          python -m pip install --upgrade pip
-          pip install pyyaml beautifulsoup4 playwright pymupdf
-          python -m playwright install --with-deps chromium
+          git fetch origin main
           python - <<'PY'
+          import json
           import subprocess
-          import yaml
           from pathlib import Path
 
-          workflow = yaml.safe_load(Path('.github/workflows/localize-ru-cv.yml').read_text(encoding='utf-8'))
-          steps = workflow['jobs']['rewrite']['steps']
-          rewrite = next(step['run'] for step in steps if step.get('name') == 'Rewrite Russian flagship CV')
-          subprocess.run(rewrite, shell=True, check=True, executable='/bin/bash')
+          data = json.loads(Path('data/cv-print-profiles.json').read_text(encoding='utf-8'))
+          keep = 'Mikhail_Razakov_Compiler_RU.pdf'
+          for profile in data['profiles'].values():
+              pdf = profile['pdf']
+              if pdf != keep:
+                  subprocess.run(['git', 'checkout', 'origin/main', '--', f'pdf/{pdf}'], check=True)
           PY
-          python tools/build_cv.py --write-html
-          python tools/build_cv.py --check-html
-          python tools/build_cv.py --render-dir pdf --evidence-dir /tmp/cv-render --report /tmp/cv-report.json
-          rm .github/workflows/localize-ru-cv.yml
+      - name: Rebuild manifest and validate
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 pymupdf
           python - <<'PY'
           import hashlib
           from pathlib import Path
@@ -51,20 +51,13 @@ jobs:
               lines.append(f'{digest}  ./{path.as_posix()}')
           Path('MANIFEST.sha256').write_text('\n'.join(lines) + '\n', encoding='utf-8')
           PY
+          python tools/build_cv.py --check-html
           python tools/validate_cv.py --pdf-dir pdf
           git diff --check
-      - name: Commit result to review branch
+      - name: Commit normalized branch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m 'Simplify Russian compiler CV language'
+          git commit -m 'Limit Russian CV update to affected artifact'
           git push origin HEAD:chore/ru-cv-readability-2026-07-25
-      - name: Remove temporary dispatcher from main
-        run: |
-          git fetch origin main
-          git checkout -B main origin/main
-          rm .github/workflows/dispatch-ru-cv-readability.yml
-          git add -A
-          git commit -m 'chore: remove Russian CV readability dispatcher'
-          git push origin main
