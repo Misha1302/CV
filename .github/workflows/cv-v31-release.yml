@@ -32,7 +32,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          python tools/cv_v31_release.py 2>&1 | tee /tmp/cv-v31-release.log
+          { wc -c tools/.cv_v31_payload/*; sha256sum tools/.cv_v31_payload/*; python tools/cv_v31_release.py; } 2>&1 | tee /tmp/cv-v31-release.log
       - name: Check source diff
         run: |
           git diff --check
