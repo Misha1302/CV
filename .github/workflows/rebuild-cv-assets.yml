@@ -44,16 +44,20 @@ jobs:
 
           path = Path("tools/visual_regression.py")
           text = path.read_text(encoding="utf-8")
-          old = 'page.goto(base_url + filename, wait_until="networkidle")'
-          new = 'page.goto(base_url + filename, wait_until="domcontentloaded", timeout=15000)\n        page.wait_for_timeout(150)'
-          if old not in text:
-              raise SystemExit("Expected visual navigation code not found")
-          text = text.replace(old, new)
-          old_server = 'server = ThreadingHTTPServer(("127.0.0.1", 0), handler)'
-          new_server = old_server + '\n    server.daemon_threads = True'
-          if old_server not in text:
-              raise SystemExit("Expected visual test server code not found")
-          text = text.replace(old_server, new_server)
+          replacements = {
+              'page.goto(base_url + filename, wait_until="networkidle")':
+                  'page.goto(base_url + filename, wait_until="domcontentloaded", timeout=15000)\n        page.wait_for_timeout(150)',
+              'page.add_style_tag(content="*{animation:none!important;transition:none!important;caret-color:transparent!important}")':
+                  'if js_enabled:\n            page.add_style_tag(content="*{animation:none!important;transition:none!important;caret-color:transparent!important}", timeout=10000)',
+              'png = page.screenshot(full_page=True)':
+                  'png = page.screenshot(full_page=(mode != "no-js"), timeout=15000)',
+              'server = ThreadingHTTPServer(("127.0.0.1", 0), handler)':
+                  'server = ThreadingHTTPServer(("127.0.0.1", 0), handler)\n    server.daemon_threads = True',
+          }
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f"Expected visual code not found: {old}")
+              text = text.replace(old, new)
           path.write_text(text, encoding="utf-8")
           PY
       - name: Install build and validation dependencies
@@ -69,7 +73,7 @@ jobs:
         run: |
           python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
       - name: Create visual regression baseline
-        run: timeout 180s python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
+        run: timeout 120s python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
       - name: Build manifest and validate final tree
         run: |
           python tools/build_site.py --manifest
