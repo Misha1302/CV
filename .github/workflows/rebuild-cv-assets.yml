@@ -48,7 +48,7 @@ jobs:
               'page.goto(base_url + filename, wait_until="networkidle")':
                   'page.goto(base_url + filename, wait_until="domcontentloaded", timeout=15000)\n        page.wait_for_timeout(150)',
               'page.add_style_tag(content="*{animation:none!important;transition:none!important;caret-color:transparent!important}")':
-                  'if js_enabled:\n            page.add_style_tag(content="*{animation:none!important;transition:none!important;caret-color:transparent!important}", timeout=10000)',
+                  'if js_enabled:\n            page.add_style_tag(content="*{animation:none!important;transition:none!important;caret-color:transparent!important}")',
               'png = page.screenshot(full_page=True)':
                   'png = page.screenshot(full_page=(mode != "no-js"), timeout=15000)',
               'server = ThreadingHTTPServer(("127.0.0.1", 0), handler)':
