@@ -76,13 +76,15 @@ jobs:
         run: timeout 120s python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
       - name: Build manifest and validate final tree
         run: |
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
           python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf
-      - name: Commit the complete migration
+      - name: Commit validated source and artifacts
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
+          git reset -- .github/workflows
           git commit -m "Refactor CV site around one canonical source"
           git push origin HEAD:${{ github.head_ref || github.ref_name }}
       - uses: actions/upload-artifact@v4
