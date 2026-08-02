@@ -1,3 +1,5 @@
+"""Deterministically migrate targeted CV profiles before rebuilding published PDFs."""
+
 from __future__ import annotations
 
 import json
