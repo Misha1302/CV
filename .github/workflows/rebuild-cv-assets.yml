@@ -8,6 +8,12 @@ on:
       - "tools/bootstrap_v34.py"
       - "tools/.cv-v34-source.b64.*"
       - ".github/workflows/rebuild-cv-assets.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "tools/bootstrap_v34.py"
+      - "tools/.cv-v34-source.b64.*"
+      - ".github/workflows/rebuild-cv-assets.yml"
   workflow_dispatch:
 
 permissions:
@@ -24,6 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
@@ -54,7 +61,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Refactor CV site around one canonical source [skip ci]"
-          git push
+          git push origin HEAD:${{ github.head_ref || github.ref_name }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
