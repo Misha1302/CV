@@ -1,214 +1,311 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import re
+import socket
+import sys
+import urllib.error
+import urllib.request
 from pathlib import Path
+from urllib.parse import urldefrag, urlparse
 
 import fitz
 from bs4 import BeautifulSoup
 
-ROOT = Path(__file__).resolve().parents[1]
-DATA = json.loads((ROOT / 'data' / 'cv-print-profiles.json').read_text(encoding='utf-8'))
-TARGET = list(DATA['profiles'])
-FACTS = DATA.get('facts', {})
-PROJECT_URLS = DATA.get('project_urls', {})
-STALE = ['1 358', '1,358', '1 459', '1,459', '23.07.2026', 'July 23, 2026', 'секционная премия', 'section prize']
-A4_WIDTH = 595.28
-A4_HEIGHT = 841.89
-A4_TOLERANCE = 3.0
-MIN_FONT_SIZE = 8.4
-FLAGSHIP = {'ru-compiler.html', 'en-compiler.html', 'ru-devtools.html', 'en-devtools.html', 'ru-cpp-systems.html', 'en-cpp-systems.html'}
+from build_site import ROOT, build_outputs, load_data, write_or_check
+
+STALE_MARKERS = [
+    "до 20 часов в неделю",
+    "up to 20 hours/week",
+    "с сентября 2026",
+    "from September 2026",
+    "С сентября 2026",
+]
+FORBIDDEN_SCRIPT_MARKERS = ["textContent =", "innerHTML =", "createTreeWalker", "availabilityReplacements"]
+TECH_WORDS = {
+    "asp.net", "core", "rest", "openapi", "postgresql", "sqlite", "docker", "compose", "nginx", "systemd",
+    "webhooks", "backend", "runtime", "compiler", "ssa", "cfg", "llvm", "c++", "c17", "rust", "python", "linux",
+    "manifest", "manifests", "lock", "lifecycle", "ownership", "fail-closed", "recovery", "backup", "restore",
+    "rollback", "audit", "reconciliation", "idempotency", "interpreter", "cil", "parity", "clean-consumer",
+    "differential", "metamorphic", "testing", "exact", "oracles", "replay", "reducers", "codegen", "x86-64",
+    "linear", "scan", "iced-x86", "sanitizers", "health", "gates", "state", "machines", "payments", "payment",
+    "software", "engineer", "program", "analysis", "platform", "platforms", "typed", "contracts", "routes", "passes",
+}
 
 
 def normalized(value: str) -> str:
-    return re.sub(r'\s+', ' ', value).strip()
+    return re.sub(r"\s+", " ", value).strip()
 
 
-def pdf_link_targets(page: fitz.Page) -> list[str]:
-    return sorted(link.get('uri', '') for link in page.get_links() if link.get('uri'))
+def html_files(data: dict) -> list[Path]:
+    files = [ROOT / "index.html"]
+    for key in data["profile_order"]:
+        for lang in ("ru", "en"):
+            files.append(ROOT / data["profiles"][key][lang]["filename"])
+    for project in data["projects"].values():
+        files.append(ROOT / project["case_ru"])
+        files.append(ROOT / project["case_en"])
+    for source in data["redirects"]:
+        files.append(ROOT / source)
+    return files
 
 
-def validate_data() -> None:
-    if DATA.get('version') != 32:
-        raise RuntimeError(f'Expected data version 32, got {DATA.get("version")}')
-    if FACTS.get('wist2_tests_passed') != 1465:
-        raise RuntimeError(f'Unexpected Wist2 test fact: {FACTS}')
-    if FACTS.get('wist2_packages') != 9 or not FACTS.get('wist2_source_commit'):
-        raise RuntimeError(f'Incomplete Wist2 fact source: {FACTS}')
-    for filename in FLAGSHIP:
-        profile = DATA['profiles'][filename]
-        if profile.get('density') not in {'roomy', 'spacious'} or float(profile.get('min_fill', 0)) < 0.78:
-            raise RuntimeError(f'{filename}: flagship print-density contract missing')
-        if int(profile.get('min_links', 0)) < 6:
-            raise RuntimeError(f'{filename}: direct-link contract missing')
-        if not profile.get('ats_order'):
-            raise RuntimeError(f'{filename}: ATS order contract missing')
-    for title in ['PlanFuzz', 'PS-form Analyzer', 'PS-form Harness', 'x86-64 Codegen Lab', 'AdvancedAlgorithms Verification', 'UniversalToolchain/Wist2']:
-        if title not in PROJECT_URLS:
-            raise RuntimeError(f'Missing project URL: {title}')
-    required_mcst_profiles = {'ru-compiler.html', 'en-compiler.html', 'ru-cpp-systems.html', 'en-cpp-systems.html'}
-    for filename, profile in DATA['profiles'].items():
-        ru = profile.get('lang') == 'ru'
-        mcst = next((entry for entry in profile['experience'] if 'МЦСТ' in entry[1] or 'MCST' in entry[1]), None)
-        if filename in required_mcst_profiles and mcst is None:
-            raise RuntimeError(f'{filename}: missing MCST internship')
-        if mcst is None:
-            continue
-        joined = ' '.join([mcst[0], mcst[1], *mcst[2]])
-        required = ['1 июля — 31 августа 2026', '0,25 ставки', 'оптимизационный проход LLVM'] if ru else ['July 1 — August 31, 2026', '0.25 FTE', 'LLVM optimization pass']
-        for marker in required:
-            if marker.casefold() not in joined.casefold():
-                raise RuntimeError(f'{filename}: incomplete MCST fact {marker!r}')
-    for filename in ['ru-devtools.html', 'en-devtools.html']:
-        if 'reduction' not in DATA['profiles'][filename]['proofs'][2][0].lower() and 'сокращение' not in DATA['profiles'][filename]['proofs'][2][0].lower():
-            raise RuntimeError(f'{filename}: test-count proof was not replaced by reduction evidence')
-    for filename in ['ru-cpp-systems.html', 'en-cpp-systems.html']:
-        if '500' not in DATA['profiles'][filename]['proofs'][2][0]:
-            raise RuntimeError(f'{filename}: weak toolchain proof remains')
+def validate_source_of_truth(data: dict) -> None:
+    write_or_check(build_outputs(data), check=True)
+    old_data = ROOT / "data" / "cv-print-profiles.json"
+    if old_data.exists():
+        raise RuntimeError("Legacy data/cv-print-profiles.json still exists")
+    old_updater = ROOT / "tools" / "update_profiles_v33.py"
+    if old_updater.exists():
+        raise RuntimeError("Legacy tools/update_profiles_v33.py still exists")
+    legacy_patterns = [
+        "QA-report-targeted-cv-v*.md",
+        "pdf/Mikhail_Razakov_DevTools_*.pdf",
+        "pdf/Mikhail_Razakov_Algorithms_*.pdf",
+        "pdf/Mikhail_Razakov_EdTech_*.pdf",
+        "pdf/Mikhail_Razakov_Reliability_*.pdf",
+    ]
+    for pattern in legacy_patterns:
+        matches = list(ROOT.glob(pattern))
+        if matches:
+            raise RuntimeError(f"Legacy generated artifacts remain for {pattern}: {[p.name for p in matches]}")
 
 
-def validate_html() -> None:
-    for filename in TARGET + ['ru.html', 'en.html']:
-        text = (ROOT / filename).read_text(encoding='utf-8')
-        for marker in STALE:
-            if marker in text:
-                raise RuntimeError(f'{filename}: stale marker {marker}')
-        expected_education = 'Студент программы «Программная инженерия» НИУ ВШЭ' if filename.startswith('ru') else 'Software Engineering student at HSE University'
-        if expected_education not in text:
-            raise RuntimeError(f'{filename}: missing canonical education')
-        if 'style.css?v=32' not in text:
-            raise RuntimeError(f'{filename}: stale stylesheet version')
-    current_role_pages = ['ru.html', 'en.html', 'ru-compiler.html', 'en-compiler.html', 'ru-cpp-systems.html', 'en-cpp-systems.html']
-    for filename in current_role_pages:
-        page = (ROOT / filename).read_text(encoding='utf-8')
-        required = ['1 июля — 31 августа 2026', '0,25 ставки', 'оптимизационный проход'] if filename.startswith('ru') else ['July 1 — August 31, 2026', '0.25 FTE', 'optimization pass']
-        for marker in required:
-            if marker.casefold() not in page.casefold():
-                raise RuntimeError(f'{filename}: missing current MCST fact {marker!r}')
-    planfuzz_url = 'https://github.com/Misha1302/Wist2/blob/main/internal-docs/proposals/planfuzz/README.md'
-    for filename in ['ru-compiler.html', 'en-compiler.html', 'ru-devtools.html', 'en-devtools.html']:
-        page = BeautifulSoup((ROOT / filename).read_text(encoding='utf-8'), 'html.parser')
-        cards = page.select('article.project-card, article.project-featured')
-        card = next((article for article in cards if article.find('h3') and article.find('h3').get_text(' ', strip=True) == 'PlanFuzz'), None)
-        if card is None:
-            raise RuntimeError(f'{filename}: missing visible PlanFuzz card')
-        link = card.select_one(f'a[href="{planfuzz_url}"]')
-        if link is None or not link.get_text(' ', strip=True):
-            raise RuntimeError(f'{filename}: PlanFuzz card has no visible canonical link')
-    compiler = (ROOT / 'ru-compiler.html').read_text(encoding='utf-8')
-    for marker in ['Callable-first SSA', 'экспериментальный PlanFuzz', '1 465 / 1 465']:
-        if marker not in compiler:
-            raise RuntimeError(f'ru-compiler.html: missing {marker}')
-    if 'Typed composition plans' not in compiler and 'Планы типизированной композиции' not in compiler:
-        raise RuntimeError('ru-compiler.html: missing typed-composition proof')
-    devtools = (ROOT / 'ru-devtools.html').read_text(encoding='utf-8')
-    for marker in ['экспериментальный PlanFuzz', 'exact fingerprints', 'program/plan reduction']:
-        if marker.lower() not in devtools.lower():
-            raise RuntimeError(f'ru-devtools.html: missing {marker}')
-    if 'ограниченный Wist Int32 adapter' not in devtools and 'ограниченный адаптер Wist для Int32' not in devtools:
-        raise RuntimeError('ru-devtools.html: missing restricted Wist adapter scope')
-    selector = BeautifulSoup((ROOT / 'index.html').read_text(encoding='utf-8'), 'html.parser')
-    titles = [item.get_text(' ', strip=True) for item in selector.select('.selector-card h2')]
-    expected = ['Compiler / Language Platforms', 'Compiler Testing / Developer Tools', 'C++ Systems / Program Analysis']
-    if titles[:3] != expected:
-        raise RuntimeError(f'Selector main order mismatch: {titles[:3]}')
+def validate_script() -> None:
+    script = (ROOT / "script.js").read_text(encoding="utf-8")
+    for marker in FORBIDDEN_SCRIPT_MARKERS:
+        if marker in script:
+            raise RuntimeError(f"script.js mutates document content: {marker}")
+    if "mobile-menu" not in script:
+        raise RuntimeError("script.js lost mobile-menu behavior")
 
 
-def validate_pdf(path: Path, profile: dict) -> dict:
-    if not path.exists() or path.stat().st_size == 0:
-        raise RuntimeError(f'Missing PDF {path}')
-    doc = fitz.open(path)
-    if doc.page_count != 1:
-        raise RuntimeError(f'{path.name}: {doc.page_count} pages')
-    page = doc[0]
-    rect = page.rect
-    if abs(rect.width - A4_WIDTH) > A4_TOLERANCE or abs(rect.height - A4_HEIGHT) > A4_TOLERANCE:
-        raise RuntimeError(f'{path.name}: expected A4, got {rect.width:.2f} x {rect.height:.2f}')
-    text = page.get_text('text')
-    normalized_text = normalized(text)
-    folded = normalized_text.casefold()
-    if len(normalized_text) < 1200:
-        raise RuntimeError(f'{path.name}: weak text layer ({len(normalized_text)} chars)')
-    for marker in STALE:
-        if marker in text:
-            raise RuntimeError(f'{path.name}: stale marker {marker}')
-    required = [profile['name'], profile['role'], profile['education']]
-    required.extend(proof[0] for proof in profile['proofs'])
-    for marker in required:
-        if normalized(marker).casefold() not in folded:
-            raise RuntimeError(f'{path.name}: missing canonical marker {marker!r}')
-    cursor = -1
-    for marker in profile.get('ats_order', []):
-        position = folded.find(normalized(marker).casefold(), cursor + 1)
-        if position < 0:
-            raise RuntimeError(f'{path.name}: ATS marker missing or out of order: {marker!r}')
-        cursor = position
-    sizes = [span['size'] for block in page.get_text('dict')['blocks'] if 'lines' in block for line in block['lines'] for span in line['spans'] if span.get('text', '').strip()]
-    if not sizes or min(sizes) < MIN_FONT_SIZE:
-        raise RuntimeError(f'{path.name}: min font {min(sizes) if sizes else "none"}')
-    links = pdf_link_targets(page)
-    min_links = int(profile.get('min_links', 3))
-    if len(links) < min_links:
-        raise RuntimeError(f'{path.name}: too few links ({len(links)} < {min_links})')
-    for title, _ in profile['projects']:
-        url = PROJECT_URLS.get(title)
-        if url and url not in links:
-            raise RuntimeError(f'{path.name}: missing direct project link for {title}')
-    return {'file': path.name, 'pages': 1, 'text': len(text), 'min_font': round(min(sizes), 2), 'links': len(links)}
+def page_role(profile: dict, soup: BeautifulSoup) -> None:
+    title = soup.title.get_text(strip=True) if soup.title else ""
+    description = soup.select_one('meta[name="description"]')
+    og_title = soup.select_one('meta[property="og:title"]')
+    twitter_title = soup.select_one('meta[name="twitter:title"]')
+    canonical = soup.select_one('link[rel="canonical"]')
+    jsonld = soup.select_one('script[type="application/ld+json"]')
+    h1 = soup.select_one("main h1")
+    role = soup.select_one(".hero-role")
+    print_role = soup.select_one(".print-cv .pcv-header h2")
+    required = [title, profile["description"], profile["role"]]
+    if any(not item for item in required):
+        raise RuntimeError(f"Incomplete profile metadata for {profile['filename']}")
+    if not description or description.get("content") != profile["description"]:
+        raise RuntimeError(f"{profile['filename']}: description mismatch")
+    if not og_title or og_title.get("content") != profile["title"]:
+        raise RuntimeError(f"{profile['filename']}: og:title mismatch")
+    if not twitter_title or twitter_title.get("content") != profile["title"]:
+        raise RuntimeError(f"{profile['filename']}: twitter:title mismatch")
+    if title != profile["title"]:
+        raise RuntimeError(f"{profile['filename']}: <title> mismatch")
+    if not canonical or not canonical.get("href", "").endswith(profile["filename"]):
+        raise RuntimeError(f"{profile['filename']}: canonical mismatch")
+    if not h1 or not normalized(h1.get_text(" ")):
+        raise RuntimeError(f"{profile['filename']}: missing H1")
+    if not role or normalized(role.get_text(" ")) != profile["role"]:
+        raise RuntimeError(f"{profile['filename']}: visible role mismatch")
+    if not print_role or normalized(print_role.get_text(" ")) != profile["role"]:
+        raise RuntimeError(f"{profile['filename']}: print role mismatch")
+    if jsonld is None or jsonld.string is None:
+        raise RuntimeError(f"{profile['filename']}: missing JSON-LD")
+    schema = json.loads(jsonld.string)
+    if schema.get("jobTitle") != profile["role"]:
+        raise RuntimeError(f"{profile['filename']}: JSON-LD role mismatch")
 
 
-def validate_pdfs(pdf_dir: Path) -> list[dict]:
-    return [validate_pdf(pdf_dir / profile['pdf'], profile) for profile in DATA['profiles'].values()]
+def validate_languages(path: Path, soup: BeautifulSoup) -> None:
+    lang = soup.html.get("lang") if soup.html else None
+    text = normalized(soup.get_text(" "))
+    if lang == "en" and re.search(r"[А-Яа-яЁё]", text):
+        raise RuntimeError(f"{path.relative_to(ROOT)}: Cyrillic text on English page")
+    if lang == "ru":
+        # Detect an untranslated English sentence rather than accepted technical terms.
+        for sentence in re.split(r"[.!?]\s+", text):
+            tokens = re.findall(r"[A-Za-z][A-Za-z0-9+./-]*", sentence)
+            if len(tokens) < 7:
+                continue
+            unknown = [token for token in tokens if token.casefold() not in TECH_WORDS and not token.isupper()]
+            if len(unknown) >= 5 and not re.search(r"[А-Яа-яЁё]", sentence):
+                raise RuntimeError(f"{path.relative_to(ROOT)}: probable untranslated sentence: {sentence[:140]}")
 
 
-def compare_pdf_sets(generated_dir: Path, committed_dir: Path) -> None:
-    for profile in DATA['profiles'].values():
-        with fitz.open(generated_dir / profile['pdf']) as generated, fitz.open(committed_dir / profile['pdf']) as committed:
-            generated_page = generated[0]
-            committed_page = committed[0]
-            if normalized(generated_page.get_text('text')) != normalized(committed_page.get_text('text')):
-                raise RuntimeError(f'{profile["pdf"]}: committed text differs from clean rebuild')
-            if pdf_link_targets(generated_page) != pdf_link_targets(committed_page):
-                raise RuntimeError(f'{profile["pdf"]}: committed links differ from clean rebuild')
+def validate_html(data: dict) -> set[str]:
+    external: set[str] = set()
+    existing = {path.relative_to(ROOT).as_posix() for path in ROOT.rglob("*") if path.is_file()}
+    for path in html_files(data):
+        if not path.exists():
+            raise RuntimeError(f"Missing generated page: {path.relative_to(ROOT)}")
+        raw = path.read_text(encoding="utf-8")
+        for marker in STALE_MARKERS:
+            if marker.casefold() in raw.casefold():
+                raise RuntimeError(f"{path.relative_to(ROOT)}: stale marker {marker!r}")
+        if "avatars.githubusercontent.com" in raw:
+            raise RuntimeError(f"{path.relative_to(ROOT)}: remote avatar dependency remains")
+        soup = BeautifulSoup(raw, "html.parser")
+        validate_languages(path, soup)
+        for link in soup.select("a[href], link[href], img[src], script[src]"):
+            attr = "href" if link.has_attr("href") else "src"
+            value = link.get(attr, "")
+            if not value or value.startswith(("mailto:", "tel:", "javascript:", "data:")):
+                continue
+            parsed = urlparse(value)
+            if parsed.scheme in {"http", "https"}:
+                if not value.startswith(data["site_url"]):
+                    external.add(urldefrag(value)[0])
+                continue
+            if value.startswith("#"):
+                target_id = value[1:]
+                if target_id and not soup.find(id=target_id):
+                    raise RuntimeError(f"{path.relative_to(ROOT)}: missing fragment {value}")
+                continue
+            relative_path = urlparse(value).path
+            relative = (path.parent / relative_path).resolve()
+            try:
+                rel = relative.relative_to(ROOT).as_posix()
+            except ValueError as exc:
+                raise RuntimeError(f"{path.relative_to(ROOT)}: link escapes repository: {value}") from exc
+            if rel not in existing:
+                raise RuntimeError(f"{path.relative_to(ROOT)}: broken internal link {value}")
+        img = soup.select_one(".identity-card img.identity-mark")
+        if path.name in {data["profiles"][key][lang]["filename"] for key in data["profile_order"] for lang in ("ru", "en")}:
+            if not img or img.get("src") != "assets/portrait.svg" or not img.get("alt"):
+                raise RuntimeError(f"{path.relative_to(ROOT)}: local accessible portrait missing")
+    for key in data["profile_order"]:
+        for lang in ("ru", "en"):
+            profile = data["profiles"][key][lang]
+            soup = BeautifulSoup((ROOT / profile["filename"]).read_text(encoding="utf-8"), "html.parser")
+            page_role(profile, soup)
+    return external
+
+
+def check_external_url(url: str) -> tuple[str, int]:
+    headers = {"User-Agent": "Mozilla/5.0 CV-link-validator/1.0"}
+    for method in ("HEAD", "GET"):
+        request = urllib.request.Request(url, headers=headers, method=method)
+        try:
+            with urllib.request.urlopen(request, timeout=15) as response:
+                return url, int(response.status)
+        except urllib.error.HTTPError as exc:
+            if exc.code in {401, 403, 405, 429, 999}:
+                return url, exc.code
+            if method == "GET":
+                raise RuntimeError(f"External link failed: {url} -> HTTP {exc.code}") from exc
+        except (urllib.error.URLError, TimeoutError, socket.timeout) as exc:
+            if method == "GET":
+                raise RuntimeError(f"External link failed: {url} -> {exc}") from exc
+    raise RuntimeError(f"External link failed: {url}")
+
+
+def validate_pdfs(data: dict, pdf_dir: Path) -> list[dict[str, object]]:
+    results = []
+    for key in data["profile_order"]:
+        for lang in ("ru", "en"):
+            profile = data["profiles"][key][lang]
+            path = pdf_dir / profile["pdf"]
+            if not path.exists() or not path.stat().st_size:
+                raise RuntimeError(f"Missing PDF {path}")
+            doc = fitz.open(path)
+            if doc.page_count != 1:
+                raise RuntimeError(f"{path.name}: expected one page")
+            page = doc[0]
+            text = normalized(page.get_text("text"))
+            if profile["role"].casefold() not in text.casefold():
+                raise RuntimeError(f"{path.name}: role mismatch")
+            for marker in STALE_MARKERS:
+                if marker.casefold() in text.casefold():
+                    raise RuntimeError(f"{path.name}: stale marker {marker}")
+            links = [link.get("uri") for link in page.get_links() if link.get("uri")]
+            if len(links) < 3:
+                raise RuntimeError(f"{path.name}: too few links")
+            results.append({"file": path.name, "text_chars": len(text), "links": len(links)})
+    return results
+
+
+
+def compare_pdf_sets(generated_dir: Path, committed_dir: Path, data: dict) -> None:
+    for key in data["profile_order"]:
+        for lang in ("ru", "en"):
+            profile = data["profiles"][key][lang]
+            generated_path = generated_dir / profile["pdf"]
+            committed_path = committed_dir / profile["pdf"]
+            if not committed_path.exists():
+                raise RuntimeError(f"Missing committed PDF {committed_path}")
+            with fitz.open(generated_path) as generated, fitz.open(committed_path) as committed:
+                generated_text = normalized(generated[0].get_text("text"))
+                committed_text = normalized(committed[0].get_text("text"))
+                if generated_text != committed_text:
+                    raise RuntimeError(f"{profile['pdf']}: committed PDF text differs from clean rebuild")
+                generated_links = sorted(link.get("uri", "") for link in generated[0].get_links() if link.get("uri"))
+                committed_links = sorted(link.get("uri", "") for link in committed[0].get_links() if link.get("uri"))
+                if generated_links != committed_links:
+                    raise RuntimeError(f"{profile['pdf']}: committed PDF links differ from clean rebuild")
 
 
 def validate_manifest() -> None:
-    manifest = ROOT / 'MANIFEST.sha256'
-    expected = {}
-    for line in manifest.read_text(encoding='utf-8').splitlines():
+    manifest = ROOT / "MANIFEST.sha256"
+    if not manifest.exists():
+        raise RuntimeError("MANIFEST.sha256 missing")
+    expected: dict[str, str] = {}
+    for line in manifest.read_text(encoding="utf-8").splitlines():
         if line.strip():
-            digest, rel = line.split('  ', 1)
-            expected[rel.removeprefix('./')] = digest
-    actual = {}
-    for path in sorted(ROOT.rglob('*')):
-        if not path.is_file() or path == manifest or '.git' in path.parts:
+            digest, rel = line.split("  ", 1)
+            expected[rel.removeprefix("./")] = digest
+    actual: dict[str, str] = {}
+    import hashlib
+    for path in sorted(ROOT.rglob("*")):
+        if not path.is_file() or path == manifest or ".git" in path.parts or "__pycache__" in path.parts or path.suffix == ".pyc":
             continue
         actual[path.relative_to(ROOT).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
     if expected != actual:
-        missing = sorted(set(actual) - set(expected))[:10]
-        extra = sorted(set(expected) - set(actual))[:10]
-        changed = sorted(key for key in actual.keys() & expected.keys() if actual[key] != expected[key])[:10]
-        raise RuntimeError(f'Manifest mismatch missing={missing} extra={extra} changed={changed}')
+        missing = sorted(set(actual) - set(expected))[:8]
+        extra = sorted(set(expected) - set(actual))[:8]
+        changed = sorted(k for k in expected.keys() & actual.keys() if expected[k] != actual[k])[:8]
+        raise RuntimeError(f"Manifest mismatch missing={missing} extra={extra} changed={changed}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument('--pdf-dir', type=Path, default=ROOT / 'pdf')
-    parser.add_argument('--compare-dir', type=Path)
-    parser.add_argument('--skip-manifest', action='store_true')
+    parser.add_argument("--pdf-dir", type=Path, default=ROOT / "pdf")
+    parser.add_argument("--check-external", action="store_true")
+    parser.add_argument("--compare-dir", type=Path)
+    parser.add_argument("--skip-manifest", action="store_true")
+    parser.add_argument("--report", type=Path)
     args = parser.parse_args()
-    validate_data()
-    validate_html()
-    results = validate_pdfs(args.pdf_dir)
+
+    data = load_data()
+    validate_source_of_truth(data)
+    validate_script()
+    external = validate_html(data)
+    link_results = []
+    if args.check_external:
+        for url in sorted(external):
+            link_results.append(check_external_url(url))
+    pdf_results = validate_pdfs(data, args.pdf_dir)
     if args.compare_dir:
-        validate_pdfs(args.compare_dir)
-        compare_pdf_sets(args.pdf_dir, args.compare_dir)
+        validate_pdfs(data, args.compare_dir)
+        compare_pdf_sets(args.pdf_dir, args.compare_dir, data)
     if not args.skip_manifest:
         validate_manifest()
-    print(json.dumps(results, ensure_ascii=False, indent=2))
+    report = {
+        "profiles": len(data["profile_order"]) * 2,
+        "pages": len(html_files(data)),
+        "external_links": [{"url": url, "status": status} for url, status in link_results],
+        "pdfs": pdf_results,
+    }
+    if args.report:
+        args.report.parent.mkdir(parents=True, exist_ok=True)
+        args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    else:
+        print(json.dumps(report, ensure_ascii=False, indent=2))
 
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"VALIDATION_ERROR: {exc}", file=sys.stderr)
+        raise
