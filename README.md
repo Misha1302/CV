@@ -1,48 +1,61 @@
-# Mikhail Razakov — targeted CV variants v32
+# CV site — generated, role-specific, verifiable
 
-Статический bilingual-пакет целевых инженерных резюме и подробного технического портфолио.
+This repository publishes Mikhail Razakov's CV site and role-specific PDFs.
 
-## Флагманские версии
+## Canonical source
 
-- `ru-compiler.html` / `en-compiler.html` — compiler/runtime и typed language composition: callable-first SSA, Wist и experimental PlanFuzz.
-- `ru-devtools.html` / `en-devtools.html` — compiler testing, configuration-aware fuzzing, diagnostics и reproducible evidence.
-- `ru-cpp-systems.html` / `en-cpp-systems.html` — C++ systems, program analysis, алгоритмические компоненты и low-level codegen.
+All public profile content lives in one file:
 
-## Специализированные версии
+- `data/site.json`
 
-- Algorithms — solver/research engineering.
-- Backend — .NET-сервисы с платежами, состоянием и восстановлением.
-- Reliability — reliability-focused backend, не SRE-overclaim.
-- EdTech — backend для образовательных продуктов.
-- Full portfolio — follow-up материал, не первое вложение.
+The generator produces:
 
-## Что изменилось в v32
+- canonical RU/EN profile pages;
+- the landing page;
+- project case studies;
+- redirect pages for deprecated profile URLs;
+- metadata, Open Graph, JSON-LD, sitemap, and robots.txt;
+- one-page role-specific PDFs.
 
-- Wist2 сформулирован как typed language composition/runtime SDK, а не как широкий grammar/type-system workbench.
-- PlanFuzz явно обозначен как experimental tooling; указан фактический scope: language-neutral core, Acme adapter и ограниченный Wist Int32 adapter.
-- Canonical gate синхронизирован с Wist2: 1 465/1 465 тестов, 0 failures/skips, 9 packages и clean consumers; source commit `ee218b4b5b5c6648ab74df2d54a8a906bd2e30db`.
-- В Compiler опыт callable-first SSA и PlanFuzz разделён на независимые evidence claims.
-- В DevTools test-count proof заменён на deterministic program/plan reduction.
-- В C++ Systems обязательная гигиена toolchain заменена доказательством масштаба — stress-gates до 500 тыс. вершин.
-- Названия публичных проектов в PDF стали прямыми кликабельными ссылками.
-- Флагманские PDF используют отдельную roomy-плотность и проверяются на заполнение страницы.
-- CI проверяет ATS-порядок, direct project links, актуальные canonical facts, clean rebuild parity и recursive manifest.
+Generated HTML and PDF files must not be edited manually.
 
-## Использование
+## Canonical profiles
 
-Для первого контакта отправлять профильный PDF. HTML использовать как подробное техническое портфолио на следующем этапе.
+1. General Software Engineer
+2. Compiler / Language Platforms
+3. .NET Backend
+4. C++ / LLVM Systems
 
-## Canonical sources
+The landing page exposes only the three specializations plus the general profile. Older narrow URLs redirect to the nearest canonical profile.
 
-- Wist2 verification: `Misha1302/Wist2@ee218b4b5b5c6648ab74df2d54a8a906bd2e30db`.
-- Release metadata: `RELEASE-METADATA.md`.
-- Targeting: `TARGETING.md`.
-- QA: `QA-report-targeted-cv-v32.md`.
+## Local build
 
-## Baseline
+```bash
+python -m pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+python tools/build_site.py
+python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence
+python tools/build_site.py --manifest
+python tools/validate_cv.py --pdf-dir pdf
+```
 
-Предыдущая версия: v31, merge commit `0c13b0617c5e06b09b7223247fb77c6010fa9d8b`.
+For browser layout and screenshot regression:
 
-## Контакт
+```bash
+python -m playwright install chromium
+python tools/visual_regression.py --output-dir /tmp/cv-visual
+```
 
-misha13022008@gmail.com
+## Validation contracts
+
+The checks enforce:
+
+- `data/site.json` as the single source of truth;
+- no content rewriting from JavaScript;
+- matching title, description, Open Graph, JSON-LD, visible role, print role, and PDF role;
+- no stale availability wording;
+- no untranslated English sentences in Russian profiles or Cyrillic in English profiles;
+- valid internal links and optional live external-link checks;
+- local portrait asset, no remote avatar dependency;
+- one-page A4 PDFs with text layers and links;
+- desktop, mobile, and JavaScript-disabled screenshot regressions;
+- recursive SHA-256 manifest integrity.

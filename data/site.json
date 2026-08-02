@@ -1,0 +1,541 @@
+{
+  "version": 34,
+  "updated_at": "2026-08-02",
+  "site_url": "https://misha1302.github.io/CV/",
+  "person": {
+    "name_ru": "Михаил Разаков",
+    "name_en": "Mikhail Razakov",
+    "email": "misha13022008@gmail.com",
+    "telegram": "https://t.me/Micodiy",
+    "telegram_label": "t.me/Micodiy",
+    "github": "https://github.com/Misha1302",
+    "github_label": "github.com/Misha1302",
+    "linkedin": "https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/",
+    "location_ru": "Москва / удалённо",
+    "location_en": "Moscow / remote",
+    "education_ru": "Студент программы «Программная инженерия» НИУ ВШЭ",
+    "education_en": "Software Engineering student at HSE University"
+  },
+  "profile_order": ["general", "compiler", "backend", "systems"],
+  "profiles": {
+    "general": {
+      "ru": {
+        "filename": "ru.html",
+        "pdf": "Mikhail_Razakov_Software_Engineer_RU.pdf",
+        "title": "Михаил Разаков — Software Engineer: .NET, backend и системная разработка",
+        "role": "Software Engineer · .NET, backend и системная разработка",
+        "brand": ".NET · backend · системная разработка",
+        "eyebrow": "Архитектура платформ · backend · компиляторы",
+        "summary": "Проектирую и реализую сложные программные системы: модульные .NET-платформы, backend-сервисы с платежами и восстановлением, компиляторы и инструменты анализа программ. Сильнее всего — в явных контрактах, инвариантах состояния, проверяемой семантике и доведении системы до воспроизводимого результата.",
+        "description": "Software Engineer Михаил Разаков: архитектура .NET-платформ, backend-сервисы, компиляторы, LLVM, анализ программ и надёжные релизы.",
+        "proofs": [
+          ["Архитектура платформы", "UniversalToolchain/Wist2: независимые пакеты, типизированные контракты, маршруты, manifests/locks и lifecycle ownership"],
+          ["Production backend", "Платежи, подписки, роли, устройства, PostgreSQL/SQLite, миграции, recovery, backup/restore и rollback"],
+          ["Compiler / systems", "Callable-first SSA, interpreter/CIL, LLVM, C++23, анализ памяти и генерация x86-64"]
+        ],
+        "experience": [
+          {
+            "date": "2024 — сейчас",
+            "title": "UniversalToolchain / Wist2 — создатель и основной разработчик",
+            "org": ".NET SDK для языков и сред исполнения",
+            "bullets": [
+              "Спроектировал композицию языка из независимо версионируемых пакетов: типизированные артефакты, возможности и конфликты, детерминированные маршруты и порядок проходов.",
+              "Реализовал точное связывание с манифестом, lock-файл, fail-closed политики и управление жизненным циклом runtime-сессий.",
+              "Контрольная проверка от 25.07.2026: 1 465/1 465 тестов, 0 падений; проверены 9 пакетов и clean-consumer проекты."
+            ]
+          },
+          {
+            "date": "2026 — сейчас",
+            "title": ".NET backend: VpnMediator и CompilationLabLMS",
+            "org": "ASP.NET Core · PostgreSQL/SQLite · Linux",
+            "bullets": [
+              "Проектировал состояния подписок, платежей, балансов, ролей и устройств; обрабатывал webhooks и повторные операции идемпотентно.",
+              "Настраивал миграции, фоновые recovery-процессы, audit trail, backup/restore, health gates, Docker, nginx, systemd и откат релизов."
+            ]
+          },
+          {
+            "date": "1 июля — 31 августа 2026",
+            "title": "МЦСТ — стажёр по разработке компиляторов",
+            "org": "LLVM-направление · 0,25 ставки · удалённо",
+            "bullets": [
+              "Разрабатываю собственный оптимизационный проход LLVM; реализую и тестирую графовые алгоритмы на C++23."
+            ]
+          }
+        ],
+        "project_ids": ["wist", "vpn", "psform", "codegen"],
+        "skills": [
+          ["Архитектура", "модульные границы, typed contracts, state machines, manifests/locks, lifecycle ownership, fail-closed design"],
+          [".NET / backend", "C#/.NET, ASP.NET Core, REST/OpenAPI, PostgreSQL, SQLite, webhooks, transactions, migrations, recovery"],
+          ["Компиляторы", "Bytecode/AIR, CFG, SSA, dominance, optimizations, interpreter/CIL, LLVM, program analysis"],
+          ["Системы и проверка", "C++23, C17, Rust, Python, Linux, CMake, sanitizers, differential/metamorphic testing, exact oracles"]
+        ],
+        "contact_heading": "Открыт к инженерным задачам, где важны архитектура, корректность и ответственность за результат.",
+        "footer": "Software Engineer · .NET, backend и системная разработка"
+      },
+      "en": {
+        "filename": "en.html",
+        "pdf": "Mikhail_Razakov_Software_Engineer_EN.pdf",
+        "title": "Mikhail Razakov — Software Engineer: .NET, backend, and systems",
+        "role": "Software Engineer · .NET, backend, and systems",
+        "brand": ".NET · backend · systems",
+        "eyebrow": "Platform architecture · backend · compilers",
+        "summary": "I design and implement complex software systems: modular .NET platforms, backend services with payments and recovery, compilers, and program-analysis tools. My strongest areas are explicit contracts, state invariants, verifiable semantics, and carrying systems through to reproducible outcomes.",
+        "description": "Software Engineer Mikhail Razakov: .NET platform architecture, backend services, compilers, LLVM, program analysis, and reliable releases.",
+        "proofs": [
+          ["Platform architecture", "UniversalToolchain/Wist2: independent packages, typed contracts, routes, manifests/locks, and lifecycle ownership"],
+          ["Production backend", "Payments, subscriptions, roles, devices, PostgreSQL/SQLite, migrations, recovery, backup/restore, and rollback"],
+          ["Compiler / systems", "Callable-first SSA, interpreter/CIL, LLVM, C++23, memory analysis, and x86-64 code generation"]
+        ],
+        "experience": [
+          {
+            "date": "2024 — present",
+            "title": "UniversalToolchain / Wist2 — creator and primary developer",
+            "org": ".NET SDK for languages and runtimes",
+            "bullets": [
+              "Designed language composition from independently versioned packages: typed artifacts, capabilities and conflicts, deterministic routes, and pass ordering.",
+              "Implemented exact manifest binding, lock identity, fail-closed policies, and runtime-session lifecycle ownership.",
+              "Verification as of July 25, 2026: 1,465/1,465 tests with zero failures across nine packages and clean-consumer projects."
+            ]
+          },
+          {
+            "date": "2026 — present",
+            "title": ".NET backend: VpnMediator and CompilationLabLMS",
+            "org": "ASP.NET Core · PostgreSQL/SQLite · Linux",
+            "bullets": [
+              "Designed subscription, payment, balance, role, and device state; handled webhooks and repeated operations idempotently.",
+              "Built migrations, background recovery, audit trails, backup/restore, health gates, Docker, nginx, systemd, and rollback paths."
+            ]
+          },
+          {
+            "date": "July 1 — August 31, 2026",
+            "title": "MCST — compiler engineering intern",
+            "org": "LLVM track · 0.25 FTE · remote",
+            "bullets": [
+              "Developing an LLVM optimization pass and implementing tested graph algorithms in C++23."
+            ]
+          }
+        ],
+        "project_ids": ["wist", "vpn", "psform", "codegen"],
+        "skills": [
+          ["Architecture", "module boundaries, typed contracts, state machines, manifests/locks, lifecycle ownership, fail-closed design"],
+          [".NET / backend", "C#/.NET, ASP.NET Core, REST/OpenAPI, PostgreSQL, SQLite, webhooks, transactions, migrations, recovery"],
+          ["Compilers", "Bytecode/AIR, CFG, SSA, dominance, optimizations, interpreter/CIL, LLVM, program analysis"],
+          ["Systems and verification", "C++23, C17, Rust, Python, Linux, CMake, sanitizers, differential/metamorphic testing, exact oracles"]
+        ],
+        "contact_heading": "Open to engineering work where architecture, correctness, and ownership matter.",
+        "footer": "Software Engineer · .NET, backend, and systems"
+      }
+    },
+    "compiler": {
+      "ru": {
+        "filename": "ru-compiler.html",
+        "pdf": "Mikhail_Razakov_Compiler_RU.pdf",
+        "title": "Михаил Разаков — инженер по компиляторам и языковым платформам",
+        "role": "Инженер по компиляторам и языковым платформам",
+        "brand": "компиляторы · runtime · анализ программ",
+        "eyebrow": "Языковые платформы · SSA · runtime · LLVM",
+        "summary": "Проектирую языковые платформы и среды исполнения. Создал UniversalToolchain/Wist2 — модульный .NET SDK с типизированной композицией пакетов, точным manifest binding, callable-first SSA, interpreter/CIL и экспериментальным PlanFuzz.",
+        "description": "Резюме Михаила Разакова: архитектура языковых платформ, UniversalToolchain/Wist2, SSA, runtime, PlanFuzz, LLVM и анализ программ.",
+        "proofs": [
+          ["Архитектура платформы", "Типизированные контракты, независимые пакеты, возможности и конфликты, детерминированные маршруты"],
+          ["Проверяемая семантика", "Callable-first SSA, эффекты и доверие вызовов, verifier-gated AIR → SSA → AIR"],
+          ["1 465 / 1 465", "0 падений; 9 пакетов, clean-consumer проекты и parity интерпретатора/CIL"]
+        ],
+        "experience": [
+          {
+            "date": "2024 — сейчас",
+            "title": "UniversalToolchain / Wist2 — создатель и основной разработчик",
+            "org": ".NET · language SDK · runtime",
+            "bullets": [
+              "Определил архитектурные границы пакетов, контракты артефактов, разрешение возможностей и конфликтов, маршрутизацию и порядок проходов.",
+              "Реализовал точное связывание с манифестом, lock identity, lifecycle runtime-сессий и fail-closed политики.",
+              "Развиваю callable-first SSA, оптимизации, интерпретатор/CIL и конфигурационно-зависимое тестирование PlanFuzz."
+            ]
+          },
+          {
+            "date": "1 июля — 31 августа 2026",
+            "title": "МЦСТ — стажёр по разработке компиляторов",
+            "org": "LLVM · C++23 · 0,25 ставки",
+            "bullets": [
+              "Разрабатываю собственный оптимизационный проход LLVM и тестирую графовые алгоритмы."
+            ]
+          }
+        ],
+        "project_ids": ["wist", "planfuzz", "psform", "codegen"],
+        "skills": [
+          ["Архитектура языков", "typed artifacts, package graph, capabilities/conflicts, routes, passes, manifests и lock identity"],
+          ["IR / SSA", "Bytecode/AIR, callable-first SSA, CFG, dominance, folding, SCCP-lite, unreachable elimination, DCE"],
+          ["Runtime", "interpreter/CIL, typed delegates, lifecycle ownership, fail-closed policies, backend parity"],
+          ["Проверка", "differential/metamorphic testing, exact oracles, replay, reducers, sanitizers, clean consumers"]
+        ],
+        "contact_heading": "Открыт к задачам в compiler/runtime engineering, языковых платформах и анализе программ.",
+        "footer": "Инженер по компиляторам и языковым платформам"
+      },
+      "en": {
+        "filename": "en-compiler.html",
+        "pdf": "Mikhail_Razakov_Compiler_EN.pdf",
+        "title": "Mikhail Razakov — Compiler and Language Platform Engineer",
+        "role": "Compiler and Language Platform Engineer",
+        "brand": "compilers · runtime · program analysis",
+        "eyebrow": "Language platforms · SSA · runtime · LLVM",
+        "summary": "I design language platforms and runtimes. I created UniversalToolchain/Wist2, a modular .NET SDK with typed package composition, exact manifest binding, callable-first SSA, interpreter/CIL execution, and experimental PlanFuzz.",
+        "description": "Mikhail Razakov: language-platform architecture, UniversalToolchain/Wist2, SSA, runtime, PlanFuzz, LLVM, and program analysis.",
+        "proofs": [
+          ["Platform architecture", "Typed contracts, independent packages, capabilities and conflicts, deterministic routes"],
+          ["Verifiable semantics", "Callable-first SSA, call effects and trust, verifier-gated AIR → SSA → AIR"],
+          ["1,465 / 1,465", "Zero failures across nine packages, clean consumers, and interpreter/CIL parity"]
+        ],
+        "experience": [
+          {
+            "date": "2024 — present",
+            "title": "UniversalToolchain / Wist2 — creator and primary developer",
+            "org": ".NET · language SDK · runtime",
+            "bullets": [
+              "Defined package boundaries, artifact contracts, capability/conflict resolution, routing, and pass ordering.",
+              "Implemented exact manifest binding, lock identity, runtime-session lifecycle ownership, and fail-closed policies.",
+              "Develop callable-first SSA, optimizations, interpreter/CIL execution, and configuration-aware PlanFuzz testing."
+            ]
+          },
+          {
+            "date": "July 1 — August 31, 2026",
+            "title": "MCST — compiler engineering intern",
+            "org": "LLVM · C++23 · 0.25 FTE",
+            "bullets": [
+              "Developing an LLVM optimization pass and testing graph algorithms."
+            ]
+          }
+        ],
+        "project_ids": ["wist", "planfuzz", "psform", "codegen"],
+        "skills": [
+          ["Language architecture", "typed artifacts, package graphs, capabilities/conflicts, routes, passes, manifests, and lock identity"],
+          ["IR / SSA", "Bytecode/AIR, callable-first SSA, CFG, dominance, folding, SCCP-lite, unreachable elimination, DCE"],
+          ["Runtime", "interpreter/CIL, typed delegates, lifecycle ownership, fail-closed policies, backend parity"],
+          ["Verification", "differential/metamorphic testing, exact oracles, replay, reducers, sanitizers, clean consumers"]
+        ],
+        "contact_heading": "Open to compiler/runtime engineering, language-platform, and program-analysis work.",
+        "footer": "Compiler and Language Platform Engineer"
+      }
+    },
+    "backend": {
+      "ru": {
+        "filename": "ru-backend.html",
+        "pdf": "Mikhail_Razakov_Backend_RU.pdf",
+        "title": "Михаил Разаков — .NET Backend Engineer",
+        "role": ".NET Backend Engineer · надёжные системы",
+        "brand": ".NET · API · данные · recovery",
+        "eyebrow": "ASP.NET Core · платежи · состояние · эксплуатация",
+        "summary": "Проектирую .NET-сервисы, где критичны корректность состояния и восстановление после сбоев: REST/OpenAPI, платежи и webhooks, PostgreSQL/SQLite, идемпотентность, миграции, фоновые recovery-процессы, backup/restore и безопасный откат.",
+        "description": ".NET Backend Engineer Михаил Разаков: ASP.NET Core, REST/OpenAPI, PostgreSQL, платежи, webhooks, идемпотентность, recovery и эксплуатация Linux-сервисов.",
+        "proofs": [
+          ["Инварианты состояния", "Подписки, платежи, балансы, роли, права доступа и устройства"],
+          ["Recovery после сбоев", "Идемпотентность, audit trail, reconciliation, restart safety и фоновые операции"],
+          ["Проверяемые релизы", "Миграции, health gates, Docker/nginx/systemd, backup/restore и rollback"]
+        ],
+        "experience": [
+          {
+            "date": "2026 — сейчас",
+            "title": "VpnMediator — backend подписочного VPN-сервиса",
+            "org": "ASP.NET Core · SQLite/PostgreSQL · Telegram · Linux",
+            "bullets": [
+              "Спроектировал жизненный цикл доступа, подписок, платежей и устройств; обрабатывал повторные webhooks и операции идемпотентно.",
+              "Реализовал аудит, фоновые recovery-сценарии, миграции, backup/restore, диагностику и безопасный rollback."
+            ]
+          },
+          {
+            "date": "2026 — сейчас",
+            "title": "CompilationLabLMS — backend учебной платформы",
+            "org": "Роли · ledger баланса · платежные операции",
+            "bullets": [
+              "Разрабатывал роли, учебные workflows, баланс и критические платежные сценарии с явными инвариантами и проверками."
+            ]
+          },
+          {
+            "date": "2023",
+            "title": "Клиентский backend лицензирования",
+            "org": "REST/OpenAPI · lifecycle активации",
+            "bullets": [
+              "Определил состояния активации, явные ошибки, контракт API и безопасные административные сценарии."
+            ]
+          }
+        ],
+        "project_ids": ["vpn", "lms", "wist"],
+        "skills": [
+          ["Backend", "C#/.NET, ASP.NET Core, REST, OpenAPI, webhooks, background services"],
+          ["Данные", "PostgreSQL, SQLite, transactions, migrations, state machines, balance ledger"],
+          ["Надёжность", "idempotency, audit, reconciliation, restart safety, recovery, backup/restore"],
+          ["Эксплуатация", "Docker Compose, nginx, systemd, health gates, versioned releases, rollback"]
+        ],
+        "contact_heading": "Открыт к .NET backend и platform-задачам с ответственностью за состояние и эксплуатацию.",
+        "footer": ".NET Backend Engineer · надёжные системы"
+      },
+      "en": {
+        "filename": "en-backend.html",
+        "pdf": "Mikhail_Razakov_Backend_EN.pdf",
+        "title": "Mikhail Razakov — .NET Backend Engineer",
+        "role": ".NET Backend Engineer · Reliable Systems",
+        "brand": ".NET · API · data · recovery",
+        "eyebrow": "ASP.NET Core · payments · state · operations",
+        "summary": "I design .NET services where state correctness and recovery matter: REST/OpenAPI, payments and webhooks, PostgreSQL/SQLite, idempotency, migrations, background recovery, backup/restore, and safe rollback.",
+        "description": ".NET Backend Engineer Mikhail Razakov: ASP.NET Core, REST/OpenAPI, PostgreSQL, payments, webhooks, idempotency, recovery, and Linux service operations.",
+        "proofs": [
+          ["State invariants", "Subscriptions, payments, balances, roles, access rights, and devices"],
+          ["Failure recovery", "Idempotency, audit trails, reconciliation, restart safety, and background operations"],
+          ["Verifiable releases", "Migrations, health gates, Docker/nginx/systemd, backup/restore, and rollback"]
+        ],
+        "experience": [
+          {
+            "date": "2026 — present",
+            "title": "VpnMediator — subscription VPN backend",
+            "org": "ASP.NET Core · SQLite/PostgreSQL · Telegram · Linux",
+            "bullets": [
+              "Designed access, subscription, payment, and device lifecycles; handled repeated webhooks and operations idempotently.",
+              "Implemented auditing, background recovery, migrations, backup/restore, diagnostics, and safe rollback."
+            ]
+          },
+          {
+            "date": "2026 — present",
+            "title": "CompilationLabLMS — learning-platform backend",
+            "org": "Roles · balance ledger · payment operations",
+            "bullets": [
+              "Built roles, learning workflows, balance operations, and critical payment paths with explicit invariants and checks."
+            ]
+          },
+          {
+            "date": "2023",
+            "title": "Client licensing backend",
+            "org": "REST/OpenAPI · activation lifecycle",
+            "bullets": [
+              "Defined activation states, explicit errors, API contracts, and operator-safe administrative workflows."
+            ]
+          }
+        ],
+        "project_ids": ["vpn", "lms", "wist"],
+        "skills": [
+          ["Backend", "C#/.NET, ASP.NET Core, REST, OpenAPI, webhooks, background services"],
+          ["Data", "PostgreSQL, SQLite, transactions, migrations, state machines, balance ledgers"],
+          ["Reliability", "idempotency, audit, reconciliation, restart safety, recovery, backup/restore"],
+          ["Operations", "Docker Compose, nginx, systemd, health gates, versioned releases, rollback"]
+        ],
+        "contact_heading": "Open to .NET backend and platform work with ownership of state and operations.",
+        "footer": ".NET Backend Engineer · Reliable Systems"
+      }
+    },
+    "systems": {
+      "ru": {
+        "filename": "ru-cpp-systems.html",
+        "pdf": "Mikhail_Razakov_CPP_Systems_RU.pdf",
+        "title": "Михаил Разаков — C++ / LLVM Systems Engineer",
+        "role": "C++ / LLVM Systems Engineer",
+        "brand": "C++23 · LLVM · анализ программ · x86-64",
+        "eyebrow": "Компиляторы · алгоритмы графов · program analysis",
+        "summary": "Разрабатываю системные и компиляторные компоненты на C++23/C17/Rust: LLVM-проходы, анализ зависимостей памяти, CFG/SSA, графовые алгоритмы, x86-64 codegen и воспроизводимые тестовые оракулы.",
+        "description": "C++ / LLVM Systems Engineer Михаил Разаков: LLVM, C++23, CFG/SSA, анализ программ, sanitizers, x86-64 codegen и алгоритмы графов.",
+        "proofs": [
+          ["LLVM / C++23", "Оптимизационный проход, графовые алгоритмы, CMake, clang-tidy, ASan/UBSan"],
+          ["1-е из 49 · 104/104", "Консервативный PS-form анализ зависимостей памяти и точный оракул"],
+          ["x86-64 pipeline", "SSA-подобное IR, liveness, linear scan, iced-x86 и differential validation"]
+        ],
+        "experience": [
+          {
+            "date": "1 июля — 31 августа 2026",
+            "title": "МЦСТ — стажёр по разработке компиляторов",
+            "org": "LLVM · C++23 · 0,25 ставки",
+            "bullets": [
+              "Разрабатываю оптимизационный проход LLVM, реализую и тестирую графовые алгоритмы, работаю с CFG и преобразованиями программы."
+            ]
+          },
+          {
+            "date": "2026",
+            "title": "PS-form Memory Dependence Analyzer",
+            "org": "C17 · program analysis",
+            "bullets": [
+              "Реализовал консервативный анализ параметрических обращений к памяти; занял 1-е место среди 49 решений, 104/104 тестов.",
+              "Построил точный оракул для малых областей, метаморфные тесты и воспроизводимые WA/TL-контрпримеры."
+            ]
+          },
+          {
+            "date": "2026",
+            "title": "x86-64 Codegen & Register Allocation Lab",
+            "org": "Rust · iced-x86 · isolated execution",
+            "bullets": [
+              "Спроектировал SSA-подобное IR, анализ живых интервалов, linear scan и сравнение IR-интерпретатора со сгенерированным кодом."
+            ]
+          }
+        ],
+        "project_ids": ["psform", "codegen", "wist", "planfuzz"],
+        "skills": [
+          ["C++ / toolchain", "C++23, C17, CMake, Linux, clang-tidy, ASan/UBSan, GitHub Actions"],
+          ["Compiler analysis", "CFG, dominance, SSA, SCC, dataflow, memory dependence, optimization passes"],
+          ["Code generation", "x86-64, iced-x86, liveness, linear scan, IR interpretation, isolated execution"],
+          ["Verification", "exact oracles, differential/metamorphic tests, stress tests, counterexample reduction"]
+        ],
+        "contact_heading": "Открыт к C++/LLVM, compiler tooling, program analysis и системным R&D-задачам.",
+        "footer": "C++ / LLVM Systems Engineer"
+      },
+      "en": {
+        "filename": "en-cpp-systems.html",
+        "pdf": "Mikhail_Razakov_CPP_Systems_EN.pdf",
+        "title": "Mikhail Razakov — C++ / LLVM Systems Engineer",
+        "role": "C++ / LLVM Systems Engineer",
+        "brand": "C++23 · LLVM · program analysis · x86-64",
+        "eyebrow": "Compilers · graph algorithms · program analysis",
+        "summary": "I build systems and compiler components in C++23/C17/Rust: LLVM passes, memory-dependence analysis, CFG/SSA, graph algorithms, x86-64 code generation, and reproducible test oracles.",
+        "description": "C++ / LLVM Systems Engineer Mikhail Razakov: LLVM, C++23, CFG/SSA, program analysis, sanitizers, x86-64 codegen, and graph algorithms.",
+        "proofs": [
+          ["LLVM / C++23", "Optimization pass, graph algorithms, CMake, clang-tidy, ASan/UBSan"],
+          ["1st of 49 · 104/104", "Conservative PS-form memory-dependence analysis with an exact oracle"],
+          ["x86-64 pipeline", "SSA-like IR, liveness, linear scan, iced-x86, and differential validation"]
+        ],
+        "experience": [
+          {
+            "date": "July 1 — August 31, 2026",
+            "title": "MCST — compiler engineering intern",
+            "org": "LLVM · C++23 · 0.25 FTE",
+            "bullets": [
+              "Developing an LLVM optimization pass, implementing tested graph algorithms, and working with CFG transformations."
+            ]
+          },
+          {
+            "date": "2026",
+            "title": "PS-form Memory Dependence Analyzer",
+            "org": "C17 · program analysis",
+            "bullets": [
+              "Implemented conservative analysis of parametric memory accesses; ranked 1st of 49 with 104/104 tests.",
+              "Built an exact oracle for small domains, metamorphic tests, and reproducible WA/TL counterexamples."
+            ]
+          },
+          {
+            "date": "2026",
+            "title": "x86-64 Codegen & Register Allocation Lab",
+            "org": "Rust · iced-x86 · isolated execution",
+            "bullets": [
+              "Designed SSA-like IR, liveness, linear scan, and parity checks between an IR interpreter and generated machine code."
+            ]
+          }
+        ],
+        "project_ids": ["psform", "codegen", "wist", "planfuzz"],
+        "skills": [
+          ["C++ / toolchain", "C++23, C17, CMake, Linux, clang-tidy, ASan/UBSan, GitHub Actions"],
+          ["Compiler analysis", "CFG, dominance, SSA, SCC, dataflow, memory dependence, optimization passes"],
+          ["Code generation", "x86-64, iced-x86, liveness, linear scan, IR interpretation, isolated execution"],
+          ["Verification", "exact oracles, differential/metamorphic tests, stress testing, counterexample reduction"]
+        ],
+        "contact_heading": "Open to C++/LLVM, compiler tooling, program analysis, and systems R&D work.",
+        "footer": "C++ / LLVM Systems Engineer"
+      }
+    }
+  },
+  "projects": {
+    "wist": {
+      "title": "UniversalToolchain / Wist2",
+      "type_ru": ".NET · языковая платформа · runtime",
+      "type_en": ".NET · language platform · runtime",
+      "problem_ru": "Независимые пакеты языка должны безопасно и детерминированно собираться в единую среду исполнения без скрытой зависимости от порядка регистрации.",
+      "problem_en": "Independent language packages must compose into one runtime safely and deterministically without hidden registration-order dependencies.",
+      "solution_ru": "Типизированные контракты артефактов, граф возможностей и конфликтов, детерминированные маршруты и проходы, exact manifest binding, lock identity и lifecycle ownership.",
+      "solution_en": "Typed artifact contracts, capability/conflict graphs, deterministic routes and passes, exact manifest binding, lock identity, and lifecycle ownership.",
+      "result_ru": "1 465/1 465 тестов, 0 падений; 9 пакетов и clean-consumer проекты. Interpreter/CIL parity и воспроизводимые проверки конфигурации.",
+      "result_en": "1,465/1,465 tests with zero failures across nine packages and clean-consumer projects, plus interpreter/CIL parity and reproducible configuration checks.",
+      "repo": "https://github.com/Misha1302/Wist2",
+      "docs": "https://misha1302.github.io/Wist2/",
+      "case_ru": "cases/ru-wist.html",
+      "case_en": "cases/en-wist.html",
+      "public": true
+    },
+    "planfuzz": {
+      "title": "PlanFuzz",
+      "type_ru": "Тестирование компиляторов · конфигурационные планы",
+      "type_en": "Compiler testing · configuration plans",
+      "problem_ru": "Поведение программы зависит не только от входа, но и от выбранных пакетов, маршрутов, backend-ов и оптимизаций; обычный fuzzing теряет эту размерность.",
+      "problem_en": "Program behavior depends not only on input but also on packages, routes, backends, and optimizations; conventional fuzzing misses that dimension.",
+      "solution_ru": "Нейтральное к языку ядро, типизированные наблюдения, семь семейств оракулов, fresh-process replay, exact fingerprints и детерминированные reducers программы и плана.",
+      "solution_en": "A language-neutral core, typed observations, seven oracle families, fresh-process replay, exact fingerprints, and deterministic program/plan reducers.",
+      "result_ru": "Воспроизводимые артефакты и разделение подтверждённых, нестабильных, неопределённых и инфраструктурных исходов.",
+      "result_en": "Reproducible artifacts and explicit separation of confirmed, unstable, inconclusive, and infrastructure outcomes.",
+      "repo": "https://github.com/Misha1302/Wist2/blob/main/internal-docs/proposals/planfuzz/README.md",
+      "case_ru": "cases/ru-planfuzz.html",
+      "case_en": "cases/en-planfuzz.html",
+      "public": true
+    },
+    "vpn": {
+      "title": "VpnMediator",
+      "type_ru": ".NET backend · платежи · подписки · recovery",
+      "type_en": ".NET backend · payments · subscriptions · recovery",
+      "problem_ru": "Платёж, подписка и фактический доступ могут рассинхронизироваться при повторном webhook, таймауте или перезапуске процесса.",
+      "problem_en": "Payment, subscription, and actual access can diverge after duplicate webhooks, timeouts, or process restarts.",
+      "solution_ru": "Явные состояния доступа и платежей, идемпотентные операции, audit trail, фоновые reconciliation-процессы, миграции и проверяемые сценарии восстановления.",
+      "solution_en": "Explicit access and payment states, idempotent operations, audit trails, background reconciliation, migrations, and verifiable recovery paths.",
+      "result_ru": "Production-сервис с контролируемыми переходами состояния, backup/restore, health gates и безопасным rollback; публичный разбор не раскрывает секреты и пользовательские данные.",
+      "result_en": "A production service with controlled state transitions, backup/restore, health gates, and safe rollback; the public case study excludes secrets and user data.",
+      "case_ru": "cases/ru-vpn.html",
+      "case_en": "cases/en-vpn.html",
+      "public": false
+    },
+    "lms": {
+      "title": "CompilationLabLMS",
+      "type_ru": ".NET backend · роли · ledger · платежные workflows",
+      "type_en": ".NET backend · roles · ledger · payment workflows",
+      "problem_ru": "Учебные роли, баланс и платежные операции должны сохранять инварианты при повторных запросах, миграциях и частичных сбоях.",
+      "problem_en": "Learning roles, balances, and payment operations must preserve invariants across retries, migrations, and partial failures.",
+      "solution_ru": "Явные роли и состояния, ledger-подход к балансу, проверяемые webhooks, идемпотентное завершение платежей и critical-flow gates.",
+      "solution_en": "Explicit roles and states, a balance ledger, verified webhooks, idempotent payment completion, and critical-flow gates.",
+      "result_ru": "Архитектура отделяет пользовательские workflows от финансовых инвариантов и поддерживает безопасную миграцию и откат.",
+      "result_en": "The architecture separates user workflows from financial invariants and supports safe migration and rollback.",
+      "case_ru": "cases/ru-lms.html",
+      "case_en": "cases/en-lms.html",
+      "public": false
+    },
+    "psform": {
+      "title": "PS-form Memory Dependence Analyzer",
+      "type_ru": "C17 · анализ программ · зависимости памяти",
+      "type_en": "C17 · program analysis · memory dependence",
+      "problem_ru": "Нужно консервативно определить, могут ли два параметрических обращения к памяти пересечься, не перебирая большие области значений.",
+      "problem_en": "The task is to conservatively determine whether two parametric memory accesses can overlap without enumerating large value domains.",
+      "solution_ru": "Нормализация, интервальные ограничения, сравнения по модулю и НОД, а также точный оракул для малых областей и метаморфные проверки.",
+      "solution_en": "Normalization, interval constraints, modular reasoning, gcd conditions, plus an exact oracle for small domains and metamorphic checks.",
+      "result_ru": "1-е место среди 49 решений и 104/104 тестов; воспроизводимые случаи неверного ответа и превышения лимита времени.",
+      "result_en": "Ranked 1st of 49 with 104/104 tests, with reproducible wrong-answer and time-limit counterexamples.",
+      "repo": "https://github.com/Misha1302/ps_form_analizer",
+      "case_ru": "cases/ru-ps-form.html",
+      "case_en": "cases/en-ps-form.html",
+      "public": true
+    },
+    "codegen": {
+      "title": "x86-64 Codegen & Register Allocation Lab",
+      "type_ru": "Rust · IR · register allocation · x86-64",
+      "type_en": "Rust · IR · register allocation · x86-64",
+      "problem_ru": "Нужно пройти полный путь от промежуточного представления до исполняемого x86-64 и проверить, что регистровая аллокация не меняет семантику.",
+      "problem_en": "The goal is to go from IR to executable x86-64 and verify that register allocation preserves semantics.",
+      "solution_ru": "SSA-подобное IR, анализ живых интервалов, linear scan, iced-x86, изолированный запуск и differential parity с IR-интерпретатором.",
+      "solution_en": "SSA-like IR, live-interval analysis, linear scan, iced-x86, isolated execution, and differential parity with an IR interpreter.",
+      "result_ru": "Измеряемый pipeline с метриками spill/reload, размером кода и воспроизводимым сравнением результатов.",
+      "result_en": "A measurable pipeline with spill/reload metrics, code size, and reproducible result comparison.",
+      "repo": "https://github.com/Misha1302/x86-64-codegen-ra-playground",
+      "case_ru": "cases/ru-codegen.html",
+      "case_en": "cases/en-codegen.html",
+      "public": true
+    }
+  },
+  "recognition": {
+    "ru": [
+      ["2025–2026", "Олимпиадное программирование", "Призёр «Высшей пробы» по олимпиадному и промышленному программированию; призёр регионального этапа ВсОШ по информатике."],
+      ["2025–2026", "Всероссийские конкурсы", "Первые результаты конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."],
+      ["2021 — сейчас", "Техническая коммуникация", "Около 50 учеников; практический курс NASM IA-32; публичная документация, code review и технические материалы."]
+    ],
+    "en": [
+      ["2025–2026", "Programming competitions", "HSE Vysshaya Proba prize-winner in competitive and industrial programming; regional Russian informatics olympiad prize-winner."],
+      ["2025–2026", "National competitions", "Top MEPhI Junior results in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."],
+      ["2021 — present", "Technical communication", "About 50 students; a practical NASM IA-32 course; public documentation, code review, and technical writing."]
+    ]
+  },
+  "redirects": {
+    "ru-devtools.html": "ru-compiler.html#work",
+    "en-devtools.html": "en-compiler.html#work",
+    "ru-algorithms.html": "ru-cpp-systems.html#work",
+    "en-algorithms.html": "en-cpp-systems.html#work",
+    "ru-edtech.html": "ru-backend.html#work",
+    "en-edtech.html": "en-backend.html#work",
+    "ru-platform.html": "ru-backend.html",
+    "en-platform.html": "en-backend.html"
+  }
+}
