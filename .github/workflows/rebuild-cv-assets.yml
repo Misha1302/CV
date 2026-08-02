@@ -1,13 +1,67 @@
-name: Rebuild CV site (paused during source migration)
+name: Bootstrap CV site v34
 
 on:
+  push:
+    branches:
+      - "refactor/cv-site-single-source-v34"
+    paths:
+      - "tools/bootstrap_v34.py"
+      - "tools/.cv-v34-source.b64.*"
+      - ".github/workflows/rebuild-cv-assets.yml"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: bootstrap-cv-v34
+  cancel-in-progress: true
 
 jobs:
-  paused:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Source migration in progress; final workflow will replace this file."
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install canonical v34 sources
+        run: python tools/bootstrap_v34.py
+      - name: Install build and validation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          python -m playwright install --with-deps chromium
+      - name: Generate site and PDFs
+        run: |
+          python tools/build_site.py
+          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+      - name: Validate content, links, and PDFs
+        run: |
+          python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
+      - name: Create visual regression baseline
+        run: python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
+      - name: Build manifest and validate final tree
+        run: |
+          python tools/build_site.py --manifest
+          python tools/validate_cv.py --pdf-dir pdf
+      - name: Commit the complete migration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Refactor CV site around one canonical source [skip ci]"
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cv-v34-migration-evidence
+          path: |
+            /tmp/cv-pdf-report.json
+            /tmp/cv-validation.json
+            /tmp/cv-pdf-evidence
+            /tmp/cv-visual
+          if-no-files-found: warn
