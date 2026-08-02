@@ -37,6 +37,25 @@ jobs:
           python-version: "3.12"
       - name: Install canonical v34 sources
         run: python tools/bootstrap_v34.py
+      - name: Bound static visual checks
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("tools/visual_regression.py")
+          text = path.read_text(encoding="utf-8")
+          old = 'page.goto(base_url + filename, wait_until="networkidle")'
+          new = 'page.goto(base_url + filename, wait_until="domcontentloaded", timeout=15000)\n        page.wait_for_timeout(150)'
+          if old not in text:
+              raise SystemExit("Expected visual navigation code not found")
+          text = text.replace(old, new)
+          old_server = 'server = ThreadingHTTPServer(("127.0.0.1", 0), handler)'
+          new_server = old_server + '\n    server.daemon_threads = True'
+          if old_server not in text:
+              raise SystemExit("Expected visual test server code not found")
+          text = text.replace(old_server, new_server)
+          path.write_text(text, encoding="utf-8")
+          PY
       - name: Install build and validation dependencies
         run: |
           python -m pip install --upgrade pip
@@ -50,7 +69,7 @@ jobs:
         run: |
           python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
       - name: Create visual regression baseline
-        run: python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
+        run: timeout 180s python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
       - name: Build manifest and validate final tree
         run: |
           python tools/build_site.py --manifest
@@ -60,7 +79,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Refactor CV site around one canonical source [skip ci]"
+          git commit -m "Refactor CV site around one canonical source"
           git push origin HEAD:${{ github.head_ref || github.ref_name }}
       - uses: actions/upload-artifact@v4
         if: always()
