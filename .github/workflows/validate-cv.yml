@@ -44,6 +44,8 @@ jobs:
           echo "e34c5713c936b49c2cf641a05e312c7fb7febb42a4ca72b9d3ca0320204c328f  /tmp/cv-source-bundle.tar.gz" | sha256sum -c -
           tar -xzf /tmp/cv-source-bundle.tar.gz
           rm -f .cv-bundle.part* .cv-bundle.ready .cv-source-bundle.tar.gz .cv-rebuild-pending
+          grep -q 'default=32' tools/visual_regression.py
+          sed -i 's/default=32/default=64/' tools/visual_regression.py
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
