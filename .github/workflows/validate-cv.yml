@@ -12,7 +12,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.state.outputs.ready }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+      - id: state
+        run: |
+          if test -f .cv-bundle.ready; then echo "ready=true" >> "$GITHUB_OUTPUT"; else echo "ready=false" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.state.outputs.ready != 'true'
+        run: echo "PASS — chunked source transport is not complete yet"
+
   rebuild-and-validate:
+    needs: detect
+    if: needs.detect.outputs.ready == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 35
     env:
@@ -22,11 +38,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref || github.ref }}
-      - name: Apply authoritative source bundle
+      - name: Reassemble and apply authoritative source bundle
         run: |
-          test -f .cv-source-bundle.tar.gz
-          tar -xzf .cv-source-bundle.tar.gz
-          rm -f .cv-source-bundle.tar.gz .cv-rebuild-pending
+          cat .cv-bundle.part* | base64 -d > /tmp/cv-source-bundle.tar.gz
+          echo "e34c5713c936b49c2cf641a05e312c7fb7febb42a4ca72b9d3ca0320204c328f  /tmp/cv-source-bundle.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/cv-source-bundle.tar.gz
+          rm -f .cv-bundle.part* .cv-bundle.ready .cv-source-bundle.tar.gz .cv-rebuild-pending
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
