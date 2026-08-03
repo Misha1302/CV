@@ -16,10 +16,10 @@
     "role": "Software Engineer · .NET, backend и системная разработка"
   },
   "ru-compiler.html|desktop": {
-    "dhash": "3e0737c639ce097e0f3e2638177f195719df025e263c25b8259625f207f217b3",
+    "dhash": "1d0739c63e47198f23fe0f5604ce04ce05a70d8f3c663e162370335c30760e67",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 5123,
+    "page_height": 4026,
     "h1": "Михаил Разаков",
     "role": "Инженер по компиляторам и языковым платформам"
   },
@@ -56,10 +56,10 @@
     "role": "Software Engineer · .NET, backend и системная разработка"
   },
   "ru-compiler.html|mobile": {
-    "dhash": "42eb1cfd3dbf119e1e7f126f1eff3e7f3edf38ff1bff73e77bf34adf1c9f24ff",
+    "dhash": "405f0ccf2c8f173d313f27be05be0e5f38ff48fd734f764f53cf47fb13ef176f",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 8889,
+    "page_height": 6895,
     "h1": "Михаил Разаков",
     "role": "Инженер по компиляторам и языковым платформам"
   },
