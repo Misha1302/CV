@@ -1,9 +1,21 @@
 name: Rebuild generated CV artifacts
 
 on:
+  workflow_dispatch:
   push:
     branches: [main, "refactor/**"]
-  workflow_dispatch:
+    paths:
+      - data/site.json
+      - data/external-link-policy.json
+      - assets/**
+      - style.css
+      - script.js
+      - requirements-cv.txt
+      - tools/build_site.py
+      - tools/build_cv.py
+      - tools/validate_cv.py
+      - tools/visual_regression.py
+      - .github/workflows/rebuild-cv-assets.yml
 
 permissions:
   contents: write
@@ -14,18 +26,20 @@ concurrency:
 
 jobs:
   rebuild:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 30
     env:
       CV_EXTERNAL_REQUIRE_LIVE: "1"
       SOURCE_DATE_EPOCH: "1785715200"
     steps:
       - uses: actions/checkout@v4
-      - name: Apply authoritative source bundle
+      - name: Apply source bundle when bootstrapping
         run: |
-          test -f .cv-source-bundle.tar.gz
-          tar -xzf .cv-source-bundle.tar.gz
-          rm -f .cv-source-bundle.tar.gz .cv-rebuild-pending
+          if test -f .cv-source-bundle.tar.gz; then
+            tar -xzf .cv-source-bundle.tar.gz
+            rm -f .cv-source-bundle.tar.gz .cv-rebuild-pending
+          fi
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -38,33 +52,37 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements-cv.txt
           python -m playwright install --with-deps chromium
-      - name: Generate canonical HTML, ATS and PDFs
+      - name: Generate all canonical artifacts
         run: |
+          rm -f .cv-rebuild-pending
           rm -rf tools/__pycache__
           python tools/build_site.py
           python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
-      - name: Validate content, PDFs and live external links
+      - name: Validate content, PDFs and external links
         run: python tools/validate_cv.py --pdf-dir pdf --check-external --skip-manifest --report /tmp/cv-validation.json
-      - name: Verify browser, no-JS, reflow and print surfaces
+      - name: Verify browser surfaces
         run: python tools/visual_regression.py --output-dir /tmp/cv-visual --report /tmp/cv-visual-report.json
-      - name: Build and validate full-tree manifest
+      - name: Rebuild and validate recursive manifest
         run: |
           rm -rf tools/__pycache__
           python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf --report /tmp/cv-final-validation.json
-      - name: Commit verified generated state
+      - name: Commit generated artifacts
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet && { echo "nothing to commit"; exit 0; }
+          if git diff --cached --quiet; then
+            echo "Generated artifacts are already current"
+            exit 0
+          fi
           git commit -m "Rebuild generated CV artifacts"
           git push
-      - name: Upload evidence
+      - name: Upload rebuild evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cv-bootstrap-rebuild-${{ github.sha }}
+          name: cv-rebuild-${{ github.sha }}
           path: |
             /tmp/cv-pdf-report.json
             /tmp/cv-validation.json
