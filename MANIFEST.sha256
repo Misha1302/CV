@@ -1,4 +1,3 @@
-d9356d51e908bbc373d6914a883ea23389442473b0ee9830176af976747e1a72  ./.github/workflows/deliver-cv-bootstrap.yml
 244e152126404a2788f1c27cdc38fd430c5467d92351ba271bb8f750097e22de  ./.github/workflows/rebalance-interests.yml
 0e41512b0270619b2f7a83ed78f95581766aa0e058c2e39e6e7e90c6cd451e17  ./.github/workflows/rebuild-cv-assets.yml
 371a49b0a4e0c39b82e9fc5c87ad36d4b2ae63cc291788c20f711b3fb92a558a  ./.github/workflows/validate-cv.yml
@@ -24,7 +23,7 @@ f254f8f281db0646b14df30dbcd9c532f7a9762bb9f0b6d2712b291510cc13ed  ./ats/Mikhail_
 b98f1135a595020434e9ef1ab58704d8c6b69912e3b13b623773e0cde39144f6  ./ats/Mikhail_Razakov_Compiler_RU.txt
 6686c8f2e41082d67606faa0e537f117aa3b8131c62d210808db0bd18a82cf2a  ./ats/Mikhail_Razakov_Software_Engineer_EN.txt
 44a2d004badd6b7745779e9f7dd7e95ab621ecf6eb9d5f09439c7e677d15076e  ./ats/Mikhail_Razakov_Software_Engineer_RU.txt
-8aa5dc185b90c3e6a351ef9222d6b7c2fcf2236aa7dc39ba9036737bfc5e2cab  ./cases/en-codegen.html
+8aa5dc185b90c3e6a351ef9222d6b7c2fcf2236aa0f41af2b56a443d  ./cases/en-codegen.html
 cc6d2e6b8d50d6b518a6440f0f3fdea4b01ac9e68358ebeca88323d2ab81f9c6  ./cases/en-lms.html
 4f6e9d029ed1d749af4b3c4dd4887ec10ac882dbfecc00147c155110bbe37d46  ./cases/en-planfuzz.html
 4a37f460025d863b7d19c5026573765997a419d0b776fff357ec783b2df3d162  ./cases/en-ps-form.html
