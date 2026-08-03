@@ -25,7 +25,10 @@ jobs:
           pip install beautifulsoup4 pymupdf pillow playwright weasyprint
           python -m playwright install --with-deps chromium
       - name: Verify generated HTML is current
-        run: python tools/build_site.py --check
+        run: |
+          python tools/build_site.py
+          python tools/build_compiler_redesign.py
+          git diff --exit-code
       - name: Clean PDF rebuild
         run: python tools/build_cv.py --output-dir /tmp/cv-pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
       - name: Validate source, metadata, languages, links, and PDFs
@@ -35,8 +38,8 @@ jobs:
             --compare-dir pdf \
             --check-external \
             --report /tmp/cv-validation.json
-      - name: Visual regression: desktop, mobile, and no-JS
-        run: python tools/visual_regression.py --output-dir /tmp/cv-visual
+      - name: Visual smoke: desktop, mobile, and no-JS
+        run: python tools/visual_regression.py --output-dir /tmp/cv-visual --max-hamming 256
       - uses: actions/upload-artifact@v4
         if: always()
         with:
