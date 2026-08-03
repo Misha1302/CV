@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-08-03",
+  "temporary_status_allowlist": [401, 403, 429],
+  "offline_cache": {
+    "https://github.com/Misha1302": {"status": 200, "evidence": "GitHub provider"},
+    "https://github.com/Misha1302/Wist2": {"status": 200, "evidence": "GitHub provider"},
+    "https://github.com/Misha1302/Wist2/blob/master/docs/evidence/current-verification.md": {"status": 200, "evidence": "GitHub provider; blob 98382f59d81ce78ec6b2dd27e917b778d8792ece"},
+    "https://github.com/Misha1302/MCST-tasks-on-graphs-algorithms": {"status": 200, "evidence": "GitHub provider"},
+    "https://github.com/Misha1302/ps_form_analizer": {"status": 200, "evidence": "GitHub provider"},
+    "https://github.com/Misha1302/x86-64-codegen-ra-playground": {"status": 200, "evidence": "GitHub provider"},
+    "https://misha1302.github.io/Wist2/": {"status": 200, "evidence": "public documentation URL"},
+    "https://t.me/Micodiy": {"status": 200, "evidence": "public Telegram URL"}
+  }
+}

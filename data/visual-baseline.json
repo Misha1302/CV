@@ -1,98 +1,138 @@
 {
-  "index.html|desktop": {
-    "dhash": "38433bd926f93f60398062f01dc619cf0e3866702dcf39df19df38ce1ddb1ddb",
-    "width": 1440,
-    "viewport_height": 1100,
-    "page_height": 2875,
-    "h1": "Проектирую и реализую сложные программные системы.",
-    "role": ""
-  },
-  "ru.html|desktop": {
-    "dhash": "3e8726c6398a0d360736273e077a1b4719d709df263625be25b625f607f61bf3",
-    "width": 1440,
-    "viewport_height": 1100,
-    "page_height": 5354,
-    "h1": "Михаил Разаков",
-    "role": "Software Engineer · .NET, backend и системная разработка"
-  },
   "ru-compiler.html|desktop": {
-    "dhash": "3e0737c639ce097e0f3e2638177f195719df025e263c25b8259625f207f217b3",
-    "width": 1440,
+    "dhash": "c438c419c10360026623640aee00cc20cc00640064e32183e200cc006302024a",
+    "image_width": 1440,
+    "image_height": 3788,
+    "viewport_width": 1440,
     "viewport_height": 1100,
-    "page_height": 5123,
-    "h1": "Михаил Разаков",
-    "role": "Инженер по компиляторам и языковым платформам"
+    "page_height": 3788,
+    "main_text_length": 3552,
+    "focus": {
+      "tag": "A",
+      "text": "MRМихаил Разаков",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(179, 59, 23)"
+    }
+  },
+  "en-compiler.html|desktop": {
+    "dhash": "ca58c839c183e08262336032ea00cc20cc0064a060e36183e400cc0063224b2a",
+    "image_width": 1440,
+    "image_height": 3714,
+    "viewport_width": 1440,
+    "viewport_height": 1100,
+    "page_height": 3714,
+    "main_text_length": 3565,
+    "focus": {
+      "tag": "A",
+      "text": "MRMikhail Razakov",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(179, 59, 23)"
+    }
   },
   "ru-backend.html|desktop": {
-    "dhash": "3e0736c639ce093e072726380e7f196e19e001f0263025b0259625f207b21fb3",
-    "width": 1440,
+    "dhash": "c43cd039c133c083762206336048cc08cc10604661836208cc00e8906303025a",
+    "image_width": 1440,
+    "image_height": 3297,
+    "viewport_width": 1440,
     "viewport_height": 1100,
-    "page_height": 5134,
-    "h1": "Михаил Разаков",
-    "role": ".NET Backend Engineer · надёжные системы"
+    "page_height": 3297,
+    "main_text_length": 2097,
+    "focus": {
+      "tag": "A",
+      "text": "MRМихаил Разаков",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(179, 59, 23)"
+    }
   },
-  "ru-cpp-systems.html|desktop": {
-    "dhash": "3e0727c6394e2d7e0f362638077f195f39cf09de263025f0259625e607f215b7",
-    "width": 1440,
+  "ru-compiler.html|mobile-320": {
+    "dhash": "8908d99078c3600160817001c400c010c000f00072016803b401800070216001",
+    "image_width": 320,
+    "image_height": 6574,
+    "viewport_width": 320,
+    "viewport_height": 780,
+    "page_height": 6574,
+    "main_text_length": 3552,
+    "focus": {
+      "tag": "A",
+      "text": "MRМихаил Разаков",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(179, 59, 23)"
+    }
+  },
+  "en-compiler.html|mobile-320": {
+    "dhash": "8e24f0c072c3600368c1e809c900e100cc807a0060016001b401900070014083",
+    "image_width": 320,
+    "image_height": 6242,
+    "viewport_width": 320,
+    "viewport_height": 780,
+    "page_height": 6242,
+    "main_text_length": 3565,
+    "focus": {
+      "tag": "A",
+      "text": "MRMikhail Razakov",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(179, 59, 23)"
+    }
+  },
+  "ru-compiler.html|no-js-320": {
+    "dhash": "8928f99078c3600160817001c400c010c000f00072016803b401800070216001",
+    "image_width": 320,
+    "image_height": 6574,
+    "viewport_width": 320,
+    "viewport_height": 780,
+    "page_height": 6574,
+    "main_text_length": 3552,
+    "focus": null
+  },
+  "ru-compiler.html|no-js-desktop": {
+    "dhash": "c438c419c10360026623640aee00cc20cc00640064e32183e200cc006302024a",
+    "image_width": 1440,
+    "image_height": 3788,
+    "viewport_width": 1440,
     "viewport_height": 1100,
-    "page_height": 5103,
-    "h1": "Михаил Разаков",
-    "role": "C++ / LLVM Systems Engineer"
+    "page_height": 3788,
+    "main_text_length": 3552,
+    "focus": null
   },
-  "index.html|mobile": {
-    "dhash": "307b356f013d2c9e2717177734bf17fa53e73a3f3bdd3fdf387f38df35cf30eb",
-    "width": 390,
-    "viewport_height": 844,
-    "page_height": 5086,
-    "h1": "Проектирую и реализую сложные программные системы.",
-    "role": ""
+  "ru-compiler.html|zoom-200": {
+    "dhash": "8282c000d0098401c001c001c44084808020c001e001c210c0808800c201c111",
+    "image_width": 640,
+    "image_height": 4812,
+    "viewport_width": 640,
+    "viewport_height": 900,
+    "page_height": 4812,
+    "main_text_length": 3552,
+    "focus": {
+      "tag": "A",
+      "text": "MRМихаил Разаков",
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(179, 59, 23)"
+    }
   },
-  "ru.html|mobile": {
-    "dhash": "71ef1c7d3cbf143e1a7f307f1a6f1ebf2fdf38df39bf5fed4f7b4bff1edf38d7",
-    "width": 390,
-    "viewport_height": 844,
-    "page_height": 9543,
-    "h1": "Михаил Разаков",
-    "role": "Software Engineer · .NET, backend и системная разработка"
+  "ru-compiler.html|print": {
+    "dhash": "081a0c1a0031e610a630cc00984018101800c82088d090c0c2241840d7008300",
+    "image_width": 1050,
+    "image_height": 3571,
+    "viewport_width": 1050,
+    "viewport_height": 1485,
+    "page_height": 3571,
+    "main_text_length": 3530,
+    "focus": null
   },
-  "ru-compiler.html|mobile": {
-    "dhash": "42eb1cfd3dbf119e1e7f126f1eff3e7f3edf38ff1bff73e77bf34adf1c9f24ff",
-    "width": 390,
-    "viewport_height": 844,
-    "page_height": 8889,
-    "h1": "Михаил Разаков",
-    "role": "Инженер по компиляторам и языковым платформам"
-  },
-  "ru-backend.html|mobile": {
-    "dhash": "64bf1cfd1dbd351e1e5f38e73aff3eff2a9f3aef33df7ef34bfb5c9f1eff30eb",
-    "width": 390,
-    "viewport_height": 844,
-    "page_height": 8256,
-    "h1": "Михаил Разаков",
-    "role": ".NET Backend Engineer · надёжные системы"
-  },
-  "ru-cpp-systems.html|mobile": {
-    "dhash": "64f31c7d3cb534fc356f1b4f2aef3dbf393f3bbf1eff5fdf5b7a4bff3e9f2cdf",
-    "width": 390,
-    "viewport_height": 844,
-    "page_height": 8881,
-    "h1": "Михаил Разаков",
-    "role": "C++ / LLVM Systems Engineer"
-  },
-  "ru.html|no-js": {
-    "dhash": "1c334203360b2e0726060ec606c62ac60ac7374f35cf030b1996199609e40000",
-    "width": 1440,
-    "viewport_height": 1100,
-    "page_height": 5354,
-    "h1": "Михаил Разаков",
-    "role": "Software Engineer · .NET, backend и системная разработка"
-  },
-  "ru-backend.html|no-js": {
-    "dhash": "51b34481290c738064c12c3e26bd68e34cbe16ae496d08c180f0437069e82683",
-    "width": 390,
-    "viewport_height": 844,
-    "page_height": 8256,
-    "h1": "Михаил Разаков",
-    "role": ".NET Backend Engineer · надёжные системы"
+  "index.html|mobile-320": {
+    "dhash": "8c108d20a72052c17401653356736425642352634d1746035663400b72035661",
+    "image_width": 320,
+    "image_height": 1830,
+    "viewport_width": 320,
+    "viewport_height": 780,
+    "page_height": 1830,
+    "main_text_length": 680,
+    "focus": null
   }
 }

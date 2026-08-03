@@ -1,2 +1,0 @@
-source-only bootstrap; mandatory rebuild workflow owns generated artifacts
-trigger: contents-api-push

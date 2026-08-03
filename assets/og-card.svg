@@ -1,11 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#241419"/><stop offset="1" stop-color="#0f0c0d"/></linearGradient></defs>
-  <rect width="1200" height="630" fill="url(#g)"/>
-  <circle cx="1040" cy="80" r="280" fill="#852737" opacity=".23"/>
-  <rect x="80" y="72" width="90" height="90" rx="20" fill="#171214" stroke="#d85061" stroke-width="3"/>
-  <text x="125" y="130" text-anchor="middle" fill="#f3eeee" font-family="monospace" font-size="31" font-weight="800">MR</text>
-  <text x="80" y="270" fill="#f3eeee" font-family="Arial, sans-serif" font-size="70" font-weight="800">Михаил Разаков</text>
-  <text x="80" y="345" fill="#d85061" font-family="Arial, sans-serif" font-size="42" font-weight="700">Software Engineer</text>
-  <text x="80" y="420" fill="#b8adaf" font-family="Arial, sans-serif" font-size="31">.NET · backend · compiler/runtime · systems</text>
-  <text x="80" y="515" fill="#968a8c" font-family="Arial, sans-serif" font-size="24">Архитектура платформ, корректность состояния и проверяемая семантика</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="t d"><title id="t">Mikhail Razakov CV</title><desc id="d">Compiler and language platform developer, junior or internship.</desc><rect width="1200" height="630" fill="#f4f1eb"/><rect x="70" y="70" width="1060" height="490" fill="#fffdf8" stroke="#17191d" stroke-width="3"/><text x="120" y="220" font-family="sans-serif" font-size="72" font-weight="700" fill="#17191d">Mikhail Razakov</text><text x="120" y="310" font-family="sans-serif" font-size="45" font-weight="700" fill="#174a74">Compiler &amp; Language Platform Developer</text><text x="120" y="390" font-family="monospace" font-size="28" fill="#17191d">Junior / internship</text><text x="120" y="455" font-family="monospace" font-size="25" fill="#5c626b">C#/.NET · C++/LLVM · IR/SSA · runtime</text></svg>

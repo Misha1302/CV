@@ -1,8 +1,8 @@
 (() => {
-  const menu = document.querySelector('.mobile-menu');
-  if (!menu) return;
-  menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => menu.removeAttribute('open')));
-  document.addEventListener('click', (event) => {
-    if (menu.open && !menu.contains(event.target)) menu.removeAttribute('open');
-  });
+  "use strict";
+  // The document is complete without JavaScript. This file intentionally
+  // contains no content rewriting and only records enhanced navigation use.
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Tab") document.documentElement.dataset.keyboard = "true";
+  }, { once: true });
 })();

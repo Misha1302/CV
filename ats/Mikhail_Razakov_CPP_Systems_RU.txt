@@ -1,0 +1,49 @@
+Михаил Разаков
+C++ / LLVM Developer
+Junior / internship
+C++23 · LLVM · program analysis · x86-64
+Москва / удалённо
+misha13022008@gmail.com
+t.me/Micodiy
+github.com/Misha1302
+
+ПРОФИЛЬ
+Разрабатываю системные и компиляторные компоненты: графовые алгоритмы на C++23, консервативный анализ зависимостей памяти и экспериментальный x86-64 backend.
+
+КЛЮЧЕВЫЕ ДОКАЗАТЕЛЬСТВА
+1-е место из 49
+1-е место среди 49 присланных решений; единственные 5,0/5,0 и 104/104 официальных теста в отборе по направлению LLVM-компилятора.
+yes / no / maybe
+Консервативный анализ зависимости памяти с exact affine-анализом и cost-guarded fallbacks.
+Проверка корректности
+Exact-oracle, differential и metamorphic testing, replay/reduction и консервативные fail-closed решения.
+
+ОПЫТ
+июль — август 2026 — МЦСТ — стажёр по разработке компиляторов
+LLVM · C++23 · удалённо
+• Разрабатываю оптимизационный проход LLVM.
+• Реализовал RPO с обнаружением циклов, Дейкстру, максимальный поток Диница и SCC Тарьяна поверх общей C++23-модели графа; сборка — CMake, проверки — input/output и Python test runner.
+https://github.com/Misha1302/MCST-tasks-on-graphs-algorithms
+
+ИЗБРАННЫЕ ПРОЕКТЫ
+PS-form Memory Dependence Analyzer
+• C17-анализатор параметрической зависимости обращений к памяти с консервативными ответами yes/no/maybe.
+• Symbolic normalization, residue/GCD abstractions, точный affine-анализ и cost-guarded fallbacks; harness с exact oracle, metamorphic WA-hunting и model-guided TL-hunting.
+https://github.com/Misha1302/ps_form_analizer
+x86-64 Codegen & Register Allocation Playground
+• Экспериментальная площадка для x86-64 code generation, linear-scan register allocation и воспроизводимых correctness/performance проверок.
+• SSA-подобное IR, liveness, verifier раскладки и differential parity с IR-интерпретатором; проект явно не заявлен как production-ready backend.
+https://github.com/Misha1302/x86-64-codegen-ra-playground
+
+НАВЫКИ
+Toolchain: C++23, C17, CMake, Linux, clang-tidy, ASan/UBSan
+Анализ: CFG, dominance, SSA, SCC, dataflow, memory dependence
+Codegen: x86-64, liveness, linear scan, IR interpretation
+Проверка: exact oracles, differential/metamorphic tests, stress tests, reduction
+
+ОБРАЗОВАНИЕ И ДОСТИЖЕНИЯ
+НИУ ВШЭ — программа «Программная инженерия», с 2026 года.
+Призёр «Высшей пробы» по олимпиадному и промышленному программированию; двукратный диплом I степени конкурса «Юниор» НИЯУ МИФИ.
+
+canonical-source-sha256: 642ccd8810cddc36b79948dbadc9516b3414b8ead1db5b19fba7661d8729c8bf
+release-version: 2026-08-03.1

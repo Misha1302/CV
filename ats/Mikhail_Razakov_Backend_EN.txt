@@ -1,0 +1,46 @@
+Mikhail Razakov
+.NET Backend Developer
+Junior / internship
+ASP.NET Core · PostgreSQL/SQLite · state · recovery
+Moscow / remote
+misha13022008@gmail.com
+t.me/Micodiy
+github.com/Misha1302
+
+PROFILE
+I build .NET services with explicit state, idempotent operations, migrations, and verifiable recovery. Backend remains a separate targeted profile rather than diluting the compiler version.
+
+KEY EVIDENCE
+Explicit state
+Subscriptions, payments, roles, devices, and idempotent transitions.
+Recovery gates
+Migrations, audit, reconciliation, backup/restore, and rollback.
+Correctness verification
+Exact-oracle, differential, and metamorphic testing, replay/reduction, and conservative fail-closed decisions.
+
+EXPERIENCE
+2026 — present — .NET backend — VpnMediator and CompilationLabLMS
+ASP.NET Core · PostgreSQL/SQLite · Linux
+• Designed subscription, payment, role, and device state; implemented migrations, recovery, backup/restore, and rollback gates.
+2021 — present — Programming Instructor and Technical Mentor
+Algorithms · languages · execution models
+• Teach algorithms, C/C++, C#, Python, ABI fundamentals, and execution models; review code and design learning paths.
+
+SELECTED PROJECTS
+VpnMediator
+• Subscription-service backend with an explicit access lifecycle, idempotent operations, and verifiable recovery.
+CompilationLabLMS
+• Learning platform with explicit roles, balance accounting, and critical-flow gates for payment operations.
+
+SKILLS
+Backend: C#/.NET, ASP.NET Core, REST/OpenAPI, background services
+Data: PostgreSQL, SQLite, transactions, migrations, state machines
+Reliability: idempotency, audit, reconciliation, backup/restore, rollback
+Tools: Linux, Git, Docker Compose, nginx, systemd, GitHub Actions
+
+EDUCATION AND RECOGNITION
+HSE University — Software Engineering program, since 2026.
+HSE Vysshaya Proba prize-winner in competitive and industrial programming; two-time first-degree diploma recipient at the MEPhI Junior competition.
+
+canonical-source-sha256: 642ccd8810cddc36b79948dbadc9516b3414b8ead1db5b19fba7661d8729c8bf
+release-version: 2026-08-03.1
