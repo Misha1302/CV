@@ -7,6 +7,8 @@ from pathlib import Path
 import fitz
 from weasyprint import HTML
 
+from build_compiler_redesign import build_outputs as build_compiler_outputs
+from build_compiler_redesign import write_or_check as write_compiler_outputs
 from build_site import ROOT, build_outputs, load_data, write_or_check
 
 
@@ -53,6 +55,9 @@ def main() -> None:
 
     data = load_data()
     write_or_check(build_outputs(data), check=False)
+    # Compiler pages use a role-specific renderer but the same data/site.json source.
+    write_compiler_outputs(build_compiler_outputs(data), check=False)
+
     args.output_dir.mkdir(parents=True, exist_ok=True)
     if args.evidence_dir:
         args.evidence_dir.mkdir(parents=True, exist_ok=True)
