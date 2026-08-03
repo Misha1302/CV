@@ -1,137 +1,137 @@
 {
   "ru-compiler.html|desktop": {
-    "dhash": "c438c419c10360026623640aee00cc20cc00640064e32183e200cc006302024a",
+    "dhash": "3ac738c63ecf20de19de246026fa27fe25c2065e1f1f07722718217004be3c87",
     "image_width": 1440,
-    "image_height": 3788,
+    "image_height": 3680,
     "viewport_width": 1440,
     "viewport_height": 1100,
-    "page_height": 3788,
+    "page_height": 3680,
     "main_text_length": 3552,
     "focus": {
       "tag": "A",
       "text": "MRМихаил Разаков",
       "outlineStyle": "solid",
       "outlineWidth": "3px",
-      "outlineColor": "rgb(179, 59, 23)"
+      "outlineColor": "rgb(255, 155, 172)"
     }
   },
   "en-compiler.html|desktop": {
-    "dhash": "ca58c839c183e08262336032ea00cc20cc0064a060e36183e400cc0063224b2a",
+    "dhash": "3dc735c6384f238a0d9e23a023f227f62542058e1f1f17762498237024763487",
     "image_width": 1440,
-    "image_height": 3714,
+    "image_height": 3680,
     "viewport_width": 1440,
     "viewport_height": 1100,
-    "page_height": 3714,
+    "page_height": 3680,
     "main_text_length": 3565,
     "focus": {
       "tag": "A",
       "text": "MRMikhail Razakov",
       "outlineStyle": "solid",
       "outlineWidth": "3px",
-      "outlineColor": "rgb(179, 59, 23)"
+      "outlineColor": "rgb(255, 155, 172)"
     }
   },
   "ru-backend.html|desktop": {
-    "dhash": "c43cd039c133c083762206336048cc08cc10604661836208cc00e8906303025a",
+    "dhash": "3a072ec63ecf242f08de189e256427e626c40e6f1e3f66c026c2233004bf3c87",
     "image_width": 1440,
-    "image_height": 3297,
+    "image_height": 3230,
     "viewport_width": 1440,
     "viewport_height": 1100,
-    "page_height": 3297,
+    "page_height": 3230,
     "main_text_length": 2097,
     "focus": {
       "tag": "A",
       "text": "MRМихаил Разаков",
       "outlineStyle": "solid",
       "outlineWidth": "3px",
-      "outlineColor": "rgb(179, 59, 23)"
+      "outlineColor": "rgb(255, 155, 172)"
     }
   },
   "ru-compiler.html|mobile-320": {
-    "dhash": "8908d99078c3600160817001c400c010c000f00072016803b401800070216001",
+    "dhash": "24e726e721f31eed0f6e38f7132f117e346f13fd03ff0aff13d77e0f12ef1adf",
     "image_width": 320,
-    "image_height": 6574,
+    "image_height": 6738,
     "viewport_width": 320,
     "viewport_height": 780,
-    "page_height": 6574,
+    "page_height": 6738,
     "main_text_length": 3552,
     "focus": {
       "tag": "A",
       "text": "MRМихаил Разаков",
       "outlineStyle": "solid",
       "outlineWidth": "3px",
-      "outlineColor": "rgb(179, 59, 23)"
+      "outlineColor": "rgb(255, 155, 172)"
     }
   },
   "en-compiler.html|mobile-320": {
-    "dhash": "8e24f0c072c3600368c1e809c900e100cc807a0060016001b401900070014083",
+    "dhash": "71db11ff21f11f3c0f9e30e334af14ff356517ff0b7f0eff59c36e1613ff175d",
     "image_width": 320,
-    "image_height": 6242,
+    "image_height": 6400,
     "viewport_width": 320,
     "viewport_height": 780,
-    "page_height": 6242,
+    "page_height": 6400,
     "main_text_length": 3565,
     "focus": {
       "tag": "A",
       "text": "MRMikhail Razakov",
       "outlineStyle": "solid",
       "outlineWidth": "3px",
-      "outlineColor": "rgb(179, 59, 23)"
+      "outlineColor": "rgb(255, 155, 172)"
     }
   },
   "ru-compiler.html|no-js-320": {
-    "dhash": "8928f99078c3600160817001c400c010c000f00072016803b401800070216001",
+    "dhash": "24e706e721f31eed0f6e38f7132f117e346f13fd03ff0aff13d77e0f12ef1adf",
     "image_width": 320,
-    "image_height": 6574,
+    "image_height": 6738,
     "viewport_width": 320,
     "viewport_height": 780,
-    "page_height": 6574,
+    "page_height": 6738,
     "main_text_length": 3552,
     "focus": null
   },
   "ru-compiler.html|no-js-desktop": {
-    "dhash": "c438c419c10360026623640aee00cc20cc00640064e32183e200cc006302024a",
+    "dhash": "3ac738c63ecf20de19de246026fa27fe25c2065e1f1f07722718217004be3c87",
     "image_width": 1440,
-    "image_height": 3788,
+    "image_height": 3680,
     "viewport_width": 1440,
     "viewport_height": 1100,
-    "page_height": 3788,
+    "page_height": 3680,
     "main_text_length": 3552,
     "focus": null
   },
   "ru-compiler.html|zoom-200": {
-    "dhash": "8282c000d0098401c001c001c44084808020c001e001c210c0808800c201c111",
+    "dhash": "642d1a8f1d0173311f3f69055a2f5b275995258e1ddf3c1b7a01730b58371c07",
     "image_width": 640,
-    "image_height": 4812,
+    "image_height": 4947,
     "viewport_width": 640,
     "viewport_height": 900,
-    "page_height": 4812,
+    "page_height": 4947,
     "main_text_length": 3552,
     "focus": {
       "tag": "A",
       "text": "MRМихаил Разаков",
       "outlineStyle": "solid",
       "outlineWidth": "3px",
-      "outlineColor": "rgb(179, 59, 23)"
+      "outlineColor": "rgb(255, 155, 172)"
     }
   },
   "ru-compiler.html|print": {
-    "dhash": "081a0c1a0031e610a630cc00984018101800c82088d090c0c2241840d7008300",
+    "dhash": "080c0c0c3a8cb624a434320a34a0300031823200b650a248301034c031408324",
     "image_width": 1050,
-    "image_height": 3571,
+    "image_height": 2899,
     "viewport_width": 1050,
     "viewport_height": 1485,
-    "page_height": 3571,
+    "page_height": 2899,
     "main_text_length": 3530,
     "focus": null
   },
   "index.html|mobile-320": {
-    "dhash": "8c108d20a72052c17401653356736425642352634d1746035663400b72035661",
+    "dhash": "30c062d118de186703fd19cf291d13f119d9291b30e109f9299919c109b92b99",
     "image_width": 320,
-    "image_height": 1830,
+    "image_height": 1740,
     "viewport_width": 320,
     "viewport_height": 780,
-    "page_height": 1830,
+    "page_height": 1740,
     "main_text_length": 680,
     "focus": null
   }
