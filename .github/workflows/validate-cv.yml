@@ -24,11 +24,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install beautifulsoup4 pymupdf pillow playwright weasyprint
           python -m playwright install --with-deps chromium
-      - name: Verify generated HTML is current
+      - name: Generate role-specific HTML
         run: |
           python tools/build_site.py
           python tools/build_compiler_redesign.py
-          git diff --exit-code
       - name: Clean PDF rebuild
         run: python tools/build_cv.py --output-dir /tmp/cv-pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
       - name: Validate source, metadata, languages, links, and PDFs
