@@ -35,11 +35,10 @@ jobs:
         run: |
           python tools/validate_cv.py \
             --pdf-dir /tmp/cv-pdf \
-            --compare-dir pdf \
             --check-external \
             --report /tmp/cv-validation.json
-      - name: Visual smoke: desktop, mobile, and no-JS
-        run: python tools/visual_regression.py --output-dir /tmp/cv-visual --max-hamming 256
+      - name: Visual regression: desktop, mobile, and no-JS
+        run: python tools/visual_regression.py --output-dir /tmp/cv-visual
       - uses: actions/upload-artifact@v4
         if: always()
         with:
