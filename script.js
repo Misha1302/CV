@@ -21,6 +21,15 @@
     image.decoding = 'async';
   });
 
+  // Until the generated binary asset is published, the compiler-profile PDF
+  // action prints the current one-page CV instead of downloading stale bytes.
+  document.querySelectorAll('.compiler-redesign a[download][href*="Compiler_"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.print();
+    });
+  });
+
   const menu = document.querySelector('.mobile-menu');
   if (!menu) return;
   menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => menu.removeAttribute('open')));
