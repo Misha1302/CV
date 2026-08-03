@@ -5,12 +5,15 @@ on:
     branches:
       - main
       - "refactor/**"
+      - "cv/**"
     paths:
       - "data/site.json"
       - "style.css"
+      - "compiler-redesign.css"
       - "script.js"
       - "assets/**"
       - "tools/build_site.py"
+      - "tools/build_compiler_redesign.py"
       - "tools/build_cv.py"
       - "tools/validate_cv.py"
       - "tools/visual_regression.py"
@@ -51,6 +54,7 @@ jobs:
       - name: Generate HTML and PDFs
         run: |
           python tools/build_site.py
+          python tools/build_compiler_redesign.py
           python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
       - name: Validate content, links, and PDFs
         run: |
