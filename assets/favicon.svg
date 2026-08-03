@@ -1,1 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MR"><rect width="64" height="64" rx="8" fill="#174a74"/><path d="M13 47V17h8l11 16 11-16h8v30h-8V29L32 45 21 29v18z" fill="#fff"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#171214"/><rect x="5" y="5" width="54" height="54" rx="11" fill="none" stroke="#d85061" stroke-width="3"/><text x="32" y="40" text-anchor="middle" fill="#f3eeee" font-family="monospace" font-weight="800" font-size="23">MR</text></svg>
