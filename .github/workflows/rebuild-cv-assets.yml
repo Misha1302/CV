@@ -32,6 +32,7 @@ jobs:
     env:
       CV_EXTERNAL_REQUIRE_LIVE: "1"
       SOURCE_DATE_EPOCH: "1785715200"
+      PYTHONDONTWRITEBYTECODE: "1"
     steps:
       - uses: actions/checkout@v4
       - name: Apply source bundle when bootstrapping
@@ -67,8 +68,10 @@ jobs:
           rm -rf tools/__pycache__
           python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf --report /tmp/cv-final-validation.json
+          rm -rf tools/__pycache__
       - name: Commit generated artifacts
         run: |
+          rm -rf tools/__pycache__
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
