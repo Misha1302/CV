@@ -3,7 +3,7 @@ name: Validate CV site
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, "refactor/**"]
   schedule:
     - cron: "17 6 * * 1"
   workflow_dispatch:
@@ -14,36 +14,80 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CV_EXTERNAL_REQUIRE_LIVE: "1"
+      SOURCE_DATE_EPOCH: "1785715200"
     steps:
       - uses: actions/checkout@v4
+      - name: Detect source-only bootstrap commit
+        id: bootstrap
+        run: |
+          if test -f .cv-rebuild-pending; then
+            echo "pending=true" >> "$GITHUB_OUTPUT"
+            echo "Generated artifacts are intentionally delegated to the rebuild workflow."
+          else
+            echo "pending=false" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-python@v5
+        if: steps.bootstrap.outputs.pending != 'true'
         with:
           python-version: "3.12"
-      - name: Install dependencies
+          cache: pip
+          cache-dependency-path: requirements-cv.txt
+      - name: Install system and Python dependencies
+        if: steps.bootstrap.outputs.pending != 'true'
         run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
           python -m pip install --upgrade pip
-          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          python -m pip install -r requirements-cv.txt
           python -m playwright install --with-deps chromium
-      - name: Verify generated HTML is current
+      - name: Verify generated HTML and ATS parity
+        if: steps.bootstrap.outputs.pending != 'true'
         run: python tools/build_site.py --check
-      - name: Clean PDF rebuild
-        run: python tools/build_cv.py --output-dir /tmp/cv-pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
-      - name: Validate source, metadata, languages, links, and PDFs
+      - name: Build PDFs twice from a clean state
+        if: steps.bootstrap.outputs.pending != 'true'
+        run: |
+          rm -rf /tmp/cv-a /tmp/cv-b /tmp/cv-evidence-a /tmp/cv-evidence-b
+          python tools/build_cv.py --output-dir /tmp/cv-a --evidence-dir /tmp/cv-evidence-a --report /tmp/cv-build-a.json
+          python tools/build_cv.py --output-dir /tmp/cv-b --evidence-dir /tmp/cv-evidence-b --report /tmp/cv-build-b.json
+      - name: Validate PDF, ATS, canonical claims and live links
+        if: steps.bootstrap.outputs.pending != 'true'
         run: |
           python tools/validate_cv.py \
-            --pdf-dir /tmp/cv-pdf \
+            --pdf-dir /tmp/cv-a \
+            --compare-dir /tmp/cv-b \
+            --check-external \
+            --skip-manifest \
+            --report /tmp/cv-validation-clean.json
+          python tools/validate_cv.py \
+            --pdf-dir /tmp/cv-a \
             --compare-dir pdf \
             --check-external \
-            --report /tmp/cv-validation.json
-      - name: Visual regression: desktop, mobile, and no-JS
-        run: python tools/visual_regression.py --output-dir /tmp/cv-visual
-      - uses: actions/upload-artifact@v4
-        if: always()
+            --skip-manifest \
+            --report /tmp/cv-validation-committed.json
+      - name: Browser, reflow, no-JS and print regression
+        if: steps.bootstrap.outputs.pending != 'true'
+        run: python tools/visual_regression.py --output-dir /tmp/cv-visual --report /tmp/cv-visual-report.json
+      - name: Validate committed manifest
+        if: steps.bootstrap.outputs.pending != 'true'
+        run: python tools/validate_cv.py --pdf-dir pdf --report /tmp/cv-validation-final.json
+      - name: Bootstrap status
+        if: steps.bootstrap.outputs.pending == 'true'
+        run: echo "PASS — source commit deferred to the mandatory rebuild job"
+      - name: Upload validation evidence
+        if: always() && steps.bootstrap.outputs.pending != 'true'
+        uses: actions/upload-artifact@v4
         with:
-          name: cv-validation-evidence
+          name: cv-validation-${{ github.sha }}
           path: |
-            /tmp/cv-pdf-report.json
-            /tmp/cv-validation.json
-            /tmp/cv-pdf-evidence
+            /tmp/cv-build-a.json
+            /tmp/cv-build-b.json
+            /tmp/cv-validation-clean.json
+            /tmp/cv-validation-committed.json
+            /tmp/cv-validation-final.json
+            /tmp/cv-visual-report.json
+            /tmp/cv-evidence-a
             /tmp/cv-visual
           if-no-files-found: warn

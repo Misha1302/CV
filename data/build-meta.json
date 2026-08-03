@@ -1,0 +1,10 @@
+{
+  "schema_version": 35,
+  "release_version": "2026-08-03.1",
+  "updated_at": "2026-08-03",
+  "baseline_commit": "6a5046e26069afe0a498e24b1de98de6ba3107ad",
+  "canonical_source": "data/site.json",
+  "canonical_source_sha256": "642ccd8810cddc36b79948dbadc9516b3414b8ead1db5b19fba7661d8729c8bf",
+  "wist_evidence_source_commit": "f13ad1310856e5618e1c3042c447ca543e0f3125",
+  "wist_evidence_source_blob_sha": "98382f59d81ce78ec6b2dd27e917b778d8792ece"
+}

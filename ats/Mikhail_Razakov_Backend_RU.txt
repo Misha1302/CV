@@ -1,0 +1,46 @@
+Михаил Разаков
+.NET Backend Developer
+Junior / internship
+ASP.NET Core · PostgreSQL/SQLite · state · recovery
+Москва / удалённо
+misha13022008@gmail.com
+t.me/Micodiy
+github.com/Misha1302
+
+ПРОФИЛЬ
+Разрабатываю .NET-сервисы с явными состояниями, идемпотентными операциями, миграциями и проверяемым восстановлением. Backend остаётся отдельным таргетированным профилем и не смешивается с compiler-версией.
+
+КЛЮЧЕВЫЕ ДОКАЗАТЕЛЬСТВА
+Явные состояния
+Подписки, платежи, роли, устройства и идемпотентные переходы.
+Recovery-гейты
+Миграции, audit, reconciliation, backup/restore и rollback.
+Проверка корректности
+Exact-oracle, differential и metamorphic testing, replay/reduction и консервативные fail-closed решения.
+
+ОПЫТ
+2026 — сейчас — .NET backend — VpnMediator и CompilationLabLMS
+ASP.NET Core · PostgreSQL/SQLite · Linux
+• Проектировал состояния подписок, платежей, ролей и устройств; реализовывал миграции, recovery, backup/restore и rollback-гейты.
+2021 — сейчас — Преподаватель и технический наставник
+Алгоритмы · языки · модели исполнения
+• Преподаю алгоритмы, C/C++, C#, Python, основы ABI и модели исполнения; разбираю чужой код и строю учебные траектории.
+
+ИЗБРАННЫЕ ПРОЕКТЫ
+VpnMediator
+• Backend подписочного сервиса с явным жизненным циклом доступа, идемпотентными операциями и проверяемым восстановлением.
+CompilationLabLMS
+• Учебная платформа с явными ролями, балансом и critical-flow gates для платежных операций.
+
+НАВЫКИ
+Backend: C#/.NET, ASP.NET Core, REST/OpenAPI, background services
+Данные: PostgreSQL, SQLite, transactions, migrations, state machines
+Надёжность: idempotency, audit, reconciliation, backup/restore, rollback
+Инструменты: Linux, Git, Docker Compose, nginx, systemd, GitHub Actions
+
+ОБРАЗОВАНИЕ И ДОСТИЖЕНИЯ
+НИУ ВШЭ — программа «Программная инженерия», с 2026 года.
+Призёр «Высшей пробы» по олимпиадному и промышленному программированию; двукратный диплом I степени конкурса «Юниор» НИЯУ МИФИ.
+
+canonical-source-sha256: 642ccd8810cddc36b79948dbadc9516b3414b8ead1db5b19fba7661d8729c8bf
+release-version: 2026-08-03.1

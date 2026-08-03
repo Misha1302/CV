@@ -1,0 +1,55 @@
+Михаил Разаков
+Software Developer
+Junior / internship
+compilers · .NET · C++ · verification
+Москва / удалённо
+misha13022008@gmail.com
+t.me/Micodiy
+github.com/Misha1302
+
+ПРОФИЛЬ
+Создаю ограниченные по границам программные компоненты, явно определяю условия корректности и довожу решения до воспроизводимой проверки.
+
+КЛЮЧЕВЫЕ ДОКАЗАТЕЛЬСТВА
+1 579 тестов · 0 падений
+Public verification manifest от 02.08.2026: 1 579 тестов, 0 падений; девять пакетов и clean-consumer сценарии.
+1-е место из 49
+1-е место среди 49 присланных решений; единственные 5,0/5,0 и 104/104 официальных теста в отборе по направлению LLVM-компилятора.
+Проверка корректности
+Exact-oracle, differential и metamorphic testing, replay/reduction и консервативные fail-closed решения.
+
+ОПЫТ
+июль — август 2026 — МЦСТ — стажёр по разработке компиляторов
+LLVM · C++23 · удалённо
+• Разрабатываю оптимизационный проход LLVM.
+• Реализовал RPO с обнаружением циклов, Дейкстру, максимальный поток Диница и SCC Тарьяна поверх общей C++23-модели графа; сборка — CMake, проверки — input/output и Python test runner.
+https://github.com/Misha1302/MCST-tasks-on-graphs-algorithms
+2024 — сейчас — UniversalToolchain/Wist2 — создатель и основной разработчик
+.NET SDK · language platforms · runtime
+• Спроектировал композицию языка из независимо версионируемых пакетов: typed artifacts, capabilities/conflicts, детерминированные маршруты, порядок проходов и точное manifest/lock binding.
+• Реализовал interpreter/CIL execution, callable-aware SSA и verifier-gated преобразования; unresolved конфигурации и семантические состояния обрабатываются fail-closed.
+• Public verification manifest от 02.08.2026: 1 579 тестов, 0 падений; девять пакетов и clean-consumer сценарии.
+https://github.com/Misha1302/Wist2
+https://misha1302.github.io/Wist2/
+https://github.com/Misha1302/Wist2/blob/master/docs/evidence/current-verification.md
+
+ИЗБРАННЫЕ ПРОЕКТЫ
+PS-form Memory Dependence Analyzer
+• C17-анализатор параметрической зависимости обращений к памяти с консервативными ответами yes/no/maybe.
+• Symbolic normalization, residue/GCD abstractions, точный affine-анализ и cost-guarded fallbacks; harness с exact oracle, metamorphic WA-hunting и model-guided TL-hunting.
+https://github.com/Misha1302/ps_form_analizer
+VpnMediator
+• Backend подписочного сервиса с явным жизненным циклом доступа, идемпотентными операциями и проверяемым восстановлением.
+
+НАВЫКИ
+Языки: C#/.NET, C++23, C17, Python, Rust
+Компиляторы: IR/SSA, interpreter/CIL, LLVM, program analysis
+Backend: ASP.NET Core, PostgreSQL/SQLite, migrations, recovery
+Проверка: exact oracles, differential/metamorphic testing, CI, sanitizers
+
+ОБРАЗОВАНИЕ И ДОСТИЖЕНИЯ
+НИУ ВШЭ — программа «Программная инженерия», с 2026 года.
+Призёр «Высшей пробы» по олимпиадному и промышленному программированию; двукратный диплом I степени конкурса «Юниор» НИЯУ МИФИ.
+
+canonical-source-sha256: 642ccd8810cddc36b79948dbadc9516b3414b8ead1db5b19fba7661d8729c8bf
+release-version: 2026-08-03.1

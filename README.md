@@ -1,61 +1,31 @@
-# CV site — generated, role-specific, verifiable
+# CV site — canonical, role-specific, reproducible
 
-This repository publishes Mikhail Razakov's CV site and role-specific PDFs.
+This repository publishes Mikhail Razakov's role-specific CV site, ATS text exports, and tagged PDF files.
 
-## Canonical source
+## Single source of truth
 
-All public profile content lives in one file:
+All public facts and profile content are owned by `data/site.json`. Exact evidence values such as the Wist2 verification date, count, scope, source commit, and source blob SHA live once under `evidence` and are formatted by the generators.
 
-- `data/site.json`
+Generated HTML, ATS text, PDF, metadata, redirects, sitemap, and manifests must not be edited manually.
 
-The generator produces:
-
-- canonical RU/EN profile pages;
-- the landing page;
-- project case studies;
-- redirect pages for deprecated profile URLs;
-- metadata, Open Graph, JSON-LD, sitemap, and robots.txt;
-- one-page role-specific PDFs.
-
-Generated HTML and PDF files must not be edited manually.
-
-## Canonical profiles
-
-1. General Software Engineer
-2. Compiler / Language Platforms
-3. .NET Backend
-4. C++ / LLVM Systems
-
-The landing page exposes only the three specializations plus the general profile. Older narrow URLs redirect to the nearest canonical profile.
-
-## Local build
+## Build
 
 ```bash
 python -m pip install beautifulsoup4 pymupdf pillow playwright weasyprint
 python tools/build_site.py
-python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence
-python tools/build_site.py --manifest
-python tools/validate_cv.py --pdf-dir pdf
-```
-
-For browser layout and screenshot regression:
-
-```bash
-python -m playwright install chromium
+python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-evidence
+python tools/validate_cv.py --pdf-dir pdf --check-external
 python tools/visual_regression.py --output-dir /tmp/cv-visual
+python tools/build_site.py --manifest
 ```
 
-## Validation contracts
+## Contracts
 
-The checks enforce:
-
-- `data/site.json` as the single source of truth;
-- no content rewriting from JavaScript;
-- matching title, description, Open Graph, JSON-LD, visible role, print role, and PDF role;
-- no stale availability wording;
-- no untranslated English sentences in Russian profiles or Cyrillic in English profiles;
-- valid internal links and optional live external-link checks;
-- local portrait asset, no remote avatar dependency;
-- one-page A4 PDFs with text layers and links;
-- desktop, mobile, and JavaScript-disabled screenshot regressions;
-- recursive SHA-256 manifest integrity.
+- compiler positioning is explicitly junior/intern;
+- compiler PDF uses a single-column semantic order;
+- all PDF annotations are external `https:` or `mailto:` URI actions;
+- Wist2 exact facts are generated from one evidence owner;
+- ATS plain text is generated rather than inferred from layout;
+- HTML works without JavaScript at 320 px and 200% reflow;
+- tagged PDF/UA output is validated for structure markers, text order, fonts, bounds, links, and page occupancy;
+- CI performs two clean builds and compares normalized output plus SHA-256 manifests.
