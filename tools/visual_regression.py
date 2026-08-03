@@ -68,7 +68,7 @@ def page_metrics(page: Page) -> dict[str, float | int | str]:
         scrollWidth: Math.max(html.scrollWidth, body.scrollWidth),
         scrollHeight: Math.max(html.scrollHeight, body.scrollHeight),
         h1: document.querySelector('main h1')?.textContent?.trim() || '',
-        role: document.querySelector('.hero-role')?.textContent?.trim() || '',
+        role: document.querySelector('.hero-role, .cr-role')?.textContent?.trim() || '',
         offenders: JSON.stringify(offenders),
       };
     }""")
