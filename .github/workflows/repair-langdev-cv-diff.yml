@@ -1,0 +1,86 @@
+name: Normalize LangDev CV diff
+
+on:
+  push:
+    branches:
+      - "refactor/langdev-2026"
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore canonical formatting and apply narrow patch
+        run: |
+          git checkout origin/main -- data/site.json
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("data/site.json")
+          text = path.read_text(encoding="utf-8")
+          replacements = [
+              (
+                  '    "ru": [\n      ["2025–2026", "Олимпиадное программирование",',
+                  '    "ru": [\n      ["2026", "LangDev 2026 — доклад принят", "Доклад об архитектуре UniversalToolchain/Wist2 принят программным комитетом LangDev 2026 для выступления; Торремолинос, Испания."],\n      ["2025–2026", "Олимпиадное программирование",'
+              ),
+              (
+                  'Первые результаты конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах',
+                  'Абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах'
+              ),
+              (
+                  '    "en": [\n      ["2025–2026", "Programming competitions",',
+                  '    "en": [\n      ["2026", "LangDev 2026 — accepted talk", "The LangDev 2026 Program Committee accepted a talk on the architecture of UniversalToolchain/Wist2 for presentation in Torremolinos, Spain."],\n      ["2025–2026", "Programming competitions",'
+              ),
+              (
+                  'Top MEPhI Junior results in 2025 and 2026',
+                  'Overall winner of the MEPhI Junior competition in 2025 and 2026'
+              ),
+          ]
+          for old, new in replacements:
+              if text.count(old) != 1:
+                  raise SystemExit(f"Expected exactly one canonical match: {old[:60]!r}")
+              text = text.replace(old, new)
+          path.write_text(text, encoding="utf-8")
+          PY
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          python -m playwright install --with-deps chromium
+      - name: Rebuild and validate content and visuals
+        run: |
+          python tools/build_site.py
+          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+          python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
+          python tools/visual_regression.py --output-dir /tmp/cv-visual --update
+      - name: Restore protected generated cache and finalize manifest
+        run: |
+          git checkout origin/main -- tools/__pycache__ 2>/dev/null || true
+          rm -f .github/workflows/repair-langdev-cv-diff.yml
+          python tools/build_site.py --manifest
+          sha256sum -c MANIFEST.sha256
+      - name: Commit normalized reviewed tree
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Normalize LangDev CV patch"
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: langdev-cv-final-evidence
+          path: |
+            /tmp/cv-pdf-report.json
+            /tmp/cv-validation.json
+            /tmp/cv-pdf-evidence
+            /tmp/cv-visual
+          if-no-files-found: warn
