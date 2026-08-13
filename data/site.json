@@ -552,13 +552,15 @@
   },
   "recognition": {
     "ru": [
+      ["2026", "LangDev 2026 — доклад принят", "Доклад об архитектуре UniversalToolchain/Wist2 принят программным комитетом LangDev 2026 для выступления; Торремолинос, Испания."],
       ["2025–2026", "Олимпиадное программирование", "Призёр «Высшей пробы» по олимпиадному и промышленному программированию; призёр регионального этапа ВсОШ по информатике."],
-      ["2025–2026", "Всероссийские конкурсы", "Первые результаты конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."],
+      ["2025–2026", "Всероссийские конкурсы", "Абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."],
       ["2021 — сейчас", "Техническая коммуникация", "Около 50 учеников; практический курс NASM IA-32; публичная документация, code review и технические материалы."]
     ],
     "en": [
+      ["2026", "LangDev 2026 — accepted talk", "The LangDev 2026 Program Committee accepted a talk on the architecture of UniversalToolchain/Wist2 for presentation in Torremolinos, Spain."],
       ["2025–2026", "Programming competitions", "HSE Vysshaya Proba prize-winner in competitive and industrial programming; regional Russian informatics olympiad prize-winner."],
-      ["2025–2026", "National competitions", "Top MEPhI Junior results in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."],
+      ["2025–2026", "National competitions", "Overall winner of the MEPhI Junior competition in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."],
       ["2021 — present", "Technical communication", "About 50 students; a practical NASM IA-32 course; public documentation, code review, and technical writing."]
     ]
   },
