@@ -1,0 +1,98 @@
+name: Apply reviewed LangDev CV update
+
+on:
+  push:
+    branches:
+      - "refactor/langdev-2026"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-langdev-cv-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Apply minimal content patch
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("data/site.json")
+          text = path.read_text(encoding="utf-8")
+
+          old_ru = '''  "recognition": {
+            "ru": [
+              ["2025–2026", "Олимпиадное программирование", "Призёр «Высшей пробы» по олимпиадному и промышленному программированию; призёр регионального этапа ВсОШ по информатике."],
+              ["2025–2026", "Всероссийские конкурсы", "Первые результаты конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."],
+              ["2021 — сейчас", "Техническая коммуникация", "Около 50 учеников; практический курс NASM IA-32; публичная документация, code review и технические материалы."]
+            ],
+            "en": [
+              ["2025–2026", "Programming competitions", "HSE Vysshaya Proba prize-winner in competitive and industrial programming; regional Russian informatics olympiad prize-winner."],
+              ["2025–2026", "National competitions", "Top MEPhI Junior results in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."],
+              ["2021 — present", "Technical communication", "About 50 students; a practical NASM IA-32 course; public documentation, code review, and technical writing."]
+            ]
+          },'''
+
+          new_ru = '''  "recognition": {
+            "ru": [
+              ["2026", "LangDev 2026 — доклад принят", "Доклад об архитектуре UniversalToolchain/Wist2 принят программным комитетом LangDev 2026 для выступления; Торремолинос, Испания."],
+              ["2025–2026", "Олимпиадное программирование", "Призёр «Высшей пробы» по олимпиадному и промышленному программированию; призёр регионального этапа ВсОШ по информатике."],
+              ["2025–2026", "Всероссийские конкурсы", "Абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."],
+              ["2021 — сейчас", "Техническая коммуникация", "Около 50 учеников; практический курс NASM IA-32; публичная документация, code review и технические материалы."]
+            ],
+            "en": [
+              ["2026", "LangDev 2026 — accepted talk", "The LangDev 2026 Program Committee accepted a talk on the architecture of UniversalToolchain/Wist2 for presentation in Torremolinos, Spain."],
+              ["2025–2026", "Programming competitions", "HSE Vysshaya Proba prize-winner in competitive and industrial programming; regional Russian informatics olympiad prize-winner."],
+              ["2025–2026", "National competitions", "Overall winner of the MEPhI Junior competition in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."],
+              ["2021 — present", "Technical communication", "About 50 students; a practical NASM IA-32 course; public documentation, code review, and technical writing."]
+            ]
+          },'''
+
+          if text.count(old_ru) != 1:
+              raise SystemExit("Canonical recognition block does not match expected baseline")
+          text = text.replace(old_ru, new_ru)
+          path.write_text(text, encoding="utf-8")
+          PY
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          python -m playwright install --with-deps chromium
+      - name: Generate and validate
+        run: |
+          python tools/build_site.py
+          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+          python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
+          python tools/visual_regression.py --output-dir /tmp/cv-visual --update
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
+          python tools/build_site.py --manifest
+          python tools/validate_cv.py --pdf-dir pdf
+      - name: Remove one-shot workflow and commit final tree
+        run: |
+          rm -f .github/workflows/apply-langdev-cv-update.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add LangDev 2026 acceptance to CV"
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: langdev-cv-review-evidence
+          path: |
+            /tmp/cv-pdf-report.json
+            /tmp/cv-validation.json
+            /tmp/cv-pdf-evidence
+            /tmp/cv-visual
+          if-no-files-found: warn
