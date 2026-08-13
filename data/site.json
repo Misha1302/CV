@@ -1,6 +1,6 @@
 {
   "version": 34,
-  "updated_at": "2026-08-02",
+  "updated_at": "2026-08-13",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -45,20 +45,29 @@
             ]
           },
           {
+            "date": "1 июля — 31 августа 2026",
+            "title": "МЦСТ — стажёр по разработке компиляторов",
+            "org": "LLVM-направление · 0,25 ставки · удалённо",
+            "bullets": [
+              "Разрабатываю собственный оптимизационный проход LLVM; реализую и тестирую графовые алгоритмы на C++23."
+            ]
+          },
+          {
+            "date": "2023 — 2025",
+            "title": "Мама Лама — Software Developer",
+            "org": "самостоятельная разработка · архитектура приложений · event software",
+            "bullets": [
+              "Полностью самостоятельно разрабатывал игры и приложения для диджеев и мероприятий — от требований и проектирования до реализации, тестирования и подготовки к использованию.",
+              "Проектировал архитектуру и модульную структуру приложений, определял границы и интерфейсы компонентов; отвечал за всю техническую реализацию и доведение решений до готового продукта."
+            ]
+          },
+          {
             "date": "2026 — сейчас",
             "title": ".NET backend: VpnMediator и CompilationLabLMS",
             "org": "ASP.NET Core · PostgreSQL/SQLite · Linux",
             "bullets": [
               "Проектировал состояния подписок, платежей, балансов, ролей и устройств; обрабатывал webhooks и повторные операции идемпотентно.",
               "Настраивал миграции, фоновые recovery-процессы, audit trail, backup/restore, health gates, Docker, nginx, systemd и откат релизов."
-            ]
-          },
-          {
-            "date": "1 июля — 31 августа 2026",
-            "title": "МЦСТ — стажёр по разработке компиляторов",
-            "org": "LLVM-направление · 0,25 ставки · удалённо",
-            "bullets": [
-              "Разрабатываю собственный оптимизационный проход LLVM; реализую и тестирую графовые алгоритмы на C++23."
             ]
           }
         ],
@@ -98,20 +107,29 @@
             ]
           },
           {
+            "date": "July 1 — August 31, 2026",
+            "title": "MCST — compiler engineering intern",
+            "org": "LLVM track · 0.25 FTE · remote",
+            "bullets": [
+              "Developing an LLVM optimization pass and implementing tested graph algorithms in C++23."
+            ]
+          },
+          {
+            "date": "2023 — 2025",
+            "title": "Mama Lama — Software Developer",
+            "org": "independent development · application architecture · event software",
+            "bullets": [
+              "Independently developed games and applications for DJs and events, from requirements and design through implementation, testing, and preparation for use.",
+              "Designed the application architecture and modular structure, defining component boundaries and interfaces; owned the complete technical implementation through a finished product."
+            ]
+          },
+          {
             "date": "2026 — present",
             "title": ".NET backend: VpnMediator and CompilationLabLMS",
             "org": "ASP.NET Core · PostgreSQL/SQLite · Linux",
             "bullets": [
               "Designed subscription, payment, balance, role, and device state; handled webhooks and repeated operations idempotently.",
               "Built migrations, background recovery, audit trails, backup/restore, health gates, Docker, nginx, systemd, and rollback paths."
-            ]
-          },
-          {
-            "date": "July 1 — August 31, 2026",
-            "title": "MCST — compiler engineering intern",
-            "org": "LLVM track · 0.25 FTE · remote",
-            "bullets": [
-              "Developing an LLVM optimization pass and implementing tested graph algorithms in C++23."
             ]
           }
         ],
@@ -159,6 +177,14 @@
             "bullets": [
               "Разрабатываю собственный оптимизационный проход LLVM и тестирую графовые алгоритмы."
             ]
+          },
+          {
+            "date": "2023 — 2025",
+            "title": "Мама Лама — Software Developer",
+            "org": "архитектура приложений · event software",
+            "bullets": [
+              "Самостоятельно проектировал архитектуру и модульную структуру event-приложений и доводил их от требований до готового продукта."
+            ]
           }
         ],
         "project_ids": ["wist", "planfuzz", "psform", "codegen"],
@@ -202,6 +228,14 @@
             "org": "LLVM · C++23 · 0.25 FTE",
             "bullets": [
               "Developing an LLVM optimization pass and testing graph algorithms."
+            ]
+          },
+          {
+            "date": "2023 — 2025",
+            "title": "Mama Lama — Software Developer",
+            "org": "application architecture · event software",
+            "bullets": [
+              "Independently designed the architecture and modular structure of event applications and took them from requirements to finished products."
             ]
           }
         ],
