@@ -112,6 +112,7 @@ img { max-width: 100%; }
 .project-links a { text-decoration-thickness: 1px; text-underline-offset: 4px; font-size: 14px; }
 .project-links a:hover, .project-links a:focus-visible { color: var(--accent); }
 .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; margin-top: 17px; }
+.project-grid:has(> .project-card:nth-child(2):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .project-card { display: flex; flex-direction: column; min-width: 0; padding: 25px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
 .project-card h3 { font-size: clamp(22px, 2.15vw, 28px); }
 .project-mini { margin-top: 12px; }
@@ -136,7 +137,7 @@ img { max-width: 100%; }
 .selector-intro { max-width: 860px; padding: 84px 0 38px; }
 .selector-intro h1 { margin: 0; font-size: clamp(48px, 7vw, 82px); line-height: .96; letter-spacing: -.055em; }
 .selector-intro p { color: var(--muted); font-size: 18px; max-width: 760px; }
-.selector-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; }
+.selector-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px; }
 .selector-card { display: flex; flex-direction: column; padding: 26px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
 .selector-card > span { color: var(--accent); font: 720 11px/1.2 ui-monospace, monospace; letter-spacing: .1em; }
 .selector-card h2 { margin: 12px 0 0; font-size: 27px; line-height: 1.1; letter-spacing: -.035em; }
