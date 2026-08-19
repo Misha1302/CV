@@ -9,13 +9,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -24,10 +27,28 @@ jobs:
           python -m pip install --upgrade pip
           pip install beautifulsoup4 pymupdf pillow playwright weasyprint
           python -m playwright install --with-deps chromium
+      - name: Rebuild canonical HTML and PDFs
+        run: |
+          python tools/build_site.py
+          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
+          python tools/build_site.py --manifest
+      - name: Commit rebuilt artifacts to PR branch
+        if: github.event_name == 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Generated artifacts are already current"
+          else
+            git commit -m "Rebuild generated CV site [skip ci]"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
       - name: Verify generated HTML is current
         run: python tools/build_site.py --check
       - name: Clean PDF rebuild
-        run: python tools/build_cv.py --output-dir /tmp/cv-pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+        run: python tools/build_cv.py --output-dir /tmp/cv-pdf --evidence-dir /tmp/cv-pdf-evidence-clean --report /tmp/cv-pdf-report-clean.json
       - name: Validate source, metadata, languages, links, and PDFs
         run: |
           python tools/validate_cv.py \
@@ -43,7 +64,9 @@ jobs:
           name: cv-validation-evidence
           path: |
             /tmp/cv-pdf-report.json
+            /tmp/cv-pdf-report-clean.json
             /tmp/cv-validation.json
             /tmp/cv-pdf-evidence
+            /tmp/cv-pdf-evidence-clean
             /tmp/cv-visual
           if-no-files-found: warn
