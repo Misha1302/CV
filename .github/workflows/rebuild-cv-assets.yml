@@ -1,4 +1,3 @@
-# Canonical source changes are rebuilt and validated by this workflow.
 name: Rebuild generated CV site
 
 on:
