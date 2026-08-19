@@ -1,5 +1,3 @@
-# Canonical source changes are rebuilt and validated by this workflow.
-# Manual artifact recovery on 2026-08-20: rerun the canonical generator/validator.
 name: Rebuild generated CV site
 
 on:
