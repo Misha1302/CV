@@ -16,6 +16,8 @@ on:
       - "tools/visual_regression.py"
       - ".github/workflows/rebuild-cv-assets.yml"
   workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: write
