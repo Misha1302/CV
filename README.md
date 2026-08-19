@@ -25,8 +25,9 @@ Generated HTML and PDF files must not be edited manually.
 2. Compiler / Language Platforms
 3. .NET Backend
 4. C++ / LLVM Systems
+5. Quantitative Research / Research Software Engineering
 
-The landing page exposes only the three specializations plus the general profile. Older narrow URLs redirect to the nearest canonical profile.
+The landing page exposes the four specializations plus the general profile. Profile navigation and landing-card labels are defined by the canonical `profile_ui` metadata in `data/site.json`. Older narrow URLs redirect to the nearest canonical profile.
 
 ## Local build
 
@@ -45,6 +46,8 @@ python -m playwright install chromium
 python tools/visual_regression.py --output-dir /tmp/cv-visual
 ```
 
+The visual workflow keeps the established regression baseline for existing representative pages and additionally smoke-checks every generated RU/EN profile on desktop, mobile, and with JavaScript disabled. The capture directory also contains `current.json` with replayable layout metrics and image hashes.
+
 ## Validation contracts
 
 The checks enforce:
@@ -57,5 +60,5 @@ The checks enforce:
 - valid internal links and optional live external-link checks;
 - local portrait asset, no remote avatar dependency;
 - one-page A4 PDFs with text layers and links;
-- desktop, mobile, and JavaScript-disabled screenshot regressions;
+- desktop, mobile, and JavaScript-disabled screenshot regression/smoke checks;
 - recursive SHA-256 manifest integrity.

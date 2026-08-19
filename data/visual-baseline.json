@@ -1,9 +1,9 @@
 {
   "index.html|desktop": {
-    "dhash": "38433bd926f93f60398062f01dc619cf0e3866702dcf39df19df38ce1ddb1ddb",
+    "dhash": "384337e12fe03a6227b0267a3e771e771c77267006fe39ce19df19c713db19db",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 2875,
+    "page_height": 3104,
     "h1": "Проектирую и реализую сложные программные системы.",
     "role": ""
   },
@@ -40,10 +40,10 @@
     "role": "C++ / LLVM Systems Engineer"
   },
   "index.html|mobile": {
-    "dhash": "307b356f013d2c9e2717177734bf17fa53e73a3f3bdd3fdf387f38df35cf30eb",
+    "dhash": "28ff21cf017358dc0e7d35ed257d24715b333acf3f9f1edf3c9f3a9f3eff2cc7",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 5086,
+    "page_height": 5246,
     "h1": "Проектирую и реализую сложные программные системы.",
     "role": ""
   },

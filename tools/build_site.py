@@ -36,13 +36,14 @@ def page_url(data: dict[str, Any], filename: str) -> str:
 
 
 def profile_links(data: dict[str, Any], lang: str) -> list[tuple[str, str]]:
-    labels = {
-        "general": "Общий профиль" if lang == "ru" else "General profile",
-        "compiler": "Compiler / Platforms",
-        "backend": ".NET Backend",
-        "systems": "C++ / LLVM",
-    }
-    return [(labels[key], data["profiles"][key][lang]["filename"]) for key in data["profile_order"]]
+    return [
+        (data["profile_ui"][key][f"label_{lang}"], data["profiles"][key][lang]["filename"])
+        for key in data["profile_order"]
+    ]
+
+
+def recognition_items(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> list[list[str]]:
+    return profile.get("recognition", data["recognition"][lang])
 
 
 def common_head(data: dict[str, Any], lang: str, filename: str, title: str, description: str, role: str, canonical: str | None = None) -> str:
@@ -212,8 +213,8 @@ def skills_section(lang: str, profile: dict[str, Any]) -> str:
     return f'<section class="shell section" id="skills"><div class="section-heading"><p class="section-label">03 · {"Компетенции" if lang == "ru" else "Skills"}</p><div><h2>{"Ключевые технические области." if lang == "ru" else "Core technical areas."}</h2></div></div><div class="stack-lines">{rows}</div></section>'
 
 
-def recognition_section(data: dict[str, Any], lang: str) -> str:
-    rows = "".join(f'<article class="recognition-item"><span class="recognition-year">{esc(year)}</span><div><h3>{esc(title)}</h3><p>{esc(body)}</p></div></article>' for year, title, body in data["recognition"][lang])
+def recognition_section(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
+    rows = "".join(f'<article class="recognition-item"><span class="recognition-year">{esc(year)}</span><div><h3>{esc(title)}</h3><p>{esc(body)}</p></div></article>' for year, title, body in recognition_items(data, lang, profile))
     return f'<section class="shell section" id="recognition"><div class="section-heading"><p class="section-label">04 · {"Достижения" if lang == "ru" else "Recognition"}</p><div><h2>{"Внешние результаты и техническая коммуникация." if lang == "ru" else "External results and technical communication."}</h2></div></div><div class="recognition-list">{rows}</div></section>'
 
 
@@ -251,7 +252,7 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
         projects.append(f'<article class="pcv-project"><h3><a href="{esc(case)}">{esc(project["title"])}</a></h3><p>{esc(project[f"result_{lang}"])}</p></article>')
     skills = "".join(f'<div class="pcv-skill"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["skills"])
     education = p[f"education_{lang}"]
-    recognition = data["recognition"][lang][0][2]
+    recognition = recognition_items(data, lang, profile)[0][2]
     return f"""
 <div class="print-cv" aria-label="Focused one-page CV">
   <header class="pcv-header"><div><h1>{esc(person_name(data, lang))}</h1><h2>{esc(profile['role'])}</h2></div><div class="pcv-contact">{contacts}</div></header>
@@ -266,7 +267,7 @@ def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
     head = common_head(data, lang, profile["filename"], profile["title"], profile["description"], profile["role"])
     footer_label = "Обновлено" if lang == "ru" else "Updated"
     return f"""{head}
-<body>{print_cv(data, lang, profile)}{header(data, lang, profile)}<main id="main">{hero(data, lang, profile)}{proof_strip(profile)}{experience_section(lang, profile)}{projects_section(data, lang, profile)}{skills_section(lang, profile)}{recognition_section(data, lang)}{education_section(data, lang)}{contact_section(data, lang, profile)}</main><footer class="shell site-footer"><span>{esc(person_name(data, lang))} · {esc(profile['footer'])}</span><span>{footer_label} {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
+<body>{print_cv(data, lang, profile)}{header(data, lang, profile)}<main id="main">{hero(data, lang, profile)}{proof_strip(profile)}{experience_section(lang, profile)}{projects_section(data, lang, profile)}{skills_section(lang, profile)}{recognition_section(data, lang, profile)}{education_section(data, lang)}{contact_section(data, lang, profile)}</main><footer class="shell site-footer"><span>{esc(person_name(data, lang))} · {esc(profile['footer'])}</span><span>{footer_label} {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
 """
 
 
@@ -277,15 +278,12 @@ def landing_page(data: dict[str, Any]) -> str:
     description = general["description"]
     head = common_head(data, lang, "index.html", title, description, general["role"], data["site_url"])
     cards = []
-    names = {
-        "compiler": ("Compiler / Language Platforms", "Компиляторы, runtime, SSA, LLVM и архитектура языковых платформ."),
-        "backend": (".NET Backend", "ASP.NET Core, данные, платежи, состояния, recovery и эксплуатация."),
-        "systems": ("C++ / LLVM Systems", "C++23, program analysis, графовые алгоритмы и x86-64 codegen."),
-    }
-    for key in ["compiler", "backend", "systems"]:
+    for key in (profile_key for profile_key in data["profile_order"] if profile_key != "general"):
         ru = data["profiles"][key]["ru"]
         en = data["profiles"][key]["en"]
-        heading, body = names[key]
+        ui = data["profile_ui"][key]
+        heading = ui["landing_title"]
+        body = ui["landing_description_ru"]
         cards.append(f'<article class="selector-card"><span>RU / EN</span><h2>{esc(heading)}</h2><p>{esc(body)}</p><div class="selector-links"><a href="{esc(ru["filename"])}">Русская версия</a><a href="{esc(en["filename"])}">English version</a></div><div class="selector-pdf-links"><a href="pdf/{esc(ru["pdf"])}" download>PDF RU</a><a href="pdf/{esc(en["pdf"])}" download>PDF EN</a></div></article>')
     project_cases = "".join(project_card(data, "ru", project_id) for project_id in ["wist", "vpn", "psform"])
     p = data["person"]
@@ -293,7 +291,7 @@ def landing_page(data: dict[str, Any]) -> str:
 <body class="selector-page">
 <header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(p['name_ru'])}</strong><span>Software Engineer</span></span></a><nav class="primary-nav"><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="en.html">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav></div></details></div></div></header>
 <main id="main" class="shell landing-main"><section class="selector-intro landing-hero"><p class="eyebrow">Архитектура платформ · .NET backend · compiler/runtime</p><h1>Проектирую и реализую сложные программные системы.</h1><p>{esc(general['summary'])}</p><div class="hero-actions"><a class="button primary" href="ru.html">Открыть резюме</a><a class="button" href="pdf/{esc(general['pdf'])}" download>Скачать PDF</a><a class="button" href="#cases">Посмотреть проекты</a></div><div class="landing-evidence"><span>1 465/1 465 тестов Wist2</span><span>1-е место из 49 · 104/104</span><span>.NET backend · LLVM · x86-64</span></div></section>
-<section id="profiles" class="landing-section"><div class="section-heading"><p class="section-label">01 · Профили</p><div><h2>Три версии под конкретную роль.</h2><p class="section-intro">Основной профиль — универсальный Software Engineer. Специализированные версии меняют приоритет доказательств, но не противоречат друг другу.</p></div></div><div class="selector-grid">{''.join(cards)}</div><p class="portfolio-link"><a href="ru.html">Полное техническое портфолио →</a></p></section>
+<section id="profiles" class="landing-section"><div class="section-heading"><p class="section-label">01 · Профили</p><div><h2>Профили под конкретные роли.</h2><p class="section-intro">Основной профиль — универсальный Software Engineer. Специализированные версии меняют приоритет доказательств, но не противоречат друг другу.</p></div></div><div class="selector-grid">{''.join(cards)}</div><p class="portfolio-link"><a href="ru.html">Полное техническое портфолио →</a></p></section>
 <section id="cases" class="landing-section"><div class="section-heading"><p class="section-label">02 · Кейсы</p><div><h2>Проблема → решение → проверяемый результат.</h2><p class="section-intro">Открытые проекты ведут к коду и документации; закрытые — к публичному архитектурному разбору без секретов и пользовательских данных.</p></div></div><div class="project-grid">{project_cases}</div></section>
 <section class="contact-section" id="contact"><div class="contact-panel"><div><h2>Связаться по инженерной роли или проекту.</h2><p>{esc(p['location_ru'])}</p></div><div class="contact-links"><a class="button primary" href="mailto:{esc(p['email'])}">Почта</a><a class="button" href="{esc(p['telegram'])}" target="_blank" rel="noopener noreferrer">Telegram</a><a class="button" href="{esc(p['github'])}" target="_blank" rel="noopener noreferrer">GitHub</a></div></div></section></main>
 <footer class="shell site-footer"><span>{esc(p['name_ru'])} · Software Engineer</span><span>Обновлено {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
@@ -306,7 +304,6 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
     title = f"{project['title']} — {'архитектурный кейс' if lang == 'ru' else 'architecture case study'}"
     description = project[f"result_{lang}"]
     role = data["profiles"]["general"][lang]["role"]
-    prefix = "../"
     head = common_head(data, lang, filename, title, description, role)
     # Paths from cases/ need one level up.
     head = head.replace('href="assets/', 'href="../assets/').replace('href="style.css', 'href="../style.css').replace('content="https://misha1302.github.io/CV/cases/', 'content="https://misha1302.github.io/CV/cases/')
