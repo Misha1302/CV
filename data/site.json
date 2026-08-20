@@ -1,5 +1,5 @@
 {
-  "version": 37,
+  "version": 38,
   "updated_at": "2026-08-20",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -236,158 +236,160 @@
       "ru": {
         "filename": "ru-compiler.html",
         "pdf": "Mikhail_Razakov_Compiler_RU.pdf",
-        "title": "Михаил Разаков — инженер по компиляторам и языковым платформам",
-        "role": "Инженер по компиляторам и языковым платформам",
-        "brand": "компиляторы · runtime · анализ программ",
-        "eyebrow": "Языковые платформы · SSA · runtime · LLVM",
-        "summary": "Проектирую языковые платформы и среды исполнения. Создал UniversalToolchain/Wist2 — модульный .NET SDK с типизированной композицией пакетов, точным manifest binding, callable-first SSA, interpreter/CIL и экспериментальным PlanFuzz.",
-        "description": "Резюме Михаила Разакова: архитектура языковых платформ, UniversalToolchain/Wist2, SSA, runtime, PlanFuzz, LLVM и анализ программ.",
+        "title": "Михаил Разаков — Compiler Engineer · LLVM/C++ · Program Analysis",
+        "role": "Compiler Engineer · LLVM/C++ · Program Analysis",
+        "brand": "LLVM/C++ · program analysis · SSA · runtime",
+        "eyebrow": "МЦСТ · LLVM · SSA · проверяемая семантика",
+        "summary": "Инженер по компиляторам и языковым платформам: LLVM/C++, program analysis и SSA. В МЦСТ реализовал LICM-проход с консервативными safety checks и harness, сравнивающим поведение до/после оптимизации. Создатель UniversalToolchain/Wist2 с SSA, interpreter/CIL backends и verifier-gated transformations; доклад о системе принят для выступления на LangDev 2026.",
+        "description": "Compiler Engineer Михаил Разаков: LLVM/C++, LICM и semantic validation, program analysis, SSA, UniversalToolchain/Wist2 и принятый доклад LangDev 2026.",
         "proofs": [
           [
-            "Архитектура платформы",
-            "Типизированные контракты, независимые пакеты, возможности и конфликты, детерминированные маршруты"
+            "МЦСТ · LLVM/C++",
+            "LICM pass: safety checks + semantic before/after regression harness"
           ],
           [
-            "Проверяемая семантика",
-            "Callable-first SSA, эффекты и доверие вызовов, verifier-gated AIR → SSA → AIR"
+            "1-е из 49 · 104/104",
+            "PS-form memory-dependence analysis; единственная оценка 5,0/5,0"
           ],
           [
-            "1 465 / 1 465",
-            "0 падений; 9 пакетов, clean-consumer проекты и parity интерпретатора/CIL"
+            "LangDev 2026",
+            "Принятый доклад об архитектуре UniversalToolchain/Wist2"
           ]
         ],
         "experience": [
-          {
-            "date": "2024 — сейчас",
-            "title": "UniversalToolchain / Wist2 — создатель и основной разработчик",
-            "org": ".NET · language SDK · runtime",
-            "bullets": [
-              "Определил архитектурные границы пакетов, контракты артефактов, разрешение возможностей и конфликтов, маршрутизацию и порядок проходов.",
-              "Реализовал точное связывание с манифестом, lock identity, lifecycle runtime-сессий и fail-closed политики.",
-              "Развиваю callable-first SSA, оптимизации, интерпретатор/CIL и конфигурационно-зависимое тестирование PlanFuzz."
-            ]
-          },
           {
             "date": "1 июля — 31 августа 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM · C++23 · 0,25 ставки",
             "bullets": [
-              "Разрабатываю собственный оптимизационный проход LLVM и тестирую графовые алгоритмы."
+              "Реализовал LLVM LICM-pass на C++ с консервативными проверками side effects, memory access, loop invariance, preheader и speculative safety.",
+              "Построил Python-harness: baseline vs optimized execution через lli, opt -verify-each и отдельные CHANGE/NO_CHANGE expectations."
             ]
           },
           {
-            "date": "2023 — 2025",
-            "title": "Мама Лама — Software Developer",
-            "org": "архитектура приложений · event software",
+            "date": "2026",
+            "title": "PS-form Memory Dependence Analyzer — 1-е место из 49",
+            "org": "C17 · program analysis · отбор на LLVM-трек МЦСТ",
             "bullets": [
-              "Самостоятельно проектировал архитектуру и модульную структуру event-приложений и доводил их от требований до готового продукта."
+              "Реализовал консервативный анализ параметрических обращений к памяти; 104/104 официальных тестов и единственная оценка 5,0/5,0.",
+              "Построил exact oracle для малых областей и metamorphic/randomized harness для воспроизводимых контрпримеров."
+            ]
+          },
+          {
+            "date": "2024 — сейчас",
+            "title": "UniversalToolchain / Wist2 — создатель и основной разработчик",
+            "org": ".NET · compiler/runtime platform",
+            "bullets": [
+              "Создал модульную compiler/runtime platform с Bytecode/AIR, SSA, interpreter и CIL backend.",
+              "Развиваю verifier-gated transformations и interpreter/CIL parity с fail-closed проверками компиляторных контрактов."
             ]
           }
         ],
         "project_ids": [
           "wist",
-          "planfuzz",
           "psform",
-          "codegen"
+          "codegen",
+          "planfuzz"
         ],
         "skills": [
           [
-            "Архитектура языков",
-            "typed artifacts, package graph, capabilities/conflicts, routes, passes, manifests и lock identity"
+            "Compiler / LLVM",
+            "C++23, LLVM passes, LoopInfo, CFG, loop invariance, LICM, SSA, dominance"
           ],
           [
-            "IR / SSA",
-            "Bytecode/AIR, callable-first SSA, CFG, dominance, folding, SCCP-lite, unreachable elimination, DCE"
+            "Program analysis",
+            "memory dependence, dataflow, exact oracles, differential/metamorphic/randomized testing"
           ],
           [
-            "Runtime",
-            "interpreter/CIL, typed delegates, lifecycle ownership, fail-closed policies, backend parity"
+            "IR / runtime",
+            ".NET, Bytecode/AIR, SSA, interpreter, CIL backend, verifier-gated transformations"
           ],
           [
-            "Проверка",
-            "differential/metamorphic testing, exact oracles, replay, reducers, sanitizers, clean consumers"
+            "Tooling",
+            "Python harnesses, CMake, Linux, clang-tidy, ASan/UBSan, Git"
           ]
         ],
-        "contact_heading": "Открыт к задачам в compiler/runtime engineering, языковых платформах и анализе программ.",
-        "footer": "Инженер по компиляторам и языковым платформам"
+        "contact_heading": "Открыт к Compiler Engineer / LLVM / Program Analysis / Language Tooling задачам.",
+        "footer": "Compiler Engineer · LLVM/C++ · Program Analysis"
       },
       "en": {
         "filename": "en-compiler.html",
         "pdf": "Mikhail_Razakov_Compiler_EN.pdf",
-        "title": "Mikhail Razakov — Compiler and Language Platform Engineer",
-        "role": "Compiler and Language Platform Engineer",
-        "brand": "compilers · runtime · program analysis",
-        "eyebrow": "Language platforms · SSA · runtime · LLVM",
-        "summary": "I design language platforms and runtimes. I created UniversalToolchain/Wist2, a modular .NET SDK with typed package composition, exact manifest binding, callable-first SSA, interpreter/CIL execution, and experimental PlanFuzz.",
-        "description": "Mikhail Razakov: language-platform architecture, UniversalToolchain/Wist2, SSA, runtime, PlanFuzz, LLVM, and program analysis.",
+        "title": "Mikhail Razakov — Compiler Engineer · LLVM/C++ · Program Analysis",
+        "role": "Compiler Engineer · LLVM/C++ · Program Analysis",
+        "brand": "LLVM/C++ · program analysis · SSA · runtime",
+        "eyebrow": "MCST · LLVM · SSA · verifiable semantics",
+        "summary": "Compiler and language-platform engineer focused on LLVM/C++, program analysis, and SSA. At MCST I implemented a LICM pass with conservative safety checks and a harness comparing behavior before and after optimization. Creator of UniversalToolchain/Wist2 with SSA, interpreter/CIL backends, and verifier-gated transformations; the system talk was accepted for LangDev 2026.",
+        "description": "Mikhail Razakov, Compiler Engineer: LLVM/C++, LICM and semantic validation, program analysis, SSA, UniversalToolchain/Wist2, and a LangDev 2026 accepted talk.",
         "proofs": [
           [
-            "Platform architecture",
-            "Typed contracts, independent packages, capabilities and conflicts, deterministic routes"
+            "MCST · LLVM/C++",
+            "LICM pass: safety checks + semantic before/after regression harness"
           ],
           [
-            "Verifiable semantics",
-            "Callable-first SSA, call effects and trust, verifier-gated AIR → SSA → AIR"
+            "#1 of 49 · 104/104",
+            "PS-form memory-dependence analysis; only 5.0/5.0 score"
           ],
           [
-            "1,465 / 1,465",
-            "Zero failures across nine packages, clean consumers, and interpreter/CIL parity"
+            "LangDev 2026",
+            "Accepted talk on UniversalToolchain/Wist2 language architecture"
           ]
         ],
         "experience": [
-          {
-            "date": "2024 — present",
-            "title": "UniversalToolchain / Wist2 — creator and primary developer",
-            "org": ".NET · language SDK · runtime",
-            "bullets": [
-              "Defined package boundaries, artifact contracts, capability/conflict resolution, routing, and pass ordering.",
-              "Implemented exact manifest binding, lock identity, runtime-session lifecycle ownership, and fail-closed policies.",
-              "Develop callable-first SSA, optimizations, interpreter/CIL execution, and configuration-aware PlanFuzz testing."
-            ]
-          },
           {
             "date": "July 1 — August 31, 2026",
             "title": "MCST — compiler engineering intern",
             "org": "LLVM · C++23 · 0.25 FTE",
             "bullets": [
-              "Developing an LLVM optimization pass and testing graph algorithms."
+              "Implemented an LLVM LICM pass in C++ with conservative checks for side effects, memory access, loop invariance, preheaders, and speculative safety.",
+              "Built a Python harness with baseline-vs-optimized execution through lli, opt -verify-each, and explicit CHANGE/NO_CHANGE expectations."
             ]
           },
           {
-            "date": "2023 — 2025",
-            "title": "Mama Lama — Software Developer",
-            "org": "application architecture · event software",
+            "date": "2026",
+            "title": "PS-form Memory Dependence Analyzer — #1 of 49",
+            "org": "C17 · program analysis · MCST LLVM-track selection",
             "bullets": [
-              "Independently designed the architecture and modular structure of event applications and took them from requirements to finished products."
+              "Implemented conservative analysis of parametric memory accesses; passed 104/104 official tests and received the only 5.0/5.0 score.",
+              "Built an exact oracle for small domains plus metamorphic/randomized testing for reproducible counterexamples."
+            ]
+          },
+          {
+            "date": "2024 — present",
+            "title": "UniversalToolchain / Wist2 — creator and primary developer",
+            "org": ".NET · compiler/runtime platform",
+            "bullets": [
+              "Built a modular compiler/runtime platform with Bytecode/AIR, SSA, interpreter, and CIL backend.",
+              "Develop verifier-gated transformations and interpreter/CIL parity with fail-closed compiler-contract checks."
             ]
           }
         ],
         "project_ids": [
           "wist",
-          "planfuzz",
           "psform",
-          "codegen"
+          "codegen",
+          "planfuzz"
         ],
         "skills": [
           [
-            "Language architecture",
-            "typed artifacts, package graphs, capabilities/conflicts, routes, passes, manifests, and lock identity"
+            "Compiler / LLVM",
+            "C++23, LLVM passes, LoopInfo, CFG, loop invariance, LICM, SSA, dominance"
           ],
           [
-            "IR / SSA",
-            "Bytecode/AIR, callable-first SSA, CFG, dominance, folding, SCCP-lite, unreachable elimination, DCE"
+            "Program analysis",
+            "memory dependence, dataflow, exact oracles, differential/metamorphic/randomized testing"
           ],
           [
-            "Runtime",
-            "interpreter/CIL, typed delegates, lifecycle ownership, fail-closed policies, backend parity"
+            "IR / runtime",
+            ".NET, Bytecode/AIR, SSA, interpreter, CIL backend, verifier-gated transformations"
           ],
           [
-            "Verification",
-            "differential/metamorphic testing, exact oracles, replay, reducers, sanitizers, clean consumers"
+            "Tooling",
+            "Python harnesses, CMake, Linux, clang-tidy, ASan/UBSan, Git"
           ]
         ],
-        "contact_heading": "Open to compiler/runtime engineering, language-platform, and program-analysis work.",
-        "footer": "Compiler and Language Platform Engineer"
+        "contact_heading": "Open to Compiler Engineer, LLVM, Program Analysis, and Language Tooling roles.",
+        "footer": "Compiler Engineer · LLVM/C++ · Program Analysis"
       }
     },
     "backend": {
@@ -574,7 +576,8 @@
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM · C++23 · 0,25 ставки",
             "bullets": [
-              "Разрабатываю оптимизационный проход LLVM, реализую и тестирую графовые алгоритмы, работаю с CFG и преобразованиями программы."
+              "Реализовал LLVM LICM-pass на C++ с консервативными проверками side effects, memory access, loop invariance, preheader и speculative safety.",
+              "Построил Python-harness с baseline/optimized execution, opt -verify-each и CHANGE/NO_CHANGE expectations."
             ]
           },
           {
@@ -651,7 +654,8 @@
             "title": "MCST — compiler engineering intern",
             "org": "LLVM · C++23 · 0.25 FTE",
             "bullets": [
-              "Developing an LLVM optimization pass, implementing tested graph algorithms, and working with CFG transformations."
+              "Implemented an LLVM LICM pass in C++ with conservative checks for side effects, memory access, loop invariance, preheaders, and speculative safety.",
+              "Built a Python harness with baseline/optimized execution, opt -verify-each, and explicit CHANGE/NO_CHANGE expectations."
             ]
           },
           {
@@ -906,8 +910,8 @@
       "problem_en": "Independent language packages must compose into one runtime safely and deterministically without hidden registration-order dependencies.",
       "solution_ru": "Типизированные контракты артефактов, граф возможностей и конфликтов, детерминированные маршруты и проходы, exact manifest binding, lock identity и lifecycle ownership.",
       "solution_en": "Typed artifact contracts, capability/conflict graphs, deterministic routes and passes, exact manifest binding, lock identity, and lifecycle ownership.",
-      "result_ru": "1 465/1 465 тестов, 0 падений; 9 пакетов и clean-consumer проекты. Interpreter/CIL parity и воспроизводимые проверки конфигурации.",
-      "result_en": "1,465/1,465 tests with zero failures across nine packages and clean-consumer projects, plus interpreter/CIL parity and reproducible configuration checks.",
+      "result_ru": "Текущий exact test manifest проходит без падений; проверяются interpreter/CIL parity, clean-consumer сценарии и воспроизводимые compiler/runtime контракты.",
+      "result_en": "The current exact test manifest passes with zero failures; interpreter/CIL parity, clean-consumer scenarios, and reproducible compiler/runtime contracts are verified.",
       "repo": "https://github.com/Misha1302/UniversalToolchain",
       "case_ru": "cases/ru-wist.html",
       "case_en": "cases/en-wist.html",
