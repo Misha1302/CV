@@ -1,6 +1,6 @@
 {
-  "version": 35,
-  "updated_at": "2026-08-19",
+  "version": 36,
+  "updated_at": "2026-08-20",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -492,16 +492,16 @@
       "ru": {
         "filename": "ru-quant.html",
         "pdf": "Mikhail_Razakov_Quant_Research_RU.pdf",
-        "title": "Михаил Разаков — Quantitative Research / Research Software Engineering",
-        "role": "Research Software Engineer | C++ · Python · алгоритмы",
-        "brand": "C++ · Python · алгоритмы · исследования",
-        "eyebrow": "Алгоритмы · экспериментальная проверка · количественные исследования",
-        "summary": "Сильная база в computer science и алгоритмическом решении задач, практический опыт C++ и Python, разработки компиляторов и самостоятельных исследовательских инженерных проектов. Разрабатывал и проверял LLVM-оптимизацию, графовые алгоритмы и инструменты анализа программ с акцентом на корректность, воспроизводимость и adversarial cases. Хочу применять эти навыки в quantitative research и систематических стратегиях на рынке акций.",
-        "description": "Research Software Engineer Михаил Разаков: C++, Python, алгоритмы, LLVM, program analysis, точные оракулы и экспериментальная проверка для quantitative research.",
+        "title": "Михаил Разаков — Quantitative Research | C++ · Python · Algorithms",
+        "role": "Quantitative Research | C++ · Python · алгоритмы",
+        "brand": "C++ · Python · алгоритмы · эксперименты",
+        "eyebrow": "Алгоритмы · проверка гипотез · количественные исследования",
+        "summary": "Сильная база в computer science и алгоритмическом решении задач; практический опыт C++ и Python, компиляторов и самостоятельных исследовательских проектов. Работаю в цикле «гипотеза → эксперимент → проверка»: строю точные оракулы, randomized/metamorphic tests, Python-harnesses, измеримые benchmarks и воспроизводимые контрпримеры. Реализовывал LLVM-оптимизации, графовые алгоритмы и program analysis; этот подход напрямую переносится на data-driven quantitative research.",
+        "description": "Quantitative Research профиль Михаила Разакова: C++, Python, алгоритмы, LLVM, program analysis, проверка гипотез, точные оракулы и воспроизводимые эксперименты.",
         "proofs": [
-          ["Алгоритмы и соревнования", "Призёр «Высшей пробы» и регионального этапа ВсОШ по информатике; дипломы I степени всероссийских исследовательских и инженерных конкурсов"],
-          ["Исследование и верификация", "Точные оракулы, randomized/metamorphic testing, adversarial counterexamples и воспроизводимые эксперименты"],
-          ["C++ и Python", "LLVM/C++23 оптимизации плюс Python-harnesses для проверки семантики и исследовательских экспериментов"]
+          ["Алгоритмы и соревнования", "Призёр «Высшей пробы»; абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; Главная премия Балтийского научно-инженерного конкурса"],
+          ["Гипотеза → эксперимент", "Точные оракулы, randomized/metamorphic testing, adversarial counterexamples, воспроизводимые harnesses и benchmarks"],
+          ["C++ и Python", "LLVM/C++23 оптимизации, анализ программ и Python-инструменты для автоматизированной проверки гипотез"]
         ],
         "experience": [
           {
@@ -515,6 +515,15 @@
             ]
           },
           {
+            "date": "2026",
+            "title": "PS-form Memory Dependence Analyzer",
+            "org": "C17 · program analysis · экспериментальная проверка",
+            "bullets": [
+              "Занял 1-е место среди 49 решений: единственная оценка 5,0/5,0 и 104/104 официальных тестов.",
+              "Построил точный оракул для малых областей, metamorphic/randomized проверки и воспроизводимые WA/TL-контрпримеры."
+            ]
+          },
+          {
             "date": "2024 — сейчас",
             "title": "UniversalToolchain / Wist2 — создатель и основной разработчик",
             "org": ".NET · компиляторы · языковые системы",
@@ -523,45 +532,36 @@
               "Использую benchmarking, differential/metamorphic verification и воспроизводимые проверки для сравнения реализаций и конфигураций.",
               "Контрольная проверка от 25.07.2026: 1 465/1 465 тестов без падений по девяти пакетам и clean-consumer проектам."
             ]
-          },
-          {
-            "date": "2023 — 2025",
-            "title": "Мама Лама — Software Developer",
-            "org": "самостоятельная разработка · event software",
-            "bullets": [
-              "Самостоятельно доводил event-приложения от требований и архитектуры до реализации, тестирования и готового продукта."
-            ]
           }
         ],
         "project_ids": ["psform", "wist", "codegen"],
         "skills": [
           ["Programming", "C++23, Python, C17, C#, Rust"],
           ["Алгоритмы и CS", "структуры данных, алгоритмы графов, program analysis, CFG/SSA, compiler optimizations"],
-          ["Исследование и верификация", "точные оракулы, differential/metamorphic testing, randomized testing, stress testing, performance experiments, анализ контрпримеров"],
-          ["Инструменты", "LLVM, Linux, Git, CMake, clang-tidy, ASan/UBSan"]
+          ["Эксперименты и верификация", "формулировка и проверка гипотез, exact oracles, differential/metamorphic testing, randomized testing, benchmarks, анализ контрпримеров"],
+          ["Research tooling", "LLVM, Linux, Git, CMake, Python-harnesses, AI/LLM-assisted research с независимой проверкой результатов"]
         ],
         "recognition": [
-          ["2025–2026", "Олимпиадное программирование", "Призёр «Высшей пробы» по олимпиадному и промышленному программированию; призёр регионального этапа ВсОШ по информатике."],
-          ["2025–2026", "Конкурс «Юниор» НИЯУ МИФИ", "Диплом I степени по инженерным наукам / информационным технологиям в 2025 и 2026 годах."],
-          ["2026", "Балтийский научно-инженерный конкурс", "Диплом I степени и премия «Совершенство как надежда» за UniversalToolchain."],
-          ["2026", "PS-form Memory Dependence Analyzer", "1-е место среди 49 решений; единственная оценка 5,0/5,0; 104/104 официальных тестов."]
+          ["2025–2026", "Олимпиады и инженерные конкурсы", "Призёр «Высшей пробы»; абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."],
+          ["2026", "PS-form Memory Dependence Analyzer", "1-е место среди 49 решений; единственная оценка 5,0/5,0; 104/104 официальных тестов."],
+          ["2025–2026", "Олимпиадное программирование", "Призёр регионального этапа ВсОШ по информатике и «Высшей пробы» по олимпиадному и промышленному программированию."]
         ],
-        "contact_heading": "Открыт к quantitative research и research-software задачам, где важны алгоритмы, эксперименты и корректность.",
-        "footer": "Research Software Engineer · C++ · Python · алгоритмы"
+        "contact_heading": "Открыт к удалённым quantitative research и research-software задачам, где важны алгоритмы, проверка гипотез и воспроизводимые эксперименты.",
+        "footer": "Quantitative Research · C++ · Python · алгоритмы"
       },
       "en": {
         "filename": "en-quant.html",
         "pdf": "Mikhail_Razakov_Quant_Research_EN.pdf",
-        "title": "Mikhail Razakov — Quantitative Research / Research Software Engineering",
-        "role": "Research Software Engineer | C++ · Python · Algorithms",
-        "brand": "C++ · Python · algorithms · research",
-        "eyebrow": "Algorithms · experimental verification · quantitative research",
-        "summary": "Computer science and algorithmic problem-solving background with hands-on C++ and Python, compiler engineering, and independent research-oriented systems work. Built and tested an LLVM optimization, graph algorithms, and program-analysis tools with an emphasis on correctness, reproducibility, and adversarial cases. Interested in applying these skills to quantitative research and systematic equity strategies.",
-        "description": "Mikhail Razakov — research software engineering profile for quantitative research: C++, Python, algorithms, LLVM, program analysis, exact oracles, and experimental verification.",
+        "title": "Mikhail Razakov — Quantitative Research | C++ · Python · Algorithms",
+        "role": "Quantitative Research | C++ · Python · Algorithms",
+        "brand": "C++ · Python · algorithms · experiments",
+        "eyebrow": "Algorithms · hypothesis testing · quantitative research",
+        "summary": "Strong computer-science and algorithmic problem-solving background with hands-on C++ and Python, compiler engineering, and independent research-oriented projects. I work in a hypothesis → experiment → validation loop: exact oracles, randomized/metamorphic tests, Python harnesses, measurable benchmarks, and reproducible counterexamples. I have implemented LLVM optimizations, graph algorithms, and program-analysis tools; the same workflow transfers directly to data-driven quantitative research.",
+        "description": "Mikhail Razakov quantitative-research profile: C++, Python, algorithms, LLVM, program analysis, hypothesis testing, exact oracles, and reproducible experiments.",
         "proofs": [
-          ["Algorithms & competitions", "HSE Vysshaya Proba and regional informatics olympiad prize-winner; first-degree national research and engineering competition diplomas"],
-          ["Research & verification", "Exact oracles, randomized/metamorphic testing, adversarial counterexamples, and reproducible experiments"],
-          ["C++ & Python", "LLVM/C++23 optimization work plus Python verification harnesses and research tooling"]
+          ["Algorithms & competitions", "HSE Vysshaya Proba prize-winner; overall winner of the MEPhI Junior competition in 2025 and 2026; Grand Prize at the Baltic science and engineering competition"],
+          ["Hypothesis → experiment", "Exact oracles, randomized/metamorphic testing, adversarial counterexamples, reproducible harnesses, and benchmarks"],
+          ["C++ & Python", "LLVM/C++23 optimization work, program analysis, and Python tooling for automated hypothesis validation"]
         ],
         "experience": [
           {
@@ -575,6 +575,15 @@
             ]
           },
           {
+            "date": "2026",
+            "title": "PS-form Memory Dependence Analyzer",
+            "org": "C17 · program analysis · experimental validation",
+            "bullets": [
+              "Ranked 1st of 49: the only 5.0/5.0 result and 104/104 official tests.",
+              "Built an exact oracle for small domains, metamorphic/randomized checks, and reproducible wrong-answer/time-limit counterexamples."
+            ]
+          },
+          {
             "date": "2024 — present",
             "title": "UniversalToolchain / Wist2 — creator and primary developer",
             "org": ".NET · compilers · language systems",
@@ -583,31 +592,22 @@
               "Use benchmarking, differential/metamorphic verification, and reproducible checks to compare implementations and configurations.",
               "Verification as of July 25, 2026: 1,465/1,465 tests with zero failures across nine packages and clean-consumer projects."
             ]
-          },
-          {
-            "date": "2023 — 2025",
-            "title": "Mama Lama — Software Developer",
-            "org": "independent development · event software",
-            "bullets": [
-              "Independently took event applications from requirements and architecture through implementation, testing, and finished products."
-            ]
           }
         ],
         "project_ids": ["psform", "wist", "codegen"],
         "skills": [
           ["Programming", "C++23, Python, C17, C#, Rust"],
           ["Algorithms & CS", "data structures, graph algorithms, program analysis, CFG/SSA, compiler optimizations"],
-          ["Research & Verification", "exact oracles, differential/metamorphic testing, randomized testing, stress testing, performance experiments, counterexample analysis"],
-          ["Tools", "LLVM, Linux, Git, CMake, clang-tidy, ASan/UBSan"]
+          ["Experiments & verification", "hypothesis formulation and validation, exact oracles, differential/metamorphic testing, randomized testing, benchmarks, counterexample analysis"],
+          ["Research tooling", "LLVM, Linux, Git, CMake, Python harnesses, AI/LLM-assisted research with independent verification"]
         ],
         "recognition": [
-          ["2025–2026", "Programming competitions", "HSE Vysshaya Proba prize-winner in competitive and industrial programming; regional Russian informatics olympiad prize-winner."],
-          ["2025–2026", "MEPhI “Junior” National Research Competition", "First-degree diploma in Engineering Sciences / Information Technology in 2025 and 2026."],
-          ["2026", "Baltic Science and Engineering Competition", "First-degree diploma and the “Excellence as Hope” prize for UniversalToolchain."],
-          ["2026", "PS-form Memory Dependence Analyzer", "Ranked 1st of 49; only 5.0/5.0 result; 104/104 official tests."]
+          ["2025–2026", "Olympiads & engineering competitions", "HSE Vysshaya Proba prize-winner; overall winner of the MEPhI Junior competition in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."],
+          ["2026", "PS-form Memory Dependence Analyzer", "Ranked 1st of 49; the only 5.0/5.0 result; 104/104 official tests."],
+          ["2025–2026", "Programming competitions", "Regional Russian informatics olympiad and HSE Vysshaya Proba prize-winner in competitive and industrial programming."]
         ],
-        "contact_heading": "Open to quantitative research and research-software roles where algorithms, experiments, and correctness matter.",
-        "footer": "Research Software Engineer · C++ · Python · Algorithms"
+        "contact_heading": "Open to remote quantitative research and research-software roles where algorithms, hypothesis testing, and reproducible experiments matter.",
+        "footer": "Quantitative Research · C++ · Python · Algorithms"
       }
     }
   },
