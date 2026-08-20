@@ -1,0 +1,11 @@
+name: Temporary PR trigger probe
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "PR trigger works"
