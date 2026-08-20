@@ -1,0 +1,265 @@
+name: One-shot compiler CV production refresh
+
+on:
+  push:
+    branches: ["refactor/compiler-evidence-first-2026-08-20"]
+    paths:
+      - ".github/workflows/one-shot-compiler-profile-refresh.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: one-shot-compiler-cv-production-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: refactor/compiler-evidence-first-2026-08-20
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rewrite canonical compiler profile from verified evidence
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('data/site.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          data['version'] = max(int(data.get('version', 0)) + 1, 38)
+          data['updated_at'] = '2026-08-20'
+
+          ru = data['profiles']['compiler']['ru']
+          ru['title'] = 'Михаил Разаков — Compiler Engineer · LLVM/C++ · Program Analysis'
+          ru['role'] = 'Compiler Engineer · LLVM/C++ · Program Analysis'
+          ru['brand'] = 'LLVM/C++ · program analysis · SSA · runtime'
+          ru['eyebrow'] = 'МЦСТ · LLVM · SSA · проверяемая семантика'
+          ru['summary'] = (
+              'Инженер по компиляторам и языковым платформам: LLVM/C++, program analysis и SSA. '
+              'В МЦСТ реализовал LICM-проход с консервативными safety checks и harness, сравнивающим '
+              'поведение до/после оптимизации. Создатель UniversalToolchain/Wist2 с SSA, interpreter/CIL '
+              'backends и verifier-gated transformations; доклад о системе принят для выступления на LangDev 2026.'
+          )
+          ru['description'] = (
+              'Compiler Engineer Михаил Разаков: LLVM/C++, LICM и semantic validation, program analysis, SSA, '
+              'UniversalToolchain/Wist2 и принятый доклад LangDev 2026.'
+          )
+          ru['proofs'] = [
+              ['МЦСТ · LLVM/C++', 'LICM pass: safety checks + semantic before/after regression harness'],
+              ['1-е из 49 · 104/104', 'PS-form memory-dependence analysis; единственная оценка 5,0/5,0'],
+              ['LangDev 2026', 'Принятый доклад об архитектуре UniversalToolchain/Wist2'],
+          ]
+          ru['experience'] = [
+              {
+                  'date': '1 июля — 31 августа 2026',
+                  'title': 'МЦСТ — стажёр по разработке компиляторов',
+                  'org': 'LLVM · C++23 · 0,25 ставки',
+                  'bullets': [
+                      'Реализовал LLVM LICM-pass на C++ с консервативными проверками side effects, memory access, loop invariance, preheader и speculative safety.',
+                      'Построил Python-harness: baseline vs optimized execution через lli, opt -verify-each и отдельные CHANGE/NO_CHANGE expectations.',
+                  ],
+              },
+              {
+                  'date': '2026',
+                  'title': 'PS-form Memory Dependence Analyzer — 1-е место из 49',
+                  'org': 'C17 · program analysis · отбор на LLVM-трек МЦСТ',
+                  'bullets': [
+                      'Реализовал консервативный анализ параметрических обращений к памяти; 104/104 официальных тестов и единственная оценка 5,0/5,0.',
+                      'Построил exact oracle для малых областей и metamorphic/randomized harness для воспроизводимых контрпримеров.',
+                  ],
+              },
+              {
+                  'date': '2024 — сейчас',
+                  'title': 'UniversalToolchain / Wist2 — создатель и основной разработчик',
+                  'org': '.NET · compiler/runtime platform',
+                  'bullets': [
+                      'Создал модульную compiler/runtime platform с Bytecode/AIR, SSA, interpreter и CIL backend.',
+                      'Развиваю verifier-gated transformations и interpreter/CIL parity с fail-closed проверками компиляторных контрактов.',
+                  ],
+              },
+          ]
+          ru['project_ids'] = ['wist', 'psform', 'codegen', 'planfuzz']
+          ru['skills'] = [
+              ['Compiler / LLVM', 'C++23, LLVM passes, LoopInfo, CFG, loop invariance, LICM, SSA, dominance'],
+              ['Program analysis', 'memory dependence, dataflow, exact oracles, differential/metamorphic/randomized testing'],
+              ['IR / runtime', '.NET, Bytecode/AIR, SSA, interpreter, CIL backend, verifier-gated transformations'],
+              ['Tooling', 'Python harnesses, CMake, Linux, clang-tidy, ASan/UBSan, Git'],
+          ]
+          ru['contact_heading'] = 'Открыт к Compiler Engineer / LLVM / Program Analysis / Language Tooling задачам.'
+          ru['footer'] = 'Compiler Engineer · LLVM/C++ · Program Analysis'
+
+          en = data['profiles']['compiler']['en']
+          en['title'] = 'Mikhail Razakov — Compiler Engineer · LLVM/C++ · Program Analysis'
+          en['role'] = 'Compiler Engineer · LLVM/C++ · Program Analysis'
+          en['brand'] = 'LLVM/C++ · program analysis · SSA · runtime'
+          en['eyebrow'] = 'MCST · LLVM · SSA · verifiable semantics'
+          en['summary'] = (
+              'Compiler and language-platform engineer focused on LLVM/C++, program analysis, and SSA. '
+              'At MCST I implemented a LICM pass with conservative safety checks and a harness comparing '
+              'behavior before and after optimization. Creator of UniversalToolchain/Wist2 with SSA, '
+              'interpreter/CIL backends, and verifier-gated transformations; the system talk was accepted for LangDev 2026.'
+          )
+          en['description'] = (
+              'Mikhail Razakov, Compiler Engineer: LLVM/C++, LICM and semantic validation, program analysis, SSA, '
+              'UniversalToolchain/Wist2, and a LangDev 2026 accepted talk.'
+          )
+          en['proofs'] = [
+              ['MCST · LLVM/C++', 'LICM pass: safety checks + semantic before/after regression harness'],
+              ['#1 of 49 · 104/104', 'PS-form memory-dependence analysis; only 5.0/5.0 score'],
+              ['LangDev 2026', 'Accepted talk on UniversalToolchain/Wist2 language architecture'],
+          ]
+          en['experience'] = [
+              {
+                  'date': 'July 1 — August 31, 2026',
+                  'title': 'MCST — compiler engineering intern',
+                  'org': 'LLVM · C++23 · 0.25 FTE',
+                  'bullets': [
+                      'Implemented an LLVM LICM pass in C++ with conservative checks for side effects, memory access, loop invariance, preheaders, and speculative safety.',
+                      'Built a Python harness with baseline-vs-optimized execution through lli, opt -verify-each, and explicit CHANGE/NO_CHANGE expectations.',
+                  ],
+              },
+              {
+                  'date': '2026',
+                  'title': 'PS-form Memory Dependence Analyzer — #1 of 49',
+                  'org': 'C17 · program analysis · MCST LLVM-track selection',
+                  'bullets': [
+                      'Implemented conservative analysis of parametric memory accesses; passed 104/104 official tests and received the only 5.0/5.0 score.',
+                      'Built an exact oracle for small domains plus metamorphic/randomized testing for reproducible counterexamples.',
+                  ],
+              },
+              {
+                  'date': '2024 — present',
+                  'title': 'UniversalToolchain / Wist2 — creator and primary developer',
+                  'org': '.NET · compiler/runtime platform',
+                  'bullets': [
+                      'Built a modular compiler/runtime platform with Bytecode/AIR, SSA, interpreter, and CIL backend.',
+                      'Develop verifier-gated transformations and interpreter/CIL parity with fail-closed compiler-contract checks.',
+                  ],
+              },
+          ]
+          en['project_ids'] = ['wist', 'psform', 'codegen', 'planfuzz']
+          en['skills'] = [
+              ['Compiler / LLVM', 'C++23, LLVM passes, LoopInfo, CFG, loop invariance, LICM, SSA, dominance'],
+              ['Program analysis', 'memory dependence, dataflow, exact oracles, differential/metamorphic/randomized testing'],
+              ['IR / runtime', '.NET, Bytecode/AIR, SSA, interpreter, CIL backend, verifier-gated transformations'],
+              ['Tooling', 'Python harnesses, CMake, Linux, clang-tidy, ASan/UBSan, Git'],
+          ]
+          en['contact_heading'] = 'Open to Compiler Engineer, LLVM, Program Analysis, and Language Tooling roles.'
+          en['footer'] = 'Compiler Engineer · LLVM/C++ · Program Analysis'
+
+          # Keep the adjacent C++/LLVM profile aligned with the same verified MCST work without broad rewrites.
+          for lang in ('ru', 'en'):
+              systems = data['profiles']['systems'][lang]
+              for item in systems['experience']:
+                  if item['title'].startswith('МЦСТ') or item['title'].startswith('MCST'):
+                      if lang == 'ru':
+                          item['bullets'] = [
+                              'Реализовал LLVM LICM-pass на C++ с консервативными проверками side effects, memory access, loop invariance, preheader и speculative safety.',
+                              'Построил Python-harness с baseline/optimized execution, opt -verify-each и CHANGE/NO_CHANGE expectations.',
+                          ]
+                      else:
+                          item['bullets'] = [
+                              'Implemented an LLVM LICM pass in C++ with conservative checks for side effects, memory access, loop invariance, preheaders, and speculative safety.',
+                              'Built a Python harness with baseline/optimized execution, opt -verify-each, and explicit CHANGE/NO_CHANGE expectations.',
+                          ]
+                      break
+
+          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Install production build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          python -m playwright install --with-deps chromium
+
+      - name: Generate canonical HTML and PDFs
+        run: |
+          python tools/build_site.py
+          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+
+      - name: Validate source, generated artifacts, links, and PDFs
+        run: |
+          python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
+          python tools/visual_regression.py --output-dir /tmp/cv-visual
+          python tools/build_site.py --check
+
+      - name: Capture compiler CV screenshots and PDF preview
+        run: |
+          mkdir -p /tmp/compiler-cv-final
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/cv-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 1
+          python - <<'PY'
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          import fitz
+
+          out = Path('/tmp/compiler-cv-final')
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              try:
+                  page = browser.new_page(viewport={'width': 1440, 'height': 1000}, device_scale_factor=1)
+                  page.goto('http://127.0.0.1:8765/ru-compiler.html', wait_until='networkidle')
+                  metrics = page.evaluate('''() => ({
+                      viewport: document.documentElement.clientWidth,
+                      scrollWidth: document.documentElement.scrollWidth,
+                      scrollHeight: document.documentElement.scrollHeight,
+                      h1: document.querySelector('h1')?.textContent || '',
+                      role: document.querySelector('.role')?.textContent || document.querySelector('.pcv-header h2')?.textContent || '',
+                      text: document.body.innerText
+                  })''')
+                  if metrics['scrollWidth'] > metrics['viewport'] + 1:
+                      raise RuntimeError(f'Horizontal overflow: {metrics}')
+                  for required in ('LLVM/C++', 'LICM', '1-е из 49', 'LangDev 2026', 'МЦСТ'):
+                      if required not in metrics['text']:
+                          raise RuntimeError(f'Missing first-profile signal: {required}')
+                  page.screenshot(path=str(out / 'compiler-hero-1440x1000.png'), full_page=False)
+                  page.screenshot(path=str(out / 'compiler-full-page.png'), full_page=True)
+              finally:
+                  browser.close()
+
+          pdf = fitz.open('pdf/Mikhail_Razakov_Compiler_RU.pdf')
+          if len(pdf) != 1:
+              raise RuntimeError(f'Compiler PDF must be one page, got {len(pdf)}')
+          pix = pdf[0].get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
+          pix.save(out / 'compiler-pdf-page1.png')
+          PY
+
+      - name: Build manifest and re-run final validator
+        run: |
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
+          python tools/build_site.py --manifest
+          python tools/validate_cv.py --pdf-dir pdf
+
+      - name: Remove one-shot workflow and commit final production artifacts
+        run: |
+          rm -f .github/workflows/one-shot-compiler-profile-refresh.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Refocus compiler CV on LLVM evidence [skip ci]'
+          git push origin HEAD:refactor/compiler-evidence-first-2026-08-20
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compiler-cv-production-evidence
+          path: |
+            /tmp/cv-pdf-report.json
+            /tmp/cv-validation.json
+            /tmp/cv-pdf-evidence
+            /tmp/cv-visual
+            /tmp/compiler-cv-final
+          if-no-files-found: warn
