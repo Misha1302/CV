@@ -1,5 +1,5 @@
 {
-  "version": 36,
+  "version": 37,
   "updated_at": "2026-08-20",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -708,8 +708,8 @@
         "role": "Quantitative Research | C++ · Python · алгоритмы",
         "brand": "C++ · Python · алгоритмы · эксперименты",
         "eyebrow": "Алгоритмы · проверка гипотез · количественные исследования",
-        "summary": "Сильная база в computer science и алгоритмическом решении задач; практический опыт C++ и Python, компиляторов и самостоятельных исследовательских проектов. Работаю в цикле «гипотеза → эксперимент → проверка»: строю точные оракулы, randomized/metamorphic tests, Python-harnesses, измеримые benchmarks и воспроизводимые контрпримеры. Реализовывал LLVM-оптимизации, графовые алгоритмы и program analysis; этот подход напрямую переносится на data-driven quantitative research.",
-        "description": "Quantitative Research профиль Михаила Разакова: C++, Python, алгоритмы, LLVM, program analysis, проверка гипотез, точные оракулы и воспроизводимые эксперименты.",
+        "summary": "Сильная база в computer science, алгоритмах и исследовательском решении задач; практический опыт C++ и Python, LLVM и compiler/runtime-разработки. Работаю в цикле «гипотеза → эксперимент → проверка»: строю точные оракулы, randomized/metamorphic tests, воспроизводимые harnesses и benchmarks, анализирую контрпримеры и производительность. Работаю с JIT-компиляцией, векторизацией, x86-64 assembly и анализом генерируемого машинного и дизассемблированного кода.",
+        "description": "Quantitative Research профиль Михаила Разакова: C++, Python, алгоритмы, LLVM, JIT, векторизация, low-level performance, проверка гипотез и воспроизводимые эксперименты.",
         "proofs": [
           [
             "Алгоритмы и соревнования",
@@ -720,8 +720,8 @@
             "Точные оракулы, randomized/metamorphic testing, adversarial counterexamples, воспроизводимые harnesses и benchmarks"
           ],
           [
-            "C++ и Python",
-            "LLVM/C++23 оптимизации, анализ программ и Python-инструменты для автоматизированной проверки гипотез"
+            "C++ / low-level performance",
+            "C++23, LLVM, JIT, векторизация, x86-64 assembly, анализ generated/disassembled machine code и benchmarks"
           ]
         ],
         "experience": [
@@ -750,7 +750,7 @@
             "org": ".NET · компиляторы · языковые системы",
             "bullets": [
               "Самостоятельно спроектировал и развиваю сложную языковую систему с промежуточными представлениями, SSA/оптимизациями и interpreter/CIL backend-ами.",
-              "Использую benchmarking, differential/metamorphic verification и воспроизводимые проверки для сравнения реализаций и конфигураций.",
+              "Использую benchmarking, JIT/CIL execution и анализ сгенерированного и дизассемблированного кода для проверки производительности и поведения реализаций.",
               "Контрольная проверка от 25.07.2026: 1 465/1 465 тестов без падений по девяти пакетам и clean-consumer проектам."
             ]
           }
@@ -770,12 +770,12 @@
             "структуры данных, алгоритмы графов, program analysis, CFG/SSA, compiler optimizations"
           ],
           [
-            "Эксперименты и верификация",
-            "формулировка и проверка гипотез, exact oracles, differential/metamorphic testing, randomized testing, benchmarks, анализ контрпримеров"
+            "Low-level & performance",
+            "LLVM, JIT/CIL, x86-64 assembly, vectorization, compiler optimizations, generated/disassembled machine-code analysis, benchmarking"
           ],
           [
-            "Research tooling",
-            "LLVM, Linux, Git, CMake, Python-harnesses, AI/LLM-assisted research с независимой проверкой результатов"
+            "Эксперименты и tooling",
+            "формулировка и проверка гипотез, exact oracles, differential/metamorphic/randomized testing, Python-harnesses, Linux, Git, CMake"
           ]
         ],
         "recognition": [
@@ -805,8 +805,8 @@
         "role": "Quantitative Research | C++ · Python · Algorithms",
         "brand": "C++ · Python · algorithms · experiments",
         "eyebrow": "Algorithms · hypothesis testing · quantitative research",
-        "summary": "Strong computer-science and algorithmic problem-solving background with hands-on C++ and Python, compiler engineering, and independent research-oriented projects. I work in a hypothesis → experiment → validation loop: exact oracles, randomized/metamorphic tests, Python harnesses, measurable benchmarks, and reproducible counterexamples. I have implemented LLVM optimizations, graph algorithms, and program-analysis tools; the same workflow transfers directly to data-driven quantitative research.",
-        "description": "Mikhail Razakov quantitative-research profile: C++, Python, algorithms, LLVM, program analysis, hypothesis testing, exact oracles, and reproducible experiments.",
+        "summary": "Strong computer-science, algorithms, and research problem-solving background with hands-on C++ and Python, LLVM, and compiler/runtime engineering. I work in a hypothesis → experiment → validation loop using exact oracles, randomized/metamorphic tests, reproducible harnesses and benchmarks, counterexample analysis, and performance investigation. I work with JIT compilation, vectorization, x86-64 assembly, and generated/disassembled machine-code analysis.",
+        "description": "Mikhail Razakov quantitative-research profile: C++, Python, algorithms, LLVM, JIT, vectorization, low-level performance, hypothesis testing, and reproducible experiments.",
         "proofs": [
           [
             "Algorithms & competitions",
@@ -817,8 +817,8 @@
             "Exact oracles, randomized/metamorphic testing, adversarial counterexamples, reproducible harnesses, and benchmarks"
           ],
           [
-            "C++ & Python",
-            "LLVM/C++23 optimization work, program analysis, and Python tooling for automated hypothesis validation"
+            "C++ / low-level performance",
+            "C++23, LLVM, JIT, vectorization, x86-64 assembly, generated/disassembled machine-code analysis, and benchmarks"
           ]
         ],
         "experience": [
@@ -847,7 +847,7 @@
             "org": ".NET · compilers · language systems",
             "bullets": [
               "Independently designed and developed a complex compiler/language system with intermediate representations, SSA/optimizations, and interpreter/CIL backends.",
-              "Use benchmarking, differential/metamorphic verification, and reproducible checks to compare implementations and configurations.",
+              "Use benchmarking, JIT/CIL execution, and generated/disassembled-code analysis to investigate implementation behavior and performance.",
               "Verification as of July 25, 2026: 1,465/1,465 tests with zero failures across nine packages and clean-consumer projects."
             ]
           }
@@ -867,12 +867,12 @@
             "data structures, graph algorithms, program analysis, CFG/SSA, compiler optimizations"
           ],
           [
-            "Experiments & verification",
-            "hypothesis formulation and validation, exact oracles, differential/metamorphic testing, randomized testing, benchmarks, counterexample analysis"
+            "Low-level & performance",
+            "LLVM, JIT/CIL, x86-64 assembly, vectorization, compiler optimizations, generated/disassembled machine-code analysis, benchmarking"
           ],
           [
-            "Research tooling",
-            "LLVM, Linux, Git, CMake, Python harnesses, AI/LLM-assisted research with independent verification"
+            "Experiments & tooling",
+            "hypothesis formulation and validation, exact oracles, differential/metamorphic/randomized testing, Python harnesses, Linux, Git, CMake"
           ]
         ],
         "recognition": [
