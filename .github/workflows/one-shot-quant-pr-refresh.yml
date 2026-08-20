@@ -1,0 +1,75 @@
+name: One-shot quant PR refresh
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: one-shot-quant-pr-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.event.pull_request.title == 'Temporary CI trigger probe'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Patch canonical quant profile
+        run: python tools/tmp_quant_profile_refresh_20260820.py
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          python -m playwright install --with-deps chromium
+      - name: Remove deprecated generated artifacts
+        run: |
+          rm -f data/cv-print-profiles.json tools/update_profiles_v33.py
+          rm -f QA-report-targeted-cv-v*.md
+          rm -f pdf/Mikhail_Razakov_DevTools_*.pdf
+          rm -f pdf/Mikhail_Razakov_Algorithms_*.pdf
+          rm -f pdf/Mikhail_Razakov_EdTech_*.pdf
+          rm -f pdf/Mikhail_Razakov_Reliability_*.pdf
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
+      - name: Generate canonical HTML and PDFs
+        run: |
+          python tools/build_site.py
+          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+      - name: Validate generated output
+        run: |
+          python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
+          python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
+          python tools/build_site.py --manifest
+          python tools/validate_cv.py --pdf-dir pdf
+      - name: Commit canonical source and generated artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Quant profile is already current'
+          else
+            git commit -m 'Refocus quant CV on research evidence [skip ci]'
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: one-shot-quant-pr-refresh-evidence
+          path: |
+            /tmp/cv-pdf-report.json
+            /tmp/cv-validation.json
+            /tmp/cv-pdf-evidence
+            /tmp/cv-visual
+          if-no-files-found: warn
