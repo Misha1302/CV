@@ -34,6 +34,8 @@ jobs:
           path = Path('data/site.json')
           data = json.loads(path.read_text(encoding='utf-8'))
           data['projects']['planfuzz']['repo'] = 'https://github.com/Misha1302/UniversalToolchain'
+          data['projects']['wist']['repo'] = 'https://github.com/Misha1302/UniversalToolchain'
+          data['projects']['wist'].pop('docs', None)
           path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           PY
       - name: Install build dependencies
