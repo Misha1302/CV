@@ -1,8 +1,10 @@
 name: One-shot quant profile refresh
 
 on:
-  issues:
-    types: [opened]
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/one-shot-quant-profile-refresh.yml"
 
 permissions:
   contents: write
@@ -14,7 +16,6 @@ concurrency:
 
 jobs:
   refresh:
-    if: github.event.issue.title == '[ci] quant profile refresh 2026-08-20'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
