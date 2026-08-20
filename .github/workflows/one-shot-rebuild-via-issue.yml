@@ -1,0 +1,85 @@
+name: One-shot CV rebuild via issue
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: one-shot-cv-rebuild
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    if: github.event.issue.title == '[ci] rebuild generated CV'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          python -m playwright install --with-deps chromium
+      - name: Remove deprecated generated artifacts
+        run: |
+          rm -f data/cv-print-profiles.json tools/update_profiles_v33.py
+          rm -f QA-report-targeted-cv-v*.md
+          rm -f pdf/Mikhail_Razakov_DevTools_*.pdf
+          rm -f pdf/Mikhail_Razakov_Algorithms_*.pdf
+          rm -f pdf/Mikhail_Razakov_EdTech_*.pdf
+          rm -f pdf/Mikhail_Razakov_Reliability_*.pdf
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
+      - name: Generate canonical HTML and PDFs
+        run: |
+          python tools/build_site.py
+          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+      - name: Validate generated output
+        run: python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
+      - name: Visual regression and smoke matrix
+        run: python tools/visual_regression.py --output-dir /tmp/cv-visual
+      - name: Build manifest and validate final tree
+        run: |
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
+          python tools/build_site.py --manifest
+          python tools/validate_cv.py --pdf-dir pdf
+      - name: Commit generated artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Generated artifacts are already current'
+          else
+            git commit -m 'Rebuild generated CV site [skip ci]'
+            git push origin HEAD:main
+          fi
+      - name: Refresh GitHub Pages when branch-built
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          build_type="$(gh api "repos/${{ github.repository }}/pages" --jq '.build_type')"
+          if [ "$build_type" = 'legacy' ]; then
+            gh api --method POST "repos/${{ github.repository }}/pages/builds" --header 'X-GitHub-Api-Version: 2022-11-28'
+          else
+            echo "GitHub Pages build type is '$build_type'; no legacy branch build request is needed."
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: one-shot-cv-rebuild-evidence
+          path: |
+            /tmp/cv-pdf-report.json
+            /tmp/cv-validation.json
+            /tmp/cv-pdf-evidence
+            /tmp/cv-visual
+          if-no-files-found: warn
