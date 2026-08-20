@@ -15,6 +15,9 @@ on:
       - "tools/validate_cv.py"
       - "tools/visual_regression.py"
       - ".github/workflows/rebuild-cv-assets.yml"
+      - ".github/workflows/validate-cv.yml"
+  schedule:
+    - cron: "43 5 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -28,6 +31,7 @@ jobs:
   rebuild:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -48,6 +52,7 @@ jobs:
           rm -f pdf/Mikhail_Razakov_Algorithms_*.pdf
           rm -f pdf/Mikhail_Razakov_EdTech_*.pdf
           rm -f pdf/Mikhail_Razakov_Reliability_*.pdf
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
       - name: Generate HTML and PDFs
         run: |
           python tools/build_site.py

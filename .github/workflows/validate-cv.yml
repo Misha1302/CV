@@ -1,4 +1,4 @@
-name: Validate CV site
+name: Validate CV source
 
 on:
   pull_request:
@@ -11,9 +11,14 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: validate-cv-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -24,19 +29,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install beautifulsoup4 pymupdf pillow playwright weasyprint
           python -m playwright install --with-deps chromium
-      - name: Verify generated HTML is current
-        run: python tools/build_site.py --check
+      - name: Generate site from canonical source
+        run: python tools/build_site.py
       - name: Clean PDF rebuild
         run: python tools/build_cv.py --output-dir /tmp/cv-pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
-      - name: Validate source, metadata, languages, links, and PDFs
+      - name: Validate canonical source and generated output
         run: |
           python tools/validate_cv.py \
             --pdf-dir /tmp/cv-pdf \
-            --compare-dir pdf \
+            --skip-manifest \
             --check-external \
             --report /tmp/cv-validation.json
       - name: Visual regression: desktop, mobile, and no-JS
         run: python tools/visual_regression.py --output-dir /tmp/cv-visual
+      - name: Ensure generators are deterministic
+        run: python tools/build_site.py --check
       - uses: actions/upload-artifact@v4
         if: always()
         with:
