@@ -1,5 +1,6 @@
 name: One-shot quant profile refresh
 
+# retriggered for Graham/remote targeting on 2026-08-20
 on:
   push:
     branches: [main]
@@ -93,7 +94,7 @@ jobs:
                   ['2026', 'PS-form Memory Dependence Analyzer', '1-е место среди 49 решений; единственная оценка 5,0/5,0; 104/104 официальных тестов.'],
                   ['2025–2026', 'Олимпиадное программирование', 'Призёр регионального этапа ВсОШ по информатике и «Высшей пробы» по олимпиадному и промышленному программированию.'],
               ],
-              'contact_heading': 'Открыт к quantitative research и research-software задачам, где важны алгоритмы, проверка гипотез и воспроизводимые эксперименты.',
+              'contact_heading': 'Открыт к удалённым quantitative research и research-software задачам, где важны алгоритмы, проверка гипотез и воспроизводимые эксперименты.',
               'footer': 'Quantitative Research · C++ · Python · алгоритмы',
           })
 
@@ -152,7 +153,7 @@ jobs:
                   ['2026', 'PS-form Memory Dependence Analyzer', 'Ranked 1st of 49; the only 5.0/5.0 result; 104/104 official tests.'],
                   ['2025–2026', 'Programming competitions', 'Regional Russian informatics olympiad and HSE Vysshaya Proba prize-winner in competitive and industrial programming.'],
               ],
-              'contact_heading': 'Open to quantitative research and research-software roles where algorithms, hypothesis testing, and reproducible experiments matter.',
+              'contact_heading': 'Open to remote quantitative research and research-software roles where algorithms, hypothesis testing, and reproducible experiments matter.',
               'footer': 'Quantitative Research · C++ · Python · Algorithms',
           })
 
