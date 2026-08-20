@@ -56,10 +56,51 @@ jobs:
         run: |
           python tools/build_site.py
           python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
-      - name: Validate generated output
+      - name: Validate content and external links
+        run: python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
+      - name: Targeted visual validation for quant profiles
         run: |
-          python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
-          python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
+          mkdir -p /tmp/cv-visual
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/cv-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 1
+          python - <<'PY'
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+
+          out = Path('/tmp/cv-visual')
+          out.mkdir(parents=True, exist_ok=True)
+          cases = [
+              ('ru-quant.html', 1440, 1000),
+              ('ru-quant.html', 390, 844),
+              ('en-quant.html', 1440, 1000),
+              ('en-quant.html', 390, 844),
+          ]
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              try:
+                  for filename, width, height in cases:
+                      page = browser.new_page(viewport={'width': width, 'height': height})
+                      page.goto(f'http://127.0.0.1:8765/{filename}', wait_until='networkidle')
+                      metrics = page.evaluate('''() => ({
+                          viewport: document.documentElement.clientWidth,
+                          scrollWidth: document.documentElement.scrollWidth,
+                          scrollHeight: document.documentElement.scrollHeight,
+                          h1: document.querySelector('h1')?.textContent || '',
+                          role: document.querySelector('.role')?.textContent || document.querySelector('.pcv-header h2')?.textContent || ''
+                      })''')
+                      if metrics['scrollWidth'] > metrics['viewport'] + 1:
+                          raise RuntimeError(f"Horizontal overflow {filename}/{width}: {metrics}")
+                      if 'Разаков' not in metrics['h1'] and 'Razakov' not in metrics['h1']:
+                          raise RuntimeError(f"Missing CV heading {filename}: {metrics}")
+                      page.screenshot(path=str(out / f'{filename}-{width}.png'), full_page=True)
+                      page.close()
+              finally:
+                  browser.close()
+          PY
+      - name: Final manifest and validation
+        run: |
           find tools -type d -name __pycache__ -prune -exec rm -rf {} +
           python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf
