@@ -1,6 +1,6 @@
 {
-  "version": 38,
-  "updated_at": "2026-08-20",
+  "version": 39,
+  "updated_at": "2026-08-21",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -239,21 +239,21 @@
         "title": "Михаил Разаков — Compiler Engineer · LLVM/C++ · Program Analysis",
         "role": "Compiler Engineer · LLVM/C++ · Program Analysis",
         "brand": "LLVM/C++ · program analysis · SSA · runtime",
-        "eyebrow": "МЦСТ · LLVM · SSA · проверяемая семантика",
-        "summary": "Инженер по компиляторам и языковым платформам: LLVM/C++, program analysis и SSA. В МЦСТ реализовал LICM-проход с консервативными safety checks и harness, сравнивающим поведение до/после оптимизации. Создатель UniversalToolchain/Wist2 с SSA, interpreter/CIL backends и verifier-gated transformations; доклад о системе принят для выступления на LangDev 2026.",
-        "description": "Compiler Engineer Михаил Разаков: LLVM/C++, LICM и semantic validation, program analysis, SSA, UniversalToolchain/Wist2 и принятый доклад LangDev 2026.",
+        "eyebrow": "МЦСТ · LLVM · C++23 · SSA",
+        "summary": "Разрабатываю компиляторы и инструменты анализа программ на C++ и .NET. В МЦСТ написал LLVM LICM-pass и тестовый harness для сравнения поведения до и после оптимизации. В UniversalToolchain/Wist2 работаю с SSA, интерпретатором и CIL backend. Доклад о проекте принят на LangDev 2026.",
+        "description": "Михаил Разаков — Compiler Engineer: LLVM/C++, LICM, анализ программ, SSA и UniversalToolchain/Wist2.",
         "proofs": [
           [
-            "МЦСТ · LLVM/C++",
-            "LICM pass: safety checks + semantic before/after regression harness"
+            "LLVM LICM-pass",
+            "C++ · LoopInfo · тесты до/после оптимизации"
           ],
           [
             "1-е из 49 · 104/104",
-            "PS-form memory-dependence analysis; единственная оценка 5,0/5,0"
+            "PS-form Memory Dependence Analyzer"
           ],
           [
             "LangDev 2026",
-            "Принятый доклад об архитектуре UniversalToolchain/Wist2"
+            "Доклад по UniversalToolchain/Wist2 принят к выступлению"
           ]
         ],
         "experience": [
@@ -262,8 +262,8 @@
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM · C++23 · 0,25 ставки",
             "bullets": [
-              "Реализовал LLVM LICM-pass на C++ с консервативными проверками side effects, memory access, loop invariance, preheader и speculative safety.",
-              "Построил Python-harness: baseline vs optimized execution через lli, opt -verify-each и отдельные CHANGE/NO_CHANGE expectations."
+              "Написал LLVM LICM-pass на C++: проверяю инвариантность выражений, preheader и безопасность переноса инструкций с учётом side effects и memory access.",
+              "Добавил тестовый harness: baseline/optimized запуск через lli, opt -verify-each и отдельные сценарии, где проход должен или не должен менять IR."
             ]
           },
           {
@@ -271,17 +271,17 @@
             "title": "PS-form Memory Dependence Analyzer — 1-е место из 49",
             "org": "C17 · program analysis · отбор на LLVM-трек МЦСТ",
             "bullets": [
-              "Реализовал консервативный анализ параметрических обращений к памяти; 104/104 официальных тестов и единственная оценка 5,0/5,0.",
-              "Построил exact oracle для малых областей и metamorphic/randomized harness для воспроизводимых контрпримеров."
+              "Реализовал анализ пересечения параметрических обращений к памяти на C17; 104/104 официальных тестов и 1-е место из 49.",
+              "Для проверки использовал точный перебор на малых областях и randomized/metamorphic тесты, чтобы получать воспроизводимые контрпримеры."
             ]
           },
           {
             "date": "2024 — сейчас",
             "title": "UniversalToolchain / Wist2 — создатель и основной разработчик",
-            "org": ".NET · compiler/runtime platform",
+            "org": ".NET · compiler/runtime",
             "bullets": [
-              "Создал модульную compiler/runtime platform с Bytecode/AIR, SSA, interpreter и CIL backend.",
-              "Развиваю verifier-gated transformations и interpreter/CIL parity с fail-closed проверками компиляторных контрактов."
+              "Разрабатываю собственную compiler/runtime платформу: Bytecode/AIR, SSA, интерпретатор и CIL backend.",
+              "Проверяю совпадение поведения интерпретатора и CIL и корректность преобразований тестами и verifier-ами."
             ]
           }
         ],
@@ -294,23 +294,42 @@
         "skills": [
           [
             "Compiler / LLVM",
-            "C++23, LLVM passes, LoopInfo, CFG, loop invariance, LICM, SSA, dominance"
+            "C++23, LLVM passes, LoopInfo, CFG, LICM, SSA, dominance"
           ],
           [
             "Program analysis",
-            "memory dependence, dataflow, exact oracles, differential/metamorphic/randomized testing"
+            "memory dependence, dataflow, exact oracle на малых областях, differential/randomized testing"
           ],
           [
             "IR / runtime",
-            ".NET, Bytecode/AIR, SSA, interpreter, CIL backend, verifier-gated transformations"
+            ".NET, Bytecode/AIR, SSA, interpreter, CIL backend, verifier"
           ],
           [
             "Tooling",
-            "Python harnesses, CMake, Linux, clang-tidy, ASan/UBSan, Git"
+            "Python, CMake, Linux, clang-tidy, ASan/UBSan, Git"
           ]
         ],
         "contact_heading": "Открыт к Compiler Engineer / LLVM / Program Analysis / Language Tooling задачам.",
-        "footer": "Compiler Engineer · LLVM/C++ · Program Analysis"
+        "footer": "Compiler Engineer · LLVM/C++ · Program Analysis",
+        "project_summaries": {
+          "wist": {
+            "solution": "Разделил frontend/runtime на пакеты и явные контракты; добавил детерминированный порядок проходов, manifests/locks, SSA и два backend-а — interpreter и CIL.",
+            "result": "Система собирается и тестируется как набор независимых пакетов; текущий test manifest проходит без падений, отдельно проверяются clean-consumer проекты и совпадение interpreter/CIL."
+          },
+          "psform": {
+            "solution": "Сочетал нормализацию выражений, интервальные ограничения, проверки по модулю и НОД; для малых областей добавил точный перебор и randomized/metamorphic тесты.",
+            "result": "104/104 официальных тестов и 1-е место среди 49 решений."
+          },
+          "codegen": {
+            "solution": "Собрал pipeline IR → liveness → linear scan → x86-64; сгенерированный код сравнивается с IR-интерпретатором в отдельном процессе.",
+            "result": "Считаются spill/reload и размер кода; differential-тесты показывают конкретные расхождения между IR и машинным кодом."
+          },
+          "planfuzz": {
+            "solution": "Fuzzer генерирует не только программы, но и конфигурации компиляции/запуска; сохраняет fingerprint сбоя, перепроверяет его в новом процессе и минимизирует программу и конфигурацию.",
+            "result": "Сбои разделяются на подтверждённые, нестабильные, неопределённые и инфраструктурные; для подтверждённых сохраняется воспроизводимый минимальный пример."
+          }
+        },
+        "show_portrait": false
       },
       "en": {
         "filename": "en-compiler.html",
@@ -318,21 +337,21 @@
         "title": "Mikhail Razakov — Compiler Engineer · LLVM/C++ · Program Analysis",
         "role": "Compiler Engineer · LLVM/C++ · Program Analysis",
         "brand": "LLVM/C++ · program analysis · SSA · runtime",
-        "eyebrow": "MCST · LLVM · SSA · verifiable semantics",
-        "summary": "Compiler and language-platform engineer focused on LLVM/C++, program analysis, and SSA. At MCST I implemented a LICM pass with conservative safety checks and a harness comparing behavior before and after optimization. Creator of UniversalToolchain/Wist2 with SSA, interpreter/CIL backends, and verifier-gated transformations; the system talk was accepted for LangDev 2026.",
-        "description": "Mikhail Razakov, Compiler Engineer: LLVM/C++, LICM and semantic validation, program analysis, SSA, UniversalToolchain/Wist2, and a LangDev 2026 accepted talk.",
+        "eyebrow": "MCST · LLVM · C++23 · SSA",
+        "summary": "I build compilers and program-analysis tools in C++ and .NET. At MCST I wrote an LLVM LICM pass and a test harness that compares behavior before and after optimization. In UniversalToolchain/Wist2 I work on SSA, the interpreter, and the CIL backend. A talk about the project was accepted for LangDev 2026.",
+        "description": "Mikhail Razakov — Compiler Engineer: LLVM/C++, LICM, program analysis, SSA, and UniversalToolchain/Wist2.",
         "proofs": [
           [
-            "MCST · LLVM/C++",
-            "LICM pass: safety checks + semantic before/after regression harness"
+            "LLVM LICM pass",
+            "C++ · LoopInfo · before/after optimization tests"
           ],
           [
             "#1 of 49 · 104/104",
-            "PS-form memory-dependence analysis; only 5.0/5.0 score"
+            "PS-form Memory Dependence Analyzer"
           ],
           [
             "LangDev 2026",
-            "Accepted talk on UniversalToolchain/Wist2 language architecture"
+            "UniversalToolchain/Wist2 talk accepted"
           ]
         ],
         "experience": [
@@ -341,8 +360,8 @@
             "title": "MCST — compiler engineering intern",
             "org": "LLVM · C++23 · 0.25 FTE",
             "bullets": [
-              "Implemented an LLVM LICM pass in C++ with conservative checks for side effects, memory access, loop invariance, preheaders, and speculative safety.",
-              "Built a Python harness with baseline-vs-optimized execution through lli, opt -verify-each, and explicit CHANGE/NO_CHANGE expectations."
+              "Wrote an LLVM LICM pass in C++, checking expression invariance, preheaders, and whether instructions can be moved safely around side effects and memory accesses.",
+              "Added a test harness with baseline/optimized execution through lli, opt -verify-each, and separate cases where the pass must or must not change the IR."
             ]
           },
           {
@@ -350,17 +369,17 @@
             "title": "PS-form Memory Dependence Analyzer — #1 of 49",
             "org": "C17 · program analysis · MCST LLVM-track selection",
             "bullets": [
-              "Implemented conservative analysis of parametric memory accesses; passed 104/104 official tests and received the only 5.0/5.0 score.",
-              "Built an exact oracle for small domains plus metamorphic/randomized testing for reproducible counterexamples."
+              "Implemented analysis of whether parametric memory accesses can overlap; passed 104/104 official tests and ranked #1 of 49.",
+              "Used exact enumeration on small domains plus randomized/metamorphic tests to produce reproducible counterexamples."
             ]
           },
           {
             "date": "2024 — present",
             "title": "UniversalToolchain / Wist2 — creator and primary developer",
-            "org": ".NET · compiler/runtime platform",
+            "org": ".NET · compiler/runtime",
             "bullets": [
-              "Built a modular compiler/runtime platform with Bytecode/AIR, SSA, interpreter, and CIL backend.",
-              "Develop verifier-gated transformations and interpreter/CIL parity with fail-closed compiler-contract checks."
+              "Building a compiler/runtime platform with Bytecode/AIR, SSA, an interpreter, and a CIL backend.",
+              "Check interpreter/CIL behavior parity and transformation correctness with tests and verifiers."
             ]
           }
         ],
@@ -373,23 +392,42 @@
         "skills": [
           [
             "Compiler / LLVM",
-            "C++23, LLVM passes, LoopInfo, CFG, loop invariance, LICM, SSA, dominance"
+            "C++23, LLVM passes, LoopInfo, CFG, LICM, SSA, dominance"
           ],
           [
             "Program analysis",
-            "memory dependence, dataflow, exact oracles, differential/metamorphic/randomized testing"
+            "memory dependence, dataflow, exact oracle on small domains, differential/randomized testing"
           ],
           [
             "IR / runtime",
-            ".NET, Bytecode/AIR, SSA, interpreter, CIL backend, verifier-gated transformations"
+            ".NET, Bytecode/AIR, SSA, interpreter, CIL backend, verifier"
           ],
           [
             "Tooling",
-            "Python harnesses, CMake, Linux, clang-tidy, ASan/UBSan, Git"
+            "Python, CMake, Linux, clang-tidy, ASan/UBSan, Git"
           ]
         ],
         "contact_heading": "Open to Compiler Engineer, LLVM, Program Analysis, and Language Tooling roles.",
-        "footer": "Compiler Engineer · LLVM/C++ · Program Analysis"
+        "footer": "Compiler Engineer · LLVM/C++ · Program Analysis",
+        "project_summaries": {
+          "wist": {
+            "solution": "Split the frontend/runtime into packages with explicit contracts; added deterministic pass ordering, manifests/locks, SSA, and interpreter/CIL backends.",
+            "result": "The system builds and tests as independent packages; the current test manifest passes with zero failures, with clean-consumer projects and interpreter/CIL parity checked separately."
+          },
+          "psform": {
+            "solution": "Combined expression normalization, interval constraints, modular/GCD checks, exact enumeration on small domains, and randomized/metamorphic tests.",
+            "result": "Passed 104/104 official tests and ranked #1 of 49 submissions."
+          },
+          "codegen": {
+            "solution": "Built an IR → liveness → linear scan → x86-64 pipeline and compare generated code with the IR interpreter in a separate process.",
+            "result": "Tracks spill/reload counts and code size; differential tests expose concrete mismatches between IR and machine code."
+          },
+          "planfuzz": {
+            "solution": "The fuzzer generates both programs and compile/run configurations, records a failure fingerprint, rechecks it in a fresh process, and minimizes both the program and configuration.",
+            "result": "Failures are classified as confirmed, flaky, inconclusive, or infrastructure-related; confirmed failures retain a reproducible minimized example."
+          }
+        },
+        "show_portrait": false
       }
     },
     "backend": {
