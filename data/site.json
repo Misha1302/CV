@@ -1,5 +1,5 @@
 {
-  "version": 39,
+  "version": 40,
   "updated_at": "2026-08-21",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -329,7 +329,8 @@
             "result": "Сбои разделяются на подтверждённые, нестабильные, неопределённые и инфраструктурные; для подтверждённых сохраняется воспроизводимый минимальный пример."
           }
         },
-        "show_portrait": false
+        "show_portrait": true,
+        "portrait_asset": "assets/portrait.jpg"
       },
       "en": {
         "filename": "en-compiler.html",
@@ -427,7 +428,8 @@
             "result": "Failures are classified as confirmed, flaky, inconclusive, or infrastructure-related; confirmed failures retain a reproducible minimized example."
           }
         },
-        "show_portrait": false
+        "show_portrait": true,
+        "portrait_asset": "assets/portrait.jpg"
       }
     },
     "backend": {

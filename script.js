@@ -2,6 +2,8 @@
   const githubAvatar = 'https://avatars.githubusercontent.com/u/77919295?v=4&s=575';
 
   document.querySelectorAll('img.identity-mark, .contact-card img').forEach((image) => {
+    if (image.dataset.localPhoto === 'true') return;
+
     const fallback = image.getAttribute('src');
 
     image.addEventListener('error', () => {

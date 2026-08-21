@@ -237,11 +237,16 @@ img { max-width: 100%; }
 
 /* Compiler profile: denser, CV-first presentation. */
 .profile-compiler .hero-compact {
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
   min-height: 0;
   padding: 64px 0 46px;
 }
 .profile-compiler .hero-compact .hero-copy { max-width: 860px; }
+.profile-compiler .compact-portrait { display: block; margin: 22px 0 0; padding: 0; border: 0; background: none; }
+.profile-compiler .compact-portrait .identity-mark { aspect-ratio: 4 / 5; border-radius: 14px; }
 .profile-compiler .hero-compact h1 { font-size: clamp(48px, 6vw, 72px); }
 .profile-compiler .hero-compact .hero-role { font-size: clamp(23px, 2.4vw, 30px); }
 .profile-compiler .hero-compact .hero-detail { max-width: 790px; margin-top: 22px; }
@@ -263,7 +268,8 @@ img { max-width: 100%; }
 .profile-compiler .project-row .project-links { margin-top: 14px; }
 .profile-compiler .contact-panel { background: var(--surface); }
 @media (max-width: 760px) {
-  .profile-compiler .hero-compact { padding: 44px 0 38px; }
+  .profile-compiler .hero-compact { grid-template-columns: 1fr; gap: 24px; padding: 44px 0 38px; }
+  .profile-compiler .compact-portrait { width: 132px; margin-top: 0; }
   .profile-compiler .section-heading { grid-template-columns: 1fr; }
   .profile-compiler .project-row { grid-template-columns: 1fr; gap: 12px; }
 }
