@@ -34,7 +34,7 @@ e177a638b20015faaea12ff50f0228057d6006532dcb5fbc0143dd59eede46e7  ./cases/ru-lms
 7fc185a88ab28351790bbe0b38ded16ca6c356f09537d1087bf71e116b28d7d6  ./cases/ru-vpn.html
 bb945ed39f56574c9c4f53f0f599f79e33843ab6be6e509c6c20fbfe4068e3d6  ./cases/ru-wist.html
 cd6a1e73e8febcdca2a0eba74869e6d42d4710c85d9f84d34c1817945445d855  ./data/site.json
-58d6c81bd4106852a9fab51cd311a2742c3220dcb453408ce3dc50544b330fb3  ./data/visual-baseline.json
+36dc1c1814862f0501d05e8931ab863d1cd7fbcbd0aa0b5c26bfbad84d3321dd  ./data/visual-baseline.json
 cfc6058cdb00691811e99a5755d283e07f1ed72778f855cf99b12db115f0909a  ./en-algorithms.html
 c460f1d736216deaf131854eeb923a982a2daf7286e43fbeba60101ba7eb77ed  ./en-backend.html
 772552cee75e5ba63cc0f718b0715e4a30094561fa87b1c6a805ceda6c9cc9c6  ./en-compiler.html
