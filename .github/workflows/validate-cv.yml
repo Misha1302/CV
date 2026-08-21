@@ -40,7 +40,7 @@ jobs:
             --skip-manifest \
             --check-external \
             --report /tmp/cv-validation.json
-      - name: Visual regression: desktop, mobile, and no-JS
+      - name: "Visual regression: desktop, mobile, and no-JS"
         run: python tools/visual_regression.py --output-dir /tmp/cv-visual
       - name: Ensure generators are deterministic
         run: python tools/build_site.py --check

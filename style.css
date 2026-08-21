@@ -187,6 +187,7 @@ img { max-width: 100%; }
   .timeline article { grid-template-columns: 1fr; gap: 10px; }
   .project-featured { grid-template-columns: 1fr; padding: 24px; }
   .project-grid, .selector-grid, .case-grid { grid-template-columns: 1fr; }
+  .project-grid:has(> .project-card:nth-child(2):last-child) { grid-template-columns: 1fr; }
   .stack-line { grid-template-columns: 1fr; gap: 6px; }
   .recognition-item { grid-template-columns: 1fr; gap: 8px; }
   .contact-panel { grid-template-columns: 1fr; padding: 24px; }
