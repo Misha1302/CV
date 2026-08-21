@@ -171,9 +171,17 @@ def validate_html(data: dict) -> set[str]:
             if rel not in existing:
                 raise RuntimeError(f"{path.relative_to(ROOT)}: broken internal link {value}")
         img = soup.select_one(".identity-card img.identity-mark")
-        if path.name in {data["profiles"][key][lang]["filename"] for key in data["profile_order"] for lang in ("ru", "en")}:
-            if not img or img.get("src") != "assets/portrait.svg" or not img.get("alt"):
+        profile_match = next(
+            (data["profiles"][key][lang] for key in data["profile_order"] for lang in ("ru", "en")
+             if data["profiles"][key][lang]["filename"] == path.name),
+            None,
+        )
+        if profile_match:
+            show_portrait = profile_match.get("show_portrait", True)
+            if show_portrait and (not img or img.get("src") != "assets/portrait.svg" or not img.get("alt")):
                 raise RuntimeError(f"{path.relative_to(ROOT)}: local accessible portrait missing")
+            if not show_portrait and img:
+                raise RuntimeError(f"{path.relative_to(ROOT)}: portrait present despite show_portrait=false")
     for key in data["profile_order"]:
         for lang in ("ru", "en"):
             profile = data["profiles"][key][lang]

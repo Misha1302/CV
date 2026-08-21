@@ -328,7 +328,8 @@
             "solution": "Fuzzer генерирует не только программы, но и конфигурации компиляции/запуска; сохраняет fingerprint сбоя, перепроверяет его в новом процессе и минимизирует программу и конфигурацию.",
             "result": "Сбои разделяются на подтверждённые, нестабильные, неопределённые и инфраструктурные; для подтверждённых сохраняется воспроизводимый минимальный пример."
           }
-        }
+        },
+        "show_portrait": false
       },
       "en": {
         "filename": "en-compiler.html",
@@ -425,7 +426,8 @@
             "solution": "The fuzzer generates both programs and compile/run configurations, records a failure fingerprint, rechecks it in a fresh process, and minimizes both the program and configuration.",
             "result": "Failures are classified as confirmed, flaky, inconclusive, or infrastructure-related; confirmed failures retain a reproducible minimized example."
           }
-        }
+        },
+        "show_portrait": false
       }
     },
     "backend": {
