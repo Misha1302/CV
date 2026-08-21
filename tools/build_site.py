@@ -152,6 +152,7 @@ def hero(data: dict[str, Any], lang: str, profile: dict[str, Any], compact: bool
       <div class="hero-contact-line"><a href="mailto:{esc(person['email'])}">{esc(person['email'])}</a> · <a href="{esc(person['telegram'])}" rel="noopener noreferrer" target="_blank">{esc(person['telegram_label'])}</a> · <a href="{esc(person['github'])}" rel="noopener noreferrer" target="_blank">{esc(person['github_label'])}</a> · <a href="{esc(person['linkedin'])}" rel="noopener noreferrer" target="_blank">LinkedIn</a></div>
     </div>
   </div>
+  <aside class="identity-card compact-portrait" aria-label="{'Профиль' if lang == 'ru' else 'Profile'}"><img class="identity-mark" src="{esc(profile.get('portrait_asset', 'assets/portrait.svg'))}" data-local-photo="true" alt="{esc(person_name(data, lang))}" width="460" height="460"></aside>
 </section>"""
     role_description = "Архитектура, реализация и проверка сложных систем" if lang == "ru" else "Architecture, implementation, and verification of complex systems"
     return f"""
@@ -163,7 +164,7 @@ def hero(data: dict[str, Any], lang: str, profile: dict[str, Any], compact: bool
       <div class="hero-contact-line"><a href="mailto:{esc(person['email'])}">{esc(person['email'])}</a> · <a href="{esc(person['telegram'])}" rel="noopener noreferrer" target="_blank">{esc(person['telegram_label'])}</a> · <a href="{esc(person['github'])}" rel="noopener noreferrer" target="_blank">{esc(person['github_label'])}</a> · <a href="{esc(person['linkedin'])}" rel="noopener noreferrer" target="_blank">LinkedIn</a></div>
     </div>
   </div>
-  <aside class="identity-card" aria-label="{'Профиль' if lang == 'ru' else 'Profile'}"><img class="identity-mark" src="assets/portrait.svg" alt="{esc(person_name(data, lang))}" width="460" height="460"><strong>{esc(role_description)}</strong><span>{esc(profile['brand'])}</span></aside>
+  <aside class="identity-card" aria-label="{'Профиль' if lang == 'ru' else 'Profile'}"><img class="identity-mark" src="{esc(profile.get('portrait_asset', 'assets/portrait.svg'))}" alt="{esc(person_name(data, lang))}" width="460" height="460"><strong>{esc(role_description)}</strong><span>{esc(profile['brand'])}</span></aside>
 </section>"""
 
 

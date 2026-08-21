@@ -178,7 +178,8 @@ def validate_html(data: dict) -> set[str]:
         )
         if profile_match:
             show_portrait = profile_match.get("show_portrait", True)
-            if show_portrait and (not img or img.get("src") != "assets/portrait.svg" or not img.get("alt")):
+            portrait_asset = profile_match.get("portrait_asset", "assets/portrait.svg")
+            if show_portrait and (not img or img.get("src") != portrait_asset or not img.get("alt")):
                 raise RuntimeError(f"{path.relative_to(ROOT)}: local accessible portrait missing")
             if not show_portrait and img:
                 raise RuntimeError(f"{path.relative_to(ROOT)}: portrait present despite show_portrait=false")
