@@ -234,3 +234,36 @@ img { max-width: 100%; }
   .pcv-skill span, .pcv-compact p { display: block; margin: .4mm 0 0; color: #4e4547; font-size: 7.3pt; line-height: 1.2; }
   .pcv-compact { break-inside: avoid; }
 }
+
+/* Compiler profile: denser, CV-first presentation. */
+.profile-compiler .hero-compact {
+  display: block;
+  min-height: 0;
+  padding: 64px 0 46px;
+}
+.profile-compiler .hero-compact .hero-copy { max-width: 860px; }
+.profile-compiler .hero-compact h1 { font-size: clamp(48px, 6vw, 72px); }
+.profile-compiler .hero-compact .hero-role { font-size: clamp(23px, 2.4vw, 30px); }
+.profile-compiler .hero-compact .hero-detail { max-width: 790px; margin-top: 22px; }
+.profile-compiler .hero-compact .hero-summary { font-size: 16px; line-height: 1.6; }
+.profile-compiler .section { padding: 58px 0; }
+.profile-compiler .section-heading { margin-bottom: 28px; grid-template-columns: 130px minmax(0, 720px); }
+.profile-compiler .section-heading h2 { font-size: clamp(28px, 3vw, 38px); }
+.profile-compiler .project-list { border-top: 1px solid var(--border); }
+.profile-compiler .project-row {
+  display: grid;
+  grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr);
+  gap: 36px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--border);
+}
+.profile-compiler .project-row h3 { margin: 9px 0 0; font-size: 23px; line-height: 1.2; letter-spacing: -.025em; }
+.profile-compiler .project-row p { margin: 0; color: var(--muted); }
+.profile-compiler .project-row .project-result { margin-top: 10px; color: var(--text); }
+.profile-compiler .project-row .project-links { margin-top: 14px; }
+.profile-compiler .contact-panel { background: var(--surface); }
+@media (max-width: 760px) {
+  .profile-compiler .hero-compact { padding: 44px 0 38px; }
+  .profile-compiler .section-heading { grid-template-columns: 1fr; }
+  .profile-compiler .project-row { grid-template-columns: 1fr; gap: 12px; }
+}
