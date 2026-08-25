@@ -1,16 +1,14 @@
-# Targeting guide — v32
+# Targeting guide — v44
 
-## Flagship variants
+## Primary default
 
-1. `Compiler / Language Platforms` — compiler/runtime, language SDK, IR/SSA and architecture roles.
-2. `Compiler Testing / Developer Tools` — compiler testing, fuzzing, diagnostics, build/test and research tooling.
-3. `C++ Systems / Program Analysis` — C++ systems, graph/data-flow analysis, low-level and backend roles.
+1. `Software Engineer — Architecture & Platforms` — default RU/EN profile for hands-on platform architecture, backend state/recovery, compiler/runtime systems, and correctness-oriented engineering.
 
-## Specialized variants
+## Strong specialized alternatives
 
-- `.NET Backend · Reliability-focused` — product backend roles with state, payments and operations.
-- `Algorithms / Solver Engineering` — algorithm libraries, solver/research engineering and optimization.
-- `EdTech Backend` — only for EdTech/product roles where teaching-domain evidence is relevant.
-- `State Correctness & Recovery` — a narrow backend variant, not an SRE claim.
+1. `Compiler / Language Platforms` — compiler/runtime, language SDK, IR/SSA and compiler-infrastructure roles.
+2. `.NET Backend` — backend roles where payment state, idempotency, recovery and operations are more important than compiler depth.
+3. `C++ / LLVM Systems` — C++ systems, program analysis, low-level and compiler-backend roles.
+4. `Quantitative Research / Research Software Engineering` — only where algorithms, experimentation and research tooling are central.
 
-`ru.html` / `en.html` are follow-up technical portfolios, not first-contact resumes.
+The default profile intentionally does not use `Software Architect`, `Staff`, or `Principal` as a title. Its purpose is to get architecture-heavy engineering interviews without implying multi-team or enterprise architecture seniority that the current evidence does not establish.
