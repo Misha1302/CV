@@ -29,8 +29,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install beautifulsoup4 pymupdf pillow playwright weasyprint
           python -m playwright install --with-deps chromium
-      - name: Apply targeted profiles
-        run: python tools/apply_targeted_cv_v46.py
+      - name: Apply targeted profiles and layout guard
+        run: |
+          python tools/apply_targeted_cv_v46.py
+          python tools/apply_targeted_cv_v46_layout.py
       - name: Rebuild HTML and PDFs
         run: |
           python tools/build_site.py
@@ -45,7 +47,7 @@ jobs:
         run: python tools/visual_regression.py --output-dir /tmp/cv-v46-visual --update
       - name: Finalize tree
         run: |
-          rm -f tools/apply_targeted_cv_v46.py .github/workflows/one-shot-targeted-cv-v46.yml
+          rm -f tools/apply_targeted_cv_v46.py tools/apply_targeted_cv_v46_layout.py .github/workflows/one-shot-targeted-cv-v46.yml
           find tools -type d -name __pycache__ -prune -exec rm -rf {} +
           python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf
