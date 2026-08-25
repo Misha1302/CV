@@ -1,6 +1,6 @@
 {
-  "version": 43,
-  "updated_at": "2026-08-21",
+  "version": 44,
+  "updated_at": "2026-08-25",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -25,8 +25,10 @@
   ],
   "profile_ui": {
     "general": {
-      "label_ru": "Общий профиль",
-      "label_en": "General profile"
+      "label_ru": "Architecture / Platforms",
+      "label_en": "Architecture / Platforms",
+      "landing_title": "Software Architecture / Platforms",
+      "landing_description_ru": "Ownership boundaries, typed contracts, state/recovery и compiler/runtime systems."
     },
     "compiler": {
       "label_ru": "Compiler / Platforms",
@@ -58,178 +60,176 @@
       "ru": {
         "filename": "ru.html",
         "pdf": "Mikhail_Razakov_Software_Engineer_RU.pdf",
-        "title": "Михаил Разаков — Software Engineer: .NET, backend и системная разработка",
-        "role": "Software Engineer · .NET, backend и системная разработка",
-        "brand": ".NET · backend · системная разработка",
-        "eyebrow": "Архитектура платформ · backend · компиляторы",
-        "summary": "Проектирую и реализую сложные программные системы: модульные .NET-платформы, backend-сервисы с платежами и восстановлением, компиляторы и инструменты анализа программ. Сильнее всего — в явных контрактах, инвариантах состояния, проверяемой семантике и доведении системы до воспроизводимого результата.",
-        "description": "Software Engineer Михаил Разаков: архитектура .NET-платформ, backend-сервисы, компиляторы, LLVM, анализ программ и надёжные релизы.",
+        "title": "Михаил Разаков — Software Engineer — Architecture & Platforms",
+        "role": "Software Engineer — Architecture & Platforms",
+        "brand": "architecture · .NET platforms · compiler/runtime",
+        "eyebrow": "Ownership · typed contracts · reliability · compilers",
+        "summary": "Проектирую расширяемые платформы, compiler/runtime systems и backend-сервисы, где корректность зависит от явных границ ответственности. Превращаю неявные зависимости и состояния в typed contracts, deterministic plans и механически проверяемые инварианты.",
+        "description": "Software Engineer Михаил Разаков: архитектура платформ, typed contracts, state/recovery, compiler/runtime systems, LLVM и проверяемые инженерные инварианты.",
         "proofs": [
           [
-            "Архитектура платформы",
-            "UniversalToolchain/Wist2: независимые пакеты, типизированные контракты, маршруты, manifests/locks и lifecycle ownership"
+            "Single-owner architecture",
+            "UniversalToolchain: один immutable plan владеет dependencies, capabilities, pass ordering и backend routes; runtime только материализует выбранный граф"
           ],
           [
-            "Production backend",
-            "Платежи, подписки, роли, устройства, PostgreSQL/SQLite, миграции, recovery, backup/restore и rollback"
+            "State & recovery",
+            "Платежи и подписки: explicit states, idempotency, durable inbox/outbox, reconciliation, backup/restore и rollback"
           ],
           [
-            "Compiler / systems",
-            "Callable-first SSA, interpreter/CIL, LLVM, C++23, анализ памяти и генерация x86-64"
+            "Correctness by contract",
+            "Exact manifest/ownership checks, interpreter/CIL parity, allocator verifier и differential execution"
           ]
         ],
         "experience": [
           {
             "date": "2024 — сейчас",
-            "title": "UniversalToolchain / Wist2 — создатель и основной разработчик",
-            "org": ".NET SDK для языков и сред исполнения",
+            "title": "UniversalToolchain — создатель и основной разработчик",
+            "org": ".NET language platform · compiler/runtime architecture",
             "bullets": [
-              "Спроектировал композицию языка из независимо версионируемых пакетов: типизированные артефакты, возможности и конфликты, детерминированные маршруты и порядок проходов.",
-              "Реализовал точное связывание с манифестом, lock-файл, fail-closed политики и управление жизненным циклом runtime-сессий.",
-              "Контрольная проверка от 25.07.2026: 1 465/1 465 тестов, 0 падений; проверены 9 пакетов и clean-consumer проекты."
+              "Сделал LanguageCompiler единственным владельцем композиции: dependencies/conflicts, capability selection, pass ordering и backend routes фиксируются в одном immutable LanguagePlan; runtime не принимает второе решение.",
+              "Разделил syntax → semantic binding → Bytecode → AIR → optimizations → backend явными representation/ownership boundaries и удалил legacy reflection/runtime-profile topology.",
+              "Закрепил архитектурные инварианты exact manifest/ownership checks, interpreter/CIL parity и regression tests; текущий exact manifest — 1 306/1 306 passed."
             ]
           },
           {
             "date": "1 июля — 31 августа 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
-            "org": "LLVM-направление · 0,25 ставки · удалённо",
+            "org": "LLVM · C++23 · 0,25 ставки · удалённо",
             "bullets": [
-              "Разрабатываю собственный оптимизационный проход LLVM; реализую и тестирую графовые алгоритмы на C++23."
+              "Разрабатываю LLVM-pass для межпроцедурного моделирования линейной эволюции глобальных значений; неподдерживаемые CFG/call cases переводятся в conservative unknown вместо небезопасного вывода."
             ]
           },
           {
             "date": "2023 — 2025",
             "title": "Мама Лама — Software Developer",
-            "org": "самостоятельная разработка · архитектура приложений · event software",
+            "org": "самостоятельная разработка · event software",
             "bullets": [
-              "Полностью самостоятельно разрабатывал игры и приложения для диджеев и мероприятий — от требований и проектирования до реализации, тестирования и подготовки к использованию.",
-              "Проектировал архитектуру и модульную структуру приложений, определял границы и интерфейсы компонентов; отвечал за всю техническую реализацию и доведение решений до готового продукта."
+              "Самостоятельно проектировал и доводил event-приложения от требований до использования, определяя module boundaries, интерфейсы компонентов и полную техническую реализацию."
             ]
           },
           {
             "date": "2026 — сейчас",
-            "title": ".NET backend: VpnMediator и CompilationLabLMS",
-            "org": "ASP.NET Core · PostgreSQL/SQLite · Linux",
+            "title": ".NET backend architecture — VpnMediator / CompilationLabLMS",
+            "org": ".NET · ASP.NET Core · Python · SQL · Linux",
             "bullets": [
-              "Проектировал состояния подписок, платежей, балансов, ролей и устройств; обрабатывал webhooks и повторные операции идемпотентно.",
-              "Настраивал миграции, фоновые recovery-процессы, audit trail, backup/restore, health gates, Docker, nginx, systemd и откат релизов."
+              "Спроектировал explicit payment/subscription states, durable inbox/outbox, idempotent processing, retry/reconciliation workers и manual-review path для конфликтующих payment evidence.",
+              "Построил release path с versioned releases, coordinated backup, atomic switch, health gates и rollback на предыдущую версию при неуспешном запуске."
             ]
           }
         ],
         "project_ids": [
           "wist",
           "vpn",
-          "psform",
-          "codegen"
+          "codegen",
+          "psform"
         ],
         "skills": [
           [
-            "Архитектура",
-            "модульные границы, typed contracts, state machines, manifests/locks, lifecycle ownership, fail-closed design"
+            "Architecture",
+            "ownership/module boundaries, typed contracts, deterministic composition, extensibility, state machines, lifecycle, migrations/rollback, architecture verification"
           ],
           [
-            ".NET / backend",
-            "C#/.NET, ASP.NET Core, REST/OpenAPI, PostgreSQL, SQLite, webhooks, transactions, migrations, recovery"
+            "Compilers / Systems",
+            "LLVM, CFG/SSA, dominance, program analysis, Bytecode/AIR, register allocation, x86-64 code generation"
           ],
           [
-            "Компиляторы",
-            "Bytecode/AIR, CFG, SSA, dominance, optimizations, interpreter/CIL, LLVM, program analysis"
+            "Backend / Platform",
+            "C#/.NET, ASP.NET Core, REST/OpenAPI, PostgreSQL, SQLite, transactions, webhooks, migrations, recovery"
           ],
           [
-            "Системы и проверка",
-            "C++23, C17, Rust, Python, Linux, CMake, sanitizers, differential/metamorphic testing, exact oracles"
+            "Verification",
+            "C++23, C17, Rust, Python, Linux, CMake, differential/metamorphic testing, reference oracles, ASan/UBSan"
           ]
         ],
-        "contact_heading": "Открыт к инженерным задачам, где важны архитектура, корректность и ответственность за результат.",
-        "footer": "Software Engineer · .NET, backend и системная разработка"
+        "contact_heading": "Целевые роли: Software / Platform Engineer с существенной архитектурной ответственностью.",
+        "footer": "Software Engineer — Architecture & Platforms"
       },
       "en": {
         "filename": "en.html",
         "pdf": "Mikhail_Razakov_Software_Engineer_EN.pdf",
-        "title": "Mikhail Razakov — Software Engineer: .NET, backend, and systems",
-        "role": "Software Engineer · .NET, backend, and systems",
-        "brand": ".NET · backend · systems",
-        "eyebrow": "Platform architecture · backend · compilers",
-        "summary": "I design and implement complex software systems: modular .NET platforms, backend services with payments and recovery, compilers, and program-analysis tools. My strongest areas are explicit contracts, state invariants, verifiable semantics, and carrying systems through to reproducible outcomes.",
-        "description": "Software Engineer Mikhail Razakov: .NET platform architecture, backend services, compilers, LLVM, program analysis, and reliable releases.",
+        "title": "Mikhail Razakov — Software Engineer — Architecture & Platforms",
+        "role": "Software Engineer — Architecture & Platforms",
+        "brand": "architecture · .NET platforms · compiler/runtime",
+        "eyebrow": "Ownership · typed contracts · reliability · compilers",
+        "summary": "I design extensible platforms, compiler/runtime systems, and backend services where correctness depends on explicit ownership boundaries. I turn implicit dependencies and state assumptions into typed contracts, deterministic plans, and mechanically checked invariants.",
+        "description": "Software Engineer Mikhail Razakov: platform architecture, typed contracts, state/recovery, compiler/runtime systems, LLVM, and mechanically checked engineering invariants.",
         "proofs": [
           [
-            "Platform architecture",
-            "UniversalToolchain/Wist2: independent packages, typed contracts, routes, manifests/locks, and lifecycle ownership"
+            "Single-owner architecture",
+            "UniversalToolchain: one immutable plan owns dependencies, capability selection, pass ordering, and backend routes; runtime only materializes the selected graph"
           ],
           [
-            "Production backend",
-            "Payments, subscriptions, roles, devices, PostgreSQL/SQLite, migrations, recovery, backup/restore, and rollback"
+            "State & recovery",
+            "Payments and subscriptions: explicit states, idempotency, durable inbox/outbox, reconciliation, backup/restore, and rollback"
           ],
           [
-            "Compiler / systems",
-            "Callable-first SSA, interpreter/CIL, LLVM, C++23, memory analysis, and x86-64 code generation"
+            "Correctness by contract",
+            "Exact manifest/ownership checks, interpreter/CIL parity, allocator verification, and differential execution"
           ]
         ],
         "experience": [
           {
             "date": "2024 — present",
-            "title": "UniversalToolchain / Wist2 — creator and primary developer",
-            "org": ".NET SDK for languages and runtimes",
+            "title": "UniversalToolchain — creator and primary developer",
+            "org": ".NET language platform · compiler/runtime architecture",
             "bullets": [
-              "Designed language composition from independently versioned packages: typed artifacts, capabilities and conflicts, deterministic routes, and pass ordering.",
-              "Implemented exact manifest binding, lock identity, fail-closed policies, and runtime-session lifecycle ownership.",
-              "Verification as of July 25, 2026: 1,465/1,465 tests with zero failures across nine packages and clean-consumer projects."
+              "Made LanguageCompiler the single owner of composition: dependencies/conflicts, capability selection, pass ordering, and backend routes are fixed in one immutable LanguagePlan; runtime does not make a second composition decision.",
+              "Separated syntax → semantic binding → Bytecode → AIR → optimization → backend through explicit representation/ownership boundaries and removed the legacy reflection/runtime-profile topology.",
+              "Enforced architectural invariants with exact manifest/ownership checks, interpreter/CIL parity, and regression tests; the current exact manifest is 1,306/1,306 passing."
             ]
           },
           {
             "date": "July 1 — August 31, 2026",
-            "title": "MCST — compiler engineering intern",
-            "org": "LLVM track · 0.25 FTE · remote",
+            "title": "MCST — Compiler Engineering Intern",
+            "org": "LLVM · C++23 · 0.25 FTE · remote",
             "bullets": [
-              "Developing an LLVM optimization pass and implementing tested graph algorithms in C++23."
+              "Building an LLVM pass for interprocedural linear evolution modelling of global values; unsupported CFG/call cases conservatively fall back to unknown rather than producing an unsafe inference."
             ]
           },
           {
             "date": "2023 — 2025",
             "title": "Mama Lama — Software Developer",
-            "org": "independent development · application architecture · event software",
+            "org": "independent development · event software",
             "bullets": [
-              "Independently developed games and applications for DJs and events, from requirements and design through implementation, testing, and preparation for use.",
-              "Designed the application architecture and modular structure, defining component boundaries and interfaces; owned the complete technical implementation through a finished product."
+              "Independently took event applications from requirements through deployment-ready use, defining module boundaries, component interfaces, and the complete technical implementation."
             ]
           },
           {
             "date": "2026 — present",
-            "title": ".NET backend: VpnMediator and CompilationLabLMS",
-            "org": "ASP.NET Core · PostgreSQL/SQLite · Linux",
+            "title": ".NET backend architecture — VpnMediator / CompilationLabLMS",
+            "org": ".NET · ASP.NET Core · Python · SQL · Linux",
             "bullets": [
-              "Designed subscription, payment, balance, role, and device state; handled webhooks and repeated operations idempotently.",
-              "Built migrations, background recovery, audit trails, backup/restore, health gates, Docker, nginx, systemd, and rollback paths."
+              "Designed explicit payment/subscription states, durable inbox/outbox processing, idempotency, retry/reconciliation workers, and manual-review paths for conflicting payment evidence.",
+              "Built a release path with versioned releases, coordinated backup, atomic switching, health gates, and rollback to the previous release on failed startup."
             ]
           }
         ],
         "project_ids": [
           "wist",
           "vpn",
-          "psform",
-          "codegen"
+          "codegen",
+          "psform"
         ],
         "skills": [
           [
             "Architecture",
-            "module boundaries, typed contracts, state machines, manifests/locks, lifecycle ownership, fail-closed design"
+            "ownership/module boundaries, typed contracts, deterministic composition, extensibility, state machines, lifecycle, migrations/rollback, architecture verification"
           ],
           [
-            ".NET / backend",
-            "C#/.NET, ASP.NET Core, REST/OpenAPI, PostgreSQL, SQLite, webhooks, transactions, migrations, recovery"
+            "Compilers / Systems",
+            "LLVM, CFG/SSA, dominance, program analysis, Bytecode/AIR, register allocation, x86-64 code generation"
           ],
           [
-            "Compilers",
-            "Bytecode/AIR, CFG, SSA, dominance, optimizations, interpreter/CIL, LLVM, program analysis"
+            "Backend / Platform",
+            "C#/.NET, ASP.NET Core, REST/OpenAPI, PostgreSQL, SQLite, transactions, webhooks, migrations, recovery"
           ],
           [
-            "Systems and verification",
-            "C++23, C17, Rust, Python, Linux, CMake, sanitizers, differential/metamorphic testing, exact oracles"
+            "Verification",
+            "C++23, C17, Rust, Python, Linux, CMake, differential/metamorphic testing, reference oracles, ASan/UBSan"
           ]
         ],
-        "contact_heading": "Open to engineering work where architecture, correctness, and ownership matter.",
-        "footer": "Software Engineer · .NET, backend, and systems"
+        "contact_heading": "Targeting Software / Platform Engineer roles with substantial architecture ownership.",
+        "footer": "Software Engineer — Architecture & Platforms"
       }
     },
     "compiler": {
