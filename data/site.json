@@ -1,5 +1,5 @@
 {
-  "version": 44,
+  "version": 45,
   "updated_at": "2026-08-25",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -142,7 +142,19 @@
           ]
         ],
         "contact_heading": "Целевые роли: Software / Platform Engineer с существенной архитектурной ответственностью.",
-        "footer": "Software Engineer — Architecture & Platforms"
+        "footer": "Software Engineer — Architecture & Platforms",
+        "recognition": [
+          [
+            "2026",
+            "UniversalToolchain — Балтийский научно-инженерный конкурс",
+            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
+          ],
+          [
+            "2026",
+            "НИЯУ МИФИ «Юниор»",
+            "Диплом I степени, 96/100 за проект UniversalToolchain."
+          ]
+        ]
       },
       "en": {
         "filename": "en.html",
@@ -229,7 +241,19 @@
           ]
         ],
         "contact_heading": "Targeting Software / Platform Engineer roles with substantial architecture ownership.",
-        "footer": "Software Engineer — Architecture & Platforms"
+        "footer": "Software Engineer — Architecture & Platforms",
+        "recognition": [
+          [
+            "2026",
+            "UniversalToolchain — Baltic Science and Engineering Competition",
+            "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain."
+          ],
+          [
+            "2026",
+            "MEPhI Junior",
+            "First-degree diploma, 96/100 for the UniversalToolchain project."
+          ]
+        ]
       }
     },
     "compiler": {

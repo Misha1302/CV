@@ -1,9 +1,9 @@
 {
   "ru.html|desktop": {
-    "dhash": "3ecb3dc719dc07360f2e071e077a1f4f19cf09de267625f6259625f207f217b7",
+    "dhash": "3ecb3fc719dc053707060f1e263c176f194f19df2676267627b827f807f61fb3",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 5705,
+    "page_height": 5434,
     "h1": "Михаил Разаков",
     "role": "Software Engineer — Architecture & Platforms"
   },
@@ -32,10 +32,10 @@
     "role": "C++ / LLVM Systems Engineer"
   },
   "ru.html|mobile": {
-    "dhash": "71ff28ff3f7f1e7f347f0d7e1aef1edf2b5f39bf3adf33cf5b77577f1ebf38ff",
+    "dhash": "70ff28ff3f7f1e7e34ff0e7f126f1eff2d5f39ff38ff1bcf73e74ef01ebf38ff",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 9875,
+    "page_height": 9515,
     "h1": "Михаил Разаков",
     "role": "Software Engineer — Architecture & Platforms"
   },
@@ -67,7 +67,7 @@
     "dhash": "1a934203330b2e072e060ee63dc632c608c735cf31cf030b19ce19de0c860820",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 5770,
+    "page_height": 5499,
     "h1": "Михаил Разаков",
     "role": "Software Engineer — Architecture & Platforms"
   },
