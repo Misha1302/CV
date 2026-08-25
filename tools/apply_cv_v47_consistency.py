@@ -9,52 +9,67 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "data" / "site.json"
 
 
-def clean_text(text: str) -> str:
-    # Remove LangDev acceptance sentences from legacy secondary profiles.
-    text = re.sub(r"\s*Доклад о проекте принят на LangDev 2026\.?", "", text)
-    text = re.sub(r"\s*A talk about the project was accepted for LangDev 2026\.?", "", text)
-    text = re.sub(r"\s*Доклад по UniversalToolchain/Wist2 принят к выступлению\.?", "", text)
-    text = re.sub(r"\s*UniversalToolchain/Wist2 talk accepted\.?", "", text)
-    return text.strip()
+def safe_recognition(lang: str) -> list[list[str]]:
+    if lang == "ru":
+        return [
+            ["2026", "UniversalToolchain — Балтийский научно-инженерный конкурс", "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."],
+            ["2026", "НИЯУ МИФИ «Юниор»", "Диплом I степени, 96/100 за проект UniversalToolchain."],
+        ]
+    return [
+        ["2026", "UniversalToolchain — Baltic Science and Engineering Competition", "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain."],
+        ["2026", "MEPhI Junior", "First-degree diploma, 96/100 for the UniversalToolchain project."],
+    ]
+
+
+def clean_text(text: str, lang: str) -> str:
+    # Remove old LangDev acceptance wording from any legacy profile field.
+    if "LangDev" in text:
+        return ""
+
+    if lang == "ru":
+        exact = {
+            "1-е из 49 · 104/104": "Conservative analysis",
+            "1-е место среди 49 решений: единственная оценка 5,0/5,0 и 104/104 официальных тестов.": "Консервативный анализ проверен независимым exact oracle на малых областях, randomized/metamorphic cases и воспроизводимыми контрпримерами.",
+            "Занял 1-е место среди 49 решений: единственная оценка 5,0/5,0 и 104/104 официальных тестов.": "Построил консервативный анализ и проверил его независимым exact oracle на малых областях, randomized/metamorphic cases и воспроизводимыми контрпримерами.",
+            "1-е место среди 49 решений; единственная оценка 5,0/5,0; 104/104 официальных тестов.": "Консервативный PS-form анализ с независимым exact oracle, randomized/metamorphic проверками и воспроизводимыми контрпримерами.",
+            "Реализовал анализ пересечения параметрических обращений к памяти на C17; 104/104 официальных тестов и 1-е место из 49.": "Реализовал консервативный анализ пересечения параметрических обращений к памяти на C17; корректность проверял независимым exact oracle на малых областях и randomized/metamorphic cases.",
+            "Реализовал консервативный анализ параметрических обращений к памяти; занял 1-е место среди 49 решений, 104/104 тестов.": "Реализовал консервативный анализ параметрических обращений к памяти; недоказанные случаи не превращаются в ложный yes/no, а корректность проверяется независимым exact oracle.",
+            "104/104 официальных тестов и 1-е место среди 49 решений.": "Консервативный анализ с независимым exact oracle на малых областях и randomized/metamorphic проверками.",
+            "Контрольная проверка от 25.07.2026: 1 465/1 465 тестов без падений по девяти пакетам и clean-consumer проектам.": "Текущий exact manifest: 1 306/1 306 passed; отдельно проверяются interpreter/CIL parity и clean-consumer сценарии.",
+        }
+    else:
+        exact = {
+            "#1 of 49 · 104/104": "Conservative analysis",
+            "1st of 49 · 104/104": "Conservative analysis",
+            "Ranked 1st of 49: the only 5.0/5.0 result and 104/104 official tests.": "Built conservative analysis checked by an independent exact oracle on small domains, randomized/metamorphic cases, and reproducible counterexamples.",
+            "Ranked 1st of 49; the only 5.0/5.0 result; 104/104 official tests.": "Conservative PS-form analysis with an independent exact oracle, randomized/metamorphic checks, and reproducible counterexamples.",
+            "Implemented analysis of whether parametric memory accesses can overlap; passed 104/104 official tests and ranked #1 of 49.": "Implemented conservative analysis of whether parametric memory accesses can overlap, checked against an independent exact oracle on small domains plus randomized/metamorphic cases.",
+            "Implemented conservative analysis of parametric memory accesses; ranked 1st of 49 with 104/104 tests.": "Implemented conservative analysis of parametric memory accesses; unresolved cases do not become false yes/no answers, and correctness is checked against an independent exact oracle.",
+            "Passed 104/104 official tests and ranked #1 of 49 submissions.": "Conservative analysis checked by an independent exact oracle on small domains plus randomized/metamorphic tests.",
+            "Verification as of July 25, 2026: 1,465/1,465 tests with zero failures across nine packages and clean-consumer projects.": "Current exact manifest: 1,306/1,306 passing, with interpreter/CIL parity and clean-consumer scenarios checked separately.",
+        }
+
+    for old, new in exact.items():
+        text = text.replace(old, new)
+
+    # Catch formatting variants without deleting surrounding useful technical content.
+    if lang == "ru":
+        text = re.sub(r"1-е место среди 49 решений[^.;]*[.;]?", "", text, flags=re.I)
+        text = re.sub(r"104/104\s+(?:официальных\s+)?тест(?:ов|а)[^.;]*[.;]?", "", text, flags=re.I)
+    else:
+        text = re.sub(r"(?:ranked\s+)?1st of 49[^.;]*[.;]?", "", text, flags=re.I)
+        text = re.sub(r"104/104\s+(?:official\s+)?tests?[^.;]*[.;]?", "", text, flags=re.I)
+    return re.sub(r"\s{2,}", " ", text).strip(" ;,.-")
 
 
 def clean_profile(profile: dict[str, Any], lang: str) -> None:
-    # Remove proof/recognition cards whose only value is an unsupported external claim.
-    for key in ("proofs", "recognition"):
-        if key in profile:
-            profile[key] = [
-                item for item in profile[key]
-                if not any("LangDev" in str(part) for part in item)
-            ]
-
-    # Normalize legacy PS-form ranking/test-count claims in secondary profiles.
-    if lang == "ru":
-        replacements = {
-            "1-е из 49 · 104/104": "Conservative analysis",
-            "1-е место из 49": "PS-form analysis",
-            "PS-form Memory Dependence Analyzer — 1-е место из 49": "PS-form Memory Dependence Analyzer",
-            "Реализовал анализ пересечения параметрических обращений к памяти на C17; 104/104 официальных тестов и 1-е место из 49.": "Реализовал консервативный анализ пересечения параметрических обращений к памяти на C17; корректность проверял exact oracle на малых областях и randomized/metamorphic cases.",
-            "Реализовал консервативный анализ параметрических обращений к памяти; занял 1-е место среди 49 решений, 104/104 тестов.": "Реализовал консервативный анализ параметрических обращений к памяти; недоказанные случаи не превращаются в ложный yes/no, а проверка опирается на независимый exact oracle.",
-            "104/104 официальных тестов и 1-е место среди 49 решений.": "Консервативный анализ с независимым exact oracle на малых областях и randomized/metamorphic проверками.",
-        }
-    else:
-        replacements = {
-            "#1 of 49 · 104/104": "Conservative analysis",
-            "#1 of 49": "PS-form analysis",
-            "PS-form Memory Dependence Analyzer — #1 of 49": "PS-form Memory Dependence Analyzer",
-            "Implemented analysis of whether parametric memory accesses can overlap; passed 104/104 official tests and ranked #1 of 49.": "Implemented conservative analysis of whether parametric memory accesses can overlap, checked against an exact oracle on small domains plus randomized/metamorphic cases.",
-            "Implemented conservative analysis of parametric memory accesses; ranked #1 of 49 with 104/104 tests.": "Implemented conservative analysis of parametric memory accesses; unresolved cases do not become false yes/no answers, and correctness is checked against an independent exact oracle.",
-            "Passed 104/104 official tests and ranked #1 of 49 submissions.": "Conservative analysis checked by an independent exact oracle on small domains plus randomized/metamorphic tests.",
-        }
-
     def walk(value: Any) -> Any:
         if isinstance(value, str):
-            value = clean_text(value)
-            for old, new in replacements.items():
-                value = value.replace(old, new)
-            return value
+            return clean_text(value, lang)
         if isinstance(value, list):
-            return [walk(item) for item in value]
+            cleaned = [walk(item) for item in value]
+            # Drop proof/recognition-style rows that became empty after cleanup.
+            return [item for item in cleaned if not (isinstance(item, list) and any(str(part).strip() == "" for part in item))]
         if isinstance(value, dict):
             return {k: walk(v) for k, v in value.items()}
         return value
@@ -71,19 +86,24 @@ def main() -> None:
     data["version"] = 47
     data["updated_at"] = "2026-08-25"
 
-    # Shared project data is used by the one-page PDF generator, so keep it evidence-safe.
+    # Shared project data is consumed by every one-page PDF renderer.
     psform = data["projects"]["psform"]
     psform["result_ru"] = "Консервативный результат yes/no/maybe с независимым exact oracle на малых областях, randomized/metamorphic проверками и воспроизводимыми контрпримерами."
     psform["result_en"] = "Conservative yes/no/maybe results checked by an independent exact oracle on small domains, randomized/metamorphic tests, and reproducible counterexamples."
 
-    for profile_key, variants in data["profiles"].items():
+    for variants in data["profiles"].values():
         clean_profile(variants["ru"], "ru")
         clean_profile(variants["en"], "en")
+
+    # Secondary profiles used inherited/legacy recognition; make those surfaces explicit and safe.
+    for key in ("systems", "quant"):
+        data["profiles"][key]["ru"]["recognition"] = safe_recognition("ru")
+        data["profiles"][key]["en"]["recognition"] = safe_recognition("en")
 
     SITE.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     (ROOT / "CONTENT-REVIEW-v47.md").write_text(
-        """# Content review — CV v47 final consistency pass\n\n## Decision\n\nPASS. The three primary CV narratives remain Architecture / Platforms, Compiler Infrastructure, and .NET Backend / Reliability.\n\n## Post-render finding repaired\n\nThe compiler PDF correctly used the new profile content but its project list still read shared `projects.psform.result_*`, which retained the old ranking/test-count wording. v47 moves the shared project result to evidence-safe analysis/verification language so the claim cannot reappear through another renderer.\n\n## Repository-wide consistency\n\nLegacy LangDev acceptance cards/sentences and PS-form ranking/test-count wording are removed from public profile data. This is a credibility cleanup, not a claim that the underlying historical result was false; the issue is that the stronger independent evidence currently available supports the technical design and verification more cleanly than the external ranking claim.\n\n## Final routing\n\n- Architecture / Platforms: broad hands-on architecture and platform engineering.\n- Compiler Infrastructure: LLVM, language platforms, IR/runtime, program analysis, compiler verification.\n- .NET Backend / Reliability: payment state, idempotency, recovery, provider verification, migrations, release safety.\n\n## Remaining boundaries\n\nNo Staff/Principal/Senior Architect, high-load, Kubernetes/cloud, formal verification, or multi-team architecture-governance claim is made.\n""",
+        """# Content review — CV v47 final consistency pass\n\n## Decision\n\nPASS. The three primary CV narratives remain Architecture / Platforms, Compiler Infrastructure, and .NET Backend / Reliability.\n\n## Post-render findings repaired\n\nThe compiler PDF used shared `projects.psform.result_*`, so v47 moves that shared result to evidence-safe analysis/verification language. A repository-wide pass also removed legacy LangDev acceptance wording, PS-form ranking/test-count wording, and the stale 1,465-test UniversalToolchain snapshot from secondary public profiles.\n\n## Final routing\n\n- Architecture / Platforms: broad hands-on architecture and platform engineering.\n- Compiler Infrastructure: LLVM, language platforms, IR/runtime, program analysis, compiler verification.\n- .NET Backend / Reliability: payment state, idempotency, recovery, provider verification, migrations, release safety.\n\n## Adversarial review\n\nThe targeted pages now differ by evidence ordering rather than by incompatible facts. Shared project data cannot silently reintroduce the removed claims into PDFs. Secondary C++/quant pages use the same evidence floor.\n\n## Remaining boundaries\n\nNo Staff/Principal/Senior Architect, high-load, Kubernetes/cloud, formal verification, or multi-team architecture-governance claim is made.\n""",
         encoding="utf-8",
     )
 
