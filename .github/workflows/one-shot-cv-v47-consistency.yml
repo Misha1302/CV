@@ -1,4 +1,5 @@
 name: One-shot CV v47 consistency release
+# Expanded after repository-wide rendered evidence review.
 
 on:
   push:
@@ -39,7 +40,7 @@ jobs:
         run: |
           python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-v47-validation.json
           python tools/build_site.py --check
-          if grep -R -E -i --include='*.html' 'LangDev|1-е из 49|1-е место (из|среди) 49|#1 of 49|104/104' .; then
+          if grep -R -E -i --include='*.html' 'LangDev|1-е из 49|1-е место (из|среди) 49|#1 of 49|1st of 49|104/104|1[ ,]465/1[ ,]465' .; then
             echo 'Found stale public evidence wording' >&2
             exit 1
           fi
