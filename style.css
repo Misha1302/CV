@@ -282,3 +282,23 @@ img { max-width: 100%; }
   .profile-compiler .section-heading { grid-template-columns: 1fr; }
   .profile-compiler .project-row { grid-template-columns: 1fr; gap: 12px; }
 }
+
+
+/* v46 mobile timeline containment */
+@media (max-width: 760px) {
+  .timeline,
+  .timeline article,
+  .timeline article > *,
+  .timeline-details,
+  .timeline-details li {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .timeline time,
+  .timeline h3,
+  .timeline .org,
+  .timeline-details li {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}

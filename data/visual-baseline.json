@@ -8,20 +8,20 @@
     "role": "Software Engineer — Architecture & Platforms"
   },
   "ru-compiler.html|desktop": {
-    "dhash": "3ae33ee70d0c0b3e0f160cc634d634ce34f623c426cc0786258609f40db215b3",
+    "dhash": "3ae33ae72d060f360736074e0cc63cf634d620ce238e161e069849f00fb617b3",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 4214,
+    "page_height": 4241,
     "h1": "Михаил Разаков",
-    "role": "Compiler Engineer · LLVM/C++ · Program Analysis"
+    "role": "Compiler / Platform Engineer · LLVM & Language Infrastructure"
   },
   "ru-backend.html|desktop": {
-    "dhash": "3ecb36c739dc013e072626180e7f1e7f3f5f263027b025f2258625f207b21fb3",
+    "dhash": "3e0b3fc7399405360f36073e077a1b671e7f077e263e25b627d864f007f31fb3",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 5039,
+    "page_height": 5073,
     "h1": "Михаил Разаков",
-    "role": ".NET Backend Engineer · надёжные системы"
+    "role": ".NET Backend / Platform Engineer · State & Reliability"
   },
   "ru-cpp-systems.html|desktop": {
     "dhash": "2f0b37c7295c05360f2e263a0f7f2d5f39cf06f6263825b4258625e607f215b7",
@@ -40,20 +40,20 @@
     "role": "Software Engineer — Architecture & Platforms"
   },
   "ru-compiler.html|mobile": {
-    "dhash": "59f366fb76ec396f1a5f1e1f576f73df7987599f369977d353df556f2f3f08df",
+    "dhash": "59e366ff76e439ff3e7f1b36566771977bdf7d7f569b53bf45e16575277f08db",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 6953,
+    "page_height": 6858,
     "h1": "Михаил Разаков",
-    "role": "Compiler Engineer · LLVM/C++ · Program Analysis"
+    "role": "Compiler / Platform Engineer · LLVM & Language Infrastructure"
   },
   "ru-backend.html|mobile": {
-    "dhash": "65bf28fd2d9d361e186f3af72eff3b9f3aff39ff33db6f735377549f1eff28eb",
+    "dhash": "65e728ff3c9f15ff3d5f1c6f1a6f3fdf3fdf3aef1bdf5fc74bf244f93abf18ef",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 8069,
+    "page_height": 8283,
     "h1": "Михаил Разаков",
-    "role": ".NET Backend Engineer · надёжные системы"
+    "role": ".NET Backend / Platform Engineer · State & Reliability"
   },
   "ru-cpp-systems.html|mobile": {
     "dhash": "64f328fd3cfc34ff1b172a6f2fff38bf29bf3e5f1efd5fde5b7757df1e9f2cdf",
@@ -72,11 +72,11 @@
     "role": "Software Engineer — Architecture & Platforms"
   },
   "ru-backend.html|no-js": {
-    "dhash": "51b34481290c738064c12c3e26bd68e34cbe16ae496d08c180f0437069e82683",
+    "dhash": "53d340c12846738064c1293e2ca4260552275ad351cd48e190f0437021682683",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 8419,
+    "page_height": 8633,
     "h1": "Михаил Разаков",
-    "role": ".NET Backend Engineer · надёжные системы"
+    "role": ".NET Backend / Platform Engineer · State & Reliability"
   }
 }

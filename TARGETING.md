@@ -1,14 +1,14 @@
-# Targeting guide — v44
+# Targeting guide — v46
 
-## Primary default
+## Primary profiles
 
-1. `Software Engineer — Architecture & Platforms` — default RU/EN profile for hands-on platform architecture, backend state/recovery, compiler/runtime systems, and correctness-oriented engineering.
+1. `Software Engineer — Architecture & Platforms` — default for hands-on architecture/platform roles spanning typed contracts, state/recovery, and compiler/runtime systems.
+2. `Compiler / Platform Engineer — LLVM & Language Infrastructure` — LLVM/compiler infrastructure, language SDK/runtime, IR/SSA, program analysis, and compiler-backend roles.
+3. `.NET Backend / Platform Engineer — State & Reliability` — backend/platform roles where payments, idempotency, recovery, migrations, and release correctness dominate.
 
-## Strong specialized alternatives
+## Secondary profiles
 
-1. `Compiler / Language Platforms` — compiler/runtime, language SDK, IR/SSA and compiler-infrastructure roles.
-2. `.NET Backend` — backend roles where payment state, idempotency, recovery and operations are more important than compiler depth.
-3. `C++ / LLVM Systems` — C++ systems, program analysis, low-level and compiler-backend roles.
-4. `Quantitative Research / Research Software Engineering` — only where algorithms, experimentation and research tooling are central.
+- `C++ / LLVM Systems` — narrower low-level/C++ systems applications.
+- `Quantitative Research / Research Software Engineering` — only when algorithmic experimentation is central.
 
-The default profile intentionally does not use `Software Architect`, `Staff`, or `Principal` as a title. Its purpose is to get architecture-heavy engineering interviews without implying multi-team or enterprise architecture seniority that the current evidence does not establish.
+Use the three primary profiles first. They share the same facts and differ only in evidence ordering and role-specific vocabulary.
