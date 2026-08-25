@@ -1,9 +1,11 @@
-# Canonical CV facts — v32
+# Canonical CV facts — v44
 
 - Education RU: Студент программы «Программная инженерия» НИУ ВШЭ.
 - Education EN: Software Engineering student at HSE University.
-- Wist2 canonical gate, 2026-07-25: 1,465/1,465 tests passed, 0 failed, 0 skipped; 0 build warnings/errors; 9 packages; clean template and cross-package consumer smoke.
-- Wist2 public boundary: experimental typed .NET language/runtime platform; Wist public alpha facade; PlanFuzz experimental non-packable research tooling.
-- SSA boundary: callable-first opt-in subset with verifier-gated AIR → SSA → AIR; no claim of universal coverage, SSA-native backend or performance superiority.
-- Baltic award RU: Диплом I степени и Главная премия «Совершенство как надежда» Балтийского научно-инженерного конкурса.
-- Baltic award EN: First-degree diploma and the Grand Prize “Perfection as Hope” at the Baltic Science and Engineering Competition.
+- UniversalToolchain current exact test manifest on master (verified at commit `36206b66548fec365be6e03381ba44d50c2cafe5`): 1,306 passed, 0 failed, 0 skipped.
+- `UniversalToolchain.Wist` source candidate `0.1.0-alpha.7` is not published on NuGet.org; package publication must not be inferred from project version.
+- UniversalToolchain public boundary: typed .NET language/runtime platform with explicit package/contribution planning, exact runtime binding, and experimental non-packable PlanFuzz research tooling.
+- SSA boundary: optional verifier-gated AIR → SSA → AIR routes; no universal SSA coverage or performance-superiority claim.
+- Baltic award RU: Диплом I степени и Главная премия «Совершенство как надежда» Балтийского научно-инженерного конкурса 2026.
+- Baltic award EN: First-degree diploma and the Grand Prize “Perfection as Hope” at the 2026 Baltic Science and Engineering Competition.
+- MEPhI Junior 2026: First-degree diploma, 96/100 for UniversalToolchain (49 project + 47 written part).
