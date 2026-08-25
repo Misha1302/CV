@@ -1,5 +1,5 @@
 {
-  "version": 46,
+  "version": 47,
   "updated_at": "2026-08-25",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -64,8 +64,8 @@
         "role": "Software Engineer — Architecture & Platforms",
         "brand": "architecture · .NET platforms · compiler/runtime",
         "eyebrow": "Ownership · typed contracts · reliability · compilers",
-        "summary": "Проектирую расширяемые платформы, compiler/runtime systems и backend-сервисы, где корректность зависит от явных границ ответственности. Превращаю неявные зависимости и состояния в typed contracts, deterministic plans и механически проверяемые инварианты.",
-        "description": "Software Engineer Михаил Разаков: архитектура платформ, typed contracts, state/recovery, compiler/runtime systems, LLVM и проверяемые инженерные инварианты.",
+        "summary": "Проектирую расширяемые платформы, compiler/runtime systems и backend-сервисы, где корректность зависит от явных границ ответственности. Превращаю неявные зависимости и состояния в typed contracts, deterministic plans и механически проверяемые инварианты",
+        "description": "Software Engineer Михаил Разаков: архитектура платформ, typed contracts, state/recovery, compiler/runtime systems, LLVM и проверяемые инженерные инварианты",
         "proofs": [
           [
             "Single-owner architecture",
@@ -84,11 +84,11 @@
           {
             "date": "2024 — сейчас",
             "title": "UniversalToolchain — создатель и основной разработчик",
-            "org": ".NET language platform · compiler/runtime architecture",
+            "org": "NET language platform · compiler/runtime architecture",
             "bullets": [
-              "Сделал LanguageCompiler единственным владельцем композиции: dependencies/conflicts, capability selection, pass ordering и backend routes фиксируются в одном immutable LanguagePlan; runtime не принимает второе решение.",
-              "Разделил syntax → semantic binding → Bytecode → AIR → optimizations → backend явными representation/ownership boundaries и удалил legacy reflection/runtime-profile topology.",
-              "Закрепил архитектурные инварианты exact manifest/ownership checks, interpreter/CIL parity и regression tests; текущий exact manifest — 1 306/1 306 passed."
+              "Сделал LanguageCompiler единственным владельцем композиции: dependencies/conflicts, capability selection, pass ordering и backend routes фиксируются в одном immutable LanguagePlan; runtime не принимает второе решение",
+              "Разделил syntax → semantic binding → Bytecode → AIR → optimizations → backend явными representation/ownership boundaries и удалил legacy reflection/runtime-profile topology",
+              "Закрепил архитектурные инварианты exact manifest/ownership checks, interpreter/CIL parity и regression tests; текущий exact manifest — 1 306/1 306 passed"
             ]
           },
           {
@@ -96,7 +96,7 @@
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM · C++23 · 0,25 ставки · удалённо",
             "bullets": [
-              "Разрабатываю LLVM-pass для межпроцедурного моделирования линейной эволюции глобальных значений; неподдерживаемые CFG/call cases переводятся в conservative unknown вместо небезопасного вывода."
+              "Разрабатываю LLVM-pass для межпроцедурного моделирования линейной эволюции глобальных значений; неподдерживаемые CFG/call cases переводятся в conservative unknown вместо небезопасного вывода"
             ]
           },
           {
@@ -104,16 +104,16 @@
             "title": "Мама Лама — Software Developer",
             "org": "самостоятельная разработка · event software",
             "bullets": [
-              "Самостоятельно проектировал и доводил event-приложения от требований до использования, определяя module boundaries, интерфейсы компонентов и полную техническую реализацию."
+              "Самостоятельно проектировал и доводил event-приложения от требований до использования, определяя module boundaries, интерфейсы компонентов и полную техническую реализацию"
             ]
           },
           {
             "date": "2026 — сейчас",
-            "title": ".NET backend architecture — VpnMediator / CompilationLabLMS",
-            "org": ".NET · ASP.NET Core · Python · SQL · Linux",
+            "title": "NET backend architecture — VpnMediator / CompilationLabLMS",
+            "org": "NET · ASP.NET Core · Python · SQL · Linux",
             "bullets": [
-              "Спроектировал explicit payment/subscription states, durable inbox/outbox, idempotent processing, retry/reconciliation workers и manual-review path для конфликтующих payment evidence.",
-              "Построил release path с versioned releases, coordinated backup, atomic switch, health gates и rollback на предыдущую версию при неуспешном запуске."
+              "Спроектировал explicit payment/subscription states, durable inbox/outbox, idempotent processing, retry/reconciliation workers и manual-review path для конфликтующих payment evidence",
+              "Построил release path с versioned releases, coordinated backup, atomic switch, health gates и rollback на предыдущую версию при неуспешном запуске"
             ]
           }
         ],
@@ -141,18 +141,18 @@
             "C++23, C17, Rust, Python, Linux, CMake, differential/metamorphic testing, reference oracles, ASan/UBSan"
           ]
         ],
-        "contact_heading": "Целевые роли: Software / Platform Engineer с существенной архитектурной ответственностью.",
+        "contact_heading": "Целевые роли: Software / Platform Engineer с существенной архитектурной ответственностью",
         "footer": "Software Engineer — Architecture & Platforms",
         "recognition": [
           [
             "2026",
             "UniversalToolchain — Балтийский научно-инженерный конкурс",
-            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
+            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain"
           ],
           [
             "2026",
             "НИЯУ МИФИ «Юниор»",
-            "Диплом I степени, 96/100 за проект UniversalToolchain."
+            "Диплом I степени, 96/100 за проект UniversalToolchain"
           ]
         ]
       },
@@ -163,8 +163,8 @@
         "role": "Software Engineer — Architecture & Platforms",
         "brand": "architecture · .NET platforms · compiler/runtime",
         "eyebrow": "Ownership · typed contracts · reliability · compilers",
-        "summary": "I design extensible platforms, compiler/runtime systems, and backend services where correctness depends on explicit ownership boundaries. I turn implicit dependencies and state assumptions into typed contracts, deterministic plans, and mechanically checked invariants.",
-        "description": "Software Engineer Mikhail Razakov: platform architecture, typed contracts, state/recovery, compiler/runtime systems, LLVM, and mechanically checked engineering invariants.",
+        "summary": "I design extensible platforms, compiler/runtime systems, and backend services where correctness depends on explicit ownership boundaries. I turn implicit dependencies and state assumptions into typed contracts, deterministic plans, and mechanically checked invariants",
+        "description": "Software Engineer Mikhail Razakov: platform architecture, typed contracts, state/recovery, compiler/runtime systems, LLVM, and mechanically checked engineering invariants",
         "proofs": [
           [
             "Single-owner architecture",
@@ -183,11 +183,11 @@
           {
             "date": "2024 — present",
             "title": "UniversalToolchain — creator and primary developer",
-            "org": ".NET language platform · compiler/runtime architecture",
+            "org": "NET language platform · compiler/runtime architecture",
             "bullets": [
-              "Made LanguageCompiler the single owner of composition: dependencies/conflicts, capability selection, pass ordering, and backend routes are fixed in one immutable LanguagePlan; runtime does not make a second composition decision.",
-              "Separated syntax → semantic binding → Bytecode → AIR → optimization → backend through explicit representation/ownership boundaries and removed the legacy reflection/runtime-profile topology.",
-              "Enforced architectural invariants with exact manifest/ownership checks, interpreter/CIL parity, and regression tests; the current exact manifest is 1,306/1,306 passing."
+              "Made LanguageCompiler the single owner of composition: dependencies/conflicts, capability selection, pass ordering, and backend routes are fixed in one immutable LanguagePlan; runtime does not make a second composition decision",
+              "Separated syntax → semantic binding → Bytecode → AIR → optimization → backend through explicit representation/ownership boundaries and removed the legacy reflection/runtime-profile topology",
+              "Enforced architectural invariants with exact manifest/ownership checks, interpreter/CIL parity, and regression tests; the current exact manifest is 1,306/1,306 passing"
             ]
           },
           {
@@ -195,7 +195,7 @@
             "title": "MCST — Compiler Engineering Intern",
             "org": "LLVM · C++23 · 0.25 FTE · remote",
             "bullets": [
-              "Building an LLVM pass for interprocedural linear evolution modelling of global values; unsupported CFG/call cases conservatively fall back to unknown rather than producing an unsafe inference."
+              "Building an LLVM pass for interprocedural linear evolution modelling of global values; unsupported CFG/call cases conservatively fall back to unknown rather than producing an unsafe inference"
             ]
           },
           {
@@ -203,16 +203,16 @@
             "title": "Mama Lama — Software Developer",
             "org": "independent development · event software",
             "bullets": [
-              "Independently took event applications from requirements through deployment-ready use, defining module boundaries, component interfaces, and the complete technical implementation."
+              "Independently took event applications from requirements through deployment-ready use, defining module boundaries, component interfaces, and the complete technical implementation"
             ]
           },
           {
             "date": "2026 — present",
-            "title": ".NET backend architecture — VpnMediator / CompilationLabLMS",
-            "org": ".NET · ASP.NET Core · Python · SQL · Linux",
+            "title": "NET backend architecture — VpnMediator / CompilationLabLMS",
+            "org": "NET · ASP.NET Core · Python · SQL · Linux",
             "bullets": [
-              "Designed explicit payment/subscription states, durable inbox/outbox processing, idempotency, retry/reconciliation workers, and manual-review paths for conflicting payment evidence.",
-              "Built a release path with versioned releases, coordinated backup, atomic switching, health gates, and rollback to the previous release on failed startup."
+              "Designed explicit payment/subscription states, durable inbox/outbox processing, idempotency, retry/reconciliation workers, and manual-review paths for conflicting payment evidence",
+              "Built a release path with versioned releases, coordinated backup, atomic switching, health gates, and rollback to the previous release on failed startup"
             ]
           }
         ],
@@ -240,18 +240,18 @@
             "C++23, C17, Rust, Python, Linux, CMake, differential/metamorphic testing, reference oracles, ASan/UBSan"
           ]
         ],
-        "contact_heading": "Targeting Software / Platform Engineer roles with substantial architecture ownership.",
+        "contact_heading": "Targeting Software / Platform Engineer roles with substantial architecture ownership",
         "footer": "Software Engineer — Architecture & Platforms",
         "recognition": [
           [
             "2026",
             "UniversalToolchain — Baltic Science and Engineering Competition",
-            "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain."
+            "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain"
           ],
           [
             "2026",
             "MEPhI Junior",
-            "First-degree diploma, 96/100 for the UniversalToolchain project."
+            "First-degree diploma, 96/100 for the UniversalToolchain project"
           ]
         ]
       }
@@ -264,8 +264,8 @@
         "role": "Compiler / Platform Engineer · LLVM & Language Infrastructure",
         "brand": "LLVM · compiler infrastructure · IR/runtime · verification",
         "eyebrow": "LLVM analysis · language platforms · IR · correctness",
-        "summary": "Разрабатываю compiler infrastructure, где решения о composition, IR/runtime и корректности выражены явно: LLVM-анализы и passes, детерминированное планирование language platform, Bytecode/AIR/SSA, backends и независимые verifier/oracle проверки.",
-        "description": "Compiler / Platform Engineer Михаил Разаков: LLVM-анализы и passes, compiler infrastructure, language platforms, IR/runtime, SSA и verification-driven engineering.",
+        "summary": "Разрабатываю compiler infrastructure, где решения о composition, IR/runtime и корректности выражены явно: LLVM-анализы и passes, детерминированное планирование language platform, Bytecode/AIR/SSA, backends и независимые verifier/oracle проверки",
+        "description": "Compiler / Platform Engineer Михаил Разаков: LLVM-анализы и passes, compiler infrastructure, language platforms, IR/runtime, SSA и verification-driven engineering",
         "proofs": [
           [
             "LLVM analysis",
@@ -286,17 +286,17 @@
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM · C++23 · 0,25 ставки · удалённо",
             "bullets": [
-              "Реализовал LLVM LICM-pass и развиваю межпроцедурный анализ эволюции глобальных значений: линейные summaries компонуются там, где это доказуемо; unsupported loops/calls/CFG переходят в unknown.",
-              "Проверяю преобразования через opt/lli, verifier и negative cases, где pass обязан сохранить исходный IR или отказаться от вывода."
+              "Реализовал LLVM LICM-pass и развиваю межпроцедурный анализ эволюции глобальных значений: линейные summaries компонуются там, где это доказуемо; unsupported loops/calls/CFG переходят в unknown",
+              "Проверяю преобразования через opt/lli, verifier и negative cases, где pass обязан сохранить исходный IR или отказаться от вывода"
             ]
           },
           {
             "date": "2024 — сейчас",
             "title": "UniversalToolchain — создатель и основной разработчик",
-            "org": ".NET language platform · compiler/runtime infrastructure",
+            "org": "NET language platform · compiler/runtime infrastructure",
             "bullets": [
-              "Сделал LanguageCompiler единственным владельцем composition: dependencies/conflicts, capability selection, pass ordering и backend routes фиксируются до runtime в immutable LanguagePlan.",
-              "Разделил syntax → semantic binding → Bytecode → AIR → optimizations → backend явными representation boundaries; архитектурные contracts защищены exact binding и regression tests, текущий exact manifest — 1 306/1 306 passed."
+              "Сделал LanguageCompiler единственным владельцем composition: dependencies/conflicts, capability selection, pass ordering и backend routes фиксируются до runtime в immutable LanguagePlan",
+              "Разделил syntax → semantic binding → Bytecode → AIR → optimizations → backend явными representation boundaries; архитектурные contracts защищены exact binding и regression tests, текущий exact manifest — 1 306/1 306 passed"
             ]
           },
           {
@@ -304,8 +304,8 @@
             "title": "x86-64 Codegen & Register Allocation Playground",
             "org": "Rust · SSA/CFG · x86-64",
             "bullets": [
-              "Отделил allocation strategy от correctness policy: allocators выдают единый Assignment, который независимо проверяется по liveness/interference invariants перед codegen.",
-              "Сравниваю native x86-64 execution с reference interpreter в отдельном resource-bounded процессе."
+              "Отделил allocation strategy от correctness policy: allocators выдают единый Assignment, который независимо проверяется по liveness/interference invariants перед codegen",
+              "Сравниваю native x86-64 execution с reference interpreter в отдельном resource-bounded процессе"
             ]
           }
         ],
@@ -326,31 +326,31 @@
           ],
           [
             "IR / Runtime / Backend",
-            ".NET, Bytecode/AIR, SSA routes, interpreter, CIL backend, register allocation, x86-64"
+            "NET, Bytecode/AIR, SSA routes, interpreter, CIL backend, register allocation, x86-64"
           ],
           [
             "Verification / Tooling",
             "reference oracles, differential/metamorphic tests, verifier-gated transforms, CMake, Linux, ASan/UBSan"
           ]
         ],
-        "contact_heading": "Целевые роли: Compiler Infrastructure / LLVM / Language Platform / Program Analysis Engineer.",
+        "contact_heading": "Целевые роли: Compiler Infrastructure / LLVM / Language Platform / Program Analysis Engineer",
         "footer": "Compiler / Platform Engineer · LLVM & Language Infrastructure",
         "project_summaries": {
           "wist": {
-            "solution": "Композиция языка вынесена в один typed planner: dependencies/conflicts, capability selection, pass ordering и artifact/backend routes фиксируются в immutable plan до runtime.",
-            "result": "Runtime материализует уже выбранный граф; exact binding и regression tests проверяют ownership и package identity, текущий exact manifest — 1 306/1 306 passed."
+            "solution": "Композиция языка вынесена в один typed planner: dependencies/conflicts, capability selection, pass ordering и artifact/backend routes фиксируются в immutable plan до runtime",
+            "result": "Runtime материализует уже выбранный граф; exact binding и regression tests проверяют ownership и package identity, текущий exact manifest — 1 306/1 306 passed"
           },
           "codegen": {
-            "solution": "Allocator возвращает общий Assignment, а отдельный verifier проверяет completeness, допустимые registers, spills и live-interval conflicts до codegen.",
-            "result": "Generated x86-64 поведение сравнивается с reference interpreter; ошибки allocation и emitter локализуются раздельно."
+            "solution": "Allocator возвращает общий Assignment, а отдельный verifier проверяет completeness, допустимые registers, spills и live-interval conflicts до codegen",
+            "result": "Generated x86-64 поведение сравнивается с reference interpreter; ошибки allocation и emitter локализуются раздельно"
           },
           "psform": {
-            "solution": "Portfolio solver сочетает дешёвые доказательства, exact affine reasoning, bounded exhaustive search и witness search; недоказанные случаи остаются unknown/maybe.",
-            "result": "Малые области проверяются независимым exact oracle, дополнительно используются randomized и metamorphic tests."
+            "solution": "Portfolio solver сочетает дешёвые доказательства, exact affine reasoning, bounded exhaustive search и witness search; недоказанные случаи остаются unknown/maybe",
+            "result": "Малые области проверяются независимым exact oracle, дополнительно используются randomized и metamorphic tests"
           },
           "planfuzz": {
-            "solution": "Экспериментальный fuzzer типизирует outcomes, сохраняет fingerprints, перепроверяет failure в свежем процессе и минимизирует программу/конфигурацию.",
-            "result": "Подтверждённые сбои сохраняют воспроизводимый минимальный пример; flaky/infrastructure outcomes не маскируются под compiler bugs."
+            "solution": "Экспериментальный fuzzer типизирует outcomes, сохраняет fingerprints, перепроверяет failure в свежем процессе и минимизирует программу/конфигурацию",
+            "result": "Подтверждённые сбои сохраняют воспроизводимый минимальный пример; flaky/infrastructure outcomes не маскируются под compiler bugs"
           }
         },
         "show_portrait": true,
@@ -359,12 +359,12 @@
           [
             "2026",
             "UniversalToolchain — Балтийский научно-инженерный конкурс",
-            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
+            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain"
           ],
           [
             "2026",
             "НИЯУ МИФИ «Юниор»",
-            "Диплом I степени, 96/100 за проект UniversalToolchain."
+            "Диплом I степени, 96/100 за проект UniversalToolchain"
           ]
         ]
       },
@@ -375,8 +375,8 @@
         "role": "Compiler / Platform Engineer · LLVM & Language Infrastructure",
         "brand": "LLVM · compiler infrastructure · IR/runtime · verification",
         "eyebrow": "LLVM analysis · language platforms · IR · correctness",
-        "summary": "I build compiler infrastructure where composition, IR/runtime decisions, and correctness are explicit: LLVM analyses and passes, deterministic language-platform planning, Bytecode/AIR/SSA, backends, and independent verifier/oracle checks.",
-        "description": "Compiler / Platform Engineer Mikhail Razakov: LLVM analyses and passes, compiler infrastructure, language platforms, IR/runtime, SSA, and verification-driven engineering.",
+        "summary": "I build compiler infrastructure where composition, IR/runtime decisions, and correctness are explicit: LLVM analyses and passes, deterministic language-platform planning, Bytecode/AIR/SSA, backends, and independent verifier/oracle checks",
+        "description": "Compiler / Platform Engineer Mikhail Razakov: LLVM analyses and passes, compiler infrastructure, language platforms, IR/runtime, SSA, and verification-driven engineering",
         "proofs": [
           [
             "LLVM analysis",
@@ -397,17 +397,17 @@
             "title": "MCST — Compiler Engineering Intern",
             "org": "LLVM · C++23 · 0.25 FTE · remote",
             "bullets": [
-              "Implemented an LLVM LICM pass and am developing interprocedural global-value evolution analysis: linear summaries compose where justified, while unsupported loops/calls/CFG cases fall back to unknown.",
-              "Validate transformations with opt/lli, verifier checks, and negative cases where the pass must preserve the original IR or decline an inference."
+              "Implemented an LLVM LICM pass and am developing interprocedural global-value evolution analysis: linear summaries compose where justified, while unsupported loops/calls/CFG cases fall back to unknown",
+              "Validate transformations with opt/lli, verifier checks, and negative cases where the pass must preserve the original IR or decline an inference"
             ]
           },
           {
             "date": "2024 — present",
             "title": "UniversalToolchain — creator and primary developer",
-            "org": ".NET language platform · compiler/runtime infrastructure",
+            "org": "NET language platform · compiler/runtime infrastructure",
             "bullets": [
-              "Made LanguageCompiler the single owner of composition: dependencies/conflicts, capability selection, pass ordering, and backend routes are fixed in an immutable LanguagePlan before runtime.",
-              "Separated syntax → semantic binding → Bytecode → AIR → optimization → backend through explicit representation boundaries; exact binding and regression tests enforce the contracts, with a current exact manifest of 1,306/1,306 passing."
+              "Made LanguageCompiler the single owner of composition: dependencies/conflicts, capability selection, pass ordering, and backend routes are fixed in an immutable LanguagePlan before runtime",
+              "Separated syntax → semantic binding → Bytecode → AIR → optimization → backend through explicit representation boundaries; exact binding and regression tests enforce the contracts, with a current exact manifest of 1,306/1,306 passing"
             ]
           },
           {
@@ -415,8 +415,8 @@
             "title": "x86-64 Codegen & Register Allocation Playground",
             "org": "Rust · SSA/CFG · x86-64",
             "bullets": [
-              "Separated allocation strategy from correctness policy: allocators return a common Assignment that an independent verifier checks against liveness/interference invariants before code generation.",
-              "Differentially compare native x86-64 execution with a reference interpreter in a separate resource-bounded process."
+              "Separated allocation strategy from correctness policy: allocators return a common Assignment that an independent verifier checks against liveness/interference invariants before code generation",
+              "Differentially compare native x86-64 execution with a reference interpreter in a separate resource-bounded process"
             ]
           }
         ],
@@ -437,31 +437,31 @@
           ],
           [
             "IR / Runtime / Backend",
-            ".NET, Bytecode/AIR, SSA routes, interpreter, CIL backend, register allocation, x86-64"
+            "NET, Bytecode/AIR, SSA routes, interpreter, CIL backend, register allocation, x86-64"
           ],
           [
             "Verification / Tooling",
             "reference oracles, differential/metamorphic tests, verifier-gated transforms, CMake, Linux, ASan/UBSan"
           ]
         ],
-        "contact_heading": "Targeting Compiler Infrastructure, LLVM, Language Platform, and Program Analysis roles.",
+        "contact_heading": "Targeting Compiler Infrastructure, LLVM, Language Platform, and Program Analysis roles",
         "footer": "Compiler / Platform Engineer · LLVM & Language Infrastructure",
         "project_summaries": {
           "wist": {
-            "solution": "Language composition is owned by one typed planner: dependencies/conflicts, capability selection, pass ordering, and artifact/backend routes are fixed in an immutable plan before runtime.",
-            "result": "Runtime materializes the selected graph; exact binding and regression tests enforce ownership and package identity, with a current exact manifest of 1,306/1,306 passing."
+            "solution": "Language composition is owned by one typed planner: dependencies/conflicts, capability selection, pass ordering, and artifact/backend routes are fixed in an immutable plan before runtime",
+            "result": "Runtime materializes the selected graph; exact binding and regression tests enforce ownership and package identity, with a current exact manifest of 1,306/1,306 passing"
           },
           "codegen": {
-            "solution": "Allocators return a common Assignment while an independent verifier checks completeness, valid registers, spills, and live-interval conflicts before code generation.",
-            "result": "Generated x86-64 behavior is compared with a reference interpreter, separating allocation failures from emitter failures."
+            "solution": "Allocators return a common Assignment while an independent verifier checks completeness, valid registers, spills, and live-interval conflicts before code generation",
+            "result": "Generated x86-64 behavior is compared with a reference interpreter, separating allocation failures from emitter failures"
           },
           "psform": {
-            "solution": "A portfolio solver combines cheap global proofs, exact affine reasoning, bounded exhaustive search, and witness search; unproved cases remain unknown/maybe.",
-            "result": "Small domains are checked by an independent exact oracle, with randomized and metamorphic tests on top."
+            "solution": "A portfolio solver combines cheap global proofs, exact affine reasoning, bounded exhaustive search, and witness search; unproved cases remain unknown/maybe",
+            "result": "Small domains are checked by an independent exact oracle, with randomized and metamorphic tests on top"
           },
           "planfuzz": {
-            "solution": "Experimental fuzzing uses typed outcomes, failure fingerprints, fresh-process confirmation, and reduction of both program and configuration.",
-            "result": "Confirmed failures retain a reproducible minimized case, while flaky and infrastructure outcomes are kept distinct from compiler bugs."
+            "solution": "Experimental fuzzing uses typed outcomes, failure fingerprints, fresh-process confirmation, and reduction of both program and configuration",
+            "result": "Confirmed failures retain a reproducible minimized case, while flaky and infrastructure outcomes are kept distinct from compiler bugs"
           }
         },
         "show_portrait": true,
@@ -470,12 +470,12 @@
           [
             "2026",
             "UniversalToolchain — Baltic Science and Engineering Competition",
-            "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain."
+            "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain"
           ],
           [
             "2026",
             "MEPhI Junior",
-            "First-degree diploma, 96/100 for the UniversalToolchain project."
+            "First-degree diploma, 96/100 for the UniversalToolchain project"
           ]
         ]
       }
@@ -485,11 +485,11 @@
         "filename": "ru-backend.html",
         "pdf": "Mikhail_Razakov_Backend_RU.pdf",
         "title": "Михаил Разаков — .NET Backend / Platform Engineer · State & Reliability",
-        "role": ".NET Backend / Platform Engineer · State & Reliability",
-        "brand": ".NET · payment state · recovery · platform reliability",
+        "role": "NET Backend / Platform Engineer · State & Reliability",
+        "brand": "NET · payment state · recovery · platform reliability",
         "eyebrow": "ASP.NET Core · idempotency · recovery · rollback",
-        "summary": "Разрабатываю .NET backend-системы, где платежи, доступ и состояние должны переживать retries и restarts: explicit state machines, provider re-verification, durable inbox/outbox, idempotency, reconciliation, migrations и проверяемый rollback.",
-        "description": ".NET Backend / Platform Engineer Михаил Разаков: payment state, idempotency, durable inbox/outbox, provider verification, recovery, migrations и rollback.",
+        "summary": "Разрабатываю .NET backend-системы, где платежи, доступ и состояние должны переживать retries и restarts: explicit state machines, provider re-verification, durable inbox/outbox, idempotency, reconciliation, migrations и проверяемый rollback",
+        "description": "NET Backend / Platform Engineer Михаил Разаков: payment state, idempotency, durable inbox/outbox, provider verification, recovery, migrations и rollback",
         "proofs": [
           [
             "Payment correctness",
@@ -510,8 +510,8 @@
             "title": "CompilationLabLMS — payment/backend architecture",
             "org": "ASP.NET Core · payment state · provider verification",
             "bullets": [
-              "Сделал PaymentOrder владельцем допустимых state transitions, retry scheduling и status-check leases; webhook flow повторно запрашивает payment у provider перед внутренним событием.",
-              "Проверяю payment id/status/environment/metadata/amount/currency и отделяю malformed/unverifiable provider events от подтверждённого состояния."
+              "Сделал PaymentOrder владельцем допустимых state transitions, retry scheduling и status-check leases; webhook flow повторно запрашивает payment у provider перед внутренним событием",
+              "Проверяю payment id/status/environment/metadata/amount/currency и отделяю malformed/unverifiable provider events от подтверждённого состояния"
             ]
           },
           {
@@ -519,16 +519,16 @@
             "title": "VpnMediator — state/recovery backend",
             "org": "ASP.NET Core · SQLite/PostgreSQL · Python · Linux",
             "bullets": [
-              "Спроектировал durable payment inbox/outbox, idempotent reconciliation и manual-review path для конфликтующих provider evidence; recovery после restart проверяется отдельными тестами.",
-              "Построил versioned release path с coordinated backup, atomic switch, readiness/liveness gates и возвратом на предыдущий release при неуспешном запуске."
+              "Спроектировал durable payment inbox/outbox, idempotent reconciliation и manual-review path для конфликтующих provider evidence; recovery после restart проверяется отдельными тестами",
+              "Построил versioned release path с coordinated backup, atomic switch, readiness/liveness gates и возвратом на предыдущий release при неуспешном запуске"
             ]
           },
           {
             "date": "2024 — сейчас",
             "title": "UniversalToolchain — .NET platform architecture",
-            "org": ".NET · typed contracts · deterministic composition",
+            "org": "NET · typed contracts · deterministic composition",
             "bullets": [
-              "Применяю тот же подход к platform code: single-owner planning, exact package binding и regression contracts; текущий exact manifest — 1 306/1 306 passed."
+              "Применяю тот же подход к platform code: single-owner planning, exact package binding и regression contracts; текущий exact manifest — 1 306/1 306 passed"
             ]
           }
         ],
@@ -539,7 +539,7 @@
         ],
         "skills": [
           [
-            ".NET Backend",
+            "NET Backend",
             "C#/.NET, ASP.NET Core, REST/OpenAPI, webhooks, background services, provider integrations"
           ],
           [
@@ -555,18 +555,18 @@
             "Linux, Docker Compose, nginx, systemd, health gates, versioned releases, atomic switch, rollback"
           ]
         ],
-        "contact_heading": "Целевые роли: .NET Backend / Platform Engineer с ответственностью за состояние, recovery и эксплуатационную корректность.",
-        "footer": ".NET Backend / Platform Engineer · State & Reliability",
+        "contact_heading": "Целевые роли: .NET Backend / Platform Engineer с ответственностью за состояние, recovery и эксплуатационную корректность",
+        "footer": "NET Backend / Platform Engineer · State & Reliability",
         "recognition": [
           [
             "2026",
             "UniversalToolchain — Балтийский научно-инженерный конкурс",
-            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
+            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain"
           ],
           [
             "2026",
             "НИЯУ МИФИ «Юниор»",
-            "Диплом I степени, 96/100 за проект UniversalToolchain."
+            "Диплом I степени, 96/100 за проект UniversalToolchain"
           ]
         ]
       },
@@ -574,11 +574,11 @@
         "filename": "en-backend.html",
         "pdf": "Mikhail_Razakov_Backend_EN.pdf",
         "title": "Mikhail Razakov — .NET Backend / Platform Engineer · State & Reliability",
-        "role": ".NET Backend / Platform Engineer · State & Reliability",
-        "brand": ".NET · payment state · recovery · platform reliability",
+        "role": "NET Backend / Platform Engineer · State & Reliability",
+        "brand": "NET · payment state · recovery · platform reliability",
         "eyebrow": "ASP.NET Core · idempotency · recovery · rollback",
-        "summary": "I build .NET backend systems where payments, access, and state must survive retries and restarts: explicit state machines, provider re-verification, durable inbox/outbox, idempotency, reconciliation, migrations, and verifiable rollback.",
-        "description": ".NET Backend / Platform Engineer Mikhail Razakov: payment state, idempotency, durable inbox/outbox, provider verification, recovery, migrations, and rollback.",
+        "summary": "I build .NET backend systems where payments, access, and state must survive retries and restarts: explicit state machines, provider re-verification, durable inbox/outbox, idempotency, reconciliation, migrations, and verifiable rollback",
+        "description": "NET Backend / Platform Engineer Mikhail Razakov: payment state, idempotency, durable inbox/outbox, provider verification, recovery, migrations, and rollback",
         "proofs": [
           [
             "Payment correctness",
@@ -599,8 +599,8 @@
             "title": "CompilationLabLMS — payment/backend architecture",
             "org": "ASP.NET Core · payment state · provider verification",
             "bullets": [
-              "Made PaymentOrder the owner of allowed state transitions, retry scheduling, and status-check leases; the webhook flow re-fetches payment state from the provider before emitting an internal event.",
-              "Validate payment id/status/environment/metadata/amount/currency and keep malformed or unverifiable provider events separate from confirmed state."
+              "Made PaymentOrder the owner of allowed state transitions, retry scheduling, and status-check leases; the webhook flow re-fetches payment state from the provider before emitting an internal event",
+              "Validate payment id/status/environment/metadata/amount/currency and keep malformed or unverifiable provider events separate from confirmed state"
             ]
           },
           {
@@ -608,16 +608,16 @@
             "title": "VpnMediator — state/recovery backend",
             "org": "ASP.NET Core · SQLite/PostgreSQL · Python · Linux",
             "bullets": [
-              "Designed a durable payment inbox/outbox, idempotent reconciliation, and a manual-review path for conflicting provider evidence; restart recovery is covered by dedicated tests.",
-              "Built a versioned release path with coordinated backup, atomic switching, readiness/liveness gates, and restoration of the previous release after failed startup."
+              "Designed a durable payment inbox/outbox, idempotent reconciliation, and a manual-review path for conflicting provider evidence; restart recovery is covered by dedicated tests",
+              "Built a versioned release path with coordinated backup, atomic switching, readiness/liveness gates, and restoration of the previous release after failed startup"
             ]
           },
           {
             "date": "2024 — present",
             "title": "UniversalToolchain — .NET platform architecture",
-            "org": ".NET · typed contracts · deterministic composition",
+            "org": "NET · typed contracts · deterministic composition",
             "bullets": [
-              "Apply the same reliability discipline to platform code through single-owner planning, exact package binding, and regression contracts; the current exact manifest is 1,306/1,306 passing."
+              "Apply the same reliability discipline to platform code through single-owner planning, exact package binding, and regression contracts; the current exact manifest is 1,306/1,306 passing"
             ]
           }
         ],
@@ -628,7 +628,7 @@
         ],
         "skills": [
           [
-            ".NET Backend",
+            "NET Backend",
             "C#/.NET, ASP.NET Core, REST/OpenAPI, webhooks, background services, provider integrations"
           ],
           [
@@ -644,18 +644,18 @@
             "Linux, Docker Compose, nginx, systemd, health gates, versioned releases, atomic switching, rollback"
           ]
         ],
-        "contact_heading": "Targeting .NET Backend / Platform Engineer roles with ownership of state, recovery, and operational correctness.",
-        "footer": ".NET Backend / Platform Engineer · State & Reliability",
+        "contact_heading": "Targeting .NET Backend / Platform Engineer roles with ownership of state, recovery, and operational correctness",
+        "footer": "NET Backend / Platform Engineer · State & Reliability",
         "recognition": [
           [
             "2026",
             "UniversalToolchain — Baltic Science and Engineering Competition",
-            "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain."
+            "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain"
           ],
           [
             "2026",
             "MEPhI Junior",
-            "First-degree diploma, 96/100 for the UniversalToolchain project."
+            "First-degree diploma, 96/100 for the UniversalToolchain project"
           ]
         ]
       }
@@ -668,15 +668,15 @@
         "role": "C++ / LLVM Systems Engineer",
         "brand": "C++23 · LLVM · анализ программ · x86-64",
         "eyebrow": "Компиляторы · алгоритмы графов · program analysis",
-        "summary": "Разрабатываю системные и компиляторные компоненты на C++23/C17/Rust: LLVM-проходы, анализ зависимостей памяти, CFG/SSA, графовые алгоритмы, x86-64 codegen и воспроизводимые тестовые оракулы.",
-        "description": "C++ / LLVM Systems Engineer Михаил Разаков: LLVM, C++23, CFG/SSA, анализ программ, sanitizers, x86-64 codegen и алгоритмы графов.",
+        "summary": "Разрабатываю системные и компиляторные компоненты на C++23/C17/Rust: LLVM-проходы, анализ зависимостей памяти, CFG/SSA, графовые алгоритмы, x86-64 codegen и воспроизводимые тестовые оракулы",
+        "description": "C++ / LLVM Systems Engineer Михаил Разаков: LLVM, C++23, CFG/SSA, анализ программ, sanitizers, x86-64 codegen и алгоритмы графов",
         "proofs": [
           [
             "LLVM / C++23",
             "Оптимизационный проход, графовые алгоритмы, CMake, clang-tidy, ASan/UBSan"
           ],
           [
-            "1-е из 49 · 104/104",
+            "Conservative analysis",
             "Консервативный PS-form анализ зависимостей памяти и точный оракул"
           ],
           [
@@ -690,8 +690,8 @@
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM · C++23 · 0,25 ставки",
             "bullets": [
-              "Реализовал LLVM LICM-pass на C++ с консервативными проверками side effects, memory access, loop invariance, preheader и speculative safety.",
-              "Построил Python-harness с baseline/optimized execution, opt -verify-each и CHANGE/NO_CHANGE expectations."
+              "Реализовал LLVM LICM-pass на C++ с консервативными проверками side effects, memory access, loop invariance, preheader и speculative safety",
+              "Построил Python-harness с baseline/optimized execution, opt -verify-each и CHANGE/NO_CHANGE expectations"
             ]
           },
           {
@@ -699,8 +699,8 @@
             "title": "PS-form Memory Dependence Analyzer",
             "org": "C17 · program analysis",
             "bullets": [
-              "Реализовал консервативный анализ параметрических обращений к памяти; занял 1-е место среди 49 решений, 104/104 тестов.",
-              "Построил точный оракул для малых областей, метаморфные тесты и воспроизводимые WA/TL-контрпримеры."
+              "Реализовал консервативный анализ параметрических обращений к памяти; недоказанные случаи не превращаются в ложный yes/no, а корректность проверяется независимым exact oracle",
+              "Построил точный оракул для малых областей, метаморфные тесты и воспроизводимые WA/TL-контрпримеры"
             ]
           },
           {
@@ -708,7 +708,7 @@
             "title": "x86-64 Codegen & Register Allocation Lab",
             "org": "Rust · iced-x86 · isolated execution",
             "bullets": [
-              "Спроектировал SSA-подобное IR, анализ живых интервалов, linear scan и сравнение IR-интерпретатора со сгенерированным кодом."
+              "Спроектировал SSA-подобное IR, анализ живых интервалов, linear scan и сравнение IR-интерпретатора со сгенерированным кодом"
             ]
           }
         ],
@@ -736,8 +736,20 @@
             "exact oracles, differential/metamorphic tests, stress tests, counterexample reduction"
           ]
         ],
-        "contact_heading": "Открыт к C++/LLVM, compiler tooling, program analysis и системным R&D-задачам.",
-        "footer": "C++ / LLVM Systems Engineer"
+        "contact_heading": "Открыт к C++/LLVM, compiler tooling, program analysis и системным R&D-задачам",
+        "footer": "C++ / LLVM Systems Engineer",
+        "recognition": [
+          [
+            "2026",
+            "UniversalToolchain — Балтийский научно-инженерный конкурс",
+            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
+          ],
+          [
+            "2026",
+            "НИЯУ МИФИ «Юниор»",
+            "Диплом I степени, 96/100 за проект UniversalToolchain."
+          ]
+        ]
       },
       "en": {
         "filename": "en-cpp-systems.html",
@@ -746,15 +758,15 @@
         "role": "C++ / LLVM Systems Engineer",
         "brand": "C++23 · LLVM · program analysis · x86-64",
         "eyebrow": "Compilers · graph algorithms · program analysis",
-        "summary": "I build systems and compiler components in C++23/C17/Rust: LLVM passes, memory-dependence analysis, CFG/SSA, graph algorithms, x86-64 code generation, and reproducible test oracles.",
-        "description": "C++ / LLVM Systems Engineer Mikhail Razakov: LLVM, C++23, CFG/SSA, program analysis, sanitizers, x86-64 codegen, and graph algorithms.",
+        "summary": "I build systems and compiler components in C++23/C17/Rust: LLVM passes, memory-dependence analysis, CFG/SSA, graph algorithms, x86-64 code generation, and reproducible test oracles",
+        "description": "C++ / LLVM Systems Engineer Mikhail Razakov: LLVM, C++23, CFG/SSA, program analysis, sanitizers, x86-64 codegen, and graph algorithms",
         "proofs": [
           [
             "LLVM / C++23",
             "Optimization pass, graph algorithms, CMake, clang-tidy, ASan/UBSan"
           ],
           [
-            "1st of 49 · 104/104",
+            "Conservative analysis",
             "Conservative PS-form memory-dependence analysis with an exact oracle"
           ],
           [
@@ -768,8 +780,8 @@
             "title": "MCST — compiler engineering intern",
             "org": "LLVM · C++23 · 0.25 FTE",
             "bullets": [
-              "Implemented an LLVM LICM pass in C++ with conservative checks for side effects, memory access, loop invariance, preheaders, and speculative safety.",
-              "Built a Python harness with baseline/optimized execution, opt -verify-each, and explicit CHANGE/NO_CHANGE expectations."
+              "Implemented an LLVM LICM pass in C++ with conservative checks for side effects, memory access, loop invariance, preheaders, and speculative safety",
+              "Built a Python harness with baseline/optimized execution, opt -verify-each, and explicit CHANGE/NO_CHANGE expectations"
             ]
           },
           {
@@ -777,8 +789,8 @@
             "title": "PS-form Memory Dependence Analyzer",
             "org": "C17 · program analysis",
             "bullets": [
-              "Implemented conservative analysis of parametric memory accesses; ranked 1st of 49 with 104/104 tests.",
-              "Built an exact oracle for small domains, metamorphic tests, and reproducible WA/TL counterexamples."
+              "Implemented conservative analysis of parametric memory accesses; unresolved cases do not become false yes/no answers, and correctness is checked against an independent exact oracle",
+              "Built an exact oracle for small domains, metamorphic tests, and reproducible WA/TL counterexamples"
             ]
           },
           {
@@ -786,7 +798,7 @@
             "title": "x86-64 Codegen & Register Allocation Lab",
             "org": "Rust · iced-x86 · isolated execution",
             "bullets": [
-              "Designed SSA-like IR, liveness, linear scan, and parity checks between an IR interpreter and generated machine code."
+              "Designed SSA-like IR, liveness, linear scan, and parity checks between an IR interpreter and generated machine code"
             ]
           }
         ],
@@ -814,8 +826,20 @@
             "exact oracles, differential/metamorphic tests, stress testing, counterexample reduction"
           ]
         ],
-        "contact_heading": "Open to C++/LLVM, compiler tooling, program analysis, and systems R&D work.",
-        "footer": "C++ / LLVM Systems Engineer"
+        "contact_heading": "Open to C++/LLVM, compiler tooling, program analysis, and systems R&D work",
+        "footer": "C++ / LLVM Systems Engineer",
+        "recognition": [
+          [
+            "2026",
+            "UniversalToolchain — Baltic Science and Engineering Competition",
+            "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain."
+          ],
+          [
+            "2026",
+            "MEPhI Junior",
+            "First-degree diploma, 96/100 for the UniversalToolchain project."
+          ]
+        ]
       }
     },
     "quant": {
@@ -826,8 +850,8 @@
         "role": "Quantitative Research | C++ · Python · алгоритмы",
         "brand": "C++ · Python · алгоритмы · эксперименты",
         "eyebrow": "Алгоритмы · проверка гипотез · количественные исследования",
-        "summary": "Сильная база в computer science, алгоритмах и исследовательском решении задач; практический опыт C++ и Python, LLVM и compiler/runtime-разработки. Работаю в цикле «гипотеза → эксперимент → проверка»: строю точные оракулы, randomized/metamorphic tests, воспроизводимые harnesses и benchmarks, анализирую контрпримеры и производительность. Работаю с JIT-компиляцией, векторизацией, x86-64 assembly и анализом генерируемого машинного и дизассемблированного кода.",
-        "description": "Quantitative Research профиль Михаила Разакова: C++, Python, алгоритмы, LLVM, JIT, векторизация, low-level performance, проверка гипотез и воспроизводимые эксперименты.",
+        "summary": "Сильная база в computer science, алгоритмах и исследовательском решении задач; практический опыт C++ и Python, LLVM и compiler/runtime-разработки. Работаю в цикле «гипотеза → эксперимент → проверка»: строю точные оракулы, randomized/metamorphic tests, воспроизводимые harnesses и benchmarks, анализирую контрпримеры и производительность. Работаю с JIT-компиляцией, векторизацией, x86-64 assembly и анализом генерируемого машинного и дизассемблированного кода",
+        "description": "Quantitative Research профиль Михаила Разакова: C++, Python, алгоритмы, LLVM, JIT, векторизация, low-level performance, проверка гипотез и воспроизводимые эксперименты",
         "proofs": [
           [
             "Алгоритмы и соревнования",
@@ -848,9 +872,9 @@
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM · C++23 · Python · 0,25 ставки",
             "bullets": [
-              "Реализовал LLVM-проход loop-invariant code motion на C++; анализировал инвариантность, side effects, обращения к памяти, speculative safety и структуру циклов.",
-              "Построил Python-harness, который сравнивает поведение до и после оптимизации и отдельно проверяет ожидаемые случаи transformation / no-transformation.",
-              "Реализовал и протестировал на C++23 RPO с детектированием циклов, Dijkstra, Dinic max-flow и Tarjan SCC."
+              "Реализовал LLVM-проход loop-invariant code motion на C++; анализировал инвариантность, side effects, обращения к памяти, speculative safety и структуру циклов",
+              "Построил Python-harness, который сравнивает поведение до и после оптимизации и отдельно проверяет ожидаемые случаи transformation / no-transformation",
+              "Реализовал и протестировал на C++23 RPO с детектированием циклов, Dijkstra, Dinic max-flow и Tarjan SCC"
             ]
           },
           {
@@ -858,18 +882,18 @@
             "title": "PS-form Memory Dependence Analyzer",
             "org": "C17 · program analysis · экспериментальная проверка",
             "bullets": [
-              "Занял 1-е место среди 49 решений: единственная оценка 5,0/5,0 и 104/104 официальных тестов.",
-              "Построил точный оракул для малых областей, metamorphic/randomized проверки и воспроизводимые WA/TL-контрпримеры."
+              "Занял Консервативный анализ проверен независимым exact oracle на малых областях, randomized/metamorphic cases и воспроизводимыми контрпримерами",
+              "Построил точный оракул для малых областей, metamorphic/randomized проверки и воспроизводимые WA/TL-контрпримеры"
             ]
           },
           {
             "date": "2024 — сейчас",
             "title": "UniversalToolchain / Wist2 — создатель и основной разработчик",
-            "org": ".NET · компиляторы · языковые системы",
+            "org": "NET · компиляторы · языковые системы",
             "bullets": [
-              "Самостоятельно спроектировал и развиваю сложную языковую систему с промежуточными представлениями, SSA/оптимизациями и interpreter/CIL backend-ами.",
-              "Использую benchmarking, JIT/CIL execution и анализ сгенерированного и дизассемблированного кода для проверки производительности и поведения реализаций.",
-              "Контрольная проверка от 25.07.2026: 1 465/1 465 тестов без падений по девяти пакетам и clean-consumer проектам."
+              "Самостоятельно спроектировал и развиваю сложную языковую систему с промежуточными представлениями, SSA/оптимизациями и interpreter/CIL backend-ами",
+              "Использую benchmarking, JIT/CIL execution и анализ сгенерированного и дизассемблированного кода для проверки производительности и поведения реализаций",
+              "Текущий exact manifest: 1 306/1 306 passed; отдельно проверяются interpreter/CIL parity и clean-consumer сценарии"
             ]
           }
         ],
@@ -898,22 +922,17 @@
         ],
         "recognition": [
           [
-            "2025–2026",
-            "Олимпиады и инженерные конкурсы",
-            "Призёр «Высшей пробы»; абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."
+            "2026",
+            "UniversalToolchain — Балтийский научно-инженерный конкурс",
+            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
           ],
           [
             "2026",
-            "PS-form Memory Dependence Analyzer",
-            "1-е место среди 49 решений; единственная оценка 5,0/5,0; 104/104 официальных тестов."
-          ],
-          [
-            "2025–2026",
-            "Олимпиадное программирование",
-            "Призёр регионального этапа ВсОШ по информатике и «Высшей пробы» по олимпиадному и промышленному программированию."
+            "НИЯУ МИФИ «Юниор»",
+            "Диплом I степени, 96/100 за проект UniversalToolchain."
           ]
         ],
-        "contact_heading": "Открыт к quantitative research и research-software задачам, где важны алгоритмы, проверка гипотез и воспроизводимые эксперименты.",
+        "contact_heading": "Открыт к quantitative research и research-software задачам, где важны алгоритмы, проверка гипотез и воспроизводимые эксперименты",
         "footer": "Quantitative Research · C++ · Python · алгоритмы"
       },
       "en": {
@@ -923,8 +942,8 @@
         "role": "Quantitative Research | C++ · Python · Algorithms",
         "brand": "C++ · Python · algorithms · experiments",
         "eyebrow": "Algorithms · hypothesis testing · quantitative research",
-        "summary": "Strong computer-science, algorithms, and research problem-solving background with hands-on C++ and Python, LLVM, and compiler/runtime engineering. I work in a hypothesis → experiment → validation loop using exact oracles, randomized/metamorphic tests, reproducible harnesses and benchmarks, counterexample analysis, and performance investigation. I work with JIT compilation, vectorization, x86-64 assembly, and generated/disassembled machine-code analysis.",
-        "description": "Mikhail Razakov quantitative-research profile: C++, Python, algorithms, LLVM, JIT, vectorization, low-level performance, hypothesis testing, and reproducible experiments.",
+        "summary": "Strong computer-science, algorithms, and research problem-solving background with hands-on C++ and Python, LLVM, and compiler/runtime engineering. I work in a hypothesis → experiment → validation loop using exact oracles, randomized/metamorphic tests, reproducible harnesses and benchmarks, counterexample analysis, and performance investigation. I work with JIT compilation, vectorization, x86-64 assembly, and generated/disassembled machine-code analysis",
+        "description": "Mikhail Razakov quantitative-research profile: C++, Python, algorithms, LLVM, JIT, vectorization, low-level performance, hypothesis testing, and reproducible experiments",
         "proofs": [
           [
             "Algorithms & competitions",
@@ -945,9 +964,9 @@
             "title": "MCST — compiler engineering intern",
             "org": "LLVM · C++23 · Python · 0.25 FTE",
             "bullets": [
-              "Implemented an LLVM loop-invariant code-motion pass in C++; reasoned about loop invariance, side effects, memory access, speculative safety, and loop structure.",
-              "Built a Python verification harness comparing execution behavior before and after optimization and checking expected transformation / no-transformation cases.",
-              "Implemented and tested C++23 graph algorithms including RPO with cycle detection, Dijkstra, Dinic max-flow, and Tarjan SCC."
+              "Implemented an LLVM loop-invariant code-motion pass in C++; reasoned about loop invariance, side effects, memory access, speculative safety, and loop structure",
+              "Built a Python verification harness comparing execution behavior before and after optimization and checking expected transformation / no-transformation cases",
+              "Implemented and tested C++23 graph algorithms including RPO with cycle detection, Dijkstra, Dinic max-flow, and Tarjan SCC"
             ]
           },
           {
@@ -955,18 +974,18 @@
             "title": "PS-form Memory Dependence Analyzer",
             "org": "C17 · program analysis · experimental validation",
             "bullets": [
-              "Ranked 1st of 49: the only 5.0/5.0 result and 104/104 official tests.",
-              "Built an exact oracle for small domains, metamorphic/randomized checks, and reproducible wrong-answer/time-limit counterexamples."
+              "Built conservative analysis checked by an independent exact oracle on small domains, randomized/metamorphic cases, and reproducible counterexamples",
+              "Built an exact oracle for small domains, metamorphic/randomized checks, and reproducible wrong-answer/time-limit counterexamples"
             ]
           },
           {
             "date": "2024 — present",
             "title": "UniversalToolchain / Wist2 — creator and primary developer",
-            "org": ".NET · compilers · language systems",
+            "org": "NET · compilers · language systems",
             "bullets": [
-              "Independently designed and developed a complex compiler/language system with intermediate representations, SSA/optimizations, and interpreter/CIL backends.",
-              "Use benchmarking, JIT/CIL execution, and generated/disassembled-code analysis to investigate implementation behavior and performance.",
-              "Verification as of July 25, 2026: 1,465/1,465 tests with zero failures across nine packages and clean-consumer projects."
+              "Independently designed and developed a complex compiler/language system with intermediate representations, SSA/optimizations, and interpreter/CIL backends",
+              "Use benchmarking, JIT/CIL execution, and generated/disassembled-code analysis to investigate implementation behavior and performance",
+              "Current exact manifest: 1,306/1,306 passing, with interpreter/CIL parity and clean-consumer scenarios checked separately"
             ]
           }
         ],
@@ -995,22 +1014,17 @@
         ],
         "recognition": [
           [
-            "2025–2026",
-            "Olympiads & engineering competitions",
-            "HSE Vysshaya Proba prize-winner; overall winner of the MEPhI Junior competition in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."
+            "2026",
+            "UniversalToolchain — Baltic Science and Engineering Competition",
+            "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain."
           ],
           [
             "2026",
-            "PS-form Memory Dependence Analyzer",
-            "Ranked 1st of 49; the only 5.0/5.0 result; 104/104 official tests."
-          ],
-          [
-            "2025–2026",
-            "Programming competitions",
-            "Regional Russian informatics olympiad and HSE Vysshaya Proba prize-winner in competitive and industrial programming."
+            "MEPhI Junior",
+            "First-degree diploma, 96/100 for the UniversalToolchain project."
           ]
         ],
-        "contact_heading": "Open to quantitative research and research-software roles where algorithms, hypothesis testing, and reproducible experiments matter.",
+        "contact_heading": "Open to quantitative research and research-software roles where algorithms, hypothesis testing, and reproducible experiments matter",
         "footer": "Quantitative Research · C++ · Python · Algorithms"
       }
     }
@@ -1082,8 +1096,8 @@
       "problem_en": "The task is to conservatively determine whether two parametric memory accesses can overlap without enumerating large value domains.",
       "solution_ru": "Нормализация, интервальные ограничения, сравнения по модулю и НОД, а также точный оракул для малых областей и метаморфные проверки.",
       "solution_en": "Normalization, interval constraints, modular reasoning, gcd conditions, plus an exact oracle for small domains and metamorphic checks.",
-      "result_ru": "1-е место среди 49 решений и 104/104 тестов; воспроизводимые случаи неверного ответа и превышения лимита времени.",
-      "result_en": "Ranked 1st of 49 with 104/104 tests, with reproducible wrong-answer and time-limit counterexamples.",
+      "result_ru": "Консервативный результат yes/no/maybe с независимым exact oracle на малых областях, randomized/metamorphic проверками и воспроизводимыми контрпримерами.",
+      "result_en": "Conservative yes/no/maybe results checked by an independent exact oracle on small domains, randomized/metamorphic tests, and reproducible counterexamples.",
       "repo": "https://github.com/Misha1302/ps_form_analizer",
       "case_ru": "cases/ru-ps-form.html",
       "case_en": "cases/en-ps-form.html",
