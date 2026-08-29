@@ -4,26 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0f0c0d">
-<title>UniversalToolchain / Wist2 — architecture case study</title>
-<meta name="description" content="The current exact test manifest passes with zero failures; interpreter/CIL parity, clean-consumer scenarios, and reproducible compiler/runtime contracts are verified.">
+<title>UniversalToolchain — architecture case study</title>
+<meta name="description" content="The modular framework separates language composition from runtime execution and backs its contracts with executable verification/tests.">
 <meta property="og:type" content="profile">
-<meta property="og:title" content="UniversalToolchain / Wist2 — architecture case study">
-<meta property="og:description" content="The current exact test manifest passes with zero failures; interpreter/CIL parity, clean-consumer scenarios, and reproducible compiler/runtime contracts are verified.">
+<meta property="og:title" content="UniversalToolchain — architecture case study">
+<meta property="og:description" content="The modular framework separates language composition from runtime execution and backs its contracts with executable verification/tests.">
 <meta property="og:url" content="https://misha1302.github.io/CV/cases/en-wist.html">
 <meta property="og:image" content="https://misha1302.github.io/CV/assets/og-card.svg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="UniversalToolchain / Wist2 — architecture case study">
-<meta name="twitter:description" content="The current exact test manifest passes with zero failures; interpreter/CIL parity, clean-consumer scenarios, and reproducible compiler/runtime contracts are verified.">
+<meta name="twitter:title" content="UniversalToolchain — architecture case study">
+<meta name="twitter:description" content="The modular framework separates language composition from runtime execution and backs its contracts with executable verification/tests.">
 <meta name="twitter:image" content="https://misha1302.github.io/CV/assets/og-card.svg">
 <link rel="canonical" href="https://misha1302.github.io/CV/cases/en-wist.html">
 <link rel="alternate" hreflang="en" href="https://misha1302.github.io/CV/cases/en-wist.html">
 <link rel="alternate" hreflang="ru" href="https://misha1302.github.io/CV/cases/ru-wist.html">
 <link rel="alternate" hreflang="x-default" href="https://misha1302.github.io/CV/">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../style.css?v=47">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Mikhail Razakov","jobTitle":"Software Engineer — Architecture & Platforms","email":"mailto:misha13022008@gmail.com","url":"https://misha1302.github.io/CV/cases/en-wist.html","sameAs":["https://github.com/Misha1302","https://t.me/Micodiy","https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/"]}</script>
+<link rel="stylesheet" href="../style.css?v=48">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Mikhail Razakov","jobTitle":"Compiler / Static Analysis Engineer","email":"mailto:misha13022008@gmail.com","url":"https://misha1302.github.io/CV/cases/en-wist.html","sameAs":["https://github.com/Misha1302","https://t.me/Micodiy","https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/"]}</script>
 </head>
 <body class="case-page"><header class="site-header"><div class="shell header-inner"><a class="brand" href="../index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>Mikhail Razakov</strong><span>engineering case</span></span></a><div></div><div class="header-actions"><a class="button compact" href="../en.html">Back to CV</a></div></div></header>
-<main class="shell case-main" id="main"><section class="case-hero"><p class="eyebrow">.NET · language platform · runtime</p><h1>UniversalToolchain / Wist2</h1><p>Independent language packages must compose into one runtime safely and deterministically without hidden registration-order dependencies.</p><div class="hero-actions"><a class="button" href="https://github.com/Misha1302/UniversalToolchain" target="_blank" rel="noopener noreferrer">GitHub</a></div></section>
-<section class="case-grid"><article><span>01</span><h2>Problem</h2><p>Independent language packages must compose into one runtime safely and deterministically without hidden registration-order dependencies.</p></article><article><span>02</span><h2>Constraints</h2><p>Independent package versions, multiple backends, determinism, and compatibility.</p></article><article><span>03</span><h2>Solution</h2><p>Typed artifact contracts, capability/conflict graphs, deterministic routes and passes, exact manifest binding, lock identity, and lifecycle ownership.</p></article><article><span>04</span><h2>Outcome</h2><p>The current exact test manifest passes with zero failures; interpreter/CIL parity, clean-consumer scenarios, and reproducible compiler/runtime contracts are verified.</p></article><article><span>05</span><h2>Verification</h2><p>Canonical test gate, clean-consumer projects, interpreter/CIL parity, deterministic manifests and replayable failures.</p></article><article><span>06</span><h2>My ownership</h2><p>Architecture, core contracts, runtime, SSA, verification strategy, and public documentation.</p></article></section></main>
-<footer class="shell site-footer"><span>UniversalToolchain / Wist2</span><span>Updated 2026-08-25</span></footer></body></html>
+<main class="shell case-main" id="main"><section class="case-hero"><p class="eyebrow">.NET · modular compiler/runtime framework</p><h1>UniversalToolchain</h1><p>Independent language components must compose into a compiler/runtime pipeline deterministically, without hidden registration-order dependencies.</p><div class="hero-actions"><a class="button" href="https://github.com/Misha1302/UniversalToolchain" target="_blank" rel="noopener noreferrer">GitHub</a></div></section>
+<section class="case-grid"><article><span>01</span><h2>Problem</h2><p>Independent language components must compose into a compiler/runtime pipeline deterministically, without hidden registration-order dependencies.</p></article><article><span>02</span><h2>Constraints</h2><p>Independent package versions, multiple backends, determinism, and compatibility.</p></article><article><span>03</span><h2>Solution</h2><p>Typed intermediate artifacts, deterministic LanguagePlan construction, contribution dependencies/conflicts, pass ordering, and exact backend routing.</p></article><article><span>04</span><h2>Outcome</h2><p>The modular framework separates language composition from runtime execution and backs its contracts with executable verification/tests.</p></article><article><span>05</span><h2>Verification</h2><p>Canonical test gate, clean-consumer projects, interpreter/CIL parity, deterministic manifests and replayable failures.</p></article><article><span>06</span><h2>My ownership</h2><p>Architecture, core contracts, runtime, SSA, verification strategy, and public documentation.</p></article></section></main>
+<footer class="shell site-footer"><span>UniversalToolchain</span><span>Updated 2026-08-29</span></footer></body></html>

@@ -284,7 +284,8 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
         bullets = "".join(f"<li>{esc(text)}</li>" for text in item["bullets"][:2])
         experiences.append(f'<article class="pcv-entry"><div class="pcv-date">{esc(item["date"])}</div><div><h3>{esc(item["title"])}</h3><ul>{bullets}</ul></div></article>')
     projects = []
-    for project_id in profile["project_ids"][:3]:
+    project_limit = int(profile.get("print_project_limit", 3))
+    for project_id in profile["project_ids"][:project_limit]:
         project = data["projects"][project_id]
         case = project[f"case_{lang}"]
         projects.append(f'<article class="pcv-project"><h3><a href="{esc(case)}">{esc(project["title"])}</a></h3><p>{esc(project[f"result_{lang}"])}</p></article>')
@@ -316,7 +317,7 @@ def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
 def landing_page(data: dict[str, Any]) -> str:
     lang = "ru"
     general = data["profiles"]["general"][lang]
-    title = "Михаил Разаков — Software Engineer"
+    title = "Михаил Разаков — Compiler / Static Analysis Engineer"
     description = general["description"]
     head = common_head(data, lang, "index.html", title, description, general["role"], data["site_url"])
     cards = []
@@ -327,16 +328,16 @@ def landing_page(data: dict[str, Any]) -> str:
         heading = ui["landing_title"]
         body = ui["landing_description_ru"]
         cards.append(f'<article class="selector-card"><span>RU / EN</span><h2>{esc(heading)}</h2><p>{esc(body)}</p><div class="selector-links"><a href="{esc(ru["filename"])}">Русская версия</a><a href="{esc(en["filename"])}">English version</a></div><div class="selector-pdf-links"><a href="pdf/{esc(ru["pdf"])}" download>PDF RU</a><a href="pdf/{esc(en["pdf"])}" download>PDF EN</a></div></article>')
-    project_cases = "".join(project_card(data, "ru", project_id) for project_id in ["wist", "vpn", "psform"])
+    project_cases = "".join(project_card(data, "ru", project_id) for project_id in ["globaliv", "deref", "wist"])
     p = data["person"]
     return f"""{head}
 <body class="selector-page">
-<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(p['name_ru'])}</strong><span>Software Engineer</span></span></a><nav class="primary-nav"><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="en.html">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav></div></details></div></div></header>
-<main id="main" class="shell landing-main"><section class="selector-intro landing-hero"><p class="eyebrow">Архитектура платформ · .NET backend · compiler/runtime</p><h1>Проектирую и реализую сложные программные системы.</h1><p>{esc(general['summary'])}</p><div class="hero-actions"><a class="button primary" href="ru.html">Открыть резюме</a><a class="button" href="pdf/{esc(general['pdf'])}" download>Скачать PDF</a><a class="button" href="#cases">Посмотреть проекты</a></div><div class="landing-evidence"><span>Typed contracts · exact runtime binding</span><span>State machines · idempotency · recovery</span><span>LLVM · SSA · x86-64</span></div></section>
-<section id="profiles" class="landing-section"><div class="section-heading"><p class="section-label">01 · Профили</p><div><h2>Профили под конкретные роли.</h2><p class="section-intro">Основной профиль — Software Engineer — Architecture & Platforms. Специализированные версии меняют приоритет доказательств, но не противоречат друг другу.</p></div></div><div class="selector-grid">{''.join(cards)}</div><p class="portfolio-link"><a href="ru.html">Полное техническое портфолио →</a></p></section>
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(p['name_ru'])}</strong><span>Compiler / Static Analysis Engineer</span></span></a><nav class="primary-nav"><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="en.html">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav></div></details></div></div></header>
+<main id="main" class="shell landing-main"><section class="selector-intro landing-hero"><p class="eyebrow">LLVM · static analysis · program analysis · compiler infrastructure</p><h1>Compiler / Static Analysis Engineer</h1><p>{esc(general['summary'])}</p><div class="hero-actions"><a class="button primary" href="ru.html">Открыть резюме</a><a class="button" href="pdf/{esc(general['pdf'])}" download>Скачать PDF</a><a class="button" href="#cases">Посмотреть проекты</a></div><div class="landing-evidence"><span>MCST · LLVM 22 · C++</span><span>ISP RAS · SharpChecker · static analysis</span><span>CFG/SSA · data-flow · x86-64</span></div></section>
+<section id="profiles" class="landing-section"><div class="section-heading"><p class="section-label">01 · Профили</p><div><h2>Профили под конкретные роли.</h2><p class="section-intro">Основной профиль — Compiler / Static Analysis Engineer. Специализированные версии меняют приоритет доказательств, но сохраняют единый набор проверенных фактов.</p></div></div><div class="selector-grid">{''.join(cards)}</div><p class="portfolio-link"><a href="ru.html">Полное техническое портфолио →</a></p></section>
 <section id="cases" class="landing-section"><div class="section-heading"><p class="section-label">02 · Кейсы</p><div><h2>Проблема → решение → проверяемый результат.</h2><p class="section-intro">Открытые проекты ведут к коду и документации; закрытые — к публичному архитектурному разбору без секретов и пользовательских данных.</p></div></div><div class="project-grid">{project_cases}</div></section>
 <section class="contact-section" id="contact"><div class="contact-panel"><div><h2>Связаться по инженерной роли или проекту.</h2><p>{esc(p['location_ru'])}</p></div><div class="contact-links"><a class="button primary" href="mailto:{esc(p['email'])}">Почта</a><a class="button" href="{esc(p['telegram'])}" target="_blank" rel="noopener noreferrer">Telegram</a><a class="button" href="{esc(p['github'])}" target="_blank" rel="noopener noreferrer">GitHub</a></div></div></section></main>
-<footer class="shell site-footer"><span>{esc(p['name_ru'])} · Software Engineer</span><span>Обновлено {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
+<footer class="shell site-footer"><span>{esc(p['name_ru'])} · Compiler / Static Analysis Engineer</span><span>Обновлено {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
 """
 
 
@@ -366,6 +367,8 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         "lms": "Финансовые операции и пользовательские workflows должны развиваться независимо, не нарушая ledger-инварианты." if lang == "ru" else "Financial operations and user workflows must evolve independently without violating ledger invariants.",
         "psform": "Анализ должен быть консервативным, быстрым на больших диапазонах и проверяемым на малых областях." if lang == "ru" else "The analysis must be conservative, fast on large domains, and checkable on small domains.",
         "codegen": "Нужно сравнивать высокоуровневую семантику и машинный код в изолированном процессе с ограничениями ресурсов." if lang == "ru" else "High-level semantics and machine code must be compared in an isolated, resource-limited process.",
+        "globaliv": "Transform допустим только при доказанной affine evolution и legality; unsupported CFG/calls должны приводить к отказу, а не к небезопасной оптимизации." if lang == "ru" else "The transform is allowed only when affine evolution and legality are established; unsupported CFG/calls must be rejected rather than optimized unsafely.",
+        "deref": "Анализ должен корректно сходиться на ветвлениях, циклах и join points без path explosion." if lang == "ru" else "The analysis must converge correctly across branches, loops, and join points without path explosion.",
     }[project_id]
     verification = {
         "wist": "Canonical test gate, clean-consumer projects, interpreter/CIL parity, deterministic manifests and replayable failures." if lang == "en" else "Канонический тестовый gate, clean-consumer проекты, parity интерпретатора/CIL, детерминированные манифесты и воспроизводимые падения.",
@@ -374,6 +377,8 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         "lms": "Ledger invariants, idempotent payment completion, role checks, migrations, and critical-flow acceptance." if lang == "en" else "Ledger-инварианты, идемпотентное завершение платежа, проверки ролей, миграции и acceptance критических flows.",
         "psform": "Exact brute-force oracle on small domains, metamorphic generation, sanitizers, and reproducible WA/TL examples." if lang == "en" else "Точный brute-force oracle на малых областях, метаморфная генерация, sanitizers и воспроизводимые WA/TL-примеры.",
         "codegen": "Differential comparison with an IR interpreter, isolated execution, disassembly, and spill/reload metrics." if lang == "en" else "Дифференциальное сравнение с IR-интерпретатором, изолированный запуск, дизассемблирование и метрики spill/reload.",
+        "globaliv": "29 positive/negative IR regressions, LLVM verifier checks, idempotence, and before/after execution comparison." if lang == "en" else "29 positive/negative IR regression cases, LLVM verifier, idempotence и сравнение исполнения до/после преобразования.",
+        "deref": "Analyzer tests plus fixed-point worklist convergence over the Roslyn CFG, including branches and loops." if lang == "en" else "Analyzer tests и сходимость fixed-point worklist по Roslyn CFG, включая ветвления и циклы.",
     }[project_id]
     ownership = {
         "wist": "Архитектура, ключевые контракты, runtime, SSA, тестовая стратегия и публичная документация." if lang == "ru" else "Architecture, core contracts, runtime, SSA, verification strategy, and public documentation.",
@@ -382,6 +387,8 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         "lms": "Роли, баланс, платежные workflows, инварианты и release-проверки." if lang == "ru" else "Roles, balances, payment workflows, invariants, and release checks.",
         "psform": "Алгоритм анализа, точный оракул, stress infrastructure и разбор контрпримеров." if lang == "ru" else "Analysis algorithm, exact oracle, stress infrastructure, and counterexample analysis.",
         "codegen": "IR, liveness, register allocation, code emission и differential harness." if lang == "ru" else "IR, liveness, register allocation, code emission, and the differential harness.",
+        "globaliv": "Модель affine evolution, interprocedural effects, legality analysis, LLVM IR transform и regression harness." if lang == "ru" else "Affine-evolution model, interprocedural effects, legality analysis, LLVM IR transform, and regression harness.",
+        "deref": "CFG/data-flow реализация, merge logic, diagnostics и analyzer tests." if lang == "ru" else "CFG/data-flow implementation, merge logic, diagnostics, and analyzer tests.",
     }[project_id]
     links = []
     if project.get("repo"):
