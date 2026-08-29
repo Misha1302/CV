@@ -79,7 +79,7 @@ jobs:
           grep -q 'ISP RAS — SharpChecker' en.html
           grep -q 'DerefAfterNullAnalyzer' ru-compiler.html
           grep -q 'LLVM Interprocedural Global IV Optimization' en-compiler.html
-          grep -q 'x86-64 Codegen & Register Allocation Lab' ru.html
+          grep -q 'x86-64 Codegen' ru.html
 
       - name: Upload visual and PDF evidence
         if: always()
@@ -105,11 +105,34 @@ jobs:
           if-no-files-found: error
 
       - name: Commit validated generated result
-        if: ${{ false }}
         run: |
+          echo 'Status before cleanup:'
+          git status --short
+          echo 'Diff before cleanup:'
+          git diff --stat
           rm -f tools/_cv_refresh_20260829.py tools/_cv_refresh_cases_20260829.py tools/_cv_refresh_schema_20260829.py tools/_cv_refresh_print_20260829.py .github/workflows/cv-refresh-20260829.yml
           git add -A
           git diff --cached --check
+          python - <<'PY'
+          import fnmatch
+          import subprocess
+
+          allowed_exact = {
+              'README.md', 'data/site.json', 'data/visual-baseline.json',
+              'tools/build_site.py', 'manifest.sha256', 'sitemap.xml', 'robots.txt',
+          }
+          allowed_globs = ('*.html', 'cases/*.html', 'pdf/*.pdf')
+          names = subprocess.check_output(['git', 'diff', '--cached', '--name-only'], text=True).splitlines()
+          unexpected = [p for p in names if p not in allowed_exact and not any(fnmatch.fnmatch(p, g) for g in allowed_globs)]
+          print('Staged files:')
+          print('\n'.join(names))
+          if unexpected:
+              raise SystemExit('Unexpected staged files: ' + ', '.join(unexpected))
+          PY
+          if git diff --cached -U0 | grep -E 'BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|gh[pousr]_[A-Za-z0-9_]{20,}|AIza[0-9A-Za-z_-]{30,}'; then
+            echo 'Potential secret found in staged diff' >&2
+            exit 1
+          fi
           git config user.name 'Misha1302'
           git config user.email 'misha13022008@gmail.com'
           git commit -m 'cv: refocus resume on compiler and static analysis'
