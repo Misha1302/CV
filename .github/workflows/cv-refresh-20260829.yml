@@ -31,7 +31,9 @@ jobs:
         run: |
           python tools/_cv_refresh_20260829.py
           python tools/_cv_refresh_cases_20260829.py
+          python tools/_cv_refresh_schema_20260829.py
           python -m json.tool data/site.json >/dev/null
+          python -m py_compile tools/build_site.py
 
       - name: Build generated site and PDFs
         run: |
@@ -66,10 +68,15 @@ jobs:
                   raise SystemExit(f'{name} has no clickable links')
           PY
           git diff --check
-          if grep -R -n -E 'LangDev 2026.*(accepted|принят)|UniversalToolchain ?/ ?Wist2|UniversalToolchain/Wist2' data/site.json ru.html en.html ru-compiler.html en-compiler.html; then
+          if grep -R -n -E 'LangDev 2026.*(accepted|принят)|UniversalToolchain ?/ ?Wist2|UniversalToolchain/Wist2' data/site.json index.html ru.html en.html ru-compiler.html en-compiler.html; then
             echo 'Stale or unverified public claim found' >&2
             exit 1
           fi
+          grep -q 'Compiler / Static Analysis Engineer' index.html
+          grep -q 'ИСП РАН — SharpChecker' ru.html
+          grep -q 'ISP RAS — SharpChecker' en.html
+          grep -q 'DerefAfterNullAnalyzer' ru-compiler.html
+          grep -q 'LLVM Interprocedural Global IV Optimization' en-compiler.html
 
       - name: Upload visual and PDF evidence
         uses: actions/upload-artifact@v4
@@ -84,6 +91,7 @@ jobs:
             pdf/Mikhail_Razakov_Software_Engineer_EN.pdf
             pdf/Mikhail_Razakov_Compiler_RU.pdf
             pdf/Mikhail_Razakov_Compiler_EN.pdf
+            index.html
             ru.html
             en.html
             ru-compiler.html
@@ -92,7 +100,7 @@ jobs:
 
       - name: Commit validated generated result
         run: |
-          rm -f tools/_cv_refresh_20260829.py tools/_cv_refresh_cases_20260829.py .github/workflows/cv-refresh-20260829.yml
+          rm -f tools/_cv_refresh_20260829.py tools/_cv_refresh_cases_20260829.py tools/_cv_refresh_schema_20260829.py .github/workflows/cv-refresh-20260829.yml
           git add -A
           git diff --cached --check
           git config user.name 'Misha1302'
