@@ -1,0 +1,97 @@
+name: CV refresh 2026-08-29
+
+on:
+  push:
+    branches:
+      - cv/compiler-static-analysis-refresh
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install validation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          python -m playwright install --with-deps chromium
+
+      - name: Apply canonical CV refresh
+        run: |
+          python tools/_cv_refresh_20260829.py
+          python tools/_cv_refresh_cases_20260829.py
+          python -m json.tool data/site.json >/dev/null
+
+      - name: Build generated site and PDFs
+        run: |
+          python tools/build_site.py
+          rm -rf /tmp/cv-pdf-evidence /tmp/cv-visual
+          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence
+          python tools/build_site.py --manifest
+
+      - name: Validate content and rendering
+        run: |
+          python tools/validate_cv.py --pdf-dir pdf
+          python tools/visual_regression.py --output-dir /tmp/cv-visual
+          python - <<'PY'
+          import fitz
+          from pathlib import Path
+          expected = [
+              'Mikhail_Razakov_Software_Engineer_RU.pdf',
+              'Mikhail_Razakov_Software_Engineer_EN.pdf',
+              'Mikhail_Razakov_Compiler_RU.pdf',
+              'Mikhail_Razakov_Compiler_EN.pdf',
+          ]
+          for name in expected:
+              p = Path('pdf') / name
+              doc = fitz.open(p)
+              print(f'{name}: {doc.page_count} page(s)')
+              if doc.page_count != 1:
+                  raise SystemExit(f'{name} is not one page')
+              links = sum(len(page.get_links()) for page in doc)
+              print(f'  PDF links: {links}')
+              if links == 0:
+                  raise SystemExit(f'{name} has no clickable links')
+          PY
+          git diff --check
+          if grep -R -n -E 'LangDev 2026.*(accepted|принят)|UniversalToolchain ?/ ?Wist2|UniversalToolchain/Wist2' data/site.json ru.html en.html ru-compiler.html en-compiler.html; then
+            echo 'Stale or unverified public claim found' >&2
+            exit 1
+          fi
+
+      - name: Upload visual and PDF evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-refresh-evidence
+          path: |
+            /tmp/cv-visual
+            /tmp/cv-pdf-evidence
+            pdf/Mikhail_Razakov_Software_Engineer_RU.pdf
+            pdf/Mikhail_Razakov_Software_Engineer_EN.pdf
+            pdf/Mikhail_Razakov_Compiler_RU.pdf
+            pdf/Mikhail_Razakov_Compiler_EN.pdf
+            ru.html
+            en.html
+            ru-compiler.html
+            en-compiler.html
+          if-no-files-found: error
+
+      - name: Commit validated generated result
+        run: |
+          rm -f tools/_cv_refresh_20260829.py tools/_cv_refresh_cases_20260829.py .github/workflows/cv-refresh-20260829.yml
+          git add -A
+          git diff --cached --check
+          git config user.name 'Misha1302'
+          git config user.email 'misha13022008@gmail.com'
+          git commit -m 'cv: refocus resume on compiler and static analysis'
+          git push origin HEAD:cv/compiler-static-analysis-refresh
