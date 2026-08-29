@@ -1,17 +1,17 @@
 {
   "ru.html|desktop": {
-    "dhash": "3e1336cf39ce053e0f1e2638177f1d5719df08de263625bc25b864f015b317b3",
+    "dhash": "3ecb37c719dc0736261e077a1d5f1dd619cf263a26be27b826ee64f005b717b3",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 4749,
+    "page_height": 5080,
     "h1": "Михаил Разаков",
     "role": "Compiler / Static Analysis Engineer"
   },
   "ru-compiler.html|desktop": {
-    "dhash": "3ae336e33d860f3e073e0c163cfe1cde1cde0df2278e060c07b849f015b717b3",
+    "dhash": "3ae336e72f260f3e0f2e2cd61cde1cde0cd6278e061c27de24e24bf015b717b3",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 3612,
+    "page_height": 3943,
     "h1": "Михаил Разаков",
     "role": "Compiler / LLVM Engineer"
   },
@@ -32,18 +32,18 @@
     "role": "C++ / LLVM Systems Engineer"
   },
   "ru.html|mobile": {
-    "dhash": "5de328ff3caf152c116f1e6f3dff3cdf389f2cbf38bf13cf77fb5efd3eff2cff",
+    "dhash": "6ce32cfd3c8f5d6c326f3f6f3fbf3cdf38bf38bf1adf77fb47fa763f1eff28ff",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 8156,
+    "page_height": 8712,
     "h1": "Михаил Разаков",
     "role": "Compiler / Static Analysis Engineer"
   },
   "ru-compiler.html|mobile": {
-    "dhash": "58d724ff764859ee326f27b36bbf71bb51bf711f149f768b44f83567267f08db",
+    "dhash": "58d766ff5608396f167767d751af51bb719f149f769b44f4773f3d7f267f08fb",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 5677,
+    "page_height": 6233,
     "h1": "Михаил Разаков",
     "role": "Compiler / LLVM Engineer"
   },
@@ -67,7 +67,7 @@
     "dhash": "16032203480b36072e06062602c62ac635c7358f03cf460718dc18ce2e162010",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 4882,
+    "page_height": 5213,
     "h1": "Михаил Разаков",
     "role": "Compiler / Static Analysis Engineer"
   },
