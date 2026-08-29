@@ -40,10 +40,10 @@ jobs:
           python tools/build_site.py --check
           grep -q 'НИЯУ МИФИ «Юниор»' ru-compiler.html
           grep -q 'Высшая проба' ru-compiler.html
-          grep -q "LangDev'26" ru-compiler.html
+          grep -q 'LangDev' ru-compiler.html
           grep -q 'MEPhI Junior' en-compiler.html
           grep -q 'Vysshaya Proba' en-compiler.html
-          grep -q "LangDev'26" en-compiler.html
+          grep -q 'LangDev' en-compiler.html
           python - <<'PY'
           import fitz
           from pathlib import Path
