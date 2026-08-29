@@ -34,7 +34,8 @@ jobs:
           python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
           python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf --check-external --report /tmp/cv-validation.json
-          python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
+          python tools/visual_regression.py --update --output-dir /tmp/cv-visual
+          python tools/visual_regression.py --output-dir /tmp/cv-visual-verify
           python tools/build_site.py --check
           grep -q 'НИЯУ МИФИ «Юниор»' ru-compiler.html
           grep -q 'Высшая проба' ru-compiler.html
@@ -57,6 +58,18 @@ jobs:
                   raise SystemExit(f'{name}: expected one page')
           PY
           git diff --check
+      - name: Upload visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: recognition-visual-evidence
+          path: |
+            /tmp/cv-visual
+            /tmp/cv-visual-verify
+            /tmp/cv-pdf-evidence
+            pdf/Mikhail_Razakov_Compiler_RU.pdf
+            pdf/Mikhail_Razakov_Compiler_EN.pdf
+          if-no-files-found: error
       - name: Commit validated result
         run: |
           rm -f tools/_restore_recognition_20260829.py .github/workflows/restore-recognition-20260829.yml
