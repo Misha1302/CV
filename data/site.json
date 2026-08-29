@@ -1,5 +1,5 @@
 {
-  "version": 48,
+  "version": 49,
   "updated_at": "2026-08-29",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -126,6 +126,21 @@
             "2026",
             "UniversalToolchain — Балтийский научно-инженерный конкурс",
             "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
+          ],
+          [
+            "2025–2026",
+            "НИЯУ МИФИ «Юниор»",
+            "Абсолютный победитель конкурса в 2025 и 2026 годах; в 2026 — диплом I степени, 96/100 за UniversalToolchain."
+          ],
+          [
+            "2025–2026",
+            "«Высшая проба» / ВсОШ по информатике",
+            "Призёр «Высшей пробы» по олимпиадному и промышленному программированию; призёр регионального этапа ВсОШ по информатике."
+          ],
+          [
+            "2026",
+            "LangDev'26 — Extensible Programming on .NET",
+            "Доклад принят к устному выступлению на LangDev'26."
           ]
         ],
         "print_project_limit": 4
@@ -199,6 +214,21 @@
             "2026",
             "UniversalToolchain — Baltic Science and Engineering Competition",
             "First Degree Diploma and Grand Prize “Perfection as Hope” for UniversalToolchain."
+          ],
+          [
+            "2025–2026",
+            "MEPhI Junior",
+            "Absolute winner in 2025 and 2026; in 2026, First Degree Diploma, 96/100 for UniversalToolchain."
+          ],
+          [
+            "2025–2026",
+            "HSE Vysshaya Proba / Russian National Olympiad in Informatics",
+            "Prize-winner in Vysshaya Proba olympiad and industrial programming; regional-stage prize-winner in the Russian National Olympiad in Informatics."
+          ],
+          [
+            "2026",
+            "LangDev'26 — Extensible Programming on .NET",
+            "Accepted for an oral presentation at LangDev'26."
           ]
         ],
         "print_project_limit": 4
@@ -274,6 +304,21 @@
             "2026",
             "UniversalToolchain — Балтийский научно-инженерный конкурс",
             "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
+          ],
+          [
+            "2025–2026",
+            "НИЯУ МИФИ «Юниор»",
+            "Абсолютный победитель конкурса в 2025 и 2026 годах; в 2026 — диплом I степени, 96/100 за UniversalToolchain."
+          ],
+          [
+            "2025–2026",
+            "«Высшая проба» / ВсОШ по информатике",
+            "Призёр «Высшей пробы» по олимпиадному и промышленному программированию; призёр регионального этапа ВсОШ по информатике."
+          ],
+          [
+            "2026",
+            "LangDev'26 — Extensible Programming on .NET",
+            "Доклад принят к устному выступлению на LangDev'26."
           ]
         ],
         "project_summaries": {
@@ -367,6 +412,21 @@
             "2026",
             "UniversalToolchain — Baltic Science and Engineering Competition",
             "First Degree Diploma and Grand Prize “Perfection as Hope” for UniversalToolchain."
+          ],
+          [
+            "2025–2026",
+            "MEPhI Junior",
+            "Absolute winner in 2025 and 2026; in 2026, First Degree Diploma, 96/100 for UniversalToolchain."
+          ],
+          [
+            "2025–2026",
+            "HSE Vysshaya Proba / Russian National Olympiad in Informatics",
+            "Prize-winner in Vysshaya Proba olympiad and industrial programming; regional-stage prize-winner in the Russian National Olympiad in Informatics."
+          ],
+          [
+            "2026",
+            "LangDev'26 — Extensible Programming on .NET",
+            "Accepted for an oral presentation at LangDev'26."
           ]
         ],
         "project_summaries": {
@@ -1077,6 +1137,11 @@
         "2021 — сейчас",
         "Техническая коммуникация",
         "Около 50 учеников; практический курс NASM IA-32; публичная документация, code review и технические материалы."
+      ],
+      [
+        "2026",
+        "LangDev'26 — Extensible Programming on .NET",
+        "Доклад принят к устному выступлению на LangDev'26."
       ]
     ],
     "en": [
@@ -1094,6 +1159,11 @@
         "2021 — present",
         "Technical communication",
         "About 50 students; a practical NASM IA-32 course; public documentation, code review, and technical writing."
+      ],
+      [
+        "2026",
+        "LangDev'26 — Extensible Programming on .NET",
+        "Accepted for an oral presentation at LangDev'26."
       ]
     ]
   },
