@@ -11,6 +11,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -18,7 +19,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Install validation dependencies
         run: |
@@ -36,13 +37,14 @@ jobs:
         run: |
           python tools/build_site.py
           rm -rf /tmp/cv-pdf-evidence /tmp/cv-visual
-          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence
+          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
           python tools/build_site.py --manifest
 
       - name: Validate content and rendering
         run: |
-          python tools/validate_cv.py --pdf-dir pdf
+          python tools/validate_cv.py --pdf-dir pdf --check-external --report /tmp/cv-validation.json
           python tools/visual_regression.py --output-dir /tmp/cv-visual
+          python tools/build_site.py --check
           python - <<'PY'
           import fitz
           from pathlib import Path
@@ -74,6 +76,8 @@ jobs:
         with:
           name: cv-refresh-evidence
           path: |
+            /tmp/cv-pdf-report.json
+            /tmp/cv-validation.json
             /tmp/cv-visual
             /tmp/cv-pdf-evidence
             pdf/Mikhail_Razakov_Software_Engineer_RU.pdf
