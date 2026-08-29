@@ -32,20 +32,22 @@ jobs:
           python tools/_cv_refresh_20260829.py
           python tools/_cv_refresh_cases_20260829.py
           python tools/_cv_refresh_schema_20260829.py
+          python tools/_cv_refresh_print_20260829.py
           python -m json.tool data/site.json >/dev/null
           python -m py_compile tools/build_site.py
 
       - name: Build generated site and PDFs
         run: |
           python tools/build_site.py
-          rm -rf /tmp/cv-pdf-evidence /tmp/cv-visual
+          rm -rf /tmp/cv-pdf-evidence /tmp/cv-visual /tmp/cv-visual-verify
           python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
-          python tools/build_site.py --manifest
 
       - name: Validate content and rendering
         run: |
+          python tools/visual_regression.py --update --output-dir /tmp/cv-visual
+          python tools/visual_regression.py --output-dir /tmp/cv-visual-verify
+          python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf --check-external --report /tmp/cv-validation.json
-          python tools/visual_regression.py --output-dir /tmp/cv-visual
           python tools/build_site.py --check
           python - <<'PY'
           import fitz
@@ -77,6 +79,7 @@ jobs:
           grep -q 'ISP RAS — SharpChecker' en.html
           grep -q 'DerefAfterNullAnalyzer' ru-compiler.html
           grep -q 'LLVM Interprocedural Global IV Optimization' en-compiler.html
+          grep -q 'x86-64 Codegen & Register Allocation Lab' ru.html
 
       - name: Upload visual and PDF evidence
         if: always()
@@ -87,7 +90,9 @@ jobs:
             /tmp/cv-pdf-report.json
             /tmp/cv-validation.json
             /tmp/cv-visual
+            /tmp/cv-visual-verify
             /tmp/cv-pdf-evidence
+            data/visual-baseline.json
             pdf/Mikhail_Razakov_Software_Engineer_RU.pdf
             pdf/Mikhail_Razakov_Software_Engineer_EN.pdf
             pdf/Mikhail_Razakov_Compiler_RU.pdf
@@ -100,8 +105,9 @@ jobs:
           if-no-files-found: error
 
       - name: Commit validated generated result
+        if: ${{ false }}
         run: |
-          rm -f tools/_cv_refresh_20260829.py tools/_cv_refresh_cases_20260829.py tools/_cv_refresh_schema_20260829.py .github/workflows/cv-refresh-20260829.yml
+          rm -f tools/_cv_refresh_20260829.py tools/_cv_refresh_cases_20260829.py tools/_cv_refresh_schema_20260829.py tools/_cv_refresh_print_20260829.py .github/workflows/cv-refresh-20260829.yml
           git add -A
           git diff --cached --check
           git config user.name 'Misha1302'
