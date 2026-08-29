@@ -119,13 +119,30 @@ jobs:
 
           allowed_exact = {
               'README.md', 'data/site.json', 'data/visual-baseline.json',
-              'tools/build_site.py', 'manifest.sha256', 'sitemap.xml', 'robots.txt',
+              'tools/build_site.py', 'MANIFEST.sha256', 'sitemap.xml', 'robots.txt',
           }
           allowed_globs = ('*.html', 'cases/*.html', 'pdf/*.pdf')
-          names = subprocess.check_output(['git', 'diff', '--cached', '--name-only'], text=True).splitlines()
-          unexpected = [p for p in names if p not in allowed_exact and not any(fnmatch.fnmatch(p, g) for g in allowed_globs)]
+          temp_paths = {
+              '.github/workflows/cv-refresh-20260829.yml',
+              'tools/_cv_refresh_20260829.py',
+              'tools/_cv_refresh_cases_20260829.py',
+              'tools/_cv_refresh_schema_20260829.py',
+              'tools/_cv_refresh_print_20260829.py',
+          }
+          rows = []
+          for line in subprocess.check_output(['git', 'diff', '--cached', '--name-status'], text=True).splitlines():
+              status, path = line.split('\t', 1)
+              rows.append((status, path))
+          unexpected = []
+          for status, path in rows:
+              if path in temp_paths:
+                  if status != 'D':
+                      unexpected.append(f'{status} {path} (temporary path must only be deleted)')
+                  continue
+              if path not in allowed_exact and not any(fnmatch.fnmatch(path, g) for g in allowed_globs):
+                  unexpected.append(f'{status} {path}')
           print('Staged files:')
-          print('\n'.join(names))
+          print('\n'.join(f'{status}\t{path}' for status, path in rows))
           if unexpected:
               raise SystemExit('Unexpected staged files: ' + ', '.join(unexpected))
           PY
