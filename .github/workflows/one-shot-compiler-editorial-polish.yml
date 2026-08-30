@@ -1,0 +1,318 @@
+name: Compiler CV editorial polish
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/one-shot-compiler-editorial-polish.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Patch canonical compiler CV sources
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from textwrap import dedent
+
+          root = Path('.')
+          data_path = root / 'data' / 'site.json'
+          data = json.loads(data_path.read_text(encoding='utf-8'))
+          data['version'] = int(data.get('version', 0)) + 1
+          data['updated_at'] = '2026-08-30'
+          data['person']['education_ru'] = 'НИУ ВШЭ — Программная инженерия, 2026–2030'
+          data['person']['education_en'] = 'HSE University — Software Engineering, 2026–2030'
+
+          ru = data['profiles']['compiler']['ru']
+          en = data['profiles']['compiler']['en']
+
+          ru['summary'] = (
+              'Работаю с компиляторами и статическим анализом. В МЦСТ реализовывал оптимизационные проходы LLVM '
+              'и межпроцедурный анализ IR; сейчас работаю над SharpChecker в ИСП РАН. '
+              'В собственных проектах занимаюсь анализом CFG и потоков данных, генерацией кода и инфраструктурой компилятора.'
+          )
+          en['summary'] = (
+              'I work on compilers and static analysis. At MCST I implemented LLVM optimization passes and '
+              'interprocedural IR analysis; I now work on SharpChecker at ISP RAS. '
+              'My independent projects cover CFG/data-flow analysis, code generation, and compiler infrastructure.'
+          )
+          ru['description'] = (
+              'Михаил Разаков — Compiler / LLVM Engineer. Опыт разработки оптимизационных проходов и '
+              'межпроцедурного анализа LLVM в МЦСТ, статический анализ C#/.NET в ИСП РАН и собственные проекты по LLVM IR.'
+          )
+          en['description'] = (
+              'Mikhail Razakov — Compiler / LLVM Engineer with MCST experience in LLVM optimization passes and '
+              'interprocedural analysis, C#/.NET static analysis at ISP RAS, and independent LLVM IR projects.'
+          )
+
+          ru['experience'][0]['title'] = 'ИСП РАН — инженер по статическому анализу'
+          ru['experience'][0]['org'] = 'SharpChecker · C#/.NET'
+          ru['experience'][0]['bullets'] = [
+              'Участвую в разработке SharpChecker — платформы статического анализа C#/.NET в ИСП РАН.'
+          ]
+          en['experience'][0]['title'] = 'ISP RAS — Static Analysis Engineer'
+          en['experience'][0]['org'] = 'SharpChecker · C#/.NET'
+          en['experience'][0]['bullets'] = [
+              "Contributing to SharpChecker, ISP RAS's static-analysis platform for C#/.NET."
+          ]
+
+          ru['experience'][1]['bullets'] = [
+              'Реализовал LLVM LICM-pass: анализ циклов, проверки побочных эффектов и speculative safety, '
+              'вынос loop-invariant инструкций в preheader.',
+              'Разрабатывал межпроцедурный анализ глобальных переменных и legality-проверки '
+              'для безопасных преобразований LLVM IR.'
+          ]
+          en['experience'][1]['bullets'] = [
+              'Implemented an LLVM LICM pass with loop analysis, side-effect/speculative-safety checks, '
+              'and hoisting of loop-invariant instructions to preheaders.',
+              'Developed interprocedural global-variable analysis and legality checks for safe LLVM IR transformations.'
+          ]
+
+          ru['skills'] = [
+              ['Компиляторы', 'C++, LLVM, LLVM IR, оптимизационные проходы, межпроцедурный анализ, CFG, SSA, доминаторы, анализ циклов, LICM'],
+              ['Статический анализ', 'C#, .NET, Roslyn, ControlFlowGraph, fixed-point data-flow, распространение и объединение состояний'],
+              ['Генерация кода и tooling', 'генерация кода, распределение регистров, анализ живости, x86-64, CMake, Linux, GitHub Actions, дифференциальное тестирование'],
+          ]
+
+          ru['project_summaries']['globaliv'] = {
+              'solution': 'Проход LLVM 22 для межпроцедурного анализа линейной эволюции глобальных переменных и безопасного преобразования IR. Использует APInt, анализ циклов и доминаторов, transitive effects и must-execute conditions.',
+              'result': '29 позитивных и негативных регрессионных тестов; LLVM Verifier, проверка идемпотентности и сравнение поведения программы до и после преобразования.'
+          }
+          en['project_summaries']['globaliv'] = {
+              'solution': 'An LLVM 22 pass for interprocedural analysis of linear global-variable evolution and safe IR transformation, using APInt, loop/dominator analysis, transitive effects, and must-execute conditions.',
+              'result': '29 positive and negative regression tests, LLVM Verifier checks, idempotence checks, and before/after behavioral comparison.'
+          }
+          ru['project_summaries']['wist'] = {
+              'solution': 'Модульный .NET framework для построения языковых и компиляторных pipeline: parsing → промежуточные представления → optimization passes → backend. Компоненты подключаются через явные контракты, а порядок и совместимость определяются до исполнения.',
+              'result': 'Состав языка отделён от выполнения; архитектурные контракты закреплены исполняемыми проверками и тестами.'
+          }
+          en['project_summaries']['wist'] = {
+              'solution': 'A modular .NET framework for language and compiler pipelines: parsing → intermediate representations → optimization passes → backend. Components use explicit contracts, with ordering and compatibility resolved before execution.',
+              'result': 'Language composition is separated from execution, with architectural contracts backed by executable verification and tests.'
+          }
+
+          def langdev_first(items):
+              langdev = [item for item in items if 'LangDev' in item[1]]
+              rest = [item for item in items if 'LangDev' not in item[1]]
+              if len(langdev) != 1:
+                  raise RuntimeError(f'Expected exactly one LangDev recognition item, got {len(langdev)}')
+              return langdev + rest
+
+          ru['recognition'] = langdev_first(ru['recognition'])
+          en['recognition'] = langdev_first(en['recognition'])
+          data_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          build_path = root / 'tools' / 'build_site.py'
+          source = build_path.read_text(encoding='utf-8')
+
+          old_mobile = '    mobile_profiles = "".join(f\'<a href="{esc(url)}">{esc(label)}</a>\' for label, url in profile_links(data, lang))\n'
+          new_mobile = (
+              '    is_compiler_profile = profile["filename"] in {"ru-compiler.html", "en-compiler.html"}\n'
+              '    mobile_profiles = "" if is_compiler_profile else "".join(f\'<a href="{esc(url)}">{esc(label)}</a>\' for label, url in profile_links(data, lang))\n'
+              '    mobile_profiles_block = "" if not mobile_profiles else f\'<div class="mobile-links">{mobile_profiles}</div>\'\n'
+          )
+          if source.count(old_mobile) != 1:
+              raise RuntimeError('mobile profile-list anchor changed')
+          source = source.replace(old_mobile, new_mobile, 1)
+          old_panel = '<div class="mobile-panel"><nav>{links}</nav><div class="mobile-links">{mobile_profiles}</div></div>'
+          new_panel = '<div class="mobile-panel"><nav>{links}</nav>{mobile_profiles_block}</div>'
+          if source.count(old_panel) != 1:
+              raise RuntimeError('mobile panel anchor changed')
+          source = source.replace(old_panel, new_panel, 1)
+
+          print_start = source.index('def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:')
+          print_end = source.index('\n\ndef profile_page(', print_start)
+          new_print = dedent(r'''
+          def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
+              labels = {
+                  "experience": "Опыт" if lang == "ru" else "Experience",
+                  "projects": "Проекты" if lang == "ru" else "Projects",
+                  "skills": "Компетенции" if lang == "ru" else "Skills",
+                  "education": "Образование" if lang == "ru" else "Education",
+                  "recognition": "Достижения" if lang == "ru" else "Recognition",
+              }
+              p = data["person"]
+              is_compiler_print = profile["filename"] in {"ru-compiler.html", "en-compiler.html"}
+              contacts = f'<a href="mailto:{esc(p["email"])}">{esc(p["email"])}</a><br><a href="{esc(p["telegram"])}">{esc(p["telegram_label"])}</a><br><a href="{esc(p["github"])}">{esc(p["github_label"])}</a>'
+              proofs = "".join(f'<div class="pcv-proof"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["proofs"])
+              proof_block = "" if is_compiler_print else f'<div class="pcv-proofs">{proofs}</div>'
+              experiences = []
+              for item in profile["experience"][:3]:
+                  bullets = "".join(f"<li>{esc(text)}</li>" for text in item["bullets"][:2])
+                  experiences.append(f'<article class="pcv-entry"><div class="pcv-date">{esc(item["date"])}</div><div><h3>{esc(item["title"])}</h3><ul>{bullets}</ul></div></article>')
+              projects = []
+              project_limit = int(profile.get("print_project_limit", 3))
+              project_summaries = profile.get("project_summaries", {})
+              for project_id in profile["project_ids"][:project_limit]:
+                  project = data["projects"][project_id]
+                  target = project.get("repo") or project[f"case_{lang}"]
+                  summary = project_summaries.get(project_id, {}) if is_compiler_print else {}
+                  project_text = summary.get("result") or project[f"result_{lang}"]
+                  projects.append(f'<article class="pcv-project"><h3><a href="{esc(target)}">{esc(project["title"])}</a></h3><p>{esc(project_text)}</p></article>')
+              skills = "".join(f'<div class="pcv-skill"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["skills"])
+              education = p[f"education_{lang}"]
+              recognition_data = recognition_items(data, lang, profile)
+              if is_compiler_print:
+                  recognition = "".join(
+                      f'<div class="pcv-recognition"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>'
+                      for _, title, body in recognition_data[:4]
+                  )
+              else:
+                  recognition = f'<p>{esc(recognition_data[0][2])}</p>'
+              return f"""
+          <div class="print-cv" aria-label="Focused one-page CV">
+            <header class="pcv-header"><div><h1>{esc(person_name(data, lang))}</h1><h2>{esc(profile['role'])}</h2></div><div class="pcv-contact">{contacts}</div></header>
+            <p class="pcv-summary">{esc(profile['summary'])}</p>{proof_block}
+            <div class="pcv-columns"><main class="pcv-main"><section><h2 class="pcv-section-title">{labels['experience']}</h2>{''.join(experiences)}</section><section><h2 class="pcv-section-title">{labels['projects']}</h2>{''.join(projects)}</section></main>
+            <aside class="pcv-side"><section><h2 class="pcv-section-title">{labels['skills']}</h2>{skills}</section><section class="pcv-compact"><h2 class="pcv-section-title">{labels['education']}</h2><p>{esc(education)}</p></section><section class="pcv-compact"><h2 class="pcv-section-title">{labels['recognition']}</h2>{recognition}</section><section class="pcv-compact"><p>{esc(p[f'location_{lang}'])}</p></section></aside></div>
+          </div>"""
+          ''').lstrip()
+          source = source[:print_start] + new_print.rstrip() + source[print_end:]
+          build_path.write_text(source, encoding='utf-8')
+
+          style_path = root / 'style.css'
+          css = style_path.read_text(encoding='utf-8')
+          marker = '/* compiler editorial print v53 */'
+          if marker in css:
+              raise RuntimeError('compiler editorial print CSS marker already exists')
+          css += dedent(r'''
+
+          /* compiler editorial print v53 */
+          @media print {
+            .profile-compiler .print-cv {
+              padding: 10.5mm 11.5mm 9mm;
+            }
+            .profile-compiler .pcv-summary {
+              margin: 3.4mm 0 4mm;
+              font-size: 9.5pt;
+              line-height: 1.34;
+            }
+            .profile-compiler .pcv-columns {
+              grid-template-columns: 1.48fr .86fr;
+              gap: 4.5mm;
+            }
+            .profile-compiler .pcv-main section + section,
+            .profile-compiler .pcv-side section + section {
+              margin-top: 3mm;
+            }
+            .profile-compiler .pcv-section-title {
+              margin-bottom: 1.8mm;
+              font-size: 9.4pt;
+            }
+            .profile-compiler .pcv-entry {
+              grid-template-columns: 25mm 1fr;
+              gap: 2.2mm;
+              margin-bottom: 2.4mm;
+            }
+            .profile-compiler .pcv-date {
+              font-size: 7.7pt;
+            }
+            .profile-compiler .pcv-entry h3,
+            .profile-compiler .pcv-project h3 {
+              font-size: 9.1pt;
+            }
+            .profile-compiler .pcv-entry li {
+              font-size: 7.8pt;
+              line-height: 1.25;
+            }
+            .profile-compiler .pcv-project {
+              margin-bottom: 2.2mm;
+            }
+            .profile-compiler .pcv-project p {
+              font-size: 7.7pt;
+              line-height: 1.24;
+            }
+            .profile-compiler .pcv-skill {
+              margin-bottom: 1.9mm;
+            }
+            .profile-compiler .pcv-skill strong {
+              font-size: 8.2pt;
+            }
+            .profile-compiler .pcv-skill span,
+            .profile-compiler .pcv-compact p {
+              font-size: 7.5pt;
+              line-height: 1.23;
+            }
+            .profile-compiler .pcv-recognition {
+              margin-bottom: 1.8mm;
+              break-inside: avoid;
+            }
+            .profile-compiler .pcv-recognition strong {
+              display: block;
+              font-size: 7.8pt;
+              line-height: 1.16;
+            }
+            .profile-compiler .pcv-recognition span {
+              display: block;
+              margin-top: .45mm;
+              color: #4e4547;
+              font-size: 7.25pt;
+              line-height: 1.2;
+            }
+          }
+          ''')
+          style_path.write_text(css.rstrip() + '\n', encoding='utf-8')
+          PY
+
+      - name: Install build and validation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          python -m playwright install --with-deps chromium
+
+      - name: Rebuild site and PDFs
+        run: |
+          python tools/build_site.py
+          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+
+      - name: Validate content and generated artifacts
+        run: |
+          python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
+          python tools/build_site.py --check
+          git diff --check
+
+      - name: Capture intentional visual baseline
+        run: python tools/visual_regression.py --output-dir /tmp/cv-visual --update
+
+      - name: Finalize manifest and validate final tree
+        run: |
+          rm -f .github/workflows/one-shot-compiler-editorial-polish.yml
+          python tools/build_site.py --manifest
+          python tools/validate_cv.py --pdf-dir pdf
+          python tools/build_site.py --check
+          git diff --check
+
+      - name: Commit editorial polish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "cv: polish compiler profile copy and PDF [skip ci]"
+          git push
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compiler-editorial-polish-evidence
+          path: |
+            /tmp/cv-pdf-report.json
+            /tmp/cv-validation.json
+            /tmp/cv-pdf-evidence
+            /tmp/cv-visual
+          if-no-files-found: warn
