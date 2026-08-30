@@ -1,4 +1,3 @@
-0fff5f39279a969f74653748e080d97b1dc688abaa3c8cd1b80c85fadf1381de  ./.github/workflows/one-shot-anti-ai-compiler-redesign.yml
 61f95357ef19f40d801b374d6f39516948298a5a1d37a0ff7103e27ee8bc4420  ./.github/workflows/one-shot-quant-pr-refresh.yml
 e5fb0f672300dd4aa12e8d8e7824983fc6bc7418ffc969f79b4c0b5861e89c24  ./.github/workflows/one-shot-quant-profile-refresh.yml
 f929fed3e9ee2dda0e2118b0da5ae0e430108ca50532fb89b91228f44db364fe  ./.github/workflows/pr-trigger-probe.yml
@@ -79,7 +78,6 @@ d6965e0f1de3d1fd26519f893cc599d3dcde6f6ab24e1fc2c556e5ab3588c57c  ./ru.html
 40e26edb6fb342c02ca4e6258fcc6f601d2fa45f6f5b0406f617a2f53f329005  ./style.css
 a6436459f9110039fbf7d19c5d43aa740652de273b5f5029667118848e68b85d  ./tools/build_cv.py
 1fb00c65c8832e4271549a8f24c2169cdc5a0662b3a00b03eef399c2804a99b8  ./tools/build_site.py
-0868385e865cb5e76b3ed322bdaea975e657b4e8777a167b31fa58368c8f97dc  ./tools/one_shot_anti_ai_patch.py
 c8ddff3411f9c7936e7116c74523f87cac84644e13060ab4027d5f27780d5ce3  ./tools/tmp_quant_profile_refresh_20260820.py
 a897bb37888a9f911c7cd43acf2c07a4be86823312068f033695496564a95333  ./tools/validate_cv.py
 5fc84c043f5a9e2b389ea5911a979352c9dc98b519e349f6bf83ef72f26f3152  ./tools/visual_regression.py
