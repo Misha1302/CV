@@ -8,10 +8,10 @@
     "role": "Compiler Engineer · LLVM · Language Infrastructure"
   },
   "ru-compiler.html|desktop": {
-    "dhash": "31a30de322160f560e563a061a4619e638ee3de61dc62c3e381c093807702b02",
+    "dhash": "39a309e32b362f5604063a161a5618e639ee3de63dc62e062906093807702702",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 3176,
+    "page_height": 3304,
     "h1": "Михаил Разаков",
     "role": "Compiler / LLVM Engineer · Optimization & Analysis"
   },
@@ -40,10 +40,10 @@
     "role": "Compiler Engineer · LLVM · Language Infrastructure"
   },
   "ru-compiler.html|mobile": {
-    "dhash": "5ad931df752b7b73332f363b2d3f6bef21b75b6f5b6f51b769bb5ddb6dfe4971",
+    "dhash": "58d932df769d7b3333272d3f2dbf73ff33bf5b3f5b3f39b71c6f5ddf6dff4979",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 5206,
+    "page_height": 5593,
     "h1": "Михаил Разаков",
     "role": "Compiler / LLVM Engineer · Optimization & Analysis"
   },

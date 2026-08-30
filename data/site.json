@@ -1,5 +1,5 @@
 {
-  "version": 55,
+  "version": 56,
   "updated_at": "2026-08-31",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -238,10 +238,10 @@
         "pdf": "Mikhail_Razakov_Compiler_RU.pdf",
         "title": "Михаил Разаков — Compiler / LLVM Engineer · Optimization & Analysis",
         "role": "Compiler / LLVM Engineer · Optimization & Analysis",
-        "brand": "LLVM · IR transforms · interprocedural analysis · static analysis",
-        "eyebrow": "LLVM 22 · CFG/SSA · legality · Roslyn",
-        "summary": "Compiler / LLVM engineer с профессиональным опытом compiler и static-analysis разработки. В МЦСТ реализовал LLVM 22 loop/interprocedural analyses и консервативные legality checks для IR transformations; в ИСП РАН участвую в разработке SharpChecker. Независимые проекты добавляют fixed-point Roslyn CFG analysis, x86-64 codegen/register allocation и UniversalToolchain compiler infrastructure.",
-        "description": "Михаил Разаков — Compiler / LLVM Engineer: LLVM 22, optimization passes, interprocedural analysis, legality, Roslyn data-flow и x86-64 codegen.",
+        "brand": "LLVM · преобразования IR · межпроцедурный анализ · статический анализ",
+        "eyebrow": "LLVM 22 · CFG/SSA · допустимость преобразований · Roslyn",
+        "summary": "Инженер по компиляторам с профессиональным опытом разработки на LLVM и статического анализа. В МЦСТ реализовал LICM-pass для LLVM 22 и прототип межпроцедурного анализа глобальных переменных с отдельными проверками допустимости преобразований IR; сейчас участвую в разработке SharpChecker в ИСП РАН. В собственных проектах занимаюсь анализом CFG и потоков данных, генерацией x86-64 кода, распределением регистров и инфраструктурой компилятора.",
+        "description": "Михаил Разаков — Compiler / LLVM Engineer: LLVM 22, оптимизационные проходы, межпроцедурный анализ, проверки допустимости преобразований IR, анализ потоков данных Roslyn и генерация x86-64 кода.",
         "proofs": [
           [
             "LLVM transformations",
@@ -268,10 +268,10 @@
           {
             "date": "июль — август 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
-            "org": "LLVM 22 · C++23 · compiler engineering",
+            "org": "LLVM 22 · C++23 · разработка компиляторов",
             "bullets": [
-              "Реализовал LLVM LICM-pass с loop analysis, проверками side effects/speculative safety и hoisting loop-invariant инструкций в preheader.",
-              "Разработал консервативный прототип межпроцедурного global-IV pass: APInt affine evolution, транзитивные эффекты вызовов, отдельная legality-фаза и LLVM IR transformation; неподдерживаемые CFG/call cases отклоняются."
+              "Реализовал LICM-pass для LLVM 22: анализ циклов, проверки побочных эффектов и безопасности спекулятивного выполнения, вынос инвариантных инструкций в preheader.",
+              "Разработал консервативный прототип межпроцедурного анализа глобальных переменных: аффинная эволюция на APInt, транзитивные эффекты вызовов, отдельная проверка допустимости и преобразование LLVM IR; неподдерживаемые CFG и вызовы отклоняются без изменения программы."
             ]
           }
         ],
@@ -283,20 +283,20 @@
         ],
         "skills": [
           [
-            "Compilers",
-            "C++23, LLVM 22, LLVM IR, optimization passes, interprocedural analysis, CFG/SSA, dominators, loop analysis, LICM, legality analysis"
+            "Компиляторы",
+            "C++23, LLVM 22, LLVM IR, оптимизационные проходы, межпроцедурный анализ, CFG/SSA, доминаторы, анализ циклов, LICM, проверки допустимости"
           ],
           [
-            "Static / Program Analysis",
-            "C#, .NET, Roslyn ControlFlowGraph, fixed-point data-flow, state propagation and joins"
+            "Статический анализ",
+            "C#, .NET, Roslyn ControlFlowGraph, анализ потоков данных до неподвижной точки, распространение и объединение состояний"
           ],
           [
-            "Codegen",
-            "Rust, SysV x86-64, liveness/interference, register allocation, phi lowering, differential execution"
+            "Генерация кода",
+            "Rust, SysV x86-64, анализ живости и интерференции, распределение регистров, понижение phi-узлов, дифференциальное выполнение"
           ],
           [
-            "Compiler Infrastructure",
-            "typed artifact contracts, deterministic planning/pass ordering, artifact routing, backend/runtime composition"
+            "Инфраструктура компилятора",
+            "типизированные контракты артефактов, детерминированное планирование и порядок проходов, маршрутизация артефактов, композиция backend/runtime"
           ]
         ],
         "contact_heading": "Целевые роли: Compiler Engineer · LLVM Engineer · Compiler Optimization · Static / Program Analysis",
@@ -320,23 +320,23 @@
         ],
         "project_summaries": {
           "globaliv": {
-            "solution": "Проход LLVM 22 для межпроцедурного анализа линейной эволюции глобальных переменных и безопасного преобразования IR. Использует APInt, анализ циклов и доминаторов, транзитивные эффекты вызовов и условия обязательного исполнения (must-execute).",
+            "solution": "Проход LLVM 22 для межпроцедурного анализа линейной эволюции глобальных переменных и безопасного преобразования IR. Использует APInt, анализ циклов и доминаторов, транзитивные эффекты вызовов и условия must-execute.",
             "result": "29 позитивных и негативных регрессионных тестов; LLVM Verifier, проверка идемпотентности и сравнение поведения программы до и после преобразования.",
             "type": "C++23 · LLVM 22 · межпроцедурный анализ · оптимизация"
           },
           "deref": {
             "type": "C# · Roslyn · статический анализ · анализ потоков данных",
-            "solution": "Анализ на Roslyn ControlFlowGraph с прямым fixed-point data-flow: состояния Unknown/MaybeNull/NotNull распространяются между базовыми блоками и объединяются в точках слияния.",
+            "solution": "Анализ на Roslyn ControlFlowGraph с прямым анализом потоков данных до неподвижной точки: состояния Unknown/MaybeNull/NotNull распространяются между базовыми блоками и объединяются в точках слияния.",
             "result": "Повторно обрабатывает последующие блоки до стабилизации состояния и диагностирует потенциально небезопасное разыменование."
           },
           "wist": {
-            "type": ".NET · compiler/language infrastructure · deterministic composition",
-            "solution": "Typed artifact contracts; dependencies/conflicts и capability/provider resolution; deterministic pass ordering и artifact routes сводятся в immutable LanguagePlan до исполнения.",
-            "result": "Runtime проверяет exact planned package/component graph и создаёт выбранные компоненты без повторного планирования; контракт защищён determinism/exact-binding checks, ownership guards и interpreter/CIL parity."
+            "type": ".NET · инфраструктура компилятора · детерминированная композиция",
+            "solution": "Модульная .NET-инфраструктура для построения языковых и компиляторных цепочек. Типизированные контракты артефактов, зависимости и конфликты, выбор провайдеров, порядок проходов и маршруты артефактов заранее сводятся в неизменяемый LanguagePlan.",
+            "result": "Исполняющая часть проверяет точный запланированный граф пакетов и компонентов и создаёт выбранные компоненты без повторного планирования; контракт покрыт проверками детерминизма, точного связывания, владения ресурсами и согласованности интерпретатора с CIL-backend."
           },
           "codegen": {
             "type": "Rust · SSA/CFG · распределение регистров · SysV x86-64",
-            "solution": "SSA-подобное IR, проверки CFG/SSA, анализ живости и интерференции, распределение регистров с независимой проверкой назначения, phi lowering и генерация SysV x86-64.",
+            "solution": "SSA-подобное IR, проверки CFG/SSA, анализ живости и интерференции, распределение регистров с независимой проверкой назначения, понижение phi-узлов и генерация SysV x86-64.",
             "result": "Эталонный интерпретатор и дифференциальное выполнение проверяют семантическую эквивалентность сгенерированного кода; распределитель регистров валидируется отдельно."
           }
         },
