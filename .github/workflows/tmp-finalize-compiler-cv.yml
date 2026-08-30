@@ -51,7 +51,7 @@ jobs:
               c['role'] = 'Compiler / LLVM Engineer · Optimization & Analysis'
               c['title'] = f"{name} — {c['role']}"
               c['footer'] = c['role']
-          data['profiles']['general']['ru']['experience'][1]['bullets'][1] = 'Разработал консервативный prototype межпроцедурного global-IV pass: APInt affine evolution, транзитивные эффекты вызовов, отдельная legality-фаза и LLVM IR transformation; неподдерживаемые CFG/call cases отклоняются.'
+          data['profiles']['general']['ru']['experience'][1]['bullets'][1] = 'Разработал консервативный прототип межпроцедурного global-IV pass: APInt affine evolution, транзитивные эффекты вызовов, отдельная legality-фаза и LLVM IR transformation; неподдерживаемые CFG/call cases отклоняются.'
           data['profiles']['general']['en']['experience'][1]['bullets'][1] = 'Developed a conservative interprocedural global-IV prototype with APInt affine evolution, transitive call effects, a separate legality phase, and LLVM IR transformation; unsupported CFG/call cases are rejected.'
           data['profiles']['compiler']['ru']['experience'] = data['profiles']['general']['ru']['experience']
           data['profiles']['compiler']['en']['experience'] = data['profiles']['general']['en']['experience']
@@ -73,12 +73,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install beautifulsoup4 pymupdf pillow playwright weasyprint
           python -m playwright install --with-deps chromium
-      - name: Build and validate
+      - name: Build and validate reviewed result
         run: |
           python tools/build_site.py
           python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
           python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
-          python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
+          python tools/visual_regression.py --output-dir /tmp/cv-visual --update
+          python tools/visual_regression.py --output-dir /tmp/cv-visual-verify
           find tools -type d -name __pycache__ -prune -exec rm -rf {} +
           python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf
@@ -86,7 +87,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/site.json index.html ru.html en.html ru-compiler.html en-compiler.html cases pdf MANIFEST.sha256 sitemap.xml robots.txt
+          git add data/site.json data/visual-baseline.json index.html ru.html en.html ru-compiler.html en-compiler.html cases pdf MANIFEST.sha256 sitemap.xml robots.txt
           git add -u
           if git diff --cached --quiet; then
             echo "No changes"
@@ -103,4 +104,5 @@ jobs:
             /tmp/cv-validation.json
             /tmp/cv-pdf-evidence
             /tmp/cv-visual
+            /tmp/cv-visual-verify
           if-no-files-found: warn
