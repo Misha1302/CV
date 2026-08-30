@@ -631,3 +631,33 @@ body.profile-compiler::before {
     line-height: 1.2;
   }
 }
+
+
+/* compiler print completion v54 */
+@media print {
+  .profile-compiler .pcv-project p {
+    margin-top: .8mm;
+    font-size: 8pt;
+    line-height: 1.25;
+  }
+  .profile-compiler .pcv-project .pcv-project-result {
+    margin-top: .55mm;
+    color: #211a1c;
+  }
+  .profile-compiler .pcv-project {
+    margin-bottom: 2.7mm;
+  }
+  .profile-compiler .pcv-entry li {
+    font-size: 8pt;
+    line-height: 1.27;
+  }
+  .profile-compiler .pcv-skill span,
+  .profile-compiler .pcv-compact p {
+    font-size: 7.8pt;
+    line-height: 1.25;
+  }
+  .profile-compiler .pcv-recognition span {
+    font-size: 7.55pt;
+    line-height: 1.22;
+  }
+}

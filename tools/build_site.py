@@ -265,7 +265,8 @@ def compiler_project_card(data: dict[str, Any], lang: str, profile: dict[str, An
     links = [f'<a href="{esc(case_url)}">{labels["case"]} ↗</a>']
     if project.get("repo"):
         links.append(f'<a href="{esc(project["repo"])}" rel="noopener noreferrer" target="_blank">GitHub ↗</a>')
-    return f'<article class="project-row"><div><span class="project-type">{esc(project[f"type_{lang}"])}</span><h3>{esc(project["title"])}</h3></div><div><p>{esc(copy['solution'])}</p><p class="project-result">{esc(copy['result'])}</p><div class="project-links">{"".join(links)}</div></div></article>'
+    type_label = copy.get("type", project[f"type_{lang}"])
+    return f'<article class="project-row"><div><span class="project-type">{esc(type_label)}</span><h3>{esc(project["title"])}</h3></div><div><p>{esc(copy['solution'])}</p><p class="project-result">{esc(copy['result'])}</p><div class="project-links">{"".join(links)}</div></div></article>'
 
 
 def compiler_projects_section(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
@@ -321,8 +322,11 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
         project = data["projects"][project_id]
         target = project.get("repo") or project[f"case_{lang}"]
         summary = project_summaries.get(project_id, {}) if is_compiler_print else {}
-        project_text = summary.get("result") or project[f"result_{lang}"]
-        projects.append(f'<article class="pcv-project"><h3><a href="{esc(target)}">{esc(project["title"])}</a></h3><p>{esc(project_text)}</p></article>')
+        if is_compiler_print and summary:
+            project_body = f'<p>{esc(summary.get("solution", ""))}</p><p class="pcv-project-result">{esc(summary.get("result", ""))}</p>'
+        else:
+            project_body = f'<p>{esc(project[f"result_{lang}"])}</p>'
+        projects.append(f'<article class="pcv-project"><h3><a href="{esc(target)}">{esc(project["title"])}</a></h3>{project_body}</article>')
     skills = "".join(f'<div class="pcv-skill"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["skills"])
     education = p[f"education_{lang}"]
     recognition_data = recognition_items(data, lang, profile)
