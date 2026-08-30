@@ -1,4 +1,4 @@
-name: One-shot anti-AI compiler CV redesign
+name: Finalize compiler redesign cleanup
 
 on:
   push:
@@ -11,10 +11,10 @@ permissions:
   contents: write
 
 jobs:
-  redesign:
+  cleanup:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,84 +24,27 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Apply canonical redesign
-        run: python tools/one_shot_anti_ai_patch.py
-
-      - name: Preserve validator contracts
+      - name: Remove one-shot execution files
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          path = Path('tools/build_site.py')
-          source = path.read_text(encoding='utf-8')
+          rm -f .github/workflows/one-shot-anti-ai-compiler-redesign.yml
+          rm -f tools/one_shot_anti_ai_patch.py
 
-          # Keep the #contact fragment required by existing internal-link validation,
-          # while CSS removes the sales-style panel from the rendered compiler layout.
-          old = '{education_section(data, lang)}"'
-          new = '{education_section(data, lang)}{contact_section(data, lang, profile)}"'
-          compiler_branch = source.index('if profile_key == "compiler":')
-          branch_end = source.index('    else:', compiler_branch)
-          chunk = source[compiler_branch:branch_end]
-          if new not in chunk:
-              if old not in chunk:
-                  raise RuntimeError('compiler contact-fragment anchor not found')
-              chunk = chunk.replace(old, new, 1)
-              source = source[:compiler_branch] + chunk + source[branch_end:]
-
-          # Reuse the repository's established accessible-local-portrait contract.
-          hero_start = source.index('def compiler_hero(')
-          hero_end = source.index('def proof_strip', hero_start)
-          hero = source[hero_start:hero_end]
-          hero = hero.replace('class="compiler-portrait"', 'class="compiler-portrait identity-card"')
-          hero = hero.replace('<img src=', '<img class="identity-mark" src=', 1)
-          source = source[:hero_start] + hero + source[hero_end:]
-
-          path.write_text(source, encoding='utf-8')
-          PY
-
-      - name: Install build dependencies
+      - name: Rebuild integrity manifest
         run: |
-          python -m pip install --upgrade pip
-          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
-          python -m playwright install --with-deps chromium
-
-      - name: Rebuild site and PDFs
-        run: |
-          python tools/build_site.py
-          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
-
-      - name: Validate content and generated artifacts
-        run: python tools/validate_cv.py --pdf-dir pdf --skip-manifest --report /tmp/cv-validation.json
-
-      - name: Capture redesigned visual baseline
-        run: python tools/visual_regression.py --output-dir /tmp/cv-visual --update
-
-      - name: Build manifest and final validation
-        run: |
-          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
           python tools/build_site.py --manifest
-          python tools/validate_cv.py --pdf-dir pdf
           git diff --check
           python -m py_compile tools/build_site.py
 
-      - name: Commit redesign and generated artifacts
+      - name: Install validation dependencies
+        run: pip install beautifulsoup4 pymupdf
+
+      - name: Validate final repository tree
+        run: python tools/validate_cv.py --pdf-dir pdf
+
+      - name: Commit cleanup
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          if git diff --cached --quiet; then
-            echo "No redesign changes to commit"
-            exit 1
-          fi
-          git commit -m "cv: redesign compiler profile as engineer-first CV [skip ci]"
+          git commit -m "chore: remove one-shot CV redesign runner [skip ci]"
           git push
-
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: anti-ai-compiler-redesign-evidence
-          path: |
-            /tmp/cv-pdf-report.json
-            /tmp/cv-validation.json
-            /tmp/cv-pdf-evidence
-            /tmp/cv-visual
-          if-no-files-found: warn
