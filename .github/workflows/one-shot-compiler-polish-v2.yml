@@ -70,13 +70,13 @@ jobs:
               raise RuntimeError('compiler project type anchor changed')
           source = source.replace(old, new, 1)
 
-          old_print = '''              project_text = summary.get("result") or project[f"result_{lang}"]
-              projects.append(f'<article class="pcv-project"><h3><a href="{esc(target)}">{esc(project["title"])}</a></h3><p>{esc(project_text)}</p></article>')'''
-          new_print = '''              if is_compiler_print and summary:
-                  project_body = f'<p>{esc(summary.get("solution", ""))}</p><p class="pcv-project-result">{esc(summary.get("result", ""))}</p>'
-              else:
-                  project_body = f'<p>{esc(project[f"result_{lang}"])}</p>'
-              projects.append(f'<article class="pcv-project"><h3><a href="{esc(target)}">{esc(project["title"])}</a></h3>{project_body}</article>')'''
+          old_print = '''        project_text = summary.get("result") or project[f"result_{lang}"]
+        projects.append(f'<article class="pcv-project"><h3><a href="{esc(target)}">{esc(project["title"])}</a></h3><p>{esc(project_text)}</p></article>')'''
+          new_print = '''        if is_compiler_print and summary:
+            project_body = f'<p>{esc(summary.get("solution", ""))}</p><p class="pcv-project-result">{esc(summary.get("result", ""))}</p>'
+        else:
+            project_body = f'<p>{esc(project[f"result_{lang}"])}</p>'
+        projects.append(f'<article class="pcv-project"><h3><a href="{esc(target)}">{esc(project["title"])}</a></h3>{project_body}</article>')'''
           if source.count(old_print) != 1:
               raise RuntimeError('compiler print project anchor changed')
           source = source.replace(old_print, new_print, 1)
