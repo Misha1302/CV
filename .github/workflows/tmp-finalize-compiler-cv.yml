@@ -22,77 +22,42 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Apply compiler CV patch from staged workflow
+      - name: Align canonical PDF artifact names
         run: |
           python - <<'PY'
-          from pathlib import Path
           import json
-          import re
-
-          wf = Path('.github/workflows/rebuild-cv-assets.yml').read_text(encoding='utf-8')
-          m = re.search(r"python - <<'PY'\n(?P<script>.*?)\n          PY", wf, re.S)
-          if not m:
-              raise SystemExit('staged patch not found')
-          script = '\n'.join(line[10:] if line.startswith('          ') else line for line in m.group('script').splitlines())
-          script = script.replace("compiler_ru.get('project_summaries', {}).pop('wist', None)", "pass")
-          script = script.replace("compiler_en.get('project_summaries', {}).pop('wist', None)", "pass")
-          exec(compile(script, '<compiler-cv-patch>', 'exec'), {})
-
+          from pathlib import Path
           path = Path('data/site.json')
           data = json.loads(path.read_text(encoding='utf-8'))
-          data['profile_ui']['general']['landing_title'] = 'Compiler Engineer · LLVM · Language Infrastructure'
-          data['profile_ui']['compiler']['landing_title'] = 'Compiler / LLVM Engineer · Optimization & Analysis'
-          for lang, name in [('ru', 'Михаил Разаков'), ('en', 'Mikhail Razakov')]:
-              p = data['profiles']['general'][lang]
-              p['role'] = 'Compiler Engineer · LLVM · Language Infrastructure'
-              p['title'] = f"{name} — {p['role']}"
-              p['footer'] = p['role']
-              c = data['profiles']['compiler'][lang]
-              c['role'] = 'Compiler / LLVM Engineer · Optimization & Analysis'
-              c['title'] = f"{name} — {c['role']}"
-              c['footer'] = c['role']
-          data['profiles']['general']['ru']['experience'][1]['bullets'][1] = 'Разработал консервативный прототип межпроцедурного global-IV pass: APInt affine evolution, транзитивные эффекты вызовов, отдельная legality-фаза и LLVM IR transformation; неподдерживаемые CFG/call cases отклоняются.'
-          data['profiles']['general']['en']['experience'][1]['bullets'][1] = 'Developed a conservative interprocedural global-IV prototype with APInt affine evolution, transitive call effects, a separate legality phase, and LLVM IR transformation; unsupported CFG/call cases are rejected.'
-          data['profiles']['compiler']['ru']['experience'] = data['profiles']['general']['ru']['experience']
-          data['profiles']['compiler']['en']['experience'] = data['profiles']['general']['en']['experience']
-          data['profiles']['compiler']['ru']['project_summaries']['wist'] = {
-              'type': '.NET · compiler/language infrastructure · deterministic composition',
-              'solution': 'Typed artifact contracts; dependencies/conflicts и capability/provider resolution; deterministic pass ordering и artifact routes сводятся в immutable LanguagePlan до исполнения.',
-              'result': 'Runtime проверяет exact planned package/component graph и создаёт выбранные компоненты без повторного планирования; контракт защищён determinism/exact-binding checks, ownership guards и interpreter/CIL parity.'
-          }
-          data['profiles']['compiler']['en']['project_summaries']['wist'] = {
-              'type': '.NET · compiler/language infrastructure · deterministic composition',
-              'solution': 'Typed artifact contracts; dependency/conflict and capability/provider resolution; deterministic pass ordering and artifact routes compile into an immutable LanguagePlan before execution.',
-              'result': 'Runtime validates the exact planned package/component graph and materializes selected components without re-planning; determinism/exact-binding checks, ownership guards, and interpreter/CIL parity protect the contract.'
-          }
-          data['projects']['wist']['result_ru'] = 'LanguageRuntime проверяет exact planned package/component graph и создаёт выбранные компоненты без повторного планирования; контракт защищён determinism/exact-binding checks, ownership guards и interpreter/CIL parity.'
+          data['profiles']['general']['ru']['pdf'] = 'Mikhail_Razakov_Compiler_Infrastructure_RU.pdf'
+          data['profiles']['general']['en']['pdf'] = 'Mikhail_Razakov_Compiler_Infrastructure_EN.pdf'
           path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           PY
+          rm -f pdf/Mikhail_Razakov_Software_Engineer_RU.pdf pdf/Mikhail_Razakov_Software_Engineer_EN.pdf
       - name: Install build dependencies
         run: |
           python -m pip install --upgrade pip
           pip install beautifulsoup4 pymupdf pillow playwright weasyprint
           python -m playwright install --with-deps chromium
-      - name: Build and validate reviewed result
+      - name: Build and validate final result
         run: |
           python tools/build_site.py
           python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
           python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
-          python tools/visual_regression.py --output-dir /tmp/cv-visual --update
-          python tools/visual_regression.py --output-dir /tmp/cv-visual-verify
+          python tools/visual_regression.py --output-dir /tmp/cv-visual
           find tools -type d -name __pycache__ -prune -exec rm -rf {} +
           python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf
-      - name: Commit generated result
+      - name: Commit final generated result
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/site.json data/visual-baseline.json index.html ru.html en.html ru-compiler.html en-compiler.html cases pdf MANIFEST.sha256 sitemap.xml robots.txt
+          git add data/site.json index.html ru.html en.html ru-compiler.html en-compiler.html cases pdf MANIFEST.sha256 sitemap.xml robots.txt
           git add -u
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Strengthen compiler CV positioning and evidence [skip ci]"
+            git commit -m "Align compiler infrastructure CV artifact names [skip ci]"
             git push
           fi
       - uses: actions/upload-artifact@v4
@@ -104,5 +69,4 @@ jobs:
             /tmp/cv-validation.json
             /tmp/cv-pdf-evidence
             /tmp/cv-visual
-            /tmp/cv-visual-verify
           if-no-files-found: warn
