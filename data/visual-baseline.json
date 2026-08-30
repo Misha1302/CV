@@ -8,10 +8,10 @@
     "role": "Compiler / Static Analysis Engineer"
   },
   "ru-compiler.html|desktop": {
-    "dhash": "3ae336e72f260f1e0f162cf61cde1cde1cde278e260c271e25fc49f015b717b3",
+    "dhash": "379307f3322c2f360e2e3a061a5e18e619ce3dce2c92301a0c302f3809d81982",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 3922,
+    "page_height": 2900,
     "h1": "Михаил Разаков",
     "role": "Compiler / LLVM Engineer"
   },
@@ -40,10 +40,10 @@
     "role": "Compiler / Static Analysis Engineer"
   },
   "ru-compiler.html|mobile": {
-    "dhash": "58d766ff5608396f167767d759af71bb719f149f769b46f2567b3577267f08fb",
+    "dhash": "2cc178df7d07595b336f363f613f53bb71df533f53b775b765af575f7c6f2d73",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 6241,
+    "page_height": 4710,
     "h1": "Михаил Разаков",
     "role": "Compiler / LLVM Engineer"
   },

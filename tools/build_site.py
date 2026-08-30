@@ -95,6 +95,8 @@ def header(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
         "recognition": "Достижения" if lang == "ru" else "Recognition",
         "contact": "Контакты" if lang == "ru" else "Contact",
     }
+    if profile["filename"] in {"ru-compiler.html", "en-compiler.html"}:
+        nav_labels.pop("contact", None)
     other = other_language(lang)
     alternate = data["profiles"][next(k for k, v in data["profiles"].items() if v[lang]["filename"] == profile["filename"])][other]["filename"]
     links = "".join(f'<a href="#{key}">{esc(label)}</a>' for key, label in nav_labels.items())
@@ -172,6 +174,31 @@ def hero(data: dict[str, Any], lang: str, profile: dict[str, Any], compact: bool
     </div>
   </div>
   <aside class="identity-card" aria-label="{'Профиль' if lang == 'ru' else 'Profile'}"><img class="identity-mark" src="{esc(profile.get('portrait_asset', 'assets/portrait.svg'))}" alt="{esc(person_name(data, lang))}" width="460" height="460"><strong>{esc(role_description)}</strong><span>{esc(profile['brand'])}</span></aside>
+</section>"""
+
+
+def compiler_hero(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
+    person = data["person"]
+    location = person[f"location_{lang}"]
+    education = person[f"education_{lang}"]
+    return f"""
+<section class="shell compiler-intro" id="top">
+  <div class="compiler-intro-copy">
+    <h1>{esc(person_name(data, lang))}</h1>
+    <p class="hero-role">{esc(profile['role'])}</p>
+    <p class="compiler-summary">{esc(profile['summary'])}</p>
+    <div class="compiler-meta"><span>{esc(location)}</span><span>{esc(education)}</span></div>
+    <div class="compiler-links">
+      <a href="mailto:{esc(person['email'])}">{esc(person['email'])}</a>
+      <a href="{esc(person['telegram'])}" rel="noopener noreferrer" target="_blank">Telegram</a>
+      <a href="{esc(person['github'])}" rel="noopener noreferrer" target="_blank">GitHub</a>
+      <a href="{esc(person['linkedin'])}" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+      <a href="pdf/{esc(profile['pdf'])}" download>PDF</a>
+    </div>
+  </div>
+  <aside class="compiler-portrait identity-card" aria-label="{'Фотография' if lang == 'ru' else 'Portrait'}">
+    <img class="identity-mark" src="{esc(profile.get('portrait_asset', 'assets/portrait.svg'))}" alt="{esc(person_name(data, lang))}" width="460" height="460">
+  </aside>
 </section>"""
 
 
@@ -306,7 +333,7 @@ def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
     head = common_head(data, lang, profile["filename"], profile["title"], profile["description"], profile["role"])
     footer_label = "Обновлено" if lang == "ru" else "Updated"
     if profile_key == "compiler":
-        main_content = f"{hero(data, lang, profile, compact=True)}{experience_section(lang, profile, compact=True)}{compiler_projects_section(data, lang, profile)}{skills_section(lang, profile, compact=True)}{recognition_section(data, lang, profile, compact=True)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
+        main_content = f"{compiler_hero(data, lang, profile)}{experience_section(lang, profile, compact=True)}{compiler_projects_section(data, lang, profile)}{skills_section(lang, profile, compact=True)}{recognition_section(data, lang, profile, compact=True)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
     else:
         main_content = f"{hero(data, lang, profile)}{proof_strip(profile)}{experience_section(lang, profile)}{projects_section(data, lang, profile)}{skills_section(lang, profile)}{recognition_section(data, lang, profile)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
     return f"""{head}

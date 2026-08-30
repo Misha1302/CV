@@ -1,6 +1,6 @@
 {
-  "version": 50,
-  "updated_at": "2026-08-29",
+  "version": 51,
+  "updated_at": "2026-08-30",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -242,7 +242,7 @@
         "role": "Compiler / LLVM Engineer",
         "brand": "LLVM · LLVM IR · optimization · program analysis",
         "eyebrow": "LLVM · Roslyn · CFG/SSA · data-flow · x86-64",
-        "summary": "Compiler / LLVM engineer: optimization passes, interprocedural analysis, loop/dominator reasoning, legality analysis и проверяемые LLVM IR transforms; также static analysis и backend/codegen.",
+        "summary": "Работаю с LLVM и статическим анализом. В МЦСТ реализовывал LLVM optimization passes и межпроцедурный анализ; сейчас работаю над SharpChecker в ИСП РАН. В собственных проектах занимаюсь CFG/data-flow analysis, LLVM IR и code generation.",
         "description": "Михаил Разаков — Compiler / LLVM Engineer: LLVM IR, optimization passes, interprocedural analysis, loop analysis, legality, static analysis и compiler backends.",
         "proofs": [
           [
@@ -350,7 +350,7 @@
         "role": "Compiler / LLVM Engineer",
         "brand": "LLVM · LLVM IR · optimization · program analysis",
         "eyebrow": "LLVM · Roslyn · CFG/SSA · data-flow · x86-64",
-        "summary": "Compiler / LLVM engineer focused on optimization passes, interprocedural analysis, loop/dominator reasoning, legality analysis, and verifiable LLVM IR transforms, with additional static-analysis and backend/codegen work.",
+        "summary": "I work on LLVM and static analysis. At MCST I implemented LLVM optimization passes and interprocedural analysis; I now work on SharpChecker at ISP RAS. My independent projects cover CFG/data-flow analysis, LLVM IR, and code generation.",
         "description": "Mikhail Razakov — Compiler / LLVM Engineer: LLVM IR, optimization passes, interprocedural analysis, loop analysis, legality, static analysis, and compiler backends.",
         "proofs": [
           [

@@ -302,3 +302,253 @@ img { max-width: 100%; }
     word-break: break-word;
   }
 }
+
+/* anti-ai compiler redesign v51 */
+body.profile-compiler::before {
+  background: none;
+}
+.profile-compiler .site-header {
+  position: static;
+  background: var(--bg);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.profile-compiler .header-inner {
+  min-height: 60px;
+}
+.profile-compiler .brand {
+  min-width: 0;
+}
+.profile-compiler .brand-mark,
+.profile-compiler .brand-copy span,
+.profile-compiler .header-actions > .button.compact {
+  display: none;
+}
+.profile-compiler .brand-copy strong {
+  font-size: 13px;
+  font-weight: 700;
+}
+.profile-compiler .primary-nav {
+  justify-content: flex-end;
+  gap: 20px;
+}
+.profile-compiler .primary-nav a {
+  font-size: 12.5px;
+}
+.profile-compiler .compiler-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 172px;
+  gap: clamp(34px, 6vw, 72px);
+  align-items: start;
+  padding: 58px 0 48px;
+  border-bottom: 1px solid var(--border);
+}
+.profile-compiler .compiler-intro-copy {
+  max-width: 790px;
+}
+.profile-compiler .compiler-intro h1 {
+  margin: 0;
+  font-size: clamp(44px, 5.4vw, 64px);
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+.profile-compiler .compiler-intro .hero-role {
+  margin: 14px 0 0;
+  font-size: clamp(21px, 2.2vw, 27px);
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  font-weight: 560;
+}
+.profile-compiler .compiler-summary {
+  max-width: 760px;
+  margin: 25px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.68;
+}
+.profile-compiler .compiler-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin-top: 20px;
+  color: var(--quiet);
+  font-size: 13px;
+}
+.profile-compiler .compiler-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 18px;
+  margin-top: 13px;
+  font-size: 13px;
+}
+.profile-compiler .compiler-links a {
+  color: var(--muted);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.profile-compiler .compiler-links a:hover,
+.profile-compiler .compiler-links a:focus-visible {
+  color: var(--text);
+}
+.profile-compiler .compiler-portrait {
+  margin: 4px 0 0;
+}
+.profile-compiler .compiler-portrait img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 35%;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+.profile-compiler .section {
+  padding: 44px 0;
+}
+.profile-compiler .section-heading {
+  display: block;
+  margin-bottom: 22px;
+}
+.profile-compiler .section-label {
+  display: none;
+}
+.profile-compiler .section-heading h2 {
+  font-size: clamp(26px, 2.5vw, 33px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+.profile-compiler .timeline article {
+  grid-template-columns: 138px minmax(225px, .82fr) minmax(0, 1.18fr);
+  gap: 24px;
+  padding: 21px 0;
+}
+.profile-compiler .timeline time,
+.profile-compiler .recognition-year,
+.profile-compiler .project-type {
+  font-family: inherit;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--quiet);
+}
+.profile-compiler .timeline h3 {
+  font-size: 19px;
+}
+.profile-compiler .timeline-details li {
+  line-height: 1.58;
+}
+.profile-compiler .project-list {
+  border-top: 1px solid var(--border);
+}
+.profile-compiler .project-row {
+  grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr);
+  gap: 34px;
+  padding: 20px 0;
+}
+.profile-compiler .project-row:first-child {
+  grid-template-columns: minmax(270px, .88fr) minmax(0, 1.12fr);
+  padding: 32px 0 34px;
+}
+.profile-compiler .project-row h3 {
+  margin-top: 7px;
+  font-size: 20px;
+  line-height: 1.22;
+}
+.profile-compiler .project-row:first-child h3 {
+  font-size: clamp(25px, 2.4vw, 31px);
+  letter-spacing: -.035em;
+}
+.profile-compiler .project-row p {
+  line-height: 1.62;
+}
+.profile-compiler .project-row:not(:first-child) .project-result {
+  color: var(--muted);
+  font-size: 14px;
+}
+.profile-compiler .project-links {
+  gap: 8px 16px;
+}
+.profile-compiler .stack-line {
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 24px;
+  padding: 14px 0;
+}
+.profile-compiler .stack-line strong {
+  font-size: 13px;
+}
+.profile-compiler .stack-line p {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.profile-compiler .recognition-item {
+  grid-template-columns: 150px minmax(0, 1fr);
+  padding: 18px 0;
+}
+.profile-compiler .recognition-item h3 {
+  font-size: 17px;
+}
+.profile-compiler .recognition-item p {
+  max-width: 760px;
+}
+.profile-compiler #education {
+  padding-bottom: 42px;
+}
+.profile-compiler #education .section-heading h2 {
+  max-width: 760px;
+  font-size: 18px;
+  line-height: 1.45;
+  letter-spacing: -.015em;
+  font-weight: 650;
+}
+.profile-compiler #education .section-intro,
+.profile-compiler .contact-section {
+  display: none;
+}
+.profile-compiler .site-footer {
+  border-top: 1px solid var(--soft-border);
+  padding-top: 20px;
+}
+@media (max-width: 760px) {
+  .profile-compiler .header-inner {
+    min-height: 56px;
+  }
+  .profile-compiler .primary-nav {
+    display: none;
+  }
+  .profile-compiler .compiler-intro {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 40px 0 34px;
+  }
+  .profile-compiler .compiler-intro h1 {
+    font-size: clamp(39px, 12vw, 51px);
+  }
+  .profile-compiler .compiler-portrait {
+    width: 116px;
+    order: -1;
+  }
+  .profile-compiler .compiler-meta,
+  .profile-compiler .compiler-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .profile-compiler .section {
+    padding: 36px 0;
+  }
+  .profile-compiler .timeline article,
+  .profile-compiler .project-row,
+  .profile-compiler .project-row:first-child,
+  .profile-compiler .stack-line,
+  .profile-compiler .recognition-item {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+  .profile-compiler .project-row:first-child {
+    padding: 25px 0 27px;
+  }
+  .profile-compiler .project-row:first-child h3 {
+    font-size: 24px;
+  }
+}
