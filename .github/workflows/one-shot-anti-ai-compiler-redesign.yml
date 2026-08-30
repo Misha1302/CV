@@ -27,6 +27,25 @@ jobs:
       - name: Apply canonical redesign
         run: python tools/one_shot_anti_ai_patch.py
 
+      - name: Preserve internal fragment contract
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tools/build_site.py')
+          source = path.read_text(encoding='utf-8')
+          old = '{education_section(data, lang)}"'
+          new = '{education_section(data, lang)}{contact_section(data, lang, profile)}"'
+          compiler_branch = source.index('if profile_key == "compiler":')
+          branch_end = source.index('    else:', compiler_branch)
+          chunk = source[compiler_branch:branch_end]
+          if new not in chunk:
+              if old not in chunk:
+                  raise RuntimeError('compiler contact-fragment anchor not found')
+              chunk = chunk.replace(old, new, 1)
+              source = source[:compiler_branch] + chunk + source[branch_end:]
+          path.write_text(source, encoding='utf-8')
+          PY
+
       - name: Install build dependencies
         run: |
           python -m pip install --upgrade pip
