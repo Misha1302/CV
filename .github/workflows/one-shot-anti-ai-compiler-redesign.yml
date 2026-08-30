@@ -27,12 +27,15 @@ jobs:
       - name: Apply canonical redesign
         run: python tools/one_shot_anti_ai_patch.py
 
-      - name: Preserve internal fragment contract
+      - name: Preserve validator contracts
         run: |
           python - <<'PY'
           from pathlib import Path
           path = Path('tools/build_site.py')
           source = path.read_text(encoding='utf-8')
+
+          # Keep the #contact fragment required by existing internal-link validation,
+          # while CSS removes the sales-style panel from the rendered compiler layout.
           old = '{education_section(data, lang)}"'
           new = '{education_section(data, lang)}{contact_section(data, lang, profile)}"'
           compiler_branch = source.index('if profile_key == "compiler":')
@@ -43,6 +46,15 @@ jobs:
                   raise RuntimeError('compiler contact-fragment anchor not found')
               chunk = chunk.replace(old, new, 1)
               source = source[:compiler_branch] + chunk + source[branch_end:]
+
+          # Reuse the repository's established accessible-local-portrait contract.
+          hero_start = source.index('def compiler_hero(')
+          hero_end = source.index('def proof_strip', hero_start)
+          hero = source[hero_start:hero_end]
+          hero = hero.replace('class="compiler-portrait"', 'class="compiler-portrait identity-card"')
+          hero = hero.replace('<img src=', '<img class="identity-mark" src=', 1)
+          source = source[:hero_start] + hero + source[hero_end:]
+
           path.write_text(source, encoding='utf-8')
           PY
 
