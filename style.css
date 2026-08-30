@@ -337,7 +337,7 @@ body.profile-compiler::before {
 }
 .profile-compiler .compiler-intro {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 172px;
+  grid-template-columns: minmax(0, 1fr) 224px;
   gap: clamp(34px, 6vw, 72px);
   align-items: start;
   padding: 58px 0 48px;
@@ -392,6 +392,10 @@ body.profile-compiler::before {
 }
 .profile-compiler .compiler-portrait {
   margin: 4px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
 }
 .profile-compiler .compiler-portrait img {
   display: block;
@@ -525,7 +529,7 @@ body.profile-compiler::before {
     font-size: clamp(39px, 12vw, 51px);
   }
   .profile-compiler .compiler-portrait {
-    width: 116px;
+    width: 148px;
     order: -1;
   }
   .profile-compiler .compiler-meta,
