@@ -40,6 +40,17 @@ jobs:
 
           path = Path('data/site.json')
           data = json.loads(path.read_text(encoding='utf-8'))
+          data['profile_ui']['general']['landing_title'] = 'Compiler Engineer · LLVM · Language Infrastructure'
+          data['profile_ui']['compiler']['landing_title'] = 'Compiler / LLVM Engineer · Optimization & Analysis'
+          for lang, name in [('ru', 'Михаил Разаков'), ('en', 'Mikhail Razakov')]:
+              p = data['profiles']['general'][lang]
+              p['role'] = 'Compiler Engineer · LLVM · Language Infrastructure'
+              p['title'] = f"{name} — {p['role']}"
+              p['footer'] = p['role']
+              c = data['profiles']['compiler'][lang]
+              c['role'] = 'Compiler / LLVM Engineer · Optimization & Analysis'
+              c['title'] = f"{name} — {c['role']}"
+              c['footer'] = c['role']
           data['profiles']['general']['ru']['experience'][1]['bullets'][1] = 'Разработал консервативный prototype межпроцедурного global-IV pass: APInt affine evolution, транзитивные эффекты вызовов, отдельная legality-фаза и LLVM IR transformation; неподдерживаемые CFG/call cases отклоняются.'
           data['profiles']['general']['en']['experience'][1]['bullets'][1] = 'Developed a conservative interprocedural global-IV prototype with APInt affine evolution, transitive call effects, a separate legality phase, and LLVM IR transformation; unsupported CFG/call cases are rejected.'
           data['profiles']['compiler']['ru']['experience'] = data['profiles']['general']['ru']['experience']
