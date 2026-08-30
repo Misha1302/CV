@@ -100,7 +100,9 @@ def header(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     other = other_language(lang)
     alternate = data["profiles"][next(k for k, v in data["profiles"].items() if v[lang]["filename"] == profile["filename"])][other]["filename"]
     links = "".join(f'<a href="#{key}">{esc(label)}</a>' for key, label in nav_labels.items())
-    mobile_profiles = "".join(f'<a href="{esc(url)}">{esc(label)}</a>' for label, url in profile_links(data, lang))
+    is_compiler_profile = profile["filename"] in {"ru-compiler.html", "en-compiler.html"}
+    mobile_profiles = "" if is_compiler_profile else "".join(f'<a href="{esc(url)}">{esc(label)}</a>' for label, url in profile_links(data, lang))
+    mobile_profiles_block = "" if not mobile_profiles else f'<div class="mobile-links">{mobile_profiles}</div>'
     return f"""
 <a class="skip-link" href="#main">{'К содержанию' if lang == 'ru' else 'Skip to content'}</a>
 <header class="site-header">
@@ -117,7 +119,7 @@ def header(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
       <a class="button compact" href="#contact">{'Связаться' if lang == 'ru' else 'Contact'}</a>
       <details class="mobile-menu">
         <summary>{'Меню' if lang == 'ru' else 'Menu'}</summary>
-        <div class="mobile-panel"><nav>{links}</nav><div class="mobile-links">{mobile_profiles}</div></div>
+        <div class="mobile-panel"><nav>{links}</nav>{mobile_profiles_block}</div>
       </details>
     </div>
   </div>
@@ -304,29 +306,40 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
         "recognition": "Достижения" if lang == "ru" else "Recognition",
     }
     p = data["person"]
+    is_compiler_print = profile["filename"] in {"ru-compiler.html", "en-compiler.html"}
     contacts = f'<a href="mailto:{esc(p["email"])}">{esc(p["email"])}</a><br><a href="{esc(p["telegram"])}">{esc(p["telegram_label"])}</a><br><a href="{esc(p["github"])}">{esc(p["github_label"])}</a>'
     proofs = "".join(f'<div class="pcv-proof"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["proofs"])
+    proof_block = "" if is_compiler_print else f'<div class="pcv-proofs">{proofs}</div>'
     experiences = []
     for item in profile["experience"][:3]:
         bullets = "".join(f"<li>{esc(text)}</li>" for text in item["bullets"][:2])
         experiences.append(f'<article class="pcv-entry"><div class="pcv-date">{esc(item["date"])}</div><div><h3>{esc(item["title"])}</h3><ul>{bullets}</ul></div></article>')
     projects = []
     project_limit = int(profile.get("print_project_limit", 3))
+    project_summaries = profile.get("project_summaries", {})
     for project_id in profile["project_ids"][:project_limit]:
         project = data["projects"][project_id]
-        case = project[f"case_{lang}"]
-        projects.append(f'<article class="pcv-project"><h3><a href="{esc(case)}">{esc(project["title"])}</a></h3><p>{esc(project[f"result_{lang}"])}</p></article>')
+        target = project.get("repo") or project[f"case_{lang}"]
+        summary = project_summaries.get(project_id, {}) if is_compiler_print else {}
+        project_text = summary.get("result") or project[f"result_{lang}"]
+        projects.append(f'<article class="pcv-project"><h3><a href="{esc(target)}">{esc(project["title"])}</a></h3><p>{esc(project_text)}</p></article>')
     skills = "".join(f'<div class="pcv-skill"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["skills"])
     education = p[f"education_{lang}"]
-    recognition = recognition_items(data, lang, profile)[0][2]
+    recognition_data = recognition_items(data, lang, profile)
+    if is_compiler_print:
+        recognition = "".join(
+            f'<div class="pcv-recognition"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>'
+            for _, title, body in recognition_data[:4]
+        )
+    else:
+        recognition = f'<p>{esc(recognition_data[0][2])}</p>'
     return f"""
 <div class="print-cv" aria-label="Focused one-page CV">
   <header class="pcv-header"><div><h1>{esc(person_name(data, lang))}</h1><h2>{esc(profile['role'])}</h2></div><div class="pcv-contact">{contacts}</div></header>
-  <p class="pcv-summary">{esc(profile['summary'])}</p><div class="pcv-proofs">{proofs}</div>
+  <p class="pcv-summary">{esc(profile['summary'])}</p>{proof_block}
   <div class="pcv-columns"><main class="pcv-main"><section><h2 class="pcv-section-title">{labels['experience']}</h2>{''.join(experiences)}</section><section><h2 class="pcv-section-title">{labels['projects']}</h2>{''.join(projects)}</section></main>
-  <aside class="pcv-side"><section><h2 class="pcv-section-title">{labels['skills']}</h2>{skills}</section><section class="pcv-compact"><h2 class="pcv-section-title">{labels['education']}</h2><p>{esc(education)}</p></section><section class="pcv-compact"><h2 class="pcv-section-title">{labels['recognition']}</h2><p>{esc(recognition)}</p></section><section class="pcv-compact"><p>{esc(p[f'location_{lang}'])}</p></section></aside></div>
+  <aside class="pcv-side"><section><h2 class="pcv-section-title">{labels['skills']}</h2>{skills}</section><section class="pcv-compact"><h2 class="pcv-section-title">{labels['education']}</h2><p>{esc(education)}</p></section><section class="pcv-compact"><h2 class="pcv-section-title">{labels['recognition']}</h2>{recognition}</section><section class="pcv-compact"><p>{esc(p[f'location_{lang}'])}</p></section></aside></div>
 </div>"""
-
 
 def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
     profile = data["profiles"][profile_key][lang]

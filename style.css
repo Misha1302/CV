@@ -556,3 +556,78 @@ body.profile-compiler::before {
     font-size: 24px;
   }
 }
+
+
+/* compiler editorial print v53 */
+@media print {
+  .profile-compiler .print-cv {
+    padding: 10.5mm 11.5mm 9mm;
+  }
+  .profile-compiler .pcv-summary {
+    margin: 3.4mm 0 4mm;
+    font-size: 9.5pt;
+    line-height: 1.34;
+  }
+  .profile-compiler .pcv-columns {
+    grid-template-columns: 1.48fr .86fr;
+    gap: 4.5mm;
+  }
+  .profile-compiler .pcv-main section + section,
+  .profile-compiler .pcv-side section + section {
+    margin-top: 3mm;
+  }
+  .profile-compiler .pcv-section-title {
+    margin-bottom: 1.8mm;
+    font-size: 9.4pt;
+  }
+  .profile-compiler .pcv-entry {
+    grid-template-columns: 25mm 1fr;
+    gap: 2.2mm;
+    margin-bottom: 2.4mm;
+  }
+  .profile-compiler .pcv-date {
+    font-size: 7.7pt;
+  }
+  .profile-compiler .pcv-entry h3,
+  .profile-compiler .pcv-project h3 {
+    font-size: 9.1pt;
+  }
+  .profile-compiler .pcv-entry li {
+    font-size: 7.8pt;
+    line-height: 1.25;
+  }
+  .profile-compiler .pcv-project {
+    margin-bottom: 2.2mm;
+  }
+  .profile-compiler .pcv-project p {
+    font-size: 7.7pt;
+    line-height: 1.24;
+  }
+  .profile-compiler .pcv-skill {
+    margin-bottom: 1.9mm;
+  }
+  .profile-compiler .pcv-skill strong {
+    font-size: 8.2pt;
+  }
+  .profile-compiler .pcv-skill span,
+  .profile-compiler .pcv-compact p {
+    font-size: 7.5pt;
+    line-height: 1.23;
+  }
+  .profile-compiler .pcv-recognition {
+    margin-bottom: 1.8mm;
+    break-inside: avoid;
+  }
+  .profile-compiler .pcv-recognition strong {
+    display: block;
+    font-size: 7.8pt;
+    line-height: 1.16;
+  }
+  .profile-compiler .pcv-recognition span {
+    display: block;
+    margin-top: .45mm;
+    color: #4e4547;
+    font-size: 7.25pt;
+    line-height: 1.2;
+  }
+}

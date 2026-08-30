@@ -1,5 +1,5 @@
 {
-  "version": 52,
+  "version": 53,
   "updated_at": "2026-08-30",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -13,8 +13,8 @@
     "linkedin": "https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/",
     "location_ru": "Москва / удалённо",
     "location_en": "Moscow / remote",
-    "education_ru": "Студент программы «Программная инженерия» НИУ ВШЭ",
-    "education_en": "Software Engineering student at HSE University"
+    "education_ru": "НИУ ВШЭ — Программная инженерия, 2026–2030",
+    "education_en": "HSE University — Software Engineering, 2026–2030"
   },
   "profile_order": [
     "general",
@@ -242,8 +242,8 @@
         "role": "Compiler / LLVM Engineer",
         "brand": "LLVM · LLVM IR · optimization · program analysis",
         "eyebrow": "LLVM · Roslyn · CFG/SSA · data-flow · x86-64",
-        "summary": "Работаю с LLVM и статическим анализом. В МЦСТ реализовывал LLVM optimization passes и межпроцедурный анализ; сейчас работаю над SharpChecker в ИСП РАН. В собственных проектах занимаюсь CFG/data-flow analysis, LLVM IR и code generation.",
-        "description": "Михаил Разаков — Compiler / LLVM Engineer: LLVM IR, optimization passes, interprocedural analysis, loop analysis, legality, static analysis и compiler backends.",
+        "summary": "Работаю с компиляторами и статическим анализом. В МЦСТ реализовывал оптимизационные проходы LLVM и межпроцедурный анализ IR; сейчас работаю над SharpChecker в ИСП РАН. В собственных проектах занимаюсь анализом CFG и потоков данных, генерацией кода и инфраструктурой компилятора.",
+        "description": "Михаил Разаков — Compiler / LLVM Engineer. Опыт разработки оптимизационных проходов и межпроцедурного анализа LLVM в МЦСТ, статический анализ C#/.NET в ИСП РАН и собственные проекты по LLVM IR.",
         "proofs": [
           [
             "Compiler engineering",
@@ -261,10 +261,10 @@
         "experience": [
           {
             "date": "2026 — сейчас",
-            "title": "ИСП РАН — SharpChecker",
-            "org": "Static analysis · C#/.NET",
+            "title": "ИСП РАН — инженер по статическому анализу",
+            "org": "SharpChecker · C#/.NET",
             "bullets": [
-              "Работаю над SharpChecker — платформой статического анализа C#/.NET в ИСП РАН."
+              "Участвую в разработке SharpChecker — платформы статического анализа C#/.NET в ИСП РАН."
             ]
           },
           {
@@ -272,8 +272,8 @@
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM 22 · C++23 · compiler engineering",
             "bullets": [
-              "Реализовал собственный LLVM LICM-pass: loop analysis, проверки side effects/speculative safety и hoisting loop-invariant инструкций в preheader.",
-              "Развивал консервативный межпроцедурный анализ глобальных IV: affine evolution на APInt, transitive effects, отдельная legality-фаза и LLVM IR transformation; неподдерживаемые CFG/call cases отклоняются."
+              "Реализовал LLVM LICM-pass: анализ циклов, проверки побочных эффектов и speculative safety, вынос loop-invariant инструкций в preheader.",
+              "Разрабатывал межпроцедурный анализ глобальных переменных и legality-проверки для безопасных преобразований LLVM IR."
             ]
           }
         ],
@@ -285,21 +285,26 @@
         ],
         "skills": [
           [
-            "Compilers",
-            "C++, LLVM, LLVM IR, optimization passes, interprocedural analysis, CFG, SSA, dominators, loop analysis, LICM, legality analysis"
+            "Компиляторы",
+            "C++, LLVM, LLVM IR, оптимизационные проходы, межпроцедурный анализ, CFG, SSA, доминаторы, анализ циклов, LICM"
           ],
           [
-            "Static / Program Analysis",
-            "C#, .NET, Roslyn, ControlFlowGraph, fixed-point data-flow analysis, state propagation and joins"
+            "Статический анализ",
+            "C#, .NET, Roslyn, ControlFlowGraph, fixed-point data-flow, распространение и объединение состояний"
           ],
           [
-            "Codegen / Tooling",
-            "register allocation, liveness analysis, x86-64, CMake, Linux, GitHub Actions, differential testing"
+            "Генерация кода и tooling",
+            "генерация кода, распределение регистров, анализ живости, x86-64, CMake, Linux, GitHub Actions, дифференциальное тестирование"
           ]
         ],
         "contact_heading": "Целевые роли: Compiler Engineer · LLVM Engineer · Compiler Infrastructure · Program Analysis",
         "footer": "Compiler / LLVM Engineer",
         "recognition": [
+          [
+            "2026",
+            "LangDev'26 — Extensible Programming on .NET",
+            "Доклад принят к устному выступлению на LangDev'26."
+          ],
           [
             "2026",
             "UniversalToolchain — Балтийский научно-инженерный конкурс",
@@ -314,25 +319,20 @@
             "2025–2026",
             "«Высшая проба» — олимпиадное и промышленное программирование",
             "Призёр «Высшей пробы» по олимпиадному и промышленному программированию."
-          ],
-          [
-            "2026",
-            "LangDev'26 — Extensible Programming on .NET",
-            "Доклад принят к устному выступлению на LangDev'26."
           ]
         ],
         "project_summaries": {
           "globaliv": {
-            "solution": "Affine b + k·x на APInt, transitive effects, loop/dominator/must-execute reasoning и отдельная conservative legality-фаза перед IR transform.",
-            "result": "LLVM 22 prototype/MVP: 29 positive/negative regression cases, verifier validity, idempotence и before/after execution checks."
+            "solution": "Проход LLVM 22 для межпроцедурного анализа линейной эволюции глобальных переменных и безопасного преобразования IR. Использует APInt, анализ циклов и доминаторов, transitive effects и must-execute conditions.",
+            "result": "29 позитивных и негативных регрессионных тестов; LLVM Verifier, проверка идемпотентности и сравнение поведения программы до и после преобразования."
           },
           "deref": {
             "solution": "Roslyn ControlFlowGraph + forward fixed-point data-flow: Unknown/MaybeNull/NotNull состояния передаются между basic blocks и объединяются на join points.",
             "result": "Анализ повторно обходит successors до стабилизации и выдаёт diagnostics для потенциально небезопасных dereference paths."
           },
           "wist": {
-            "solution": "Модульный .NET compiler/runtime framework с typed intermediate artifacts, детерминированным LanguagePlan, pass ordering и exact backend routing.",
-            "result": "Language composition отделена от runtime execution; архитектурные контракты закреплены executable verification/tests."
+            "solution": "Модульный .NET framework для построения языковых и компиляторных pipeline: parsing → промежуточные представления → optimization passes → backend. Компоненты подключаются через явные контракты, а порядок и совместимость определяются до исполнения.",
+            "result": "Состав языка отделён от выполнения; архитектурные контракты закреплены исполняемыми проверками и тестами."
           },
           "codegen": {
             "solution": "SSA-like IR, CFG/SSA validation, liveness/interference, register allocation с independent assignment verifier, phi lowering и SysV x86-64 codegen.",
@@ -350,8 +350,8 @@
         "role": "Compiler / LLVM Engineer",
         "brand": "LLVM · LLVM IR · optimization · program analysis",
         "eyebrow": "LLVM · Roslyn · CFG/SSA · data-flow · x86-64",
-        "summary": "I work on LLVM and static analysis. At MCST I implemented LLVM optimization passes and interprocedural analysis; I now work on SharpChecker at ISP RAS. My independent projects cover CFG/data-flow analysis, LLVM IR, and code generation.",
-        "description": "Mikhail Razakov — Compiler / LLVM Engineer: LLVM IR, optimization passes, interprocedural analysis, loop analysis, legality, static analysis, and compiler backends.",
+        "summary": "I work on compilers and static analysis. At MCST I implemented LLVM optimization passes and interprocedural IR analysis; I now work on SharpChecker at ISP RAS. My independent projects cover CFG/data-flow analysis, code generation, and compiler infrastructure.",
+        "description": "Mikhail Razakov — Compiler / LLVM Engineer with MCST experience in LLVM optimization passes and interprocedural analysis, C#/.NET static analysis at ISP RAS, and independent LLVM IR projects.",
         "proofs": [
           [
             "Compiler engineering",
@@ -369,10 +369,10 @@
         "experience": [
           {
             "date": "2026 — present",
-            "title": "ISP RAS — SharpChecker",
-            "org": "Static analysis · C#/.NET",
+            "title": "ISP RAS — Static Analysis Engineer",
+            "org": "SharpChecker · C#/.NET",
             "bullets": [
-              "Working on SharpChecker, ISP RAS's static-analysis platform for C#/.NET."
+              "Contributing to SharpChecker, ISP RAS's static-analysis platform for C#/.NET."
             ]
           },
           {
@@ -381,7 +381,7 @@
             "org": "LLVM 22 · C++23 · compiler engineering",
             "bullets": [
               "Implemented an LLVM LICM pass with loop analysis, side-effect/speculative-safety checks, and hoisting of loop-invariant instructions to preheaders.",
-              "Developed conservative interprocedural global-IV analysis with APInt affine evolution, transitive effects, a separate legality phase, and LLVM IR transformation; unsupported CFG/call cases are rejected."
+              "Developed interprocedural global-variable analysis and legality checks for safe LLVM IR transformations."
             ]
           }
         ],
@@ -410,6 +410,11 @@
         "recognition": [
           [
             "2026",
+            "LangDev'26 — Extensible Programming on .NET",
+            "Accepted for an oral presentation at LangDev'26."
+          ],
+          [
+            "2026",
             "UniversalToolchain — Baltic Science and Engineering Competition",
             "First Degree Diploma and Grand Prize “Perfection as Hope” for UniversalToolchain."
           ],
@@ -422,25 +427,20 @@
             "2025–2026",
             "HSE Vysshaya Proba — Competitive & Industrial Programming",
             "Prize-winner in HSE Vysshaya Proba in competitive and industrial programming."
-          ],
-          [
-            "2026",
-            "LangDev'26 — Extensible Programming on .NET",
-            "Accepted for an oral presentation at LangDev'26."
           ]
         ],
         "project_summaries": {
           "globaliv": {
-            "solution": "APInt affine b + k·x evolution, transitive effects, loop/dominator/must-execute reasoning, and a separate conservative legality phase before IR transformation.",
-            "result": "LLVM 22 prototype/MVP with 29 positive/negative regression cases covering verifier validity, idempotence, and before/after execution."
+            "solution": "An LLVM 22 pass for interprocedural analysis of linear global-variable evolution and safe IR transformation, using APInt, loop/dominator analysis, transitive effects, and must-execute conditions.",
+            "result": "29 positive and negative regression tests, LLVM Verifier checks, idempotence checks, and before/after behavioral comparison."
           },
           "deref": {
             "solution": "Roslyn ControlFlowGraph with forward fixed-point data-flow: Unknown/MaybeNull/NotNull states propagate across basic blocks and merge at join points.",
             "result": "Successors are reprocessed until the state stabilizes, producing diagnostics for potentially unsafe dereference paths."
           },
           "wist": {
-            "solution": "A modular .NET compiler/runtime framework with typed intermediate artifacts, deterministic LanguagePlan construction, pass ordering, and exact backend routing.",
-            "result": "Language composition is separated from runtime execution and backed by executable verification/tests."
+            "solution": "A modular .NET framework for language and compiler pipelines: parsing → intermediate representations → optimization passes → backend. Components use explicit contracts, with ordering and compatibility resolved before execution.",
+            "result": "Language composition is separated from execution, with architectural contracts backed by executable verification and tests."
           },
           "codegen": {
             "solution": "SSA-like IR, CFG/SSA validation, liveness/interference, register allocation with an independent assignment verifier, phi lowering, and SysV x86-64 codegen.",
