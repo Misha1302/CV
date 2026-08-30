@@ -1,0 +1,77 @@
+name: Final RU compiler CV polish
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/tmp-compiler-ru-final-polish.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Apply canonical polish
+        run: python tools/tmp_compiler_ru_final_polish_20260831.py
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          python -m playwright install --with-deps chromium
+
+      - name: Rebuild site and PDFs
+        run: |
+          python tools/build_site.py
+          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+
+      - name: Validate content and links
+        run: |
+          python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
+          python tools/build_site.py --check
+          git diff --check
+
+      - name: Update and verify visual baseline
+        run: python tools/visual_regression.py --output-dir /tmp/cv-visual --update
+
+      - name: Finalize clean tree
+        run: |
+          rm -f tools/tmp_compiler_ru_final_polish_20260831.py
+          rm -f .github/workflows/tmp-compiler-ru-final-polish.yml
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
+          python tools/build_site.py --manifest
+          python tools/validate_cv.py --pdf-dir pdf
+          python tools/build_site.py --check
+          git diff --check
+
+      - name: Commit final polish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "cv: polish RU compiler copy and print readability [skip ci]"
+          git push
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compiler-ru-final-polish-evidence
+          path: |
+            /tmp/cv-pdf-report.json
+            /tmp/cv-validation.json
+            /tmp/cv-pdf-evidence
+            /tmp/cv-visual
+          if-no-files-found: warn
