@@ -59,7 +59,7 @@
     "general": {
       "ru": {
         "filename": "ru.html",
-        "pdf": "Mikhail_Razakov_Software_Engineer_RU.pdf",
+        "pdf": "Mikhail_Razakov_Compiler_Infrastructure_RU.pdf",
         "title": "Михаил Разаков — Compiler Engineer · LLVM · Language Infrastructure",
         "role": "Compiler Engineer · LLVM · Language Infrastructure",
         "brand": "LLVM · program analysis · compiler/language infrastructure",
@@ -146,7 +146,7 @@
       },
       "en": {
         "filename": "en.html",
-        "pdf": "Mikhail_Razakov_Software_Engineer_EN.pdf",
+        "pdf": "Mikhail_Razakov_Compiler_Infrastructure_EN.pdf",
         "title": "Mikhail Razakov — Compiler Engineer · LLVM · Language Infrastructure",
         "role": "Compiler Engineer · LLVM · Language Infrastructure",
         "brand": "LLVM · program analysis · compiler/language infrastructure",
