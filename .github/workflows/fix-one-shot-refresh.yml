@@ -1,0 +1,42 @@
+name: Repair one-shot hiring refresh
+
+on:
+  push:
+    branches:
+      - refactor/compiler-identity-20260901
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Repair nested string and allow exactly one bot-triggered run
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('.github/workflows/one-shot-hiring-architecture-refresh.yml')
+          s = p.read_text(encoding='utf-8')
+          marker = "specialization_block = f'''"
+          i = s.index(marker)
+          s = s[:i] + s[i:].replace("f'''", 'f"""', 1)
+          j = s.index("'''", i + len('specialization_block = f"""'))
+          s = s[:j] + '"""' + s[j + 3:]
+          old_guard = "    if: github.actor != 'github-actions[bot]'\n"
+          new_guard = "    if: github.actor != 'github-actions[bot]' || github.event.head_commit.message == 'ci: fix one-shot hiring refresh'\n"
+          if old_guard not in s:
+              raise SystemExit('expected actor guard not found')
+          s = s.replace(old_guard, new_guard, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/one-shot-hiring-architecture-refresh.yml
+          git rm .github/workflows/fix-one-shot-refresh.yml
+          git commit -m "ci: fix one-shot hiring refresh"
+          git push
