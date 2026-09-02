@@ -1,12 +1,13 @@
 # CV site release metadata
 
-- Schema version: 34
+- Schema/content version: 57
 - Content source: `data/site.json`
-- Updated: 2026-08-02
-- Canonical profiles: general, compiler, backend, systems
+- Updated: 2026-09-02
+- Canonical profiles: general, backend, systems, quant
+- Public default: Compiler Engineer
 - Generated pages: RU/EN profiles, project case studies, compatibility redirects
 - Generated PDFs: eight one-page A4 role/language variants
-- Visual validation: desktop, mobile, and JavaScript-disabled screenshots
+- Visual validation: 1440, 1024, 768, 390 px plus JavaScript-disabled smoke checks
 - Integrity: recursive `MANIFEST.sha256`
 
-The site no longer uses JavaScript to rewrite CV content. HTML, metadata, print blocks, and PDF text are generated from the same typed data source.
+HTML, metadata, print blocks, and PDF text are generated from the same canonical data source.

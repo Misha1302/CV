@@ -30,7 +30,7 @@ def validate_pdf(path: Path, expected_role: str) -> dict[str, object]:
         for span in line["spans"]
         if span.get("text", "").strip()
     ]
-    if not sizes or min(sizes) < 6.8:
+    if not sizes or min(sizes) < 7.8:
         raise RuntimeError(f"{path.name}: font too small ({min(sizes) if sizes else 'none'})")
     links = [link.get("uri") for link in page.get_links() if link.get("uri")]
     if len(links) < 3:

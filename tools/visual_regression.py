@@ -18,12 +18,12 @@ BASELINE_PATH = ROOT / "data" / "visual-baseline.json"
 # data-driven: adding or removing a profile changes its card grid by design, so
 # it is exercised by the structural smoke matrix instead of a golden image.
 REGRESSION_CASES = [
+    ("index.html", "desktop", 1440, 1100, True),
     ("ru.html", "desktop", 1440, 1100, True),
-    ("ru-compiler.html", "desktop", 1440, 1100, True),
     ("ru-backend.html", "desktop", 1440, 1100, True),
     ("ru-cpp-systems.html", "desktop", 1440, 1100, True),
+    ("index.html", "mobile", 390, 844, True),
     ("ru.html", "mobile", 390, 844, True),
-    ("ru-compiler.html", "mobile", 390, 844, True),
     ("ru-backend.html", "mobile", 390, 844, True),
     ("ru-cpp-systems.html", "mobile", 390, 844, True),
     ("ru.html", "no-js", 1440, 1100, False),
@@ -31,6 +31,8 @@ REGRESSION_CASES = [
 ]
 VIEW_MODES = [
     ("desktop", 1440, 1100, True),
+    ("laptop", 1024, 900, True),
+    ("tablet", 768, 900, True),
     ("mobile", 390, 844, True),
     ("no-js", 390, 844, False),
 ]
@@ -76,7 +78,7 @@ def page_metrics(page: Page) -> dict[str, float | int | str]:
       const offenders = [];
       for (const el of document.querySelectorAll('body *')) {
         const style = getComputedStyle(el);
-        if (style.display === 'none' || style.visibility === 'hidden' || style.position === 'fixed') continue;
+        if (style.display === 'none' || style.visibility === 'hidden' || style.position === 'fixed' || el.closest('details:not([open])')) continue;
         const rect = el.getBoundingClientRect();
         if (rect.width > 1 && (rect.right > viewport + 1 || rect.left < -1)) {
           offenders.push({tag: el.tagName, cls: el.className || '', left: rect.left, right: rect.right});
