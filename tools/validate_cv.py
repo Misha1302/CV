@@ -13,7 +13,7 @@ from urllib.parse import urldefrag, urlparse
 import fitz
 from bs4 import BeautifulSoup
 
-from build_site import ROOT, build_outputs, load_data, write_or_check
+from build_site import ROOT, build_outputs, load_data, person_name, write_or_check
 
 STALE_MARKERS = [
     "до 20 часов в неделю",
@@ -224,6 +224,11 @@ def validate_pdfs(data: dict, pdf_dir: Path) -> list[dict[str, object]]:
             text = normalized(page.get_text("text"))
             if profile["role"].casefold() not in text.casefold():
                 raise RuntimeError(f"{path.name}: role mismatch")
+            ats_prefix = text[:1800].casefold()
+            required_ats = [person_name(data, lang), profile["role"], data["person"]["email"], *profile.get("ats_terms", [])]
+            missing_ats = [term for term in required_ats if str(term).casefold() not in ats_prefix]
+            if missing_ats:
+                raise RuntimeError(f"{path.name}: ATS prefix missing {missing_ats}")
             for marker in STALE_MARKERS:
                 if marker.casefold() in text.casefold():
                     raise RuntimeError(f"{path.name}: stale marker {marker}")

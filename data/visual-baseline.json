@@ -1,82 +1,82 @@
 {
-  "ru.html|desktop": {
-    "dhash": "3e4b2ec739cc0dde0736261a077f1d5f19df0d5e263621b425fe223803ba17b3",
+  "index.html|desktop": {
+    "dhash": "39a319e327472f1e30363a5f186619d619b63cd8267218180e3827602b4026c2",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 5170,
+    "page_height": 3015,
     "h1": "Михаил Разаков",
-    "role": "Compiler Engineer · LLVM · Language Infrastructure"
+    "role": "Compiler Engineer"
   },
-  "ru-compiler.html|desktop": {
-    "dhash": "39a309e32b362f5604063a161a5618e639ee3de63dc62e062906093807702702",
+  "ru.html|desktop": {
+    "dhash": "39a319e333e72f1e4c363b121a5718e619d619e63c18207238580d3807702302",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 3304,
+    "page_height": 2760,
     "h1": "Михаил Разаков",
-    "role": "Compiler / LLVM Engineer · Optimization & Analysis"
+    "role": "Compiler Engineer"
   },
   "ru-backend.html|desktop": {
-    "dhash": "3e4b3f47399405360f36073e273a1b671e7f037f263e25f627b8623807fb1fb3",
+    "dhash": "31831de332672f1e4e3630323c463cc639ae19e60c90243238300e3007902b02",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 5060,
+    "page_height": 2526,
     "h1": "Михаил Разаков",
-    "role": "NET Backend / Platform Engineer · State & Reliability"
+    "role": ".NET Backend Engineer"
   },
   "ru-cpp-systems.html|desktop": {
-    "dhash": "2e0b37c739dc25360f0e473e077e1f5f2ddf19cf2632223827f8223802ba15b7",
+    "dhash": "31a319e333672f1c4e3630121a4f0c662dd63cfe1cc4267a38280d3007902b02",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 4947,
+    "page_height": 2605,
     "h1": "Михаил Разаков",
-    "role": "C++ / LLVM Systems Engineer"
+    "role": "C++ / Compiler Systems & Program Analysis"
+  },
+  "index.html|mobile": {
+    "dhash": "5ac338ff7933730f127f2e1f729e72cf517759b667b369cf6d9f6dfe497b6347",
+    "width": 390,
+    "viewport_height": 844,
+    "page_height": 4619,
+    "h1": "Михаил Разаков",
+    "role": "Compiler Engineer"
   },
   "ru.html|mobile": {
-    "dhash": "61e728ff2cbd163e307f1e6f3dff3cbf2cdf38bf3aff77c74bfe64fa3fff0cef",
+    "dhash": "58c33aff749b7307336f1e7e689f338e52ff51b759b72f937dcf6d9f6dfe497a",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 9082,
+    "page_height": 4333,
     "h1": "Михаил Разаков",
-    "role": "Compiler Engineer · LLVM · Language Infrastructure"
-  },
-  "ru-compiler.html|mobile": {
-    "dhash": "58d932df769d7b3333272d3f2dbf73ff33bf5b3f5b3f39b71c6f5ddf6dff4979",
-    "width": 390,
-    "viewport_height": 844,
-    "page_height": 5593,
-    "h1": "Михаил Разаков",
-    "role": "Compiler / LLVM Engineer · Optimization & Analysis"
+    "role": "Compiler Engineer"
   },
   "ru-backend.html|mobile": {
-    "dhash": "75ef28fd2d9f35ff3d5f3c6f1aef3e9f3bdf3aff1adf5bc74bfb65f83baf18ef",
+    "dhash": "5ac17edf673b7303332f167e56bd795f5e3e7ae771bf5cb76e7365ae6dfa4938",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 8321,
+    "page_height": 3860,
     "h1": "Михаил Разаков",
-    "role": "NET Backend / Platform Engineer · State & Reliability"
+    "role": ".NET Backend Engineer"
   },
   "ru-cpp-systems.html|mobile": {
-    "dhash": "64f328fd3ddc34ff1b3f0a6f2fff2c3f38ff3eff3eff16df5b7f67f83fbf2cdf",
+    "dhash": "5ac332df661f7307337f1e7e6c1f338e195f5b1f739f15bb7689698f6dfe497a",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 8540,
+    "page_height": 4184,
     "h1": "Михаил Разаков",
-    "role": "C++ / LLVM Systems Engineer"
+    "role": "C++ / Compiler Systems & Program Analysis"
   },
   "ru.html|no-js": {
-    "dhash": "1b03c303260b2e0706061ee63ee604c622c60bcf354f358f0322198c1dde18d6",
+    "dhash": "301a35a719a30c6714e323a3132740274027301823020f564c06023e40303000",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 5170,
+    "page_height": 2908,
     "h1": "Михаил Разаков",
-    "role": "Compiler Engineer · LLVM · Language Infrastructure"
+    "role": "Compiler Engineer"
   },
   "ru-backend.html|no-js": {
-    "dhash": "53b340812846738064d15d3c2cac260552275adb51cd48e190f0437021683795",
+    "dhash": "6603180118001800380058005800580018003800380073c064d0467869437137",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 8671,
+    "page_height": 4210,
     "h1": "Михаил Разаков",
-    "role": "NET Backend / Platform Engineer · State & Reliability"
+    "role": ".NET Backend Engineer"
   }
 }
