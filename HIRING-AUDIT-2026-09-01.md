@@ -13,7 +13,7 @@
 ## SUPPORTED BUT STRONG
 
 - LangDev'26 acceptance is stated in the candidate's public announcement; the official conference site confirms the Oct 8–9 dates, while its public program/speaker list was not yet populated during this audit. The CV keeps the acceptance claim but does not infer broader conference status.
-- ISP RAS / SharpChecker and MCST role labels are retained from the canonical CV history; no additional confidential responsibility is invented.
+- ISP RAS / SharpChecker is an offer received but employment has not started, so it is deliberately not listed as Professional Experience. MCST remains the verified completed compiler internship.
 
 ## NEEDS VERIFICATION
 
@@ -28,5 +28,5 @@
 
 ## MISLEADING structure removed
 
-- CompilationLabLMS, VpnMediator, UniversalToolchain, PS-form, and codegen are no longer listed as Professional Experience. All profiles use ISP RAS and MCST as Professional Experience and keep independent work under Projects.
+- CompilationLabLMS, VpnMediator, UniversalToolchain, PS-form, and codegen are not listed as Professional Experience. All profiles use only the completed MCST internship as Professional Experience; the pre-start ISP RAS offer is omitted until work actually begins.
 - The duplicate `general` / `compiler` personas are merged into one public Compiler Engineer profile; old compiler URLs redirect to it.

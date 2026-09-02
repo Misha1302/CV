@@ -57,12 +57,12 @@
         "role": "Compiler Engineer",
         "brand": "LLVM · Program Analysis · Compiler / Language Infrastructure",
         "eyebrow": "LLVM 22 · program analysis · Roslyn · x86-64",
-        "summary": "Инженер по компиляторам с профессиональным опытом LLVM и статического анализа. В МЦСТ реализовал LICM-pass для LLVM 22 и консервативный прототип межпроцедурной global-IV оптимизации; в ИСП РАН участвую в разработке SharpChecker для C#/.NET. Собственные проекты продолжают тот же профиль: UniversalToolchain и Roslyn-анализатор на ControlFlowGraph.",
+        "summary": "Инженер по компиляторам с практическим опытом LLVM и program analysis. На стажировке в МЦСТ реализовал LICM-pass для LLVM 22 и консервативный прототип межпроцедурной global-IV оптимизации. Собственные проекты продолжают тот же профиль: UniversalToolchain и Roslyn-анализатор на ControlFlowGraph.",
         "description": "Михаил Разаков — Compiler Engineer: LLVM 22, optimization passes, interprocedural и static analysis, Roslyn ControlFlowGraph и compiler/language infrastructure.",
         "proofs": [
           [
             "Профессиональный опыт",
-            "ИСП РАН — C#/.NET static analysis; МЦСТ — LLVM 22 и C++23."
+            "МЦСТ — стажировка по разработке компиляторов, LLVM 22 и C++23."
           ],
           [
             "LLVM",
@@ -74,14 +74,6 @@
           ]
         ],
         "experience": [
-          {
-            "date": "2026 — сейчас",
-            "title": "ИСП РАН — инженер по статическому анализу",
-            "org": "SharpChecker · C#/.NET",
-            "bullets": [
-              "Участвую в разработке SharpChecker — платформы статического анализа C#/.NET в ИСП РАН."
-            ]
-          },
           {
             "date": "июль — август 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
@@ -153,7 +145,6 @@
           }
         },
         "ats_terms": [
-          "ИСП РАН",
           "МЦСТ",
           "LLVM",
           "C++23"
@@ -168,12 +159,12 @@
         "role": "Compiler Engineer",
         "brand": "LLVM · Program Analysis · Compiler / Language Infrastructure",
         "eyebrow": "LLVM 22 · program analysis · Roslyn · x86-64",
-        "summary": "Compiler engineer with professional LLVM and static-analysis experience. At MCST, I implemented an LLVM 22 LICM pass and a conservative interprocedural global-IV prototype; at ISP RAS, I contribute to SharpChecker for C#/.NET. Independent work follows the same direction: UniversalToolchain and a Roslyn ControlFlowGraph analyzer.",
+        "summary": "Compiler engineer with hands-on LLVM and program-analysis experience. During my MCST internship, I implemented an LLVM 22 LICM pass and a conservative interprocedural global-IV prototype. Independent work continues the same direction: UniversalToolchain and a Roslyn ControlFlowGraph analyzer.",
         "description": "Mikhail Razakov — Compiler Engineer: LLVM 22, optimization passes, interprocedural and static analysis, Roslyn ControlFlowGraph, and compiler/language infrastructure.",
         "proofs": [
           [
             "Professional work",
-            "ISP RAS — C#/.NET static analysis; MCST — LLVM 22 and C++23."
+            "MCST — compiler engineering internship with LLVM 22 and C++23."
           ],
           [
             "LLVM",
@@ -185,14 +176,6 @@
           ]
         ],
         "experience": [
-          {
-            "date": "2026 — present",
-            "title": "ISP RAS — Static Analysis Engineer",
-            "org": "SharpChecker · C#/.NET",
-            "bullets": [
-              "Contribute to SharpChecker, a C#/.NET static-analysis platform developed at ISP RAS."
-            ]
-          },
           {
             "date": "July — August 2026",
             "title": "MCST — Compiler Engineering Intern",
@@ -264,7 +247,6 @@
           }
         },
         "ats_terms": [
-          "ISP RAS",
           "MCST",
           "LLVM",
           "C++23"
@@ -281,12 +263,12 @@
         "role": ".NET Backend Engineer",
         "brand": "C# · ASP.NET Core · stateful workflows · recovery",
         "eyebrow": "C#/.NET · ASP.NET Core · PostgreSQL · idempotency",
-        "summary": "Профессиональный опыт — C#/.NET static analysis в ИСП РАН и C++/LLVM в МЦСТ. В собственных ASP.NET Core проектах реализовывал платёжные workflows, явные состояния, идемпотентность, PostgreSQL/SQLite, reconciliation и восстановление после сбоев.",
+        "summary": "Профессиональный опыт — стажировка по C++/LLVM в МЦСТ. Backend-практика собрана в собственных ASP.NET Core проектах: платёжные workflows, явные состояния, идемпотентность, PostgreSQL/SQLite, reconciliation и восстановление после сбоев.",
         "description": "Михаил Разаков — .NET Backend Engineer: C#, ASP.NET Core, PostgreSQL/SQLite, payment workflows, idempotency, reconciliation, migrations и recovery.",
         "proofs": [
           [
             "Professional engineering",
-            "ИСП РАН и МЦСТ — реальные инженерные роли; backend-системы ниже — собственные проекты."
+            "МЦСТ — профессиональная инженерная стажировка; backend-системы ниже — собственные проекты."
           ],
           [
             "Stateful backend",
@@ -298,14 +280,6 @@
           ]
         ],
         "experience": [
-          {
-            "date": "2026 — сейчас",
-            "title": "ИСП РАН — инженер по статическому анализу",
-            "org": "SharpChecker · C#/.NET",
-            "bullets": [
-              "Участвую в разработке SharpChecker — платформы статического анализа C#/.NET в ИСП РАН."
-            ]
-          },
           {
             "date": "июль — август 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
@@ -371,7 +345,6 @@
           }
         },
         "ats_terms": [
-          "ИСП РАН",
           "МЦСТ",
           "C#",
           "ASP.NET Core"
@@ -387,12 +360,12 @@
         "role": ".NET Backend Engineer",
         "brand": "C# · ASP.NET Core · stateful workflows · recovery",
         "eyebrow": "C#/.NET · ASP.NET Core · PostgreSQL · idempotency",
-        "summary": "My professional experience is C#/.NET static analysis at ISP RAS and C++/LLVM compiler work at MCST. In independent ASP.NET Core projects, I have built payment workflows, explicit state machines, idempotency, PostgreSQL/SQLite persistence, reconciliation, and restart-recovery paths.",
+        "summary": "My professional experience is a C++/LLVM compiler internship at MCST. Backend evidence comes from independent ASP.NET Core projects with payment workflows, explicit state machines, idempotency, PostgreSQL/SQLite, reconciliation, and restart-recovery paths.",
         "description": "Mikhail Razakov — .NET Backend Engineer: C#, ASP.NET Core, PostgreSQL/SQLite, payment workflows, idempotency, reconciliation, migrations, and recovery.",
         "proofs": [
           [
             "Professional engineering",
-            "ISP RAS and MCST are professional roles; the backend systems below are independent projects."
+            "MCST is the professional engineering role; the backend systems below are independent projects."
           ],
           [
             "Stateful backend",
@@ -404,14 +377,6 @@
           ]
         ],
         "experience": [
-          {
-            "date": "2026 — present",
-            "title": "ISP RAS — Static Analysis Engineer",
-            "org": "SharpChecker · C#/.NET",
-            "bullets": [
-              "Contribute to SharpChecker, a C#/.NET static-analysis platform developed at ISP RAS."
-            ]
-          },
           {
             "date": "July — August 2026",
             "title": "MCST — Compiler Engineering Intern",
@@ -477,7 +442,6 @@
           }
         },
         "ats_terms": [
-          "ISP RAS",
           "MCST",
           "C#",
           "ASP.NET Core"
@@ -500,7 +464,7 @@
         "proofs": [
           [
             "Professional C++ / LLVM",
-            "МЦСТ — LLVM 22 и C++23; ИСП РАН добавляет professional program-analysis signal."
+            "МЦСТ — LLVM 22 и C++23."
           ],
           [
             "Program analysis",
@@ -512,14 +476,6 @@
           ]
         ],
         "experience": [
-          {
-            "date": "2026 — сейчас",
-            "title": "ИСП РАН — инженер по статическому анализу",
-            "org": "SharpChecker · C#/.NET",
-            "bullets": [
-              "Участвую в разработке SharpChecker — платформы статического анализа C#/.NET в ИСП РАН."
-            ]
-          },
           {
             "date": "июль — август 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
@@ -585,7 +541,6 @@
           }
         },
         "ats_terms": [
-          "ИСП РАН",
           "МЦСТ",
           "C++23",
           "LLVM"
@@ -606,7 +561,7 @@
         "proofs": [
           [
             "Professional C++ / LLVM",
-            "MCST — LLVM 22 and C++23; ISP RAS adds a professional program-analysis signal."
+            "MCST — LLVM 22 and C++23."
           ],
           [
             "Program analysis",
@@ -618,14 +573,6 @@
           ]
         ],
         "experience": [
-          {
-            "date": "2026 — present",
-            "title": "ISP RAS — Static Analysis Engineer",
-            "org": "SharpChecker · C#/.NET",
-            "bullets": [
-              "Contribute to SharpChecker, a C#/.NET static-analysis platform developed at ISP RAS."
-            ]
-          },
           {
             "date": "July — August 2026",
             "title": "MCST — Compiler Engineering Intern",
@@ -691,7 +638,6 @@
           }
         },
         "ats_terms": [
-          "ISP RAS",
           "MCST",
           "C++23",
           "LLVM"
@@ -709,7 +655,7 @@
         "role": "Quantitative Developer / Research Software",
         "brand": "C++ · Python · algorithms · reproducible experiments",
         "eyebrow": "C++23 · Python · algorithms · experimental tooling",
-        "summary": "Мой основной background — compiler/program-analysis engineering: C++/Python, алгоритмы, воспроизводимые тестовые harnesses и low-level code. Для Quantitative Developer / Research Software ролей самые релевантные проекты — PS-form анализатор с независимым exact oracle и x86-64 backend с differential execution.",
+        "summary": "Основной профиль — compiler/program analysis: C++/Python, алгоритмы, воспроизводимые тестовые стенды и low-level code. Для инженерных ролей в quant/research software наиболее релевантны PS-form анализатор с независимым exact oracle и x86-64 backend с differential execution.",
         "description": "Михаил Разаков — Quantitative Developer / Research Software: C++, Python, algorithms, reproducible experiments, program analysis и low-level tooling.",
         "proofs": [
           [
@@ -726,14 +672,6 @@
           ]
         ],
         "experience": [
-          {
-            "date": "2026 — сейчас",
-            "title": "ИСП РАН — инженер по статическому анализу",
-            "org": "SharpChecker · C#/.NET",
-            "bullets": [
-              "Участвую в разработке SharpChecker — платформы статического анализа C#/.NET в ИСП РАН."
-            ]
-          },
           {
             "date": "июль — август 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
@@ -799,7 +737,6 @@
           }
         },
         "ats_terms": [
-          "ИСП РАН",
           "МЦСТ",
           "C++23",
           "Python"
@@ -832,14 +769,6 @@
           ]
         ],
         "experience": [
-          {
-            "date": "2026 — present",
-            "title": "ISP RAS — Static Analysis Engineer",
-            "org": "SharpChecker · C#/.NET",
-            "bullets": [
-              "Contribute to SharpChecker, a C#/.NET static-analysis platform developed at ISP RAS."
-            ]
-          },
           {
             "date": "July — August 2026",
             "title": "MCST — Compiler Engineering Intern",
@@ -905,7 +834,6 @@
           }
         },
         "ats_terms": [
-          "ISP RAS",
           "MCST",
           "C++23",
           "Python"

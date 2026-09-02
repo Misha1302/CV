@@ -8,7 +8,7 @@ Use this by default for compiler, LLVM, static/program-analysis, language-infras
 
 ## Direct-link variants
 
-- `.NET Backend Engineer` — C#/ASP.NET Core and stateful backend work. Professional Experience remains ISP RAS + MCST; CompilationLabLMS, VpnMediator, and UniversalToolchain remain Projects.
+- `.NET Backend Engineer` — C#/ASP.NET Core and stateful backend work. Professional Experience is the MCST compiler internship; CompilationLabLMS, VpnMediator, and UniversalToolchain remain independent Projects.
 - `C++ / Compiler Systems & Program Analysis` — C++/LLVM/compiler-tooling roles. It does not claim generic kernel, networking, storage, or distributed-systems experience.
 - `Quantitative Developer / Research Software` — engineering-heavy research/quant infrastructure. It does not claim statistical finance, signals, forecasting, or portfolio-research experience.
 

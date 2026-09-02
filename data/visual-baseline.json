@@ -1,81 +1,81 @@
 {
   "index.html|desktop": {
-    "dhash": "39a309e327462f1e4c363a161a5718ce19f61c94267a38d80d3807602b4036c2",
+    "dhash": "39a319e327472f1e30363a5f186619d619b63cd8267218180e3827602b4026c2",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 3157,
+    "page_height": 3015,
     "h1": "Михаил Разаков",
     "role": "Compiler Engineer"
   },
   "ru.html|desktop": {
-    "dhash": "39a319e33b672f1c4e3630363a571c4e19ce19b61c98247a38580d3807702302",
+    "dhash": "39a319e333e72f1e4c363b121a5718e619d619e63c18207238580d3807702302",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 2902,
+    "page_height": 2760,
     "h1": "Михаил Разаков",
     "role": "Compiler Engineer"
   },
   "ru-backend.html|desktop": {
-    "dhash": "35a31de33367261c0f1630363c460cc638ee19e61de22c3038320d3007b02b02",
+    "dhash": "31831de332672f1e4e3630323c463cc639ae19e60c90243238300e3007902b02",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 2669,
+    "page_height": 2526,
     "h1": "Михаил Разаков",
     "role": ".NET Backend Engineer"
   },
   "ru-cpp-systems.html|desktop": {
-    "dhash": "31a319e333672e1c0f26303e3a0f1a672cd63dee3df62ef8227a0c3007b02b02",
+    "dhash": "31a319e333672f1c4e3630121a4f0c662dd63cfe1cc4267a38280d3007902b02",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 2721,
+    "page_height": 2605,
     "h1": "Михаил Разаков",
     "role": "C++ / Compiler Systems & Program Analysis"
   },
   "index.html|mobile": {
-    "dhash": "58d131ff77077b77332f1e7f6c9f728e51f731b64db367877d9f6dfe4977630f",
+    "dhash": "5ac338ff7933730f127f2e1f729e72cf517759b667b369cf6d9f6dfe497b6347",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 4902,
+    "page_height": 4619,
     "h1": "Михаил Разаков",
     "role": "Compiler Engineer"
   },
   "ru.html|mobile": {
-    "dhash": "5ac331ff6707797233af166f3c3f729e72cf11b759b667b369cf6d9f6dfa497a",
+    "dhash": "58c33aff749b7307336f1e7e689f338e52ff51b759b72f937dcf6d9f6dfe497a",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 4617,
+    "page_height": 4333,
     "h1": "Михаил Разаков",
     "role": "Compiler Engineer"
   },
   "ru-backend.html|mobile": {
-    "dhash": "5ad376df66bf78723397306f1ebe74bf5f5f6aff63f75db76c7365ba6dfa4978",
+    "dhash": "5ac17edf673b7303332f167e56bd795f5e3e7ae771bf5cb76e7365ae6dfa4938",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 4090,
+    "page_height": 3860,
     "h1": "Михаил Разаков",
     "role": ".NET Backend Engineer"
   },
   "ru-cpp-systems.html|mobile": {
-    "dhash": "5ac332df76177872332f127f7d1f729f3b06595f531f1db33499699f6dfe497a",
+    "dhash": "5ac332df661f7307337f1e7e6c1f338e195f5b1f739f15bb7689698f6dfe497a",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 4413,
+    "page_height": 4184,
     "h1": "Михаил Разаков",
     "role": "C++ / Compiler Systems & Program Analysis"
   },
   "ru.html|no-js": {
-    "dhash": "301a35a719a30c6701630be333270027402730182a160e1c0f160e5630060076",
+    "dhash": "301a35a719a30c6714e323a3132740274027301823020f564c06023e40303000",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 3023,
+    "page_height": 2908,
     "h1": "Михаил Разаков",
     "role": "Compiler Engineer"
   },
   "ru-backend.html|no-js": {
-    "dhash": "6603180118001800380058005800580018003800380073c064d0467923c5491f",
+    "dhash": "6603180118001800380058005800580018003800380073c064d0467869437137",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 4440,
+    "page_height": 4210,
     "h1": "Михаил Разаков",
     "role": ".NET Backend Engineer"
   }
