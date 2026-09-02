@@ -1,4 +1,4 @@
-name: Finish compiler identity refresh
+name: Correct pre-start employment claims
 
 on:
   push:
@@ -31,46 +31,113 @@ jobs:
           python -m pip install --upgrade pip
           pip install beautifulsoup4 pymupdf pillow playwright weasyprint
           python -m playwright install --with-deps chromium
-      - name: Apply reviewed canonical migration
+      - name: Correct canonical employment facts and hiring docs
         run: |
-          base64 -d tools/_hiring_refresh_payload.b64 | gzip -dc > /tmp/apply_hiring_refresh.py
-          python -m py_compile /tmp/apply_hiring_refresh.py
-          python /tmp/apply_hiring_refresh.py
           python - <<'PY'
           import json
           from pathlib import Path
 
-          validator = Path('tools/validate_cv.py')
-          text = validator.read_text(encoding='utf-8')
-          old = 'from build_site import ROOT, build_outputs, load_data, write_or_check'
-          new = 'from build_site import ROOT, build_outputs, load_data, person_name, write_or_check'
-          if old not in text:
-              raise SystemExit('validator import anchor missing')
-          validator.write_text(text.replace(old, new, 1), encoding='utf-8')
-
-          visual = Path('tools/visual_regression.py')
-          text = visual.read_text(encoding='utf-8')
-          old = "if (style.display === 'none' || style.visibility === 'hidden' || style.position === 'fixed') continue;"
-          new = "if (style.display === 'none' || style.visibility === 'hidden' || style.position === 'fixed' || el.closest('details:not([open])')) continue;"
-          if old not in text:
-              raise SystemExit('visual visibility anchor missing')
-          visual.write_text(text.replace(old, new, 1), encoding='utf-8')
-
           source = Path('data/site.json')
           data = json.loads(source.read_text(encoding='utf-8'))
+
+          for profile_key in data['profile_order']:
+              for lang in ('ru', 'en'):
+                  profile = data['profiles'][profile_key][lang]
+                  employer = 'МЦСТ' if lang == 'ru' else 'MCST'
+                  profile['experience'] = [
+                      item for item in profile.get('experience', [])
+                      if employer in item.get('title', '')
+                  ]
+                  profile['ats_terms'] = [
+                      term for term in profile.get('ats_terms', [])
+                      if term not in {'ИСП РАН', 'ISP RAS'}
+                  ]
+
+          general_ru = data['profiles']['general']['ru']
+          general_ru['summary'] = (
+              'Инженер по компиляторам с практическим опытом LLVM и program analysis. '
+              'На стажировке в МЦСТ реализовал LICM-pass для LLVM 22 и консервативный '
+              'прототип межпроцедурной global-IV оптимизации. Собственные проекты '
+              'продолжают тот же профиль: UniversalToolchain и Roslyn-анализатор на '
+              'ControlFlowGraph.'
+          )
+          general_ru['proofs'][0][1] = (
+              'МЦСТ — стажировка по разработке компиляторов, LLVM 22 и C++23.'
+          )
+
+          general_en = data['profiles']['general']['en']
+          general_en['summary'] = (
+              'Compiler engineer with hands-on LLVM and program-analysis experience. '
+              'During my MCST internship, I implemented an LLVM 22 LICM pass and a '
+              'conservative interprocedural global-IV prototype. Independent work '
+              'continues the same direction: UniversalToolchain and a Roslyn '
+              'ControlFlowGraph analyzer.'
+          )
+          general_en['proofs'][0][1] = (
+              'MCST — compiler engineering internship with LLVM 22 and C++23.'
+          )
+
+          backend_ru = data['profiles']['backend']['ru']
+          backend_ru['summary'] = (
+              'Профессиональный опыт — стажировка по C++/LLVM в МЦСТ. Backend-практика '
+              'собрана в собственных ASP.NET Core проектах: платёжные workflows, явные '
+              'состояния, идемпотентность, PostgreSQL/SQLite, reconciliation и '
+              'восстановление после сбоев.'
+          )
+          backend_ru['proofs'][0][1] = (
+              'МЦСТ — профессиональная инженерная стажировка; backend-системы ниже — '
+              'собственные проекты.'
+          )
+
+          backend_en = data['profiles']['backend']['en']
+          backend_en['summary'] = (
+              'My professional experience is a C++/LLVM compiler internship at MCST. '
+              'Backend evidence comes from independent ASP.NET Core projects with '
+              'payment workflows, explicit state machines, idempotency, PostgreSQL/SQLite, '
+              'reconciliation, and restart-recovery paths.'
+          )
+          backend_en['proofs'][0][1] = (
+              'MCST is the professional engineering role; the backend systems below are '
+              'independent projects.'
+          )
+
+          systems_ru = data['profiles']['systems']['ru']
+          systems_ru['proofs'][0][1] = 'МЦСТ — LLVM 22 и C++23.'
+          systems_en = data['profiles']['systems']['en']
+          systems_en['proofs'][0][1] = 'MCST — LLVM 22 and C++23.'
+
+          quant_ru = data['profiles']['quant']['ru']
+          quant_ru['summary'] = (
+              'Основной профиль — compiler/program analysis: C++/Python, алгоритмы, '
+              'воспроизводимые тестовые стенды и low-level code. Для инженерных ролей '
+              'в quant/research software наиболее релевантны PS-form анализатор с '
+              'независимым exact oracle и x86-64 backend с differential execution.'
+          )
+
           data['updated_at'] = '2026-09-02'
           source.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
-          release = Path('RELEASE-METADATA.md')
-          text = release.read_text(encoding='utf-8')
-          release.write_text(text.replace('Updated: 2026-09-01', 'Updated: 2026-09-02'), encoding='utf-8')
+          targeting = Path('TARGETING.md')
+          text = targeting.read_text(encoding='utf-8')
+          old = '- `.NET Backend Engineer` — C#/ASP.NET Core and stateful backend work. Professional Experience remains ISP RAS + MCST; CompilationLabLMS, VpnMediator, and UniversalToolchain remain Projects.'
+          new = '- `.NET Backend Engineer` — C#/ASP.NET Core and stateful backend work. Professional Experience is the MCST compiler internship; CompilationLabLMS, VpnMediator, and UniversalToolchain remain independent Projects.'
+          if old not in text:
+              raise SystemExit('targeting employment anchor missing')
+          targeting.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          audit = Path('HIRING-AUDIT-2026-09-01.md')
+          text = audit.read_text(encoding='utf-8')
+          old = '- ISP RAS / SharpChecker and MCST role labels are retained from the canonical CV history; no additional confidential responsibility is invented.'
+          new = '- ISP RAS / SharpChecker is an offer received but employment has not started, so it is deliberately not listed as Professional Experience. MCST remains the verified completed compiler internship.'
+          if old not in text:
+              raise SystemExit('audit supported-status anchor missing')
+          text = text.replace(old, new, 1)
+          old = '- CompilationLabLMS, VpnMediator, UniversalToolchain, PS-form, and codegen are no longer listed as Professional Experience. All profiles use ISP RAS and MCST as Professional Experience and keep independent work under Projects.'
+          new = '- CompilationLabLMS, VpnMediator, UniversalToolchain, PS-form, and codegen are not listed as Professional Experience. All profiles use only the completed MCST internship as Professional Experience; the pre-start ISP RAS offer is omitted until work actually begins.'
+          if old not in text:
+              raise SystemExit('audit structure anchor missing')
+          audit.write_text(text.replace(old, new, 1), encoding='utf-8')
           PY
-          git rm tools/_hiring_refresh_payload.b64
-      - name: Remove obsolete generated PDFs
-        run: |
-          rm -f pdf/Mikhail_Razakov_Compiler_*.pdf
-          rm -f pdf/Mikhail_Razakov_Quant_Research_*.pdf
-          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
       - name: Generate site and PDFs
         run: |
           python tools/build_site.py
@@ -78,7 +145,7 @@ jobs:
       - name: Validate content, links, PDFs, and ATS extraction
         run: |
           python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
-      - name: Capture visual matrix and accept this intentional redesign
+      - name: Capture corrected visual matrix and accept factual rewrite
         run: |
           python tools/visual_regression.py --output-dir /tmp/cv-visual --update
       - name: Deterministic clean rebuild
@@ -88,7 +155,7 @@ jobs:
           python tools/build_cv.py --output-dir /tmp/cv-clean-pdf --evidence-dir /tmp/cv-clean-evidence --report /tmp/cv-clean-pdf-report.json
           python tools/validate_cv.py --pdf-dir /tmp/cv-clean-pdf --compare-dir pdf --skip-manifest --report /tmp/cv-clean-validation.json
           python tools/visual_regression.py --output-dir /tmp/cv-visual-recheck
-      - name: Validate final post-cleanup tree equivalence
+      - name: Final manifest and tree verification
         run: |
           mkdir -p /tmp/workflow-hold
           mv .github/workflows/hiring-refresh-apply.yml /tmp/workflow-hold/hiring-refresh-apply.yml
@@ -97,7 +164,7 @@ jobs:
           python tools/validate_cv.py --pdf-dir pdf --report /tmp/cv-final-validation.json
           git diff --check
           mv /tmp/workflow-hold/hiring-refresh-apply.yml .github/workflows/hiring-refresh-apply.yml
-      - name: Commit validated refresh
+      - name: Commit validated factual correction
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -106,13 +173,13 @@ jobs:
           if git diff --cached --quiet; then
             echo "No source/generated changes to commit"
           else
-            git commit -m "cv: unify compiler identity and targeted variants [skip ci]"
+            git commit -m "cv: correct pre-start ISP RAS status [skip ci]"
             git push
           fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: compiler-identity-refresh-evidence
+          name: compiler-identity-factual-correction-evidence
           path: |
             /tmp/cv-pdf-report.json
             /tmp/cv-validation.json
