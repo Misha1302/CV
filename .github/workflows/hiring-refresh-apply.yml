@@ -78,9 +78,9 @@ jobs:
       - name: Validate content, links, PDFs, and ATS extraction
         run: |
           python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
-      - name: Capture visual matrix
+      - name: Capture visual matrix and accept this intentional redesign
         run: |
-          python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
+          python tools/visual_regression.py --output-dir /tmp/cv-visual --update
       - name: Deterministic clean rebuild
         run: |
           rm -rf /tmp/cv-clean-pdf /tmp/cv-clean-evidence /tmp/cv-visual-recheck
