@@ -36,6 +36,16 @@ jobs:
           base64 -d tools/_hiring_refresh_payload.b64 | gzip -dc > /tmp/apply_hiring_refresh.py
           python -m py_compile /tmp/apply_hiring_refresh.py
           python /tmp/apply_hiring_refresh.py
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tools/validate_cv.py')
+          text = path.read_text(encoding='utf-8')
+          old = 'from build_site import ROOT, build_outputs, load_data, write_or_check'
+          new = 'from build_site import ROOT, build_outputs, load_data, person_name, write_or_check'
+          if old not in text:
+              raise SystemExit('validator import anchor missing')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
           git rm tools/_hiring_refresh_payload.b64
       - name: Remove obsolete generated PDFs
         run: |
