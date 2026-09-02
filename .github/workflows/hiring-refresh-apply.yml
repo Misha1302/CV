@@ -37,14 +37,33 @@ jobs:
           python -m py_compile /tmp/apply_hiring_refresh.py
           python /tmp/apply_hiring_refresh.py
           python - <<'PY'
+          import json
           from pathlib import Path
-          path = Path('tools/validate_cv.py')
-          text = path.read_text(encoding='utf-8')
+
+          validator = Path('tools/validate_cv.py')
+          text = validator.read_text(encoding='utf-8')
           old = 'from build_site import ROOT, build_outputs, load_data, write_or_check'
           new = 'from build_site import ROOT, build_outputs, load_data, person_name, write_or_check'
           if old not in text:
               raise SystemExit('validator import anchor missing')
-          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          validator.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          visual = Path('tools/visual_regression.py')
+          text = visual.read_text(encoding='utf-8')
+          old = "if (style.display === 'none' || style.visibility === 'hidden' || style.position === 'fixed') continue;"
+          new = "if (style.display === 'none' || style.visibility === 'hidden' || style.position === 'fixed' || el.closest('details:not([open])')) continue;"
+          if old not in text:
+              raise SystemExit('visual visibility anchor missing')
+          visual.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          source = Path('data/site.json')
+          data = json.loads(source.read_text(encoding='utf-8'))
+          data['updated_at'] = '2026-09-02'
+          source.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          release = Path('RELEASE-METADATA.md')
+          text = release.read_text(encoding='utf-8')
+          release.write_text(text.replace('Updated: 2026-09-01', 'Updated: 2026-09-02'), encoding='utf-8')
           PY
           git rm tools/_hiring_refresh_payload.b64
       - name: Remove obsolete generated PDFs
