@@ -26,8 +26,13 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Apply application-print generator patch
+        run: python tools/patch_application_print_layout.py
+
       - name: Apply evidence-driven positioning migration
-        run: python tools/reposition_compiler_pl_rd_20260908.py
+        run: |
+          python tools/reposition_compiler_pl_rd_20260908.py
+          python tools/refine_compiler_pl_rd_rendering_20260908.py
 
       - name: Positioning and anti-overclaim guards
         run: |
@@ -37,11 +42,13 @@ jobs:
 
           data = json.loads(Path('data/site.json').read_text(encoding='utf-8'))
           assert data['profile_order'].index('research') == data['profile_order'].index('compiler') + 1
-          assert data['profiles']['general']['en']['role'].startswith('Compiler & Program Analysis Engineer')
+          assert data['profiles']['general']['en']['role'] == 'Compiler & Program Analysis Engineer'
           assert data['profiles']['compiler']['en']['role'] == 'Compiler Engineer · LLVM · Program Analysis'
           assert data['profiles']['research']['en']['role'] == 'Research Engineer · Compilers & Programming Languages'
           assert data['profiles']['research']['en']['print_layout'] == 'application'
           assert data['profiles']['compiler']['en']['print_layout'] == 'application'
+          assert data['profiles']['compiler']['en']['project_ids'] == ['globaliv', 'deref', 'codegen', 'wist']
+          assert data['profiles']['research']['en']['project_ids'] == ['wist', 'globaliv', 'codegen', 'deref']
           raw = Path('data/site.json').read_text(encoding='utf-8').casefold()
           for forbidden in (
               'research scientist', 'peer-reviewed publication', 'published researcher',
@@ -50,8 +57,11 @@ jobs:
           ):
               assert forbidden not in raw, forbidden
           research_result = data['profiles']['research']['en']['project_summaries']['wist']['result']
-          assert 'not yet a submission' in research_result
-          assert 'whole-compilation speedup' in research_result
+          assert 'not a submission' in research_result
+          assert 'remain explicitly blocked' in research_result
+          build_site = Path('tools/build_site.py').read_text(encoding='utf-8')
+          assert 'elif profile_key == "research"' in build_site
+          assert 'Compiler & Program Analysis Engineer</h1>' in build_site
           PY
 
       - name: Install build dependencies
@@ -72,10 +82,10 @@ jobs:
           import fitz
 
           checks = {
-              'Mikhail_Razakov_Compiler_EN.pdf': ('EDUCATION', 'EXPERIENCE', 'PROJECTS', 'SKILLS', 'RECOGNITION'),
-              'Mikhail_Razakov_Research_Engineer_EN.pdf': ('EDUCATION', 'EXPERIENCE', 'PROJECTS', 'SKILLS', 'RECOGNITION'),
-              'Mikhail_Razakov_Compiler_RU.pdf': ('ОБРАЗОВАНИЕ', 'ОПЫТ', 'ПРОЕКТЫ', 'КОМПЕТЕНЦИИ', 'ДОСТИЖЕНИЯ'),
-              'Mikhail_Razakov_Research_Engineer_RU.pdf': ('ОБРАЗОВАНИЕ', 'ОПЫТ', 'ПРОЕКТЫ', 'КОМПЕТЕНЦИИ', 'ДОСТИЖЕНИЯ'),
+              'Mikhail_Razakov_Compiler_EN.pdf': ('EDUCATION', 'EXPERIENCE', 'SELECTED RESEARCH & ENGINEERING', 'SKILLS', 'RECOGNITION'),
+              'Mikhail_Razakov_Research_Engineer_EN.pdf': ('EDUCATION', 'EXPERIENCE', 'SELECTED RESEARCH & ENGINEERING', 'SKILLS', 'RECOGNITION'),
+              'Mikhail_Razakov_Compiler_RU.pdf': ('ОБРАЗОВАНИЕ', 'ОПЫТ', 'ИССЛЕДОВАНИЯ И ПРОЕКТЫ', 'КОМПЕТЕНЦИИ', 'ДОСТИЖЕНИЯ'),
+              'Mikhail_Razakov_Research_Engineer_RU.pdf': ('ОБРАЗОВАНИЕ', 'ОПЫТ', 'ИССЛЕДОВАНИЯ И ПРОЕКТЫ', 'КОМПЕТЕНЦИИ', 'ДОСТИЖЕНИЯ'),
           }
           for filename, headings in checks.items():
               path = Path('pdf') / filename
