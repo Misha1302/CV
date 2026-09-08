@@ -87,12 +87,12 @@ jobs:
           import fitz
 
           checks = {
-              'Mikhail_Razakov_Quant_Developer_EN.pdf': ('Education', 'Experience', 'Selected Research & Engineering', 'Skills', 'Recognition'),
-              'Mikhail_Razakov_Quant_Research_EN.pdf': ('Education', 'Experience', 'Selected Research & Engineering', 'Skills', 'Recognition'),
-              'Mikhail_Razakov_CPP_Systems_EN.pdf': ('Education', 'Experience', 'Selected Research & Engineering', 'Skills', 'Recognition'),
-              'Mikhail_Razakov_Quant_Developer_RU.pdf': ('Образование', 'Опыт', 'Исследования и проекты', 'Компетенции', 'Достижения'),
-              'Mikhail_Razakov_Quant_Research_RU.pdf': ('Образование', 'Опыт', 'Исследования и проекты', 'Компетенции', 'Достижения'),
-              'Mikhail_Razakov_CPP_Systems_RU.pdf': ('Образование', 'Опыт', 'Исследования и проекты', 'Компетенции', 'Достижения'),
+              'Mikhail_Razakov_Quant_Developer_EN.pdf': ('EDUCATION', 'EXPERIENCE', 'SELECTED RESEARCH & ENGINEERING', 'SKILLS', 'RECOGNITION'),
+              'Mikhail_Razakov_Quant_Research_EN.pdf': ('EDUCATION', 'EXPERIENCE', 'SELECTED RESEARCH & ENGINEERING', 'SKILLS', 'RECOGNITION'),
+              'Mikhail_Razakov_CPP_Systems_EN.pdf': ('EDUCATION', 'EXPERIENCE', 'SELECTED RESEARCH & ENGINEERING', 'SKILLS', 'RECOGNITION'),
+              'Mikhail_Razakov_Quant_Developer_RU.pdf': ('ОБРАЗОВАНИЕ', 'ОПЫТ', 'ИССЛЕДОВАНИЯ И ПРОЕКТЫ', 'КОМПЕТЕНЦИИ', 'ДОСТИЖЕНИЯ'),
+              'Mikhail_Razakov_Quant_Research_RU.pdf': ('ОБРАЗОВАНИЕ', 'ОПЫТ', 'ИССЛЕДОВАНИЯ И ПРОЕКТЫ', 'КОМПЕТЕНЦИИ', 'ДОСТИЖЕНИЯ'),
+              'Mikhail_Razakov_CPP_Systems_RU.pdf': ('ОБРАЗОВАНИЕ', 'ОПЫТ', 'ИССЛЕДОВАНИЯ И ПРОЕКТЫ', 'КОМПЕТЕНЦИИ', 'ДОСТИЖЕНИЯ'),
           }
           for filename, headings in checks.items():
               with fitz.open(Path('pdf') / filename) as doc:
