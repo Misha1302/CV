@@ -49,6 +49,12 @@ jobs:
           assert data['profiles']['compiler']['en']['print_layout'] == 'application'
           assert data['profiles']['compiler']['en']['project_ids'] == ['globaliv', 'deref', 'codegen', 'wist']
           assert data['profiles']['research']['en']['project_ids'] == ['wist', 'globaliv', 'codegen', 'deref']
+          assert data['profiles']['compiler']['en']['show_portrait'] is True
+          assert data['profiles']['research']['en']['show_portrait'] is True
+          assert 'APInt affine evolution' in data['profiles']['compiler']['en']['project_summaries']['globaliv']['application']
+          assert 'edge-sensitive' in data['profiles']['compiler']['en']['project_summaries']['deref']['application']
+          assert 'register allocation' in data['profiles']['compiler']['en']['project_summaries']['codegen']['application']
+          assert '1,324-test exact manifest' in data['profiles']['compiler']['en']['project_summaries']['wist']['application']
           raw = Path('data/site.json').read_text(encoding='utf-8').casefold()
           for forbidden in (
               'research scientist', 'peer-reviewed publication', 'published researcher',
@@ -62,6 +68,7 @@ jobs:
           build_site = Path('tools/build_site.py').read_text(encoding='utf-8')
           assert 'elif profile_key == "research"' in build_site
           assert 'Compiler & Program Analysis Engineer</h1>' in build_site
+          assert 'summary.get("application")' in build_site
           PY
 
       - name: Install build dependencies
@@ -171,4 +178,4 @@ jobs:
             /tmp/cv-visual
           if-no-files-found: warn
 
-# retry repaired workflow
+# rerun after evidence-density and portrait-contract hardening
