@@ -170,3 +170,5 @@ jobs:
             /tmp/cv-pdf-evidence
             /tmp/cv-visual
           if-no-files-found: warn
+
+# retry repaired workflow
