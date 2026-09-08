@@ -1,6 +1,5 @@
-name: One-shot quant profile refresh
+name: One-shot quant resume reposition
 
-# retriggered for low-level/performance targeting on 2026-08-20
 on:
   push:
     branches: [main]
@@ -12,13 +11,13 @@ permissions:
   pages: write
 
 concurrency:
-  group: one-shot-quant-profile-refresh
+  group: one-shot-quant-resume-reposition
   cancel-in-progress: false
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,79 +27,31 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Update canonical quant profile data
+      - name: Apply evidence-driven profile migration
+        run: python tools/reposition_quant_profiles_20260908.py
+
+      - name: Evidence and positioning guards
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          path = Path('data/site.json')
-          data = json.loads(path.read_text(encoding='utf-8'))
-          data['version'] = max(int(data.get('version', 0)), 37)
-          data['updated_at'] = '2026-08-20'
-
-          ru = data['profiles']['quant']['ru']
-          ru['summary'] = (
-              'Сильная база в computer science, алгоритмах и исследовательском решении задач; '
-              'практический опыт C++ и Python, LLVM и compiler/runtime-разработки. Работаю в цикле '
-              '«гипотеза → эксперимент → проверка»: строю точные оракулы, randomized/metamorphic tests, '
-              'воспроизводимые harnesses и benchmarks, анализирую контрпримеры и производительность. '
-              'Работаю с JIT-компиляцией, векторизацией, x86-64 assembly и анализом генерируемого '
-              'машинного и дизассемблированного кода.'
-          )
-          ru['description'] = (
-              'Quantitative Research профиль Михаила Разакова: C++, Python, алгоритмы, LLVM, JIT, '
-              'векторизация, low-level performance, проверка гипотез и воспроизводимые эксперименты.'
-          )
-          ru['proofs'][2] = [
-              'C++ / low-level performance',
-              'C++23, LLVM, JIT, векторизация, x86-64 assembly, анализ generated/disassembled machine code и benchmarks',
-          ]
-          for item in ru['experience']:
-              if item['title'].startswith('UniversalToolchain / Wist2'):
-                  item['bullets'][1] = (
-                      'Использую benchmarking, JIT/CIL execution и анализ сгенерированного и '
-                      'дизассемблированного кода для проверки производительности и поведения реализаций.'
-                  )
-                  break
-          ru['skills'] = [
-              ['Programming', 'C++23, Python, C17, C#, Rust'],
-              ['Алгоритмы и CS', 'структуры данных, алгоритмы графов, program analysis, CFG/SSA, compiler optimizations'],
-              ['Low-level & performance', 'LLVM, JIT/CIL, x86-64 assembly, vectorization, compiler optimizations, generated/disassembled machine-code analysis, benchmarking'],
-              ['Эксперименты и tooling', 'формулировка и проверка гипотез, exact oracles, differential/metamorphic/randomized testing, Python-harnesses, Linux, Git, CMake'],
-          ]
-
-          en = data['profiles']['quant']['en']
-          en['summary'] = (
-              'Strong computer-science, algorithms, and research problem-solving background with hands-on '
-              'C++ and Python, LLVM, and compiler/runtime engineering. I work in a hypothesis → experiment → '
-              'validation loop using exact oracles, randomized/metamorphic tests, reproducible harnesses and '
-              'benchmarks, counterexample analysis, and performance investigation. I work with JIT compilation, '
-              'vectorization, x86-64 assembly, and generated/disassembled machine-code analysis.'
-          )
-          en['description'] = (
-              'Mikhail Razakov quantitative-research profile: C++, Python, algorithms, LLVM, JIT, '
-              'vectorization, low-level performance, hypothesis testing, and reproducible experiments.'
-          )
-          en['proofs'][2] = [
-              'C++ / low-level performance',
-              'C++23, LLVM, JIT, vectorization, x86-64 assembly, generated/disassembled machine-code analysis, and benchmarks',
-          ]
-          for item in en['experience']:
-              if item['title'].startswith('UniversalToolchain / Wist2'):
-                  item['bullets'][1] = (
-                      'Use benchmarking, JIT/CIL execution, and generated/disassembled-code analysis to '
-                      'investigate implementation behavior and performance.'
-                  )
-                  break
-          en['skills'] = [
-              ['Programming', 'C++23, Python, C17, C#, Rust'],
-              ['Algorithms & CS', 'data structures, graph algorithms, program analysis, CFG/SSA, compiler optimizations'],
-              ['Low-level & performance', 'LLVM, JIT/CIL, x86-64 assembly, vectorization, compiler optimizations, generated/disassembled machine-code analysis, benchmarking'],
-              ['Experiments & tooling', 'hypothesis formulation and validation, exact oracles, differential/metamorphic/randomized testing, Python harnesses, Linux, Git, CMake'],
-          ]
-
-          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          data = json.loads(Path('data/site.json').read_text(encoding='utf-8'))
+          assert data['profiles']['quantdev']['en']['role'] == 'Quant Developer / Research Engineer | C++ · Python'
+          assert data['profiles']['quant']['en']['role'].startswith('Quantitative Research Candidate')
+          assert data['profiles']['systems']['en']['role'].startswith('C++ / Systems Engineer')
+          for key in ('quantdev', 'quant', 'systems'):
+              for lang in ('ru', 'en'):
+                  titles = [x['title'] for x in data['profiles'][key][lang]['experience']]
+                  assert any('ИСП РАН' in t or 'ISP RAS' in t for t in titles), (key, lang, titles)
+                  assert any('МЦСТ' in t or 'MCST' in t for t in titles), (key, lang, titles)
+                  assert not any('PS-form' in t or 'UniversalToolchain' in t for t in titles), (key, lang, titles)
+          raw = Path('data/site.json').read_text(encoding='utf-8')
+          assert 'Занял Консервативный' not in raw
+          assert '1,306/1,306' not in raw
+          assert '1 306/1 306' not in raw
+          assert 'low-latency engineer' not in raw.casefold()
+          assert data['projects']['wist']['result_en'].startswith('Current exact test manifest: 1,324/1,324.')
           PY
 
       - name: Install build dependencies
@@ -109,7 +60,7 @@ jobs:
           pip install beautifulsoup4 pymupdf pillow playwright weasyprint
           python -m playwright install --with-deps chromium
 
-      - name: Remove deprecated generated artifacts
+      - name: Clean generated legacy artifacts
         run: |
           rm -f data/cv-print-profiles.json tools/update_profiles_v33.py
           rm -f QA-report-targeted-cv-v*.md
@@ -127,7 +78,7 @@ jobs:
       - name: Validate content and external links
         run: python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
 
-      - name: Targeted visual validation for quant profiles
+      - name: Targeted visual validation
         run: |
           mkdir -p /tmp/cv-visual
           python -m http.server 8765 --bind 127.0.0.1 >/tmp/cv-http.log 2>&1 &
@@ -139,41 +90,43 @@ jobs:
           from playwright.sync_api import sync_playwright
 
           out = Path('/tmp/cv-visual')
-          out.mkdir(parents=True, exist_ok=True)
-          cases = [
-              ('ru-quant.html', 1440, 1000),
-              ('ru-quant.html', 390, 844),
-              ('en-quant.html', 1440, 1000),
-              ('en-quant.html', 390, 844),
-          ]
+          filenames = (
+              'ru-quant-dev.html', 'en-quant-dev.html',
+              'ru-quant.html', 'en-quant.html',
+              'ru-cpp-systems.html', 'en-cpp-systems.html',
+          )
           with sync_playwright() as p:
               browser = p.chromium.launch()
               try:
-                  for filename, width, height in cases:
-                      page = browser.new_page(viewport={'width': width, 'height': height})
-                      page.goto(f'http://127.0.0.1:8765/{filename}', wait_until='networkidle')
-                      metrics = page.evaluate('''() => ({
-                          viewport: document.documentElement.clientWidth,
-                          scrollWidth: document.documentElement.scrollWidth,
-                          scrollHeight: document.documentElement.scrollHeight,
-                          h1: document.querySelector('h1')?.textContent || '',
-                          role: document.querySelector('.role')?.textContent || document.querySelector('.pcv-header h2')?.textContent || ''
-                      })''')
-                      if metrics['scrollWidth'] > metrics['viewport'] + 1:
-                          raise RuntimeError(f"Horizontal overflow {filename}/{width}: {metrics}")
-                      if 'Разаков' not in metrics['h1'] and 'Razakov' not in metrics['h1']:
-                          raise RuntimeError(f"Missing CV heading {filename}: {metrics}")
-                      page.screenshot(path=str(out / f'{filename}-{width}.png'), full_page=True)
-                      page.close()
+                  for filename in filenames:
+                      for width, height in ((1440, 1000), (390, 844)):
+                          page = browser.new_page(viewport={'width': width, 'height': height})
+                          page.goto(f'http://127.0.0.1:8765/{filename}', wait_until='networkidle')
+                          metrics = page.evaluate('''() => ({
+                              viewport: document.documentElement.clientWidth,
+                              scrollWidth: document.documentElement.scrollWidth,
+                              h1: document.querySelector('h1')?.textContent || '',
+                              role: document.querySelector('.hero-role')?.textContent || '',
+                          })''')
+                          if metrics['scrollWidth'] > metrics['viewport'] + 1:
+                              raise RuntimeError(f"Horizontal overflow {filename}/{width}: {metrics}")
+                          if 'Разаков' not in metrics['h1'] and 'Razakov' not in metrics['h1']:
+                              raise RuntimeError(f"Missing CV heading {filename}: {metrics}")
+                          if not metrics['role'].strip():
+                              raise RuntimeError(f"Missing role {filename}: {metrics}")
+                          page.screenshot(path=str(out / f'{filename}-{width}.png'), full_page=True)
+                          page.close()
               finally:
                   browser.close()
           PY
 
-      - name: Final manifest and validation
+      - name: Final manifest, diff, and validation
         run: |
           find tools -type d -name __pycache__ -prune -exec rm -rf {} +
           python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf
+          git diff --check
+          git status --short
 
       - name: Commit canonical source and generated artifacts
         run: |
@@ -181,9 +134,9 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           if git diff --cached --quiet; then
-            echo 'Quant profile is already current'
+            echo 'Quant/system profiles are already current'
           else
-            git commit -m 'Strengthen quant CV low-level profile [skip ci]'
+            git commit -m 'Reposition quant CVs for research and systems roles [skip ci]'
             git push origin HEAD:main
           fi
 
@@ -201,7 +154,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: one-shot-quant-profile-refresh-evidence
+          name: one-shot-quant-resume-reposition-evidence
           path: |
             /tmp/cv-pdf-report.json
             /tmp/cv-validation.json
