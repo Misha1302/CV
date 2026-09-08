@@ -271,6 +271,22 @@ def refine_data() -> None:
     for lang in ("ru", "en"):
         data["profiles"]["research"][lang]["show_portrait"] = True
 
+    # Avoid long untranslated prose in the Russian research page while preserving technical search terms.
+    data["profiles"]["research"]["ru"]["proofs"] = [
+        [
+            "Исследовательский цикл",
+            "UniversalToolchain: явная модель задачи → четыре verification policy → frozen corpus и valid controls → fault injection → ablations → явно заблокированные неподтверждённые claims.",
+        ],
+        [
+            "Корректность компилятора при неполной модели",
+            "Global-IV: аффинная модель, транзитивные эффекты вызовов и границы legality/must-execute; неподдерживаемые случаи fail-closed отклоняются и покрыты reject-regressions.",
+        ],
+        [
+            "Практическая systems-глубина",
+            "Профессиональный LLVM и static analysis плюс Roslyn fixed-point data flow и отдельно проверяемый x86-64 register-allocation/codegen pipeline.",
+        ],
+    ]
+
     # Shorten the research project copy enough for a one-page application PDF while
     # preserving research-process evidence and explicit claim boundaries.
     data["profiles"]["research"]["ru"]["project_summaries"]["wist"] = {
