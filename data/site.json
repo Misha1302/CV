@@ -1,6 +1,6 @@
 {
-  "version": 56,
-  "updated_at": "2026-08-31",
+  "version": 57,
+  "updated_at": "2026-09-08",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -21,6 +21,7 @@
     "compiler",
     "backend",
     "systems",
+    "quantdev",
     "quant"
   ],
   "profile_ui": {
@@ -43,16 +44,22 @@
       "landing_description_ru": "Payment state, idempotency, durable recovery, provider verification, migrations и rollback."
     },
     "systems": {
-      "label_ru": "C++ / LLVM",
-      "label_en": "C++ / LLVM",
-      "landing_title": "C++ / LLVM Systems",
-      "landing_description_ru": "C++23, program analysis, графовые алгоритмы и x86-64 codegen."
+      "label_ru": "C++ / Systems",
+      "label_en": "C++ / Systems",
+      "landing_title": "C++ / Systems Engineer · LLVM · x86-64",
+      "landing_description_ru": "LLVM, x86-64 codegen/register allocation, алгоритмы, program analysis и дифференциальная проверка машинного кода."
     },
     "quant": {
-      "label_ru": "Quant Research",
-      "label_en": "Quant Research",
-      "landing_title": "Quant Research",
-      "landing_description_ru": "C++ · Python · алгоритмы · экспериментальная проверка."
+      "label_ru": "Quant Research — selective",
+      "label_en": "Quant Research — selective",
+      "landing_title": "Quant Research Candidate",
+      "landing_description_ru": "Research-oriented CS профиль: controlled experiments, exact/reference oracles, randomized/metamorphic validation и алгоритмическое исследование без неподтверждённых finance claims."
+    },
+    "quantdev": {
+      "label_ru": "Quant Developer / Research Engineer",
+      "label_en": "Quant Developer / Research Engineer",
+      "landing_title": "Quant Developer / Research Engineer",
+      "landing_description_ru": "C++/Python, алгоритмы, профессиональный LLVM/static-analysis опыт, консервативные преобразования и воспроизводимая экспериментальная проверка."
     }
   },
   "profiles": {
@@ -501,7 +508,7 @@
             "title": "UniversalToolchain — .NET platform architecture",
             "org": "NET · typed contracts · deterministic composition",
             "bullets": [
-              "Применяю тот же подход к platform code: single-owner planning, exact package binding и regression contracts; текущий exact manifest — 1 306/1 306 passed"
+              "Применяю тот же подход к platform code: single-owner planning, exact package binding и regression contracts; текущий exact manifest — 1 324/1 324 passed"
             ]
           }
         ],
@@ -590,7 +597,7 @@
             "title": "UniversalToolchain — .NET platform architecture",
             "org": "NET · typed contracts · deterministic composition",
             "bullets": [
-              "Apply the same reliability discipline to platform code through single-owner planning, exact package binding, and regression contracts; the current exact manifest is 1,306/1,306 passing"
+              "Apply the same reliability discipline to platform code through single-owner planning, exact package binding, and regression contracts; the current exact manifest is 1,324/1,324 passing"
             ]
           }
         ],
@@ -637,368 +644,492 @@
       "ru": {
         "filename": "ru-cpp-systems.html",
         "pdf": "Mikhail_Razakov_CPP_Systems_RU.pdf",
-        "title": "Михаил Разаков — C++ / LLVM Systems Engineer",
-        "role": "C++ / LLVM Systems Engineer",
-        "brand": "C++23 · LLVM · анализ программ · x86-64",
-        "eyebrow": "Компиляторы · алгоритмы графов · program analysis",
-        "summary": "Разрабатываю системные и компиляторные компоненты на C++23/C17/Rust: LLVM-проходы, анализ зависимостей памяти, CFG/SSA, графовые алгоритмы, x86-64 codegen и воспроизводимые тестовые оракулы",
-        "description": "C++ / LLVM Systems Engineer Михаил Разаков: LLVM, C++23, CFG/SSA, анализ программ, sanitizers, x86-64 codegen и алгоритмы графов",
+        "title": "Михаил Разаков — C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
+        "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
+        "brand": "C++23 · LLVM · x86-64 · algorithms",
+        "eyebrow": "Compiler optimization · machine code · program analysis",
+        "summary": "C++/systems engineer с профессиональным LLVM и static-analysis опытом. Работаю с optimization legality, графовыми алгоритмами, x86-64 codegen/register allocation и differential execution; фокус — correctness, machine-level behavior и воспроизводимая проверка.",
+        "description": "C++ / Systems Engineer Михаил Разаков: C++23, LLVM 22, x86-64 code generation, register allocation, algorithms, program analysis и differential execution.",
         "proofs": [
           [
-            "LLVM / C++23",
-            "Оптимизационный проход, графовые алгоритмы, CMake, clang-tidy, ASan/UBSan"
-          ],
-          [
-            "Conservative analysis",
-            "Консервативный PS-form анализ зависимостей памяти и точный оракул"
+            "Professional systems / analysis",
+            "МЦСТ: LLVM 22/C++23 optimization; ИСП РАН: промышленный C#/.NET static analysis."
           ],
           [
             "x86-64 pipeline",
-            "SSA-подобное IR, liveness, linear scan, iced-x86 и differential validation"
+            "SSA/CFG validation, liveness/interference, linear scan, seeded simulated annealing, SysV codegen и differential execution."
+          ],
+          [
+            "Conservative optimization",
+            "LLVM Global-IV: APInt affine evolution, transitive effects, explicit legality и 29 verifier/idempotence/execution regressions."
           ]
         ],
         "experience": [
           {
+            "date": "2026 — сейчас",
+            "title": "ИСП РАН — инженер по статическому анализу",
+            "org": "SharpChecker · C#/.NET · program analysis",
+            "bullets": [
+              "Участвую в разработке SharpChecker — промышленной платформы статического анализа C#/.NET в ИСП РАН."
+            ]
+          },
+          {
             "date": "1 июля — 31 августа 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
-            "org": "LLVM · C++23 · 0,25 ставки",
+            "org": "LLVM 22 · C++23 · Python · 0,25 ставки",
             "bullets": [
-              "Реализовал LLVM LICM-pass на C++ с консервативными проверками side effects, memory access, loop invariance, preheader и speculative safety",
-              "Построил Python-harness с baseline/optimized execution, opt -verify-each и CHANGE/NO_CHANGE expectations"
-            ]
-          },
-          {
-            "date": "2026",
-            "title": "PS-form Memory Dependence Analyzer",
-            "org": "C17 · program analysis",
-            "bullets": [
-              "Реализовал консервативный анализ параметрических обращений к памяти; недоказанные случаи не превращаются в ложный yes/no, а корректность проверяется независимым exact oracle",
-              "Построил точный оракул для малых областей, метаморфные тесты и воспроизводимые WA/TL-контрпримеры"
-            ]
-          },
-          {
-            "date": "2026",
-            "title": "x86-64 Codegen & Register Allocation Lab",
-            "org": "Rust · iced-x86 · isolated execution",
-            "bullets": [
-              "Спроектировал SSA-подобное IR, анализ живых интервалов, linear scan и сравнение IR-интерпретатора со сгенерированным кодом"
+              "Реализовал LLVM LICM-pass на C++: допустимость преобразования определяется по структуре цикла, обращениям к памяти, side effects и speculative safety.",
+              "Построил Python-harness для сравнения исполнения до/после оптимизации и явной проверки transformation / no-transformation cases; также реализовал RPO, Dijkstra, Dinic и Tarjan SCC на C++23."
             ]
           }
         ],
         "project_ids": [
-          "psform",
           "codegen",
-          "wist",
-          "planfuzz"
+          "globaliv",
+          "psform"
         ],
         "skills": [
           [
             "C++ / toolchain",
-            "C++23, C17, CMake, Linux, clang-tidy, ASan/UBSan, GitHub Actions"
+            "C++23, C17, LLVM 22, CMake, Linux, clang-tidy, ASan/UBSan"
           ],
           [
-            "Compiler analysis",
-            "CFG, dominance, SSA, SCC, dataflow, memory dependence, optimization passes"
+            "Algorithms / analysis",
+            "graph algorithms, CFG, dominance, SSA, SCC, dataflow, memory dependence"
           ],
           [
-            "Code generation",
-            "x86-64, iced-x86, liveness, linear scan, IR interpretation, isolated execution"
+            "Machine-level systems",
+            "x86-64 SysV, code generation, liveness/interference, register allocation, generated-code analysis"
           ],
           [
             "Verification",
-            "exact oracles, differential/metamorphic tests, stress tests, counterexample reduction"
+            "exact/reference oracles, differential/metamorphic testing, isolated execution, reproducible counterexamples"
           ]
         ],
-        "contact_heading": "Открыт к C++/LLVM, compiler tooling, program analysis и системным R&D-задачам",
-        "footer": "C++ / LLVM Systems Engineer",
+        "contact_heading": "Целевые роли: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
+        "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
         "recognition": [
           [
-            "2026",
-            "UniversalToolchain — Балтийский научно-инженерный конкурс",
-            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
+            "2025–2026",
+            "«Высшая проба»",
+            "Призёр «Высшей пробы» по олимпиадному и промышленному программированию."
           ],
           [
-            "2026",
-            "НИЯУ МИФИ «Юниор»",
-            "Диплом I степени, 96/100 за проект UniversalToolchain."
+            "2025–2026",
+            "Всероссийские конкурсы",
+            "Абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."
           ]
-        ]
+        ],
+        "print_project_limit": 3
       },
       "en": {
         "filename": "en-cpp-systems.html",
         "pdf": "Mikhail_Razakov_CPP_Systems_EN.pdf",
-        "title": "Mikhail Razakov — C++ / LLVM Systems Engineer",
-        "role": "C++ / LLVM Systems Engineer",
-        "brand": "C++23 · LLVM · program analysis · x86-64",
-        "eyebrow": "Compilers · graph algorithms · program analysis",
-        "summary": "I build systems and compiler components in C++23/C17/Rust: LLVM passes, memory-dependence analysis, CFG/SSA, graph algorithms, x86-64 code generation, and reproducible test oracles",
-        "description": "C++ / LLVM Systems Engineer Mikhail Razakov: LLVM, C++23, CFG/SSA, program analysis, sanitizers, x86-64 codegen, and graph algorithms",
+        "title": "Mikhail Razakov — C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
+        "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
+        "brand": "C++23 · LLVM · x86-64 · algorithms",
+        "eyebrow": "Compiler optimization · machine code · program analysis",
+        "summary": "C++/systems engineer with professional LLVM and static-analysis experience. I work on optimization legality, graph algorithms, x86-64 code generation/register allocation, and differential execution, with a focus on correctness, machine-level behavior, and reproducible validation.",
+        "description": "Mikhail Razakov — C++ / Systems Engineer: C++23, LLVM 22, x86-64 code generation, register allocation, algorithms, program analysis, and differential execution.",
         "proofs": [
           [
-            "LLVM / C++23",
-            "Optimization pass, graph algorithms, CMake, clang-tidy, ASan/UBSan"
-          ],
-          [
-            "Conservative analysis",
-            "Conservative PS-form memory-dependence analysis with an exact oracle"
+            "Professional systems / analysis",
+            "MCST: LLVM 22/C++23 optimization; ISP RAS: industrial C#/.NET static analysis."
           ],
           [
             "x86-64 pipeline",
-            "SSA-like IR, liveness, linear scan, iced-x86, and differential validation"
+            "SSA/CFG validation, liveness/interference, linear scan, seeded simulated annealing, SysV codegen, and differential execution."
+          ],
+          [
+            "Conservative optimization",
+            "LLVM Global-IV: APInt affine evolution, transitive effects, explicit legality, and 29 verifier/idempotence/execution regressions."
           ]
         ],
         "experience": [
           {
+            "date": "2026 — present",
+            "title": "ISP RAS — Static Analysis Engineer",
+            "org": "SharpChecker · C#/.NET · program analysis",
+            "bullets": [
+              "Contribute to SharpChecker, ISP RAS's industrial static-analysis platform for C#/.NET."
+            ]
+          },
+          {
             "date": "July 1 — August 31, 2026",
-            "title": "MCST — compiler engineering intern",
-            "org": "LLVM · C++23 · 0.25 FTE",
+            "title": "MCST — Compiler Engineering Intern",
+            "org": "LLVM 22 · C++23 · Python · 0.25 FTE",
             "bullets": [
-              "Implemented an LLVM LICM pass in C++ with conservative checks for side effects, memory access, loop invariance, preheaders, and speculative safety",
-              "Built a Python harness with baseline/optimized execution, opt -verify-each, and explicit CHANGE/NO_CHANGE expectations"
-            ]
-          },
-          {
-            "date": "2026",
-            "title": "PS-form Memory Dependence Analyzer",
-            "org": "C17 · program analysis",
-            "bullets": [
-              "Implemented conservative analysis of parametric memory accesses; unresolved cases do not become false yes/no answers, and correctness is checked against an independent exact oracle",
-              "Built an exact oracle for small domains, metamorphic tests, and reproducible WA/TL counterexamples"
-            ]
-          },
-          {
-            "date": "2026",
-            "title": "x86-64 Codegen & Register Allocation Lab",
-            "org": "Rust · iced-x86 · isolated execution",
-            "bullets": [
-              "Designed SSA-like IR, liveness, linear scan, and parity checks between an IR interpreter and generated machine code"
+              "Implemented an LLVM LICM pass in C++; transformation legality is derived from loop structure, memory accesses, side effects, and speculative-safety constraints.",
+              "Built a Python harness comparing execution before/after optimization and checking explicit transformation / no-transformation cases; also implemented RPO, Dijkstra, Dinic, and Tarjan SCC in C++23."
             ]
           }
         ],
         "project_ids": [
-          "psform",
           "codegen",
-          "wist",
-          "planfuzz"
+          "globaliv",
+          "psform"
         ],
         "skills": [
           [
             "C++ / toolchain",
-            "C++23, C17, CMake, Linux, clang-tidy, ASan/UBSan, GitHub Actions"
+            "C++23, C17, LLVM 22, CMake, Linux, clang-tidy, ASan/UBSan"
           ],
           [
-            "Compiler analysis",
-            "CFG, dominance, SSA, SCC, dataflow, memory dependence, optimization passes"
+            "Algorithms / analysis",
+            "graph algorithms, CFG, dominance, SSA, SCC, dataflow, memory dependence"
           ],
           [
-            "Code generation",
-            "x86-64, iced-x86, liveness, linear scan, IR interpretation, isolated execution"
+            "Machine-level systems",
+            "x86-64 SysV, code generation, liveness/interference, register allocation, generated-code analysis"
           ],
           [
             "Verification",
-            "exact oracles, differential/metamorphic tests, stress testing, counterexample reduction"
+            "exact/reference oracles, differential/metamorphic testing, isolated execution, reproducible counterexamples"
           ]
         ],
-        "contact_heading": "Open to C++/LLVM, compiler tooling, program analysis, and systems R&D work",
-        "footer": "C++ / LLVM Systems Engineer",
+        "contact_heading": "Target roles: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
+        "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
         "recognition": [
           [
-            "2026",
-            "UniversalToolchain — Baltic Science and Engineering Competition",
-            "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain."
+            "2025–2026",
+            "HSE Vysshaya Proba",
+            "Prize-winner in HSE Vysshaya Proba in competitive and industrial programming."
           ],
           [
-            "2026",
-            "MEPhI Junior",
-            "First-degree diploma, 96/100 for the UniversalToolchain project."
+            "2025–2026",
+            "National competitions",
+            "Overall winner of the MEPhI Junior competition in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."
           ]
-        ]
+        ],
+        "print_project_limit": 3
       }
     },
     "quant": {
       "ru": {
         "filename": "ru-quant.html",
         "pdf": "Mikhail_Razakov_Quant_Research_RU.pdf",
-        "title": "Михаил Разаков — Quantitative Research | C++ · Python · Algorithms",
-        "role": "Quantitative Research | C++ · Python · алгоритмы",
-        "brand": "C++ · Python · алгоритмы · эксперименты",
-        "eyebrow": "Алгоритмы · проверка гипотез · количественные исследования",
-        "summary": "Сильная база в computer science, алгоритмах и исследовательском решении задач; практический опыт C++ и Python, LLVM и compiler/runtime-разработки. Работаю в цикле «гипотеза → эксперимент → проверка»: строю точные оракулы, randomized/metamorphic tests, воспроизводимые harnesses и benchmarks, анализирую контрпримеры и производительность. Работаю с JIT-компиляцией, векторизацией, x86-64 assembly и анализом генерируемого машинного и дизассемблированного кода",
-        "description": "Quantitative Research профиль Михаила Разакова: C++, Python, алгоритмы, LLVM, JIT, векторизация, low-level performance, проверка гипотез и воспроизводимые эксперименты",
+        "title": "Михаил Разаков — Quantitative Research Candidate | C++ · Python",
+        "role": "Quantitative Research Candidate | C++ · Python",
+        "brand": "C++ · Python · controlled experiments · algorithms",
+        "eyebrow": "Controlled experiments · exact oracles · алгоритмическое исследование",
+        "summary": "Research-oriented CS student с профессиональным compiler/static-analysis опытом и практикой C++/Python. Проектирую controlled experiments, exact/reference oracles, randomized/metamorphic проверки и воспроизводимые исследования контрпримеров; текущая сильнейшая evidence-база — алгоритмы, program analysis и systems research.",
+        "description": "Quantitative Research Candidate Михаил Разаков: C++, Python, controlled experiments, exact/reference oracles, randomized/metamorphic validation и алгоритмическое исследование.",
         "proofs": [
           [
-            "Алгоритмы и соревнования",
-            "Призёр «Высшей пробы»; абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; Главная премия Балтийского научно-инженерного конкурса"
+            "Controlled experiments",
+            "UniversalToolchain: frozen corpus, valid controls, post-freeze holdouts, paired comparison и repeated timing runs."
           ],
           [
-            "Гипотеза → эксперимент",
-            "Точные оракулы, randomized/metamorphic testing, adversarial counterexamples, воспроизводимые harnesses и benchmarks"
+            "Математическое и алгоритмическое reasoning",
+            "PS-form: normalization, modular/GCD reasoning, exact affine analysis и independent exact oracle."
           ],
           [
-            "C++ / low-level performance",
-            "C++23, LLVM, JIT, векторизация, x86-64 assembly, анализ generated/disassembled machine code и benchmarks"
+            "C++ / Python research tooling",
+            "LLVM, Python harnesses, randomized/metamorphic testing, reproducible counterexamples и differential execution."
           ]
         ],
         "experience": [
+          {
+            "date": "2026 — сейчас",
+            "title": "ИСП РАН — инженер по статическому анализу",
+            "org": "SharpChecker · C#/.NET · program analysis",
+            "bullets": [
+              "Участвую в разработке SharpChecker — промышленной платформы статического анализа C#/.NET в ИСП РАН."
+            ]
+          },
           {
             "date": "1 июля — 31 августа 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
-            "org": "LLVM · C++23 · Python · 0,25 ставки",
+            "org": "LLVM 22 · C++23 · Python · 0,25 ставки",
             "bullets": [
-              "Реализовал LLVM-проход loop-invariant code motion на C++; анализировал инвариантность, side effects, обращения к памяти, speculative safety и структуру циклов",
-              "Построил Python-harness, который сравнивает поведение до и после оптимизации и отдельно проверяет ожидаемые случаи transformation / no-transformation",
-              "Реализовал и протестировал на C++23 RPO с детектированием циклов, Dijkstra, Dinic max-flow и Tarjan SCC"
-            ]
-          },
-          {
-            "date": "2026",
-            "title": "PS-form Memory Dependence Analyzer",
-            "org": "C17 · program analysis · экспериментальная проверка",
-            "bullets": [
-              "Занял Консервативный анализ проверен независимым exact oracle на малых областях, randomized/metamorphic cases и воспроизводимыми контрпримерами",
-              "Построил точный оракул для малых областей, metamorphic/randomized проверки и воспроизводимые WA/TL-контрпримеры"
-            ]
-          },
-          {
-            "date": "2024 — сейчас",
-            "title": "UniversalToolchain — создатель и основной разработчик",
-            "org": "NET · компиляторы · языковые системы",
-            "bullets": [
-              "Самостоятельно спроектировал и развиваю сложную языковую систему с промежуточными представлениями, SSA/оптимизациями и interpreter/CIL backend-ами",
-              "Использую benchmarking, JIT/CIL execution и анализ сгенерированного и дизассемблированного кода для проверки производительности и поведения реализаций",
-              "Текущий exact manifest: 1 306/1 306 passed; отдельно проверяются interpreter/CIL parity и clean-consumer сценарии"
+              "Реализовал LLVM LICM-pass на C++: допустимость преобразования определяется по структуре цикла, обращениям к памяти, side effects и speculative safety.",
+              "Построил Python-harness для сравнения исполнения до/после оптимизации и явной проверки transformation / no-transformation cases; также реализовал RPO, Dijkstra, Dinic и Tarjan SCC на C++23."
             ]
           }
         ],
         "project_ids": [
-          "psform",
           "wist",
-          "codegen"
+          "psform",
+          "globaliv"
         ],
         "skills": [
           [
             "Programming",
-            "C++23, Python, C17, C#, Rust"
+            "C++23, Python, C17, C#"
           ],
           [
-            "Алгоритмы и CS",
-            "структуры данных, алгоритмы графов, program analysis, CFG/SSA, compiler optimizations"
-          ],
-          [
-            "Low-level & performance",
-            "LLVM, JIT/CIL, x86-64 assembly, vectorization, compiler optimizations, generated/disassembled machine-code analysis, benchmarking"
-          ],
-          [
-            "Эксперименты и tooling",
-            "формулировка и проверка гипотез, exact oracles, differential/metamorphic/randomized testing, Python-harnesses, Linux, Git, CMake"
-          ]
-        ],
-        "recognition": [
-          [
-            "2026",
-            "UniversalToolchain — Балтийский научно-инженерный конкурс",
-            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
-          ],
-          [
-            "2026",
-            "НИЯУ МИФИ «Юниор»",
-            "Диплом I степени, 96/100 за проект UniversalToolchain."
-          ]
-        ],
-        "contact_heading": "Открыт к quantitative research и research-software задачам, где важны алгоритмы, проверка гипотез и воспроизводимые эксперименты",
-        "footer": "Quantitative Research · C++ · Python · алгоритмы"
-      },
-      "en": {
-        "filename": "en-quant.html",
-        "pdf": "Mikhail_Razakov_Quant_Research_EN.pdf",
-        "title": "Mikhail Razakov — Quantitative Research | C++ · Python · Algorithms",
-        "role": "Quantitative Research | C++ · Python · Algorithms",
-        "brand": "C++ · Python · algorithms · experiments",
-        "eyebrow": "Algorithms · hypothesis testing · quantitative research",
-        "summary": "Strong computer-science, algorithms, and research problem-solving background with hands-on C++ and Python, LLVM, and compiler/runtime engineering. I work in a hypothesis → experiment → validation loop using exact oracles, randomized/metamorphic tests, reproducible harnesses and benchmarks, counterexample analysis, and performance investigation. I work with JIT compilation, vectorization, x86-64 assembly, and generated/disassembled machine-code analysis",
-        "description": "Mikhail Razakov quantitative-research profile: C++, Python, algorithms, LLVM, JIT, vectorization, low-level performance, hypothesis testing, and reproducible experiments",
-        "proofs": [
-          [
-            "Algorithms & competitions",
-            "HSE Vysshaya Proba prize-winner; overall winner of the MEPhI Junior competition in 2025 and 2026; Grand Prize at the Baltic science and engineering competition"
-          ],
-          [
-            "Hypothesis → experiment",
-            "Exact oracles, randomized/metamorphic testing, adversarial counterexamples, reproducible harnesses, and benchmarks"
-          ],
-          [
-            "C++ / low-level performance",
-            "C++23, LLVM, JIT, vectorization, x86-64 assembly, generated/disassembled machine-code analysis, and benchmarks"
-          ]
-        ],
-        "experience": [
-          {
-            "date": "July 1 — August 31, 2026",
-            "title": "MCST — compiler engineering intern",
-            "org": "LLVM · C++23 · Python · 0.25 FTE",
-            "bullets": [
-              "Implemented an LLVM loop-invariant code-motion pass in C++; reasoned about loop invariance, side effects, memory access, speculative safety, and loop structure",
-              "Built a Python verification harness comparing execution behavior before and after optimization and checking expected transformation / no-transformation cases",
-              "Implemented and tested C++23 graph algorithms including RPO with cycle detection, Dijkstra, Dinic max-flow, and Tarjan SCC"
-            ]
-          },
-          {
-            "date": "2026",
-            "title": "PS-form Memory Dependence Analyzer",
-            "org": "C17 · program analysis · experimental validation",
-            "bullets": [
-              "Built conservative analysis checked by an independent exact oracle on small domains, randomized/metamorphic cases, and reproducible counterexamples",
-              "Built an exact oracle for small domains, metamorphic/randomized checks, and reproducible wrong-answer/time-limit counterexamples"
-            ]
-          },
-          {
-            "date": "2024 — present",
-            "title": "UniversalToolchain — creator and primary developer",
-            "org": "NET · compilers · language systems",
-            "bullets": [
-              "Independently designed and developed a complex compiler/language system with intermediate representations, SSA/optimizations, and interpreter/CIL backends",
-              "Use benchmarking, JIT/CIL execution, and generated/disassembled-code analysis to investigate implementation behavior and performance",
-              "Current exact manifest: 1,306/1,306 passing, with interpreter/CIL parity and clean-consumer scenarios checked separately"
-            ]
-          }
-        ],
-        "project_ids": [
-          "psform",
-          "wist",
-          "codegen"
-        ],
-        "skills": [
-          [
-            "Programming",
-            "C++23, Python, C17, C#, Rust"
+            "Experimental methods",
+            "controlled experiments, exact/reference oracles, randomized/metamorphic testing, reproducibility"
           ],
           [
             "Algorithms & CS",
             "data structures, graph algorithms, program analysis, CFG/SSA, compiler optimizations"
           ],
           [
-            "Low-level & performance",
-            "LLVM, JIT/CIL, x86-64 assembly, vectorization, compiler optimizations, generated/disassembled machine-code analysis, benchmarking"
-          ],
-          [
-            "Experiments & tooling",
-            "hypothesis formulation and validation, exact oracles, differential/metamorphic/randomized testing, Python harnesses, Linux, Git, CMake"
+            "Research tooling",
+            "Python harnesses, Linux, Git, CMake, counterexample analysis"
           ]
         ],
         "recognition": [
           [
-            "2026",
-            "UniversalToolchain — Baltic Science and Engineering Competition",
-            "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain."
+            "2025–2026",
+            "«Высшая проба»",
+            "Призёр «Высшей пробы» по олимпиадному и промышленному программированию."
           ],
           [
-            "2026",
-            "MEPhI Junior",
-            "First-degree diploma, 96/100 for the UniversalToolchain project."
+            "2025–2026",
+            "Всероссийские конкурсы",
+            "Абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."
           ]
         ],
-        "contact_heading": "Open to quantitative research and research-software roles where algorithms, hypothesis testing, and reproducible experiments matter",
-        "footer": "Quantitative Research · C++ · Python · Algorithms"
+        "contact_heading": "Целевые роли: Quantitative Research internships / research roles, где ценятся алгоритмы и строгая экспериментальная проверка",
+        "footer": "Quantitative Research Candidate · C++ · Python",
+        "print_project_limit": 3
+      },
+      "en": {
+        "filename": "en-quant.html",
+        "pdf": "Mikhail_Razakov_Quant_Research_EN.pdf",
+        "title": "Mikhail Razakov — Quantitative Research Candidate | C++ · Python",
+        "role": "Quantitative Research Candidate | C++ · Python",
+        "brand": "C++ · Python · controlled experiments · algorithms",
+        "eyebrow": "Controlled experiments · exact oracles · algorithmic research",
+        "summary": "Research-oriented CS student with professional compiler/static-analysis experience and hands-on C++/Python. I design controlled experiments, exact/reference oracles, randomized/metamorphic checks, and reproducible counterexample studies; my strongest current evidence is in algorithms, program analysis, and systems research.",
+        "description": "Mikhail Razakov — Quantitative Research Candidate: C++, Python, controlled experiments, exact/reference oracles, randomized/metamorphic validation, and algorithmic research.",
+        "proofs": [
+          [
+            "Controlled experiments",
+            "UniversalToolchain: frozen corpus, valid controls, post-freeze holdouts, paired comparison, and repeated timing runs."
+          ],
+          [
+            "Mathematical & algorithmic reasoning",
+            "PS-form: normalization, modular/GCD reasoning, exact affine analysis, and an independent exact oracle."
+          ],
+          [
+            "C++ / Python research tooling",
+            "LLVM, Python harnesses, randomized/metamorphic testing, reproducible counterexamples, and differential execution."
+          ]
+        ],
+        "experience": [
+          {
+            "date": "2026 — present",
+            "title": "ISP RAS — Static Analysis Engineer",
+            "org": "SharpChecker · C#/.NET · program analysis",
+            "bullets": [
+              "Contribute to SharpChecker, ISP RAS's industrial static-analysis platform for C#/.NET."
+            ]
+          },
+          {
+            "date": "July 1 — August 31, 2026",
+            "title": "MCST — Compiler Engineering Intern",
+            "org": "LLVM 22 · C++23 · Python · 0.25 FTE",
+            "bullets": [
+              "Implemented an LLVM LICM pass in C++; transformation legality is derived from loop structure, memory accesses, side effects, and speculative-safety constraints.",
+              "Built a Python harness comparing execution before/after optimization and checking explicit transformation / no-transformation cases; also implemented RPO, Dijkstra, Dinic, and Tarjan SCC in C++23."
+            ]
+          }
+        ],
+        "project_ids": [
+          "wist",
+          "psform",
+          "globaliv"
+        ],
+        "skills": [
+          [
+            "Programming",
+            "C++23, Python, C17, C#"
+          ],
+          [
+            "Experimental methods",
+            "controlled experiments, exact/reference oracles, randomized/metamorphic testing, reproducibility"
+          ],
+          [
+            "Algorithms & CS",
+            "data structures, graph algorithms, program analysis, CFG/SSA, compiler optimizations"
+          ],
+          [
+            "Research tooling",
+            "Python harnesses, Linux, Git, CMake, counterexample analysis"
+          ]
+        ],
+        "recognition": [
+          [
+            "2025–2026",
+            "HSE Vysshaya Proba",
+            "Prize-winner in HSE Vysshaya Proba in competitive and industrial programming."
+          ],
+          [
+            "2025–2026",
+            "National competitions",
+            "Overall winner of the MEPhI Junior competition in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."
+          ]
+        ],
+        "contact_heading": "Target roles: Quantitative Research internships / research roles valuing algorithms and rigorous experimental validation",
+        "footer": "Quantitative Research Candidate · C++ · Python",
+        "print_project_limit": 3
+      }
+    },
+    "quantdev": {
+      "ru": {
+        "filename": "ru-quant-dev.html",
+        "pdf": "Mikhail_Razakov_Quant_Developer_RU.pdf",
+        "title": "Михаил Разаков — Quant Developer / Research Engineer | C++ · Python",
+        "role": "Quant Developer / Research Engineer | C++ · Python",
+        "brand": "C++ · Python · алгоритмы · research engineering",
+        "eyebrow": "Алгоритмы · экспериментальная проверка · correctness-critical systems",
+        "summary": "Research engineer с профессиональным опытом compiler/static analysis и сильной базой C++/Python и алгоритмов. Разрабатываю correctness-critical анализы и экспериментальную инфраструктуру: exact/reference oracles, differential/randomized/metamorphic testing, воспроизводимые harnesses и консервативные LLVM-преобразования.",
+        "description": "Quant Developer / Research Engineer Михаил Разаков: C++, Python, LLVM, алгоритмы, program analysis, exact/reference oracles и воспроизводимая экспериментальная проверка.",
+        "proofs": [
+          [
+            "Профессиональный engineering",
+            "ИСП РАН: промышленный static analysis C#/.NET; МЦСТ: LLVM 22, C++23, optimization legality и verification harnesses."
+          ],
+          [
+            "Алгоритмы и исследование",
+            "PS-form: conservative solver, exact oracle, randomized/metamorphic validation; UniversalToolchain: controlled verifier experiment."
+          ],
+          [
+            "C++ / Python research tooling",
+            "LLVM, Python harnesses, graph algorithms, differential execution, reproducible counterexamples и test oracles."
+          ]
+        ],
+        "experience": [
+          {
+            "date": "2026 — сейчас",
+            "title": "ИСП РАН — инженер по статическому анализу",
+            "org": "SharpChecker · C#/.NET · program analysis",
+            "bullets": [
+              "Участвую в разработке SharpChecker — промышленной платформы статического анализа C#/.NET в ИСП РАН."
+            ]
+          },
+          {
+            "date": "1 июля — 31 августа 2026",
+            "title": "МЦСТ — стажёр по разработке компиляторов",
+            "org": "LLVM 22 · C++23 · Python · 0,25 ставки",
+            "bullets": [
+              "Реализовал LLVM LICM-pass на C++: допустимость преобразования определяется по структуре цикла, обращениям к памяти, side effects и speculative safety.",
+              "Построил Python-harness для сравнения исполнения до/после оптимизации и явной проверки transformation / no-transformation cases; также реализовал RPO, Dijkstra, Dinic и Tarjan SCC на C++23."
+            ]
+          }
+        ],
+        "project_ids": [
+          "psform",
+          "globaliv",
+          "wist"
+        ],
+        "skills": [
+          [
+            "Programming",
+            "C++23, Python, C17, C#, Rust"
+          ],
+          [
+            "Algorithms & analysis",
+            "data structures, graph algorithms, CFG/SSA, program analysis, memory dependence"
+          ],
+          [
+            "Research engineering",
+            "exact/reference oracles, differential/randomized/metamorphic testing, reproducible harnesses, counterexamples"
+          ],
+          [
+            "Systems",
+            "LLVM 22, x86-64, Linux, CMake, generated-code analysis"
+          ]
+        ],
+        "recognition": [
+          [
+            "2025–2026",
+            "«Высшая проба»",
+            "Призёр «Высшей пробы» по олимпиадному и промышленному программированию."
+          ],
+          [
+            "2025–2026",
+            "Всероссийские конкурсы",
+            "Абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."
+          ]
+        ],
+        "contact_heading": "Целевые роли: Quant Developer · Research Engineer · Algorithm / Research Software Engineering",
+        "footer": "Quant Developer / Research Engineer · C++ · Python",
+        "print_project_limit": 3
+      },
+      "en": {
+        "filename": "en-quant-dev.html",
+        "pdf": "Mikhail_Razakov_Quant_Developer_EN.pdf",
+        "title": "Mikhail Razakov — Quant Developer / Research Engineer | C++ · Python",
+        "role": "Quant Developer / Research Engineer | C++ · Python",
+        "brand": "C++ · Python · algorithms · research engineering",
+        "eyebrow": "Algorithms · experimental validation · correctness-critical systems",
+        "summary": "Research engineer with professional compiler/static-analysis experience and a strong C++/Python algorithms background. I build correctness-critical analyses and experimental infrastructure using exact/reference oracles, differential/randomized/metamorphic testing, reproducible harnesses, and conservative LLVM transformations.",
+        "description": "Mikhail Razakov — Quant Developer / Research Engineer: C++, Python, LLVM, algorithms, program analysis, exact/reference oracles, and reproducible experimental validation.",
+        "proofs": [
+          [
+            "Professional engineering",
+            "ISP RAS: industrial C#/.NET static analysis; MCST: LLVM 22, C++23, optimization legality, and verification harnesses."
+          ],
+          [
+            "Algorithms & research",
+            "PS-form: conservative solver, exact oracle, randomized/metamorphic validation; UniversalToolchain: controlled verifier experiment."
+          ],
+          [
+            "C++ / Python research tooling",
+            "LLVM, Python harnesses, graph algorithms, differential execution, reproducible counterexamples, and test oracles."
+          ]
+        ],
+        "experience": [
+          {
+            "date": "2026 — present",
+            "title": "ISP RAS — Static Analysis Engineer",
+            "org": "SharpChecker · C#/.NET · program analysis",
+            "bullets": [
+              "Contribute to SharpChecker, ISP RAS's industrial static-analysis platform for C#/.NET."
+            ]
+          },
+          {
+            "date": "July 1 — August 31, 2026",
+            "title": "MCST — Compiler Engineering Intern",
+            "org": "LLVM 22 · C++23 · Python · 0.25 FTE",
+            "bullets": [
+              "Implemented an LLVM LICM pass in C++; transformation legality is derived from loop structure, memory accesses, side effects, and speculative-safety constraints.",
+              "Built a Python harness comparing execution before/after optimization and checking explicit transformation / no-transformation cases; also implemented RPO, Dijkstra, Dinic, and Tarjan SCC in C++23."
+            ]
+          }
+        ],
+        "project_ids": [
+          "psform",
+          "globaliv",
+          "wist"
+        ],
+        "skills": [
+          [
+            "Programming",
+            "C++23, Python, C17, C#, Rust"
+          ],
+          [
+            "Algorithms & analysis",
+            "data structures, graph algorithms, CFG/SSA, program analysis, memory dependence"
+          ],
+          [
+            "Research engineering",
+            "exact/reference oracles, differential/randomized/metamorphic testing, reproducible harnesses, counterexamples"
+          ],
+          [
+            "Systems",
+            "LLVM 22, x86-64, Linux, CMake, generated-code analysis"
+          ]
+        ],
+        "recognition": [
+          [
+            "2025–2026",
+            "HSE Vysshaya Proba",
+            "Prize-winner in HSE Vysshaya Proba in competitive and industrial programming."
+          ],
+          [
+            "2025–2026",
+            "National competitions",
+            "Overall winner of the MEPhI Junior competition in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."
+          ]
+        ],
+        "contact_heading": "Target roles: Quant Developer · Research Engineer · Algorithm / Research Software Engineering",
+        "footer": "Quant Developer / Research Engineer · C++ · Python",
+        "print_project_limit": 3
       }
     }
   },
@@ -1011,8 +1142,8 @@
       "problem_en": "Independently owned language contributions must compose into one compiler/runtime pipeline without hidden registration-order dependencies or a second resolver at runtime.",
       "solution_ru": "Typed artifact contracts; dependencies/conflicts и capability/provider resolution; deterministic pass ordering и artifact routes компилируются в immutable LanguagePlan до исполнения.",
       "solution_en": "Typed artifact contracts; dependency/conflict and capability/provider resolution; deterministic pass ordering and artifact routes compiled into an immutable LanguagePlan before execution.",
-      "result_ru": "LanguageRuntime проверяет exact planned package/component graph и создаёт выбранные компоненты без повторного планирования; контракт защищён determinism/exact-binding checks, ownership guards и interpreter/CIL parity.",
-      "result_en": "LanguageRuntime validates and materializes the exact planned package/component graph without re-planning; plan-determinism/exact-binding checks, ownership guards, and interpreter/CIL parity protect the contract.",
+      "result_ru": "Текущий exact test manifest: 1 324/1 324. В frozen-corpus verifier experiment режим B2 обнаружил 32/32 primary и 10/10 challenge operators при 0/100 false positives на valid controls; отдельно проверены 4 post-freeze holdouts.",
+      "result_en": "Current exact test manifest: 1,324/1,324. In a frozen-corpus verifier experiment, B2 detected 32/32 primary and 10/10 challenge operators with 0/100 false positives on valid controls; four post-freeze holdouts were checked separately.",
       "repo": "https://github.com/Misha1302/UniversalToolchain",
       "case_ru": "cases/ru-wist.html",
       "case_en": "cases/en-wist.html",
