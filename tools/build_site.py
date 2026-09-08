@@ -301,14 +301,59 @@ def contact_section(data: dict[str, Any], lang: str, profile: dict[str, Any]) ->
 def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     labels = {
         "experience": "Опыт" if lang == "ru" else "Experience",
-        "projects": "Проекты" if lang == "ru" else "Projects",
+        "projects": "Исследования и проекты" if lang == "ru" else "Selected Research & Engineering",
         "skills": "Компетенции" if lang == "ru" else "Skills",
         "education": "Образование" if lang == "ru" else "Education",
         "recognition": "Достижения" if lang == "ru" else "Recognition",
     }
     p = data["person"]
-    is_compiler_print = profile["filename"] in {"ru-compiler.html", "en-compiler.html"}
     contacts = f'<a href="mailto:{esc(p["email"])}">{esc(p["email"])}</a><br><a href="{esc(p["telegram"])}">{esc(p["telegram_label"])}</a><br><a href="{esc(p["github"])}">{esc(p["github_label"])}</a>'
+
+    if profile.get("print_layout") == "application":
+        experiences = []
+        for item in profile["experience"][:3]:
+            bullets = "".join(f"<li>{esc(text)}</li>" for text in item["bullets"][:2])
+            experiences.append(
+                f'<article class="pcv-app-entry"><div class="pcv-app-date">{esc(item["date"])}</div>'
+                f'<div><h3>{esc(item["title"])}</h3><p class="pcv-app-org">{esc(item["org"])}</p><ul>{bullets}</ul></div></article>'
+            )
+
+        projects = []
+        project_limit = int(profile.get("print_project_limit", 3))
+        project_summaries = profile.get("project_summaries", {})
+        for project_id in profile["project_ids"][:project_limit]:
+            project = data["projects"][project_id]
+            target = project.get("repo") or project[f"case_{lang}"]
+            summary = project_summaries.get(project_id, {})
+            project_text = summary.get("application") or summary.get("result") or project[f"result_{lang}"]
+            projects.append(
+                f'<article class="pcv-app-project"><h3><a href="{esc(target)}">{esc(project["title"])}</a></h3>'
+                f'<p>{esc(project_text)}</p></article>'
+            )
+
+        skills = "".join(
+            f'<div class="pcv-app-skill"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>'
+            for title, body in profile["skills"]
+        )
+        recognition_data = recognition_items(data, lang, profile)
+        recognition = "".join(
+            f'<div class="pcv-app-recognition"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>'
+            for _, title, body in recognition_data[:2]
+        )
+        education = p[f"education_{lang}"]
+        location = p[f"location_{lang}"]
+        return f"""
+<div class="print-cv pcv-application" aria-label="Focused one-page application CV">
+  <header class="pcv-header"><div><h1>{esc(person_name(data, lang))}</h1><h2>{esc(profile['role'])}</h2></div><div class="pcv-contact">{contacts}</div></header>
+  <p class="pcv-app-summary">{esc(profile['summary'])}</p>
+  <section class="pcv-app-section pcv-app-education"><h2 class="pcv-section-title">{labels['education']}</h2><p><strong>{esc(education)}</strong><span>{esc(location)}</span></p></section>
+  <section class="pcv-app-section"><h2 class="pcv-section-title">{labels['experience']}</h2>{''.join(experiences)}</section>
+  <section class="pcv-app-section"><h2 class="pcv-section-title">{labels['projects']}</h2>{''.join(projects)}</section>
+  <section class="pcv-app-section"><h2 class="pcv-section-title">{labels['skills']}</h2>{skills}</section>
+  <section class="pcv-app-section"><h2 class="pcv-section-title">{labels['recognition']}</h2>{recognition}</section>
+</div>"""
+
+    is_compiler_print = profile["filename"] in {"ru-compiler.html", "en-compiler.html"}
     proofs = "".join(f'<div class="pcv-proof"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["proofs"])
     proof_block = "" if is_compiler_print else f'<div class="pcv-proofs">{proofs}</div>'
     experiences = []
@@ -321,8 +366,8 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     for project_id in profile["project_ids"][:project_limit]:
         project = data["projects"][project_id]
         target = project.get("repo") or project[f"case_{lang}"]
-        summary = project_summaries.get(project_id, {}) if is_compiler_print else {}
-        if is_compiler_print and summary:
+        summary = project_summaries.get(project_id, {})
+        if summary:
             project_body = f'<p>{esc(summary.get("solution", ""))}</p><p class="pcv-project-result">{esc(summary.get("result", ""))}</p>'
         else:
             project_body = f'<p>{esc(project[f"result_{lang}"])}</p>'
@@ -351,6 +396,8 @@ def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
     footer_label = "Обновлено" if lang == "ru" else "Updated"
     if profile_key == "compiler":
         main_content = f"{compiler_hero(data, lang, profile)}{experience_section(lang, profile, compact=True)}{compiler_projects_section(data, lang, profile)}{skills_section(lang, profile, compact=True)}{recognition_section(data, lang, profile, compact=True)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
+    elif profile_key == "research":
+        main_content = f"{hero(data, lang, profile)}{proof_strip(profile)}{experience_section(lang, profile, compact=True)}{compiler_projects_section(data, lang, profile)}{skills_section(lang, profile, compact=True)}{recognition_section(data, lang, profile, compact=True)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
     else:
         main_content = f"{hero(data, lang, profile)}{proof_strip(profile)}{experience_section(lang, profile)}{projects_section(data, lang, profile)}{skills_section(lang, profile)}{recognition_section(data, lang, profile)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
     return f"""{head}
@@ -361,7 +408,7 @@ def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
 def landing_page(data: dict[str, Any]) -> str:
     lang = "ru"
     general = data["profiles"]["general"][lang]
-    title = "Михаил Разаков — Compiler / Static Analysis Engineer"
+    title = "Михаил Разаков — Compiler & Program Analysis Engineer"
     description = general["description"]
     head = common_head(data, lang, "index.html", title, description, general["role"], data["site_url"])
     cards = []
@@ -376,9 +423,9 @@ def landing_page(data: dict[str, Any]) -> str:
     p = data["person"]
     return f"""{head}
 <body class="selector-page">
-<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(p['name_ru'])}</strong><span>Compiler / Static Analysis Engineer</span></span></a><nav class="primary-nav"><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="en.html">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav></div></details></div></div></header>
-<main id="main" class="shell landing-main"><section class="selector-intro landing-hero"><p class="eyebrow">LLVM · static analysis · program analysis · compiler infrastructure</p><h1>Compiler / Static Analysis Engineer</h1><p>{esc(general['summary'])}</p><div class="hero-actions"><a class="button primary" href="ru.html">Открыть резюме</a><a class="button" href="pdf/{esc(general['pdf'])}" download>Скачать PDF</a><a class="button" href="#cases">Посмотреть проекты</a></div><div class="landing-evidence"><span>MCST · LLVM 22 · C++</span><span>ISP RAS · SharpChecker · static analysis</span><span>CFG/SSA · data-flow · x86-64</span></div></section>
-<section id="profiles" class="landing-section"><div class="section-heading"><p class="section-label">01 · Профили</p><div><h2>Профили под конкретные роли.</h2><p class="section-intro">Основной профиль — Compiler / Static Analysis Engineer. Специализированные версии меняют приоритет доказательств, но сохраняют единый набор проверенных фактов.</p></div></div><div class="selector-grid">{''.join(cards)}</div><p class="portfolio-link"><a href="ru.html">Полное техническое портфолио →</a></p></section>
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(p['name_ru'])}</strong><span>Compiler & Program Analysis Engineer</span></span></a><nav class="primary-nav"><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="en.html">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav></div></details></div></div></header>
+<main id="main" class="shell landing-main"><section class="selector-intro landing-hero"><p class="eyebrow">LLVM · static analysis · program analysis · compiler infrastructure</p><h1>Compiler & Program Analysis Engineer</h1><p>{esc(general['summary'])}</p><div class="hero-actions"><a class="button primary" href="ru.html">Открыть резюме</a><a class="button" href="pdf/{esc(general['pdf'])}" download>Скачать PDF</a><a class="button" href="#cases">Посмотреть проекты</a></div><div class="landing-evidence"><span>MCST · LLVM 22 · C++</span><span>ISP RAS · SharpChecker · static analysis</span><span>CFG/SSA · data-flow · x86-64</span></div></section>
+<section id="profiles" class="landing-section"><div class="section-heading"><p class="section-label">01 · Профили</p><div><h2>Профили под конкретные роли.</h2><p class="section-intro">Основной профиль — Compiler & Program Analysis Engineer. Специализированные версии меняют приоритет доказательств, но сохраняют единый набор проверенных фактов.</p></div></div><div class="selector-grid">{''.join(cards)}</div><p class="portfolio-link"><a href="ru.html">Полное техническое портфолио →</a></p></section>
 <section id="cases" class="landing-section"><div class="section-heading"><p class="section-label">02 · Кейсы</p><div><h2>Проблема → решение → проверяемый результат.</h2><p class="section-intro">Открытые проекты ведут к коду и документации; закрытые — к публичному архитектурному разбору без секретов и пользовательских данных.</p></div></div><div class="project-grid">{project_cases}</div></section>
 <section class="contact-section" id="contact"><div class="contact-panel"><div><h2>Связаться по инженерной роли или проекту.</h2><p>{esc(p['location_ru'])}</p></div><div class="contact-links"><a class="button primary" href="mailto:{esc(p['email'])}">Почта</a><a class="button" href="{esc(p['telegram'])}" target="_blank" rel="noopener noreferrer">Telegram</a><a class="button" href="{esc(p['github'])}" target="_blank" rel="noopener noreferrer">GitHub</a></div></div></section></main>
 <footer class="shell site-footer"><span>{esc(p['name_ru'])} · Compiler / Static Analysis Engineer</span><span>Обновлено {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
