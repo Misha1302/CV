@@ -248,7 +248,8 @@ def patch_style() -> None:
         start = raw.index(marker)
         # Keep the file deterministic on retries by replacing from the marker onward.
         raw = raw[:start].rstrip() + "\n"
-    STYLE.write_text(raw.rstrip() + CSS_BLOCK + "\n", encoding="utf-8")
+    updated = (raw.rstrip() + CSS_BLOCK).rstrip() + "\n"
+    STYLE.write_text(updated, encoding="utf-8")
 
 
 def main() -> None:

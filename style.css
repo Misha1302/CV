@@ -635,3 +635,135 @@ body.profile-compiler::before {
     line-height: 1.25;
   }
 }
+
+/* application CV layout v58: linear reading order for ATS and fast human scan */
+@media print {
+  .profile-quantdev .pcv-application,
+  .profile-quant .pcv-application,
+  .profile-systems .pcv-application {
+    padding: 10.5mm 12mm 10mm;
+  }
+  .pcv-application .pcv-header {
+    padding-bottom: 3.2mm;
+  }
+  .pcv-application .pcv-header h1 {
+    font-size: 22pt;
+    line-height: 1.02;
+  }
+  .pcv-application .pcv-header h2 {
+    margin-top: 1.4mm;
+    font-size: 11.5pt;
+    line-height: 1.2;
+  }
+  .pcv-application .pcv-contact {
+    font-size: 8.6pt;
+    line-height: 1.34;
+  }
+  .pcv-app-summary {
+    margin: 3.1mm 0 3.4mm;
+    font-size: 9.4pt;
+    line-height: 1.36;
+  }
+  .pcv-app-section + .pcv-app-section {
+    margin-top: 3.2mm;
+  }
+  .pcv-application .pcv-section-title {
+    margin: 0 0 1.7mm;
+    padding-bottom: .7mm;
+    border-bottom: 1px solid #9b2438;
+    font-size: 9.8pt;
+    line-height: 1.1;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+  }
+  .pcv-app-education p {
+    display: flex;
+    justify-content: space-between;
+    gap: 5mm;
+    margin: 0;
+    font-size: 9pt;
+    line-height: 1.25;
+  }
+  .pcv-app-education span {
+    color: #4e4547;
+    white-space: nowrap;
+  }
+  .pcv-app-entry {
+    display: grid;
+    grid-template-columns: 29mm 1fr;
+    gap: 3mm;
+    margin-bottom: 2.3mm;
+    break-inside: avoid;
+  }
+  .pcv-app-date {
+    color: #8d2638;
+    font-size: 8.4pt;
+    font-weight: 650;
+    line-height: 1.25;
+  }
+  .pcv-app-entry h3,
+  .pcv-app-project h3 {
+    margin: 0;
+    font-size: 9.5pt;
+    line-height: 1.2;
+  }
+  .pcv-app-org {
+    margin: .4mm 0 .7mm;
+    color: #4e4547;
+    font-size: 8.3pt;
+    line-height: 1.2;
+  }
+  .pcv-app-entry ul {
+    margin: .4mm 0 0 3.6mm;
+    padding: 0;
+  }
+  .pcv-app-entry li {
+    margin: 0 0 .45mm;
+    font-size: 8.7pt;
+    line-height: 1.28;
+  }
+  .pcv-app-project {
+    margin-bottom: 1.9mm;
+    break-inside: avoid;
+  }
+  .pcv-app-project p {
+    margin: .55mm 0 0;
+    color: #4e4547;
+    font-size: 8.7pt;
+    line-height: 1.28;
+  }
+  .pcv-app-project a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .pcv-app-skill {
+    display: grid;
+    grid-template-columns: 34mm 1fr;
+    gap: 3mm;
+    margin-bottom: 1.1mm;
+    font-size: 8.65pt;
+    line-height: 1.27;
+    break-inside: avoid;
+  }
+  .pcv-app-skill strong {
+    font-size: 8.7pt;
+  }
+  .pcv-app-skill span {
+    color: #4e4547;
+  }
+  .pcv-app-recognition {
+    display: grid;
+    grid-template-columns: 42mm 1fr;
+    gap: 3mm;
+    margin-bottom: 1.2mm;
+    font-size: 8.55pt;
+    line-height: 1.25;
+    break-inside: avoid;
+  }
+  .pcv-app-recognition strong {
+    font-size: 8.6pt;
+  }
+  .pcv-app-recognition span {
+    color: #4e4547;
+  }
+}
