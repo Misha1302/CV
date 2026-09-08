@@ -28,7 +28,7 @@ jobs:
           python-version: '3.12'
 
       - name: Apply evidence-driven profile migration
-        run: python tools/reposition_quant_profiles_20260908.py
+        run: python tools/reposition_quant_profiles_20260908_v2.py
 
       - name: Evidence and positioning guards
         run: |
@@ -38,7 +38,7 @@ jobs:
 
           data = json.loads(Path('data/site.json').read_text(encoding='utf-8'))
           assert data['profiles']['quantdev']['en']['role'] == 'Quant Developer / Research Engineer | C++ · Python'
-          assert data['profiles']['quant']['en']['role'].startswith('Quantitative Research Candidate')
+          assert data['profiles']['quant']['en']['role'] == 'Quantitative Research Candidate | C++ · Python'
           assert data['profiles']['systems']['en']['role'].startswith('C++ / Systems Engineer')
           for key in ('quantdev', 'quant', 'systems'):
               for lang in ('ru', 'en'):
