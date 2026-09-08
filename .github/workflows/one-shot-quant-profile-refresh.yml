@@ -27,8 +27,11 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Apply application-print generator patch
+        run: python tools/patch_application_print_layout.py
+
       - name: Apply evidence-driven profile migration
-        run: python tools/reposition_quant_profiles_20260908_v2.py
+        run: python tools/reposition_quant_profiles_20260908_v3.py
 
       - name: Evidence and positioning guards
         run: |
@@ -42,7 +45,9 @@ jobs:
           assert data['profiles']['systems']['en']['role'].startswith('C++ / Systems Engineer')
           for key in ('quantdev', 'quant', 'systems'):
               for lang in ('ru', 'en'):
-                  titles = [x['title'] for x in data['profiles'][key][lang]['experience']]
+                  profile = data['profiles'][key][lang]
+                  assert profile['print_layout'] == 'application'
+                  titles = [x['title'] for x in profile['experience']]
                   assert any('ИСП РАН' in t or 'ISP RAS' in t for t in titles), (key, lang, titles)
                   assert any('МЦСТ' in t or 'MCST' in t for t in titles), (key, lang, titles)
                   assert not any('PS-form' in t or 'UniversalToolchain' in t for t in titles), (key, lang, titles)
@@ -74,6 +79,29 @@ jobs:
         run: |
           python tools/build_site.py
           python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+
+      - name: Application PDF reading-order guard
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import fitz
+
+          checks = {
+              'Mikhail_Razakov_Quant_Developer_EN.pdf': ('Education', 'Experience', 'Selected Research & Engineering', 'Skills', 'Recognition'),
+              'Mikhail_Razakov_Quant_Research_EN.pdf': ('Education', 'Experience', 'Selected Research & Engineering', 'Skills', 'Recognition'),
+              'Mikhail_Razakov_CPP_Systems_EN.pdf': ('Education', 'Experience', 'Selected Research & Engineering', 'Skills', 'Recognition'),
+              'Mikhail_Razakov_Quant_Developer_RU.pdf': ('Образование', 'Опыт', 'Исследования и проекты', 'Компетенции', 'Достижения'),
+              'Mikhail_Razakov_Quant_Research_RU.pdf': ('Образование', 'Опыт', 'Исследования и проекты', 'Компетенции', 'Достижения'),
+              'Mikhail_Razakov_CPP_Systems_RU.pdf': ('Образование', 'Опыт', 'Исследования и проекты', 'Компетенции', 'Достижения'),
+          }
+          for filename, headings in checks.items():
+              with fitz.open(Path('pdf') / filename) as doc:
+                  assert doc.page_count == 1, filename
+                  text = doc[0].get_text('text')
+              positions = [text.find(h) for h in headings]
+              assert all(pos >= 0 for pos in positions), (filename, headings, positions)
+              assert positions == sorted(positions), (filename, headings, positions)
+          PY
 
       - name: Validate content and external links
         run: python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
@@ -136,7 +164,7 @@ jobs:
           if git diff --cached --quiet; then
             echo 'Quant/system profiles are already current'
           else
-            git commit -m 'Reposition quant CVs for research and systems roles [skip ci]'
+            git commit -m 'Add ATS-oriented quant application PDFs [skip ci]'
             git push origin HEAD:main
           fi
 
