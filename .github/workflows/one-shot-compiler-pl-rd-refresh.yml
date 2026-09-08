@@ -55,6 +55,7 @@ jobs:
           assert 'edge-sensitive' in data['profiles']['compiler']['en']['project_summaries']['deref']['application']
           assert 'register allocation' in data['profiles']['compiler']['en']['project_summaries']['codegen']['application']
           assert '1,324-test exact manifest' in data['profiles']['compiler']['en']['project_summaries']['wist']['application']
+          assert data['profiles']['research']['ru']['proofs'][1][0] == 'Корректность компилятора при неполной модели'
           raw = Path('data/site.json').read_text(encoding='utf-8').casefold()
           for forbidden in (
               'research scientist', 'peer-reviewed publication', 'published researcher',
@@ -178,4 +179,4 @@ jobs:
             /tmp/cv-visual
           if-no-files-found: warn
 
-# rerun after evidence-density and portrait-contract hardening
+# rerun after Russian research localization fix
