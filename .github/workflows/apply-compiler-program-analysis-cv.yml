@@ -51,7 +51,7 @@ jobs:
           ru = data["profiles"]["compiler"]["ru"]
           ru.update({
               "title": "Михаил Разаков — Compiler & Program Analysis Engineer · LLVM · C++ · Static Analysis",
-              "role": "Compiler & Program Analysis Engineer · LLVM · C++ · Static Analysis",
+              "role": "Compiler & Program Analysis Engineer",
               "brand": "LLVM · program analysis · x86-64 codegen · static analysis",
               "eyebrow": "LLVM 22 · interprocedural analysis · register allocation · Roslyn",
               "summary": "Инженер по компиляторам и анализу программ с профессиональным опытом в МЦСТ и ИСП РАН. В МЦСТ реализовал LLVM 22 LICM и прототип межпроцедурного global-IV анализа с отдельной legality-фазой; сейчас участвую в разработке SharpChecker. Публичные проекты подтверждают LLVM IR transformations с 29-case regression suite, x86-64 backend с register allocation и Roslyn fixed-point data-flow.",
@@ -95,7 +95,7 @@ jobs:
           en = data["profiles"]["compiler"]["en"]
           en.update({
               "title": "Mikhail Razakov — Compiler & Program Analysis Engineer · LLVM · C++ · Static Analysis",
-              "role": "Compiler & Program Analysis Engineer · LLVM · C++ · Static Analysis",
+              "role": "Compiler & Program Analysis Engineer",
               "brand": "LLVM · program analysis · x86-64 codegen · static analysis",
               "eyebrow": "LLVM 22 · interprocedural analysis · register allocation · Roslyn",
               "summary": "Compiler and program-analysis engineer with professional experience at MCST and ISP RAS. At MCST, I implemented LLVM 22 LICM and an interprocedural global-IV prototype with a separate legality phase; I now contribute to SharpChecker. Public projects demonstrate LLVM IR transformations with a 29-case regression suite, an x86-64 backend with register allocation, and Roslyn fixed-point data flow.",
