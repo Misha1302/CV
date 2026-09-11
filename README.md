@@ -22,7 +22,7 @@ Generated HTML and PDF files must not be edited manually.
 ## Canonical profiles
 
 1. Compiler / Static Analysis Engineer
-2. Compiler / LLVM Engineer
+2. Compiler & Program Analysis Engineer
 3. .NET Backend / Platform Reliability
 4. C++ / LLVM Systems
 5. Quantitative Research / Research Software Engineering
