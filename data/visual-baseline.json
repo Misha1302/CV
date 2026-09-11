@@ -1,6 +1,6 @@
 {
   "ru.html|desktop": {
-    "dhash": "3e4b2ec739cc0dde0736261a077f1d5f19df0d5e263621b425fe223803ba17b3",
+    "dhash": "3e4b2ec739cc0dde0736261a077f1d5f1ddf0d5e263621b425fe223803ba17b3",
     "width": 1440,
     "viewport_height": 1100,
     "page_height": 5170,
@@ -8,15 +8,15 @@
     "role": "Compiler Engineer · LLVM · Language Infrastructure"
   },
   "ru-compiler.html|desktop": {
-    "dhash": "39a309e32b362f5604063a161a5618e639ee3de63dc62e062906093807702702",
+    "dhash": "31a329e336362f164e163a061e763ce619fe19de1d9a2d063806093807702702",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 3304,
+    "page_height": 3205,
     "h1": "Михаил Разаков",
-    "role": "Compiler / LLVM Engineer · Optimization & Analysis"
+    "role": "Compiler & Program Analysis Engineer"
   },
   "ru-backend.html|desktop": {
-    "dhash": "3e4b3f47399405360f36073e273a1b671e7f037f263e25f627b8623807fb1fb3",
+    "dhash": "3e4b3f47399405360f36073e273a1b671e5f0377263c25f627b8623807fb1fb3",
     "width": 1440,
     "viewport_height": 1100,
     "page_height": 5060,
@@ -24,12 +24,12 @@
     "role": "NET Backend / Platform Engineer · State & Reliability"
   },
   "ru-cpp-systems.html|desktop": {
-    "dhash": "2e0b37c739dc25360f0e473e077e1f5f2ddf19cf2632223827f8223802ba15b7",
+    "dhash": "3e4b1f4739cc0d5e0f36663e077f1f6f1f6f0636267c21b627b2223806fb1db3",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 4947,
+    "page_height": 4726,
     "h1": "Михаил Разаков",
-    "role": "C++ / LLVM Systems Engineer"
+    "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms"
   },
   "ru.html|mobile": {
     "dhash": "61e728ff2cbd163e307f1e6f3dff3cbf2cdf38bf3aff77c74bfe64fa3fff0cef",
@@ -40,15 +40,15 @@
     "role": "Compiler Engineer · LLVM · Language Infrastructure"
   },
   "ru-compiler.html|mobile": {
-    "dhash": "58d932df769d7b3333272d3f2dbf73ff33bf5b3f5b3f39b71c6f5ddf6dff4979",
+    "dhash": "5ac32adf759f7a3723272c3f6d7f5b2f737f79be59e75dbb67fb5d9b6dff4979",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 5593,
+    "page_height": 5421,
     "h1": "Михаил Разаков",
-    "role": "Compiler / LLVM Engineer · Optimization & Analysis"
+    "role": "Compiler & Program Analysis Engineer"
   },
   "ru-backend.html|mobile": {
-    "dhash": "75ef28fd2d9f35ff3d5f3c6f1aef3e9f3bdf3aff1adf5bc74bfb65f83baf18ef",
+    "dhash": "75ef28fd2d9f35ff3d5f3c6f1aef3e9f3bdf3aff1bdf5bc74bfb65f83baf18ef",
     "width": 390,
     "viewport_height": 844,
     "page_height": 8321,
@@ -56,12 +56,12 @@
     "role": "NET Backend / Platform Engineer · State & Reliability"
   },
   "ru-cpp-systems.html|mobile": {
-    "dhash": "64f328fd3ddc34ff1b3f0a6f2fff2c3f38ff3eff3eff16df5b7f67f83fbf2cdf",
+    "dhash": "659728ff2dff177e38ff1a471e4f3c9f3d1f3cdf1edf5be75bfa73bf3fff1cfb",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 8540,
+    "page_height": 7881,
     "h1": "Михаил Разаков",
-    "role": "C++ / LLVM Systems Engineer"
+    "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms"
   },
   "ru.html|no-js": {
     "dhash": "1b03c303260b2e0706061ee63ee604c622c60bcf354f358f0322198c1dde18d6",
