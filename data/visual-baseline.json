@@ -5,7 +5,24 @@
     "viewport_height": 1100,
     "page_height": 2707,
     "h1": "Михаил Разаков",
-    "role": "Compiler Infrastructure / Language Tooling Engineer"
+    "role": "Compiler Infrastructure / Language Tooling Engineer",
+    "structure": {
+      "sectionIds": [
+        "top",
+        "experience",
+        "work",
+        "skills",
+        "recognition",
+        "education",
+        "contact"
+      ],
+      "timelineItems": 2,
+      "projectRows": 3,
+      "stackRows": 4,
+      "recognitionItems": 3,
+      "contactPanels": 1,
+      "profileCards": 0
+    }
   },
   "ru-compiler.html|desktop": {
     "dhash": "3323336322672f5c0e6636063ec618c6198e2de62c90207218380c7807601302",
@@ -13,7 +30,24 @@
     "viewport_height": 1100,
     "page_height": 2732,
     "h1": "Михаил Разаков",
-    "role": "Compiler & Program Analysis Engineer"
+    "role": "Compiler & Program Analysis Engineer",
+    "structure": {
+      "sectionIds": [
+        "top",
+        "experience",
+        "work",
+        "skills",
+        "recognition",
+        "education",
+        "contact"
+      ],
+      "timelineItems": 2,
+      "projectRows": 3,
+      "stackRows": 4,
+      "recognitionItems": 3,
+      "contactPanels": 1,
+      "profileCards": 0
+    }
   },
   "ru-backend.html|desktop": {
     "dhash": "3acb33c72ddc27760b560d3606721b571f77077626ec207e26f866700eb71f93",
@@ -21,7 +55,24 @@
     "viewport_height": 1100,
     "page_height": 4758,
     "h1": "Михаил Разаков",
-    "role": "NET Backend / Platform Engineer · State & Reliability"
+    "role": "NET Backend / Platform Engineer · State & Reliability",
+    "structure": {
+      "sectionIds": [
+        "top",
+        "experience",
+        "work",
+        "skills",
+        "recognition",
+        "education",
+        "contact"
+      ],
+      "timelineItems": 3,
+      "projectRows": 0,
+      "stackRows": 4,
+      "recognitionItems": 2,
+      "contactPanels": 1,
+      "profileCards": 0
+    }
   },
   "ru-cpp-systems.html|desktop": {
     "dhash": "38cb37c63dcc217c0f26643007771f6f1f7f0676266c207c277a66f00db71993",
@@ -29,7 +80,24 @@
     "viewport_height": 1100,
     "page_height": 4591,
     "h1": "Михаил Разаков",
-    "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms"
+    "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
+    "structure": {
+      "sectionIds": [
+        "top",
+        "experience",
+        "work",
+        "skills",
+        "recognition",
+        "education",
+        "contact"
+      ],
+      "timelineItems": 2,
+      "projectRows": 0,
+      "stackRows": 4,
+      "recognitionItems": 2,
+      "contactPanels": 1,
+      "profileCards": 0
+    }
   },
   "ru.html|mobile": {
     "dhash": "5b43374f6d8e70e2267f1d7559c72f1f4b3f522f536f3ef76b936b3b4bf95a43",
@@ -37,7 +105,24 @@
     "viewport_height": 844,
     "page_height": 4304,
     "h1": "Михаил Разаков",
-    "role": "Compiler Infrastructure / Language Tooling Engineer"
+    "role": "Compiler Infrastructure / Language Tooling Engineer",
+    "structure": {
+      "sectionIds": [
+        "top",
+        "experience",
+        "work",
+        "skills",
+        "recognition",
+        "education",
+        "contact"
+      ],
+      "timelineItems": 2,
+      "projectRows": 3,
+      "stackRows": 4,
+      "recognitionItems": 3,
+      "contactPanels": 1,
+      "profileCards": 0
+    }
   },
   "ru-compiler.html|mobile": {
     "dhash": "5b493b1f6d9a72e5233f3f276e1f5b5f53f7522f7b6f6e4f4b8f6b3b4bf95a43",
@@ -45,7 +130,24 @@
     "viewport_height": 844,
     "page_height": 4260,
     "h1": "Михаил Разаков",
-    "role": "Compiler & Program Analysis Engineer"
+    "role": "Compiler & Program Analysis Engineer",
+    "structure": {
+      "sectionIds": [
+        "top",
+        "experience",
+        "work",
+        "skills",
+        "recognition",
+        "education",
+        "contact"
+      ],
+      "timelineItems": 2,
+      "projectRows": 3,
+      "stackRows": 4,
+      "recognitionItems": 3,
+      "contactPanels": 1,
+      "profileCards": 0
+    }
   },
   "ru-backend.html|mobile": {
     "dhash": "72c32cef2df73bf71cdf3c9f149d3fbf3b5f34ff363f760755ef6def27dd14df",
@@ -53,7 +155,24 @@
     "viewport_height": 844,
     "page_height": 7938,
     "h1": "Михаил Разаков",
-    "role": "NET Backend / Platform Engineer · State & Reliability"
+    "role": "NET Backend / Platform Engineer · State & Reliability",
+    "structure": {
+      "sectionIds": [
+        "top",
+        "experience",
+        "work",
+        "skills",
+        "recognition",
+        "education",
+        "contact"
+      ],
+      "timelineItems": 3,
+      "projectRows": 0,
+      "stackRows": 4,
+      "recognitionItems": 2,
+      "contactPanels": 1,
+      "profileCards": 0
+    }
   },
   "ru-cpp-systems.html|mobile": {
     "dhash": "526b2cef2ddf1afe32bf14bf14bf3d3f19bf3e9f2ebf576755e763732fff1ceb",
@@ -61,7 +180,24 @@
     "viewport_height": 844,
     "page_height": 7567,
     "h1": "Михаил Разаков",
-    "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms"
+    "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
+    "structure": {
+      "sectionIds": [
+        "top",
+        "experience",
+        "work",
+        "skills",
+        "recognition",
+        "education",
+        "contact"
+      ],
+      "timelineItems": 2,
+      "projectRows": 0,
+      "stackRows": 4,
+      "recognitionItems": 2,
+      "contactPanels": 1,
+      "profileCards": 0
+    }
   },
   "ru.html|no-js": {
     "dhash": "3003270333c718e60b66232636274027401c300021160b1e0f0e0e3e10742080",
@@ -69,7 +205,24 @@
     "viewport_height": 1100,
     "page_height": 2855,
     "h1": "Михаил Разаков",
-    "role": "Compiler Infrastructure / Language Tooling Engineer"
+    "role": "Compiler Infrastructure / Language Tooling Engineer",
+    "structure": {
+      "sectionIds": [
+        "top",
+        "experience",
+        "work",
+        "skills",
+        "recognition",
+        "education",
+        "contact"
+      ],
+      "timelineItems": 2,
+      "projectRows": 3,
+      "stackRows": 4,
+      "recognitionItems": 3,
+      "contactPanels": 1,
+      "profileCards": 0
+    }
   },
   "ru-backend.html|no-js": {
     "dhash": "53a3408128c476cb566720e52a4f7246739e61d94cc980e009602462171b4ed8",
@@ -77,6 +230,23 @@
     "viewport_height": 844,
     "page_height": 8288,
     "h1": "Михаил Разаков",
-    "role": "NET Backend / Platform Engineer · State & Reliability"
+    "role": "NET Backend / Platform Engineer · State & Reliability",
+    "structure": {
+      "sectionIds": [
+        "top",
+        "experience",
+        "work",
+        "skills",
+        "recognition",
+        "education",
+        "contact"
+      ],
+      "timelineItems": 3,
+      "projectRows": 0,
+      "stackRows": 4,
+      "recognitionItems": 2,
+      "contactPanels": 1,
+      "profileCards": 0
+    }
   }
 }
