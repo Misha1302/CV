@@ -15,7 +15,6 @@ on:
       - "tools/build_cv.py"
       - "tools/validate_cv.py"
       - "tools/visual_regression.py"
-      - "tools/rebuild_compiler_profile_20260913.py"
       - ".github/workflows/rebuild-cv-assets.yml"
       - ".github/workflows/validate-cv.yml"
   schedule:
@@ -41,8 +40,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Apply evidence-first compiler profile rebuild
-        run: python tools/rebuild_compiler_profile_20260913.py
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip

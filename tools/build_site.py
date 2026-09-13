@@ -95,12 +95,12 @@ def header(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
         "recognition": "Достижения" if lang == "ru" else "Recognition",
         "contact": "Контакты" if lang == "ru" else "Contact",
     }
-    if profile["filename"] in {"ru-compiler.html", "en-compiler.html"}:
+    if profile.get("compiler_layout") or profile["filename"] in {"ru-compiler.html", "en-compiler.html"}:
         nav_labels.pop("contact", None)
     other = other_language(lang)
     alternate = data["profiles"][next(k for k, v in data["profiles"].items() if v[lang]["filename"] == profile["filename"])][other]["filename"]
     links = "".join(f'<a href="#{key}">{esc(label)}</a>' for key, label in nav_labels.items())
-    is_compiler_profile = profile["filename"] in {"ru-compiler.html", "en-compiler.html"}
+    is_compiler_profile = bool(profile.get("compiler_layout")) or profile["filename"] in {"ru-compiler.html", "en-compiler.html"}
     mobile_profiles = "" if is_compiler_profile else "".join(f'<a href="{esc(url)}">{esc(label)}</a>' for label, url in profile_links(data, lang))
     mobile_profiles_block = "" if not mobile_profiles else f'<div class="mobile-links">{mobile_profiles}</div>'
     return f"""
@@ -307,8 +307,11 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
         "recognition": "Достижения" if lang == "ru" else "Recognition",
     }
     p = data["person"]
-    is_compiler_print = profile["filename"] in {"ru-compiler.html", "en-compiler.html"}
-    contacts = f'<a href="mailto:{esc(p["email"])}">{esc(p["email"])}</a><br><a href="{esc(p["telegram"])}">{esc(p["telegram_label"])}</a><br><a href="{esc(p["github"])}">{esc(p["github_label"])}</a>'
+    is_compiler_print = bool(profile.get("compiler_layout")) or profile["filename"] in {"ru-compiler.html", "en-compiler.html"}
+    if is_compiler_print and lang == "en":
+        contacts = f'<a href="mailto:{esc(p["email"])}">{esc(p["email"])}</a><br><a href="{esc(p["github"])}">{esc(p["github_label"])}</a><br><a href="{esc(p["linkedin"])}">LinkedIn</a>'
+    else:
+        contacts = f'<a href="mailto:{esc(p["email"])}">{esc(p["email"])}</a><br><a href="{esc(p["telegram"])}">{esc(p["telegram_label"])}</a><br><a href="{esc(p["github"])}">{esc(p["github_label"])}</a>'
     proofs = "".join(f'<div class="pcv-proof"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["proofs"])
     proof_block = "" if is_compiler_print else f'<div class="pcv-proofs">{proofs}</div>'
     experiences = []
@@ -349,12 +352,12 @@ def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
     profile = data["profiles"][profile_key][lang]
     head = common_head(data, lang, profile["filename"], profile["title"], profile["description"], profile["role"])
     footer_label = "Обновлено" if lang == "ru" else "Updated"
-    if profile_key == "compiler":
+    if profile.get("compiler_layout") or profile_key == "compiler":
         main_content = f"{compiler_hero(data, lang, profile)}{experience_section(lang, profile, compact=True)}{compiler_projects_section(data, lang, profile)}{skills_section(lang, profile, compact=True)}{recognition_section(data, lang, profile, compact=True)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
     else:
         main_content = f"{hero(data, lang, profile)}{proof_strip(profile)}{experience_section(lang, profile)}{projects_section(data, lang, profile)}{skills_section(lang, profile)}{recognition_section(data, lang, profile)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
     return f"""{head}
-<body class="profile-{esc(profile_key)}">{print_cv(data, lang, profile)}{header(data, lang, profile)}<main id="main">{main_content}</main><footer class="shell site-footer"><span>{esc(person_name(data, lang))} · {esc(profile['footer'])}</span><span>{footer_label} {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
+<body class="profile-{esc(profile_key)}{' profile-compiler' if profile.get('compiler_layout') and profile_key != 'compiler' else ''}">{print_cv(data, lang, profile)}{header(data, lang, profile)}<main id="main">{main_content}</main><footer class="shell site-footer"><span>{esc(person_name(data, lang))} · {esc(profile['footer'])}</span><span>{footer_label} {esc(profile.get('updated_at', data['updated_at']))}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
 """
 
 

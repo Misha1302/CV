@@ -104,7 +104,19 @@ def capture(browser: Browser, base_url: str, output_dir: Path, cases: list[tuple
             reduced_motion="reduce",
         )
         page = context.new_page()
+        # Keep screenshots deterministic and independent of GitHub avatar CDN timing.
+        # The site may swap the portrait to the public GitHub avatar at runtime;
+        # for visual regression we exercise the same DOM/CSS path with the checked-in portrait bytes.
+        page.route(
+            "https://avatars.githubusercontent.com/**",
+            lambda route: route.fulfill(path=str(ROOT / "assets" / "portrait.jpg"), content_type="image/jpeg"),
+        )
         page.goto(base_url + filename, wait_until="domcontentloaded", timeout=15000)
+        page.evaluate("() => document.fonts.ready")
+        page.wait_for_function(
+            "() => Array.from(document.images).every(img => img.complete && img.naturalWidth > 0)",
+            timeout=15000,
+        )
         page.wait_for_timeout(150)
         if js_enabled:
             page.add_style_tag(content="*{animation:none!important;transition:none!important;caret-color:transparent!important}")
