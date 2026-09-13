@@ -7,6 +7,7 @@ on:
       - "refactor/**"
     paths:
       - "data/site.json"
+      - "data/visual-baseline.json"
       - "style.css"
       - "script.js"
       - "assets/**"
@@ -76,7 +77,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Generated artifacts are already current"
           else
-            git commit -m "Rebuild generated CV site [skip ci]"
+            git commit -m "Rebuild evidence-first compiler CV [skip ci]"
             git push
           fi
       - uses: actions/upload-artifact@v4

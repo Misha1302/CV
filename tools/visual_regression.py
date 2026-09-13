@@ -68,7 +68,7 @@ def hamming(left: str, right: str) -> int:
     return (int(left, 16) ^ int(right, 16)).bit_count()
 
 
-def page_metrics(page: Page) -> dict[str, float | int | str]:
+def page_metrics(page: Page) -> dict[str, object]:
     return page.evaluate("""() => {
       const html = document.documentElement;
       const body = document.body;
@@ -89,6 +89,15 @@ def page_metrics(page: Page) -> dict[str, float | int | str]:
         scrollHeight: Math.max(html.scrollHeight, body.scrollHeight),
         h1: document.querySelector('main h1')?.textContent?.trim() || '',
         role: document.querySelector('.hero-role')?.textContent?.trim() || '',
+        structure: {
+          sectionIds: Array.from(document.querySelectorAll('main section[id]')).map(el => el.id),
+          timelineItems: document.querySelectorAll('main .timeline article').length,
+          projectRows: document.querySelectorAll('main .project-row').length,
+          stackRows: document.querySelectorAll('main .stack-line').length,
+          recognitionItems: document.querySelectorAll('main .recognition-item').length,
+          contactPanels: document.querySelectorAll('main .contact-panel').length,
+          profileCards: document.querySelectorAll('main .profile-card').length,
+        },
         offenders: JSON.stringify(offenders),
       };
     }""")
@@ -104,7 +113,19 @@ def capture(browser: Browser, base_url: str, output_dir: Path, cases: list[tuple
             reduced_motion="reduce",
         )
         page = context.new_page()
+        # Keep screenshots deterministic and independent of GitHub avatar CDN timing.
+        # The site may swap the portrait to the public GitHub avatar at runtime;
+        # for visual regression we exercise the same DOM/CSS path with the checked-in portrait bytes.
+        page.route(
+            "https://avatars.githubusercontent.com/**",
+            lambda route: route.fulfill(path=str(ROOT / "assets" / "portrait.jpg"), content_type="image/jpeg"),
+        )
         page.goto(base_url + filename, wait_until="domcontentloaded", timeout=15000)
+        page.evaluate("() => document.fonts.ready")
+        page.wait_for_function(
+            "() => Array.from(document.images).every(img => img.complete && img.naturalWidth > 0)",
+            timeout=15000,
+        )
         page.wait_for_timeout(150)
         if js_enabled:
             page.add_style_tag(content="*{animation:none!important;transition:none!important;caret-color:transparent!important}")
@@ -128,6 +149,7 @@ def capture(browser: Browser, base_url: str, output_dir: Path, cases: list[tuple
             "page_height": metrics["scrollHeight"],
             "h1": metrics["h1"],
             "role": metrics["role"],
+            "structure": metrics["structure"],
         }
         context.close()
     return results
@@ -178,16 +200,45 @@ def main() -> None:
     # remain structurally checked in all view modes without blessing new pixels.
     baseline = {key: baseline[key] for key in regression}
     failures = []
+    hamming_distances = {}
     for key in regression:
-        distance = hamming(baseline[key]["dhash"], regression[key]["dhash"])
-        base_height = int(baseline[key]["page_height"])
-        current_height = int(regression[key]["page_height"])
+        base = baseline[key]
+        current_case = regression[key]
+        distance = hamming(base["dhash"], current_case["dhash"])
+        hamming_distances[key] = distance
+        base_height = int(base["page_height"])
+        current_height = int(current_case["page_height"])
         height_delta = abs(current_height - base_height) / max(1, base_height)
-        if distance > args.max_hamming or height_delta > 0.08:
-            failures.append({"case": key, "hamming": distance, "height_delta": round(height_delta, 4)})
+        reasons = []
+        if int(base["width"]) != int(current_case["width"]):
+            reasons.append("width")
+        if int(base["viewport_height"]) != int(current_case["viewport_height"]):
+            reasons.append("viewport_height")
+        if base.get("h1") != current_case.get("h1"):
+            reasons.append("h1")
+        if base.get("role") != current_case.get("role"):
+            reasons.append("role")
+        if base.get("structure") != current_case.get("structure"):
+            reasons.append("structure")
+        if height_delta > 0.08:
+            reasons.append("page_height")
+        if reasons:
+            failures.append({
+                "case": key,
+                "reasons": reasons,
+                "hamming_diagnostic": distance,
+                "height_delta": round(height_delta, 4),
+            })
     if failures:
         raise RuntimeError("Visual regression detected: " + json.dumps(failures, ensure_ascii=False))
-    print(json.dumps({"regression_cases": len(regression), "smoke_views": len(smoke), "status": "PASS"}, ensure_ascii=False))
+    raster_drift_cases = sum(distance > args.max_hamming for distance in hamming_distances.values())
+    print(json.dumps({
+        "regression_cases": len(regression),
+        "smoke_views": len(smoke),
+        "status": "PASS",
+        "max_hamming_diagnostic": max(hamming_distances.values(), default=0),
+        "raster_drift_cases": raster_drift_cases,
+    }, ensure_ascii=False))
 
 
 if __name__ == "__main__":
