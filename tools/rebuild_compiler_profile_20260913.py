@@ -25,8 +25,7 @@ def rebuild() -> None:
     assert ru["role"] == "Compiler & Program Analysis Engineer"
     assert en["role"] == "Compiler & Program Analysis Engineer"
 
-    # Preserve canonical employer dates/titles already present in the source instead of
-    # manufacturing new timeline facts. Only the evidence-backed bullets are rebuilt.
+    # Preserve canonical dates/titles already present in the source; rebuild only claims.
     ru_isp = pick_experience(ru, "ИСП РАН")
     ru_mcst = pick_experience(ru, "МЦСТ")
     en_isp = pick_experience(en, "ISP RAS")
@@ -35,33 +34,31 @@ def rebuild() -> None:
     ru_isp["org"] = "SharpChecker · C#/.NET · program analysis"
     ru_isp["bullets"] = [
         "Участвую в разработке SharpChecker — промышленной Roslyn-based платформы статического анализа C#/.NET в ИСП РАН.",
-        "Текущие задачи включают анализ, связанный с символьными вычислениями и symbolic execution; не заявляю ownership всего движка анализа.",
+        "Текущие задачи включают symbolic computations / symbolic execution в анализе C#-программ.",
     ]
     en_isp["org"] = "SharpChecker · C#/.NET · program analysis"
     en_isp["bullets"] = [
         "Contribute to SharpChecker, ISP RAS’s industrial Roslyn-based static-analysis platform for C#/.NET.",
-        "Current tasks include program-analysis work involving symbolic computations and symbolic execution; the CV does not claim ownership of the broader analysis engine.",
+        "Current tasks include symbolic-computation / symbolic-execution work in C# program analysis.",
     ]
 
-    # Keep the verified MCST scope but make the correctness boundary explicit.
     ru_mcst["bullets"] = [
-        "Реализовал LICM-pass для LLVM 22: анализ циклов, проверки побочных эффектов и speculative safety, вынос доказанно инвариантных инструкций в preheader.",
-        "Разработал консервативный прототип межпроцедурного global-IV анализа: APInt-аффинная эволюция, транзитивные эффекты вызовов, отдельная legality-проверка и преобразование LLVM IR; неподдерживаемые CFG/calls отклоняются без изменения программы.",
+        "Реализовал LLVM 22 LICM-pass: loop analysis, side-effect/speculative-safety checks и вынос доказанно инвариантных инструкций в preheader.",
+        "Разработал консервативный interprocedural global-IV prototype: APInt-аффинная эволюция, транзитивные call effects, отдельная legality-проверка и LLVM IR transformation; unsupported cases отклоняются без изменения программы.",
     ]
     en_mcst["bullets"] = [
-        "Implemented an LLVM 22 LICM pass with loop analysis, side-effect/speculative-safety checks, and hoisting only proven loop-invariant instructions to preheaders.",
-        "Developed a conservative interprocedural global-IV prototype with APInt affine evolution, transitive call effects, a separate legality phase, and LLVM IR transformation; unsupported CFG/call cases are rejected unchanged.",
+        "Implemented an LLVM 22 LICM pass with loop analysis, side-effect/speculative-safety checks, and hoisting only proven invariants to preheaders.",
+        "Developed a conservative interprocedural global-IV prototype with APInt affine evolution, transitive call effects, a separate legality phase, and LLVM IR transformation; unsupported cases are rejected unchanged.",
     ]
 
     ru_vpn = pick_experience(profiles["backend"]["ru"], "VpnMediator")
     en_vpn = pick_experience(profiles["backend"]["en"], "VpnMediator")
-
     ru_production = {
         "date": ru_vpn["date"],
         "title": "Independent Engineering — stateful systems & reliability",
         "org": "VpnMediator · payments · recovery · Linux",
         "bullets": [
-            "Отвечаю за backend-архитектуру stateful subscription-сервиса: explicit payment/access states, idempotent reconciliation, migrations, backup/restore, health gates и rollback; release-validation проходит 388 Python + 148 .NET tests.",
+            "Отвечаю за stateful subscription backend: explicit payment/access states, idempotent reconciliation, migrations, backup/restore, health gates и rollback; release gate — 388 Python + 148 .NET tests."
         ],
     }
     en_production = {
@@ -69,7 +66,7 @@ def rebuild() -> None:
         "title": "Independent Engineering — stateful systems & reliability",
         "org": "VpnMediator · payments · recovery · Linux",
         "bullets": [
-            "Own backend architecture for a stateful subscription service: explicit payment/access states, idempotent reconciliation, migrations, backup/restore, health gates, and rollback; release validation passes 388 Python + 148 .NET tests.",
+            "Own a stateful subscription backend: explicit payment/access states, idempotent reconciliation, migrations, backup/restore, health gates, and rollback; release gate: 388 Python + 148 .NET tests."
         ],
     }
 
@@ -79,92 +76,53 @@ def rebuild() -> None:
     en["eyebrow"] = "LLVM 22 · interprocedural analysis · Roslyn · x86-64 backend"
 
     ru["summary"] = (
-        "Инженер по компиляторам и анализу программ с профессиональным опытом LLVM-оптимизаций в МЦСТ и C# static analysis в ИСП РАН/SharpChecker. "
-        "Строю консервативные, проверяемые анализы и преобразования для LLVM IR, Roslyn CFG/data-flow и x86-64 codegen. "
-        "Дополнительно отвечаю за stateful backend-системы с платежами, idempotency, recovery, migrations и release-safety gates."
+        "Инженер по компиляторам и анализу программ: МЦСТ — LLVM 22 optimization; ИСП РАН/SharpChecker — C# static analysis. "
+        "Публичные проекты подтверждают conservative legality, Roslyn fixed-point data-flow и x86-64 register allocation; вне compiler work отвечаю за stateful backend с idempotency, recovery и rollback."
     )
     en["summary"] = (
-        "Compiler and program-analysis engineer with professional experience in LLVM optimization at MCST and C# static analysis at ISP RAS/SharpChecker. "
-        "I build conservative, verifiable analyses and transformations across LLVM IR, Roslyn CFG/data flow, and x86-64 code generation. "
-        "I also own stateful backend systems with payments, idempotency, recovery, migrations, and release-safety gates."
+        "Compiler and program-analysis engineer: LLVM 22 optimization at MCST and C# static analysis at ISP RAS/SharpChecker. "
+        "Public projects demonstrate conservative legality, Roslyn fixed-point data flow, and x86-64 register allocation; beyond compiler work I own a stateful backend with idempotency, recovery, and rollback."
     )
 
     ru["description"] = (
-        "Михаил Разаков — Compiler & Program Analysis Engineer: LLVM 22, interprocedural analysis, legality, Roslyn fixed-point data-flow, "
-        "symbolic execution, register allocation, SysV x86-64 codegen и reliability ownership."
+        "Михаил Разаков — Compiler & Program Analysis Engineer: LLVM 22, interprocedural analysis, legality, Roslyn data-flow, symbolic execution, x86-64 codegen и reliability ownership."
     )
     en["description"] = (
-        "Mikhail Razakov — Compiler & Program Analysis Engineer: LLVM 22, interprocedural analysis, legality, Roslyn fixed-point data flow, "
-        "symbolic execution, register allocation, SysV x86-64 code generation, and reliability ownership."
+        "Mikhail Razakov — Compiler & Program Analysis Engineer: LLVM 22, interprocedural analysis, legality, Roslyn data flow, symbolic execution, x86-64 code generation, and reliability ownership."
     )
 
     ru["proofs"] = [
-        [
-            "Professional compiler / analysis",
-            "МЦСТ: LLVM 22 LICM и межпроцедурный global-IV; ИСП РАН: SharpChecker, промышленный C#/.NET static analysis."
-        ],
-        [
-            "Validated LLVM transformation",
-            "Global-IV: 29 positive/negative regressions, LLVM Verifier, structural checks, idempotence и before/after execution."
-        ],
-        [
-            "Production ownership",
-            "VpnMediator: explicit state, idempotent reconciliation, migrations, backup/restore, health gates и rollback; 388 Python + 148 .NET tests в release validation."
-        ],
+        ["Professional compiler / analysis", "МЦСТ: LLVM 22 LICM/global-IV; ИСП РАН: SharpChecker C#/.NET static analysis."],
+        ["Validated LLVM transformation", "Global-IV: 29 positive/negative regressions, LLVM Verifier, structural checks, idempotence и before/after execution."],
+        ["Production ownership", "VpnMediator: explicit state, reconciliation, migrations, backup/restore, health gates и rollback; release gate — 388 Python + 148 .NET tests."],
     ]
     en["proofs"] = [
-        [
-            "Professional compiler / analysis",
-            "MCST: LLVM 22 LICM and interprocedural global-IV; ISP RAS: SharpChecker industrial C#/.NET static analysis."
-        ],
-        [
-            "Validated LLVM transformation",
-            "Global-IV: 29 positive/negative regressions, LLVM Verifier, structural checks, idempotence, and before/after execution."
-        ],
-        [
-            "Production ownership",
-            "VpnMediator: explicit state, idempotent reconciliation, migrations, backup/restore, health gates, and rollback; 388 Python + 148 .NET tests in release validation."
-        ],
+        ["Professional compiler / analysis", "MCST: LLVM 22 LICM/global-IV; ISP RAS: SharpChecker C#/.NET static analysis."],
+        ["Validated LLVM transformation", "Global-IV: 29 positive/negative regressions, LLVM Verifier, structural checks, idempotence, and before/after execution."],
+        ["Production ownership", "VpnMediator: explicit state, reconciliation, migrations, backup/restore, health gates, and rollback; release gate: 388 Python + 148 .NET tests."],
     ]
 
     ru["experience"] = [ru_isp, ru_mcst, ru_production]
     en["experience"] = [en_isp, en_mcst, en_production]
 
+    # One-page CV budget: each printed project has a distinct hiring job.
+    # UniversalToolchain remains on the web CV as language-infrastructure evidence.
+    ru["project_ids"] = ["globaliv", "deref", "codegen", "wist"]
+    en["project_ids"] = ["globaliv", "deref", "codegen", "wist"]
+    ru["print_project_limit"] = 3
+    en["print_project_limit"] = 3
+
     ru["skills"] = [
-        [
-            "Compiler / IR",
-            "C++23, LLVM 22, LLVM IR, optimization passes, APInt, interprocedural analysis, CFG/SSA, dominators, loops, LICM, legality, LLVM Verifier",
-        ],
-        [
-            "Анализ программ",
-            "C#, .NET, Roslyn ControlFlowGraph, fixed-point data-flow, symbolic computations/execution, conditional edges, loops/back edges, state propagation и joins",
-        ],
-        [
-            "Backend / codegen",
-            "Rust, SysV x86-64, liveness/interference, linear scan, simulated annealing, spills, phi lowering, differential execution",
-        ],
-        [
-            "Infrastructure / reliability",
-            "typed artifact contracts, deterministic planning, interpreter/CIL parity, explicit state machines, idempotency, recovery, migrations, rollback",
-        ],
+        ["Compiler / IR", "C++23, LLVM 22/IR, APInt, interprocedural analysis, CFG/SSA, dominators, loops, LICM, legality, LLVM Verifier"],
+        ["Анализ программ", "C#/.NET, Roslyn CFG, fixed-point data-flow, symbolic execution, conditional edges, loops/back edges, state propagation/joins"],
+        ["Backend / codegen", "Rust, SysV x86-64, liveness/interference, linear scan, simulated annealing, spills, phi lowering, differential execution"],
+        ["Infrastructure / reliability", "typed contracts, deterministic planning, interpreter/CIL parity, state machines, idempotency, recovery, migrations, rollback"],
     ]
     en["skills"] = [
-        [
-            "Compiler / IR",
-            "C++23, LLVM 22, LLVM IR, optimization passes, APInt, interprocedural analysis, CFG/SSA, dominators, loops, LICM, legality, LLVM Verifier",
-        ],
-        [
-            "Program Analysis",
-            "C#, .NET, Roslyn ControlFlowGraph, fixed-point data flow, symbolic computations/execution, conditional edges, loops/back edges, state propagation and joins",
-        ],
-        [
-            "Backend / Codegen",
-            "Rust, SysV x86-64, liveness/interference, linear scan, simulated annealing, spills, phi lowering, differential execution",
-        ],
-        [
-            "Infrastructure / Reliability",
-            "typed artifact contracts, deterministic planning, interpreter/CIL parity, explicit state machines, idempotency, recovery, migrations, rollback",
-        ],
+        ["Compiler / IR", "C++23, LLVM 22/IR, APInt, interprocedural analysis, CFG/SSA, dominators, loops, LICM, legality, LLVM Verifier"],
+        ["Program Analysis", "C#/.NET, Roslyn CFG, fixed-point data flow, symbolic execution, conditional edges, loops/back edges, state propagation/joins"],
+        ["Backend / Codegen", "Rust, SysV x86-64, liveness/interference, linear scan, simulated annealing, spills, phi lowering, differential execution"],
+        ["Infrastructure / Reliability", "typed contracts, deterministic planning, interpreter/CIL parity, state machines, idempotency, recovery, migrations, rollback"],
     ]
 
     ru["contact_heading"] = "Целевые роли: Compiler Engineer · Program Analysis · Static Analysis · Compiler / Language Infrastructure"
@@ -180,11 +138,6 @@ def rebuild() -> None:
     SITE.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     facts = FACTS.read_text(encoding="utf-8")
-    facts = facts.replace(
-        "UniversalToolchain current exact test manifest on master (verified at commit `36206be5-648f-ec36-5be6-e03381ba44d50c2cafe5`): 1,306 passed, 0 failed, 0 skipped.",
-        "UniversalToolchain current exact test manifest on master (verified at commit `40117eb68c630f7129c120aaaadc69be8f4ecbfb`): 1,324 passed, 0 failed, 0 skipped.",
-    )
-    # v44 used the raw SHA without separators; handle that canonical spelling as well.
     facts = facts.replace(
         "UniversalToolchain current exact test manifest on master (verified at commit `36206b66548fec365be6e03381ba44d50c2cafe5`): 1,306 passed, 0 failed, 0 skipped.",
         "UniversalToolchain current exact test manifest on master (verified at commit `40117eb68c630f7129c120aaaadc69be8f4ecbfb`): 1,324 passed, 0 failed, 0 skipped.",
