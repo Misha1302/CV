@@ -21,13 +21,15 @@ Generated HTML and PDF files must not be edited manually.
 
 ## Canonical profiles
 
-1. Compiler / Static Analysis Engineer
-2. Compiler & Program Analysis Engineer
-3. .NET Backend / Platform Reliability
-4. C++ / LLVM Systems
-5. Quantitative Research / Research Software Engineering
+1. Compiler & Program Analysis Engineer (canonical)
+2. Compiler Infrastructure / Language Tooling Engineer
+3. Compiler Backend / Code Generation Engineer
+4. Static Analysis / Program Analysis Engineer
+5. .NET Backend / Platform Reliability
+6. C++ / LLVM Systems
+7. Quantitative Research / Research Software Engineering
 
-The landing page uses the compiler/static-analysis profile as the default and exposes four role-specific alternatives. Profile navigation and landing-card labels are defined by the canonical `profile_ui` metadata in `data/site.json`. Older narrow URLs redirect to the nearest canonical profile.
+The landing page uses the Compiler & Program Analysis profile as the canonical identity and exposes role-specific alternatives. Profile navigation and landing-card labels are defined by the canonical `profile_ui` metadata in `data/site.json`. Older narrow URLs redirect to the nearest canonical profile.
 
 ## Local build
 

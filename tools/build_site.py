@@ -187,14 +187,14 @@ def compiler_hero(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> s
         f'<div class="compiler-proof"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>'
         for title, body in profile.get("proofs", [])[:3]
     )
-    proof_row = f'<div class="compiler-proof-row">{proof_items}</div>' if proof_items else ""
+    proof_row = f'<div class="compiler-proof-row">{proof_items}</div>' if proof_items and profile.get("show_web_proofs", True) else ""
     return f"""
 <section class="shell compiler-intro" id="top">
   <div class="compiler-intro-copy">
     <h1>{esc(person_name(data, lang))}</h1>
     <p class="hero-role">{esc(profile['role'])}</p>
     <p class="compiler-summary">{esc(profile['summary'])}</p>
-    {proof_row}
+{proof_row}
     <div class="compiler-meta"><span>{esc(location)}</span><span>{esc(education)}</span></div>
     <div class="compiler-links">
       <a href="mailto:{esc(person['email'])}">{esc(person['email'])}</a>
@@ -228,7 +228,7 @@ def trajectory_section(data: dict[str, Any], lang: str, profile: dict[str, Any])
 
 
 def print_trajectory(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
-    if not profile.get("show_trajectory"):
+    if not profile.get("print_show_trajectory", profile.get("show_trajectory")):
         return ""
     items = " · ".join(f'{item["period"]}: {item["label"]}' for item in data["trajectory"][lang])
     return f'<p class="pcv-trajectory">{esc(items)}</p>'
@@ -383,22 +383,30 @@ def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
     head = common_head(data, lang, profile["filename"], profile["title"], profile["description"], profile["role"])
     footer_label = "Обновлено" if lang == "ru" else "Updated"
     if profile.get("compiler_layout") or profile_key == "compiler":
-        main_content = f"{compiler_hero(data, lang, profile)}{trajectory_section(data, lang, profile)}{experience_section(lang, profile, compact=True)}{compiler_projects_section(data, lang, profile)}{skills_section(lang, profile, compact=True)}{recognition_section(data, lang, profile, compact=True)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
+        if profile_key == "compiler":
+            main_content = f"{compiler_hero(data, lang, profile)}{experience_section(lang, profile, compact=True)}{compiler_projects_section(data, lang, profile)}{trajectory_section(data, lang, profile)}{skills_section(lang, profile, compact=True)}{recognition_section(data, lang, profile, compact=True)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
+        else:
+            main_content = f"{compiler_hero(data, lang, profile)}{trajectory_section(data, lang, profile)}{experience_section(lang, profile, compact=True)}{compiler_projects_section(data, lang, profile)}{skills_section(lang, profile, compact=True)}{recognition_section(data, lang, profile, compact=True)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
     else:
         main_content = f"{hero(data, lang, profile)}{proof_strip(profile)}{experience_section(lang, profile)}{projects_section(data, lang, profile)}{skills_section(lang, profile)}{recognition_section(data, lang, profile)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
+    body_class = f"profile-{esc(profile_key)}"
+    if profile.get("compiler_layout") and profile_key != "compiler":
+        body_class += " profile-compiler"
+    if profile_key == "compiler":
+        body_class += " profile-primary-compiler"
     return f"""{head}
-<body class="profile-{esc(profile_key)}{' profile-compiler' if profile.get('compiler_layout') and profile_key != 'compiler' else ''}">{print_cv(data, lang, profile)}{header(data, lang, profile)}<main id="main">{main_content}</main><footer class="shell site-footer"><span>{esc(person_name(data, lang))} · {esc(profile['footer'])}</span><span>{footer_label} {esc(profile.get('updated_at', data['updated_at']))}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
+<body class="{body_class}">{print_cv(data, lang, profile)}{header(data, lang, profile)}<main id="main">{main_content}</main><footer class="shell site-footer"><span>{esc(person_name(data, lang))} · {esc(profile['footer'])}</span><span>{footer_label} {esc(profile.get('updated_at', data['updated_at']))}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
 """
 
 
 def landing_page(data: dict[str, Any]) -> str:
     lang = "ru"
-    general = data["profiles"]["general"][lang]
-    title = "Михаил Разаков — Compiler / Static Analysis Engineer"
-    description = general["description"]
-    head = common_head(data, lang, "index.html", title, description, general["role"], data["site_url"])
+    primary = data["profiles"]["compiler"][lang]
+    title = "Михаил Разаков — Compiler & Program Analysis Engineer"
+    description = primary["description"]
+    head = common_head(data, lang, "index.html", title, description, primary["role"], data["site_url"])
     cards = []
-    for key in (profile_key for profile_key in data.get("selector_order", data["profile_order"]) if profile_key != "general"):
+    for key in (profile_key for profile_key in data.get("selector_order", data["profile_order"]) if profile_key != "compiler"):
         ru = data["profiles"][key]["ru"]
         en = data["profiles"][key]["en"]
         ui = data["profile_ui"][key]
@@ -409,12 +417,12 @@ def landing_page(data: dict[str, Any]) -> str:
     p = data["person"]
     return f"""{head}
 <body class="selector-page">
-<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(p['name_ru'])}</strong><span>Compiler / Static Analysis Engineer</span></span></a><nav class="primary-nav"><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="en.html">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav></div></details></div></div></header>
-<main id="main" class="shell landing-main"><section class="selector-intro landing-hero"><p class="eyebrow">LLVM · static analysis · program analysis · compiler infrastructure</p><h1>Compiler / Static Analysis Engineer</h1><p>{esc(general['summary'])}</p><div class="hero-actions"><a class="button primary" href="ru.html">Открыть резюме</a><a class="button" href="pdf/{esc(general['pdf'])}" download>Скачать PDF</a><a class="button" href="#cases">Посмотреть проекты</a></div><div class="landing-evidence"><span>MCST · LLVM 22 · C++</span><span>ISP RAS · SharpChecker · static analysis</span><span>CFG/SSA · data-flow · x86-64</span></div></section>
-<section id="profiles" class="landing-section"><div class="section-heading"><p class="section-label">01 · Профили</p><div><h2>Профили под конкретные роли.</h2><p class="section-intro">Основной профиль — Compiler / Static Analysis Engineer. Специализированные версии меняют приоритет доказательств, но сохраняют единый набор проверенных фактов.</p></div></div><div class="selector-grid">{''.join(cards)}</div><p class="portfolio-link"><a href="ru.html">Полное техническое портфолио →</a></p></section>
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(p['name_ru'])}</strong><span>Compiler &amp; Program Analysis Engineer</span></span></a><nav class="primary-nav"><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="en-compiler.html">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav></div></details></div></div></header>
+<main id="main" class="shell landing-main"><section class="selector-intro landing-hero"><p class="eyebrow">LLVM · static analysis · program analysis · compiler infrastructure</p><h1>Compiler &amp; Program Analysis Engineer</h1><p>{esc(primary['summary'])}</p><div class="hero-actions"><a class="button primary" href="{esc(primary['filename'])}">Открыть резюме</a><a class="button" href="pdf/{esc(primary['pdf'])}" download>Скачать PDF</a><a class="button" href="#cases">Посмотреть проекты</a></div><div class="landing-evidence"><span>MCST · LLVM 22 · C++</span><span>ISP RAS · SharpChecker · static analysis</span><span>CFG/SSA · data-flow · x86-64</span></div></section>
+<section id="profiles" class="landing-section"><div class="section-heading"><p class="section-label">01 · Профили</p><div><h2>Профили под конкретные роли.</h2><p class="section-intro">Основной профиль — Compiler &amp; Program Analysis Engineer. Специализированные версии меняют приоритет доказательств, но сохраняют единый набор проверенных фактов.</p></div></div><div class="selector-grid">{''.join(cards)}</div></section>
 <section id="cases" class="landing-section"><div class="section-heading"><p class="section-label">02 · Кейсы</p><div><h2>Проблема → решение → проверяемый результат.</h2><p class="section-intro">Открытые проекты ведут к коду и документации; закрытые — к публичному архитектурному разбору без секретов и пользовательских данных.</p></div></div><div class="project-grid">{project_cases}</div></section>
 <section class="contact-section" id="contact"><div class="contact-panel"><div><h2>Связаться по инженерной роли или проекту.</h2><p>{esc(p['location_ru'])}</p></div><div class="contact-links"><a class="button primary" href="mailto:{esc(p['email'])}">Почта</a><a class="button" href="{esc(p['telegram'])}" target="_blank" rel="noopener noreferrer">Telegram</a><a class="button" href="{esc(p['github'])}" target="_blank" rel="noopener noreferrer">GitHub</a></div></div></section></main>
-<footer class="shell site-footer"><span>{esc(p['name_ru'])} · Compiler / Static Analysis Engineer</span><span>Обновлено {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
+<footer class="shell site-footer"><span>{esc(p['name_ru'])} · Compiler &amp; Program Analysis Engineer</span><span>Обновлено {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
 """
 
 
@@ -423,7 +431,7 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
     filename = project[f"case_{lang}"]
     title = f"{project['title']} — {'архитектурный кейс' if lang == 'ru' else 'architecture case study'}"
     description = project[f"result_{lang}"]
-    role = data["profiles"]["general"][lang]["role"]
+    role = data["profiles"]["compiler"][lang]["role"]
     head = common_head(data, lang, filename, title, description, role)
     # Paths from cases/ need one level up.
     head = head.replace('href="assets/', 'href="../assets/').replace('href="style.css', 'href="../style.css').replace('content="https://misha1302.github.io/CV/cases/', 'content="https://misha1302.github.io/CV/cases/')
@@ -473,7 +481,7 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
     if project.get("docs"):
         links.append(f'<a class="button" href="{esc(project["docs"])}" target="_blank" rel="noopener noreferrer">Documentation</a>')
     return f"""{head}
-<body class="case-page"><header class="site-header"><div class="shell header-inner"><a class="brand" href="../index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(person_name(data, lang))}</strong><span>{'инженерный кейс' if lang == 'ru' else 'engineering case'}</span></span></a><div></div><div class="header-actions"><a class="button compact" href="../{esc(data['profiles']['general'][lang]['filename'])}">{labels['back']}</a></div></div></header>
+<body class="case-page"><header class="site-header"><div class="shell header-inner"><a class="brand" href="../index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(person_name(data, lang))}</strong><span>{'инженерный кейс' if lang == 'ru' else 'engineering case'}</span></span></a><div></div><div class="header-actions"><a class="button compact" href="../{esc(data['profiles']['compiler'][lang]['filename'])}">{labels['back']}</a></div></div></header>
 <main class="shell case-main" id="main"><section class="case-hero"><p class="eyebrow">{esc(project[f'type_{lang}'])}</p><h1>{esc(project['title'])}</h1><p>{esc(project[f'problem_{lang}'])}</p>{'<div class="case-note">'+esc(labels['private'])+'</div>' if not project['public'] else ''}<div class="hero-actions">{''.join(links)}</div></section>
 <section class="case-grid"><article><span>01</span><h2>{labels['problem']}</h2><p>{esc(project[f'problem_{lang}'])}</p></article><article><span>02</span><h2>{labels['constraints']}</h2><p>{esc(constraints)}</p></article><article><span>03</span><h2>{labels['solution']}</h2><p>{esc(project[f'solution_{lang}'])}</p></article><article><span>04</span><h2>{labels['result']}</h2><p>{esc(project[f'result_{lang}'])}</p></article><article><span>05</span><h2>{labels['verification']}</h2><p>{esc(verification)}</p></article><article><span>06</span><h2>{labels['role']}</h2><p>{esc(ownership)}</p></article></section></main>
 <footer class="shell site-footer"><span>{esc(project['title'])}</span><span>{'Обновлено' if lang == 'ru' else 'Updated'} {esc(data['updated_at'])}</span></footer></body></html>
