@@ -71,25 +71,24 @@ jobs:
         run: |
           python tools/visual_regression.py --output-dir /tmp/cv-visual --update
           python tools/visual_regression.py --output-dir /tmp/cv-visual-recheck
-      - name: Build manifest and validate final tree
+      - name: Build manifest and validate generated tree
         run: |
           find tools -type d -name __pycache__ -prune -exec rm -rf {} +
           python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf
-      - name: Check regeneration idempotence
+      - name: Check regeneration determinism
         run: |
-          git add -A
-          git diff --cached --binary > /tmp/first-generation.patch
-          python tools/build_site.py
-          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence-2 --report /tmp/cv-pdf-report-2.json
-          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
-          python tools/build_site.py --manifest
-          git add -A
-          git diff --cached --binary > /tmp/second-generation.patch
-          cmp /tmp/first-generation.patch /tmp/second-generation.patch
-      - name: Remove one-shot migration machinery and commit verified result
+          python tools/build_site.py --check
+          rm -rf /tmp/cv-pdf-rebuild /tmp/cv-pdf-evidence-2
+          python tools/build_cv.py --output-dir /tmp/cv-pdf-rebuild --evidence-dir /tmp/cv-pdf-evidence-2 --report /tmp/cv-pdf-report-2.json
+          python tools/validate_cv.py --pdf-dir /tmp/cv-pdf-rebuild --compare-dir pdf --skip-manifest
+          python tools/build_site.py --check
+      - name: Remove one-shot machinery, rebuild manifest, and commit verified result
         run: |
           git rm tools/apply_semantic_portfolio_fix_20260914.py tools/refine_semantic_portfolio_fix_20260914.py tools/finalize_portfolio_breadth_20260914.py .github/workflows/apply-semantic-portfolio-fix.yml
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
+          python tools/build_site.py --manifest
+          python tools/validate_cv.py --pdf-dir pdf
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
@@ -106,4 +105,5 @@ jobs:
             /tmp/cv-visual-before-update
             /tmp/cv-visual
             /tmp/cv-visual-recheck
+            /tmp/cv-pdf-rebuild
           if-no-files-found: warn
