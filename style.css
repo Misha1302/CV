@@ -406,6 +406,35 @@ body.profile-compiler::before {
   border: 1px solid var(--border);
   border-radius: 5px;
 }
+.profile-compiler .trajectory-strip {
+  display: grid;
+  grid-template-columns: 138px minmax(0, 1fr);
+  gap: 24px;
+  padding: 23px 0 25px;
+  border-bottom: 1px solid var(--border);
+}
+.profile-compiler .trajectory-label {
+  margin: 2px 0 0;
+  color: var(--quiet);
+  font-size: 12px;
+  font-weight: 650;
+}
+.profile-compiler .trajectory-items {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.profile-compiler .trajectory-item {
+  min-width: 0;
+  padding: 0 18px;
+  border-left: 1px solid var(--border);
+}
+.profile-compiler .trajectory-item:first-child { padding-left: 0; border-left: 0; }
+.profile-compiler .trajectory-item time,
+.profile-compiler .trajectory-item strong,
+.profile-compiler .trajectory-item span { display: block; }
+.profile-compiler .trajectory-item time { color: var(--accent); font-size: 12px; font-weight: 720; }
+.profile-compiler .trajectory-item strong { margin-top: 5px; font-size: 13px; line-height: 1.25; }
+.profile-compiler .trajectory-item span { margin-top: 6px; color: var(--quiet); font-size: 11.5px; line-height: 1.4; }
 .profile-compiler .section {
   padding: 44px 0;
 }
@@ -538,6 +567,23 @@ body.profile-compiler::before {
     grid-template-columns: 1fr;
     gap: 6px;
   }
+  .profile-compiler .trajectory-strip {
+    grid-template-columns: 1fr;
+    gap: 13px;
+    padding: 22px 0 24px;
+  }
+  .profile-compiler .trajectory-items { grid-template-columns: 1fr; }
+  .profile-compiler .trajectory-item {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 10px;
+    padding: 11px 0;
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+  .profile-compiler .trajectory-item:first-child { padding-top: 0; border-top: 0; }
+  .profile-compiler .trajectory-item strong { margin-top: 0; }
+  .profile-compiler .trajectory-item span { margin-top: 4px; }
   .profile-compiler .section {
     padding: 36px 0;
   }
@@ -563,9 +609,18 @@ body.profile-compiler::before {
     padding: 11mm 12mm 10.5mm;
   }
   .profile-compiler .pcv-summary {
-    margin: 3.8mm 0 4.5mm;
+    margin: 3.8mm 0 2.2mm;
     font-size: 10pt;
     line-height: 1.38;
+  }
+  .profile-compiler .pcv-trajectory {
+    margin: 0 0 3.4mm;
+    padding: 1.8mm 0 1.9mm;
+    border-top: .6pt solid #c8b7ba;
+    border-bottom: .6pt solid #c8b7ba;
+    color: #4e4547;
+    font-size: 7.7pt;
+    line-height: 1.3;
   }
   .profile-compiler .pcv-columns {
     grid-template-columns: 1.45fr .9fr;
