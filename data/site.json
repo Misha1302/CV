@@ -1,5 +1,5 @@
 {
-  "version": 60,
+  "version": 61,
   "updated_at": "2026-09-14",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -37,8 +37,8 @@
     "compiler": {
       "label_ru": "Compiler / Program Analysis — broad",
       "label_en": "Compiler / Program Analysis — broad",
-      "landing_title": "Compiler & Program Analysis Engineer — broad fallback",
-      "landing_description_ru": "Широкий профиль для compiler/program-analysis ролей: LLVM-преобразования, Roslyn data-flow и x86-64 backend — только три сильнейших публично проверяемых проекта."
+      "landing_title": "Compiler & Program Analysis Engineer",
+      "landing_description_ru": "Основной профиль: LLVM/C++, статический анализ C#/.NET, межпроцедурный анализ, Roslyn data-flow и x86-64 backend."
     },
     "backend": {
       "label_ru": ".NET Backend / Reliability",
@@ -116,7 +116,7 @@
             "org": "SharpChecker · C#/.NET · статический анализ",
             "bullets": [
               "Участвую в разработке SharpChecker — платформы статического анализа C#/.NET в ИСП РАН.",
-              "Работаю над задачами символьных вычислений и symbolic execution в контексте статического анализа C#/.NET."
+              "Работаю над задачами символьных вычислений в контексте статического анализа C#/.NET."
             ]
           },
           {
@@ -125,8 +125,8 @@
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM 22 · C++23 · compiler engineering",
             "bullets": [
-              "Реализовал LICM-проход для LLVM 22 на C++; условия переноса проверяются по структуре цикла, обращениям к памяти, побочным эффектам и безопасности speculative execution.",
-              "Собрал Python-harness для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
+              "Реализовал LICM-проход для LLVM 22 на C++; перенос выполняется только при выполнении условий по структуре цикла, обращениям к памяти, побочным эффектам и безопасности спекулятивного выполнения.",
+              "Собрал Python-обвязку для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
             ]
           }
         ],
@@ -193,11 +193,7 @@
           }
         },
         "show_trajectory": true,
-        "experience_heading": "Профессиональный опыт",
-        "experience_note": {
-          "title": "Дополнительный продуктовый опыт",
-          "text": "Diploma.school — клиентская разработка: jQuery dropdowns, адаптивная mobile/desktop-навигация и исправление UI-регрессий; подтверждено не позднее января 2025 года."
-        }
+        "experience_heading": "Профессиональный опыт"
       },
       "en": {
         "filename": "en.html",
@@ -230,7 +226,7 @@
             "org": "SharpChecker · C#/.NET · static analysis",
             "bullets": [
               "Contribute to SharpChecker, ISP RAS's C#/.NET static-analysis platform.",
-              "Current work includes symbolic-computation and symbolic-execution tasks in C#/.NET program analysis."
+              "Current work includes symbolic-computation tasks in C#/.NET program analysis."
             ]
           },
           {
@@ -307,11 +303,7 @@
           }
         },
         "show_trajectory": true,
-        "experience_heading": "Professional Experience",
-        "experience_note": {
-          "title": "Additional product experience",
-          "text": "Diploma.school — client development: jQuery dropdown interactions, responsive mobile/desktop navigation, and UI regression fixes; confirmed no later than January 2025."
-        }
+        "experience_heading": "Professional Experience"
       }
     },
     "compiler": {
@@ -322,20 +314,20 @@
         "role": "Compiler & Program Analysis Engineer",
         "brand": "LLVM · static analysis · x86-64 codegen · language infrastructure",
         "eyebrow": "LLVM 22 · interprocedural analysis · Roslyn · x86-64 backend",
-        "summary": "Compiler & Program Analysis Engineer: ИСП РАН — статический анализ C#/.NET; ранее МЦСТ — LLVM 22/C++ compiler engineering. Основные proof points: межпроцедурный LLVM-анализ и legality, Roslyn CFG fixed-point data flow, SSA/CFG и x86-64 code generation.",
-        "description": "Михаил Разаков — Compiler & Program Analysis Engineer: LLVM 22, interprocedural legality, Roslyn fixed-point data-flow и x86-64 codegen.",
+        "summary": "Инженер по компиляторам и анализу программ. В ИСП РАН работаю над статическим анализом C#/.NET; ранее в МЦСТ — над LLVM 22/C++. Основные публичные работы: межпроцедурный LLVM-анализ с проверкой допустимости преобразований, анализ потоков данных по Roslyn CFG и backend для x86-64.",
+        "description": "Михаил Разаков — инженер по компиляторам и анализу программ: LLVM 22, межпроцедурный анализ, Roslyn CFG и x86-64 backend.",
         "proofs": [
           [
-            "Профессиональный compiler / analysis",
-            "МЦСТ: LLVM 22 · ИСП РАН: C#/.NET static analysis."
+            "Профессиональный опыт",
+            "МЦСТ: LLVM 22 · ИСП РАН: статический анализ C#/.NET."
           ],
           [
             "Эволюция проектов",
             "2022 compiler/VM → 2023 MSIL/native x64 → 2024 AST→IR→x64."
           ],
           [
-            "Современные proof points",
-            "Global-IV · x86-64 backend · Roslyn CFG fixed-point analysis."
+            "Ключевые публичные работы",
+            "Global-IV · x86-64 backend · Roslyn CFG data-flow analysis."
           ]
         ],
         "experience": [
@@ -346,7 +338,7 @@
             "org": "SharpChecker · C#/.NET · статический анализ",
             "bullets": [
               "Участвую в разработке SharpChecker — платформы статического анализа C#/.NET в ИСП РАН.",
-              "Работаю над задачами символьных вычислений и symbolic execution в контексте статического анализа C#/.NET."
+              "Работаю над задачами символьных вычислений в контексте статического анализа C#/.NET."
             ]
           },
           {
@@ -355,8 +347,8 @@
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM 22 · C++23 · compiler engineering",
             "bullets": [
-              "Реализовал LICM-проход для LLVM 22 на C++; условия переноса проверяются по структуре цикла, обращениям к памяти, побочным эффектам и безопасности speculative execution.",
-              "Собрал Python-harness для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
+              "Реализовал LICM-проход для LLVM 22 на C++; перенос выполняется только при выполнении условий по структуре цикла, обращениям к памяти, побочным эффектам и безопасности спекулятивного выполнения.",
+              "Собрал Python-обвязку для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
             ]
           }
         ],
@@ -368,11 +360,11 @@
         "skills": [
           [
             "Compiler / IR",
-            "C++23, LLVM 22/IR, APInt, interprocedural analysis, CFG/SSA, dominators, loops, LICM, legality"
+            "C++23, LLVM 22/IR, APInt, межпроцедурный анализ, CFG/SSA, dominators, loops, LICM, проверка допустимости преобразований"
           ],
           [
             "Program Analysis",
-            "C#/.NET, Roslyn ControlFlowGraph, fixed-point data flow, conditional edges, loops/back edges, joins"
+            "C#/.NET, Roslyn ControlFlowGraph, анализ потоков данных до неподвижной точки, уточнение по ветвям, loops/back edges, объединение состояний"
           ],
           [
             "Backend / Codegen",
@@ -380,10 +372,10 @@
           ],
           [
             "Correctness / Tooling",
-            "LLVM Verifier, conservative rejection, regression checks, differential execution, Linux, CMake"
+            "LLVM Verifier, консервативный отказ, регрессионные проверки, differential execution, Linux, CMake"
           ]
         ],
-        "contact_heading": "Fallback: Compiler Engineer · LLVM Engineer · Static / Program Analysis · Compiler Infrastructure",
+        "contact_heading": "Целевые роли: Compiler Engineer · LLVM Engineer · Static / Program Analysis · Compiler Infrastructure",
         "footer": "Compiler & Program Analysis Engineer · LLVM · C++",
         "recognition": [
           [
@@ -405,18 +397,18 @@
         "project_summaries": {
           "globaliv": {
             "type": "C++23 · LLVM 22 · interprocedural analysis · legality",
-            "solution": "LLVM 22 pass локализует поддерживаемые induction-like global variables после межпроцедурного анализа эффектов и аффинной эволюции с отдельным решением о допустимости; APInt моделирует fixed-width wraparound.",
-            "result": "29 позитивных и негативных regression cases: global-iv,verify, структурные ожидания, идемпотентность и сравнение наблюдаемого поведения до/после transformation."
+            "solution": "LLVM 22 pass локализует поддерживаемые глобальные переменные после межпроцедурного анализа эффектов, аффинной эволюции и отдельной проверки допустимости преобразования; APInt моделирует арифметику фиксированной разрядности.",
+            "result": "29 позитивных и негативных регрессионных сценариев проверяют LLVM Verifier, структуру результата, идемпотентность и наблюдаемое поведение до/после преобразования."
           },
           "deref": {
             "type": "C# · Roslyn · program analysis · fixed-point data-flow",
-            "solution": "Roslyn ControlFlowGraph analyzer распространяет null-state по conditional edges до неподвижной точки, обрабатывает loops/back edges и объединяет состояния нескольких predecessors.",
-            "result": "Поддерживает method/property/index/event dereferences и invalidation после assignment/ref/out; отдельные analyzer tests используют Microsoft.CodeAnalysis.CSharp.Testing."
+            "solution": "Анализатор поверх Roslyn ControlFlowGraph распространяет null-state по ветвям до неподвижной точки, обрабатывает циклы/back edges и объединяет состояния нескольких предшественников.",
+            "result": "Поддерживаются разыменования method/property/index/event и сброс состояния после assignment/ref/out; отдельные тесты построены на Microsoft.CodeAnalysis.CSharp.Testing."
           },
           "codegen": {
             "type": "Rust · compiler backend · register allocation · SysV x86-64",
-            "solution": "Compiler backend с SSA/CFG validation, анализом живости и интерференции, linear-scan и seeded simulated-annealing allocators, spills, phi lowering и SysV x86-64 emitter.",
-            "result": "Независимый verifier раскладки и native-vs-interpreter differential execution; тесты покрывают ветвления, циклы, spills и parallel phi moves; отдельная публичная линия native-codegen начинается с Visk (2023) и Wist4 (2024)."
+            "solution": "Backend компилятора: проверка SSA/CFG, анализ живости и интерференции, linear-scan и seeded simulated-annealing allocators, spills, phi lowering и генерация SysV x86-64.",
+            "result": "Независимый verifier раскладки и сравнение native-кода с эталонным интерпретатором; тесты покрывают ветвления, циклы, spills и parallel phi moves."
           }
         },
         "show_portrait": true,
@@ -426,10 +418,8 @@
         "updated_at": "2026-09-14",
         "show_trajectory": true,
         "experience_heading": "Профессиональный опыт",
-        "experience_note": {
-          "title": "Дополнительный продуктовый опыт",
-          "text": "Diploma.school — клиентская разработка: jQuery dropdowns, адаптивная mobile/desktop-навигация и исправление UI-регрессий; подтверждено не позднее января 2025 года."
-        }
+        "show_web_proofs": false,
+        "print_show_trajectory": false
       },
       "en": {
         "filename": "en-compiler.html",
@@ -438,8 +428,8 @@
         "role": "Compiler & Program Analysis Engineer",
         "brand": "LLVM · static analysis · x86-64 codegen · language infrastructure",
         "eyebrow": "LLVM 22 · interprocedural analysis · Roslyn · x86-64 backend",
-        "summary": "Compiler & Program Analysis Engineer: C#/.NET static analysis at ISP RAS; previously LLVM 22/C++ compiler engineering at MCST. Core proof points: interprocedural LLVM analysis and legality, Roslyn CFG fixed-point data flow, SSA/CFG, and x86-64 code generation.",
-        "description": "Mikhail Razakov — Compiler & Program Analysis Engineer: LLVM 22, interprocedural legality, Roslyn fixed-point data flow, and x86-64 codegen.",
+        "summary": "Compiler and program-analysis engineer. I work on C#/.NET static analysis at ISP RAS and previously worked on LLVM 22/C++ compiler engineering at MCST. Public work covers interprocedural LLVM analysis with explicit legality checks, Roslyn CFG fixed-point data flow, and an x86-64 backend.",
+        "description": "Mikhail Razakov — Compiler & Program Analysis Engineer: LLVM 22, interprocedural analysis, Roslyn CFG, and x86-64 backend.",
         "proofs": [
           [
             "Professional compiler / analysis",
@@ -462,7 +452,7 @@
             "org": "SharpChecker · C#/.NET · static analysis",
             "bullets": [
               "Contribute to SharpChecker, ISP RAS's C#/.NET static-analysis platform.",
-              "Current work includes symbolic-computation and symbolic-execution tasks in C#/.NET program analysis."
+              "Current work includes symbolic-computation tasks in C#/.NET program analysis."
             ]
           },
           {
@@ -542,10 +532,8 @@
         "updated_at": "2026-09-14",
         "show_trajectory": true,
         "experience_heading": "Professional Experience",
-        "experience_note": {
-          "title": "Additional product experience",
-          "text": "Diploma.school — client development: jQuery dropdown interactions, responsive mobile/desktop navigation, and UI regression fixes; confirmed no later than January 2025."
-        }
+        "show_web_proofs": false,
+        "print_show_trajectory": false
       }
     },
     "backend": {
@@ -1254,7 +1242,7 @@
             "org": "SharpChecker · C#/.NET · статический анализ",
             "bullets": [
               "Участвую в разработке SharpChecker — платформы статического анализа C#/.NET в ИСП РАН.",
-              "Работаю над задачами символьных вычислений и symbolic execution в контексте статического анализа C#/.NET."
+              "Работаю над задачами символьных вычислений в контексте статического анализа C#/.NET."
             ]
           },
           {
@@ -1263,8 +1251,8 @@
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM 22 · C++23 · compiler engineering",
             "bullets": [
-              "Реализовал LICM-проход для LLVM 22 на C++; условия переноса проверяются по структуре цикла, обращениям к памяти, побочным эффектам и безопасности speculative execution.",
-              "Собрал Python-harness для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
+              "Реализовал LICM-проход для LLVM 22 на C++; перенос выполняется только при выполнении условий по структуре цикла, обращениям к памяти, побочным эффектам и безопасности спекулятивного выполнения.",
+              "Собрал Python-обвязку для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
             ]
           }
         ],
@@ -1366,7 +1354,7 @@
             "org": "SharpChecker · C#/.NET · static analysis",
             "bullets": [
               "Contribute to SharpChecker, ISP RAS's C#/.NET static-analysis platform.",
-              "Current work includes symbolic-computation and symbolic-execution tasks in C#/.NET program analysis."
+              "Current work includes symbolic-computation tasks in C#/.NET program analysis."
             ]
           },
           {
@@ -1456,7 +1444,7 @@
         "role": "Static Analysis / Program Analysis Engineer",
         "brand": "static analysis · data-flow · LLVM · Roslyn",
         "eyebrow": "Roslyn CFG · fixed point · interprocedural LLVM analysis",
-        "summary": "Static / Program Analysis Engineer: ИСП РАН — C#/.NET static analysis и задачи символьных вычислений/symbolic execution; ранее МЦСТ — LLVM 22/C++. Публичные proof points: Roslyn CFG fixed-point data flow и межпроцедурный LLVM-анализ с conservative applicability checks.",
+        "summary": "Инженер по статическому анализу и анализу программ: ИСП РАН — C#/.NET static analysis и задачи символьных вычислений; ранее МЦСТ — LLVM 22/C++. Публичные работы: Roslyn CFG data-flow до неподвижной точки и межпроцедурный LLVM-анализ с консервативной проверкой применимости преобразований.",
         "description": "Михаил Разаков — Static / Program Analysis Engineer: Roslyn CFG fixed-point data-flow, branch refinement, joins, loops и interprocedural LLVM analysis.",
         "proofs": [
           [
@@ -1480,7 +1468,7 @@
             "org": "SharpChecker · C#/.NET · статический анализ",
             "bullets": [
               "Участвую в разработке SharpChecker — платформы статического анализа C#/.NET в ИСП РАН.",
-              "Работаю над задачами символьных вычислений и symbolic execution в контексте статического анализа C#/.NET."
+              "Работаю над задачами символьных вычислений в контексте статического анализа C#/.NET."
             ]
           },
           {
@@ -1489,8 +1477,8 @@
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM 22 · C++23 · compiler engineering",
             "bullets": [
-              "Реализовал LICM-проход для LLVM 22 на C++; условия переноса проверяются по структуре цикла, обращениям к памяти, побочным эффектам и безопасности speculative execution.",
-              "Собрал Python-harness для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
+              "Реализовал LICM-проход для LLVM 22 на C++; перенос выполняется только при выполнении условий по структуре цикла, обращениям к памяти, побочным эффектам и безопасности спекулятивного выполнения.",
+              "Собрал Python-обвязку для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
             ]
           }
         ],
@@ -1562,7 +1550,7 @@
         "role": "Static Analysis / Program Analysis Engineer",
         "brand": "static analysis · data flow · LLVM · Roslyn",
         "eyebrow": "Roslyn CFG · fixed point · interprocedural LLVM analysis",
-        "summary": "Static / Program Analysis Engineer: C#/.NET static analysis and symbolic-computation/symbolic-execution tasks at ISP RAS; previously LLVM 22/C++ at MCST. Public proof points: Roslyn CFG fixed-point data flow and interprocedural LLVM analysis with conservative applicability checks.",
+        "summary": "Static / Program Analysis Engineer: C#/.NET static analysis and symbolic-computation tasks at ISP RAS; previously LLVM 22/C++ at MCST. Public work covers Roslyn CFG fixed-point data flow and interprocedural LLVM analysis with conservative applicability checks.",
         "description": "Mikhail Razakov — Static / Program Analysis Engineer: Roslyn CFG fixed-point data flow, branch refinement, joins, loops, and interprocedural LLVM analysis.",
         "proofs": [
           [
@@ -1586,7 +1574,7 @@
             "org": "SharpChecker · C#/.NET · static analysis",
             "bullets": [
               "Contribute to SharpChecker, ISP RAS's C#/.NET static-analysis platform.",
-              "Current work includes symbolic-computation and symbolic-execution tasks in C#/.NET program analysis."
+              "Current work includes symbolic-computation tasks in C#/.NET program analysis."
             ]
           },
           {
@@ -2106,10 +2094,10 @@
     }
   },
   "selector_order": [
+    "compiler",
     "general",
     "compiler_backend",
     "program_analysis",
-    "compiler",
     "backend",
     "systems",
     "quantdev",
