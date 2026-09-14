@@ -7,6 +7,12 @@ on:
     paths:
       - "tools/apply_semantic_portfolio_fix_20260914.py"
       - ".github/workflows/apply-semantic-portfolio-fix.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "tools/apply_semantic_portfolio_fix_20260914.py"
+      - ".github/workflows/apply-semantic-portfolio-fix.yml"
 
 permissions:
   contents: write
@@ -23,6 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
@@ -81,7 +88,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Rewrite compiler CV positioning from verified evidence [skip ci]"
-          git push
+          git push origin HEAD:refactor/cv-semantic-positioning-2026-09-14
       - uses: actions/upload-artifact@v4
         if: always()
         with:
