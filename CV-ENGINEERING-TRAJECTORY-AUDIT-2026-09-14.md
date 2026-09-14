@@ -1,5 +1,7 @@
 # CV Engineering Trajectory Audit — 2026-09-14
 
+> **2026-09-14 follow-up:** the detailed 2023–2024 compiler/backend history is expanded in `CV-COMPILER-LINEAGE-AUDIT-2026-09-14.md`. This earlier audit remains valid for category boundaries, but its compact chronology is not the complete compiler-project history.
+
 ## Scope and baseline
 
 Baseline repository: `Misha1302/CV` at `482676aabdaae30784a7993c2b499213160060d8` (`origin/main` at start of work).

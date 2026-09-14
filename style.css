@@ -366,6 +366,31 @@ body.profile-compiler::before {
   font-size: 16px;
   line-height: 1.68;
 }
+.profile-compiler .compiler-proof-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+.profile-compiler .compiler-proof {
+  min-width: 0;
+  padding-top: 11px;
+  border-top: 1px solid var(--border);
+}
+.profile-compiler .compiler-proof strong,
+.profile-compiler .compiler-proof span { display: block; }
+.profile-compiler .compiler-proof strong {
+  font-size: 11.5px;
+  line-height: 1.25;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+}
+.profile-compiler .compiler-proof span {
+  margin-top: 5px;
+  color: var(--quiet);
+  font-size: 11.5px;
+  line-height: 1.42;
+}
 .profile-compiler .compiler-meta {
   display: flex;
   flex-wrap: wrap;
@@ -450,6 +475,19 @@ body.profile-compiler::before {
   line-height: 1.08;
   letter-spacing: -.035em;
 }
+.profile-compiler .experience-note {
+  display: grid;
+  grid-template-columns: 138px minmax(0, 1fr);
+  gap: 24px;
+  margin: 18px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--quiet);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.profile-compiler .experience-note strong { color: var(--muted); }
+.profile-compiler .experience-note span { display: block; }
 .profile-compiler .timeline article {
   grid-template-columns: 138px minmax(225px, .82fr) minmax(0, 1.18fr);
   gap: 24px;
@@ -567,6 +605,14 @@ body.profile-compiler::before {
     grid-template-columns: 1fr;
     gap: 6px;
   }
+  .profile-compiler .compiler-proof-row {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+  .profile-compiler .experience-note {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
   .profile-compiler .trajectory-strip {
     grid-template-columns: 1fr;
     gap: 13px;
@@ -639,6 +685,13 @@ body.profile-compiler::before {
     gap: 2.4mm;
     margin-bottom: 2.8mm;
   }
+  .profile-compiler .pcv-experience-note {
+    margin: .5mm 0 0;
+    color: #4e4547;
+    font-size: 7.7pt;
+    line-height: 1.28;
+  }
+  .profile-compiler .pcv-experience-note strong { color: #211a1c; }
   .profile-compiler .pcv-date {
     font-size: 8.2pt;
   }

@@ -1,5 +1,5 @@
 {
-  "version": 59,
+  "version": 60,
   "updated_at": "2026-09-14",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -92,20 +92,20 @@
         "role": "Compiler Infrastructure / Language Tooling Engineer",
         "brand": "compiler infrastructure · language tooling · LLVM · deterministic composition",
         "eyebrow": "UniversalToolchain · LLVM · разрешение зависимостей · детерминированные pipelines",
-        "summary": "Инженер инфраструктуры компиляторов и языковых инструментов с профессиональным опытом LLVM и статического анализа. В UniversalToolchain реализовал разрешение зависимостей и конфликтов, выбор реализаций компонентов, детерминированный порядок проходов, маршрутизацию типизированных артефактов и проверку конфигурации до запуска; доклад об архитектуре проекта принят на LangDev’26.",
+        "summary": "Инженер инфраструктуры компиляторов с профессиональным опытом LLVM 22 и статического анализа C#/.NET. Публичные compiler/runtime-проекты — с 2022 года: CIL и генерация native x86-64 кода к 2023-му, AST→IR→x64 конвейер к 2024-му. Сейчас развиваю UniversalToolchain: детерминированная композиция compiler pipeline и 1 324/1 324 теста.",
         "description": "Михаил Разаков — Compiler Infrastructure / Language Tooling Engineer: разрешение зависимостей и конфликтов, выбор компонентов, детерминированные compiler pipelines, LLVM 22 и проверка до исполнения.",
         "proofs": [
           [
-            "Сборка компиляторного конвейера",
-            "UniversalToolchain разрешает зависимости и конфликты, однозначно выбирает реализации и фиксирует порядок проходов и маршруты артефактов до запуска."
+            "Профессиональный контекст",
+            "МЦСТ: LLVM 22 · ИСП РАН: статический анализ C#/.NET."
           ],
           [
-            "LLVM и статический анализ",
-            "МЦСТ: разработка LLVM 22; ИСП РАН: статический анализ C#/.NET."
+            "Длительная история компиляторных проектов",
+            "Публичные compiler/runtime-проекты с 2022; native x86-64 codegen — с 2023."
           ],
           [
-            "Проверка корректности",
-            "1 324/1 324 теста; отдельно проверяются совпадение результатов интерпретатора и CIL-бэкенда и отказ от неподдерживаемых конфигураций до исполнения."
+            "Текущий основной проект",
+            "UniversalToolchain: 1 324/1 324 теста; архитектурный доклад принят на LangDev’26."
           ]
         ],
         "experience": [
@@ -127,14 +127,6 @@
               "Реализовал LICM-проход для LLVM 22 на C++; условия переноса проверяются по структуре цикла, обращениям к памяти, побочным эффектам и безопасности speculative execution.",
               "Собрал Python-harness для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
             ]
-          },
-          {
-            "date": "2025 — подтверждено",
-            "title": "Клиентская разработка — Diploma.school",
-            "org": "jQuery · адаптивная навигация · UI regression fixes",
-            "bullets": [
-              "Работал над реальным продуктом: dropdown-взаимодействия на jQuery, адаптивная mobile/desktop-навигация и исправление UI-регрессий. Работа подтверждена не позднее января 2025 года."
-            ]
           }
         ],
         "project_ids": [
@@ -153,7 +145,7 @@
           ],
           [
             "Backends / Runtime",
-            ".NET, interpreter/CIL, SysV x86-64, register allocation, композиция runtime"
+            ".NET, CIL/MSIL, native x86-64, SysV ABI, stack frames/calling conventions, register allocation, interpreter/runtime composition"
           ],
           [
             "Проверка",
@@ -196,10 +188,15 @@
           "codegen": {
             "type": "Rust · x86-64 backend · register allocation",
             "solution": "Проверка SSA/CFG → анализ живости и интерференции → register allocation и spills → phi lowering → генерация кода SysV x86-64.",
-            "result": "Независимый verifier раскладки и differential execution: native-код сравнивается с эталонным интерпретатором; тесты покрывают ветвления, циклы, spills и parallel phi moves."
+            "result": "Независимый verifier раскладки и differential execution: native-код сравнивается с эталонным интерпретатором; тесты покрывают ветвления, циклы, spills и parallel phi moves; отдельная публичная линия native-codegen начинается с Visk (2023) и Wist4 (2024)."
           }
         },
-        "show_trajectory": true
+        "show_trajectory": true,
+        "experience_heading": "Профессиональный опыт",
+        "experience_note": {
+          "title": "Дополнительный продуктовый опыт",
+          "text": "Diploma.school — клиентская разработка: jQuery dropdowns, адаптивная mobile/desktop-навигация и исправление UI-регрессий; подтверждено не позднее января 2025 года."
+        }
       },
       "en": {
         "filename": "en.html",
@@ -208,20 +205,20 @@
         "role": "Compiler Infrastructure / Language Tooling Engineer",
         "brand": "compiler infrastructure · language tooling · LLVM · deterministic composition",
         "eyebrow": "UniversalToolchain · LLVM · dependency resolution · deterministic pipelines",
-        "summary": "Compiler/language-infrastructure engineer with professional LLVM and static-analysis experience. In UniversalToolchain I built dependency/conflict resolution, component/provider selection, deterministic pass ordering, typed artifact routing, and pre-execution plan checks; an architecture talk based on the project was accepted for LangDev’26.",
+        "summary": "Compiler infrastructure engineer with professional LLVM 22 and C#/.NET static-analysis experience. Public compiler/runtime projects date to 2022, with CIL and native x86-64 code generation by 2023 and an AST→IR→x64 pipeline by 2024. I now build UniversalToolchain around deterministic compiler composition, with 1,324/1,324 tests passing.",
         "description": "Mikhail Razakov — Compiler Infrastructure / Language Tooling Engineer: dependency/conflict resolution, component selection, deterministic compiler pipelines, LLVM 22, and pre-execution validation.",
         "proofs": [
           [
-            "Compiler-pipeline composition",
-            "UniversalToolchain resolves dependencies/conflicts, selects implementations unambiguously, and fixes pass/contribution order and artifact routes before runtime."
+            "Professional context",
+            "MCST: LLVM 22 · ISP RAS: C#/.NET static analysis."
           ],
           [
-            "LLVM and static analysis",
-            "MCST: LLVM 22 compiler engineering; ISP RAS: C#/.NET static-analysis engineering."
+            "Compiler lineage",
+            "Public compiler/runtime projects since 2022; native x86-64 codegen by 2023."
           ],
           [
-            "Correctness checks",
-            "1,324/1,324 tests; interpreter/CIL parity checks and explicit rejection of unsupported configurations before execution."
+            "Current flagship",
+            "UniversalToolchain: 1,324/1,324 tests; architecture talk accepted at LangDev’26."
           ]
         ],
         "experience": [
@@ -243,14 +240,6 @@
               "Implemented a LICM pass for LLVM 22 in C++; hoisting conditions check loop structure, memory access, side effects, and speculative safety.",
               "Built a Python harness comparing program behavior before/after optimization and checking transform/no-transform cases."
             ]
-          },
-          {
-            "date": "2025 — confirmed",
-            "title": "Client development — Diploma.school",
-            "org": "jQuery · responsive navigation · UI regression fixes",
-            "bullets": [
-              "Worked on a real product: jQuery dropdown interactions, responsive mobile/desktop navigation, and UI regression fixes. The work is confirmed no later than January 2025."
-            ]
           }
         ],
         "project_ids": [
@@ -269,7 +258,7 @@
           ],
           [
             "Backends / Runtime",
-            ".NET, interpreter/CIL parity, SysV x86-64, register allocation, runtime composition"
+            ".NET, CIL/MSIL, native x86-64, SysV ABI, stack frames/calling conventions, register allocation, interpreter/runtime composition"
           ],
           [
             "Verification",
@@ -312,10 +301,15 @@
           "codegen": {
             "type": "Rust · x86-64 compiler backend · register allocation",
             "solution": "SSA/CFG validation → liveness/interference → register allocation/spills → phi lowering → SysV x86-64 emission.",
-            "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves."
+            "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves; a separate public native-codegen lineage starts with Visk (2023) and Wist4 (2024)."
           }
         },
-        "show_trajectory": true
+        "show_trajectory": true,
+        "experience_heading": "Professional Experience",
+        "experience_note": {
+          "title": "Additional product experience",
+          "text": "Diploma.school — client development: jQuery dropdown interactions, responsive mobile/desktop navigation, and UI regression fixes; confirmed no later than January 2025."
+        }
       }
     },
     "compiler": {
@@ -326,20 +320,20 @@
         "role": "Compiler & Program Analysis Engineer",
         "brand": "LLVM · static analysis · x86-64 codegen · language infrastructure",
         "eyebrow": "LLVM 22 · interprocedural analysis · Roslyn · x86-64 backend",
-        "summary": "Инженер по компиляторам и анализу программ с профессиональным опытом LLVM 22 и статического анализа C#/.NET. Сильнейшие публичные подтверждения: межпроцедурный LLVM pass с явными условиями применимости, полный учебный x86-64 backend и анализ потоков данных по Roslyn CFG до неподвижной точки.",
+        "summary": "Инженер по компиляторам и анализу программ с профессиональным опытом LLVM 22 и статического анализа C#/.NET. Публичная техническая линия начинается с compiler/VM-проектов 2022 года, проходит через MSIL и native x86-64 в 2023-м и AST→IR→x64 в 2024-м; современные proof points — Global-IV, x86-64 backend и Roslyn CFG data flow.",
         "description": "Михаил Разаков — Compiler & Program Analysis Engineer: LLVM 22, interprocedural legality, Roslyn fixed-point data-flow и x86-64 codegen.",
         "proofs": [
           [
             "Профессиональный compiler / analysis",
-            "МЦСТ: LLVM 22; ИСП РАН: SharpChecker C#/.NET static analysis."
+            "МЦСТ: LLVM 22 · ИСП РАН: C#/.NET static analysis."
           ],
           [
-            "Conservative LLVM transformation",
-            "Global-IV: interprocedural effects, APInt affine reasoning, separate legality, verifier/regression checks."
+            "Эволюция проектов",
+            "2022 compiler/VM → 2023 MSIL/native x64 → 2024 AST→IR→x64."
           ],
           [
-            "Разные публичные proof points",
-            "Roslyn CFG fixed-point data-flow + отдельный x86-64 codegen/register-allocation pipeline."
+            "Современные proof points",
+            "Global-IV · x86-64 backend · Roslyn CFG fixed-point analysis."
           ]
         ],
         "experience": [
@@ -361,14 +355,6 @@
               "Реализовал LICM-проход для LLVM 22 на C++; условия переноса проверяются по структуре цикла, обращениям к памяти, побочным эффектам и безопасности speculative execution.",
               "Собрал Python-harness для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
             ]
-          },
-          {
-            "date": "2025 — подтверждено",
-            "title": "Клиентская разработка — Diploma.school",
-            "org": "jQuery · адаптивная навигация · UI regression fixes",
-            "bullets": [
-              "Работал над реальным продуктом: dropdown-взаимодействия на jQuery, адаптивная mobile/desktop-навигация и исправление UI-регрессий. Работа подтверждена не позднее января 2025 года."
-            ]
           }
         ],
         "project_ids": [
@@ -387,7 +373,7 @@
           ],
           [
             "Backend / Codegen",
-            "Rust, SysV x86-64, liveness/interference, register allocation, spills, phi lowering"
+            "x86-64, SysV ABI, NASM IA-32, CDECL/x87, liveness/interference, register allocation, spills, phi lowering"
           ],
           [
             "Correctness / Tooling",
@@ -427,7 +413,7 @@
           "codegen": {
             "type": "Rust · compiler backend · register allocation · SysV x86-64",
             "solution": "Compiler backend с SSA/CFG validation, анализом живости и интерференции, linear-scan и seeded simulated-annealing allocators, spills, phi lowering и SysV x86-64 emitter.",
-            "result": "Независимый verifier раскладки и native-vs-interpreter differential execution; тесты покрывают ветвления, циклы, spills и parallel phi moves."
+            "result": "Независимый verifier раскладки и native-vs-interpreter differential execution; тесты покрывают ветвления, циклы, spills и parallel phi moves; отдельная публичная линия native-codegen начинается с Visk (2023) и Wist4 (2024)."
           }
         },
         "show_portrait": true,
@@ -435,7 +421,12 @@
         "print_project_limit": 3,
         "compiler_layout": true,
         "updated_at": "2026-09-14",
-        "show_trajectory": true
+        "show_trajectory": true,
+        "experience_heading": "Профессиональный опыт",
+        "experience_note": {
+          "title": "Дополнительный продуктовый опыт",
+          "text": "Diploma.school — клиентская разработка: jQuery dropdowns, адаптивная mobile/desktop-навигация и исправление UI-регрессий; подтверждено не позднее января 2025 года."
+        }
       },
       "en": {
         "filename": "en-compiler.html",
@@ -444,20 +435,20 @@
         "role": "Compiler & Program Analysis Engineer",
         "brand": "LLVM · static analysis · x86-64 codegen · language infrastructure",
         "eyebrow": "LLVM 22 · interprocedural analysis · Roslyn · x86-64 backend",
-        "summary": "Compiler/program-analysis engineer with professional LLVM 22 and C#/.NET static-analysis experience. The strongest public proof points are an interprocedural LLVM pass with explicit applicability boundaries, an end-to-end educational x86-64 backend, and Roslyn CFG fixed-point data flow.",
+        "summary": "Compiler/program-analysis engineer with professional LLVM 22 and C#/.NET static-analysis experience. The public technical lineage starts with compiler/VM projects in 2022, moves through MSIL and native x86-64 in 2023 and AST→IR→x64 in 2024; current proof points are Global-IV, the x86-64 backend, and Roslyn CFG data flow.",
         "description": "Mikhail Razakov — Compiler & Program Analysis Engineer: LLVM 22, interprocedural legality, Roslyn fixed-point data flow, and x86-64 codegen.",
         "proofs": [
           [
             "Professional compiler / analysis",
-            "MCST: LLVM 22; ISP RAS: SharpChecker C#/.NET static analysis."
+            "MCST: LLVM 22 · ISP RAS: C#/.NET static analysis."
           ],
           [
-            "Conservative LLVM transformation",
-            "Global-IV: interprocedural effects, APInt affine reasoning, separate legality, verifier/regression checks."
+            "Compiler lineage",
+            "2022 compiler/VM → 2023 MSIL/native x64 → 2024 AST→IR→x64."
           ],
           [
-            "Distinct public depth",
-            "Roslyn CFG fixed-point data flow plus a separate x86-64 codegen/register-allocation pipeline."
+            "Current proof points",
+            "Global-IV · x86-64 backend · Roslyn CFG fixed-point analysis."
           ]
         ],
         "experience": [
@@ -479,14 +470,6 @@
               "Implemented a LICM pass for LLVM 22 in C++; hoisting conditions check loop structure, memory access, side effects, and speculative safety.",
               "Built a Python harness comparing program behavior before/after optimization and checking transform/no-transform cases."
             ]
-          },
-          {
-            "date": "2025 — confirmed",
-            "title": "Client development — Diploma.school",
-            "org": "jQuery · responsive navigation · UI regression fixes",
-            "bullets": [
-              "Worked on a real product: jQuery dropdown interactions, responsive mobile/desktop navigation, and UI regression fixes. The work is confirmed no later than January 2025."
-            ]
           }
         ],
         "project_ids": [
@@ -505,7 +488,7 @@
           ],
           [
             "Backend / Codegen",
-            "Rust, SysV x86-64, liveness/interference, register allocation, spills, phi lowering"
+            "x86-64, SysV ABI, NASM IA-32, CDECL/x87, liveness/interference, register allocation, spills, phi lowering"
           ],
           [
             "Correctness / Tooling",
@@ -545,7 +528,7 @@
           "codegen": {
             "type": "Rust · compiler backend · register allocation · SysV x86-64",
             "solution": "A compiler backend with SSA/CFG validation, liveness/interference analysis, linear-scan and seeded simulated-annealing allocators, spills, phi lowering, and a SysV x86-64 emitter.",
-            "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves."
+            "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves; a separate public native-codegen lineage starts with Visk (2023) and Wist4 (2024)."
           }
         },
         "show_portrait": true,
@@ -553,7 +536,12 @@
         "print_project_limit": 3,
         "compiler_layout": true,
         "updated_at": "2026-09-14",
-        "show_trajectory": true
+        "show_trajectory": true,
+        "experience_heading": "Professional Experience",
+        "experience_note": {
+          "title": "Additional product experience",
+          "text": "Diploma.school — client development: jQuery dropdown interactions, responsive mobile/desktop navigation, and UI regression fixes; confirmed no later than January 2025."
+        }
       }
     },
     "backend": {
@@ -1238,20 +1226,20 @@
         "role": "Compiler Backend / Code Generation Engineer",
         "brand": "x86-64 backend · register allocation · LLVM · code generation",
         "eyebrow": "SSA/CFG · liveness/interference · register allocation · SysV x86-64",
-        "summary": "Инженер по компиляторам с профессиональным опытом LLVM 22 в МЦСТ и отдельным x86-64 backend-проектом. Реализовал путь SSA/CFG → анализ живости и интерференции → register allocation/spills → phi lowering → SysV x86-64; сгенерированный код исполняется отдельно и сравнивается с эталонным интерпретатором.",
+        "summary": "Инженер compiler backend/codegen с профессиональным опытом LLVM 22 в МЦСТ. Публичная backend-линия началась раньше: Visk генерировал и исполнял native x86-64 в 2023 году, Wist4 в 2024-м реализовал AST→IR→x64 с stack frames, вызовами, памятью и floating-point. Современный backend добавляет SSA/CFG, liveness/interference, register allocation/spills, phi lowering и differential execution.",
         "description": "Михаил Разаков — Compiler Backend / Code Generation Engineer: SSA/CFG, liveness, register allocation, spills, phi lowering, SysV x86-64 и LLVM 22.",
         "proofs": [
           [
-            "Полный backend pipeline",
-            "SSA/CFG → анализ живости и интерференции → register allocation/spills → phi lowering → native SysV x86-64."
+            "Профессиональный LLVM",
+            "МЦСТ: LLVM 22 compiler engineering."
           ],
           [
-            "Независимая проверка",
-            "Verifier раскладки запрещает конфликтующие назначения; native execution сравнивается с эталонным интерпретатором на ветвлениях, циклах и spills."
+            "Native codegen до стажировки",
+            "Visk: x86-64 в 2023 · Wist4: AST→IR→x64 в 2024."
           ],
           [
-            "LLVM-преобразования",
-            "МЦСТ: LLVM 22 compiler engineering; Global-IV: межпроцедурные эффекты, аффинная эволюция, отдельная проверка применимости и 29 regression cases."
+            "Современная проверка",
+            "Verifier раскладки + native-vs-interpreter differential execution на ветвлениях, циклах и spills."
           ]
         ],
         "experience": [
@@ -1283,19 +1271,19 @@
         "skills": [
           [
             "Backend / Codegen",
-            "SysV x86-64, анализ живости и интерференции, register allocation, spills, phi lowering, native execution"
+            "x86-64, SysV ABI, stack frames, calling conventions, liveness/interference, register allocation, spills, phi lowering, native execution"
+          ],
+          [
+            "Low-level / Assembly",
+            "Iced.Intel code emission, executable-memory JIT experiments; NASM IA-32, CDECL, x87"
           ],
           [
             "LLVM / IR",
             "C++23, LLVM 22/IR, CFG/SSA, анализ циклов, межпроцедурный анализ, преобразования IR"
           ],
           [
-            "Тестирование",
+            "Проверка",
             "verifier раскладки, LLVM Verifier, структурные проверки, идемпотентность, differential execution"
-          ],
-          [
-            "Языки",
-            "C++23, Rust, C#, .NET, Linux, CMake"
           ]
         ],
         "contact_heading": "Целевые роли: Compiler Backend · Code Generation · Register Allocation · LLVM",
@@ -1321,7 +1309,7 @@
           "codegen": {
             "type": "Rust · x86-64 backend · register allocation",
             "solution": "Проверка SSA/CFG → анализ живости и интерференции → register allocation/spills → phi lowering → генерация SysV x86-64.",
-            "result": "Verifier раскладки + сравнение native execution с эталонным интерпретатором; актуальный CI проекта зелёный."
+            "result": "Verifier раскладки + сравнение native execution с эталонным интерпретатором; актуальный CI проекта зелёный; отдельная публичная линия native-codegen начинается с Visk (2023) и Wist4 (2024)."
           },
           "globaliv": {
             "type": "C++23 · LLVM 22 · межпроцедурный анализ · преобразования",
@@ -1337,7 +1325,8 @@
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
-        "show_trajectory": true
+        "show_trajectory": true,
+        "experience_heading": "Профессиональный опыт"
       },
       "en": {
         "compiler_layout": true,
@@ -1348,20 +1337,20 @@
         "role": "Compiler Backend / Code Generation Engineer",
         "brand": "x86-64 backend · register allocation · LLVM · code generation",
         "eyebrow": "SSA/CFG · liveness/interference · register allocation · SysV x86-64",
-        "summary": "Compiler engineer with professional LLVM 22 experience at MCST and a separate x86-64 backend project. I implemented the path from SSA/CFG through liveness/interference, register allocation/spills, and phi lowering to SysV x86-64; generated code runs in a separate process and is compared against a reference interpreter.",
+        "summary": "Compiler backend/codegen engineer with professional LLVM 22 experience at MCST. The public backend lineage predates that work: Visk generated and executed native x86-64 in 2023, while Wist4 implemented AST→IR→x64 with stack frames, calls, memory, and floating point in 2024. The current backend adds SSA/CFG, liveness/interference, register allocation/spills, phi lowering, and differential execution.",
         "description": "Mikhail Razakov — Compiler Backend / Code Generation Engineer: SSA/CFG, liveness, register allocation, spills, phi lowering, SysV x86-64, and LLVM 22.",
         "proofs": [
           [
-            "End-to-end backend pipeline",
-            "SSA/CFG → liveness/interference → register allocation/spills → phi lowering → native SysV x86-64."
+            "Professional LLVM",
+            "MCST: LLVM 22 compiler engineering."
           ],
           [
-            "Independent correctness checks",
-            "The assignment verifier rejects conflicting locations; native execution is compared with a reference interpreter across branches, loops, and spills."
+            "Native codegen before the internship",
+            "Visk: x86-64 in 2023 · Wist4: AST→IR→x64 in 2024."
           ],
           [
-            "LLVM transformations",
-            "MCST: LLVM 22 compiler engineering; Global-IV: interprocedural effects, affine evolution, a separate applicability check, and 29 regressions."
+            "Current verification",
+            "Assignment verifier + native-vs-interpreter differential execution across branches, loops, and spills."
           ]
         ],
         "experience": [
@@ -1393,19 +1382,19 @@
         "skills": [
           [
             "Backend / Codegen",
-            "SysV x86-64, liveness/interference, register allocation, spills, phi lowering, native execution"
+            "x86-64, SysV ABI, stack frames, calling conventions, liveness/interference, register allocation, spills, phi lowering, native execution"
+          ],
+          [
+            "Low-level / Assembly",
+            "Iced.Intel code emission, executable-memory JIT experiments; NASM IA-32, CDECL, x87"
           ],
           [
             "LLVM / IR",
             "C++23, LLVM 22/IR, CFG/SSA, loop/interprocedural analysis, IR transformations"
           ],
           [
-            "Testing",
+            "Verification",
             "assignment verifier, LLVM Verifier, structural checks, idempotence, differential execution"
-          ],
-          [
-            "Languages",
-            "C++23, Rust, C#, .NET, Linux, CMake"
           ]
         ],
         "contact_heading": "Target roles: Compiler Backend · Code Generation · Register Allocation · LLVM",
@@ -1431,7 +1420,7 @@
           "codegen": {
             "type": "Rust · x86-64 compiler backend · register allocation",
             "solution": "SSA/CFG validation → liveness/interference → register allocation/spills → phi lowering → SysV x86-64 emission.",
-            "result": "Assignment verifier plus native-vs-interpreter differential execution; the current project CI is green."
+            "result": "Assignment verifier plus native-vs-interpreter differential execution; the current project CI is green; a separate public native-codegen lineage starts with Visk (2023) and Wist4 (2024)."
           },
           "globaliv": {
             "type": "C++23 · LLVM 22 · interprocedural analysis · transformations",
@@ -1447,7 +1436,8 @@
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
-        "show_trajectory": true
+        "show_trajectory": true,
+        "experience_heading": "Professional Experience"
       }
     },
     "program_analysis": {
@@ -1460,20 +1450,20 @@
         "role": "Static Analysis / Program Analysis Engineer",
         "brand": "static analysis · data-flow · LLVM · Roslyn",
         "eyebrow": "Roslyn CFG · fixed point · interprocedural LLVM analysis",
-        "summary": "Инженер по статическому анализу с профессиональным опытом C#/.NET в ИСП РАН и LLVM 22 в МЦСТ. DerefAfterNullAnalyzer выполняет внутрипроцедурный анализ потоков данных по Roslyn CFG до неподвижной точки, уточняет состояния по ветвям, объединяет состояния предшественников и обрабатывает циклы; Global-IV дополняет это межпроцедурным анализом эффектов и аффинной эволюции.",
+        "summary": "Инженер по статическому анализу с профессиональным опытом C#/.NET в ИСП РАН и LLVM 22 в МЦСТ. Современные public proof points — fixed-point data flow по Roslyn CFG и межпроцедурный LLVM-анализ; compiler/runtime-проекты публично прослеживаются с 2022 года, включая MSIL и native x86-64 backend-работу в 2023–2024.",
         "description": "Михаил Разаков — Static / Program Analysis Engineer: Roslyn CFG fixed-point data-flow, branch refinement, joins, loops и interprocedural LLVM analysis.",
         "proofs": [
           [
-            "Roslyn data-flow",
-            "Worklist до неподвижной точки, состояния на ветвях CFG, объединение состояний предшественников, циклы/back edges и сброс состояния после assignment/ref/out."
+            "Профессиональный анализ",
+            "ИСП РАН: C#/.NET static analysis · МЦСТ: LLVM 22."
           ],
           [
-            "Межпроцедурный LLVM-анализ",
-            "Global-IV вычисляет прямые и транзитивные эффекты и аффинную эволюцию; преобразование запускается только после отдельной проверки условий применимости."
+            "Два уровня анализа",
+            "Roslyn CFG fixed point + межпроцедурные LLVM effects/affine evolution."
           ],
           [
-            "Профессиональный опыт",
-            "ИСП РАН: статический анализ C#/.NET; МЦСТ: LLVM 22. Конкретные неподтверждённые изменения SharpChecker не заявляются."
+            "Компиляторная база",
+            "Публичные compiler/runtime-проекты с 2022; MSIL и native x86-64 — в 2023–2024."
           ]
         ],
         "experience": [
@@ -1553,7 +1543,8 @@
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 2,
-        "show_trajectory": true
+        "show_trajectory": true,
+        "experience_heading": "Профессиональный опыт"
       },
       "en": {
         "compiler_layout": true,
@@ -1564,20 +1555,20 @@
         "role": "Static Analysis / Program Analysis Engineer",
         "brand": "static analysis · data flow · LLVM · Roslyn",
         "eyebrow": "Roslyn CFG · fixed point · interprocedural LLVM analysis",
-        "summary": "Static-analysis engineer with professional C#/.NET context at ISP RAS and LLVM 22 experience from MCST. DerefAfterNullAnalyzer implements intraprocedural fixed-point data flow over Roslyn CFG with branch refinement, predecessor joins, and loop/back-edge iteration; Global-IV adds interprocedural effect analysis and affine evolution.",
+        "summary": "Static-analysis engineer with professional C#/.NET context at ISP RAS and LLVM 22 experience from MCST. Current public proof points include fixed-point data flow over Roslyn CFG and interprocedural LLVM analysis; public compiler/runtime work dates to 2022, including MSIL and native x86-64 backend work in 2023–2024.",
         "description": "Mikhail Razakov — Static / Program Analysis Engineer: Roslyn CFG fixed-point data flow, branch refinement, joins, loops, and interprocedural LLVM analysis.",
         "proofs": [
           [
-            "Roslyn fixed-point data flow",
-            "Worklist iteration, conditional-edge states, predecessor joins, loops/back edges, and invalidation after assignment/ref/out."
+            "Professional analysis",
+            "ISP RAS: C#/.NET static analysis · MCST: LLVM 22."
           ],
           [
-            "Interprocedural LLVM analysis",
-            "Global-IV computes direct/transitive effects and affine evolution; transformation runs only after a separate applicability check."
+            "Two analysis levels",
+            "Roslyn CFG fixed point + interprocedural LLVM effects/affine evolution."
           ],
           [
-            "Professional context",
-            "ISP RAS: C#/.NET static analysis; MCST: LLVM 22 compiler engineering. No unverified concrete SharpChecker contribution is claimed."
+            "Compiler foundation",
+            "Public compiler/runtime projects since 2022; MSIL and native x86-64 work in 2023–2024."
           ]
         ],
         "experience": [
@@ -1657,7 +1648,8 @@
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 2,
-        "show_trajectory": true
+        "show_trajectory": true,
+        "experience_heading": "Professional Experience"
       }
     },
     "software_protection": {
@@ -2119,45 +2111,45 @@
     "ru": [
       {
         "period": "2022",
-        "label": "Публичный проект компилятора",
-        "detail": "BigSharpCompiler: первый публичный прототип компилятора."
+        "label": "Компиляторы / VM",
+        "detail": "BigSharpCompiler и OwnAssembler: lexer/parser/preprocessor, собственные bytecode/VM и assembler-like эксперименты."
       },
       {
         "period": "2023",
-        "label": "Язык и инструменты",
-        "detail": "Wist: язык, runtime и инструменты; публичная история начинается 19 июня 2023 года."
+        "label": "CIL + native x86-64",
+        "detail": "Wist/Wist2Msil и Visk: runtime, MSIL backend, генерация и исполнение native x86-64 machine code."
       },
       {
-        "period": "2025",
-        "label": "Клиентская разработка + UniversalToolchain",
-        "detail": "Diploma.school: подтверждённая клиентская работа; UniversalToolchain развивается как отдельная архитектура языковых инструментов."
+        "period": "2024–2025",
+        "label": "AST / IR / backends → toolchain",
+        "detail": "Vl13.2, Wist4, Quark2 → Unified/UniversalToolchain: AST/IR, native x64, bytecode/VM, MSIL и затем модульная композиция."
       },
       {
         "period": "2026 →",
-        "label": "Профессиональные компиляторы / анализ программ",
-        "detail": "МЦСТ: LLVM 22; ИСП РАН: статический анализ C#/.NET."
+        "label": "Профессионально: LLVM + static analysis",
+        "detail": "МЦСТ: LLVM 22 compiler engineering; ИСП РАН: статический анализ C#/.NET."
       }
     ],
     "en": [
       {
         "period": "2022",
-        "label": "Public compiler project",
-        "detail": "BigSharpCompiler: the first public compiler prototype."
+        "label": "Compilers / VMs",
+        "detail": "BigSharpCompiler and OwnAssembler: lexer/parser/preprocessor work plus custom bytecode/VM and assembler-like experiments."
       },
       {
         "period": "2023",
-        "label": "Language tooling",
-        "detail": "Wist: language, runtime, and tooling; public history starts on June 19, 2023."
+        "label": "CIL + native x86-64",
+        "detail": "Wist/Wist2Msil and Visk: runtime work, an MSIL backend, and native x86-64 machine-code generation and execution."
       },
       {
-        "period": "2025",
-        "label": "Client/product + toolchain",
-        "detail": "Diploma.school: confirmed client work; UniversalToolchain grows into a separate language-tooling architecture."
+        "period": "2024–2025",
+        "label": "AST / IR / backends → toolchain",
+        "detail": "Vl13.2, Wist4, Quark2 → Unified/UniversalToolchain: AST/IR, native x64, bytecode/VM, MSIL, then modular composition."
       },
       {
         "period": "2026 →",
-        "label": "Professional compilers / analysis",
-        "detail": "MCST: LLVM 22; ISP RAS: C#/.NET static analysis."
+        "label": "Professional LLVM + static analysis",
+        "detail": "MCST: LLVM 22 compiler engineering; ISP RAS: C#/.NET static analysis."
       }
     ]
   }
