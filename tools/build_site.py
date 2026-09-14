@@ -38,7 +38,7 @@ def page_url(data: dict[str, Any], filename: str) -> str:
 def profile_links(data: dict[str, Any], lang: str) -> list[tuple[str, str]]:
     return [
         (data["profile_ui"][key][f"label_{lang}"], data["profiles"][key][lang]["filename"])
-        for key in data["profile_order"]
+        for key in data.get("selector_order", data["profile_order"])
     ]
 
 
@@ -368,7 +368,7 @@ def landing_page(data: dict[str, Any]) -> str:
     description = general["description"]
     head = common_head(data, lang, "index.html", title, description, general["role"], data["site_url"])
     cards = []
-    for key in (profile_key for profile_key in data["profile_order"] if profile_key != "general"):
+    for key in (profile_key for profile_key in data.get("selector_order", data["profile_order"]) if profile_key != "general"):
         ru = data["profiles"][key]["ru"]
         en = data["profiles"][key]["en"]
         ui = data["profile_ui"][key]

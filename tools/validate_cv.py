@@ -5,6 +5,7 @@ import json
 import re
 import socket
 import sys
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -193,19 +194,35 @@ def validate_html(data: dict) -> set[str]:
 
 def check_external_url(url: str) -> tuple[str, int]:
     headers = {"User-Agent": "Mozilla/5.0 CV-link-validator/1.0"}
+    transient_http = {500, 502, 503, 504}
+    accepted_http = {401, 403, 405, 429, 999}
     for method in ("HEAD", "GET"):
-        request = urllib.request.Request(url, headers=headers, method=method)
-        try:
-            with urllib.request.urlopen(request, timeout=15) as response:
-                return url, int(response.status)
-        except urllib.error.HTTPError as exc:
-            if exc.code in {401, 403, 405, 429, 999}:
-                return url, exc.code
-            if method == "GET":
-                raise RuntimeError(f"External link failed: {url} -> HTTP {exc.code}") from exc
-        except (urllib.error.URLError, TimeoutError, socket.timeout) as exc:
-            if method == "GET":
-                raise RuntimeError(f"External link failed: {url} -> {exc}") from exc
+        last_error: Exception | None = None
+        for attempt in range(3):
+            request = urllib.request.Request(url, headers=headers, method=method)
+            try:
+                with urllib.request.urlopen(request, timeout=15) as response:
+                    return url, int(response.status)
+            except urllib.error.HTTPError as exc:
+                if exc.code in accepted_http:
+                    return url, exc.code
+                last_error = exc
+                if exc.code in transient_http and attempt < 2:
+                    time.sleep(1 + attempt)
+                    continue
+                break
+            except (urllib.error.URLError, TimeoutError, socket.timeout) as exc:
+                last_error = exc
+                if attempt < 2:
+                    time.sleep(1 + attempt)
+                    continue
+                break
+        if method == "HEAD":
+            continue
+        if isinstance(last_error, urllib.error.HTTPError):
+            raise RuntimeError(f"External link failed after retries: {url} -> HTTP {last_error.code}") from last_error
+        if last_error is not None:
+            raise RuntimeError(f"External link failed after retries: {url} -> {last_error}") from last_error
     raise RuntimeError(f"External link failed: {url}")
 
 
