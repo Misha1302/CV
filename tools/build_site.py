@@ -183,12 +183,18 @@ def compiler_hero(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> s
     person = data["person"]
     location = person[f"location_{lang}"]
     education = person[f"education_{lang}"]
+    proof_items = "".join(
+        f'<div class="compiler-proof"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>'
+        for title, body in profile.get("proofs", [])[:3]
+    )
+    proof_row = f'<div class="compiler-proof-row">{proof_items}</div>' if proof_items else ""
     return f"""
 <section class="shell compiler-intro" id="top">
   <div class="compiler-intro-copy">
     <h1>{esc(person_name(data, lang))}</h1>
     <p class="hero-role">{esc(profile['role'])}</p>
     <p class="compiler-summary">{esc(profile['summary'])}</p>
+    {proof_row}
     <div class="compiler-meta"><span>{esc(location)}</span><span>{esc(education)}</span></div>
     <div class="compiler-links">
       <a href="mailto:{esc(person['email'])}">{esc(person['email'])}</a>
@@ -216,8 +222,8 @@ def trajectory_section(data: dict[str, Any], lang: str, profile: dict[str, Any])
         f'<article class="trajectory-item"><time>{esc(item["period"])}</time><div><strong>{esc(item["label"])}</strong><span>{esc(item["detail"])}</span></div></article>'
         for item in data["trajectory"][lang]
     )
-    label = "Инженерная траектория" if lang == "ru" else "Engineering trajectory"
-    aria = "Хронология инженерной траектории" if lang == "ru" else "Engineering trajectory chronology"
+    label = "Эволюция compiler-проектов" if lang == "ru" else "Compiler project lineage"
+    aria = "Эволюция compiler-проектов" if lang == "ru" else "Compiler project lineage"
     return f'<section class="shell trajectory-strip" aria-label="{aria}"><p class="trajectory-label">{label}</p><div class="trajectory-items">{items}</div></section>'
 
 
@@ -229,14 +235,17 @@ def print_trajectory(data: dict[str, Any], lang: str, profile: dict[str, Any]) -
 
 
 def experience_section(lang: str, profile: dict[str, Any], compact: bool = False) -> str:
-    heading = "Опыт" if compact and lang == "ru" else ("Experience" if compact else ("Опыт и ответственность" if lang == "ru" else "Experience and ownership"))
+    default_heading = "Опыт" if compact and lang == "ru" else ("Experience" if compact else ("Опыт и ответственность" if lang == "ru" else "Experience and ownership"))
+    heading = profile.get("experience_heading", default_heading)
     intro = "" if compact else ("Роли описаны через границы ответственности и проверяемый результат." if lang == "ru" else "Roles are described through ownership boundaries and verifiable outcomes.")
     articles = []
     for item in profile["experience"]:
         bullets = "".join(f"<li>{esc(text)}</li>" for text in item["bullets"])
         articles.append(f'<article><time>{esc(item["date"])}</time><div><h3>{esc(item["title"])}</h3><p class="org">{esc(item["org"])}</p></div><ul class="timeline-details">{bullets}</ul></article>')
+    note = profile.get("experience_note")
+    note_html = "" if not note else f'<p class="experience-note"><strong>{esc(note["title"])}</strong><span>{esc(note["text"])}</span></p>'
     return f"""
-<section class="shell section" id="experience"><div class="section-heading"><p class="section-label">01 · {'Опыт' if lang == 'ru' else 'Experience'}</p><div><h2>{esc(heading)}</h2>{f'<p class=\"section-intro\">{esc(intro)}</p>' if intro else ''}</div></div><div class="timeline">{''.join(articles)}</div></section>"""
+<section class="shell section" id="experience"><div class="section-heading"><p class="section-label">01 · {'Опыт' if lang == 'ru' else 'Experience'}</p><div><h2>{esc(heading)}</h2>{f'<p class=\"section-intro\">{esc(intro)}</p>' if intro else ''}</div></div><div class="timeline">{''.join(articles)}</div>{note_html}</section>"""
 
 
 def project_card(data: dict[str, Any], lang: str, project_id: str, featured: bool = False) -> str:
@@ -319,7 +328,7 @@ def contact_section(data: dict[str, Any], lang: str, profile: dict[str, Any]) ->
 
 def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     labels = {
-        "experience": "Опыт" if lang == "ru" else "Experience",
+        "experience": profile.get("experience_heading", "Опыт" if lang == "ru" else "Experience"),
         "projects": "Проекты" if lang == "ru" else "Projects",
         "skills": "Компетенции" if lang == "ru" else "Skills",
         "education": "Образование" if lang == "ru" else "Education",
@@ -337,6 +346,8 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     for item in profile["experience"][:3]:
         bullets = "".join(f"<li>{esc(text)}</li>" for text in item["bullets"][:2])
         experiences.append(f'<article class="pcv-entry"><div class="pcv-date">{esc(item["date"])}</div><div><h3>{esc(item["title"])}</h3><ul>{bullets}</ul></div></article>')
+    experience_note = profile.get("experience_note")
+    experience_note_html = "" if not experience_note else f'<p class="pcv-experience-note"><strong>{esc(experience_note["title"])}</strong> — {esc(experience_note["text"])}</p>'
     projects = []
     project_limit = int(profile.get("print_project_limit", 3))
     project_summaries = profile.get("project_summaries", {})
@@ -363,7 +374,7 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
 <div class="print-cv" aria-label="Focused one-page CV">
   <header class="pcv-header"><div><h1>{esc(person_name(data, lang))}</h1><h2>{esc(profile['role'])}</h2></div><div class="pcv-contact">{contacts}</div></header>
   <p class="pcv-summary">{esc(profile['summary'])}</p>{print_trajectory(data, lang, profile)}{proof_block}
-  <div class="pcv-columns"><main class="pcv-main"><section><h2 class="pcv-section-title">{labels['experience']}</h2>{''.join(experiences)}</section><section><h2 class="pcv-section-title">{labels['projects']}</h2>{''.join(projects)}</section></main>
+  <div class="pcv-columns"><main class="pcv-main"><section><h2 class="pcv-section-title">{labels['experience']}</h2>{''.join(experiences)}{experience_note_html}</section><section><h2 class="pcv-section-title">{labels['projects']}</h2>{''.join(projects)}</section></main>
   <aside class="pcv-side"><section><h2 class="pcv-section-title">{labels['skills']}</h2>{skills}</section><section class="pcv-compact"><h2 class="pcv-section-title">{labels['education']}</h2><p>{esc(education)}</p></section><section class="pcv-compact"><h2 class="pcv-section-title">{labels['recognition']}</h2>{recognition}</section><section class="pcv-compact"><p>{esc(p[f'location_{lang}'])}</p></section></aside></div>
 </div>"""
 
