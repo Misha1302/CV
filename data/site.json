@@ -1,5 +1,5 @@
 {
-  "version": 58,
+  "version": 59,
   "updated_at": "2026-09-14",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -129,12 +129,11 @@
             ]
           },
           {
-            "date": "2023–2026",
-            "title": "Независимая / freelance-разработка — product systems",
-            "org": ".NET · Unity · jQuery · Linux",
+            "date": "2025 — подтверждено",
+            "title": "Клиентская разработка — Diploma.school",
+            "org": "jQuery · адаптивная навигация · UI regression fixes",
             "bullets": [
-              "VpnMediator: подписки, платежи и состояние доступа, ограничения по устройствам, Linux-развёртывание, recovery и rollback.",
-              "Diploma.school: jQuery dropdown и адаптивная навигация; Unity licensing: server-side activation limits и интеграция с Unity-клиентом."
+              "Работал над реальным продуктом: dropdown-взаимодействия на jQuery, адаптивная mobile/desktop-навигация и исправление UI-регрессий. Работа подтверждена не позднее января 2025 года."
             ]
           }
         ],
@@ -199,7 +198,8 @@
             "solution": "Проверка SSA/CFG → анализ живости и интерференции → register allocation и spills → phi lowering → генерация кода SysV x86-64.",
             "result": "Независимый verifier раскладки и differential execution: native-код сравнивается с эталонным интерпретатором; тесты покрывают ветвления, циклы, spills и parallel phi moves."
           }
-        }
+        },
+        "show_trajectory": true
       },
       "en": {
         "filename": "en.html",
@@ -245,12 +245,11 @@
             ]
           },
           {
-            "date": "2023–2026",
-            "title": "Independent / freelance engineering — product systems",
-            "org": ".NET · Unity · jQuery · Linux",
+            "date": "2025 — confirmed",
+            "title": "Client development — Diploma.school",
+            "org": "jQuery · responsive navigation · UI regression fixes",
             "bullets": [
-              "VpnMediator: subscription, payment, and access state, device limits, Linux deployment, recovery, and rollback.",
-              "Diploma.school: jQuery dropdown interactions and responsive navigation; Unity licensing: server-side activation limits and Unity client integration."
+              "Worked on a real product: jQuery dropdown interactions, responsive mobile/desktop navigation, and UI regression fixes. The work is confirmed no later than January 2025."
             ]
           }
         ],
@@ -315,7 +314,8 @@
             "solution": "SSA/CFG validation → liveness/interference → register allocation/spills → phi lowering → SysV x86-64 emission.",
             "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves."
           }
-        }
+        },
+        "show_trajectory": true
       }
     },
     "compiler": {
@@ -363,12 +363,11 @@
             ]
           },
           {
-            "date": "2023–2026",
-            "title": "Независимая / freelance-разработка — product systems",
-            "org": ".NET · Unity · jQuery · Linux",
+            "date": "2025 — подтверждено",
+            "title": "Клиентская разработка — Diploma.school",
+            "org": "jQuery · адаптивная навигация · UI regression fixes",
             "bullets": [
-              "VpnMediator: подписки, платежи и состояние доступа, ограничения по устройствам, Linux-развёртывание, recovery и rollback.",
-              "Diploma.school: jQuery dropdown и адаптивная навигация; Unity licensing: server-side activation limits и интеграция с Unity-клиентом."
+              "Работал над реальным продуктом: dropdown-взаимодействия на jQuery, адаптивная mobile/desktop-навигация и исправление UI-регрессий. Работа подтверждена не позднее января 2025 года."
             ]
           }
         ],
@@ -435,7 +434,8 @@
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-09-14"
+        "updated_at": "2026-09-14",
+        "show_trajectory": true
       },
       "en": {
         "filename": "en-compiler.html",
@@ -481,12 +481,11 @@
             ]
           },
           {
-            "date": "2023–2026",
-            "title": "Independent / freelance engineering — product systems",
-            "org": ".NET · Unity · jQuery · Linux",
+            "date": "2025 — confirmed",
+            "title": "Client development — Diploma.school",
+            "org": "jQuery · responsive navigation · UI regression fixes",
             "bullets": [
-              "VpnMediator: subscription, payment, and access state, device limits, Linux deployment, recovery, and rollback.",
-              "Diploma.school: jQuery dropdown interactions and responsive navigation; Unity licensing: server-side activation limits and Unity client integration."
+              "Worked on a real product: jQuery dropdown interactions, responsive mobile/desktop navigation, and UI regression fixes. The work is confirmed no later than January 2025."
             ]
           }
         ],
@@ -553,7 +552,8 @@
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-09-14"
+        "updated_at": "2026-09-14",
+        "show_trajectory": true
       }
     },
     "backend": {
@@ -600,12 +600,11 @@
             ]
           },
           {
-            "date": "2023–2026",
-            "title": "Freelance / client product work — Diploma.school & Unity",
-            "org": "jQuery · responsive UI · ASP.NET · Unity",
+            "date": "2025 — подтверждено",
+            "title": "Клиентская разработка — Diploma.school",
+            "org": "jQuery · адаптивная навигация · UI regression fixes",
             "bullets": [
-              "Diploma.school: реализовал jQuery dropdown-компоненты, адаптивную mobile/desktop navigation и исправления UI-регрессий.",
-              "Unity licensing: сделал server-side key activation с ограничением числа активаций и интеграцию проверки лицензии в Unity-клиент."
+              "Реализовал jQuery dropdown-компоненты, адаптивную mobile/desktop-навигацию и исправления UI-регрессий; работа подтверждена не позднее января 2025 года."
             ]
           }
         ],
@@ -690,12 +689,11 @@
             ]
           },
           {
-            "date": "2023–2026",
-            "title": "Freelance / client product work — Diploma.school & Unity",
-            "org": "jQuery · responsive UI · ASP.NET · Unity",
+            "date": "2025 — confirmed",
+            "title": "Client development — Diploma.school",
+            "org": "jQuery · responsive navigation · UI regression fixes",
             "bullets": [
-              "Diploma.school: implemented jQuery dropdown components, responsive mobile/desktop navigation, and UI regression fixes.",
-              "Unity licensing: built server-side key activation with activation-count limits and integrated license validation into a Unity client."
+              "Implemented jQuery dropdown components, responsive mobile/desktop navigation, and UI regression fixes; the work is confirmed no later than January 2025."
             ]
           }
         ],
@@ -1338,7 +1336,8 @@
         },
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
-        "print_project_limit": 3
+        "print_project_limit": 3,
+        "show_trajectory": true
       },
       "en": {
         "compiler_layout": true,
@@ -1447,7 +1446,8 @@
         },
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
-        "print_project_limit": 3
+        "print_project_limit": 3,
+        "show_trajectory": true
       }
     },
     "program_analysis": {
@@ -1552,7 +1552,8 @@
         },
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
-        "print_project_limit": 2
+        "print_project_limit": 2,
+        "show_trajectory": true
       },
       "en": {
         "compiler_layout": true,
@@ -1655,7 +1656,8 @@
         },
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
-        "print_project_limit": 2
+        "print_project_limit": 2,
+        "show_trajectory": true
       }
     },
     "software_protection": {
@@ -1669,8 +1671,8 @@
         "role": "Compiler / Software Protection Engineer",
         "brand": "LLVM · program analysis · low-level codegen · software protection",
         "eyebrow": "LLVM 22 · program analysis · x86-64 · bounded protection evidence",
-        "summary": "Инженер по компиляторам и анализу программ с профессиональным LLVM/static-analysis опытом и ранним software-protection проектом. Сильнейшие проверяемые сигналы — LLVM legality/transformations, x86-64 codegen/register allocation и Roslyn data-flow; protection-опыт ограниченно заявлен как licensing + private client-side obfuscation чувствительной конфигурации/service endpoints.",
-        "description": "Михаил Разаков — selective Compiler / Software Protection Engineer: LLVM, program analysis, x86-64 codegen и bounded licensing/obfuscation evidence.",
+        "summary": "Инженер по компиляторам и анализу программ с профессиональным LLVM/static-analysis опытом и историческим Unity licensing-проектом. Сильнейшие проверяемые сигналы — LLVM legality/transformations, x86-64 codegen/register allocation и Roslyn data-flow; protection-опыт ограниченно заявлен как server-side key activation, лимиты активаций и интеграция с Unity-клиентом.",
+        "description": "Михаил Разаков — selective Compiler / Software Protection Engineer: LLVM, program analysis, x86-64 codegen и bounded Unity licensing evidence.",
         "proofs": [
           [
             "Compiler foundation",
@@ -1682,7 +1684,7 @@
           ],
           [
             "Ограниченный protection evidence",
-            "Исторический licensing/activation prototype + user-attested private obfuscation чувствительной конфигурации/service endpoints; непроверенные hardening mechanisms не заявляются."
+            "Исторический Unity licensing prototype: server-side key activation, лимиты активаций и интеграция с Unity-клиентом; неподтверждённые protection mechanisms не заявляются."
           ]
         ],
         "experience": [
@@ -1706,16 +1708,16 @@
             ]
           },
           {
-            "date": "2023",
-            "title": "Исторический проект — Unity licensing / software-protection prototype",
-            "org": "ASP.NET · Unity · licensing / activation · private protection work",
+            "date": "исторический проект · дата не заявляется",
+            "title": "Unity licensing prototype",
+            "org": "Unity client · server-side key activation",
             "bullets": [
-              "Сделал prototype лицензирования: server-side key activation с activation-count limits и Unity-side integration; в непубличной версии применял client-side obfuscation чувствительной конфигурации/service endpoints, чтобы повысить стоимость извлечения licensing infrastructure."
+              "Server-side выдача и активация ключей, ограничения по числу активаций и интеграция с Unity-клиентом; anti-debugging / anti-tamper не заявляются."
             ]
           },
           {
-            "date": "2026 — сейчас",
-            "title": "VpnMediator — backend состояния доступа",
+            "date": "2026",
+            "title": "Личный проект — VpnMediator: backend состояния доступа",
             "org": "ASP.NET Core · subscriptions · payments · Linux",
             "bullets": [
               "Реализовал server-side состояние подписок/доступа, ограничения по устройствам, payment flows и пути recovery/rollback при сбоях и перезапусках."
@@ -1742,7 +1744,7 @@
           ],
           [
             "Software Protection / Licensing",
-            "server-side activation, activation-count limits, Unity integration, private obfuscation of sensitive configuration/service endpoints"
+            "server-side activation, activation-count limits, Unity integration"
           ]
         ],
         "contact_heading": "Selective: Compiler Security · Software Protection · LLVM hardening-adjacent roles",
@@ -1795,8 +1797,8 @@
         "role": "Compiler / Software Protection Engineer",
         "brand": "LLVM · program analysis · low-level codegen · software protection",
         "eyebrow": "LLVM 22 · program analysis · x86-64 · bounded protection evidence",
-        "summary": "Compiler/program-analysis engineer with professional LLVM/static-analysis experience and earlier software-protection work. Strongest inspectable signals are LLVM legality/transformations, x86-64 codegen/register allocation, and Roslyn data flow; protection experience is deliberately bounded to licensing plus private client-side obfuscation of sensitive configuration/service endpoints.",
-        "description": "Mikhail Razakov — selective Compiler / Software Protection Engineer: LLVM, program analysis, x86-64 codegen, and bounded licensing/obfuscation evidence.",
+        "summary": "Compiler/program-analysis engineer with professional LLVM/static-analysis experience and a historical Unity licensing project. Strongest inspectable signals are LLVM legality/transformations, x86-64 codegen/register allocation, and Roslyn data flow; protection experience is deliberately bounded to server-side key activation, activation limits, and Unity-client integration.",
+        "description": "Mikhail Razakov — selective Compiler / Software Protection Engineer: LLVM, program analysis, x86-64 codegen, and bounded Unity licensing evidence.",
         "proofs": [
           [
             "Compiler foundation",
@@ -1808,7 +1810,7 @@
           ],
           [
             "Bounded protection evidence",
-            "Historical licensing/activation prototype plus user-attested private obfuscation of sensitive configuration/service endpoints; no unverified hardening mechanisms claimed."
+            "Historical Unity licensing prototype: server-side key activation, activation limits, and Unity-client integration; no unverified protection mechanisms are claimed."
           ]
         ],
         "experience": [
@@ -1832,16 +1834,16 @@
             ]
           },
           {
-            "date": "2023",
-            "title": "Historical project — Unity licensing / software-protection prototype",
-            "org": "ASP.NET · Unity · licensing / activation · private protection work",
+            "date": "historical project · date not claimed",
+            "title": "Unity licensing prototype",
+            "org": "Unity client · server-side key activation",
             "bullets": [
-              "Built a licensing prototype with server-side key activation and activation-count limits plus Unity-side integration; a non-public version used client-side obfuscation of sensitive configuration/service endpoints to raise the cost of extracting licensing infrastructure."
+              "Server-side key issuance/activation, activation-count limits, and Unity-client integration; no anti-debugging or anti-tamper claim."
             ]
           },
           {
-            "date": "2026 — present",
-            "title": "VpnMediator — access-state backend",
+            "date": "2026",
+            "title": "Personal project — VpnMediator access-state backend",
             "org": "ASP.NET Core · subscriptions · payments · Linux",
             "bullets": [
               "Built server-side subscription/access state, device limits, payment flows, and recovery/rollback paths across failures and restarts."
@@ -1868,7 +1870,7 @@
           ],
           [
             "Software Protection / Licensing",
-            "server-side activation, activation-count limits, Unity integration, private obfuscation of sensitive configuration/service endpoints"
+            "server-side activation, activation-count limits, Unity integration"
           ]
         ],
         "contact_heading": "Selective: Compiler Security · Software Protection · LLVM hardening-adjacent roles",
@@ -2112,5 +2114,51 @@
     "systems",
     "quantdev",
     "quant"
-  ]
+  ],
+  "trajectory": {
+    "ru": [
+      {
+        "period": "2022",
+        "label": "Публичный проект компилятора",
+        "detail": "BigSharpCompiler: первый публичный прототип компилятора."
+      },
+      {
+        "period": "2023",
+        "label": "Язык и инструменты",
+        "detail": "Wist: язык, runtime и инструменты; публичная история начинается 19 июня 2023 года."
+      },
+      {
+        "period": "2025",
+        "label": "Клиентская разработка + UniversalToolchain",
+        "detail": "Diploma.school: подтверждённая клиентская работа; UniversalToolchain развивается как отдельная архитектура языковых инструментов."
+      },
+      {
+        "period": "2026 →",
+        "label": "Профессиональные компиляторы / анализ программ",
+        "detail": "МЦСТ: LLVM 22; ИСП РАН: статический анализ C#/.NET."
+      }
+    ],
+    "en": [
+      {
+        "period": "2022",
+        "label": "Public compiler project",
+        "detail": "BigSharpCompiler: the first public compiler prototype."
+      },
+      {
+        "period": "2023",
+        "label": "Language tooling",
+        "detail": "Wist: language, runtime, and tooling; public history starts on June 19, 2023."
+      },
+      {
+        "period": "2025",
+        "label": "Client/product + toolchain",
+        "detail": "Diploma.school: confirmed client work; UniversalToolchain grows into a separate language-tooling architecture."
+      },
+      {
+        "period": "2026 →",
+        "label": "Professional compilers / analysis",
+        "detail": "MCST: LLVM 22; ISP RAS: C#/.NET static analysis."
+      }
+    ]
+  }
 }

@@ -209,6 +209,25 @@ def proof_strip(profile: dict[str, Any]) -> str:
     return f'<section class="shell proof-strip" aria-label="Key evidence">{items}</section>'
 
 
+def trajectory_section(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
+    if not profile.get("show_trajectory"):
+        return ""
+    items = "".join(
+        f'<article class="trajectory-item"><time>{esc(item["period"])}</time><div><strong>{esc(item["label"])}</strong><span>{esc(item["detail"])}</span></div></article>'
+        for item in data["trajectory"][lang]
+    )
+    label = "Инженерная траектория" if lang == "ru" else "Engineering trajectory"
+    aria = "Хронология инженерной траектории" if lang == "ru" else "Engineering trajectory chronology"
+    return f'<section class="shell trajectory-strip" aria-label="{aria}"><p class="trajectory-label">{label}</p><div class="trajectory-items">{items}</div></section>'
+
+
+def print_trajectory(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
+    if not profile.get("show_trajectory"):
+        return ""
+    items = " · ".join(f'{item["period"]}: {item["label"]}' for item in data["trajectory"][lang])
+    return f'<p class="pcv-trajectory">{esc(items)}</p>'
+
+
 def experience_section(lang: str, profile: dict[str, Any], compact: bool = False) -> str:
     heading = "Опыт" if compact and lang == "ru" else ("Experience" if compact else ("Опыт и ответственность" if lang == "ru" else "Experience and ownership"))
     intro = "" if compact else ("Роли описаны через границы ответственности и проверяемый результат." if lang == "ru" else "Roles are described through ownership boundaries and verifiable outcomes.")
@@ -343,7 +362,7 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     return f"""
 <div class="print-cv" aria-label="Focused one-page CV">
   <header class="pcv-header"><div><h1>{esc(person_name(data, lang))}</h1><h2>{esc(profile['role'])}</h2></div><div class="pcv-contact">{contacts}</div></header>
-  <p class="pcv-summary">{esc(profile['summary'])}</p>{proof_block}
+  <p class="pcv-summary">{esc(profile['summary'])}</p>{print_trajectory(data, lang, profile)}{proof_block}
   <div class="pcv-columns"><main class="pcv-main"><section><h2 class="pcv-section-title">{labels['experience']}</h2>{''.join(experiences)}</section><section><h2 class="pcv-section-title">{labels['projects']}</h2>{''.join(projects)}</section></main>
   <aside class="pcv-side"><section><h2 class="pcv-section-title">{labels['skills']}</h2>{skills}</section><section class="pcv-compact"><h2 class="pcv-section-title">{labels['education']}</h2><p>{esc(education)}</p></section><section class="pcv-compact"><h2 class="pcv-section-title">{labels['recognition']}</h2>{recognition}</section><section class="pcv-compact"><p>{esc(p[f'location_{lang}'])}</p></section></aside></div>
 </div>"""
@@ -353,7 +372,7 @@ def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
     head = common_head(data, lang, profile["filename"], profile["title"], profile["description"], profile["role"])
     footer_label = "Обновлено" if lang == "ru" else "Updated"
     if profile.get("compiler_layout") or profile_key == "compiler":
-        main_content = f"{compiler_hero(data, lang, profile)}{experience_section(lang, profile, compact=True)}{compiler_projects_section(data, lang, profile)}{skills_section(lang, profile, compact=True)}{recognition_section(data, lang, profile, compact=True)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
+        main_content = f"{compiler_hero(data, lang, profile)}{trajectory_section(data, lang, profile)}{experience_section(lang, profile, compact=True)}{compiler_projects_section(data, lang, profile)}{skills_section(lang, profile, compact=True)}{recognition_section(data, lang, profile, compact=True)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
     else:
         main_content = f"{hero(data, lang, profile)}{proof_strip(profile)}{experience_section(lang, profile)}{projects_section(data, lang, profile)}{skills_section(lang, profile)}{recognition_section(data, lang, profile)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
     return f"""{head}
