@@ -7,6 +7,7 @@ on:
     paths:
       - "tools/apply_semantic_portfolio_fix_20260914.py"
       - "tools/refine_semantic_portfolio_fix_20260914.py"
+      - "tools/finalize_portfolio_breadth_20260914.py"
       - ".github/workflows/apply-semantic-portfolio-fix.yml"
   pull_request:
     branches:
@@ -14,6 +15,7 @@ on:
     paths:
       - "tools/apply_semantic_portfolio_fix_20260914.py"
       - "tools/refine_semantic_portfolio_fix_20260914.py"
+      - "tools/finalize_portfolio_breadth_20260914.py"
       - ".github/workflows/apply-semantic-portfolio-fix.yml"
 
 permissions:
@@ -40,6 +42,7 @@ jobs:
         run: |
           python tools/apply_semantic_portfolio_fix_20260914.py
           python tools/refine_semantic_portfolio_fix_20260914.py
+          python tools/finalize_portfolio_breadth_20260914.py
           python -m json.tool data/site.json >/dev/null
       - name: Install verification dependencies
         run: |
@@ -86,9 +89,9 @@ jobs:
           cmp /tmp/first-generation.patch /tmp/second-generation.patch
       - name: Remove one-shot migration machinery and commit verified result
         run: |
-          git rm tools/apply_semantic_portfolio_fix_20260914.py tools/refine_semantic_portfolio_fix_20260914.py .github/workflows/apply-semantic-portfolio-fix.yml
+          git rm tools/apply_semantic_portfolio_fix_20260914.py tools/refine_semantic_portfolio_fix_20260914.py tools/finalize_portfolio_breadth_20260914.py .github/workflows/apply-semantic-portfolio-fix.yml
           git config user.name "github-actions[bot]"
-          git config user.email "41898233+github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Rewrite compiler CV positioning from verified evidence [skip ci]"
           git push origin HEAD:refactor/cv-semantic-positioning-2026-09-14
