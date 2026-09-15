@@ -1,6 +1,6 @@
 {
-  "version": 61,
-  "updated_at": "2026-09-14",
+  "version": 63,
+  "updated_at": "2026-09-15",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -18,6 +18,7 @@
   },
   "profile_order": [
     "general",
+    "architecture",
     "compiler_backend",
     "program_analysis",
     "compiler",
@@ -81,6 +82,12 @@
       "label_en": "Compiler / Software Protection — selective",
       "landing_title": "Compiler / Software Protection Engineer — selective",
       "landing_description_ru": "LLVM + program analysis + low-level codegen + ограниченно заявленный исторический Unity licensing/protection prototype; без выдуманных hardening techniques."
+    },
+    "architecture": {
+      "label_ru": "Architecture / Platforms",
+      "label_en": "Architecture / Platforms",
+      "landing_title": "Software Engineer — Architecture & Platforms",
+      "landing_description_ru": "Hands-on архитектура: явные границы владения, immutable planning, state/recovery и независимая проверка решений в compiler/runtime и backend-системах."
     }
   },
   "profiles": {
@@ -1901,6 +1908,220 @@
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3
       }
+    },
+    "architecture": {
+      "ru": {
+        "filename": "ru-architecture.html",
+        "pdf": "Mikhail_Razakov_Architecture_Platforms_RU.pdf",
+        "title": "Михаил Разаков — Software Engineer — Architecture & Platforms",
+        "role": "Software Engineer — Architecture & Platforms",
+        "brand": "architecture · platforms · compiler/runtime · state & recovery",
+        "eyebrow": "Ownership boundaries · deterministic planning · recovery · verification",
+        "summary": "Проектирую и реализую compiler/runtime и backend-системы, где корректность зависит от явных границ владения, состояния и жизненного цикла. В UniversalToolchain композиция сводится к одному immutable LanguagePlan до запуска; в VpnMediator состояния платежей и доступа отделены от reconciliation/recovery; в x86-64 backend решения register allocation проверяются независимым verifier и differential execution.",
+        "description": "Михаил Разаков — Software Engineer — Architecture & Platforms: ownership boundaries, deterministic planning, state/recovery и механически проверяемые архитектурные инварианты.",
+        "proofs": [
+          [
+            "Architecture ownership",
+            "UniversalToolchain: один публичный LanguageCompiler разрешает композицию в immutable LanguagePlan; runtime материализует уже выбранный граф."
+          ],
+          [
+            "State & recovery",
+            "VpnMediator: явные payment/access states, идемпотентность, reconciliation, миграции, backup/restore, health gates и rollback."
+          ],
+          [
+            "Correctness boundaries",
+            "x86-64 backend: allocation проверяется независимым assignment verifier, а native execution сравнивается с эталонным interpreter oracle."
+          ]
+        ],
+        "experience": [
+          {
+            "fact_ref": "isp_ras",
+            "date": "2026 — сейчас",
+            "title": "ИСП РАН — инженер по статическому анализу",
+            "org": "SharpChecker · C#/.NET · статический анализ",
+            "bullets": [
+              "Участвую в разработке SharpChecker — платформы статического анализа C#/.NET в ИСП РАН.",
+              "Работаю над задачами символьных вычислений в контексте статического анализа C#/.NET."
+            ]
+          },
+          {
+            "fact_ref": "mcst",
+            "date": "июль — август 2026",
+            "title": "МЦСТ — стажёр по разработке компиляторов",
+            "org": "LLVM 22 · C++23 · compiler engineering",
+            "bullets": [
+              "Реализовал LICM-проход для LLVM 22 на C++; перенос выполняется только при выполнении условий по структуре цикла, обращениям к памяти, побочным эффектам и безопасности спекулятивного выполнения.",
+              "Собрал Python-обвязку для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
+            ]
+          }
+        ],
+        "project_ids": [
+          "wist",
+          "vpn",
+          "codegen"
+        ],
+        "skills": [
+          [
+            "Архитектура",
+            "ownership/module boundaries, typed contracts, immutable planning, extensibility boundaries, explicit state machines, lifecycle/recovery, architecture verification"
+          ],
+          [
+            "Compiler / Runtime platforms",
+            ".NET, LanguageCompiler/LanguagePlan, dependency/conflict resolution, provider selection, deterministic pass ordering, typed backend routes"
+          ],
+          [
+            "State & Reliability",
+            "idempotency, reconciliation, migrations, backup/restore, health gates, rollback, failure containment"
+          ],
+          [
+            "Проверка решений",
+            "regression tests, exact manifests, independent verifiers, interpreter/backend parity, differential execution"
+          ]
+        ],
+        "contact_heading": "Целевые роли: Software / Platform Engineer с существенной архитектурной ответственностью",
+        "footer": "Software Engineer — Architecture & Platforms",
+        "recognition": [
+          [
+            "2026",
+            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
+            "Доклад по архитектуре UniversalToolchain принят на LangDev’26; конференция пройдёт 8–9 октября 2026 в Малаге."
+          ],
+          [
+            "2026",
+            "UniversalToolchain — Балтийский научно-инженерный конкурс",
+            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
+          ],
+          [
+            "2026",
+            "НИЯУ МИФИ «Юниор»",
+            "Абсолютный победитель; диплом I степени, 96/100 за UniversalToolchain."
+          ]
+        ],
+        "print_project_limit": 3,
+        "show_portrait": true,
+        "portrait_asset": "assets/portrait.jpg",
+        "updated_at": "2026-09-15",
+        "project_summaries": {
+          "wist": {
+            "solution": "Единственный публичный semantic planner разрешает зависимости и конфликты, выбирает providers, фиксирует порядок contributions и типизированные backend routes в одном immutable LanguagePlan до запуска runtime.",
+            "result": "Архитектурные решения защищены pre-execution validation, exact manifest/ownership checks и parity interpreter/CIL; текущий exact manifest — 1 324/1 324."
+          },
+          "vpn": {
+            "solution": "Явные payment/access states отделяют приём внешних событий от идемпотентного reconciliation и recovery; миграции и operational gates делают lifecycle-переходы проверяемыми.",
+            "result": "Recovery включает backup/restore, health-gated переключение release и rollback; публичный кейс не раскрывает секреты и пользовательские данные."
+          },
+          "codegen": {
+            "solution": "Стратегия register allocation отделена от независимого assignment verifier до phi lowering и генерации SysV x86-64.",
+            "result": "Семантика сгенерированного native-кода проверяется differential execution относительно эталонного интерпретатора; тесты покрывают ветвления, циклы, spills и parallel phi moves."
+          }
+        }
+      },
+      "en": {
+        "filename": "en-architecture.html",
+        "pdf": "Mikhail_Razakov_Architecture_Platforms_EN.pdf",
+        "title": "Mikhail Razakov — Software Engineer — Architecture & Platforms",
+        "role": "Software Engineer — Architecture & Platforms",
+        "brand": "architecture · platforms · compiler/runtime · state & recovery",
+        "eyebrow": "Ownership boundaries · deterministic planning · recovery · verification",
+        "summary": "I design and implement compiler/runtime and backend systems where correctness depends on explicit ownership, state, and lifecycle boundaries. UniversalToolchain resolves composition into one immutable LanguagePlan before execution; VpnMediator separates payment/access state from reconciliation and recovery; the x86-64 backend checks register-allocation decisions with an independent verifier and differential execution.",
+        "description": "Mikhail Razakov — Software Engineer — Architecture & Platforms: ownership boundaries, deterministic planning, state/recovery, and mechanically checked architectural invariants.",
+        "proofs": [
+          [
+            "Architecture ownership",
+            "UniversalToolchain exposes one public LanguageCompiler that resolves composition into an immutable LanguagePlan; runtime materializes the already selected graph."
+          ],
+          [
+            "State & recovery",
+            "VpnMediator uses explicit payment/access states, idempotency, reconciliation, migrations, backup/restore, health gates, and rollback."
+          ],
+          [
+            "Correctness boundaries",
+            "The x86-64 backend checks allocation with an independent assignment verifier and compares native execution against a reference interpreter oracle."
+          ]
+        ],
+        "experience": [
+          {
+            "fact_ref": "isp_ras",
+            "date": "2026 — present",
+            "title": "ISP RAS — Static Analysis Engineer",
+            "org": "SharpChecker · C#/.NET · static analysis",
+            "bullets": [
+              "Contribute to SharpChecker, ISP RAS's C#/.NET static-analysis platform.",
+              "Current work includes symbolic-computation tasks in C#/.NET program analysis."
+            ]
+          },
+          {
+            "fact_ref": "mcst",
+            "date": "July — August 2026",
+            "title": "MCST — Compiler Engineering Intern",
+            "org": "LLVM 22 · C++23 · compiler engineering",
+            "bullets": [
+              "Implemented a LICM pass for LLVM 22 in C++; hoisting conditions check loop structure, memory access, side effects, and speculative safety.",
+              "Built a Python harness comparing program behavior before/after optimization and checking transform/no-transform cases."
+            ]
+          }
+        ],
+        "project_ids": [
+          "wist",
+          "vpn",
+          "codegen"
+        ],
+        "skills": [
+          [
+            "Architecture",
+            "ownership/module boundaries, typed contracts, immutable planning, extensibility boundaries, explicit state machines, lifecycle/recovery, architecture verification"
+          ],
+          [
+            "Compiler / Runtime Platforms",
+            ".NET, LanguageCompiler/LanguagePlan, dependency/conflict resolution, provider selection, deterministic pass ordering, typed backend routes"
+          ],
+          [
+            "State & Reliability",
+            "idempotency, reconciliation, migrations, backup/restore, health gates, rollback, failure containment"
+          ],
+          [
+            "Verification",
+            "regression tests, exact manifests, independent verifiers, interpreter/backend parity, differential execution"
+          ]
+        ],
+        "contact_heading": "Target roles: Software / Platform Engineer with substantial architecture ownership",
+        "footer": "Software Engineer — Architecture & Platforms",
+        "recognition": [
+          [
+            "2026",
+            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
+            "Accepted talk on UniversalToolchain’s architecture; LangDev’26 takes place October 8–9, 2026 in Málaga."
+          ],
+          [
+            "2026",
+            "UniversalToolchain — Baltic Science and Engineering Competition",
+            "First Degree Diploma and Grand Prize “Perfection as Hope” for UniversalToolchain."
+          ],
+          [
+            "2026",
+            "MEPhI Junior",
+            "Overall winner; First Degree Diploma, 96/100 for UniversalToolchain."
+          ]
+        ],
+        "print_project_limit": 3,
+        "show_portrait": true,
+        "portrait_asset": "assets/portrait.jpg",
+        "updated_at": "2026-09-15",
+        "project_summaries": {
+          "wist": {
+            "solution": "One public semantic planner resolves dependencies/conflicts, selects providers, and freezes contribution ordering plus typed backend routes into one immutable LanguagePlan before runtime starts.",
+            "result": "The design is enforced by pre-execution validation, exact manifest/ownership checks, and interpreter/CIL parity; the current exact manifest is 1,324/1,324."
+          },
+          "vpn": {
+            "solution": "Explicit payment/access states separate external-event acceptance from idempotent reconciliation and recovery; migrations and operational gates keep lifecycle transitions inspectable.",
+            "result": "Recovery includes backup/restore, health-gated release switching, and rollback; the public case study excludes secrets and user data."
+          },
+          "codegen": {
+            "solution": "Register-allocation strategy is separated from an independent assignment verifier before phi lowering and SysV x86-64 emission.",
+            "result": "Generated native behavior is differentially checked against a reference interpreter; tests cover branches, loops, spills, and parallel phi moves."
+          }
+        }
+      }
     }
   },
   "projects": {
@@ -2096,6 +2317,7 @@
   "selector_order": [
     "compiler",
     "general",
+    "architecture",
     "compiler_backend",
     "program_analysis",
     "backend",

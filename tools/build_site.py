@@ -354,8 +354,8 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     for project_id in profile["project_ids"][:project_limit]:
         project = data["projects"][project_id]
         target = project.get("repo") or project[f"case_{lang}"]
-        summary = project_summaries.get(project_id, {}) if is_compiler_print else {}
-        if is_compiler_print and summary:
+        summary = project_summaries.get(project_id, {})
+        if summary:
             project_body = f'<p>{esc(summary.get("solution", ""))}</p><p class="pcv-project-result">{esc(summary.get("result", ""))}</p>'
         else:
             project_body = f'<p>{esc(project[f"result_{lang}"])}</p>'
