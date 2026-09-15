@@ -96,12 +96,25 @@ jobs:
           git diff --check
       - name: Verify architecture print copy
         run: |
-          grep -q "One public semantic planner resolves dependencies/conflicts" en-architecture.html
-          grep -q "Единственный публичный semantic planner разрешает зависимости" ru-architecture.html
-          if grep -q "32/32 primary" en-architecture.html; then
-            echo "Architecture page still contains generic verifier experiment copy" >&2
-            exit 1
-          fi
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+
+          checks = [
+              ("en-architecture.html", "One public semantic planner resolves dependencies/conflicts", "32/32 primary"),
+              ("ru-architecture.html", "Единственный публичный semantic planner разрешает зависимости", "32/32 primary"),
+          ]
+          for filename, required, forbidden in checks:
+              soup = BeautifulSoup(Path(filename).read_text(encoding="utf-8"), "html.parser")
+              print_cv = soup.select_one(".print-cv")
+              if print_cv is None:
+                  raise SystemExit(f"{filename}: .print-cv missing")
+              text = " ".join(print_cv.stripped_strings)
+              if required not in text:
+                  raise SystemExit(f"{filename}: architecture-specific print summary missing")
+              if forbidden in text:
+                  raise SystemExit(f"{filename}: generic verifier experiment leaked into print CV")
+          PY
       - name: Build manifest and validate final tree
         run: |
           rm -f .github/workflows/one-shot-architecture-print-refine-20260915.yml
