@@ -1,0 +1,176 @@
+name: One-shot architecture profile rebuild
+
+on:
+  push:
+    branches:
+      - "refactor/architecture-profile-20260915"
+    paths:
+      - ".github/workflows/one-shot-architecture-profile-20260915.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          python -m playwright install --with-deps chromium
+      - name: Restore architecture and platforms profile from current evidence
+        run: |
+          python - <<'PY'
+          import copy
+          import json
+          from pathlib import Path
+
+          site = Path("data/site.json")
+          data = json.loads(site.read_text(encoding="utf-8"))
+          if data.get("version") != 61:
+              raise SystemExit(f"Expected v61 baseline, got {data.get('version')!r}")
+          if "architecture" in data.get("profiles", {}):
+              raise SystemExit("architecture profile already exists; refusing ambiguous replay")
+
+          data["version"] = 62
+          data["updated_at"] = "2026-09-15"
+
+          def insert_after(seq, after, value):
+              seq = [x for x in seq if x != value]
+              idx = seq.index(after) + 1 if after in seq else len(seq)
+              seq.insert(idx, value)
+              return seq
+
+          data["profile_order"] = insert_after(data["profile_order"], "general", "architecture")
+          if "selector_order" in data:
+              data["selector_order"] = insert_after(data["selector_order"], "general", "architecture")
+
+          data["profile_ui"]["architecture"] = {
+              "label_ru": "Architecture / Platforms",
+              "label_en": "Architecture / Platforms",
+              "landing_title": "Software Engineer — Architecture & Platforms",
+              "landing_description_ru": "Hands-on архитектура: явные границы владения, immutable planning, state/recovery и независимая проверка решений в compiler/runtime и backend-системах."
+          }
+
+          ru_general = data["profiles"]["general"]["ru"]
+          en_general = data["profiles"]["general"]["en"]
+
+          architecture_ru = {
+              "filename": "ru-architecture.html",
+              "pdf": "Mikhail_Razakov_Architecture_Platforms_RU.pdf",
+              "title": "Михаил Разаков — Software Engineer — Architecture & Platforms",
+              "role": "Software Engineer — Architecture & Platforms",
+              "brand": "architecture · platforms · compiler/runtime · state & recovery",
+              "eyebrow": "Ownership boundaries · deterministic planning · recovery · verification",
+              "summary": "Проектирую и реализую compiler/runtime и backend-системы, где корректность зависит от явных границ владения, состояния и жизненного цикла. В UniversalToolchain композиция сводится к одному immutable LanguagePlan до запуска; в VpnMediator состояния платежей и доступа отделены от reconciliation/recovery; в x86-64 backend решения register allocation проверяются независимым verifier и differential execution.",
+              "description": "Михаил Разаков — Software Engineer — Architecture & Platforms: ownership boundaries, deterministic planning, state/recovery и механически проверяемые архитектурные инварианты.",
+              "proofs": [
+                  ["Architecture ownership", "UniversalToolchain: один публичный LanguageCompiler разрешает композицию в immutable LanguagePlan; runtime материализует уже выбранный граф."],
+                  ["State & recovery", "VpnMediator: явные payment/access states, идемпотентность, reconciliation, миграции, backup/restore, health gates и rollback."],
+                  ["Correctness boundaries", "x86-64 backend: allocation проверяется независимым assignment verifier, а native execution сравнивается с эталонным interpreter oracle."]
+              ],
+              "experience": copy.deepcopy(ru_general["experience"]),
+              "project_ids": ["wist", "vpn", "codegen"],
+              "skills": [
+                  ["Архитектура", "ownership/module boundaries, typed contracts, immutable planning, extensibility boundaries, explicit state machines, lifecycle/recovery, architecture verification"],
+                  ["Compiler / Runtime platforms", ".NET, LanguageCompiler/LanguagePlan, dependency/conflict resolution, provider selection, deterministic pass ordering, typed backend routes"],
+                  ["State & Reliability", "idempotency, reconciliation, migrations, backup/restore, health gates, rollback, failure containment"],
+                  ["Проверка решений", "regression tests, exact manifests, independent verifiers, interpreter/backend parity, differential execution"]
+              ],
+              "contact_heading": "Целевые роли: Software / Platform Engineer с существенной архитектурной ответственностью",
+              "footer": "Software Engineer — Architecture & Platforms",
+              "recognition": copy.deepcopy(ru_general["recognition"]),
+              "print_project_limit": 3,
+              "show_portrait": True,
+              "portrait_asset": "assets/portrait.jpg",
+              "updated_at": "2026-09-15"
+          }
+
+          architecture_en = {
+              "filename": "en-architecture.html",
+              "pdf": "Mikhail_Razakov_Architecture_Platforms_EN.pdf",
+              "title": "Mikhail Razakov — Software Engineer — Architecture & Platforms",
+              "role": "Software Engineer — Architecture & Platforms",
+              "brand": "architecture · platforms · compiler/runtime · state & recovery",
+              "eyebrow": "Ownership boundaries · deterministic planning · recovery · verification",
+              "summary": "I design and implement compiler/runtime and backend systems where correctness depends on explicit ownership, state, and lifecycle boundaries. UniversalToolchain resolves composition into one immutable LanguagePlan before execution; VpnMediator separates payment/access state from reconciliation and recovery; the x86-64 backend checks register-allocation decisions with an independent verifier and differential execution.",
+              "description": "Mikhail Razakov — Software Engineer — Architecture & Platforms: ownership boundaries, deterministic planning, state/recovery, and mechanically checked architectural invariants.",
+              "proofs": [
+                  ["Architecture ownership", "UniversalToolchain exposes one public LanguageCompiler that resolves composition into an immutable LanguagePlan; runtime materializes the already selected graph."],
+                  ["State & recovery", "VpnMediator uses explicit payment/access states, idempotency, reconciliation, migrations, backup/restore, health gates, and rollback."],
+                  ["Correctness boundaries", "The x86-64 backend checks allocation with an independent assignment verifier and compares native execution against a reference interpreter oracle."]
+              ],
+              "experience": copy.deepcopy(en_general["experience"]),
+              "project_ids": ["wist", "vpn", "codegen"],
+              "skills": [
+                  ["Architecture", "ownership/module boundaries, typed contracts, immutable planning, extensibility boundaries, explicit state machines, lifecycle/recovery, architecture verification"],
+                  ["Compiler / Runtime Platforms", ".NET, LanguageCompiler/LanguagePlan, dependency/conflict resolution, provider selection, deterministic pass ordering, typed backend routes"],
+                  ["State & Reliability", "idempotency, reconciliation, migrations, backup/restore, health gates, rollback, failure containment"],
+                  ["Verification", "regression tests, exact manifests, independent verifiers, interpreter/backend parity, differential execution"]
+              ],
+              "contact_heading": "Target roles: Software / Platform Engineer with substantial architecture ownership",
+              "footer": "Software Engineer — Architecture & Platforms",
+              "recognition": copy.deepcopy(en_general["recognition"]),
+              "print_project_limit": 3,
+              "show_portrait": True,
+              "portrait_asset": "assets/portrait.jpg",
+              "updated_at": "2026-09-15"
+          }
+
+          data["profiles"]["architecture"] = {"ru": architecture_ru, "en": architecture_en}
+          site.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+          Path("TARGETING.md").write_text("""# Targeting guide — role-specific CV suite\n\n## Primary profiles\n\n1. `Compiler & Program Analysis Engineer — LLVM · C++ · Static Analysis` — default for compiler, LLVM, static/program-analysis, compiler-backend, and adjacent code-intelligence roles.\n2. `Compiler Infrastructure / Language Tooling Engineer` — language infrastructure, compiler platforms, extensible DSL/language tooling, deterministic composition, and runtime/toolchain roles.\n3. `Software Engineer — Architecture & Platforms` — hands-on architecture/platform roles where ownership boundaries, contracts, state/recovery, lifecycle decisions, and mechanically checked invariants matter. This is intentionally not titled `Software Architect`: multi-team/enterprise architecture authority is not claimed.\n4. `.NET Backend / Platform Engineer — State & Reliability` — backend/platform roles where payments, idempotency, recovery, migrations, and release correctness dominate.\n\n## Secondary profiles\n\n- `Compiler Backend / Code Generation Engineer` — LLVM/backend, native codegen, register allocation, and low-level compiler roles.\n- `Static Analysis / Program Analysis Engineer` — Roslyn/LLVM data-flow and conservative program-analysis roles.\n- `C++ / LLVM Systems` — systems, performance, low-level infrastructure, and HFT-adjacent applications.\n- `Quant Developer / Research Engineer` and `Quant Research Candidate` — selective roles where algorithmic experimentation and reproducible validation are central.\n- `Compiler / Software Protection Engineer` — selective / evidence-limited; use only for directly relevant roles.\n\n## Architecture profile evidence order\n\n`UniversalToolchain -> VpnMediator -> x86-64 backend`. The profile proves architecture through implemented ownership boundaries, state/recovery semantics, and independent verification rather than through design-pattern vocabulary or an inflated seniority title.\n\nAll profiles share canonical facts from `data/site.json`; they differ only in evidence ordering and role-specific vocabulary.\n""", encoding="utf-8")
+
+          readme = Path("README.md")
+          text = readme.read_text(encoding="utf-8")
+          start = text.index("## Canonical profiles")
+          end = text.index("## Local build", start)
+          canonical = """## Canonical profiles\n\n1. Compiler & Program Analysis Engineer (canonical)\n2. Compiler Infrastructure / Language Tooling Engineer\n3. Software Engineer — Architecture & Platforms\n4. Compiler Backend / Code Generation Engineer\n5. Static Analysis / Program Analysis Engineer\n6. .NET Backend / Platform Reliability\n7. C++ / LLVM Systems\n8. Quant Developer / Research Engineer\n9. Quantitative Research / Research Software Engineering\n\nThe landing page uses the Compiler & Program Analysis profile as the canonical identity and exposes role-specific alternatives. The architecture profile is deliberately a hands-on engineering profile rather than a `Software Architect` seniority claim. Profile navigation and landing-card labels are defined by the canonical `profile_ui` metadata in `data/site.json`. Older narrow URLs redirect to the nearest canonical profile.\n\n"""
+          readme.write_text(text[:start] + canonical + text[end:], encoding="utf-8")
+
+          Path("ARCHITECTURE-PROFILE-REVIEW-2026-09-15.md").write_text("""# Architecture profile review — 2026-09-15\n\n## Decision\n\nAdd a separate `Software Engineer — Architecture & Platforms` profile without replacing the compiler-focused profiles. Do not use `Software Architect`, Staff, Principal, enterprise-scale, or multi-team-governance titles/claims.\n\n## Evidence order\n\n1. **UniversalToolchain** — current source exposes one public semantic planner (`LanguageCompiler`), resolves a typed immutable `LanguagePlan`, and keeps runtime on the selected plan. This is the strongest architecture-ownership signal.\n2. **VpnMediator** — independent backend evidence: explicit payment/access state, idempotency, reconciliation/recovery, migrations, backup/restore, health gates, and rollback.\n3. **x86-64 backend** — decision/verification separation: register-allocation output is checked by an independent assignment verifier and generated native behavior is compared against a reference interpreter.\n\n## Information hierarchy\n\nHero proofs are `Architecture ownership`, `State & recovery`, and `Correctness boundaries`. Professional employment remains ISP RAS + MCST with the same bounded wording as the current compiler-infrastructure profile; architecture evidence is not misrepresented as employment.\n\n## Anti-overclaim boundary\n\nThe profile is meant for hands-on Software / Platform Engineer roles with meaningful architecture ownership. The repository still does not claim long-running multi-team architecture authority, enterprise governance, cloud/Kubernetes platform ownership, large-scale distributed-system traffic, or years of formal architect tenure.\n\n## Validation expectation\n\nThe architecture profile must pass the same canonical build, one-page PDF, source-of-truth, link, visual smoke/regression, and manifest gates as every other profile.\n""", encoding="utf-8")
+          PY
+      - name: Generate HTML and PDFs
+        run: |
+          python tools/build_site.py
+          python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+      - name: Validate content, links, PDFs, and visual smoke
+        run: |
+          python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
+          python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
+          git diff --check
+      - name: Build manifest and validate final tree
+        run: |
+          rm -f .github/workflows/one-shot-architecture-profile-20260915.yml
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
+          python tools/build_site.py --manifest
+          python tools/validate_cv.py --pdf-dir pdf
+          python tools/build_site.py --check
+          git diff --check
+      - name: Commit reviewed architecture profile
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Add evidence-backed architecture and platforms CV"
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: architecture-profile-validation
+          path: |
+            /tmp/cv-pdf-report.json
+            /tmp/cv-validation.json
+            /tmp/cv-pdf-evidence
+            /tmp/cv-visual
+          if-no-files-found: warn
