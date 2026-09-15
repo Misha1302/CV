@@ -1,5 +1,5 @@
 {
-  "version": 62,
+  "version": 63,
   "updated_at": "2026-09-15",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -2000,7 +2000,21 @@
         "print_project_limit": 3,
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
-        "updated_at": "2026-09-15"
+        "updated_at": "2026-09-15",
+        "project_summaries": {
+          "wist": {
+            "solution": "Единственный публичный semantic planner разрешает зависимости и конфликты, выбирает providers, фиксирует порядок contributions и типизированные backend routes в одном immutable LanguagePlan до запуска runtime.",
+            "result": "Архитектурные решения защищены pre-execution validation, exact manifest/ownership checks и parity interpreter/CIL; текущий exact manifest — 1 324/1 324."
+          },
+          "vpn": {
+            "solution": "Явные payment/access states отделяют приём внешних событий от идемпотентного reconciliation и recovery; миграции и operational gates делают lifecycle-переходы проверяемыми.",
+            "result": "Recovery включает backup/restore, health-gated переключение release и rollback; публичный кейс не раскрывает секреты и пользовательские данные."
+          },
+          "codegen": {
+            "solution": "Стратегия register allocation отделена от независимого assignment verifier до phi lowering и генерации SysV x86-64.",
+            "result": "Семантика сгенерированного native-кода проверяется differential execution относительно эталонного интерпретатора; тесты покрывают ветвления, циклы, spills и parallel phi moves."
+          }
+        }
       },
       "en": {
         "filename": "en-architecture.html",
@@ -2092,7 +2106,21 @@
         "print_project_limit": 3,
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
-        "updated_at": "2026-09-15"
+        "updated_at": "2026-09-15",
+        "project_summaries": {
+          "wist": {
+            "solution": "One public semantic planner resolves dependencies/conflicts, selects providers, and freezes contribution ordering plus typed backend routes into one immutable LanguagePlan before runtime starts.",
+            "result": "The design is enforced by pre-execution validation, exact manifest/ownership checks, and interpreter/CIL parity; the current exact manifest is 1,324/1,324."
+          },
+          "vpn": {
+            "solution": "Explicit payment/access states separate external-event acceptance from idempotent reconciliation and recovery; migrations and operational gates keep lifecycle transitions inspectable.",
+            "result": "Recovery includes backup/restore, health-gated release switching, and rollback; the public case study excludes secrets and user data."
+          },
+          "codegen": {
+            "solution": "Register-allocation strategy is separated from an independent assignment verifier before phi lowering and SysV x86-64 emission.",
+            "result": "Generated native behavior is differentially checked against a reference interpreter; tests cover branches, loops, spills, and parallel phi moves."
+          }
+        }
       }
     }
   },
