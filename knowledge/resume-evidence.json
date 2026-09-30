@@ -73,34 +73,44 @@
     },
     {
       "id": "experience_isp_ras_2026",
-      "category": "experience",
-      "name": "ISP RAS — C#/.NET Static Analysis",
-      "time": "2026-present",
+      "category": "opportunity",
+      "name": "ISP RAS — SharpChecker student track / static-analysis selection",
+      "time": "2026",
       "evidence_level": [
         "PRIVATE_DOCUMENT",
-        "USER_ATTESTED"
+        "USER_ATTESTED",
+        "PUBLIC_REPO_DIRECT"
       ],
-      "public_sources": [],
+      "public_sources": [
+        "https://github.com/Misha1302/DerefAfterNullAnalyzer"
+      ],
       "claims": {
-        "safe_ru": "Работаю с C#/.NET static analysis в контексте ИСП РАН; публичное CV не должно приписывать конкретные закрытые алгоритмы или impact без отдельного разрешения/evidence.",
-        "safe_en": "Work on C#/.NET static analysis in an ISP RAS context; public CV copy must not attribute specific private algorithms or impact without separate evidence."
+        "safe_ru": "В 2026 получил от ИСП РАН тестовое задание для студенческой траектории по C#/.NET static analysis и реализовал DerefAfterNullAnalyzer; позднее сообщал об оффере, но фактический старт работы, должность и дата начала в доступных материалах не подтверждены.",
+        "safe_en": "In 2026 I received an ISP RAS student-track test task in C#/.NET static analysis and implemented DerefAfterNullAnalyzer; I later reported receiving an offer, but an actual employment start, title, and start date are not confirmed by the available evidence."
       },
       "recruiter_signals": [
-        "professional static analysis",
+        "static-analysis selection signal",
         "C#/.NET",
-        "program analysis"
+        "Roslyn program analysis"
       ],
       "role_fit": [
         "program_analysis",
-        "compiler",
-        "architecture"
+        "compiler"
       ],
-      "resume_priority": "HIGH",
+      "resume_priority": "CONDITIONAL",
       "gaps": [
-        "Canonical title",
-        "exact start date",
-        "publicly shareable contribution boundary"
-      ]
+        "Offer acceptance",
+        "actual start date",
+        "canonical title",
+        "publicly shareable completed work"
+      ],
+      "status": "SELECTION_TASK_COMPLETED__OFFER_REPORTED__START_NOT_CONFIRMED",
+      "strongest_evidence": [
+        "Direct organizer correspondence describes the ISP RAS student-group process and assigns the DEREF_AFTER_NULL Roslyn detector task.",
+        "The public DerefAfterNullAnalyzer repository implements a Roslyn CFG fixed-point null-state analysis with tests.",
+        "Later user-provided career context reports an offer, while later records still lack a confirmed start date/title/completed work."
+      ],
+      "resume_use": "Do not list as current employment until start/title are confirmed. The selection task may be described separately if useful."
     },
     {
       "id": "project_universaltoolchain",
@@ -435,7 +445,9 @@
       "do_not_claim_before_event": [
         "Spoke at LangDev 2026",
         "Presented at LangDev 2026"
-      ]
+      ],
+      "status": "ACCEPTED_AND_PUBLICLY_SCHEDULED__EVENT_NOT_YET_OCCURRED",
+      "public_schedule": "2026-10-09 10:00 local conference schedule"
     },
     {
       "id": "achievement_hse_open_source_2026",
@@ -443,8 +455,9 @@
       "name": "HSE FCS open-source projects competition",
       "time": "2026",
       "evidence_level": [
-        "USER_ATTESTED",
-        "PUBLIC_PRIMARY"
+        "PUBLIC_PRIMARY",
+        "PRIVATE_DOCUMENT",
+        "USER_ATTESTED"
       ],
       "public_sources": [
         "https://cs.hse.ru/opensource/open_source"
@@ -453,7 +466,7 @@
         "safe_ru": "UniversalToolchain / Wist2 — один из победителей конкурса проектов с открытым кодом студентов ФКН НИУ ВШЭ.",
         "safe_en": "Selected as one of the winners of the HSE Faculty of Computer Science open-source projects competition with UniversalToolchain / Wist2."
       },
-      "boundary": "Personal winner status is based on organizer communication supplied by the user; public winner list was not located before the 2026-10-01 award event.",
+      "boundary": "As of 2026-09-30, public HSE material confirms the competition and the 2026-10-01 results event; the personal 'one of the winners' status is grounded in organizer wording supplied by the user, not a public ranked winner list.",
       "recruiter_signals": [
         "external project validation",
         "open source",
@@ -471,6 +484,10 @@
         "sole winner",
         "competition size",
         "prize value"
+      ],
+      "private_evidence_summary": [
+        "HSE FCS project lead invited Mikhail to the 2026-10-01 project presentation and results ceremony.",
+        "User separately supplied organizer wording stating that he is one of the winners."
       ]
     },
     {
@@ -486,11 +503,11 @@
         "https://olymp.mephi.ru/junior/winners/2025",
         "https://olymp.mephi.ru/junior/winners/2026"
       ],
-      "verified_public_fact": "Official MEPhI results pages list Mikhail Razakov with a first-degree diploma in the IT section in both 2025 and 2026.",
-      "user_attested_stronger_fact": "User states he was the overall/absolute winner twice.",
+      "verified_public_fact": "Official MEPhI result tables list Mikhail Razakov in the Information Technologies section with a first-degree diploma in both years: 2025 — 45 project + 46 written = 91 total; 2026 — 49 project + 47 written = 96 total.",
+      "user_attested_stronger_fact": "User has described the result as two-time absolute/overall winner; this wording is not established by the currently inspected public result tables.",
       "resume_use": {
-        "currently_safe_without_private_artifact": "Дважды диплом I степени конкурса «Юниор» НИЯУ МИФИ / First-degree diploma twice.",
-        "stronger_after_artifact_check": "Дважды абсолютный победитель / two-time overall winner."
+        "public_primary_safe": "Дважды диплом I степени / two-time first-degree diploma recipient; exact public scores may be used when space adds value.",
+        "stronger_only_after_exact_artifact": "«Дважды абсолютный победитель» / 'two-time overall winner' only if an official diploma/final protocol explicitly establishes that title and scope."
       },
       "recruiter_signals": [
         "sustained competition success",
@@ -501,7 +518,19 @@
       ],
       "resume_priority": "HIGH",
       "gaps": [
-        "Inspect diploma/final protocol if the literal 'absolute winner' wording must be defensible externally."
+        "Inspect the exact diploma/final protocol only if the literal 'absolute/overall winner' title is important enough to use."
+      ],
+      "public_result_notes": [
+        "On the 2025 engineering-sciences table, 91 is the highest displayed total.",
+        "On the 2026 engineering-sciences table, another participant has 100; therefore the public table does not support 'absolute/overall winner' across the full engineering-sciences category.",
+        "Mikhail has the highest displayed total among the Information Technologies entries in both public tables."
+      ],
+      "claims": {
+        "safe_ru": "Дважды диплом I степени конкурса «Юниор» НИЯУ МИФИ в секции информационных технологий: 91 балл в 2025 и 96 баллов в 2026.",
+        "safe_en": "Two-time first-degree diploma recipient in the MEPhI Junior Information Technologies section: 91 points in 2025 and 96 points in 2026."
+      },
+      "do_not_claim": [
+        "Two-time absolute/overall winner from the public result tables alone."
       ]
     },
     {
@@ -513,12 +542,14 @@
         "PUBLIC_PRIMARY"
       ],
       "public_sources": [
-        "https://baltkonkurs.ru/news/v-sankt-peterburge-podveli-itogi-baltijskogo-nauchno-inzhenernogo-konkursa/"
+        "https://baltkonkurs.ru/news/v-sankt-peterburge-podveli-itogi-baltijskogo-nauchno-inzhenernogo-konkursa/",
+        "https://baltkonkurs.ru/features/po-godam/xxii-konkurs-2026/",
+        "https://baltkonkurs.ru/wp-content/uploads/2026/03/bk26protocol.pdf"
       ],
-      "verified_public_fact": "Official competition news names Mikhail Razakov / UniversalToolchain with a first-degree diploma and the Main Prize «Совершенство как надежда».",
+      "verified_public_fact": "All inspected official sources agree that Mikhail Razakov / UniversalToolchain received a first-degree diploma and the «Совершенство как надежда» prize.",
       "claims": {
-        "safe_ru": "Диплом I степени и Главная премия «Совершенство как надежда» Балтийского научно-инженерного конкурса.",
-        "safe_en": "First-degree diploma and the Main Prize “Perfection as Hope” at the Baltic Science and Engineering Competition."
+        "safe_ru": "Диплом I степени и премия «Совершенство как надежда» Балтийского научно-инженерного конкурса.",
+        "safe_en": "First-degree diploma and the “Perfection as Hope” prize at the Baltic Science and Engineering Competition."
       },
       "recruiter_signals": [
         "external project validation",
@@ -530,7 +561,20 @@
         "compiler"
       ],
       "resume_priority": "HIGH",
-      "note": "One protocol/search surface appeared less explicit than the official final news; keep the dated final-news source as authority."
+      "note": "Do not choose 'Main Prize' or 'Section Prize' as canonical wording while first-party sources conflict.",
+      "source_conflict": {
+        "status": "UNRESOLVED_PRIMARY_SOURCE_CONFLICT",
+        "details": [
+          "The official final-news article calls Razakov a holder of the Main Prize.",
+          "The official protocol/PDF places Razakov under the Section Prize heading.",
+          "Both are first-party competition sources."
+        ],
+        "default_rule": "Use wording common to both sources until the diploma/organizer resolves the Main-vs-Section label."
+      },
+      "do_not_claim": [
+        "Absolute winner based on current public evidence.",
+        "Unqualified Main Prize or Section Prize as canonical wording until the conflict is resolved."
+      ]
     },
     {
       "id": "achievement_hse_vysshaya_proba",
@@ -538,12 +582,13 @@
       "name": "HSE Vysshaya Proba — Informatics / Industrial Programming",
       "time": "2026",
       "evidence_level": [
+        "PRIVATE_DOCUMENT",
         "USER_ATTESTED",
         "NEEDS_VERIFICATION"
       ],
       "public_sources": [],
-      "user_attested_fact": "Prize-winner in both competitive/informatics and industrial-programming tracks.",
-      "resume_use": "Allowed as user-attested current-CV fact, but the knowledge base should ingest the actual diploma/result PDFs before treating exact track/rank wording as primary-verified.",
+      "user_attested_fact": "Prize-winner in both Informatics and Industrial Programming.",
+      "resume_use": "For a public CV, keep the user's existing 'prize-winner in Informatics and Industrial Programming' only if user-attested claims are acceptable; for a strictly primary-verified CV, currently claim only Industrial Programming diploma-holder status.",
       "recruiter_signals": [
         "competitive programming",
         "industrial programming"
@@ -554,8 +599,25 @@
       ],
       "resume_priority": "MEDIUM_HIGH",
       "gaps": [
-        "Read exact result documents and canonical competition naming."
-      ]
+        "Ingest the exact Informatics result PDF/diploma.",
+        "Ingest the Industrial Programming diploma/result if degree/rank matters."
+      ],
+      "track_evidence": {
+        "industrial_programming": {
+          "status": "DIPLOMA_HOLDER_PRIVATE_ORGANIZER_EVIDENCE",
+          "evidence": "A 2026 HSE Olympiad organizing-committee message invited confirmed attendees to a meeting with diploma holders of the Industrial Programming track.",
+          "boundary": "This establishes diploma-holder status for the track, not diploma degree, rank, or score."
+        },
+        "informatics": {
+          "status": "USER_ATTESTED__PRIMARY_RESULT_NOT_INGESTED",
+          "evidence": "User states prize-winner status; a private file index contains a result-PDF filename referring to prize-winner status, but the file contents were not available in this pass.",
+          "boundary": "Do not treat the filename or results-login email as proof of exact rank/diploma degree."
+        }
+      },
+      "claims": {
+        "safe_ru": "Дипломант «Высшей пробы» по промышленному программированию; призёрство по информатике — пользовательский факт, ожидающий чтения первичного результата.",
+        "safe_en": "Diploma holder in HSE Vysshaya Proba Industrial Programming; Informatics prize-winner status remains user-attested pending ingestion of the primary result."
+      }
     },
     {
       "id": "history_compiler_runtime_lineage",
@@ -1127,10 +1189,10 @@
       "strongest_evidence": [
         "Global-IV",
         "DerefAfterNull",
-        "ISP RAS context",
-        "PS-form"
+        "PS-form",
+        "ISP RAS selection task"
       ],
-      "level_for_resume": "strong current evidence"
+      "level_for_resume": "strong project evidence; professional-employment claim not established"
     },
     {
       "skill": "Algorithms",
@@ -1192,23 +1254,28 @@
   "global_claim_boundaries": {
     "can_say": [
       "Several years of hands-on compiler/runtime/language-tooling project experience.",
-      "Professional compiler/static-analysis experience in 2026.",
+      "Professional compiler experience in 2026 through the MCST internship.",
       "Implemented runtime CIL generation and native x86-64 emission before entering professional compiler work.",
       "Designs and implements architecture-heavy C++/.NET systems.",
-      "Accepted LangDev 2026 speaker."
+      "Accepted and publicly scheduled LangDev 2026 speaker."
     ],
     "can_say_with_qualifier": [
       "Several years of compiler engineering — qualify as personal/open-source projects followed by professional work.",
-      "HSE open-source winner — say 'one of the winners' until an official ranking is published.",
-      "PS-form ranked first / only 5.0 / only 104/104 — retain attribution to organizer results until primary result artifact is linked."
+      "HSE open-source winner — say 'one of the winners'; personal winner status is organizer/user-attested until a public result appears.",
+      "PS-form ranked first / only 5.0 / only 104/104 — retain attribution to organizer results until primary result artifact is linked.",
+      "ISP RAS / SharpChecker — selection task and reported offer are supportable; current employment is not confirmed.",
+      "Vysshaya Proba Informatics prize-winner — user-attested pending primary result ingestion."
     ],
     "do_not_say": [
       "4 years of professional compiler experience.",
+      "Current ISP RAS / SharpChecker employee without start/title evidence.",
       "Production-ready x86-64 backend.",
       "UniversalToolchain is a production universal compiler platform.",
       "Wist is generally as fast as C#.",
       "Spoke at LangDev 2026 before the talk has actually happened.",
-      "HSE open-source first place / absolute winner without ranking evidence."
+      "HSE open-source first place / absolute winner without ranking evidence.",
+      "Two-time absolute/overall MEPhI Junior winner based only on the public result tables.",
+      "Baltic Main Prize or Section Prize as an unqualified canonical label while official sources conflict."
     ]
   },
   "cv_generation_rules": [
@@ -1223,13 +1290,14 @@
   "research_gaps": [
     "Ingest exact Vysshaya Proba result PDFs/diplomas.",
     "Inspect Junior diplomas/final protocol for the literal 'absolute/overall winner' claim.",
-    "Add a public/authorized source for exact ISP RAS title/start date and safe contribution boundary.",
     "Link primary organizer result for PS-form 1st/5.0/104-of-104 if available.",
     "Re-run historical commit archaeology for exact earliest dates before using dates as headline marketing copy.",
     "Clarify VpnMediator ownership/commercial metrics before claiming users/revenue/business impact.",
     "Verify Neyrmark/Нейрмарк exact official name, year, category, and winner artifact.",
     "Add canonical teaching employer/title/date evidence if teaching is to appear as professional experience.",
-    "Decide whether Habr popularity metrics are worth using; if so, store a dated snapshot rather than an evergreen number."
+    "Decide whether Habr popularity metrics are worth using; if so, store a dated snapshot rather than an evergreen number.",
+    "Confirm whether the ISP RAS / SharpChecker offer was accepted; if yes, ingest actual start date, title, and first completed/shareable work before listing it as employment.",
+    "Resolve the Baltic Main-Prize vs Section-Prize conflict using the diploma or a direct organizer clarification before using either label."
   ],
   "role_playbooks": {
     "architecture": {
@@ -1238,10 +1306,10 @@
       "top_assets": [
         "project_universaltoolchain",
         "experience_mcst_2026",
-        "experience_isp_ras_2026",
         "project_vpnmediator",
         "project_x86_codegen",
-        "project_compilationlab_lms"
+        "project_compilationlab_lms",
+        "history_compiler_runtime_lineage"
       ],
       "recognition": [
         "achievement_hse_open_source_2026",
@@ -1265,6 +1333,7 @@
       "thesis": "Extensible compiler/runtime architecture with deterministic composition, explicit contracts, multiple execution paths and verification-oriented testing.",
       "top_assets": [
         "project_universaltoolchain",
+        "experience_mcst_2026",
         "project_global_iv",
         "research_planfuzz",
         "project_x86_codegen",
@@ -1319,12 +1388,12 @@
       "title": "Static / Program Analysis Engineer",
       "thesis": "Professional and project evidence across Roslyn CFG data flow, LLVM interprocedural/evolution analysis, memory-dependence reasoning and conservative transformation legality.",
       "top_assets": [
-        "experience_isp_ras_2026",
         "project_global_iv",
         "project_deref_after_null",
         "project_ps_form",
         "experience_mcst_2026",
-        "research_contract_reverification"
+        "research_contract_reverification",
+        "experience_isp_ras_2026"
       ],
       "recognition": [
         "achievement_langdev_2026",
@@ -1338,7 +1407,8 @@
       "preserve_signal": [
         "fixed point",
         "interprocedural effects",
-        "conservative yes/no/maybe semantics"
+        "conservative yes/no/maybe semantics",
+        "ISP RAS selection task may be a supporting signal, not employment"
       ],
       "avoid": "Do not imply alias/points-to or interprocedural support in DerefAfterNull."
     },
