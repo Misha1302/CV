@@ -1045,6 +1045,34 @@
         "architecture"
       ],
       "resume_priority": "LINEAGE_ONLY"
+    },
+    {
+      "id": "history_quark2",
+      "category": "historical_project",
+      "name": "Quark2",
+      "time": "historical / pre-UniversalToolchain",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT",
+        "PRIOR_REPO_FORENSICS"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/Quark2"
+      ],
+      "claims": {
+        "safe_ru": "Исторический framework для сборки DSL/языков из компонентов: lexer, AST, abstract values, generalized bytecode, VM, MSIL translator и extension mechanism.",
+        "safe_en": "Historical framework for composing DSLs/languages from components: lexer, AST, abstract values, generalized bytecode, VM, MSIL translator, and an extension mechanism."
+      },
+      "recruiter_signals": [
+        "pre-UniversalToolchain architecture lineage",
+        "language componentization",
+        "VM/CIL bridge"
+      ],
+      "role_fit": [
+        "compiler_infrastructure",
+        "compiler",
+        "architecture"
+      ],
+      "resume_priority": "PORTFOLIO_HISTORY_ONLY"
     }
   ],
   "skills": [
@@ -1397,5 +1425,53 @@
       ],
       "avoid": "Do not imply finance/trading production experience."
     }
+  },
+  "repository_triage": {
+    "inventory_snapshot": {
+      "as_of": "2026-09-30",
+      "public_repositories_observed": 97
+    },
+    "core_current": [
+      "UniversalToolchain",
+      "LLVM-interprocedural-global-IV-optimization",
+      "x86-64-codegen-ra-playground",
+      "ps_form_analizer",
+      "DerefAfterNullAnalyzer",
+      "VpnMediator-public",
+      "CompilationLabLMS",
+      "Middle-end-compiler-course",
+      "Nasm-X86-Course",
+      "MCST-tasks-on-graphs-algorithms"
+    ],
+    "historical_lineage": [
+      "BigSharpCompiler",
+      "OwnAssembler",
+      "CpuEmulation",
+      "Wist2Msil",
+      "Visk",
+      "Wist4",
+      "Wist5",
+      "Quark2",
+      "Quark3",
+      "UnifiedToolchain"
+    ],
+    "contribution_required_before_use": [
+      {
+        "repository": "runtime",
+        "reason": "The inspected README is the upstream .NET runtime README; repository presence alone is not evidence of a meaningful personal contribution."
+      },
+      {
+        "repository": "gremit",
+        "reason": "The inspected README describes the upstream GrEmit project; use only if a specific authored contribution/commit is established."
+      }
+    ],
+    "default_low_signal_classes": [
+      "tutorial/desktop exercises",
+      "small Unity/game prototypes",
+      "generic homework repositories",
+      "single-data-structure exercises",
+      "old web demos without distinctive architecture"
+    ],
+    "rule": "Do not promote a repository because of its name, size, or presence. Promote only a capability backed by inspectable authored evidence."
   }
 }
