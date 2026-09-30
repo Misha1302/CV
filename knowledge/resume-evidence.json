@@ -1,0 +1,730 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-30",
+  "purpose": "Canonical evidence layer for generating and reviewing all Mikhail Razakov CV/portfolio variants. CV copy is downstream; this file stores claims, evidence boundaries, recruiter signals, and role fit.",
+  "evidence_levels": {
+    "PUBLIC_PRIMARY": "Official organizer/employer/conference/university source.",
+    "PUBLIC_REPO_DIRECT": "Directly inspectable source code, tests, build contracts, or checked-in repository evidence.",
+    "PUBLIC_REPO_ATTRIBUTED": "Repository documentation attributes a result to an external organizer, but the external primary artifact was not independently retrieved in this pass.",
+    "PRIVATE_DOCUMENT": "Private document or correspondence available to the user; safe for factual use but not publicly verifiable.",
+    "USER_ATTESTED": "Explicit user statement; do not upgrade to public verification.",
+    "PRIOR_REPO_FORENSICS": "Claim established by a prior repository-forensics pass against historical code/commits; retain provenance and re-audit before making it a headline if the exact date matters.",
+    "INFERENCE": "Analyst interpretation. Never present as a raw fact.",
+    "NEEDS_VERIFICATION": "Potentially useful claim with insufficient evidence for strong resume wording."
+  },
+  "canonical_positioning": {
+    "primary": {
+      "ru": "Software Engineer — Systems & Architecture",
+      "en": "Software Engineer — Systems & Architecture",
+      "rationale": "Architecture-heavy software/systems work is the broadest accurate umbrella. Compiler/runtime engineering is the strongest depth signal, not the only identity."
+    },
+    "secondary_narratives": [
+      "Compiler Infrastructure / Language Tooling",
+      "Compiler Backend / Code Generation",
+      "Static / Program Analysis",
+      "C++ / Systems Engineering",
+      ".NET Backend / Platform Reliability",
+      "Research Engineer / Quant Developer (targeted only)"
+    ],
+    "differentiator": {
+      "ru": "Многолетняя самостоятельная линия execution/compiler infrastructure — от VM/CIL/native codegen до LLVM/Roslyn, register allocation и extensible toolchain architecture — плюс опыт state/recovery/reliability в сервисных системах.",
+      "en": "A multi-year hands-on execution/compiler-infrastructure lineage—from VM/CIL/native codegen to LLVM/Roslyn, register allocation, and extensible toolchain architecture—combined with state/recovery/reliability work in service systems."
+    }
+  },
+  "assets": [
+    {
+      "id": "experience_mcst_2026",
+      "category": "experience",
+      "name": "MCST — Compiler Engineering Internship",
+      "time": "2026-07..2026-08",
+      "evidence_level": [
+        "USER_ATTESTED",
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/ps_form_analizer",
+        "https://github.com/Misha1302/MCST-tasks-on-graphs-algorithms"
+      ],
+      "claims": {
+        "safe_ru": "Стажировка по compiler engineering / LLVM/C++ в МЦСТ летом 2026; публичные материалы показывают C++/graph-algorithm и compiler-analysis работу.",
+        "safe_en": "Compiler-engineering internship at MCST in summer 2026; public materials show C++/graph-algorithm and compiler-analysis work."
+      },
+      "strongest_evidence": [
+        "C++23 graph tasks: RPO/cycle detection, Dijkstra, Dinic max-flow, Tarjan SCC.",
+        "PS-form dependence-analysis selection task with conservative proof-oriented solver and extensive generated/metamorphic harness."
+      ],
+      "recruiter_signals": [
+        "professional compiler context",
+        "C++",
+        "algorithms",
+        "correctness-first analysis"
+      ],
+      "role_fit": [
+        "systems",
+        "compiler",
+        "compiler_backend",
+        "program_analysis"
+      ],
+      "resume_priority": "HIGH",
+      "gaps": [
+        "Exact official internship title/employment artifact not independently public-verified in this pass."
+      ]
+    },
+    {
+      "id": "experience_isp_ras_2026",
+      "category": "experience",
+      "name": "ISP RAS — C#/.NET Static Analysis",
+      "time": "2026-present",
+      "evidence_level": [
+        "PRIVATE_DOCUMENT",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [],
+      "claims": {
+        "safe_ru": "Работаю с C#/.NET static analysis в контексте ИСП РАН; публичное CV не должно приписывать конкретные закрытые алгоритмы или impact без отдельного разрешения/evidence.",
+        "safe_en": "Work on C#/.NET static analysis in an ISP RAS context; public CV copy must not attribute specific private algorithms or impact without separate evidence."
+      },
+      "recruiter_signals": [
+        "professional static analysis",
+        "C#/.NET",
+        "program analysis"
+      ],
+      "role_fit": [
+        "program_analysis",
+        "compiler",
+        "architecture"
+      ],
+      "resume_priority": "HIGH",
+      "gaps": [
+        "Canonical title",
+        "exact start date",
+        "publicly shareable contribution boundary"
+      ]
+    },
+    {
+      "id": "project_universaltoolchain",
+      "category": "project",
+      "name": "UniversalToolchain / Wist",
+      "time": "2025-2026",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT",
+        "PUBLIC_PRIMARY"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/UniversalToolchain",
+        "https://github.com/Misha1302/UniversalToolchain/blob/master/eng/test-counts.json",
+        "https://langdevcon.org/speakers/",
+        "https://langdevcon.org/program/"
+      ],
+      "claims": {
+        "safe_ru": "Модульная .NET compiler/runtime infrastructure: reusable language/toolchain components, typed planning/contracts, AIR/optimization, interpreter и CIL execution paths, optional SSA route, deterministic composition и fail-closed validation.",
+        "safe_en": "Modular .NET compiler/runtime infrastructure with reusable language/toolchain components, typed planning/contracts, AIR/optimization, interpreter and CIL execution paths, an optional SSA route, deterministic composition, and fail-closed validation."
+      },
+      "metrics": [
+        {
+          "claim": "Current checked-in exact test manifest contains 1,324 passing tests.",
+          "evidence_level": "PUBLIC_REPO_DIRECT",
+          "source": "eng/test-counts.json",
+          "boundary": "Do not silently substitute the older alpha.1 release count of 1,325."
+        },
+        {
+          "claim": "LangDev program reports six selected arithmetic hot-execution benchmarks where cached Wist CIL artifacts are within 10% of a no-inlining C# baseline and allocate 0 B during measured execution.",
+          "evidence_level": "PUBLIC_PRIMARY",
+          "boundary": "Selected workloads only; parsing/compilation excluded; not a general 'as fast as C#' claim."
+        }
+      ],
+      "strongest_evidence": [
+        "Source → Lexer/Parser → AST → Bytecode → AIR → Optimizers → Compiler/Interpreter → Execution pipeline.",
+        "External language-authoring alpha with exact package-manifest binding, deterministic pass ordering, backend executor selection, and fail-closed runtime policy.",
+        "Repository verification contract combines exact test counts with architecture/documentation guards.",
+        "Accepted LangDev 2026 talk is an external signal that the architecture is interesting beyond the repository."
+      ],
+      "recruiter_signals": [
+        "architecture ownership",
+        "compiler/runtime infrastructure",
+        ".NET",
+        "API/contracts",
+        "verification",
+        "technical communication"
+      ],
+      "role_fit": [
+        "architecture",
+        "compiler",
+        "compiler_backend",
+        "backend",
+        "systems",
+        "quantdev"
+      ],
+      "resume_priority": "VERY_HIGH",
+      "do_not_claim": [
+        "universal production compiler platform",
+        "hardened sandbox",
+        "all Wist code matches C# performance",
+        "published alpha.7"
+      ]
+    },
+    {
+      "id": "project_global_iv",
+      "category": "project",
+      "name": "LLVM Interprocedural Global IV Optimization",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization"
+      ],
+      "claims": {
+        "safe_ru": "Консервативный LLVM 22 pass: interprocedural effects + affine evolution + отдельная legality phase перед IR transform; unsupported cases остаются без преобразования.",
+        "safe_en": "A conservative LLVM 22 pass combining interprocedural effects and affine evolution with a separate legality phase before the IR transform; unsupported cases remain unchanged."
+      },
+      "metrics": [
+        "29 positive/negative LLVM IR regression cases; verifier, structural checks, idempotence, and before/after execution comparison."
+      ],
+      "recruiter_signals": [
+        "LLVM",
+        "interprocedural analysis",
+        "optimization legality",
+        "APInt",
+        "IR transformation",
+        "verification"
+      ],
+      "role_fit": [
+        "compiler",
+        "program_analysis",
+        "systems",
+        "compiler_backend"
+      ],
+      "resume_priority": "VERY_HIGH",
+      "do_not_claim": [
+        "MCST internship project",
+        "production LLVM optimization",
+        "general ScalarEvolution replacement"
+      ]
+    },
+    {
+      "id": "project_x86_codegen",
+      "category": "project",
+      "name": "x86-64 Codegen & Register Allocation Lab",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/x86-64-codegen-ra-playground"
+      ],
+      "claims": {
+        "safe_ru": "Экспериментальный backend: SSA/CFG validation, dominance, edge-specific liveness, interference, linear-scan и seeded simulated-annealing allocation, spills, phi lowering и SysV x86-64 emission.",
+        "safe_en": "Experimental backend covering SSA/CFG validation, dominance, edge-specific liveness, interference, linear-scan and seeded simulated-annealing allocation, spills, phi lowering, and SysV x86-64 emission."
+      },
+      "strongest_evidence": [
+        "Allocator-independent assignment verifier.",
+        "Parallel-copy cycle breaking for phi lowering.",
+        "Native-vs-reference-interpreter differential execution.",
+        "Generated code runs out of process with timeout/resource containment and RW→RX transition."
+      ],
+      "recruiter_signals": [
+        "compiler backend depth",
+        "low-level correctness",
+        "register allocation",
+        "x86-64",
+        "Rust"
+      ],
+      "role_fit": [
+        "compiler_backend",
+        "systems",
+        "compiler",
+        "architecture"
+      ],
+      "resume_priority": "VERY_HIGH",
+      "do_not_claim": [
+        "production backend",
+        "security sandbox",
+        "complete AVX backend"
+      ]
+    },
+    {
+      "id": "project_ps_form",
+      "category": "project",
+      "name": "PS-form Memory Dependence Analyzer",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT",
+        "PUBLIC_REPO_ATTRIBUTED"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/ps_form_analizer"
+      ],
+      "claims": {
+        "safe_ru": "C17-анализатор пересечения параметрических memory accesses между итерациями цикла с консервативной семантикой yes/no/maybe и портфелем exact/heuristic strategies.",
+        "safe_en": "A C17 analyzer for overlap between parametric memory accesses across loop iterations, with conservative yes/no/maybe semantics and a portfolio of exact/heuristic strategies."
+      },
+      "attributed_result": {
+        "claim": "README attributes to the organizer's final results: 1st place, the only 5.0/5.0, and the only 104/104 official tests.",
+        "status": "USE_WITH_ATTRIBUTION_OR_AFTER_PRIMARY_ARTIFACT",
+        "evidence_level": "PUBLIC_REPO_ATTRIBUTED"
+      },
+      "strongest_evidence": [
+        "Exact affine/lattice-point strategy, modular/GCD proofs, monotonic two-pointer path, guarded exhaustive fallback.",
+        "Exact oracle for small domains plus randomized/metamorphic WA hunting and performance/TL hunting."
+      ],
+      "recruiter_signals": [
+        "algorithms",
+        "compiler analysis",
+        "conservative reasoning",
+        "test harness design",
+        "C"
+      ],
+      "role_fit": [
+        "systems",
+        "compiler",
+        "program_analysis",
+        "quantdev",
+        "quant"
+      ],
+      "resume_priority": "HIGH"
+    },
+    {
+      "id": "project_deref_after_null",
+      "category": "project",
+      "name": "DerefAfterNullAnalyzer",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/DerefAfterNullAnalyzer"
+      ],
+      "claims": {
+        "safe_ru": "Roslyn ControlFlowGraph analyzer с fixed-point propagation null-state, conditional-edge states, loops/back edges и joins.",
+        "safe_en": "A Roslyn ControlFlowGraph analyzer with fixed-point null-state propagation, conditional-edge states, loops/back edges, and joins."
+      },
+      "boundaries": [
+        "No alias/points-to analysis",
+        "No access-path tracking",
+        "No interprocedural analysis"
+      ],
+      "recruiter_signals": [
+        "Roslyn",
+        "CFG",
+        "data-flow",
+        "fixed point",
+        "static analysis"
+      ],
+      "role_fit": [
+        "program_analysis",
+        "compiler"
+      ],
+      "resume_priority": "HIGH"
+    },
+    {
+      "id": "project_vpnmediator",
+      "category": "project",
+      "name": "Razaltush VPN / VpnMediator",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/VpnMediator-public"
+      ],
+      "claims": {
+        "safe_ru": "Двухсервисная .NET/Python система подписок и платежей с explicit state machines, idempotency, outbox/audit, recovery workers, migrations, coordinated backup и rollback-aware deployment.",
+        "safe_en": "A two-service .NET/Python subscription/payment system with explicit state machines, idempotency, outbox/audit, recovery workers, migrations, coordinated backup, and rollback-aware deployment."
+      },
+      "recruiter_signals": [
+        "backend architecture",
+        "state/recovery",
+        "payments",
+        "Linux deployment",
+        "operability"
+      ],
+      "role_fit": [
+        "architecture",
+        "backend",
+        "systems"
+      ],
+      "resume_priority": "MEDIUM_HIGH",
+      "gaps": [
+        "Ownership/commercial boundary and paying-user metrics should not be stated without separate evidence."
+      ]
+    },
+    {
+      "id": "project_compilationlab_lms",
+      "category": "project",
+      "name": "CompilationLabLMS",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/CompilationLabLMS"
+      ],
+      "claims": {
+        "safe_ru": ".NET/PostgreSQL LMS с browser BFF/internal-service boundary, exactly-once payment crediting, provider re-verification/reconciliation, private object storage и production deployment/backup contracts.",
+        "safe_en": ".NET/PostgreSQL LMS with a browser-BFF/internal-service boundary, exactly-once payment crediting, provider re-verification/reconciliation, private object storage, and production deployment/backup contracts."
+      },
+      "boundaries": [
+        "Repository/CI production contracts are not proof that every external production dependency was validated in a live environment."
+      ],
+      "recruiter_signals": [
+        "service architecture",
+        "payments",
+        "data consistency",
+        "security boundaries",
+        "deployment"
+      ],
+      "role_fit": [
+        "architecture",
+        "backend"
+      ],
+      "resume_priority": "MEDIUM"
+    },
+    {
+      "id": "teaching_nasm_course",
+      "category": "teaching",
+      "name": "NASM x86 course",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/Nasm-X86-Course"
+      ],
+      "claims": {
+        "safe_ru": "Разработал 25-дневный самостоятельный курс по NASM IA-32 для учеников с C++: CDECL, machine code, x87, структуры и модель объектов C++; шесть контрольных точек и проверяемые учебные циклы.",
+        "safe_en": "Built a 25-day self-study NASM IA-32 course for C++ students covering CDECL, machine code, x87, structures, and the C++ object model, with six checkpoints and validation tooling."
+      },
+      "recruiter_signals": [
+        "technical communication",
+        "low-level fundamentals",
+        "curriculum design"
+      ],
+      "role_fit": [
+        "architecture",
+        "systems",
+        "compiler"
+      ],
+      "resume_priority": "SUPPORTING"
+    },
+    {
+      "id": "achievement_langdev_2026",
+      "category": "achievement",
+      "name": "LangDev 2026 — accepted speaker",
+      "time": "2026-10-09 scheduled",
+      "evidence_level": [
+        "PUBLIC_PRIMARY",
+        "PRIVATE_DOCUMENT"
+      ],
+      "public_sources": [
+        "https://langdevcon.org/speakers/",
+        "https://langdevcon.org/program/"
+      ],
+      "claims": {
+        "safe_ru": "Доклад «Build the Language, Then Make the Abstractions Disappear: Extensible Programming on .NET» принят в программу LangDev 2026.",
+        "safe_en": "Accepted LangDev 2026 speaker for “Build the Language, Then Make the Abstractions Disappear: Extensible Programming on .NET”."
+      },
+      "recruiter_signals": [
+        "external technical validation",
+        "communication",
+        "language/tooling architecture"
+      ],
+      "resume_priority": "VERY_HIGH",
+      "do_not_claim_before_event": [
+        "Spoke at LangDev 2026",
+        "Presented at LangDev 2026"
+      ]
+    },
+    {
+      "id": "achievement_hse_open_source_2026",
+      "category": "achievement",
+      "name": "HSE FCS open-source projects competition",
+      "time": "2026",
+      "evidence_level": [
+        "USER_ATTESTED",
+        "PUBLIC_PRIMARY"
+      ],
+      "public_sources": [
+        "https://cs.hse.ru/opensource/open_source"
+      ],
+      "claims": {
+        "safe_ru": "UniversalToolchain / Wist2 — один из победителей конкурса проектов с открытым кодом студентов ФКН НИУ ВШЭ.",
+        "safe_en": "Selected as one of the winners of the HSE Faculty of Computer Science open-source projects competition with UniversalToolchain / Wist2."
+      },
+      "boundary": "Personal winner status is based on organizer communication supplied by the user; public winner list was not located before the 2026-10-01 award event.",
+      "recruiter_signals": [
+        "external project validation",
+        "open source",
+        "HSE FCS"
+      ],
+      "role_fit": [
+        "architecture",
+        "compiler",
+        "general"
+      ],
+      "resume_priority": "VERY_HIGH",
+      "do_not_claim": [
+        "1st place",
+        "absolute winner",
+        "sole winner",
+        "competition size",
+        "prize value"
+      ]
+    },
+    {
+      "id": "achievement_mephi_junior_2025_2026",
+      "category": "achievement",
+      "name": "MEPhI Junior competition",
+      "time": "2025, 2026",
+      "evidence_level": [
+        "PUBLIC_PRIMARY",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [
+        "https://junior.mephi.ru/",
+        "https://junior.mephi.ru/"
+      ],
+      "verified_public_fact": "Official MEPhI results pages list Mikhail Razakov with a first-degree diploma in the IT section in both 2025 and 2026.",
+      "user_attested_stronger_fact": "User states he was the overall/absolute winner twice.",
+      "resume_use": {
+        "currently_safe_without_private_artifact": "Дважды диплом I степени конкурса «Юниор» НИЯУ МИФИ / First-degree diploma twice.",
+        "stronger_after_artifact_check": "Дважды абсолютный победитель / two-time overall winner."
+      },
+      "recruiter_signals": [
+        "sustained competition success",
+        "project quality"
+      ],
+      "role_fit": [
+        "general"
+      ],
+      "resume_priority": "HIGH",
+      "gaps": [
+        "Inspect diploma/final protocol if the literal 'absolute winner' wording must be defensible externally."
+      ]
+    },
+    {
+      "id": "achievement_baltic_2026",
+      "category": "achievement",
+      "name": "Baltic Science and Engineering Competition",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_PRIMARY"
+      ],
+      "public_sources": [
+        "https://school.ioffe.ru/"
+      ],
+      "verified_public_fact": "Official competition news names Mikhail Razakov / UniversalToolchain with a first-degree diploma and the Main Prize «Совершенство как надежда».",
+      "claims": {
+        "safe_ru": "Диплом I степени и Главная премия «Совершенство как надежда» Балтийского научно-инженерного конкурса.",
+        "safe_en": "First-degree diploma and the Main Prize “Perfection as Hope” at the Baltic Science and Engineering Competition."
+      },
+      "recruiter_signals": [
+        "external project validation",
+        "technical project recognition"
+      ],
+      "role_fit": [
+        "general",
+        "architecture",
+        "compiler"
+      ],
+      "resume_priority": "HIGH",
+      "note": "One protocol/search surface appeared less explicit than the official final news; keep the dated final-news source as authority."
+    },
+    {
+      "id": "achievement_hse_vysshaya_proba",
+      "category": "achievement",
+      "name": "HSE Vysshaya Proba — Informatics / Industrial Programming",
+      "time": "2026",
+      "evidence_level": [
+        "USER_ATTESTED",
+        "NEEDS_VERIFICATION"
+      ],
+      "public_sources": [],
+      "user_attested_fact": "Prize-winner in both competitive/informatics and industrial-programming tracks.",
+      "resume_use": "Allowed as user-attested current-CV fact, but the knowledge base should ingest the actual diploma/result PDFs before treating exact track/rank wording as primary-verified.",
+      "recruiter_signals": [
+        "competitive programming",
+        "industrial programming"
+      ],
+      "role_fit": [
+        "general",
+        "systems"
+      ],
+      "resume_priority": "MEDIUM_HIGH",
+      "gaps": [
+        "Read exact result documents and canonical competition naming."
+      ]
+    },
+    {
+      "id": "history_compiler_runtime_lineage",
+      "category": "chronology",
+      "name": "Compiler/runtime project lineage",
+      "time": "2022-2026",
+      "evidence_level": [
+        "PRIOR_REPO_FORENSICS",
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "claims": {
+        "safe_ru": "Публичная compiler/runtime project-линия прослеживается с 2022 года; профессиональная compiler/static-analysis работа начинается в 2026.",
+        "safe_en": "Public compiler/runtime project work is traceable to 2022; professional compiler/static-analysis work begins in 2026."
+      },
+      "milestones": [
+        "2022: custom lexer/parser/preprocessor and custom bytecode/VM/runtime projects.",
+        "2023-07: runtime-generated CIL/MSIL code emission.",
+        "2023-09: native x86-64 machine-code emission and executable-memory invocation.",
+        "2024: layered AST→IR→backend/execution architecture.",
+        "2025: shift toward reusable/extensible toolchain composition.",
+        "2026: SSA/CFG-aware backend work, register allocation, LLVM optimization/interprocedural analysis, Roslyn fixed-point data flow, and stronger verification boundaries."
+      ],
+      "recruiter_signals": [
+        "longitudinal technical depth",
+        "self-directed learning",
+        "execution-pipeline understanding"
+      ],
+      "role_fit": [
+        "architecture",
+        "compiler",
+        "compiler_backend",
+        "systems"
+      ],
+      "resume_priority": "SUPPORTING_HIGH",
+      "boundaries": [
+        "Do not convert personal/OSS years into '4 years professional compiler experience'."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "skill": "Software architecture",
+      "strongest_evidence": [
+        "UniversalToolchain",
+        "VpnMediator",
+        "CompilationLabLMS"
+      ],
+      "level_for_resume": "strong evidence",
+      "notes": "Component boundaries, typed contracts, immutable planning, state machines, recovery and verification boundaries."
+    },
+    {
+      "skill": "C++ / LLVM",
+      "strongest_evidence": [
+        "MCST 2026",
+        "Global-IV",
+        "MCST graph tasks"
+      ],
+      "level_for_resume": "strong evidence"
+    },
+    {
+      "skill": "C# / .NET",
+      "strongest_evidence": [
+        "UniversalToolchain",
+        "ISP RAS context",
+        "CompilationLabLMS",
+        "VpnMediator"
+      ],
+      "level_for_resume": "strong evidence"
+    },
+    {
+      "skill": "Compiler infrastructure",
+      "strongest_evidence": [
+        "UniversalToolchain",
+        "historical Wist lineage"
+      ],
+      "level_for_resume": "very strong project evidence"
+    },
+    {
+      "skill": "Compiler backend / codegen",
+      "strongest_evidence": [
+        "x86-64 backend",
+        "2023 native emitter lineage",
+        "CIL lineage"
+      ],
+      "level_for_resume": "very strong project evidence"
+    },
+    {
+      "skill": "Static / program analysis",
+      "strongest_evidence": [
+        "Global-IV",
+        "DerefAfterNull",
+        "ISP RAS context",
+        "PS-form"
+      ],
+      "level_for_resume": "strong current evidence"
+    },
+    {
+      "skill": "Algorithms",
+      "strongest_evidence": [
+        "PS-form",
+        "Dinic/Tarjan/Dijkstra/RPO",
+        "competition history"
+      ],
+      "level_for_resume": "strong evidence"
+    },
+    {
+      "skill": "Reliability / state recovery",
+      "strongest_evidence": [
+        "VpnMediator",
+        "CompilationLabLMS"
+      ],
+      "level_for_resume": "strong project evidence"
+    },
+    {
+      "skill": "Testing / verification",
+      "strongest_evidence": [
+        "UT exact test contract",
+        "Global-IV regressions",
+        "x86 differential execution",
+        "PS-form metamorphic/exact-oracle harness"
+      ],
+      "level_for_resume": "one of the strongest cross-project themes"
+    },
+    {
+      "skill": "Technical communication",
+      "strongest_evidence": [
+        "LangDev accepted talk",
+        "NASM course",
+        "teaching history"
+      ],
+      "level_for_resume": "strong supporting evidence"
+    }
+  ],
+  "global_claim_boundaries": {
+    "can_say": [
+      "Several years of hands-on compiler/runtime/language-tooling project experience.",
+      "Professional compiler/static-analysis experience in 2026.",
+      "Implemented runtime CIL generation and native x86-64 emission before entering professional compiler work.",
+      "Designs and implements architecture-heavy C++/.NET systems.",
+      "Accepted LangDev 2026 speaker."
+    ],
+    "can_say_with_qualifier": [
+      "Several years of compiler engineering — qualify as personal/open-source projects followed by professional work.",
+      "HSE open-source winner — say 'one of the winners' until an official ranking is published.",
+      "PS-form ranked first / only 5.0 / only 104/104 — retain attribution to organizer results until primary result artifact is linked."
+    ],
+    "do_not_say": [
+      "4 years of professional compiler experience.",
+      "Production-ready x86-64 backend.",
+      "UniversalToolchain is a production universal compiler platform.",
+      "Wist is generally as fast as C#.",
+      "Spoke at LangDev 2026 before the talk has actually happened.",
+      "HSE open-source first place / absolute winner without ranking evidence."
+    ]
+  },
+  "cv_generation_rules": [
+    "Every resume bullet must trace to one or more asset IDs in this knowledge base.",
+    "Prefer the strongest evidence relevant to the target role, not the most recent or most fashionable keyword.",
+    "Keep professional experience separate from personal/open-source chronology.",
+    "Use compiler/runtime work as depth evidence even in broad architecture/system CVs; do not let it disappear from the canonical profile.",
+    "Do not let historical projects consume one-page CV space individually; use a compact lineage statement or a portfolio-history page.",
+    "Do not generalize benchmark or contest metrics beyond the exact measured/official boundary.",
+    "If a stronger claim is only USER_ATTESTED or NEEDS_VERIFICATION, either qualify it or request the minimal artifact."
+  ],
+  "research_gaps": [
+    "Ingest exact Vysshaya Proba result PDFs/diplomas.",
+    "Inspect Junior diplomas/final protocol for the literal 'absolute/overall winner' claim.",
+    "Add a public/authorized source for exact ISP RAS title/start date and safe contribution boundary.",
+    "Link primary organizer result for PS-form 1st/5.0/104-of-104 if available.",
+    "Re-run historical commit archaeology for exact earliest dates before using dates as headline marketing copy.",
+    "Clarify VpnMediator ownership/commercial metrics before claiming users/revenue/business impact."
+  ]
+}
