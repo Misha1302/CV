@@ -418,8 +418,8 @@
         "PRIVATE_DOCUMENT"
       ],
       "public_sources": [
-        "https://langdevcon.org/speakers/",
-        "https://langdevcon.org/program/"
+        "https://langdevcon.org/2026/program",
+        "https://langdevcon.org/speakers/"
       ],
       "claims": {
         "safe_ru": "Доклад «Build the Language, Then Make the Abstractions Disappear: Extensible Programming on .NET» принят в программу LangDev 2026.",
@@ -482,8 +482,8 @@
         "USER_ATTESTED"
       ],
       "public_sources": [
-        "https://junior.mephi.ru/",
-        "https://junior.mephi.ru/"
+        "https://olymp.mephi.ru/junior/winners/2025",
+        "https://olymp.mephi.ru/junior/winners/2026"
       ],
       "verified_public_fact": "Official MEPhI results pages list Mikhail Razakov with a first-degree diploma in the IT section in both 2025 and 2026.",
       "user_attested_stronger_fact": "User states he was the overall/absolute winner twice.",
@@ -512,7 +512,7 @@
         "PUBLIC_PRIMARY"
       ],
       "public_sources": [
-        "https://school.ioffe.ru/"
+        "https://baltkonkurs.ru/news/v-sankt-peterburge-podveli-itogi-baltijskogo-nauchno-inzhenernogo-konkursa/"
       ],
       "verified_public_fact": "Official competition news names Mikhail Razakov / UniversalToolchain with a first-degree diploma and the Main Prize «Совершенство как надежда».",
       "claims": {
