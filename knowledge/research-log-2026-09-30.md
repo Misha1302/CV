@@ -31,7 +31,7 @@ A prior repository-forensics pass established the following chronology and remai
 - 2023 — runtime-generated CIL, then native x86-64 machine-code emission;
 - 2024 — explicit AST → IR → backend/execution layering;
 - 2025 — shift from individual compilers to reusable/extensible toolchain composition;
-- 2026 — SSA/CFG-aware backend engineering, register allocation, LLVM optimization/interprocedural analysis, Roslyn fixed-point data flow, and much stronger verification discipline.
+- 2026 — SSA/CFG-aware backend engineering, register allocation, professional LLVM work, project-based LLVM/Roslyn analysis, and much stronger verification discipline.
 
 Exact early dates are retained as `PRIOR_REPO_FORENSICS` and should be replayed from commit history before being used as headline date claims.
 
@@ -125,7 +125,9 @@ The README attributes the selection result to organizer final results: first pla
 Source:
 - https://github.com/Misha1302/ps_form_analizer
 
-### Roslyn data-flow analysis
+### Roslyn data-flow analysis and ISP RAS boundary
+
+Direct organizer correspondence shows that ISP RAS supplied the `DEREF_AFTER_NULL` Roslyn detector as the standard test task for its student-track process. The public repository therefore has a stronger provenance signal than a random pet analyzer, but this **does not establish current employment**. Later user context reports an offer; an accepted offer, actual start date, canonical title, and completed job work remain unconfirmed.
 
 DerefAfterNullAnalyzer provides direct inspectable evidence of:
 
@@ -191,10 +193,10 @@ Primary competition source:
 
 Official MEPhI result pages independently confirm:
 
-- 2025 — Mikhail Razakov, IT section, first-degree diploma;
-- 2026 — Mikhail Razakov, Universal Toolchain, IT section, 49 project + 47 written = 96 total, first-degree diploma.
+- 2025 — Mikhail Razakov, IT section, 45 project + 46 written = **91 total**, first-degree diploma;
+- 2026 — Mikhail Razakov, Universal Toolchain, IT section, 49 project + 47 written = **96 total**, first-degree diploma.
 
-The user also states “absolute/overall winner” for both years. The public result pages retrieved in this pass do **not** use that literal label, so the stronger wording is held pending the exact diploma/final protocol.
+The 2025 table shows 91 as the highest displayed engineering-sciences total. The 2026 table contains another engineering-sciences participant with 100, so the public evidence does **not** support “two-time absolute/overall winner” across the full engineering-sciences category. The safe public claim is therefore two first-degree diplomas; a stronger title requires an official artifact that explicitly defines it and its scope.
 
 Primary sources:
 - https://olymp.mephi.ru/junior/winners/2025
@@ -202,24 +204,26 @@ Primary sources:
 
 ### Baltic Science and Engineering Competition 2026
 
-Official final-news material names Mikhail Razakov / UniversalToolchain with:
+The competition's own sources conflict on the prize label:
 
-- first-degree diploma;
-- Main Prize “Совершенство как надежда”.
+- the official final-news article calls Razakov a holder of the **Main Prize** “Совершенство как надежда”;
+- the official protocol/PDF places Razakov under the **Section Prize** heading.
 
-That wording is strong enough for a CV.
+Both agree on the invariant fact: **first-degree diploma + “Совершенство как надежда” prize**. Until a diploma or organizer clarification resolves the label, that invariant wording is the canonical CV wording.
 
-Primary source:
+Primary sources:
 - https://baltkonkurs.ru/news/v-sankt-peterburge-podveli-itogi-baltijskogo-nauchno-inzhenernogo-konkursa/
+- https://baltkonkurs.ru/features/po-godam/xxii-konkurs-2026/
+- https://baltkonkurs.ru/wp-content/uploads/2026/03/bk26protocol.pdf
 
 ### HSE Vysshaya Proba
 
-Current status in this pass:
-- user-attested: prize-winner in informatics/competitive programming and industrial programming;
-- project/library indexes indicate relevant result files exist;
-- the exact result artifacts were not successfully ingested here.
+Current status in this pass is track-specific:
 
-Therefore keep the achievement, but do not invent exact rank/category wording until the source PDFs are read.
+- **Industrial Programming:** private HSE Olympiad organizer correspondence invites confirmed attendees to a meeting with diploma holders of this track. That establishes diploma-holder status, but not diploma degree, rank, or score.
+- **Informatics:** prize-winner status is user-attested. A private file index points to a result PDF, but the actual result document was not ingested, so the filename is not upgraded into primary evidence.
+
+Do not invent exact degree/rank/score until the primary result artifacts are read.
 
 ## Hidden strengths current CVs underuse
 
@@ -310,11 +314,12 @@ The website can remain multi-profile, but every profile should be generated from
 
 Highest-value unresolved items:
 
-1. exact Vysshaya Proba result artifacts;
-2. exact “absolute/overall winner” evidence for Junior;
+1. exact Vysshaya Proba Informatics result and Industrial Programming diploma/result artifacts;
+2. Junior diploma/final protocol only if the literal “absolute/overall winner” title is worth retaining;
 3. primary organizer artifact for PS-form rank/5.0/104-of-104;
-4. exact public-safe ISP RAS title/start/contribution boundary;
-5. fresh historical commit replay for early CIL/native-codegen dates;
-6. VpnMediator ownership/commercial/user-count evidence if business impact is ever claimed.
+4. ISP RAS offer acceptance/start/title evidence before it is represented as employment;
+5. diploma or organizer clarification resolving Baltic Main-vs-Section prize wording;
+6. fresh historical commit replay for early CIL/native-codegen dates before exact dates become headline copy;
+7. VpnMediator ownership/commercial/user-count evidence if business impact is ever claimed.
 
 These gaps should be closed **before** inventing stronger marketing wording.
