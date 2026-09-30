@@ -20,6 +20,7 @@ The knowledge base separates those concerns.
 
 - `resume-evidence.json` — machine-readable facts, evidence levels, claim boundaries, role fit, metrics, gaps, and safe RU/EN wording.
 - `research-log-2026-09-30.md` — human-readable research findings, source ledger, unresolved claims, and CV implications.
+- `current-cv-gap-analysis.md` — review of the current rendered CV source against the evidence layer.
 
 ## Evidence hierarchy
 
@@ -28,11 +29,12 @@ Use the strongest available source, in this order:
 1. **PUBLIC_PRIMARY** — official organizer, conference, university, employer, or result page.
 2. **PUBLIC_REPO_DIRECT** — inspectable source code, tests, CI/build contracts, or checked-in evidence.
 3. **PUBLIC_REPO_ATTRIBUTED** — repository text attributes a result to an external source that has not yet been independently retrieved.
-4. **PRIVATE_DOCUMENT** — user-owned correspondence, invitation, diploma, contract, or other private artifact.
-5. **USER_ATTESTED** — explicit statement by the user.
-6. **PRIOR_REPO_FORENSICS** — a prior code/commit archaeology pass; useful, but exact dates should be replayed before becoming a headline.
-7. **INFERENCE** — interpretation only; never serialize into a CV as a raw fact.
-8. **NEEDS_VERIFICATION** — candidate claim that should not be strengthened yet.
+4. **PUBLIC_SELF_AUTHORED** — public material authored by Mikhail; strong evidence of authorship/communication, but not independent validation of stronger claims.
+5. **PRIVATE_DOCUMENT** — user-owned correspondence, invitation, diploma, contract, or other private artifact.
+6. **USER_ATTESTED** — explicit statement by the user.
+7. **PRIOR_REPO_FORENSICS** — a prior code/commit archaeology pass; useful, but exact dates should be replayed before becoming a headline.
+8. **INFERENCE** — interpretation only; never serialize into a CV as a raw fact.
+9. **NEEDS_VERIFICATION** — candidate claim that should not be strengthened yet.
 
 A stronger-looking sentence never outranks weaker evidence.
 
@@ -60,10 +62,10 @@ The same evidence base should generate different one-page views:
 
 | Role | Highest-priority evidence |
 | --- | --- |
-| Systems & Architecture | UniversalToolchain, VpnMediator, x86-64 backend, professional LLVM/static-analysis context |
-| Compiler Infrastructure | UniversalToolchain, Global-IV, x86-64 backend, historical compiler/runtime lineage |
-| Compiler Backend / Codegen | x86-64 backend, Global-IV, CIL/native-codegen lineage |
-| Static / Program Analysis | ISP RAS context, Global-IV, DerefAfterNull, PS-form |
+| Systems & Architecture | UniversalToolchain, MCST/LLVM, VpnMediator, x86-64 backend, service reliability |
+| Compiler Infrastructure | UniversalToolchain, MCST/LLVM, Global-IV, x86-64 backend, historical compiler/runtime lineage |
+| Compiler Backend / Codegen | x86-64 backend, MCST/LLVM, Global-IV, CIL/native-codegen lineage |
+| Static / Program Analysis | Global-IV, DerefAfterNull, PS-form, MCST; ISP RAS selection task only as a bounded supporting signal |
 | C++ / Systems | MCST, x86-64 backend, PS-form, graph algorithms |
 | .NET Backend / Platform | CompilationLabLMS, VpnMediator, UniversalToolchain |
 | Research / Quant Dev | PS-form, controlled experiments/oracles, Global-IV, UniversalToolchain experiment infrastructure |
@@ -79,18 +81,19 @@ Before emitting a claim:
 1. select the role;
 2. rank relevant assets by role fit, evidence strength, uniqueness, and recruiter signal;
 3. choose the strongest exact claim that the evidence supports;
-4. preserve any metric boundary;
-5. keep professional employment separate from personal/open-source history;
-6. never upgrade `USER_ATTESTED`, `PUBLIC_REPO_ATTRIBUTED`, or `NEEDS_VERIFICATION` into primary verification;
-7. keep one-page space for current high-signal work; historical projects should usually become a compact lineage statement or portfolio-history page.
+4. if first-party sources conflict, use only the wording invariant across them and record the conflict;
+5. preserve any metric boundary;
+6. keep professional employment separate from selection tasks, offers, client work, personal/open-source history, and owned products;
+7. never upgrade `USER_ATTESTED`, `PUBLIC_REPO_ATTRIBUTED`, or `NEEDS_VERIFICATION` into primary verification;
+8. keep one-page space for current high-signal work; historical projects should usually become a compact lineage statement or portfolio-history page.
 
 ## Important claim boundaries
 
 Examples that are currently safe:
 
 - “Several years of hands-on compiler/runtime/language-tooling project experience.”
-- “Professional compiler/static-analysis experience in 2026.”
-- “Accepted LangDev 2026 speaker.”
+- “Professional compiler experience in 2026 through the MCST internship.”
+- “Accepted and publicly scheduled LangDev 2026 speaker.”
 - “UniversalToolchain/Wist2 — one of the winners of the HSE FCS open-source projects competition.”
 - “Current UniversalToolchain exact test manifest: 1,324 tests.”
 - “Global-IV: 29 positive/negative LLVM IR regressions with verifier/idempotence/differential checks.”
@@ -102,7 +105,9 @@ Examples that must **not** be silently upgraded:
 - “Wist is as fast as C#” without the selected-workload and benchmark-boundary qualifiers.
 - “Production-ready x86-64 backend.”
 - “Spoke at LangDev 2026” before the scheduled talk actually occurs.
-- “Two-time absolute winner of Junior” until the exact artifact/protocol supporting the literal “absolute/overall” wording is ingested.
+- “Current ISP RAS / SharpChecker employee” until an actual start date/title is confirmed.
+- “Two-time absolute/overall winner of Junior” from the public result tables alone; the primary-safe wording is two first-degree diplomas (91 points in 2025, 96 in 2026).
+- “Baltic Main Prize” or “Baltic Section Prize” as the canonical label while the competition's own final news and protocol conflict; use “first-degree diploma and the ‘Perfection as Hope’ prize”.
 
 ## Maintenance
 
