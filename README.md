@@ -21,17 +21,17 @@ Generated HTML and PDF files must not be edited manually.
 
 ## Canonical profiles
 
-1. Compiler & Program Analysis Engineer (canonical)
-2. Compiler Infrastructure / Language Tooling Engineer
-3. Software Engineer — Architecture & Platforms
-4. Compiler Backend / Code Generation Engineer
-5. Static Analysis / Program Analysis Engineer
-6. .NET Backend / Platform Reliability
-7. C++ / LLVM Systems
+1. Software Engineer — Systems & Architecture (canonical)
+2. C++ / LLVM Systems
+3. .NET Backend / Platform Reliability
+4. Compiler Infrastructure / Language Tooling Engineer
+5. Compiler & Program Analysis Engineer
+6. Compiler Backend / Code Generation Engineer
+7. Static Analysis / Program Analysis Engineer
 8. Quant Developer / Research Engineer
 9. Quantitative Research / Research Software Engineering
 
-The landing page uses the Compiler & Program Analysis profile as the canonical identity and exposes role-specific alternatives. The architecture profile is deliberately a hands-on engineering profile rather than a `Software Architect` seniority claim. Profile navigation and landing-card labels are defined by the canonical `profile_ui` metadata in `data/site.json`. Older narrow URLs redirect to the nearest canonical profile.
+The landing page uses Software Engineer — Systems & Architecture as the canonical identity and exposes role-specific alternatives. Compiler/runtime work remains a primary proof of technical depth, but it is not the site's only positioning axis. The architecture profile is deliberately a hands-on engineering profile rather than a `Software Architect` seniority claim. Profile navigation and landing-card labels are defined by the canonical `profile_ui` metadata in `data/site.json`. Older narrow URLs redirect to the nearest canonical profile.
 
 ## Local build
 

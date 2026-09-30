@@ -1,6 +1,6 @@
 {
-  "version": 63,
-  "updated_at": "2026-09-15",
+  "version": 64,
+  "updated_at": "2026-09-30",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -84,10 +84,10 @@
       "landing_description_ru": "LLVM + program analysis + low-level codegen + ограниченно заявленный исторический Unity licensing/protection prototype; без выдуманных hardening techniques."
     },
     "architecture": {
-      "label_ru": "Architecture / Platforms",
-      "label_en": "Architecture / Platforms",
-      "landing_title": "Software Engineer — Architecture & Platforms",
-      "landing_description_ru": "Hands-on архитектура: явные границы владения, immutable planning, state/recovery и независимая проверка решений в compiler/runtime и backend-системах."
+      "label_ru": "Systems / Architecture",
+      "label_en": "Systems / Architecture",
+      "landing_title": "Software Engineer — Systems & Architecture",
+      "landing_description_ru": "Широкий инженерный профиль: C++/.NET, software architecture, infrastructure, state/recovery и проверяемая корректность; compiler/runtime — сильный signal of depth, а не единственная специализация."
     }
   },
   "profiles": {
@@ -162,26 +162,9 @@
         ],
         "contact_heading": "Целевые роли: Compiler Infrastructure · Language Tooling · Compiler Engineer · LLVM Infrastructure",
         "footer": "Compiler Infrastructure / Language Tooling Engineer",
-        "recognition": [
-          [
-            "2026",
-            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-            "Доклад по архитектуре UniversalToolchain принят на LangDev’26; конференция пройдёт 8–9 октября 2026 в Малаге."
-          ],
-          [
-            "2026",
-            "UniversalToolchain — Балтийский научно-инженерный конкурс",
-            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
-          ],
-          [
-            "2026",
-            "НИЯУ МИФИ «Юниор»",
-            "Абсолютный победитель; диплом I степени, 96/100 за UniversalToolchain."
-          ]
-        ],
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-09-14",
+        "updated_at": "2026-09-30",
         "project_summaries": {
           "wist": {
             "type": ".NET · инфраструктура компилятора и языков · детерминированная композиция",
@@ -272,26 +255,9 @@
         ],
         "contact_heading": "Target roles: Compiler Infrastructure · Language Tooling · Compiler Engineer · LLVM Infrastructure",
         "footer": "Compiler Infrastructure / Language Tooling Engineer",
-        "recognition": [
-          [
-            "2026",
-            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-            "Accepted talk on UniversalToolchain’s architecture; LangDev’26 takes place October 8–9, 2026 in Málaga."
-          ],
-          [
-            "2026",
-            "UniversalToolchain — Baltic Science and Engineering Competition",
-            "First Degree Diploma and Grand Prize “Perfection as Hope” for UniversalToolchain."
-          ],
-          [
-            "2026",
-            "MEPhI Junior",
-            "Overall winner; First Degree Diploma, 96/100 for UniversalToolchain."
-          ]
-        ],
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-09-14",
+        "updated_at": "2026-09-30",
         "project_summaries": {
           "wist": {
             "type": ".NET · compiler/language infrastructure · deterministic composition",
@@ -384,23 +350,6 @@
         ],
         "contact_heading": "Целевые роли: Compiler Engineer · LLVM Engineer · Static / Program Analysis · Compiler Infrastructure",
         "footer": "Compiler & Program Analysis Engineer · LLVM · C++",
-        "recognition": [
-          [
-            "2026",
-            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-            "Доклад по архитектуре UniversalToolchain принят на LangDev’26; конференция пройдёт 8–9 октября 2026 в Малаге."
-          ],
-          [
-            "2026",
-            "UniversalToolchain — Балтийский научно-инженерный конкурс",
-            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
-          ],
-          [
-            "2026",
-            "НИЯУ МИФИ «Юниор»",
-            "Абсолютный победитель; диплом I степени, 96/100 за UniversalToolchain."
-          ]
-        ],
         "project_summaries": {
           "globaliv": {
             "type": "C++23 · LLVM 22 · interprocedural analysis · legality",
@@ -422,7 +371,7 @@
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-09-14",
+        "updated_at": "2026-09-30",
         "show_trajectory": true,
         "experience_heading": "Профессиональный опыт",
         "show_web_proofs": false,
@@ -498,23 +447,6 @@
         ],
         "contact_heading": "Fallback: Compiler Engineer · LLVM Engineer · Static / Program Analysis · Compiler Infrastructure",
         "footer": "Compiler & Program Analysis Engineer · LLVM · C++",
-        "recognition": [
-          [
-            "2026",
-            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-            "Accepted talk on UniversalToolchain’s architecture; LangDev’26 takes place October 8–9, 2026 in Málaga."
-          ],
-          [
-            "2026",
-            "UniversalToolchain — Baltic Science and Engineering Competition",
-            "First Degree Diploma and Grand Prize “Perfection as Hope” for UniversalToolchain."
-          ],
-          [
-            "2026",
-            "MEPhI Junior",
-            "Overall winner; First Degree Diploma, 96/100 for UniversalToolchain."
-          ]
-        ],
         "project_summaries": {
           "globaliv": {
             "type": "C++23 · LLVM 22 · interprocedural analysis · legality",
@@ -536,7 +468,7 @@
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-09-14",
+        "updated_at": "2026-09-30",
         "show_trajectory": true,
         "experience_heading": "Professional Experience",
         "show_web_proofs": false,
@@ -620,18 +552,7 @@
         ],
         "contact_heading": "Целевые роли: .NET Backend / Platform Engineer с ответственностью за состояние, recovery и эксплуатационную корректность",
         "footer": "NET Backend / Platform Engineer · State & Reliability",
-        "recognition": [
-          [
-            "2026",
-            "UniversalToolchain — Балтийский научно-инженерный конкурс",
-            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain"
-          ],
-          [
-            "2026",
-            "НИЯУ МИФИ «Юниор»",
-            "Диплом I степени, 96/100 за проект UniversalToolchain"
-          ]
-        ]
+        "updated_at": "2026-09-30"
       },
       "en": {
         "filename": "en-backend.html",
@@ -709,18 +630,7 @@
         ],
         "contact_heading": "Targeting .NET Backend / Platform Engineer roles with ownership of state, recovery, and operational correctness",
         "footer": "NET Backend / Platform Engineer · State & Reliability",
-        "recognition": [
-          [
-            "2026",
-            "UniversalToolchain — Baltic Science and Engineering Competition",
-            "First-degree diploma and the Grand Prize “Perfection as Hope” for UniversalToolchain"
-          ],
-          [
-            "2026",
-            "MEPhI Junior",
-            "First-degree diploma, 96/100 for the UniversalToolchain project"
-          ]
-        ]
+        "updated_at": "2026-09-30"
       }
     },
     "systems": {
@@ -791,19 +701,8 @@
         ],
         "contact_heading": "Целевые роли: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
         "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
-        "recognition": [
-          [
-            "2025–2026",
-            "«Высшая проба»",
-            "Призёр «Высшей пробы» по олимпиадному и промышленному программированию."
-          ],
-          [
-            "2025–2026",
-            "Всероссийские конкурсы",
-            "Абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."
-          ]
-        ],
-        "print_project_limit": 3
+        "print_project_limit": 3,
+        "updated_at": "2026-09-30"
       },
       "en": {
         "filename": "en-cpp-systems.html",
@@ -872,19 +771,8 @@
         ],
         "contact_heading": "Target roles: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
         "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
-        "recognition": [
-          [
-            "2025–2026",
-            "HSE Vysshaya Proba",
-            "Prize-winner in HSE Vysshaya Proba in competitive and industrial programming."
-          ],
-          [
-            "2025–2026",
-            "National competitions",
-            "Overall winner of the MEPhI Junior competition in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."
-          ]
-        ],
-        "print_project_limit": 3
+        "print_project_limit": 3,
+        "updated_at": "2026-09-30"
       }
     },
     "quant": {
@@ -953,21 +841,10 @@
             "Python harnesses, Linux, Git, CMake, counterexample analysis"
           ]
         ],
-        "recognition": [
-          [
-            "2025–2026",
-            "«Высшая проба»",
-            "Призёр «Высшей пробы» по олимпиадному и промышленному программированию."
-          ],
-          [
-            "2025–2026",
-            "Всероссийские конкурсы",
-            "Абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."
-          ]
-        ],
         "contact_heading": "Целевые роли: Quantitative Research internships / research roles, где ценятся алгоритмы и строгая экспериментальная проверка",
         "footer": "Quantitative Research Candidate · C++ · Python",
-        "print_project_limit": 3
+        "print_project_limit": 3,
+        "updated_at": "2026-09-30"
       },
       "en": {
         "filename": "en-quant.html",
@@ -1034,21 +911,10 @@
             "Python harnesses, Linux, Git, CMake, counterexample analysis"
           ]
         ],
-        "recognition": [
-          [
-            "2025–2026",
-            "HSE Vysshaya Proba",
-            "Prize-winner in HSE Vysshaya Proba in competitive and industrial programming."
-          ],
-          [
-            "2025–2026",
-            "National competitions",
-            "Overall winner of the MEPhI Junior competition in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."
-          ]
-        ],
         "contact_heading": "Target roles: Quantitative Research internships / research roles valuing algorithms and rigorous experimental validation",
         "footer": "Quantitative Research Candidate · C++ · Python",
-        "print_project_limit": 3
+        "print_project_limit": 3,
+        "updated_at": "2026-09-30"
       }
     },
     "quantdev": {
@@ -1117,21 +983,10 @@
             "LLVM 22, x86-64, Linux, CMake, generated-code analysis"
           ]
         ],
-        "recognition": [
-          [
-            "2025–2026",
-            "«Высшая проба»",
-            "Призёр «Высшей пробы» по олимпиадному и промышленному программированию."
-          ],
-          [
-            "2025–2026",
-            "Всероссийские конкурсы",
-            "Абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."
-          ]
-        ],
         "contact_heading": "Целевые роли: Quant Developer · Research Engineer · Algorithm / Research Software Engineering",
         "footer": "Quant Developer / Research Engineer · C++ · Python",
-        "print_project_limit": 3
+        "print_project_limit": 3,
+        "updated_at": "2026-09-30"
       },
       "en": {
         "filename": "en-quant-dev.html",
@@ -1198,27 +1053,16 @@
             "LLVM 22, x86-64, Linux, CMake, generated-code analysis"
           ]
         ],
-        "recognition": [
-          [
-            "2025–2026",
-            "HSE Vysshaya Proba",
-            "Prize-winner in HSE Vysshaya Proba in competitive and industrial programming."
-          ],
-          [
-            "2025–2026",
-            "National competitions",
-            "Overall winner of the MEPhI Junior competition in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."
-          ]
-        ],
         "contact_heading": "Target roles: Quant Developer · Research Engineer · Algorithm / Research Software Engineering",
         "footer": "Quant Developer / Research Engineer · C++ · Python",
-        "print_project_limit": 3
+        "print_project_limit": 3,
+        "updated_at": "2026-09-30"
       }
     },
     "compiler_backend": {
       "ru": {
         "compiler_layout": true,
-        "updated_at": "2026-09-14",
+        "updated_at": "2026-09-30",
         "filename": "ru-compiler-backend.html",
         "pdf": "Mikhail_Razakov_Compiler_Backend_RU.pdf",
         "title": "Михаил Разаков — Compiler Backend / Code Generation Engineer",
@@ -1288,23 +1132,6 @@
         ],
         "contact_heading": "Целевые роли: Compiler Backend · Code Generation · Register Allocation · LLVM",
         "footer": "Compiler Backend / Code Generation Engineer",
-        "recognition": [
-          [
-            "2026",
-            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-            "Доклад по архитектуре UniversalToolchain принят на LangDev’26; конференция пройдёт 8–9 октября 2026 в Малаге."
-          ],
-          [
-            "2026",
-            "UniversalToolchain — Балтийский научно-инженерный конкурс",
-            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
-          ],
-          [
-            "2026",
-            "НИЯУ МИФИ «Юниор»",
-            "Абсолютный победитель; диплом I степени, 96/100 за UniversalToolchain."
-          ]
-        ],
         "project_summaries": {
           "codegen": {
             "type": "Rust · x86-64 backend · register allocation",
@@ -1330,7 +1157,7 @@
       },
       "en": {
         "compiler_layout": true,
-        "updated_at": "2026-09-14",
+        "updated_at": "2026-09-30",
         "filename": "en-compiler-backend.html",
         "pdf": "Mikhail_Razakov_Compiler_Backend_EN.pdf",
         "title": "Mikhail Razakov — Compiler Backend / Code Generation Engineer",
@@ -1400,23 +1227,6 @@
         ],
         "contact_heading": "Target roles: Compiler Backend · Code Generation · Register Allocation · LLVM",
         "footer": "Compiler Backend / Code Generation Engineer",
-        "recognition": [
-          [
-            "2026",
-            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-            "Accepted talk on UniversalToolchain’s architecture; LangDev’26 takes place October 8–9, 2026 in Málaga."
-          ],
-          [
-            "2026",
-            "UniversalToolchain — Baltic Science and Engineering Competition",
-            "First Degree Diploma and Grand Prize “Perfection as Hope” for UniversalToolchain."
-          ],
-          [
-            "2026",
-            "MEPhI Junior",
-            "Overall winner; First Degree Diploma, 96/100 for UniversalToolchain."
-          ]
-        ],
         "project_summaries": {
           "codegen": {
             "type": "Rust · x86-64 compiler backend · register allocation",
@@ -1444,7 +1254,7 @@
     "program_analysis": {
       "ru": {
         "compiler_layout": true,
-        "updated_at": "2026-09-14",
+        "updated_at": "2026-09-30",
         "filename": "ru-program-analysis.html",
         "pdf": "Mikhail_Razakov_Program_Analysis_RU.pdf",
         "title": "Михаил Разаков — Static Analysis / Program Analysis Engineer",
@@ -1513,23 +1323,6 @@
         ],
         "contact_heading": "Целевые роли: Static Analysis · Program Analysis · Compiler Analysis · LLVM Analysis",
         "footer": "Static Analysis / Program Analysis Engineer",
-        "recognition": [
-          [
-            "2026",
-            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-            "Доклад по архитектуре UniversalToolchain принят на LangDev’26; конференция пройдёт 8–9 октября 2026 в Малаге."
-          ],
-          [
-            "2026",
-            "UniversalToolchain — Балтийский научно-инженерный конкурс",
-            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
-          ],
-          [
-            "2026",
-            "НИЯУ МИФИ «Юниор»",
-            "Абсолютный победитель; диплом I степени, 96/100 за UniversalToolchain."
-          ]
-        ],
         "project_summaries": {
           "deref": {
             "type": "C# · Roslyn · CFG · fixed-point data-flow",
@@ -1550,7 +1343,7 @@
       },
       "en": {
         "compiler_layout": true,
-        "updated_at": "2026-09-14",
+        "updated_at": "2026-09-30",
         "filename": "en-program-analysis.html",
         "pdf": "Mikhail_Razakov_Program_Analysis_EN.pdf",
         "title": "Mikhail Razakov — Static Analysis / Program Analysis Engineer",
@@ -1619,23 +1412,6 @@
         ],
         "contact_heading": "Target roles: Static Analysis · Program Analysis · Compiler Analysis · LLVM Analysis",
         "footer": "Static Analysis / Program Analysis Engineer",
-        "recognition": [
-          [
-            "2026",
-            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-            "Accepted talk on UniversalToolchain’s architecture; LangDev’26 takes place October 8–9, 2026 in Málaga."
-          ],
-          [
-            "2026",
-            "UniversalToolchain — Baltic Science and Engineering Competition",
-            "First Degree Diploma and Grand Prize “Perfection as Hope” for UniversalToolchain."
-          ],
-          [
-            "2026",
-            "MEPhI Junior",
-            "Overall winner; First Degree Diploma, 96/100 for UniversalToolchain."
-          ]
-        ],
         "project_summaries": {
           "deref": {
             "type": "C# · Roslyn · CFG · fixed-point data flow",
@@ -1658,7 +1434,7 @@
     "software_protection": {
       "ru": {
         "compiler_layout": true,
-        "updated_at": "2026-09-14",
+        "updated_at": "2026-09-30",
         "publication_status": "SELECTIVE / EVIDENCE-LIMITED",
         "filename": "ru-software-protection.html",
         "pdf": "Mikhail_Razakov_Software_Protection_RU.pdf",
@@ -1744,23 +1520,6 @@
         ],
         "contact_heading": "Selective: Compiler Security · Software Protection · LLVM hardening-adjacent roles",
         "footer": "Compiler / Software Protection Engineer · selective",
-        "recognition": [
-          [
-            "2026",
-            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-            "Доклад по архитектуре UniversalToolchain принят на LangDev’26; конференция пройдёт 8–9 октября 2026 в Малаге."
-          ],
-          [
-            "2026",
-            "UniversalToolchain — Балтийский научно-инженерный конкурс",
-            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
-          ],
-          [
-            "2026",
-            "НИЯУ МИФИ «Юниор»",
-            "Абсолютный победитель; диплом I степени, 96/100 за UniversalToolchain."
-          ]
-        ],
         "project_summaries": {
           "globaliv": {
             "type": "C++23 · LLVM 22 · interprocedural analysis · legality",
@@ -1784,7 +1543,7 @@
       },
       "en": {
         "compiler_layout": true,
-        "updated_at": "2026-09-14",
+        "updated_at": "2026-09-30",
         "publication_status": "SELECTIVE / EVIDENCE-LIMITED",
         "filename": "en-software-protection.html",
         "pdf": "Mikhail_Razakov_Software_Protection_EN.pdf",
@@ -1870,23 +1629,6 @@
         ],
         "contact_heading": "Selective: Compiler Security · Software Protection · LLVM hardening-adjacent roles",
         "footer": "Compiler / Software Protection Engineer · selective",
-        "recognition": [
-          [
-            "2026",
-            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-            "Accepted talk on UniversalToolchain’s architecture; LangDev’26 takes place October 8–9, 2026 in Málaga."
-          ],
-          [
-            "2026",
-            "UniversalToolchain — Baltic Science and Engineering Competition",
-            "First Degree Diploma and Grand Prize “Perfection as Hope” for UniversalToolchain."
-          ],
-          [
-            "2026",
-            "MEPhI Junior",
-            "Overall winner; First Degree Diploma, 96/100 for UniversalToolchain."
-          ]
-        ],
         "project_summaries": {
           "globaliv": {
             "type": "C++23 · LLVM 22 · interprocedural analysis · legality",
@@ -1913,24 +1655,24 @@
       "ru": {
         "filename": "ru-architecture.html",
         "pdf": "Mikhail_Razakov_Architecture_Platforms_RU.pdf",
-        "title": "Михаил Разаков — Software Engineer — Architecture & Platforms",
-        "role": "Software Engineer — Architecture & Platforms",
-        "brand": "architecture · platforms · compiler/runtime · state & recovery",
-        "eyebrow": "Ownership boundaries · deterministic planning · recovery · verification",
-        "summary": "Проектирую и реализую compiler/runtime и backend-системы, где корректность зависит от явных границ владения, состояния и жизненного цикла. В UniversalToolchain композиция сводится к одному immutable LanguagePlan до запуска; в VpnMediator состояния платежей и доступа отделены от reconciliation/recovery; в x86-64 backend решения register allocation проверяются независимым verifier и differential execution.",
-        "description": "Михаил Разаков — Software Engineer — Architecture & Platforms: ownership boundaries, deterministic planning, state/recovery и механически проверяемые архитектурные инварианты.",
+        "title": "Михаил Разаков — Software Engineer — Systems & Architecture",
+        "role": "Software Engineer — Systems & Architecture",
+        "brand": "systems · architecture · infrastructure · C++/.NET",
+        "eyebrow": "C++ · .NET · systems engineering · software architecture · correctness",
+        "summary": "Проектирую и реализую сложные программные системы на C++ и .NET — от compiler/runtime infrastructure и статического анализа до backend/service systems. Сильнее всего интересуют архитектурные задачи, где важны ясные границы компонентов, корректность, восстановление после сбоев и проверяемые инварианты.",
+        "description": "Михаил Разаков — Software Engineer — Systems & Architecture: C++/.NET, infrastructure, compiler/runtime, backend systems, correctness и архитектурные границы.",
         "proofs": [
           [
-            "Architecture ownership",
-            "UniversalToolchain: один публичный LanguageCompiler разрешает композицию в immutable LanguagePlan; runtime материализует уже выбранный граф."
+            "Системная инженерия",
+            "C++/.NET: compiler/runtime infrastructure, статический анализ, backend/service systems и low-level codegen."
           ],
           [
-            "State & recovery",
-            "VpnMediator: явные payment/access states, идемпотентность, reconciliation, миграции, backup/restore, health gates и rollback."
+            "Архитектурная ответственность",
+            "UniversalToolchain: единый semantic planner и immutable plan; VpnMediator: explicit state/recovery; x86-64 backend: independent verifier + differential execution."
           ],
           [
-            "Correctness boundaries",
-            "x86-64 backend: allocation проверяется независимым assignment verifier, а native execution сравнивается с эталонным interpreter oracle."
+            "Профессиональная глубина",
+            "МЦСТ: LLVM 22/C++23 · ИСП РАН: статический анализ C#/.NET."
           ]
         ],
         "experience": [
@@ -1962,45 +1704,28 @@
         ],
         "skills": [
           [
+            "Software / Systems",
+            "C++23, C#/.NET, Python, Linux, backend/runtime infrastructure, low-level/system components"
+          ],
+          [
             "Архитектура",
-            "ownership/module boundaries, typed contracts, immutable planning, extensibility boundaries, explicit state machines, lifecycle/recovery, architecture verification"
+            "ownership/module boundaries, typed contracts, immutable planning, explicit state machines, lifecycle/recovery"
           ],
           [
-            "Compiler / Runtime platforms",
-            ".NET, LanguageCompiler/LanguagePlan, dependency/conflict resolution, provider selection, deterministic pass ordering, typed backend routes"
+            "Compiler / Program Analysis",
+            "LLVM 22/IR, CFG/SSA, .NET/CIL, static/data-flow analysis, optimization legality"
           ],
           [
-            "State & Reliability",
-            "idempotency, reconciliation, migrations, backup/restore, health gates, rollback, failure containment"
-          ],
-          [
-            "Проверка решений",
-            "regression tests, exact manifests, independent verifiers, interpreter/backend parity, differential execution"
+            "Reliability / Verification",
+            "idempotency, reconciliation, backup/restore, regression tests, independent verifiers, differential execution"
           ]
         ],
-        "contact_heading": "Целевые роли: Software / Platform Engineer с существенной архитектурной ответственностью",
-        "footer": "Software Engineer — Architecture & Platforms",
-        "recognition": [
-          [
-            "2026",
-            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-            "Доклад по архитектуре UniversalToolchain принят на LangDev’26; конференция пройдёт 8–9 октября 2026 в Малаге."
-          ],
-          [
-            "2026",
-            "UniversalToolchain — Балтийский научно-инженерный конкурс",
-            "Диплом I степени и Главная премия «Совершенство как надежда» за UniversalToolchain."
-          ],
-          [
-            "2026",
-            "НИЯУ МИФИ «Юниор»",
-            "Абсолютный победитель; диплом I степени, 96/100 за UniversalToolchain."
-          ]
-        ],
+        "contact_heading": "Целевые роли: Software / Systems Engineer · Infrastructure / Platform · Compiler / Runtime",
+        "footer": "Software Engineer — Systems & Architecture",
         "print_project_limit": 3,
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
-        "updated_at": "2026-09-15",
+        "updated_at": "2026-09-30",
         "project_summaries": {
           "wist": {
             "solution": "Единственный публичный semantic planner разрешает зависимости и конфликты, выбирает providers, фиксирует порядок contributions и типизированные backend routes в одном immutable LanguagePlan до запуска runtime.",
@@ -2019,24 +1744,24 @@
       "en": {
         "filename": "en-architecture.html",
         "pdf": "Mikhail_Razakov_Architecture_Platforms_EN.pdf",
-        "title": "Mikhail Razakov — Software Engineer — Architecture & Platforms",
-        "role": "Software Engineer — Architecture & Platforms",
-        "brand": "architecture · platforms · compiler/runtime · state & recovery",
-        "eyebrow": "Ownership boundaries · deterministic planning · recovery · verification",
-        "summary": "I design and implement compiler/runtime and backend systems where correctness depends on explicit ownership, state, and lifecycle boundaries. UniversalToolchain resolves composition into one immutable LanguagePlan before execution; VpnMediator separates payment/access state from reconciliation and recovery; the x86-64 backend checks register-allocation decisions with an independent verifier and differential execution.",
-        "description": "Mikhail Razakov — Software Engineer — Architecture & Platforms: ownership boundaries, deterministic planning, state/recovery, and mechanically checked architectural invariants.",
+        "title": "Mikhail Razakov — Software Engineer — Systems & Architecture",
+        "role": "Software Engineer — Systems & Architecture",
+        "brand": "systems · architecture · infrastructure · C++/.NET",
+        "eyebrow": "C++ · .NET · systems engineering · software architecture · correctness",
+        "summary": "I design and implement complex software systems in C++ and .NET, from compiler/runtime infrastructure and program analysis to backend/service systems. I am especially interested in architecture-heavy problems where component boundaries, correctness, recovery, and verifiable invariants matter.",
+        "description": "Mikhail Razakov — Software Engineer — Systems & Architecture: C++/.NET, infrastructure, compiler/runtime, backend systems, correctness, and explicit architectural boundaries.",
         "proofs": [
           [
+            "Systems engineering",
+            "C++/.NET across compiler/runtime infrastructure, program analysis, backend/service systems, and low-level codegen."
+          ],
+          [
             "Architecture ownership",
-            "UniversalToolchain exposes one public LanguageCompiler that resolves composition into an immutable LanguagePlan; runtime materializes the already selected graph."
+            "UniversalToolchain: one semantic planner and immutable plan; VpnMediator: explicit state/recovery; x86-64 backend: independent verifier plus differential execution."
           ],
           [
-            "State & recovery",
-            "VpnMediator uses explicit payment/access states, idempotency, reconciliation, migrations, backup/restore, health gates, and rollback."
-          ],
-          [
-            "Correctness boundaries",
-            "The x86-64 backend checks allocation with an independent assignment verifier and compares native execution against a reference interpreter oracle."
+            "Professional depth",
+            "MCST: LLVM 22/C++23 · ISP RAS: C#/.NET static analysis."
           ]
         ],
         "experience": [
@@ -2068,45 +1793,28 @@
         ],
         "skills": [
           [
+            "Software / Systems",
+            "C++23, C#/.NET, Python, Linux, backend/runtime infrastructure, low-level/system components"
+          ],
+          [
             "Architecture",
-            "ownership/module boundaries, typed contracts, immutable planning, extensibility boundaries, explicit state machines, lifecycle/recovery, architecture verification"
+            "ownership/module boundaries, typed contracts, immutable planning, explicit state machines, lifecycle/recovery"
           ],
           [
-            "Compiler / Runtime Platforms",
-            ".NET, LanguageCompiler/LanguagePlan, dependency/conflict resolution, provider selection, deterministic pass ordering, typed backend routes"
+            "Compiler / Program Analysis",
+            "LLVM 22/IR, CFG/SSA, .NET/CIL, static/data-flow analysis, optimization legality"
           ],
           [
-            "State & Reliability",
-            "idempotency, reconciliation, migrations, backup/restore, health gates, rollback, failure containment"
-          ],
-          [
-            "Verification",
-            "regression tests, exact manifests, independent verifiers, interpreter/backend parity, differential execution"
+            "Reliability / Verification",
+            "idempotency, reconciliation, backup/restore, regression tests, independent verifiers, differential execution"
           ]
         ],
-        "contact_heading": "Target roles: Software / Platform Engineer with substantial architecture ownership",
-        "footer": "Software Engineer — Architecture & Platforms",
-        "recognition": [
-          [
-            "2026",
-            "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-            "Accepted talk on UniversalToolchain’s architecture; LangDev’26 takes place October 8–9, 2026 in Málaga."
-          ],
-          [
-            "2026",
-            "UniversalToolchain — Baltic Science and Engineering Competition",
-            "First Degree Diploma and Grand Prize “Perfection as Hope” for UniversalToolchain."
-          ],
-          [
-            "2026",
-            "MEPhI Junior",
-            "Overall winner; First Degree Diploma, 96/100 for UniversalToolchain."
-          ]
-        ],
+        "contact_heading": "Target roles: Software / Systems Engineer · Infrastructure / Platform · Compiler / Runtime",
+        "footer": "Software Engineer — Systems & Architecture",
         "print_project_limit": 3,
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
-        "updated_at": "2026-09-15",
+        "updated_at": "2026-09-30",
         "project_summaries": {
           "wist": {
             "solution": "One public semantic planner resolves dependencies/conflicts, selects providers, and freezes contribution ordering plus typed backend routes into one immutable LanguagePlan before runtime starts.",
@@ -2126,15 +1834,15 @@
   },
   "projects": {
     "wist": {
-      "title": "UniversalToolchain",
-      "type_ru": ".NET · compiler/language infrastructure · deterministic composition",
-      "type_en": ".NET · compiler/language infrastructure · deterministic composition",
-      "problem_ru": "Независимо развиваемые language contributions должны собираться в один compiler/runtime pipeline без скрытой зависимости от registration order и без второго resolver в runtime.",
-      "problem_en": "Independently owned language contributions must compose into one compiler/runtime pipeline without hidden registration-order dependencies or a second resolver at runtime.",
-      "solution_ru": "Модули языка разрешают зависимости и конфликты, выбирают реализации требуемых возможностей и runtime-компонентов, получают детерминированный порядок contributions и типизированные маршруты артефактов до создания runtime.",
-      "solution_en": "Dependency/conflict resolution across language features, capability/runtime provider selection, deterministic contribution ordering, and typed artifact routes before runtime materialization.",
-      "result_ru": "Текущий exact test manifest: 1 324/1 324. В frozen-corpus verifier experiment режим B2 обнаружил 32/32 primary и 10/10 challenge operators при 0/100 false positives на valid controls; отдельно проверены 4 post-freeze holdouts.",
-      "result_en": "Current exact test manifest: 1,324/1,324. In a frozen-corpus verifier experiment, B2 detected 32/32 primary and 10/10 challenge operators with 0/100 false positives on valid controls; four post-freeze holdouts were checked separately.",
+      "title": "UniversalToolchain / Wist2",
+      "type_ru": ".NET · modular language/toolchain infrastructure · runtime architecture",
+      "type_en": ".NET · modular language/toolchain infrastructure · runtime architecture",
+      "problem_ru": "Frontend, семантические компоненты, IR/optimization passes и execution backends должны развиваться независимо, но собираться в один детерминированный toolchain без скрытой зависимости от registration order.",
+      "problem_en": "Frontend, semantic components, IR/optimization passes, and execution backends should evolve independently while composing into one deterministic toolchain without hidden registration-order dependencies.",
+      "solution_ru": "Typed contracts/capabilities, dependency/conflict resolution, deterministic contribution ordering и типизированные маршруты артефактов сводятся к одному LanguagePlan до materialization runtime.",
+      "solution_en": "Typed contracts/capabilities, dependency/conflict resolution, deterministic contribution ordering, and typed artifact routes are resolved into one LanguagePlan before runtime materialization.",
+      "result_ru": "Реализован end-to-end pipeline: frontend, IR, optimization passes, interpreter и CIL backend; текущий exact test manifest — 1 324/1 324.",
+      "result_en": "Implemented an end-to-end pipeline with frontend, IR, optimization passes, interpreter, and a CIL backend; current exact test manifest: 1,324/1,324.",
       "repo": "https://github.com/Misha1302/UniversalToolchain",
       "case_ru": "cases/ru-wist.html",
       "case_en": "cases/en-wist.html",
@@ -2247,46 +1955,36 @@
   "recognition": {
     "ru": [
       [
-        "2025–2026",
-        "«Высшая проба»",
-        "Призёр «Высшей пробы» по олимпиадному и промышленному программированию."
-      ],
-      [
-        "2025–2026",
-        "Всероссийские конкурсы",
-        "Абсолютный победитель конкурса «Юниор» НИЯУ МИФИ в 2025 и 2026 годах; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."
-      ],
-      [
-        "2021 — сейчас",
-        "Техническая коммуникация",
-        "Около 50 учеников; практический курс NASM IA-32; публичная документация, code review и технические материалы."
+        "2026",
+        "ФКН НИУ ВШЭ — конкурс проектов с открытым кодом",
+        "UniversalToolchain / Wist2 — один из победителей конкурса проектов с открытым кодом студентов ФКН."
       ],
       [
         "2026",
         "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
         "Доклад по архитектуре UniversalToolchain принят к выступлению на LangDev’26."
+      ],
+      [
+        "2025–2026",
+        "Другие достижения",
+        "Дважды абсолютный победитель конкурса «Юниор» НИЯУ МИФИ; призёр «Высшей пробы» по олимпиадному и промышленному программированию; диплом I степени и Главная премия Балтийского научно-инженерного конкурса."
       ]
     ],
     "en": [
       [
-        "2025–2026",
-        "HSE Vysshaya Proba",
-        "Prize-winner in HSE Vysshaya Proba in competitive and industrial programming."
-      ],
-      [
-        "2025–2026",
-        "National competitions",
-        "Overall winner of the MEPhI Junior competition in 2025 and 2026; first-degree diploma and Grand Prize at the Baltic science and engineering competition."
-      ],
-      [
-        "2021 — present",
-        "Technical communication",
-        "About 50 students; a practical NASM IA-32 course; public documentation, code review, and technical writing."
+        "2026",
+        "HSE Faculty of Computer Science — open-source projects competition",
+        "Selected as one of the winners with UniversalToolchain / Wist2."
       ],
       [
         "2026",
         "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-        "Accepted talk on UniversalToolchain’s architecture at LangDev’26."
+        "Accepted talk on UniversalToolchain’s architecture."
+      ],
+      [
+        "2025–2026",
+        "Earlier distinctions",
+        "Two-time overall winner of MEPhI Junior; prize-winner in HSE Vysshaya Proba competitive and industrial programming; First Degree Diploma and Grand Prize at the Baltic Science and Engineering Competition."
       ]
     ]
   },
@@ -2315,13 +2013,13 @@
     }
   },
   "selector_order": [
-    "compiler",
-    "general",
     "architecture",
+    "systems",
+    "backend",
+    "general",
+    "compiler",
     "compiler_backend",
     "program_analysis",
-    "backend",
-    "systems",
     "quantdev",
     "quant"
   ],
@@ -2369,6 +2067,21 @@
         "label": "Professional LLVM + static analysis",
         "detail": "MCST: LLVM 22 compiler engineering; ISP RAS: C#/.NET static analysis."
       }
+    ]
+  },
+  "canonical_profile": "architecture",
+  "landing": {
+    "eyebrow_ru": "C++ · .NET · systems engineering · software architecture",
+    "hero_evidence_ru": [
+      "C++ · .NET · architecture / systems",
+      "UniversalToolchain / Wist2 · один из победителей open-source конкурса ФКН",
+      "МЦСТ · LLVM 22 · ИСП РАН · static analysis"
+    ],
+    "profiles_intro_ru": "Основной профиль — Software Engineer — Systems & Architecture. Специализированные версии меняют приоритет доказательств, но сохраняют единый набор проверенных фактов.",
+    "project_ids": [
+      "wist",
+      "vpn",
+      "codegen"
     ]
   }
 }
