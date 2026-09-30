@@ -38,7 +38,7 @@ The shared recognition block currently has three rows, and the last row groups s
 That loses useful signal:
 - MEPhI Junior is sustained project competition evidence across two years;
 - Baltic is a separate external technical-project validation with a Main Prize;
-- Vysshaya Proba is algorithmic/industrial-programming evidence;
+- Vysshaya Proba is algorithmic/industrial-programming evidence, but the two tracks currently have different verification strength;
 - HSE open-source and LangDev validate the current UniversalToolchain work.
 
 For a one-page CV not all of these should appear, but they should be **selected**, not collapsed in the source model.
@@ -54,7 +54,7 @@ The right representation is a compact evidence-backed lineage:
 - 2023 CIL and native x86-64 emission;
 - 2024 AST→IR→backend architecture;
 - 2025 extensible toolchain composition;
-- 2026 professional LLVM/static analysis + verification-oriented systems.
+- 2026 professional LLVM work + project-based static/program analysis + verification-oriented systems.
 
 ### 4. Verification is under-marketed
 
@@ -116,7 +116,7 @@ What is still missing:
 
 Recommended top proof order:
 1. UniversalToolchain;
-2. professional LLVM/static-analysis context;
+2. professional LLVM context from MCST;
 3. VpnMediator or x86-64 backend depending on target role;
 4. one compact lineage line;
 5. HSE open-source + LangDev as current external validation.
@@ -159,10 +159,11 @@ UniversalToolchain can be third project or a compact infrastructure line.
 ### Program Analysis
 
 This profile has a coherent evidence base:
-- ISP RAS context;
 - Global-IV;
 - DerefAfterNull;
-- PS-form.
+- PS-form;
+- MCST/LLVM;
+- the ISP RAS selection task as a bounded provenance/supporting signal, **not current employment**.
 
 It should avoid letting the small Roslyn analyzer dominate the much stronger interprocedural/legality and PS-form evidence.
 
@@ -223,15 +224,17 @@ Current CV should be able to draw from:
 
 Public MEPhI result pages retrieved in this pass support first-degree diplomas in 2025 and 2026.
 
-The stronger “two-time absolute winner” wording is user-attested and also appears in the current CV, but should be tied to the exact diploma/final protocol before being treated as independently verified marketing copy.
+The public tables support two first-degree diplomas and exact scores (91 in 2025; 96 in 2026). They do not support “two-time absolute/overall winner” across the whole engineering-sciences category: the 2026 table includes another participant with 100. The current CV should therefore use the two-diploma wording unless a stronger official title is separately established.
 
 ### Baltic
 
-**Keep strong wording.**
+**Use conflict-safe wording.**
 
-Official final competition material supports:
+Official sources disagree: the final-news article says **Main Prize**, while the official protocol/PDF places Razakov under **Section Prize**. Both agree on:
 - first-degree diploma;
-- Main Prize “Совершенство как надежда”.
+- “Совершенство как надежда” prize.
+
+Until the diploma/organizer resolves the discrepancy, omit “Main/Section” from the CV.
 
 ### LangDev
 
@@ -253,9 +256,20 @@ Do not invent ranking.
 
 ### ISP RAS
 
-**Keep contribution wording bounded to shareable facts.**
+**Downgrade current-employment wording.**
 
-The exact title/start/contribution boundary should eventually be backed by an authorized artifact. Do not use private technical detail just because it sounds stronger.
+The available evidence supports:
+- an ISP RAS student-track invitation/test task;
+- DerefAfterNullAnalyzer as the implemented Roslyn task;
+- a later user-reported offer.
+
+It does **not** currently establish:
+- accepted offer;
+- actual start date;
+- canonical job title;
+- completed employment work.
+
+Therefore every current CV that says “2026 — present, ISP RAS — Static Analysis Engineer” is ahead of the evidence and should be repaired in the later CV-rebuild phase.
 
 ## Information that should usually stay outside a one-page CV
 
