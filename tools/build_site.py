@@ -401,28 +401,38 @@ def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
 
 def landing_page(data: dict[str, Any]) -> str:
     lang = "ru"
-    primary = data["profiles"]["compiler"][lang]
-    title = "Михаил Разаков — Compiler & Program Analysis Engineer"
+    canonical_key = data.get("canonical_profile", "compiler")
+    primary = data["profiles"][canonical_key][lang]
+    primary_en = data["profiles"][canonical_key]["en"]
+    landing = data.get("landing", {})
+    title = primary["title"]
     description = primary["description"]
     head = common_head(data, lang, "index.html", title, description, primary["role"], data["site_url"])
     cards = []
-    for key in (profile_key for profile_key in data.get("selector_order", data["profile_order"]) if profile_key != "compiler"):
+    for key in (profile_key for profile_key in data.get("selector_order", data["profile_order"]) if profile_key != canonical_key):
         ru = data["profiles"][key]["ru"]
         en = data["profiles"][key]["en"]
         ui = data["profile_ui"][key]
         heading = ui["landing_title"]
         body = ui["landing_description_ru"]
         cards.append(f'<article class="selector-card"><span>RU / EN</span><h2>{esc(heading)}</h2><p>{esc(body)}</p><div class="selector-links"><a href="{esc(ru["filename"])}">Русская версия</a><a href="{esc(en["filename"])}">English version</a></div><div class="selector-pdf-links"><a href="pdf/{esc(ru["pdf"])}" download>PDF RU</a><a href="pdf/{esc(en["pdf"])}" download>PDF EN</a></div></article>')
-    project_cases = "".join(project_card(data, "ru", project_id) for project_id in ["globaliv", "deref", "wist"])
+    project_ids = landing.get("project_ids", ["globaliv", "deref", "wist"])
+    project_cases = "".join(project_card(data, "ru", project_id) for project_id in project_ids)
+    evidence = "".join(f"<span>{esc(item)}</span>" for item in landing.get("hero_evidence_ru", []))
+    evidence_block = f'<div class="landing-evidence">{evidence}</div>' if evidence else ""
+    profiles_intro = landing.get(
+        "profiles_intro_ru",
+        f'Основной профиль — {primary["role"]}. Специализированные версии меняют приоритет доказательств, но сохраняют единый набор проверенных фактов.',
+    )
     p = data["person"]
-    return f"""{head}
+    return f"""{{head}}
 <body class="selector-page">
-<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(p['name_ru'])}</strong><span>Compiler &amp; Program Analysis Engineer</span></span></a><nav class="primary-nav"><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="en-compiler.html">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav></div></details></div></div></header>
-<main id="main" class="shell landing-main"><section class="selector-intro landing-hero"><p class="eyebrow">LLVM · static analysis · program analysis · compiler infrastructure</p><h1>Compiler &amp; Program Analysis Engineer</h1><p>{esc(primary['summary'])}</p><div class="hero-actions"><a class="button primary" href="{esc(primary['filename'])}">Открыть резюме</a><a class="button" href="pdf/{esc(primary['pdf'])}" download>Скачать PDF</a><a class="button" href="#cases">Посмотреть проекты</a></div><div class="landing-evidence"><span>MCST · LLVM 22 · C++</span><span>ISP RAS · SharpChecker · static analysis</span><span>CFG/SSA · data-flow · x86-64</span></div></section>
-<section id="profiles" class="landing-section"><div class="section-heading"><p class="section-label">01 · Профили</p><div><h2>Профили под конкретные роли.</h2><p class="section-intro">Основной профиль — Compiler &amp; Program Analysis Engineer. Специализированные версии меняют приоритет доказательств, но сохраняют единый набор проверенных фактов.</p></div></div><div class="selector-grid">{''.join(cards)}</div></section>
-<section id="cases" class="landing-section"><div class="section-heading"><p class="section-label">02 · Кейсы</p><div><h2>Проблема → решение → проверяемый результат.</h2><p class="section-intro">Открытые проекты ведут к коду и документации; закрытые — к публичному архитектурному разбору без секретов и пользовательских данных.</p></div></div><div class="project-grid">{project_cases}</div></section>
-<section class="contact-section" id="contact"><div class="contact-panel"><div><h2>Связаться по инженерной роли или проекту.</h2><p>{esc(p['location_ru'])}</p></div><div class="contact-links"><a class="button primary" href="mailto:{esc(p['email'])}">Почта</a><a class="button" href="{esc(p['telegram'])}" target="_blank" rel="noopener noreferrer">Telegram</a><a class="button" href="{esc(p['github'])}" target="_blank" rel="noopener noreferrer">GitHub</a></div></div></section></main>
-<footer class="shell site-footer"><span>{esc(p['name_ru'])} · Compiler &amp; Program Analysis Engineer</span><span>Обновлено {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{{esc(p['name_ru'])}}</strong><span>{{esc(primary['role'])}}</span></span></a><nav class="primary-nav"><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="{{esc(primary_en['filename'])}}">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav></div></details></div></div></header>
+<main id="main" class="shell landing-main"><section class="selector-intro landing-hero"><p class="eyebrow">{{esc(landing.get('eyebrow_ru', primary['eyebrow']))}}</p><h1>{{esc(primary['role'])}}</h1><p>{{esc(primary['summary'])}}</p><div class="hero-actions"><a class="button primary" href="{{esc(primary['filename'])}}">Открыть резюме</a><a class="button" href="pdf/{{esc(primary['pdf'])}}" download>Скачать PDF</a><a class="button" href="#cases">Посмотреть проекты</a></div>{{evidence_block}}</section>
+<section id="profiles" class="landing-section"><div class="section-heading"><p class="section-label">01 · Профили</p><div><h2>Профили под конкретные роли.</h2><p class="section-intro">{{esc(profiles_intro)}}</p></div></div><div class="selector-grid">{{''.join(cards)}}</div></section>
+<section id="cases" class="landing-section"><div class="section-heading"><p class="section-label">02 · Кейсы</p><div><h2>Проблема → решение → проверяемый результат.</h2><p class="section-intro">Открытые проекты ведут к коду и документации; закрытые — к публичному архитектурному разбору без секретов и пользовательских данных.</p></div></div><div class="project-grid">{{project_cases}}</div></section>
+<section class="contact-section" id="contact"><div class="contact-panel"><div><h2>Связаться по инженерной роли или проекту.</h2><p>{{esc(p['location_ru'])}}</p></div><div class="contact-links"><a class="button primary" href="mailto:{{esc(p['email'])}}">Почта</a><a class="button" href="{{esc(p['telegram'])}}" target="_blank" rel="noopener noreferrer">Telegram</a><a class="button" href="{{esc(p['github'])}}" target="_blank" rel="noopener noreferrer">GitHub</a></div></div></section></main>
+<footer class="shell site-footer"><span>{{esc(p['name_ru'])}} · {{esc(primary['role'])}}</span><span>Обновлено {{esc(data['updated_at'])}}</span></footer><script src="script.js?v={{esc(data['version'])}}" defer></script></body></html>
 """
 
 
@@ -431,7 +441,7 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
     filename = project[f"case_{lang}"]
     title = f"{project['title']} — {'архитектурный кейс' if lang == 'ru' else 'architecture case study'}"
     description = project[f"result_{lang}"]
-    role = data["profiles"]["compiler"][lang]["role"]
+    canonical_key = data.get("canonical_profile", "compiler")\n    role = data["profiles"][canonical_key][lang]["role"]
     head = common_head(data, lang, filename, title, description, role)
     # Paths from cases/ need one level up.
     head = head.replace('href="assets/', 'href="../assets/').replace('href="style.css', 'href="../style.css').replace('content="https://misha1302.github.io/CV/cases/', 'content="https://misha1302.github.io/CV/cases/')
@@ -481,7 +491,7 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
     if project.get("docs"):
         links.append(f'<a class="button" href="{esc(project["docs"])}" target="_blank" rel="noopener noreferrer">Documentation</a>')
     return f"""{head}
-<body class="case-page"><header class="site-header"><div class="shell header-inner"><a class="brand" href="../index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(person_name(data, lang))}</strong><span>{'инженерный кейс' if lang == 'ru' else 'engineering case'}</span></span></a><div></div><div class="header-actions"><a class="button compact" href="../{esc(data['profiles']['compiler'][lang]['filename'])}">{labels['back']}</a></div></div></header>
+<body class="case-page"><header class="site-header"><div class="shell header-inner"><a class="brand" href="../index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(person_name(data, lang))}</strong><span>{'инженерный кейс' if lang == 'ru' else 'engineering case'}</span></span></a><div></div><div class="header-actions"><a class="button compact" href="../{esc(data['profiles'][canonical_key][lang]['filename'])}">{labels['back']}</a></div></div></header>
 <main class="shell case-main" id="main"><section class="case-hero"><p class="eyebrow">{esc(project[f'type_{lang}'])}</p><h1>{esc(project['title'])}</h1><p>{esc(project[f'problem_{lang}'])}</p>{'<div class="case-note">'+esc(labels['private'])+'</div>' if not project['public'] else ''}<div class="hero-actions">{''.join(links)}</div></section>
 <section class="case-grid"><article><span>01</span><h2>{labels['problem']}</h2><p>{esc(project[f'problem_{lang}'])}</p></article><article><span>02</span><h2>{labels['constraints']}</h2><p>{esc(constraints)}</p></article><article><span>03</span><h2>{labels['solution']}</h2><p>{esc(project[f'solution_{lang}'])}</p></article><article><span>04</span><h2>{labels['result']}</h2><p>{esc(project[f'result_{lang}'])}</p></article><article><span>05</span><h2>{labels['verification']}</h2><p>{esc(verification)}</p></article><article><span>06</span><h2>{labels['role']}</h2><p>{esc(ownership)}</p></article></section></main>
 <footer class="shell site-footer"><span>{esc(project['title'])}</span><span>{'Обновлено' if lang == 'ru' else 'Updated'} {esc(data['updated_at'])}</span></footer></body></html>
