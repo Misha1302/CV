@@ -441,7 +441,8 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
     filename = project[f"case_{lang}"]
     title = f"{project['title']} — {'архитектурный кейс' if lang == 'ru' else 'architecture case study'}"
     description = project[f"result_{lang}"]
-    canonical_key = data.get("canonical_profile", "compiler")\n    role = data["profiles"][canonical_key][lang]["role"]
+    canonical_key = data.get("canonical_profile", "compiler")
+    role = data["profiles"][canonical_key][lang]["role"]
     head = common_head(data, lang, filename, title, description, role)
     # Paths from cases/ need one level up.
     head = head.replace('href="assets/', 'href="../assets/').replace('href="style.css', 'href="../style.css').replace('content="https://misha1302.github.io/CV/cases/', 'content="https://misha1302.github.io/CV/cases/')
