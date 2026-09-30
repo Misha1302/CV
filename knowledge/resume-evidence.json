@@ -10,7 +10,8 @@
     "USER_ATTESTED": "Explicit user statement; do not upgrade to public verification.",
     "PRIOR_REPO_FORENSICS": "Claim established by a prior repository-forensics pass against historical code/commits; retain provenance and re-audit before making it a headline if the exact date matters.",
     "INFERENCE": "Analyst interpretation. Never present as a raw fact.",
-    "NEEDS_VERIFICATION": "Potentially useful claim with insufficient evidence for strong resume wording."
+    "NEEDS_VERIFICATION": "Potentially useful claim with insufficient evidence for strong resume wording.",
+    "PUBLIC_SELF_AUTHORED": "Public material authored by the user (article/profile/project description). Good evidence of authorship/communication, not independent validation of stronger claims."
   },
   "canonical_positioning": {
     "primary": {
@@ -592,6 +593,458 @@
       "boundaries": [
         "Do not convert personal/OSS years into '4 years professional compiler experience'."
       ]
+    },
+    {
+      "id": "education_hse_software_engineering_2026_2030",
+      "category": "education",
+      "name": "HSE University — Software Engineering",
+      "time": "2026-2030",
+      "evidence_level": [
+        "USER_ATTESTED",
+        "PUBLIC_SELF_AUTHORED"
+      ],
+      "public_sources": [
+        "https://ru.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248"
+      ],
+      "claims": {
+        "safe_ru": "Студент образовательной программы «Программная инженерия» НИУ ВШЭ, 2026–2030.",
+        "safe_en": "Software Engineering student at HSE University, 2026–2030."
+      },
+      "recruiter_signals": [
+        "formal CS/software-engineering education"
+      ],
+      "role_fit": [
+        "general",
+        "architecture",
+        "systems",
+        "compiler",
+        "backend"
+      ],
+      "resume_priority": "FOUNDATIONAL",
+      "gaps": [
+        "Link official student/program artifact if independent verification is required."
+      ]
+    },
+    {
+      "id": "research_planfuzz",
+      "category": "research_project",
+      "name": "PlanFuzz",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/UniversalToolchain/blob/master/internal-docs/proposals/planfuzz/README.md"
+      ],
+      "claims": {
+        "safe_ru": "Configuration-aware testing layer для compiler/language infrastructure: генерирует программы и варианты plan/configuration, наблюдает точные failure fingerprints, replay'ит в fresh process и детерминированно уменьшает program + configuration.",
+        "safe_en": "A configuration-aware testing layer for compiler/language infrastructure that generates programs and plan/configuration variants, records exact failure fingerprints, replays them in fresh processes, and deterministically reduces both program and configuration."
+      },
+      "strongest_evidence": [
+        "Language-neutral core plus Acme and Wist adapters.",
+        "Backend-parity and other explicit oracles.",
+        "Fresh-process execution, replay fingerprints, deterministic reduction.",
+        "Outcome model distinguishes confirmed, flaky, inconclusive, and infrastructure failures.",
+        "Repository explicitly records remaining incomplete research slices instead of treating the system as finished."
+      ],
+      "recruiter_signals": [
+        "compiler testing",
+        "property/configuration testing",
+        "failure reduction",
+        "research engineering",
+        "reproducibility"
+      ],
+      "role_fit": [
+        "compiler",
+        "architecture",
+        "program_analysis",
+        "quantdev",
+        "quant"
+      ],
+      "resume_priority": "HIGH_FOR_RESEARCH",
+      "do_not_claim": [
+        "complete compiler fuzzer",
+        "publication-scale evaluation",
+        "superiority over existing fuzzers"
+      ]
+    },
+    {
+      "id": "research_contract_reverification",
+      "category": "research_project",
+      "name": "UniversalToolchain contract-guided reverification experiments",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/UniversalToolchain/blob/master/UniversalToolchain/Experiments/UniversalToolchain.ContractExperiments/README.md",
+        "https://github.com/Misha1302/UniversalToolchain/blob/master/CGO27/RESULTS_SUMMARY.md",
+        "https://github.com/Misha1302/UniversalToolchain/blob/master/CGO27/REVIEW_FINDINGS.md"
+      ],
+      "claims": {
+        "safe_ru": "Воспроизводимый экспериментальный стенд для проверки typed contract/reverification policies на frozen author-designed corpora, с отдельными controls, holdouts, ablations и явными threats-to-validity.",
+        "safe_en": "A reproducible experimental harness for typed-contract/reverification policies over frozen author-designed corpora, with separate controls, holdouts, ablations, and explicit threats to validity."
+      },
+      "strongest_evidence": [
+        "Frozen corpus identity and mutation catalog are mechanically checked.",
+        "Valid controls are separated from injected-fault cases.",
+        "Post-freeze holdouts are kept separate to reduce corpus-overfitting risk.",
+        "Repository blocks external-validity and speedup headlines where evidence is insufficient."
+      ],
+      "recruiter_signals": [
+        "experimental rigor",
+        "reproducibility",
+        "compiler correctness",
+        "research integrity"
+      ],
+      "role_fit": [
+        "quant",
+        "quantdev",
+        "compiler",
+        "program_analysis",
+        "architecture"
+      ],
+      "resume_priority": "TARGETED",
+      "do_not_claim": [
+        "statistical population-level superiority",
+        "whole-compilation speedup",
+        "external validity",
+        "accepted CGO paper"
+      ]
+    },
+    {
+      "id": "teaching_middle_end_course",
+      "category": "teaching",
+      "name": "Middle-end compiler course",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/Middle-end-compiler-course"
+      ],
+      "claims": {
+        "safe_ru": "Автор 20-занятийного самостоятельного курса по middle-end: CFG, dominators, idom/DF, SSA, оптимизации и преобразования циклов; курс включает учебный IR, анализатор и machine-checkable golden examples.",
+        "safe_en": "Author of a 20-lesson self-study compiler middle-end course covering CFGs, dominators, idom/DF, SSA, optimizations, and loop transformations, with a teaching IR, analyzer, and machine-checkable golden examples."
+      },
+      "recruiter_signals": [
+        "compiler fundamentals",
+        "technical teaching",
+        "formalization",
+        "tool-supported pedagogy"
+      ],
+      "role_fit": [
+        "compiler",
+        "program_analysis",
+        "architecture",
+        "systems"
+      ],
+      "resume_priority": "SUPPORTING_HIGH"
+    },
+    {
+      "id": "publication_habr_extensible_language_2025",
+      "category": "publication",
+      "name": "Habr — «Мое видение универсального языка программирования»",
+      "time": "2025-08-29",
+      "evidence_level": [
+        "PUBLIC_SELF_AUTHORED"
+      ],
+      "public_sources": [
+        "https://habr.com/ru/articles/942134/"
+      ],
+      "claims": {
+        "safe_ru": "Опубликовал техническую статью об extensible programming и архитектуре расширяемого language/toolchain design.",
+        "safe_en": "Published a technical article on extensible programming and extensible language/toolchain architecture."
+      },
+      "snapshot_metrics": [
+        {
+          "as_of": "2026-09-30",
+          "metric": "Habr page displayed ~18K views.",
+          "boundary": "Dynamic popularity metric; date-stamp if ever used."
+        }
+      ],
+      "recruiter_signals": [
+        "technical writing",
+        "architecture reasoning",
+        "public discussion"
+      ],
+      "role_fit": [
+        "architecture",
+        "compiler",
+        "general"
+      ],
+      "resume_priority": "SUPPORTING"
+    },
+    {
+      "id": "experience_diploma_school_client",
+      "category": "experience",
+      "name": "Diploma.school — client web development",
+      "time": "no later than 2025-01",
+      "evidence_level": [
+        "PRIVATE_DOCUMENT",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [],
+      "claims": {
+        "safe_ru": "Клиентская web-разработка: jQuery dropdown components, responsive mobile/desktop navigation и UI regression fixes; работа подтверждена не позднее января 2025.",
+        "safe_en": "Client web development: jQuery dropdown components, responsive mobile/desktop navigation, and UI regression fixes; work is confirmed no later than January 2025."
+      },
+      "recruiter_signals": [
+        "client delivery",
+        "frontend maintenance",
+        "commercial/client context"
+      ],
+      "role_fit": [
+        "backend",
+        "general"
+      ],
+      "resume_priority": "LOW_TO_MEDIUM",
+      "boundaries": [
+        "Do not use as compiler professional experience.",
+        "Do not move the date earlier without a dated primary artifact."
+      ]
+    },
+    {
+      "id": "experience_teaching_algorithms",
+      "category": "experience",
+      "name": "Programming / algorithms teaching",
+      "time": "2021-2026",
+      "evidence_level": [
+        "USER_ATTESTED",
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/Nasm-X86-Course",
+        "https://github.com/Misha1302/Middle-end-compiler-course"
+      ],
+      "claims": {
+        "safe_ru": "Многолетний опыт преподавания/наставничества по программированию; публичные материалы 2026 подтверждают способность превращать low-level/compiler темы в самостоятельные курсы.",
+        "safe_en": "Multi-year programming teaching/mentoring experience; public 2026 course repositories demonstrate the ability to turn low-level/compiler topics into self-study material."
+      },
+      "recruiter_signals": [
+        "mentoring",
+        "technical communication",
+        "curriculum design"
+      ],
+      "role_fit": [
+        "general",
+        "architecture"
+      ],
+      "resume_priority": "SUPPORTING",
+      "gaps": [
+        "Canonical employer/title/dates for each teaching role should be added if used under Professional Experience."
+      ]
+    },
+    {
+      "id": "achievement_vso_sh_informatics_regional_2026",
+      "category": "achievement",
+      "name": "Russian Olympiad in Informatics — regional stage",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_PRIMARY"
+      ],
+      "public_sources": [
+        "https://viro33.ru/download/informatika_p_protokol_na_sajt.pdf"
+      ],
+      "verified_public_fact": "11th grade, 315 points, prize-winner in the Vladimir-region stage.",
+      "claims": {
+        "safe_ru": "Призёр регионального этапа ВсОШ по информатике, 11 класс (315 баллов).",
+        "safe_en": "Prize-winner, regional stage of the Russian Olympiad in Informatics (Grade 11, 315 points)."
+      },
+      "recruiter_signals": [
+        "algorithms",
+        "competitive programming"
+      ],
+      "role_fit": [
+        "general",
+        "systems"
+      ],
+      "resume_priority": "ARCHIVE_OR_SPACE_PERMITTING"
+    },
+    {
+      "id": "achievement_energy_hope_2025",
+      "category": "achievement",
+      "name": "«Надежда энергетики» — Informatics",
+      "time": "2024-2025",
+      "evidence_level": [
+        "PUBLIC_PRIMARY"
+      ],
+      "public_sources": [
+        "https://www.energy-hope.ru/docs/XXV/EHOPE_XXV_wscan_inf_list.pdf"
+      ],
+      "verified_public_fact": "Final round, Informatics, Grade 10, second-degree prize-winner.",
+      "claims": {
+        "safe_ru": "Призёр II степени заключительного этапа олимпиады «Надежда энергетики» по информатике (2024/25).",
+        "safe_en": "Second-degree prize-winner in the final round of the Energy Hope Informatics Olympiad (2024/25)."
+      },
+      "recruiter_signals": [
+        "competitive programming"
+      ],
+      "role_fit": [
+        "general"
+      ],
+      "resume_priority": "ARCHIVE"
+    },
+    {
+      "id": "achievement_neyrmark",
+      "category": "achievement",
+      "name": "Neyrmark / Нейрмарк competition",
+      "time": "unknown",
+      "evidence_level": [
+        "USER_ATTESTED",
+        "NEEDS_VERIFICATION"
+      ],
+      "public_sources": [],
+      "user_attested_fact": "Winner.",
+      "resume_use": "Do not prioritize until the exact competition name, year, category, and result artifact are ingested.",
+      "recruiter_signals": [],
+      "role_fit": [
+        "general"
+      ],
+      "resume_priority": "ARCHIVE_PENDING_EVIDENCE"
+    },
+    {
+      "id": "history_bigsharpcompiler_2022",
+      "category": "historical_project",
+      "name": "BigSharpCompiler",
+      "time": "2022",
+      "evidence_level": [
+        "PRIOR_REPO_FORENSICS"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/BigSharpCompiler"
+      ],
+      "claims": {
+        "safe_ru": "Ранний source-to-source language/compiler-tooling проект с собственными lexer/parser/preprocessor components.",
+        "safe_en": "Early source-to-source language/compiler tooling with custom lexer/parser/preprocessor components."
+      },
+      "recruiter_signals": [
+        "early language tooling"
+      ],
+      "role_fit": [
+        "compiler"
+      ],
+      "resume_priority": "PORTFOLIO_HISTORY_ONLY",
+      "do_not_claim": [
+        "native compiler backend"
+      ]
+    },
+    {
+      "id": "history_ownassembler_2022",
+      "category": "historical_project",
+      "name": "OwnAssembler",
+      "time": "2022",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT",
+        "PRIOR_REPO_FORENSICS"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/OwnAssembler"
+      ],
+      "claims": {
+        "safe_ru": "Собственный assembler-like textual language, lowering в custom bytecode и VM/runtime с RAM, CPU stack, control flow и calls/returns.",
+        "safe_en": "Custom assembler-like textual language lowered to bytecode and executed by a VM/runtime with RAM, a CPU stack, control flow, and calls/returns."
+      },
+      "recruiter_signals": [
+        "VM/runtime fundamentals",
+        "representation→execution boundary"
+      ],
+      "role_fit": [
+        "compiler",
+        "systems"
+      ],
+      "resume_priority": "PORTFOLIO_HISTORY_ONLY",
+      "do_not_claim": [
+        "x86 assembler"
+      ]
+    },
+    {
+      "id": "history_wist2msil_2023",
+      "category": "historical_project",
+      "name": "Wist2Msil",
+      "time": "2023",
+      "evidence_level": [
+        "PRIOR_REPO_FORENSICS",
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/Wist2Msil"
+      ],
+      "claims": {
+        "safe_ru": "Исторический Wist experiment; repository-forensics pass established runtime-generated CIL/MSIL emission in July 2023.",
+        "safe_en": "Historical Wist experiment; a prior repository-forensics pass established runtime-generated CIL/MSIL emission in July 2023."
+      },
+      "recruiter_signals": [
+        "managed code generation",
+        "longitudinal compiler work"
+      ],
+      "role_fit": [
+        "compiler_backend",
+        "compiler"
+      ],
+      "resume_priority": "LINEAGE_ONLY",
+      "boundaries": [
+        "Replay exact first-commit date before making July 2023 a headline date."
+      ]
+    },
+    {
+      "id": "history_visk_native_x86_2023",
+      "category": "historical_project",
+      "name": "Visk native x86-64 emitter",
+      "time": "2023",
+      "evidence_level": [
+        "PRIOR_REPO_FORENSICS"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/Visk"
+      ],
+      "claims": {
+        "safe_ru": "Prior code archaeology found real x86-64 instruction emission, serialization to machine-code bytes, executable-memory invocation and callable delegate execution by September 2023.",
+        "safe_en": "Prior code archaeology found real x86-64 instruction emission, serialization to machine-code bytes, executable-memory invocation, and callable execution by September 2023."
+      },
+      "recruiter_signals": [
+        "early native codegen",
+        "longitudinal backend depth"
+      ],
+      "role_fit": [
+        "compiler_backend",
+        "systems",
+        "compiler"
+      ],
+      "resume_priority": "LINEAGE_ONLY",
+      "do_not_claim": [
+        "production-ready x86-64 backend"
+      ],
+      "boundaries": [
+        "Initial backend had incomplete register/argument setup; replay exact commit before headline-date use."
+      ]
+    },
+    {
+      "id": "history_wist4_2024",
+      "category": "historical_project",
+      "name": "Wist4",
+      "time": "2024",
+      "evidence_level": [
+        "PRIOR_REPO_FORENSICS",
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/Wist4"
+      ],
+      "claims": {
+        "safe_ru": "Historical Wist prototype; prior code archaeology established explicit lexer/frontend → AST → own IR → native backend layering with calling-convention/stack abstractions by 2024.",
+        "safe_en": "Historical Wist prototype; prior code archaeology established explicit lexer/frontend → AST → own IR → native-backend layering with calling-convention/stack abstractions by 2024."
+      },
+      "recruiter_signals": [
+        "compiler architecture evolution",
+        "IR/backend separation"
+      ],
+      "role_fit": [
+        "compiler",
+        "compiler_backend",
+        "architecture"
+      ],
+      "resume_priority": "LINEAGE_ONLY"
     }
   ],
   "skills": [
@@ -686,6 +1139,26 @@
         "teaching history"
       ],
       "level_for_resume": "strong supporting evidence"
+    },
+    {
+      "skill": "Experimental / research methodology",
+      "strongest_evidence": [
+        "UniversalToolchain contract experiments",
+        "PlanFuzz",
+        "PS-form exact oracle/metamorphic harness"
+      ],
+      "level_for_resume": "strong targeted evidence",
+      "notes": "Frozen corpora, controls, holdouts, explicit threats-to-validity, deterministic replay/reduction."
+    },
+    {
+      "skill": "Technical writing / course design",
+      "strongest_evidence": [
+        "LangDev accepted talk",
+        "Habr article",
+        "Middle-end course",
+        "NASM course"
+      ],
+      "level_for_resume": "strong supporting evidence"
     }
   ],
   "global_claim_boundaries": {
@@ -725,6 +1198,9 @@
     "Add a public/authorized source for exact ISP RAS title/start date and safe contribution boundary.",
     "Link primary organizer result for PS-form 1st/5.0/104-of-104 if available.",
     "Re-run historical commit archaeology for exact earliest dates before using dates as headline marketing copy.",
-    "Clarify VpnMediator ownership/commercial metrics before claiming users/revenue/business impact."
+    "Clarify VpnMediator ownership/commercial metrics before claiming users/revenue/business impact.",
+    "Verify Neyrmark/Нейрмарк exact official name, year, category, and winner artifact.",
+    "Add canonical teaching employer/title/date evidence if teaching is to appear as professional experience.",
+    "Decide whether Habr popularity metrics are worth using; if so, store a dated snapshot rather than an evergreen number."
   ]
 }
