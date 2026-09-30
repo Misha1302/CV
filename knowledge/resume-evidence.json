@@ -1202,5 +1202,200 @@
     "Verify Neyrmark/Нейрмарк exact official name, year, category, and winner artifact.",
     "Add canonical teaching employer/title/date evidence if teaching is to appear as professional experience.",
     "Decide whether Habr popularity metrics are worth using; if so, store a dated snapshot rather than an evergreen number."
-  ]
+  ],
+  "role_playbooks": {
+    "architecture": {
+      "title": "Software Engineer — Systems & Architecture",
+      "thesis": "Architecture-heavy C++/.NET systems; compiler/runtime work demonstrates depth, while service systems demonstrate explicit state, recovery and operability.",
+      "top_assets": [
+        "project_universaltoolchain",
+        "experience_mcst_2026",
+        "experience_isp_ras_2026",
+        "project_vpnmediator",
+        "project_x86_codegen",
+        "project_compilationlab_lms"
+      ],
+      "recognition": [
+        "achievement_hse_open_source_2026",
+        "achievement_langdev_2026",
+        "achievement_baltic_2026"
+      ],
+      "project_slots": [
+        "project_universaltoolchain",
+        "project_vpnmediator",
+        "project_x86_codegen"
+      ],
+      "preserve_signal": [
+        "compiler/runtime depth",
+        "correctness/verification",
+        "state/recovery"
+      ],
+      "avoid": "Do not dilute into generic full-stack wording."
+    },
+    "compiler_infrastructure": {
+      "title": "Compiler Infrastructure / Language Tooling Engineer",
+      "thesis": "Extensible compiler/runtime architecture with deterministic composition, explicit contracts, multiple execution paths and verification-oriented testing.",
+      "top_assets": [
+        "project_universaltoolchain",
+        "project_global_iv",
+        "research_planfuzz",
+        "project_x86_codegen",
+        "history_compiler_runtime_lineage"
+      ],
+      "recognition": [
+        "achievement_langdev_2026",
+        "achievement_hse_open_source_2026",
+        "achievement_baltic_2026"
+      ],
+      "project_slots": [
+        "project_universaltoolchain",
+        "project_global_iv",
+        "project_x86_codegen"
+      ],
+      "preserve_signal": [
+        "UniversalToolchain must not disappear",
+        "professional LLVM context",
+        "historical CIL/native lineage"
+      ],
+      "avoid": "Do not turn this profile into only program analysis."
+    },
+    "compiler_backend": {
+      "title": "Compiler Backend / Code Generation Engineer",
+      "thesis": "Longitudinal code-generation work from CIL/native experiments to SSA/CFG validation, liveness, register allocation, phi lowering and verified x86-64 execution.",
+      "top_assets": [
+        "project_x86_codegen",
+        "experience_mcst_2026",
+        "project_global_iv",
+        "history_wist2msil_2023",
+        "history_visk_native_x86_2023",
+        "history_wist4_2024",
+        "project_universaltoolchain"
+      ],
+      "recognition": [
+        "achievement_langdev_2026",
+        "achievement_hse_open_source_2026"
+      ],
+      "project_slots": [
+        "project_x86_codegen",
+        "project_global_iv",
+        "project_universaltoolchain"
+      ],
+      "preserve_signal": [
+        "register allocation",
+        "differential execution",
+        "CIL/native historical continuity"
+      ],
+      "avoid": "Do not claim production backend maturity."
+    },
+    "program_analysis": {
+      "title": "Static / Program Analysis Engineer",
+      "thesis": "Professional and project evidence across Roslyn CFG data flow, LLVM interprocedural/evolution analysis, memory-dependence reasoning and conservative transformation legality.",
+      "top_assets": [
+        "experience_isp_ras_2026",
+        "project_global_iv",
+        "project_deref_after_null",
+        "project_ps_form",
+        "experience_mcst_2026",
+        "research_contract_reverification"
+      ],
+      "recognition": [
+        "achievement_langdev_2026",
+        "achievement_hse_vysshaya_proba"
+      ],
+      "project_slots": [
+        "project_global_iv",
+        "project_deref_after_null",
+        "project_ps_form"
+      ],
+      "preserve_signal": [
+        "fixed point",
+        "interprocedural effects",
+        "conservative yes/no/maybe semantics"
+      ],
+      "avoid": "Do not imply alias/points-to or interprocedural support in DerefAfterNull."
+    },
+    "systems_cpp": {
+      "title": "C++ / Systems Engineer",
+      "thesis": "C++/LLVM and low-level execution work backed by algorithms, native code generation, verification and real service reliability constraints.",
+      "top_assets": [
+        "experience_mcst_2026",
+        "project_x86_codegen",
+        "project_ps_form",
+        "project_global_iv",
+        "project_vpnmediator",
+        "history_compiler_runtime_lineage"
+      ],
+      "recognition": [
+        "achievement_hse_vysshaya_proba",
+        "achievement_vso_sh_informatics_regional_2026",
+        "achievement_baltic_2026"
+      ],
+      "project_slots": [
+        "project_x86_codegen",
+        "project_ps_form",
+        "project_global_iv"
+      ],
+      "preserve_signal": [
+        "C++23",
+        "algorithms",
+        "native execution",
+        "testing/verification"
+      ],
+      "avoid": "Do not make .NET the visual center."
+    },
+    "backend_platform": {
+      "title": ".NET Backend / Platform Engineer",
+      "thesis": "Correctness-sensitive service architecture: payment state, idempotency, reconciliation, backup/rollback and explicit runtime boundaries.",
+      "top_assets": [
+        "project_compilationlab_lms",
+        "project_vpnmediator",
+        "project_universaltoolchain",
+        "experience_diploma_school_client"
+      ],
+      "recognition": [
+        "achievement_hse_open_source_2026",
+        "achievement_langdev_2026"
+      ],
+      "project_slots": [
+        "project_compilationlab_lms",
+        "project_vpnmediator",
+        "project_universaltoolchain"
+      ],
+      "preserve_signal": [
+        "state ownership",
+        "idempotency",
+        "recovery",
+        "deployment contracts"
+      ],
+      "avoid": "Do not present personal products as employment unless the ownership/employment boundary is explicit."
+    },
+    "research_quantdev": {
+      "title": "Research Engineer / Quant Developer",
+      "thesis": "Algorithmic and systems experimentation with exact/reference oracles, controlled corpora, deterministic replay, counterexamples and performance-aware implementations.",
+      "top_assets": [
+        "project_ps_form",
+        "research_contract_reverification",
+        "research_planfuzz",
+        "project_global_iv",
+        "project_x86_codegen",
+        "project_universaltoolchain"
+      ],
+      "recognition": [
+        "achievement_langdev_2026",
+        "achievement_hse_open_source_2026"
+      ],
+      "project_slots": [
+        "project_ps_form",
+        "research_contract_reverification",
+        "project_global_iv"
+      ],
+      "preserve_signal": [
+        "experimental rigor",
+        "reproducibility",
+        "algorithms",
+        "C++/systems"
+      ],
+      "avoid": "Do not imply finance/trading production experience."
+    }
+  }
 }
