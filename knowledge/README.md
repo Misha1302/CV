@@ -20,7 +20,7 @@ The knowledge base separates those concerns.
 
 - `resume-evidence.json` — machine-readable facts, evidence levels, claim boundaries, role fit, metrics, gaps, and safe RU/EN wording.
 - `research-log-2026-09-30.md` — human-readable research findings, source ledger, unresolved claims, and CV implications.
-- `current-cv-gap-analysis.md` — review of the current rendered CV source against the evidence layer.
+- `current-cv-gap-analysis.md` — review of the current rendered CV source against the evidence layer.\n- `career-execution-plan-2026-10.md` — concrete career execution plan, market-adjacency map, outreach/OSS/interview cadence, and dated checkpoints. It is strategy, not a source of CV facts.
 
 ## Evidence hierarchy
 
@@ -120,3 +120,13 @@ When a new award, project result, job, benchmark, release, or external validatio
 5. only then regenerate affected CV variants.
 
 The purpose of this layer is not to maximize the number of claims. It is to maximize the amount of **credible engineering signal per line**.
+
+
+## Career strategy boundary
+
+The evidence model and the execution plan have different authority:
+
+- `resume-evidence.json` answers **what is supported and safe to claim**;
+- `career-execution-plan-2026-10.md` answers **what to do next**.
+
+A career hypothesis, target company, mentor opinion, market observation, or planned action must never become a resume fact merely because it appears in the execution plan. Current-market claims in the plan should carry dated sources and be refreshed before high-stakes decisions.
