@@ -2,13 +2,14 @@
 
 This repository publishes Mikhail Razakov's CV site and role-specific PDFs.
 
-## Canonical source
+## Canonical sources
 
-All public profile content lives in one file:
+The repository now separates factual evidence from rendered profile copy:
 
-- `data/site.json`
+- `knowledge/resume-evidence.json` — canonical evidence/claim layer: facts, evidence strength, boundaries, metrics, role fit, and unresolved gaps.
+- `data/site.json` — current canonical **render source** for public profile copy while the generator migration to evidence-backed projections is still pending.
 
-The generator produces:
+A rendered CV must not make a stronger factual claim than the evidence layer supports. The generator currently produces:
 
 - canonical RU/EN profile pages;
 - the landing page;
@@ -37,6 +38,7 @@ The landing page uses Software Engineer — Systems & Architecture as the canoni
 
 ```bash
 python -m pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+python tools/validate_resume_knowledge.py
 python tools/build_site.py
 python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence
 python tools/build_site.py --manifest
@@ -56,7 +58,8 @@ The visual workflow keeps the established regression baseline for existing repre
 
 The checks enforce:
 
-- `data/site.json` as the single source of truth;
+- a valid, internally linked evidence knowledge base with explicit high-risk claim boundaries;
+- `data/site.json` as the current deterministic render source;
 - no content rewriting from JavaScript;
 - matching title, description, Open Graph, JSON-LD, visible role, print role, and PDF role;
 - no stale availability wording;
