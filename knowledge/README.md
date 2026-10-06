@@ -106,7 +106,7 @@ Examples that must **not** be silently upgraded:
 - “Production-ready x86-64 backend.”
 - “Spoke at LangDev 2026” before the scheduled talk actually occurs.
 - “Current ISP RAS / SharpChecker employee” until an actual start date/title is confirmed.
-- “Two-time absolute/overall winner of Junior” from the public result tables alone; the primary-safe wording is two first-degree diplomas (91 points in 2025, 96 in 2026).
+- “Two-time absolute/overall winner of Junior” from the currently inspected evidence. The 2025 issued diploma supports **winner in the IT section**; the 2026 official result supports a first-degree diploma with 96 points.
 - “Baltic Main Prize” or “Baltic Section Prize” as the canonical label while the competition's own final news and protocol conflict; use “first-degree diploma and the ‘Perfection as Hope’ prize”.
 
 ## Maintenance
