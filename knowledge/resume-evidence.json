@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-30",
+  "generated_at": "2026-10-06",
   "purpose": "Canonical evidence layer for generating and reviewing all Mikhail Razakov CV/portfolio variants. CV copy is downstream; this file stores claims, evidence boundaries, recruiter signals, and role fit.",
   "evidence_levels": {
     "PUBLIC_PRIMARY": "Official organizer/employer/conference/university source.",
@@ -466,7 +466,7 @@
         "safe_ru": "UniversalToolchain / Wist2 — один из победителей конкурса проектов с открытым кодом студентов ФКН НИУ ВШЭ.",
         "safe_en": "Selected as one of the winners of the HSE Faculty of Computer Science open-source projects competition with UniversalToolchain / Wist2."
       },
-      "boundary": "As of 2026-09-30, public HSE material confirms the competition and the 2026-10-01 results event; the personal 'one of the winners' status is grounded in organizer wording supplied by the user, not a public ranked winner list.",
+      "boundary": "As of 2026-10-06, HSE's public event page confirms that the second competition concluded on 2026-10-01 with winner awards, but a public personalized winner list was not found in this review. The personal 'one of the winners' status remains grounded in organizer wording supplied by the user.",
       "recruiter_signals": [
         "external project validation",
         "open source",
@@ -497,6 +497,7 @@
       "time": "2025, 2026",
       "evidence_level": [
         "PUBLIC_PRIMARY",
+        "PRIVATE_DOCUMENT",
         "USER_ATTESTED"
       ],
       "public_sources": [
@@ -506,8 +507,10 @@
       "verified_public_fact": "Official MEPhI result tables list Mikhail Razakov in the Information Technologies section with a first-degree diploma in both years: 2025 — 45 project + 46 written = 91 total; 2026 — 49 project + 47 written = 96 total.",
       "user_attested_stronger_fact": "User has described the result as two-time absolute/overall winner; this wording is not established by the currently inspected public result tables.",
       "resume_use": {
-        "public_primary_safe": "Дважды диплом I степени / two-time first-degree diploma recipient; exact public scores may be used when space adds value.",
-        "stronger_only_after_exact_artifact": "«Дважды абсолютный победитель» / 'two-time overall winner' only if an official diploma/final protocol explicitly establishes that title and scope."
+        "strongest_verified_2025": "Победитель «Юниора» в секции информационных технологий / winner in the Information Technologies section.",
+        "strongest_verified_2026": "Диплом I степени в секции информационных технологий, 96 баллов / first-degree diploma in the Information Technologies section, 96 points.",
+        "compact_cross_year": "Победитель секции ИТ «Юниора» в 2025; диплом I степени в 2026.",
+        "stronger_only_after_exact_artifact": "«Дважды абсолютный победитель» / 'two-time overall winner' only if an official artifact explicitly establishes that title and scope."
       },
       "recruiter_signals": [
         "sustained competition success",
@@ -518,7 +521,7 @@
       ],
       "resume_priority": "HIGH",
       "gaps": [
-        "Inspect the exact diploma/final protocol only if the literal 'absolute/overall winner' title is important enough to use."
+        "Inspect the 2026 diploma/final protocol only if a stronger literal winner title than the public first-degree result is important enough to use."
       ],
       "public_result_notes": [
         "On the 2025 engineering-sciences table, 91 is the highest displayed total.",
@@ -526,12 +529,18 @@
         "Mikhail has the highest displayed total among the Information Technologies entries in both public tables."
       ],
       "claims": {
-        "safe_ru": "Дважды диплом I степени конкурса «Юниор» НИЯУ МИФИ в секции информационных технологий: 91 балл в 2025 и 96 баллов в 2026.",
-        "safe_en": "Two-time first-degree diploma recipient in the MEPhI Junior Information Technologies section: 91 points in 2025 and 96 points in 2026."
+        "safe_ru": "Победитель конкурса «Юниор» НИЯУ МИФИ в секции «Инженерные науки: информационные технологии» в 2025; в 2026 официальный результат подтверждает диплом I степени в той же секции.",
+        "safe_en": "Winner of the MEPhI Junior competition in the Engineering Sciences: Information Technologies section in 2025; the 2026 official result confirms a first-degree diploma in the same section."
       },
       "do_not_claim": [
         "Two-time absolute/overall winner from the public result tables alone."
-      ]
+      ],
+      "private_document_evidence": {
+        "year": 2025,
+        "document": "Signed/issued Junior winner diploma supplied from the user's records.",
+        "exact_supported_fact": "Разаков Михаил Русланович является победителем Всероссийского конкурса научных работ школьников «ЮНИОР» в секции «Инженерные науки: информационные технологии».",
+        "boundary": "The diploma establishes winner status in the named section; it does not use the phrase 'absolute/overall winner'."
+      }
     },
     {
       "id": "achievement_baltic_2026",
@@ -1289,7 +1298,7 @@
   ],
   "research_gaps": [
     "Ingest exact Vysshaya Proba result PDFs/diplomas.",
-    "Inspect Junior diplomas/final protocol for the literal 'absolute/overall winner' claim.",
+    "Inspect the 2026 Junior diploma/final protocol only if a stronger literal winner title than the public first-degree result is worth using.",
     "Link primary organizer result for PS-form 1st/5.0/104-of-104 if available.",
     "Re-run historical commit archaeology for exact earliest dates before using dates as headline marketing copy.",
     "Clarify VpnMediator ownership/commercial metrics before claiming users/revenue/business impact.",
