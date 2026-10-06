@@ -24,6 +24,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Validate resume evidence knowledge base
+        run: python tools/validate_resume_knowledge.py
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
