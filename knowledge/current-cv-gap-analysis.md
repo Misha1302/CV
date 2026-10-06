@@ -222,9 +222,9 @@ Current CV should be able to draw from:
 
 **Verify wording.**
 
-Public MEPhI result pages retrieved in this pass support first-degree diplomas in 2025 and 2026.
+Public MEPhI results support first-degree diplomas and exact scores (91 in 2025; 96 in 2026). A supplied 2025 issued diploma goes further and explicitly says Mikhail is a **winner** in the “Engineering Sciences: Information Technologies” section.
 
-The public tables support two first-degree diplomas and exact scores (91 in 2025; 96 in 2026). They do not support “two-time absolute/overall winner” across the whole engineering-sciences category: the 2026 table includes another participant with 100. The current CV should therefore use the two-diploma wording unless a stronger official title is separately established.
+The evidence still does not support “two-time absolute/overall winner” across the whole engineering-sciences category: the 2026 public table includes another participant with 100, and the 2025 diploma does not use the word “absolute”. The current CV should use “winner in the IT section (2025); first-degree diploma (2026)” unless stronger 2026 title evidence is ingested.
 
 ### Baltic
 
