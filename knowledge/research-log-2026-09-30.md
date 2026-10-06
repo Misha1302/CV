@@ -1,4 +1,4 @@
-# Resume research log — 2026-09-30
+# Resume research log — 2026-09-30 → closure review 2026-10-06
 
 ## Executive finding
 
@@ -173,7 +173,7 @@ Primary source:
 
 ### HSE FCS open-source projects competition
 
-The official HSE competition page verifies the competition and its criteria. The personal winner status is currently grounded in organizer correspondence supplied by the user.
+The official HSE competition/event pages verify the competition and that the second contest concluded on **1 October 2026** with winner awards. As of the 2026-10-06 closure review, a public personalized winner list was not found. The personal winner status therefore remains grounded in organizer wording supplied by the user.
 
 Safe wording:
 - “UniversalToolchain / Wist2 — one of the winners…”
@@ -191,12 +191,12 @@ Primary competition source:
 
 ### MEPhI Junior 2025 and 2026
 
-Official MEPhI result pages independently confirm:
+Evidence now has two layers:
 
-- 2025 — Mikhail Razakov, IT section, 45 project + 46 written = **91 total**, first-degree diploma;
-- 2026 — Mikhail Razakov, Universal Toolchain, IT section, 49 project + 47 written = **96 total**, first-degree diploma.
+- 2025 — official MEPhI results: 45 project + 46 written = **91 total**, first-degree diploma; a supplied issued diploma additionally states that Mikhail Razakov **is a winner** of the All-Russian Junior competition in the section “Engineering Sciences: Information Technologies”.
+- 2026 — official MEPhI results: UniversalToolchain, 49 project + 47 written = **96 total**, first-degree diploma.
 
-The 2025 table shows 91 as the highest displayed engineering-sciences total. The 2026 table contains another engineering-sciences participant with 100, so the public evidence does **not** support “two-time absolute/overall winner” across the full engineering-sciences category. The safe public claim is therefore two first-degree diplomas; a stronger title requires an official artifact that explicitly defines it and its scope.
+The 2025 diploma makes “winner in the IT section” safe for that year. It still does **not** use “absolute/overall winner”. The 2026 public table contains another engineering-sciences participant with 100, so the inspected evidence does not support “two-time absolute/overall winner” across the full engineering-sciences category.
 
 Primary sources:
 - https://olymp.mephi.ru/junior/winners/2025
@@ -315,7 +315,7 @@ The website can remain multi-profile, but every profile should be generated from
 Highest-value unresolved items:
 
 1. exact Vysshaya Proba Informatics result and Industrial Programming diploma/result artifacts;
-2. Junior diploma/final protocol only if the literal “absolute/overall winner” title is worth retaining;
+2. 2026 Junior diploma/final protocol only if a stronger literal winner title than the public first-degree result is worth using;
 3. primary organizer artifact for PS-form rank/5.0/104-of-104;
 4. ISP RAS offer acceptance/start/title evidence before it is represented as employment;
 5. diploma or organizer clarification resolving Baltic Main-vs-Section prize wording;
