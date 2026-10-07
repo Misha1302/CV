@@ -391,6 +391,8 @@ def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
     else:
         main_content = f"{hero(data, lang, profile)}{proof_strip(profile)}{experience_section(lang, profile)}{projects_section(data, lang, profile)}{skills_section(lang, profile)}{recognition_section(data, lang, profile)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
     body_class = f"profile-{esc(profile_key)}"
+    if profile.get("print_spacious"):
+        body_class += " profile-print-spacious"
     if profile.get("compiler_layout") and profile_key != "compiler":
         body_class += " profile-compiler"
     if profile_key == "compiler":
