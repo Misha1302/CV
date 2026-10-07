@@ -512,7 +512,8 @@
         ],
         "contact_heading": "Целевые роли: .NET Backend / Platform Engineer с ответственностью за состояние, recovery и эксплуатационную корректность",
         "footer": "NET Backend / Platform Engineer · State & Reliability",
-        "updated_at": "2026-10-07"
+        "updated_at": "2026-10-07",
+        "print_spacious": true
       },
       "en": {
         "filename": "en-backend.html",
@@ -590,7 +591,8 @@
         ],
         "contact_heading": "Targeting .NET Backend / Platform Engineer roles with ownership of state, recovery, and operational correctness",
         "footer": "NET Backend / Platform Engineer · State & Reliability",
-        "updated_at": "2026-10-07"
+        "updated_at": "2026-10-07",
+        "print_spacious": true
       }
     },
     "systems": {
@@ -655,7 +657,8 @@
         "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
         "print_project_limit": 3,
         "updated_at": "2026-10-07",
-        "print_recognition_limit": 2
+        "print_recognition_limit": 2,
+        "print_spacious": true
       },
       "en": {
         "filename": "en-cpp-systems.html",
@@ -718,7 +721,8 @@
         "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
         "print_project_limit": 3,
         "updated_at": "2026-10-07",
-        "print_recognition_limit": 2
+        "print_recognition_limit": 2,
+        "print_spacious": true
       }
     },
     "quant": {
@@ -782,7 +786,8 @@
         "contact_heading": "Целевые роли: Quantitative Research internships / research roles, где ценятся алгоритмы и строгая экспериментальная проверка",
         "footer": "Quantitative Research Candidate · C++ · Python",
         "print_project_limit": 3,
-        "updated_at": "2026-10-07"
+        "updated_at": "2026-10-07",
+        "print_spacious": true
       },
       "en": {
         "filename": "en-quant.html",
@@ -844,7 +849,8 @@
         "contact_heading": "Target roles: Quantitative Research internships / research roles valuing algorithms and rigorous experimental validation",
         "footer": "Quantitative Research Candidate · C++ · Python",
         "print_project_limit": 3,
-        "updated_at": "2026-10-07"
+        "updated_at": "2026-10-07",
+        "print_spacious": true
       }
     },
     "quantdev": {
@@ -908,7 +914,8 @@
         "contact_heading": "Целевые роли: Quant Developer · Research Engineer · Algorithm / Research Software Engineering",
         "footer": "Quant Developer / Research Engineer · C++ · Python",
         "print_project_limit": 3,
-        "updated_at": "2026-10-07"
+        "updated_at": "2026-10-07",
+        "print_spacious": true
       },
       "en": {
         "filename": "en-quant-dev.html",
@@ -970,7 +977,8 @@
         "contact_heading": "Target roles: Quant Developer · Research Engineer · Algorithm / Research Software Engineering",
         "footer": "Quant Developer / Research Engineer · C++ · Python",
         "print_project_limit": 3,
-        "updated_at": "2026-10-07"
+        "updated_at": "2026-10-07",
+        "print_spacious": true
       }
     },
     "compiler_backend": {
@@ -1587,7 +1595,8 @@
           }
         },
         "print_show_trajectory": true,
-        "print_recognition_limit": 2
+        "print_recognition_limit": 2,
+        "print_spacious": true
       },
       "en": {
         "filename": "en-architecture.html",
@@ -1668,7 +1677,8 @@
           }
         },
         "print_show_trajectory": true,
-        "print_recognition_limit": 2
+        "print_recognition_limit": 2,
+        "print_spacious": true
       }
     }
   },
