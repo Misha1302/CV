@@ -363,10 +363,11 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     skills = "".join(f'<div class="pcv-skill"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["skills"])
     education = p[f"education_{lang}"]
     recognition_data = recognition_items(data, lang, profile)
-    if is_compiler_print:
+    recognition_limit = int(profile.get("print_recognition_limit", 4 if is_compiler_print else 1))
+    if recognition_limit > 1:
         recognition = "".join(
             f'<div class="pcv-recognition"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>'
-            for _, title, body in recognition_data[:4]
+            for _, title, body in recognition_data[:recognition_limit]
         )
     else:
         recognition = f'<p>{esc(recognition_data[0][2])}</p>'
