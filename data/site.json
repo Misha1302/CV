@@ -13,8 +13,8 @@
     "linkedin": "https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/",
     "location_ru": "Москва / удалённо",
     "location_en": "Moscow / remote",
-    "education_ru": "НИУ ВШЭ — Программная инженерия",
-    "education_en": "HSE University — Software Engineering"
+    "education_ru": "НИУ ВШЭ — Программная инженерия, 2026–2030",
+    "education_en": "HSE University — Software Engineering, 2026–2030"
   },
   "profile_order": [
     "general",
@@ -654,7 +654,8 @@
         "contact_heading": "Целевые роли: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
         "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
         "print_project_limit": 3,
-        "updated_at": "2026-10-07"
+        "updated_at": "2026-10-07",
+        "print_recognition_limit": 2
       },
       "en": {
         "filename": "en-cpp-systems.html",
@@ -716,7 +717,8 @@
         "contact_heading": "Target roles: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
         "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
         "print_project_limit": 3,
-        "updated_at": "2026-10-07"
+        "updated_at": "2026-10-07",
+        "print_recognition_limit": 2
       }
     },
     "quant": {
@@ -1583,7 +1585,9 @@
             "solution": "Стратегия register allocation отделена от независимого assignment verifier до phi lowering и генерации SysV x86-64.",
             "result": "Семантика сгенерированного native-кода проверяется differential execution относительно эталонного интерпретатора; тесты покрывают ветвления, циклы, spills и parallel phi moves."
           }
-        }
+        },
+        "print_show_trajectory": true,
+        "print_recognition_limit": 2
       },
       "en": {
         "filename": "en-architecture.html",
@@ -1662,7 +1666,9 @@
             "solution": "Register-allocation strategy is separated from an independent assignment verifier before phi lowering and SysV x86-64 emission.",
             "result": "Generated native behavior is differentially checked against a reference interpreter; tests cover branches, loops, spills, and parallel phi moves."
           }
-        }
+        },
+        "print_show_trajectory": true,
+        "print_recognition_limit": 2
       }
     }
   },
@@ -1848,14 +1854,8 @@
   },
   "selector_order": [
     "architecture",
-    "systems",
-    "backend",
     "general",
-    "compiler",
-    "compiler_backend",
-    "program_analysis",
-    "quantdev",
-    "quant"
+    "backend"
   ],
   "trajectory": {
     "ru": [
