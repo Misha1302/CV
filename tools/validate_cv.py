@@ -24,6 +24,18 @@ STALE_MARKERS = [
     "С сентября 2026",
 ]
 FORBIDDEN_SCRIPT_MARKERS = ["textContent =", "innerHTML =", "createTreeWalker", "availabilityReplacements"]
+FORBIDDEN_HIGH_RISK_CLAIM_MARKERS = [
+    "ИСП РАН — инженер по статическому анализу",
+    "ISP RAS — Static Analysis Engineer",
+    "Участвую в разработке SharpChecker",
+    "Contribute to SharpChecker",
+    "Дважды абсолютный победитель",
+    "Two-time overall winner",
+    "Главная премия Балтийского",
+    "Grand Prize at the Baltic",
+    "Production-сервис",
+    "A production service",
+]
 TECH_WORDS = {
     "asp.net", "core", "rest", "openapi", "postgresql", "sqlite", "docker", "compose", "nginx", "systemd",
     "webhooks", "backend", "runtime", "compiler", "ssa", "cfg", "llvm", "c++", "c17", "rust", "python", "linux",
@@ -54,6 +66,10 @@ def html_files(data: dict) -> list[Path]:
 
 def validate_source_of_truth(data: dict) -> None:
     write_or_check(build_outputs(data), check=True)
+    serialized = json.dumps(data, ensure_ascii=False)
+    for marker in FORBIDDEN_HIGH_RISK_CLAIM_MARKERS:
+        if marker in serialized:
+            raise RuntimeError(f"Render source contains evidence-bounded forbidden claim: {marker}")
     old_data = ROOT / "data" / "cv-print-profiles.json"
     if old_data.exists():
         raise RuntimeError("Legacy data/cv-print-profiles.json still exists")
