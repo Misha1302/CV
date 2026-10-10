@@ -20,6 +20,7 @@ The knowledge base separates those concerns.
 
 - `resume-evidence.json` — machine-readable facts, evidence levels, claim boundaries, role fit, metrics, gaps, and safe RU/EN wording.
 - `research-log-2026-09-30.md` — human-readable research findings, source ledger, unresolved claims, and CV implications.
+- `achievement-audit-2026-10-10.md` — 60-unit achievement inventory, rankings, timeline, claim gaps, and CV implications from the 2026-10-10 audit.
 - `current-cv-gap-analysis.md` — review of the current rendered CV source against the evidence layer.
 
 ## Evidence hierarchy
