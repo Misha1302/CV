@@ -282,3 +282,20 @@ SK Challenge оказался одним из действительно **за�
 Три наиболее важные нерешённые claims сейчас — **Vysshaya Proba Informatics exact result, ISP RAS exact status и Neyrmark**.
 
 Самый важный новый вывод из всего аудита: **сильнейшее достижение, которое раньше легко терялось среди проектов, — результат MCST selection.** По количеству независимых доказательств, селективности, возрасту и связи с реальной профессиональной работой это, вероятно, твой №1 карьерный факт на сегодня. А сильнейшая **история целиком** — переход `14-year-old compiler experiments → externally validated project → #1 compiler selection → professional LLVM work → LangDev at 18`, а не какая-либо одна олимпиада или один репозиторий.
+
+
+## User clarifications — 2026-10-10
+
+The user clarified the following facts after the initial audit. These are now recorded with their evidence boundary rather than silently merged into public-primary claims:
+
+- **MEPhI Junior:** “1st in 2025 / 2nd in 2026” means ranking by total score. The public tables support this numerically: 91/100 is the highest displayed Engineering Sciences total in 2025; 96/100 is the second-highest in 2026. This is stronger and more precise than inventing organizer-issued “place” labels.
+- **Baltic 2026:** user states he received the **Grand Prize “Perfection as Hope”**, awarded to one person within the direction. The official final-news article supports “Main Prize”, while the official protocol still conflicts; the user clarification is stored separately until a diploma/photo resolves the conflict.
+- **Neyrmark:** user answered **2025, “10 место”**, which conflicts with the earlier “winner” statement. This claim remains unresolved rather than guessed.
+- **LangDev 2026:** the talk **was delivered on 9 October 2026**. Public program/speaker pages establish the scheduled slot; delivery is currently user-confirmed. Event photos/recording can upgrade the evidence further.
+- **Vysshaya Proba:** user confirms **prize-winner in both Industrial Programming and Informatics**. Exact degree/rank artifacts are still desirable.
+- **ISP RAS:** user confirms **offer received, work not started yet**. Do not represent this as current employment.
+- **HSE FCS open-source competition:** user confirms **1st place**. Public HSE pages currently establish the competition/winner context but not the personalized 2026 ranking; preserve this as user-attested until a ranking artifact is ingested.
+- **SK Challenge / Studik:** team brainstormed together; user's strongest individual contribution was **implementation plus education-domain decisions informed by teaching experience**.
+- **Teaching:** teaching was **independent/self-directed**, not an employer-based role.
+- **Diploma.school:** user states he **developed the platform and made the main technical decisions**; current public/private evidence still separately supports the narrower UI implementation examples.
+- **VpnMediator:** the service is **still live and used by dozens of real users** as of October 2026. Treat the usage number as user-attested unless a dated anonymized metric snapshot is added.
