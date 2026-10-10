@@ -299,3 +299,9 @@ The user clarified the following facts after the initial audit. These are now re
 - **Teaching:** teaching was **independent/self-directed**, not an employer-based role.
 - **Diploma.school:** user states he **developed the platform and made the main technical decisions**; current public/private evidence still separately supports the narrower UI implementation examples.
 - **VpnMediator:** the service is **still live and used by dozens of real users** as of October 2026. Treat the usage number as user-attested unless a dated anonymized metric snapshot is added.
+
+
+## Follow-up clarification and LangDev photo evidence — 2026-10-10
+
+- **Neyrmark:** the apparent contradiction is resolved. The user clarified that **“winner” is the official status/category**, while **10th place** is the numerical placement; therefore the correct current claim is **“Neyrmark 2025 — winner status, 10th place.”** Exact official competition/category wording and a primary result artifact are still pending.
+- **LangDev delivered-talk evidence:** two user-supplied photographs now complement the public conference schedule. The images visibly show a presenter addressing an audience beside a projected Wist slide titled **“One Wist program becomes executable operations”**. Original-upload SHA-256 values: `68fe4166e51ec6b577cdd4d1033eb201a50c2a1598f341ae9ee34165bdd84f6d` and `2edfd2389e73d768527069ba010cdf5353f0c12a1c7ba1da4cb6b8c41dafcf28`. The evidence layer does not infer identity from facial appearance; event/person attribution relies on the user's provenance plus the public LangDev program.
