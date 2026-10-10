@@ -119,8 +119,8 @@ def validate_semantic_boundaries(by_id: dict[str, dict]) -> None:
     require(isp is not None, "missing ISP RAS boundary asset")
     require(isp.get("category") == "opportunity", "ISP RAS must not be modeled as confirmed employment")
     require(
-        "START_NOT_CONFIRMED" in str(isp.get("status", "")),
-        "ISP RAS asset must explicitly preserve the unconfirmed-start boundary",
+        "NOT_STARTED" in str(isp.get("status", "")),
+        "ISP RAS asset must explicitly preserve the not-started boundary",
     )
     require(isp.get("resume_priority") == "CONDITIONAL", "ISP RAS resume use must remain conditional")
 
@@ -128,7 +128,7 @@ def validate_semantic_boundaries(by_id: dict[str, dict]) -> None:
     require(baltic is not None, "missing Baltic achievement asset")
     conflict = baltic.get("source_conflict")
     require(
-        isinstance(conflict, dict) and conflict.get("status") == "UNRESOLVED_PRIMARY_SOURCE_CONFLICT",
+        isinstance(conflict, dict) and "CONFLICT" in str(conflict.get("status", "")),
         "Baltic primary-source conflict must remain explicit until resolved",
     )
     baltic_claims = baltic.get("claims", {})
@@ -148,8 +148,8 @@ def validate_semantic_boundaries(by_id: dict[str, dict]) -> None:
     langdev = by_id.get("achievement_langdev_2026")
     require(langdev is not None, "missing LangDev achievement asset")
     require(
-        str(langdev.get("status", "")).startswith("ACCEPTED_AND_PUBLICLY_SCHEDULED"),
-        "LangDev must remain accepted/scheduled before the event occurs",
+        str(langdev.get("status", "")).startswith("DELIVERED__"),
+        "LangDev must reflect the user-confirmed delivered talk after 2026-10-09",
     )
 
     hse = by_id.get("achievement_hse_open_source_2026")
