@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-06",
+  "generated_at": "2026-10-10",
   "purpose": "Canonical evidence layer for generating and reviewing all Mikhail Razakov CV/portfolio variants. CV copy is downstream; this file stores claims, evidence boundaries, recruiter signals, and role fit.",
   "evidence_levels": {
     "PUBLIC_PRIMARY": "Official organizer/employer/conference/university source.",
@@ -85,8 +85,8 @@
         "https://github.com/Misha1302/DerefAfterNullAnalyzer"
       ],
       "claims": {
-        "safe_ru": "В 2026 получил от ИСП РАН тестовое задание для студенческой траектории по C#/.NET static analysis и реализовал DerefAfterNullAnalyzer; позднее сообщал об оффере, но фактический старт работы, должность и дата начала в доступных материалах не подтверждены.",
-        "safe_en": "In 2026 I received an ISP RAS student-track test task in C#/.NET static analysis and implemented DerefAfterNullAnalyzer; I later reported receiving an offer, but an actual employment start, title, and start date are not confirmed by the available evidence."
+        "safe_ru": "В 2026 выполнил тестовое задание ИСП РАН по C#/.NET static analysis (DerefAfterNullAnalyzer) и получил оффер; по состоянию на 10 октября работу ещё не начал.",
+        "safe_en": "In 2026 I completed an ISP RAS C#/.NET static-analysis selection task (DerefAfterNullAnalyzer) and received an offer; as of 10 October I had not started the role."
       },
       "recruiter_signals": [
         "static-analysis selection signal",
@@ -99,18 +99,18 @@
       ],
       "resume_priority": "CONDITIONAL",
       "gaps": [
-        "Offer acceptance",
-        "actual start date",
+        "Actual start date if/when the role begins",
         "canonical title",
-        "publicly shareable completed work"
+        "first completed/shareable work"
       ],
-      "status": "SELECTION_TASK_COMPLETED__OFFER_REPORTED__START_NOT_CONFIRMED",
+      "status": "SELECTION_TASK_COMPLETED__OFFER_RECEIVED__NOT_STARTED",
       "strongest_evidence": [
         "Direct organizer correspondence describes the ISP RAS student-group process and assigns the DEREF_AFTER_NULL Roslyn detector task.",
         "The public DerefAfterNullAnalyzer repository implements a Roslyn CFG fixed-point null-state analysis with tests.",
-        "Later user-provided career context reports an offer, while later records still lack a confirmed start date/title/completed work."
+        "Later user-provided career context reports an offer, while later records still lack a confirmed start date/title/completed work.",
+        "On 2026-10-10 the user explicitly confirmed that the offer was received and that work had not yet started."
       ],
-      "resume_use": "Do not list as current employment until start/title are confirmed. The selection task may be described separately if useful."
+      "resume_use": "May state 'received an offer from ISP RAS' as user-attested. Do not list ISP RAS as current employment before an actual start."
     },
     {
       "id": "project_universaltoolchain",
@@ -342,7 +342,9 @@
       ],
       "claims": {
         "safe_ru": "Двухсервисная .NET/Python система подписок и платежей с explicit state machines, idempotency, outbox/audit, recovery workers, migrations, coordinated backup и rollback-aware deployment.",
-        "safe_en": "A two-service .NET/Python subscription/payment system with explicit state machines, idempotency, outbox/audit, recovery workers, migrations, coordinated backup, and rollback-aware deployment."
+        "safe_en": "A two-service .NET/Python subscription/payment system with explicit state machines, idempotency, outbox/audit, recovery workers, migrations, coordinated backup, and rollback-aware deployment.",
+        "user_attested_ru": "Действующий .NET/Python сервис подписок и платежей, которым по состоянию на октябрь 2026 реально пользуются десятки людей; техническая часть включает state machines, idempotency, recovery, migrations, backup и rollback-aware deployment.",
+        "user_attested_en": "A live .NET/Python subscription/payment service used by dozens of real users as of October 2026; the technical system includes state machines, idempotency, recovery, migrations, backup, and rollback-aware deployment."
       },
       "recruiter_signals": [
         "backend architecture",
@@ -358,8 +360,9 @@
       ],
       "resume_priority": "MEDIUM_HIGH",
       "gaps": [
-        "Ownership/commercial boundary and paying-user metrics should not be stated without separate evidence."
-      ]
+        "If the 'dozens of users' operating metric becomes a headline CV claim, add an anonymized dated usage snapshot or another replayable artifact."
+      ],
+      "user_attested_operational_fact": "As of 2026-10-10 the service is still running and is actively used by dozens of real users."
     },
     {
       "id": "project_compilationlab_lms",
@@ -422,19 +425,20 @@
     {
       "id": "achievement_langdev_2026",
       "category": "achievement",
-      "name": "LangDev 2026 — accepted speaker",
-      "time": "2026-10-09 scheduled",
+      "name": "LangDev 2026 — speaker",
+      "time": "2026-10-09",
       "evidence_level": [
         "PUBLIC_PRIMARY",
-        "PRIVATE_DOCUMENT"
+        "PRIVATE_DOCUMENT",
+        "USER_ATTESTED"
       ],
       "public_sources": [
         "https://langdevcon.org/2026/program",
         "https://langdevcon.org/speakers/"
       ],
       "claims": {
-        "safe_ru": "Доклад «Build the Language, Then Make the Abstractions Disappear: Extensible Programming on .NET» принят в программу LangDev 2026.",
-        "safe_en": "Accepted LangDev 2026 speaker for “Build the Language, Then Make the Abstractions Disappear: Extensible Programming on .NET”."
+        "safe_ru": "Выступил на LangDev 2026 с докладом «Build the Language, Then Make the Abstractions Disappear: Extensible Programming on .NET»; публичная программа фиксирует слот 9 октября 2026 в 10:00, факт состоявшегося выступления подтверждён пользователем.",
+        "safe_en": "Presented “Build the Language, Then Make the Abstractions Disappear: Extensible Programming on .NET” at LangDev 2026; the public program lists the 9 October 2026 10:00 slot and the user confirmed the talk was delivered."
       },
       "recruiter_signals": [
         "external technical validation",
@@ -442,12 +446,13 @@
         "language/tooling architecture"
       ],
       "resume_priority": "VERY_HIGH",
-      "do_not_claim_before_event": [
-        "Spoke at LangDev 2026",
-        "Presented at LangDev 2026"
-      ],
-      "status": "ACCEPTED_AND_PUBLICLY_SCHEDULED__EVENT_NOT_YET_OCCURRED",
-      "public_schedule": "2026-10-09 10:00 local conference schedule"
+      "status": "DELIVERED__USER_CONFIRMED__PUBLIC_PROGRAM",
+      "public_schedule": "2026-10-09 10:00 local conference schedule",
+      "delivery_evidence": {
+        "public": "LangDev 2026 program and speaker page list Mikhail Razakov and the talk.",
+        "user_attested": "On 2026-10-10 the user confirmed that the presentation took place.",
+        "next_upgrade": "Event photos, recording, or organizer post would make delivery independently public-verifiable."
+      }
     },
     {
       "id": "achievement_hse_open_source_2026",
@@ -464,9 +469,11 @@
       ],
       "claims": {
         "safe_ru": "UniversalToolchain / Wist2 — один из победителей конкурса проектов с открытым кодом студентов ФКН НИУ ВШЭ.",
-        "safe_en": "Selected as one of the winners of the HSE Faculty of Computer Science open-source projects competition with UniversalToolchain / Wist2."
+        "safe_en": "Selected as one of the winners of the HSE Faculty of Computer Science open-source projects competition with UniversalToolchain / Wist2.",
+        "user_attested_ru": "1-е место в конкурсе проектов с открытым кодом студентов ФКН НИУ ВШЭ с UniversalToolchain / Wist2.",
+        "user_attested_en": "1st place in the HSE Faculty of Computer Science open-source projects competition with UniversalToolchain / Wist2."
       },
-      "boundary": "As of 2026-10-06, HSE's public event page confirms that the second competition concluded on 2026-10-01 with winner awards, but a public personalized winner list was not found in this review. The personal 'one of the winners' status remains grounded in organizer wording supplied by the user.",
+      "boundary": "Public HSE pages confirm the competition and winner awards but the currently retrieved public pages do not provide a personalized 2026 ranking. On 2026-10-10 the user explicitly confirmed 1st place. Use 'one of the winners' for strict public-verification mode; use '1st place' only as user-attested until a ranking artifact is ingested.",
       "recruiter_signals": [
         "external project validation",
         "open source",
@@ -479,8 +486,7 @@
       ],
       "resume_priority": "VERY_HIGH",
       "do_not_claim": [
-        "1st place",
-        "absolute winner",
+        "1st place as independently public-verified before a personalized organizer ranking/diploma is ingested.",
         "sole winner",
         "competition size",
         "prize value"
@@ -488,7 +494,8 @@
       "private_evidence_summary": [
         "HSE FCS project lead invited Mikhail to the 2026-10-01 project presentation and results ceremony.",
         "User separately supplied organizer wording stating that he is one of the winners."
-      ]
+      ],
+      "user_attested_rank": "1st place (user confirmed on 2026-10-10)."
     },
     {
       "id": "achievement_mephi_junior_2025_2026",
@@ -504,13 +511,15 @@
         "https://olymp.mephi.ru/junior/winners/2025",
         "https://olymp.mephi.ru/junior/winners/2026"
       ],
-      "verified_public_fact": "Official MEPhI result tables list Mikhail Razakov in the Information Technologies section with a first-degree diploma in both years: 2025 — 45 project + 46 written = 91 total; 2026 — 49 project + 47 written = 96 total.",
-      "user_attested_stronger_fact": "User has described the result as two-time absolute/overall winner; this wording is not established by the currently inspected public result tables.",
+      "verified_public_fact": "Official MEPhI result tables list Mikhail Razakov in Engineering Sciences with a first-degree diploma in both years: 2025 — 91/100, the highest displayed total in the Engineering Sciences table; 2026 — 96/100, the second-highest displayed total in that table (behind 100). He also has the highest displayed total among Information Technologies entries in both years.",
+      "user_attested_stronger_fact": "User clarified on 2026-10-10 that by '1st in 2025 / 2nd in 2026' he means ranking by total score, not an organizer-issued place title.",
       "resume_use": {
         "strongest_verified_2025": "Победитель «Юниора» в секции информационных технологий / winner in the Information Technologies section.",
         "strongest_verified_2026": "Диплом I степени в секции информационных технологий, 96 баллов / first-degree diploma in the Information Technologies section, 96 points.",
-        "compact_cross_year": "Победитель секции ИТ «Юниора» в 2025; диплом I степени в 2026.",
-        "stronger_only_after_exact_artifact": "«Дважды абсолютный победитель» / 'two-time overall winner' only if an official artifact explicitly establishes that title and scope."
+        "compact_cross_year": "2025: winner in the Information Technologies section and highest published Engineering Sciences score (91/100); 2026: first-degree diploma and second-highest published Engineering Sciences score (96/100).",
+        "stronger_only_after_exact_artifact": "«Дважды абсолютный победитель» / 'two-time overall winner' only if an official artifact explicitly establishes that title and scope.",
+        "score_rank_2025": "Highest published total score in the Engineering Sciences results table: 91/100.",
+        "score_rank_2026": "Second-highest published total score in the Engineering Sciences results table: 96/100."
       },
       "recruiter_signals": [
         "sustained competition success",
@@ -529,11 +538,12 @@
         "Mikhail has the highest displayed total among the Information Technologies entries in both public tables."
       ],
       "claims": {
-        "safe_ru": "Победитель конкурса «Юниор» НИЯУ МИФИ в секции «Инженерные науки: информационные технологии» в 2025; в 2026 официальный результат подтверждает диплом I степени в той же секции.",
-        "safe_en": "Winner of the MEPhI Junior competition in the Engineering Sciences: Information Technologies section in 2025; the 2026 official result confirms a first-degree diploma in the same section."
+        "safe_ru": "В 2025 — победитель «Юниора» НИЯУ МИФИ в секции информационных технологий и максимальный опубликованный итоговый балл среди результатов направления «Инженерные науки» (91/100); в 2026 — диплом I степени и второй по величине опубликованный итоговый балл направления (96/100).",
+        "safe_en": "In 2025, winner of the MEPhI Junior Information Technologies section with the highest published Engineering Sciences total (91/100); in 2026, first-degree diploma with the second-highest published Engineering Sciences total (96/100)."
       },
       "do_not_claim": [
-        "Two-time absolute/overall winner from the public result tables alone."
+        "Organizer-issued '1st place' or '2nd place' titles unless an official artifact explicitly uses those labels.",
+        "Two-time absolute/overall winner."
       ],
       "private_document_evidence": {
         "year": 2025,
@@ -548,7 +558,8 @@
       "name": "Baltic Science and Engineering Competition",
       "time": "2026",
       "evidence_level": [
-        "PUBLIC_PRIMARY"
+        "PUBLIC_PRIMARY",
+        "USER_ATTESTED"
       ],
       "public_sources": [
         "https://baltkonkurs.ru/news/v-sankt-peterburge-podveli-itogi-baltijskogo-nauchno-inzhenernogo-konkursa/",
@@ -558,7 +569,9 @@
       "verified_public_fact": "All inspected official sources agree that Mikhail Razakov / UniversalToolchain received a first-degree diploma and the «Совершенство как надежда» prize.",
       "claims": {
         "safe_ru": "Диплом I степени и премия «Совершенство как надежда» Балтийского научно-инженерного конкурса.",
-        "safe_en": "First-degree diploma and the “Perfection as Hope” prize at the Baltic Science and Engineering Competition."
+        "safe_en": "First-degree diploma and the “Perfection as Hope” prize at the Baltic Science and Engineering Competition.",
+        "user_attested_ru": "Диплом I степени и Главная премия «Совершенство как надежда» Балтийского научно-инженерного конкурса; по уточнению пользователя, эта главная премия присуждается одному участнику направления.",
+        "user_attested_en": "First-degree diploma and the Grand Prize “Perfection as Hope” at the Baltic Science and Engineering Competition; according to the user's clarification, the Grand Prize is awarded to one participant within the direction."
       },
       "recruiter_signals": [
         "external project validation",
@@ -572,18 +585,20 @@
       "resume_priority": "HIGH",
       "note": "Do not choose 'Main Prize' or 'Section Prize' as canonical wording while first-party sources conflict.",
       "source_conflict": {
-        "status": "UNRESOLVED_PRIMARY_SOURCE_CONFLICT",
+        "status": "PUBLIC_SOURCE_CONFLICT__USER_CLARIFIES_GRAND_PRIZE",
         "details": [
           "The official final-news article calls Razakov a holder of the Main Prize.",
           "The official protocol/PDF places Razakov under the Section Prize heading.",
-          "Both are first-party competition sources."
+          "Both are first-party competition sources.",
+          "On 2026-10-10 the user explicitly clarified that his award is the Grand Prize and that it is unique within the direction; a diploma/photo would resolve the remaining public-source conflict."
         ],
-        "default_rule": "Use wording common to both sources until the diploma/organizer resolves the Main-vs-Section label."
+        "default_rule": "Strict public-verification mode: use wording common to both official sources. User-attested mode: Grand Prize wording is allowed, with the public protocol conflict preserved in the evidence layer until the diploma/organizer resolves it."
       },
       "do_not_claim": [
-        "Absolute winner based on current public evidence.",
-        "Unqualified Main Prize or Section Prize as canonical wording until the conflict is resolved."
-      ]
+        "Absolute winner of the whole competition.",
+        "Grand Prize as conflict-free public-primary fact until the diploma/organizer resolves the protocol-vs-news discrepancy."
+      ],
+      "user_attested_clarification": "On 2026-10-10 the user clarified that he received the Grand Prize and that this prize is awarded to only one person within the direction/track."
     },
     {
       "id": "achievement_hse_vysshaya_proba",
@@ -596,8 +611,8 @@
         "NEEDS_VERIFICATION"
       ],
       "public_sources": [],
-      "user_attested_fact": "Prize-winner in both Informatics and Industrial Programming.",
-      "resume_use": "For a public CV, keep the user's existing 'prize-winner in Informatics and Industrial Programming' only if user-attested claims are acceptable; for a strictly primary-verified CV, currently claim only Industrial Programming diploma-holder status.",
+      "user_attested_fact": "On 2026-10-10 the user confirmed prize-winner status in both Industrial Programming and Informatics.",
+      "resume_use": "User-confirmed: prize-winner in both Industrial Programming and Informatics. Strict primary-verification mode should still ingest the exact result PDFs/diplomas before claiming exact degree/rank.",
       "recruiter_signals": [
         "competitive programming",
         "industrial programming"
@@ -615,17 +630,19 @@
         "industrial_programming": {
           "status": "DIPLOMA_HOLDER_PRIVATE_ORGANIZER_EVIDENCE",
           "evidence": "A 2026 HSE Olympiad organizing-committee message invited confirmed attendees to a meeting with diploma holders of the Industrial Programming track.",
-          "boundary": "This establishes diploma-holder status for the track, not diploma degree, rank, or score."
+          "boundary": "This establishes diploma-holder status for the track, not diploma degree, rank, or score.",
+          "user_clarification": "User explicitly confirmed prize-winner status on 2026-10-10."
         },
         "informatics": {
           "status": "USER_ATTESTED__PRIMARY_RESULT_NOT_INGESTED",
           "evidence": "User states prize-winner status; a private file index contains a result-PDF filename referring to prize-winner status, but the file contents were not available in this pass.",
-          "boundary": "Do not treat the filename or results-login email as proof of exact rank/diploma degree."
+          "boundary": "Do not treat the filename or results-login email as proof of exact rank/diploma degree.",
+          "user_clarification": "User explicitly confirmed prize-winner status on 2026-10-10."
         }
       },
       "claims": {
-        "safe_ru": "Дипломант «Высшей пробы» по промышленному программированию; призёрство по информатике — пользовательский факт, ожидающий чтения первичного результата.",
-        "safe_en": "Diploma holder in HSE Vysshaya Proba Industrial Programming; Informatics prize-winner status remains user-attested pending ingestion of the primary result."
+        "safe_ru": "Призёр «Высшей пробы» по промышленному программированию и по информатике — статус подтверждён пользователем; точные степени/места требуют первичных дипломов или result PDF.",
+        "safe_en": "HSE Vysshaya Proba prize-winner in both Industrial Programming and Informatics, confirmed by the user; exact diploma degree/rank still requires the primary result artifacts."
       }
     },
     {
@@ -858,12 +875,16 @@
       "public_sources": [],
       "claims": {
         "safe_ru": "Клиентская web-разработка: jQuery dropdown components, responsive mobile/desktop navigation и UI regression fixes; работа подтверждена не позднее января 2025.",
-        "safe_en": "Client web development: jQuery dropdown components, responsive mobile/desktop navigation, and UI regression fixes; work is confirmed no later than January 2025."
+        "safe_en": "Client web development: jQuery dropdown components, responsive mobile/desktop navigation, and UI regression fixes; work is confirmed no later than January 2025.",
+        "user_attested_ru": "Разрабатывал платформу Diploma.school и принимал основные технические решения; в доступных материалах отдельно подтверждены jQuery dropdown components, адаптивная навигация и UI regression fixes.",
+        "user_attested_en": "Developed the Diploma.school platform and made the main technical decisions; available materials separately support jQuery dropdown components, responsive navigation, and UI regression fixes."
       },
       "recruiter_signals": [
         "client delivery",
         "frontend maintenance",
-        "commercial/client context"
+        "commercial/client context",
+        "technical ownership",
+        "architecture decisions"
       ],
       "role_fit": [
         "backend",
@@ -873,7 +894,8 @@
       "boundaries": [
         "Do not use as compiler professional experience.",
         "Do not move the date earlier without a dated primary artifact."
-      ]
+      ],
+      "user_attested_role": "On 2026-10-10 the user clarified that he developed the Diploma.school platform and made the main technical/implementation decisions."
     },
     {
       "id": "experience_teaching_algorithms",
@@ -889,8 +911,8 @@
         "https://github.com/Misha1302/Middle-end-compiler-course"
       ],
       "claims": {
-        "safe_ru": "Многолетний опыт преподавания/наставничества по программированию; публичные материалы 2026 подтверждают способность превращать low-level/compiler темы в самостоятельные курсы.",
-        "safe_en": "Multi-year programming teaching/mentoring experience; public 2026 course repositories demonstrate the ability to turn low-level/compiler topics into self-study material."
+        "safe_ru": "Самостоятельно преподавал программирование и алгоритмы; публичные материалы 2026 также подтверждают способность превращать low-level/compiler темы в самостоятельные курсы.",
+        "safe_en": "Taught programming and algorithms independently; public 2026 course repositories also demonstrate the ability to turn low-level/compiler topics into self-study material."
       },
       "recruiter_signals": [
         "mentoring",
@@ -903,8 +925,9 @@
       ],
       "resume_priority": "SUPPORTING",
       "gaps": [
-        "Canonical employer/title/dates for each teaching role should be added if used under Professional Experience."
-      ]
+        "Exact dated student count / teaching period if a quantitative teaching claim is used."
+      ],
+      "user_attested_role": "Independent/self-directed teaching rather than an employer-based role; user clarified this on 2026-10-10."
     },
     {
       "id": "achievement_vso_sh_informatics_regional_2026",
@@ -960,19 +983,24 @@
       "id": "achievement_neyrmark",
       "category": "achievement",
       "name": "Neyrmark / Нейрмарк competition",
-      "time": "unknown",
+      "time": "2025",
       "evidence_level": [
         "USER_ATTESTED",
         "NEEDS_VERIFICATION"
       ],
       "public_sources": [],
-      "user_attested_fact": "Winner.",
-      "resume_use": "Do not prioritize until the exact competition name, year, category, and result artifact are ingested.",
+      "user_attested_fact": "Earlier user statement: winner. On 2026-10-10, when asked for exact year/result, the user answered '2025 год, 10 место'. These two statements conflict and must not be reconciled by inference.",
+      "resume_use": "Blocked from strengthening until the user clarifies whether '10 место' literally means 10th place, or whether it was a typo / a different ranking scope.",
       "recruiter_signals": [],
       "role_fit": [
         "general"
       ],
-      "resume_priority": "ARCHIVE_PENDING_EVIDENCE"
+      "resume_priority": "ARCHIVE_PENDING_EVIDENCE",
+      "gaps": [
+        "Resolve winner vs '10th place' contradiction.",
+        "Exact official competition name/category.",
+        "Result artifact if available."
+      ]
     },
     {
       "id": "history_bigsharpcompiler_2022",
@@ -1144,6 +1172,36 @@
         "architecture"
       ],
       "resume_priority": "PORTFOLIO_HISTORY_ONLY"
+    },
+    {
+      "id": "achievement_sk_challenge_2025",
+      "category": "achievement",
+      "name": "SK Challenge / HSE Institute of Education hackathon — Studik",
+      "time": "2025",
+      "evidence_level": [
+        "PUBLIC_PRIMARY",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [
+        "https://ioe.hse.ru/news/1103831706.html"
+      ],
+      "claims": {
+        "safe_ru": "Командой «Стадик» выиграл SK Challenge / хакатон Института образования НИУ ВШЭ; участвовал в общем брейншторме, а основной личный вклад был в реализации и в решениях, опирающихся на опыт преподавания.",
+        "safe_en": "Won the SK Challenge / HSE Institute of Education hackathon as part of team Studik; contributed to team brainstorming, with the strongest personal contribution in implementation and decisions informed by teaching experience."
+      },
+      "recruiter_signals": [
+        "team delivery",
+        "product implementation",
+        "education-domain insight",
+        "hackathon winner"
+      ],
+      "role_fit": [
+        "general",
+        "architecture",
+        "backend"
+      ],
+      "resume_priority": "MEDIUM_HIGH",
+      "personal_contribution_boundary": "Team win is publicly confirmed. The implementation/teaching-experience contribution split is user-attested."
     }
   ],
   "skills": [
@@ -1266,25 +1324,28 @@
       "Professional compiler experience in 2026 through the MCST internship.",
       "Implemented runtime CIL generation and native x86-64 emission before entering professional compiler work.",
       "Designs and implements architecture-heavy C++/.NET systems.",
-      "Accepted and publicly scheduled LangDev 2026 speaker."
+      "Presented at LangDev 2026 (public program + user-confirmed delivery).",
+      "MEPhI Junior: highest published Engineering Sciences total in 2025 (91/100) and second-highest in 2026 (96/100)."
     ],
     "can_say_with_qualifier": [
       "Several years of compiler engineering — qualify as personal/open-source projects followed by professional work.",
-      "HSE open-source winner — say 'one of the winners'; personal winner status is organizer/user-attested until a public result appears.",
+      "HSE open-source 1st place — user-confirmed; personalized public ranking artifact still pending.",
+      "Baltic Grand Prize — user-confirmed and supported by the official final-news article, while the official protocol conflicts on Main-vs-Section labeling.",
       "PS-form ranked first / only 5.0 / only 104/104 — retain attribution to organizer results until primary result artifact is linked.",
-      "ISP RAS / SharpChecker — selection task and reported offer are supportable; current employment is not confirmed.",
-      "Vysshaya Proba Informatics prize-winner — user-attested pending primary result ingestion."
+      "ISP RAS — selection task completed and offer received; role not started as of 2026-10-10.",
+      "Vysshaya Proba prize-winner in Informatics and Industrial Programming — user-confirmed; exact primary result artifacts pending.",
+      "VpnMediator used by dozens of real users — user-confirmed operational fact pending a dated anonymized usage artifact."
     ],
     "do_not_say": [
       "4 years of professional compiler experience.",
-      "Current ISP RAS / SharpChecker employee without start/title evidence.",
+      "Current ISP RAS / SharpChecker employee before an actual start.",
       "Production-ready x86-64 backend.",
       "UniversalToolchain is a production universal compiler platform.",
       "Wist is generally as fast as C#.",
-      "Spoke at LangDev 2026 before the talk has actually happened.",
-      "HSE open-source first place / absolute winner without ranking evidence.",
-      "Two-time absolute/overall MEPhI Junior winner based only on the public result tables.",
-      "Baltic Main Prize or Section Prize as an unqualified canonical label while official sources conflict."
+      "HSE open-source 1st place as independently public-verified without a personalized ranking artifact.",
+      "Two-time absolute/overall MEPhI Junior winner.",
+      "Baltic Grand Prize as conflict-free public-primary fact while official first-party sources disagree.",
+      "Neyrmark winner/placement until the user's contradictory winner vs '10th place' statements are resolved."
     ]
   },
   "cv_generation_rules": [
@@ -1297,16 +1358,17 @@
     "If a stronger claim is only USER_ATTESTED or NEEDS_VERIFICATION, either qualify it or request the minimal artifact."
   ],
   "research_gaps": [
-    "Ingest exact Vysshaya Proba result PDFs/diplomas.",
-    "Inspect the 2026 Junior diploma/final protocol only if a stronger literal winner title than the public first-degree result is worth using.",
+    "Ingest exact Vysshaya Proba result PDFs/diplomas if exact diploma degree/rank is to be public-verifiable.",
     "Link primary organizer result for PS-form 1st/5.0/104-of-104 if available.",
     "Re-run historical commit archaeology for exact earliest dates before using dates as headline marketing copy.",
-    "Clarify VpnMediator ownership/commercial metrics before claiming users/revenue/business impact.",
-    "Verify Neyrmark/Нейрмарк exact official name, year, category, and winner artifact.",
-    "Add canonical teaching employer/title/date evidence if teaching is to appear as professional experience.",
-    "Decide whether Habr popularity metrics are worth using; if so, store a dated snapshot rather than an evergreen number.",
-    "Confirm whether the ISP RAS / SharpChecker offer was accepted; if yes, ingest actual start date, title, and first completed/shareable work before listing it as employment.",
-    "Resolve the Baltic Main-Prize vs Section-Prize conflict using the diploma or a direct organizer clarification before using either label."
+    "Resolve Neyrmark/Нейрмарк winner vs '2025, 10th place' contradiction and ingest the exact competition/category/result artifact.",
+    "If VpnMediator's 'dozens of active users' becomes a headline metric, add an anonymized dated usage snapshot.",
+    "Add exact dated student count/period only if teaching is presented quantitatively.",
+    "If/when the ISP RAS role starts, ingest actual start date, canonical title, and first completed/shareable work before listing it as employment.",
+    "Resolve the Baltic Main-Prize vs Section-Prize public-source conflict with the diploma/photo or organizer clarification; user currently confirms Grand Prize.",
+    "Ingest a personalized organizer artifact for HSE open-source 2026 if 1st place is to be independently public-verifiable.",
+    "Add LangDev event photos/recording/organizer recap if delivered-talk status is to be independently public-verifiable rather than user-confirmed + publicly scheduled.",
+    "Decide whether Habr popularity metrics are worth using; if so, store a dated snapshot rather than an evergreen number."
   ],
   "role_playbooks": {
     "architecture": {
