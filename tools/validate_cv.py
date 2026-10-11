@@ -99,6 +99,8 @@ def validate_source_of_truth(data: dict) -> None:
     for key, localized in data["profiles"].items():
         for lang in ("ru", "en"):
             profile = localized[lang]
+            if profile.get("show_portrait", True) is not False:
+                raise RuntimeError(f"{key}/{lang}: portrait would disclose approximate age")
             rows = [item for item in profile["experience"] if item.get("fact_ref") == "isp_ras"]
             if len(rows) != 1 or profile["experience"][0] is not rows[0]:
                 raise RuntimeError(f"{key}/{lang}: missing or duplicate active ISP RAS entry")
