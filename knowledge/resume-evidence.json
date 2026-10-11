@@ -40,7 +40,8 @@
       "time": "2026-07..2026-08",
       "evidence_level": [
         "USER_ATTESTED",
-        "PUBLIC_REPO_DIRECT"
+        "PUBLIC_REPO_DIRECT",
+        "PRIVATE_DOCUMENT"
       ],
       "public_sources": [
         "https://github.com/Misha1302/ps_form_analizer",
@@ -52,13 +53,15 @@
       },
       "strongest_evidence": [
         "C++23 graph tasks: RPO/cycle detection, Dijkstra, Dinic max-flow, Tarjan SCC.",
-        "PS-form dependence-analysis selection task with conservative proof-oriented solver and extensive generated/metamorphic harness."
+        "PS-form dependence-analysis selection task with conservative proof-oriented solver and extensive generated/metamorphic harness.",
+        "Organizer's 5 Jun 2026 private correspondence: 49 submitted solutions; one 5.0/5.0 result and one 104/104 official-test solution, linked to the user's 5.0 self-identification."
       ],
       "recruiter_signals": [
         "professional compiler context",
         "C++",
         "algorithms",
-        "correctness-first analysis"
+        "correctness-first analysis",
+        "highest technical-selection score with private organizer attestation"
       ],
       "role_fit": [
         "systems",
@@ -66,10 +69,21 @@
         "compiler_backend",
         "program_analysis"
       ],
-      "resume_priority": "HIGH",
+      "resume_priority": "VERY_HIGH",
       "gaps": [
         "Exact official internship title/employment artifact not independently public-verified in this pass."
-      ]
+      ],
+      "selection_result": {
+        "scope": "2026 MCST Systems Programming: LLVM Compiler internship selection, C17 PS-form dependence-analysis challenge; NOT performance in the later internship",
+        "ru": "Единственная оценка 5,0/5,0 и единственное решение, прошедшее все 104/104 официальных теста, среди 49 представленных работ; по письму организатора от 5 июня 2026.",
+        "en": "Only 5.0/5.0 score and only 104/104 official-test result among 49 submitted solutions; attributed to organizer correspondence of 5 June 2026.",
+        "evidence_level": "PRIVATE_DOCUMENT",
+        "source": "Organizer's 2026-06-05 internship-selection roundup email, confirmed against the user's correspondence in that thread; private Gmail source, not publicly shareable.",
+        "source_visibility": "private",
+        "attribution_boundary": "The organizer's group email identifies the sole top scorer by school/location, while the user's reply identifies himself as having scored 5.0. Do not represent the broadcast as a publicly named personal diploma.",
+        "denominator_boundary": "49 solutions submitted; separate count of 87 initial applicants and 6 eventual internship places is not the denominator for this technical ranking.",
+        "stage_boundary": "A technical selection result, not an internship-project performance metric."
+      }
     },
     {
       "id": "experience_isp_ras_2026",
