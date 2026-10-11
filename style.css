@@ -787,3 +787,45 @@ body.profile-compiler::before {
   .profile-print-spacious .pcv-recognition span { display: block; margin-top: .5mm; color: #4e4547; font-size: 8pt; line-height: 1.27; }
   .profile-architecture .pcv-trajectory { margin: 0 0 3.2mm; padding: 1.7mm 0 1.8mm; border-top: .6pt solid #c8b7ba; border-bottom: .6pt solid #c8b7ba; color: #4e4547; font-size: 8.2pt; line-height: 1.3; }
 }
+
+
+/* 2026-10-11 audit: use available page space for readable systems/backend PDFs.
+   Keep the canonical two-column template and an extractable text layer. */
+@media print {
+  .profile-architecture .pcv-summary,
+  .profile-backend .pcv-summary {
+    font-size: 10.3pt;
+    line-height: 1.37;
+  }
+  .profile-architecture .pcv-proof span,
+  .profile-backend .pcv-proof span {
+    font-size: 8.65pt;
+    line-height: 1.29;
+  }
+  .profile-architecture .pcv-entry li,
+  .profile-backend .pcv-entry li {
+    font-size: 9.05pt;
+    line-height: 1.32;
+  }
+  .profile-architecture .pcv-project p,
+  .profile-backend .pcv-project p {
+    font-size: 8.95pt;
+    line-height: 1.34;
+  }
+  .profile-architecture .pcv-skill span,
+  .profile-backend .pcv-skill span,
+  .profile-architecture .pcv-compact p,
+  .profile-backend .pcv-compact p {
+    font-size: 8.65pt;
+    line-height: 1.32;
+  }
+  .profile-architecture .pcv-recognition span,
+  .profile-backend .pcv-recognition span {
+    font-size: 8.55pt;
+    line-height: 1.31;
+  }
+  .profile-architecture .pcv-section-title,
+  .profile-backend .pcv-section-title {
+    font-size: 10pt;
+  }
+}

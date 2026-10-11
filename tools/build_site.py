@@ -461,6 +461,7 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
     }
     constraints = {
         "wist": "Независимые версии пакетов, разные backend-ы, детерминизм и обратная совместимость." if lang == "ru" else "Independent package versions, multiple backends, determinism, and compatibility.",
+        "botay": "Офлайн-клиенты могут повторять операции после перезапуска; внешние события, локальное состояние и предложения модели нельзя считать равноправными источниками истины." if lang == "ru" else "Offline clients replay commands after restarts; external observations, local state and model proposals must not share mutation authority.",
         "planfuzz": "Нестабильные исполнения, инфраструктурные сбои и необходимость сохранять точный тип расхождения." if lang == "ru" else "Flaky executions, infrastructure failures, and preserving the exact mismatch category.",
         "vpn": "Повторные webhooks, сетевые таймауты, перезапуски, миграции и невозможность раскрывать production-данные." if lang == "ru" else "Duplicate webhooks, network timeouts, restarts, migrations, and private production data.",
         "lms": "Финансовые операции и пользовательские workflows должны развиваться независимо, не нарушая ledger-инварианты." if lang == "ru" else "Financial operations and user workflows must evolve independently without violating ledger invariants.",
@@ -471,6 +472,7 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
     }[project_id]
     verification = {
         "wist": "Canonical test gate, clean-consumer projects, interpreter/CIL parity, deterministic manifests and replayable failures." if lang == "en" else "Канонический тестовый gate, clean-consumer проекты, parity интерпретатора/CIL, детерминированные манифесты и воспроизводимые падения.",
+        "botay": "Operation IDs and atomic server records, explicit lifecycle conflicts, witness validation, emulator/device checks and signed APK provenance." if lang == "en" else "Идентификаторы операций и атомарные серверные записи, явные конфликты, проверка witness, эмулятор/device-тесты и происхождение подписанного APK.",
         "planfuzz": "Fresh-process confirmation, exact fingerprints, typed outcomes, and deterministic reduction." if lang == "en" else "Подтверждение в свежем процессе, exact fingerprints, типизированные исходы и детерминированное сокращение.",
         "vpn": "State-transition checks, negative webhook cases, audit records, backup/restore rehearsal, health gates, and rollback verification." if lang == "en" else "Проверки переходов состояния, негативные webhook-сценарии, audit records, репетиция backup/restore, health gates и проверка rollback.",
         "lms": "Ledger invariants, idempotent payment completion, role checks, migrations, and critical-flow acceptance." if lang == "en" else "Ledger-инварианты, идемпотентное завершение платежа, проверки ролей, миграции и acceptance критических flows.",
@@ -481,6 +483,7 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
     }[project_id]
     ownership = {
         "wist": "Архитектура, ключевые контракты, runtime, SSA, тестовая стратегия и публичная документация." if lang == "ru" else "Architecture, core contracts, runtime, SSA, verification strategy, and public documentation.",
+        "botay": "Canonical/evidence/projection boundaries, offline command replay, feasibility witnesses, LLM intent limits and native Android release path." if lang == "en" else "Границы канонических данных, внешних наблюдений и проекций; replay офлайн-команд, проверка выполнимости, серверная авторизация LLM-действий и выпуск Android.",
         "planfuzz": "Модель исходов, ядро оракулов, replay, fingerprinting и reducers." if lang == "ru" else "Outcome model, oracle core, replay, fingerprinting, and reducers.",
         "vpn": "Backend-архитектура, состояния, платежные интеграции, recovery, миграции и эксплуатационные gates." if lang == "ru" else "Backend architecture, state transitions, payment integrations, recovery, migrations, and operational gates.",
         "lms": "Роли, баланс, платежные workflows, инварианты и release-проверки." if lang == "ru" else "Roles, balances, payment workflows, invariants, and release checks.",
