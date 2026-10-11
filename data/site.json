@@ -1256,6 +1256,10 @@
             "type": "C++23 · LLVM 22 · межпроцедурный анализ · преобразования",
             "solution": "LLVM 22 pass локализует поддерживаемые глобальные переменные, изменяющиеся как индукционные, после межпроцедурного анализа эффектов, аффинной эволюции и отдельной проверки условий применимости; APInt моделирует арифметику фиксированной разрядности.",
             "result": "29 позитивных и негативных регрессионных сценариев: LLVM Verifier, структурные ожидания, идемпотентность и сравнение наблюдаемого поведения до/после преобразования."
+          },
+          "psform": {
+            "solution": "Создал C17-анализатор зависимостей памяти: арифметические методы доказывают пересечение или независимость там, где применимы, а в остальных случаях возвращают maybe.",
+            "result": "Проверяю выводы точным оракулом на малых областях и случайными/метаморфными тестами, не подменяя недостаток доказательств угадыванием."
           }
         },
         "show_portrait": true,
@@ -1336,6 +1340,10 @@
             "type": "C++23 · LLVM 22 · interprocedural analysis · transformations",
             "solution": "An LLVM 22 pass localizes supported induction-like globals after interprocedural effect analysis, affine evolution, and a separate applicability check; APInt models fixed-width wraparound.",
             "result": "29 positive/negative regression cases cover LLVM Verifier checks, structural expectations, idempotence, and observable before/after behavior."
+          },
+          "psform": {
+            "solution": "Built a C17 memory-dependence analyzer with conservative arithmetic reasoning: exact overlap/disjointness proofs where supported, and 'maybe' otherwise.",
+            "result": "Compared results with an exact small-domain oracle and randomized/metamorphic checks to preserve correctness under incomplete evidence."
           }
         },
         "show_portrait": true,
