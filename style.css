@@ -67,6 +67,11 @@ img { max-width: 100%; }
 .hero-copy { min-width: 0; }
 .identity-card { padding: 28px; border: 1px solid var(--border); border-radius: var(--radius); background: linear-gradient(145deg, rgba(137, 41, 57, .19), transparent 48%), var(--surface); }
 .identity-mark { display: block; width: 100%; aspect-ratio: 1; border: 1px solid #4c3037; border-radius: 18px; background: #130f10; object-fit: cover; }
+/* Age-neutral identity mark: no visual age inference from a profile photo. */
+.identity-monogram { display: grid; place-items: center; font-weight: 820; font-size: clamp(38px, 5vw, 68px); letter-spacing: -.07em; color: var(--text); background: radial-gradient(circle at 20% 15%, rgba(170, 70, 92, .24), transparent 57%), #161116; text-shadow: 0 2px 30px rgba(255, 255, 255, .07); user-select: none; }
+.profile-compiler .compact-portrait .identity-monogram { transform: none; font-size: 58px; }
+.profile-compiler .compiler-portrait .identity-monogram { border-radius: 5px; }
+
 .identity-card strong { display: block; margin-top: 20px; font-size: 16px; }
 .identity-card span { display: block; margin-top: 5px; color: var(--quiet); font-size: 13px; }
 .eyebrow, .section-label, .project-type, .timeline time, .recognition-year { font-family: ui-monospace, monospace; letter-spacing: .095em; text-transform: uppercase; font-size: 12px; font-weight: 720; }
