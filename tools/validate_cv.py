@@ -80,7 +80,7 @@ def validate_source_of_truth(data: dict) -> None:
     serialized = json.dumps(data, ensure_ascii=False)
     for lang in ("ru", "en"):
         education = data["person"][f"education_{lang}"]
-        if re.search(r"\\b(?:19|20)\\d{2}\\b", education):
+        if re.search(r"\b(?:19|20)\d{2}\b", education):
             raise RuntimeError(f"Public HSE education must not show dates ({lang})")
     for field in ("person", "profiles", "recognition", "trajectory", "profile_ui", "landing"):
         validate_age_privacy(json.dumps(data[field], ensure_ascii=False), f"data/site.json:{field}")
