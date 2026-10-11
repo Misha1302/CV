@@ -117,12 +117,14 @@ def validate_role_playbooks(data: dict, asset_ids: set[str]) -> None:
 def validate_semantic_boundaries(by_id: dict[str, dict]) -> None:
     isp = by_id.get("experience_isp_ras_2026")
     require(isp is not None, "missing ISP RAS boundary asset")
-    require(isp.get("category") == "opportunity", "ISP RAS must not be modeled as confirmed employment")
-    require(
-        "NOT_STARTED" in str(isp.get("status", "")),
-        "ISP RAS asset must explicitly preserve the not-started boundary",
-    )
-    require(isp.get("resume_priority") == "CONDITIONAL", "ISP RAS resume use must remain conditional")
+    require(isp.get("category") == "professional_experience", "ISP RAS must reflect user-confirmed employment")
+    require(isp.get("status") == "ACTIVE_WORK__USER_CONFIRMED_2026_10_11", "ISP RAS active-work status lost")
+    require("USER_ATTESTED" in isp.get("evidence_level", []), "ISP RAS work needs an explicit user provenance")
+    require(isp.get("resume_priority") == "VERY_HIGH", "Current ISP RAS work must be prioritized")
+    claims = isp.get("claims", {})
+    for lang, token in (("ru", "символьн"), ("en", "symbolic")):
+        text = str(claims.get(f"safe_{lang}", "")).casefold()
+        require("sharpchecker" in text and token in text, f"ISP RAS {lang} claim must name scoped symbolic-computation work")
 
     baltic = by_id.get("achievement_baltic_2026")
     require(baltic is not None, "missing Baltic achievement asset")
