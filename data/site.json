@@ -108,7 +108,7 @@
           ],
           [
             "Длительная история компиляторных проектов",
-            "Собственные compiler/runtime-проекты: от bytecode/VM до генерации native x86-64."
+            "Публичные compiler/runtime-проекты с 2022; native x86-64 codegen — с 2023."
           ],
           [
             "Текущий основной проект",
@@ -178,7 +178,7 @@
           "codegen": {
             "type": "Rust · x86-64 backend · register allocation",
             "solution": "Проверка SSA/CFG → анализ живости и интерференции → register allocation и spills → phi lowering → генерация кода SysV x86-64.",
-            "result": "Независимый verifier раскладки и differential execution: native-код сравнивается с эталонным интерпретатором; тесты покрывают ветвления, циклы, spills и parallel phi moves; отдельная публичная линия native-codegen начинается с Visk и Wist4."
+            "result": "Независимый verifier раскладки и differential execution: native-код сравнивается с эталонным интерпретатором; тесты покрывают ветвления, циклы, spills и parallel phi moves; отдельная публичная линия native-codegen начинается с Visk (2023) и Wist4 (2024)."
           },
           "planfuzz": {
             "solution": "Проверяю не только программы, но и планы конфигурации toolchain: replay в отдельном процессе, стабильные fingerprints и минимизация контрпримеров.",
@@ -206,7 +206,7 @@
           ],
           [
             "Compiler lineage",
-            "Public compiler/runtime projects spanning bytecode/VM implementations and native x86-64 code generation."
+            "Public compiler/runtime projects since 2022; native x86-64 codegen by 2023."
           ],
           [
             "Current flagship",
@@ -276,7 +276,7 @@
           "codegen": {
             "type": "Rust · x86-64 compiler backend · register allocation",
             "solution": "SSA/CFG validation → liveness/interference → register allocation/spills → phi lowering → SysV x86-64 emission.",
-            "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves; a separate public native-codegen lineage starts with Visk and Wist4."
+            "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves; a separate public native-codegen lineage starts with Visk (2023) and Wist4 (2024)."
           },
           "planfuzz": {
             "solution": "Fuzzed toolchain configuration plans—not just source programs—with fresh-process replay, stable fingerprints and reduced failures.",
@@ -306,7 +306,7 @@
           ],
           [
             "Эволюция проектов",
-            "Собственный compiler/VM → MSIL и native x64 → AST→IR→x64."
+            "2022 compiler/VM → 2023 MSIL/native x64 → 2024 AST→IR→x64."
           ],
           [
             "Ключевые публичные работы",
@@ -408,7 +408,7 @@
           ],
           [
             "Compiler lineage",
-            "Собственный compiler/VM → MSIL и native x64 → AST→IR→x64."
+            "2022 compiler/VM → 2023 MSIL/native x64 → 2024 AST→IR→x64."
           ],
           [
             "Current proof points",
@@ -475,7 +475,7 @@
           "codegen": {
             "type": "Rust · compiler backend · register allocation · SysV x86-64",
             "solution": "A compiler backend with SSA/CFG validation, liveness/interference analysis, linear-scan and seeded simulated-annealing allocators, spills, phi lowering, and a SysV x86-64 emitter.",
-            "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves; a separate public native-codegen lineage starts with Visk and Wist4."
+            "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves; a separate public native-codegen lineage starts with Visk (2023) and Wist4 (2024)."
           },
           "wist": {
             "solution": "Designed immutable semantic plans binding dependencies, contributions and typed artifact routes before runtime materialization.",
@@ -1148,7 +1148,7 @@
           ],
           [
             "Native codegen до стажировки",
-            "Visk: native x86-64 · Wist4: AST→IR→x64."
+            "Visk: x86-64 в 2023 · Wist4: AST→IR→x64 в 2024."
           ],
           [
             "Современная проверка",
@@ -1205,7 +1205,7 @@
           "codegen": {
             "type": "Rust · x86-64 backend · register allocation",
             "solution": "Проверка SSA/CFG → анализ живости и интерференции → register allocation/spills → phi lowering → генерация SysV x86-64.",
-            "result": "Verifier раскладки + сравнение native execution с эталонным интерпретатором; актуальный CI проекта зелёный; отдельная публичная линия native-codegen начинается с Visk и Wist4."
+            "result": "Verifier раскладки + сравнение native execution с эталонным интерпретатором; актуальный CI проекта зелёный; отдельная публичная линия native-codegen начинается с Visk (2023) и Wist4 (2024)."
           },
           "globaliv": {
             "type": "C++23 · LLVM 22 · межпроцедурный анализ · преобразования",
@@ -1243,7 +1243,7 @@
           ],
           [
             "Native codegen before the internship",
-            "Visk: native x86-64 · Wist4: AST→IR→x64."
+            "Visk: x86-64 in 2023 · Wist4: AST→IR→x64 in 2024."
           ],
           [
             "Current verification",
@@ -1300,7 +1300,7 @@
           "codegen": {
             "type": "Rust · x86-64 compiler backend · register allocation",
             "solution": "SSA/CFG validation → liveness/interference → register allocation/spills → phi lowering → SysV x86-64 emission.",
-            "result": "Assignment verifier plus native-vs-interpreter differential execution; the current project CI is green; a separate public native-codegen lineage starts with Visk and Wist4."
+            "result": "Assignment verifier plus native-vs-interpreter differential execution; the current project CI is green; a separate public native-codegen lineage starts with Visk (2023) and Wist4 (2024)."
           },
           "globaliv": {
             "type": "C++23 · LLVM 22 · interprocedural analysis · transformations",
@@ -1344,7 +1344,7 @@
           ],
           [
             "Компиляторная база",
-            "Публичные compiler/runtime-проекты: MSIL, генерация native x86-64 и проверка результатов."
+            "Публичные compiler/runtime-проекты с 2022; MSIL и native x86-64 — в 2023–2024."
           ]
         ],
         "experience": [
@@ -1438,7 +1438,7 @@
           ],
           [
             "Compiler foundation",
-            "Public compiler/runtime projects covering MSIL, native x86-64 emission, and correctness checks."
+            "Public compiler/runtime projects since 2022; MSIL and native x86-64 work in 2023–2024."
           ]
         ],
         "experience": [
@@ -2048,12 +2048,12 @@
       [
         "2026",
         "ФКН НИУ ВШЭ — конкурс проектов с открытым кодом",
-        "UniversalToolchain / Wist2 — в числе победителей конкурса проектов с открытым кодом ФКН НИУ ВШЭ."
+        "UniversalToolchain / Wist2 — один из победителей конкурса проектов с открытым кодом студентов ФКН."
       ],
       [
-        "2026",
-        "Балтийский научно-инженерный конкурс",
-        "Диплом I степени за проект UniversalToolchain."
+        "2025–2026",
+        "Другие достижения",
+        "«Юниор» НИЯУ МИФИ: победитель ИТ-секции в 2025 и диплом I степени в 2026; дипломант «Высшей пробы» по промышленному программированию; Балтийский конкурс: диплом I степени и премия «Совершенство как надежда»."
       ]
     ],
     "en": [
@@ -2070,12 +2070,12 @@
       [
         "2026",
         "HSE Faculty of Computer Science — open-source projects competition",
-        "UniversalToolchain / Wist2 was selected among the winners of the HSE Faculty of Computer Science open-source projects competition."
+        "Selected as one of the winners with UniversalToolchain / Wist2."
       ],
       [
-        "2026",
-        "Baltic Science and Engineering Competition",
-        "First-degree diploma for the UniversalToolchain project."
+        "2025–2026",
+        "Earlier distinctions",
+        "MEPhI Junior: Information Technologies section winner in 2025 and first-degree diploma in 2026; HSE Vysshaya Proba Industrial Programming diploma holder; Baltic Science and Engineering Competition: first-degree diploma and the “Perfection as Hope” prize."
       ]
     ]
   },
@@ -2115,17 +2115,17 @@
   "trajectory": {
     "ru": [
       {
-        "period": "Ранние работы",
+        "period": "2022",
         "label": "Компиляторы / VM",
         "detail": "BigSharpCompiler и OwnAssembler: lexer/parser/preprocessor, собственные bytecode/VM и assembler-like эксперименты."
       },
       {
-        "period": "Генерация кода",
+        "period": "2023",
         "label": "CIL + native x86-64",
         "detail": "Wist/Wist2Msil и Visk: runtime, MSIL backend, генерация и исполнение native x86-64 machine code."
       },
       {
-        "period": "Инфраструктура",
+        "period": "2024–2025",
         "label": "AST / IR / backends → toolchain",
         "detail": "Vl13.2, Wist4, Quark2 → Unified/UniversalToolchain: AST/IR, native x64, bytecode/VM, MSIL и затем модульная композиция."
       },
@@ -2137,17 +2137,17 @@
     ],
     "en": [
       {
-        "period": "Early work",
+        "period": "2022",
         "label": "Compilers / VMs",
         "detail": "BigSharpCompiler and OwnAssembler: lexer/parser/preprocessor work plus custom bytecode/VM and assembler-like experiments."
       },
       {
-        "period": "Code generation",
+        "period": "2023",
         "label": "CIL + native x86-64",
         "detail": "Wist/Wist2Msil and Visk: runtime work, an MSIL backend, and native x86-64 machine-code generation and execution."
       },
       {
-        "period": "Infrastructure",
+        "period": "2024–2025",
         "label": "AST / IR / backends → toolchain",
         "detail": "Vl13.2, Wist4, Quark2 → Unified/UniversalToolchain: AST/IR, native x64, bytecode/VM, MSIL, then modular composition."
       },
