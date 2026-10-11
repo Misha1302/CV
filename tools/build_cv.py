@@ -30,8 +30,7 @@ def validate_pdf(path: Path, expected_role: str, expected_projects: list[str], e
     for project_title in expected_projects:
         if " ".join(project_title.split()).casefold() not in extracted:
             raise RuntimeError(f"{path.name}: project missing from text layer: {project_title}")
-    if " ".join(expected_education.split()).casefold() not in extracted:
-        raise RuntimeError(f"{path.name}: education missing from text layer")
+    # Multi-column extraction may interleave the wrapped degree and dates; require\n    # the stable university name instead of assuming one contiguous text run.\n    university = expected_education.split(" — ", 1)[0].casefold()\n    if university not in extracted:\n        raise RuntimeError(f"{path.name}: education institution missing from text layer")
 
     sizes = [
         span["size"]
