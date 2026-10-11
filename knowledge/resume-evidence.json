@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-10",
+  "generated_at": "2026-10-11",
   "purpose": "Canonical evidence layer for generating and reviewing all Mikhail Razakov CV/portfolio variants. CV copy is downstream; this file stores claims, evidence boundaries, recruiter signals, and role fit.",
   "evidence_levels": {
     "PUBLIC_PRIMARY": "Official organizer/employer/conference/university source.",
@@ -148,7 +148,7 @@
         "Source → Lexer/Parser → AST → Bytecode → AIR → Optimizers → Compiler/Interpreter → Execution pipeline.",
         "External language-authoring alpha with exact package-manifest binding, deterministic pass ordering, backend executor selection, and fail-closed runtime policy.",
         "Repository verification contract combines exact test counts with architecture/documentation guards.",
-        "Accepted LangDev 2026 talk is an external signal that the architecture is interesting beyond the repository."
+        "Delivered LangDev 2026 talk is an external signal that the architecture is interesting beyond the repository."
       ],
       "recruiter_signals": [
         "architecture ownership",
@@ -1221,6 +1221,75 @@
       ],
       "resume_priority": "MEDIUM_HIGH",
       "personal_contribution_boundary": "Team win is publicly confirmed. The implementation/teaching-experience contribution split is user-attested."
+    },
+    {
+      "id": "project_botay",
+      "category": "project",
+      "name": "botay! / student-execution-os",
+      "time": "2026",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT",
+        "PUBLIC_PRIMARY"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/student-execution-os",
+        "https://github.com/Misha1302/student-execution-os/blob/main/src/student_execution_os/planning/feasibility.py",
+        "https://github.com/Misha1302/student-execution-os/blob/main/src/student_execution_os/sync/commands.py",
+        "https://github.com/Misha1302/student-execution-os/blob/main/docs/adr/0007-llm-extraction-action-boundary.md"
+      ],
+      "claims": {
+        "safe_ru": "Разработал web/Android offline-first систему: внешние наблюдения, каноническое состояние, производные планы и LLM-предложения имеют разные границы ответственности; сервер атомарно хранит результаты повторяемых offline-операций, а выполнимость требует валидного witness.",
+        "safe_en": "Built an offline-first web/Android system that separates external observations, canonical state, derived plans, and LLM proposals; atomic server-side operation records support idempotent offline replay, while feasibility requires a validated witness."
+      },
+      "metrics": [
+        {
+          "claim": "Android release workflow 0.8.3 succeeded on 2026-10-10.",
+          "evidence_level": "PUBLIC_PRIMARY",
+          "source": "GitHub Actions android-release; for the inspected revision as of 2026-10-10",
+          "boundary": "A successful signed-release workflow is not evidence of installs, active users, app-store publication, uptime, or production-scale adoption."
+        },
+        {
+          "claim": "33 schema migrations and 36 architecture decision records at the inspected 2026-10-10 snapshot.",
+          "evidence_level": "PUBLIC_REPO_DIRECT",
+          "source": "persistence/migrations and docs/adr",
+          "boundary": "Counts are snapshot-scoped and not quality/scale metrics; generally omit from one-page CV."
+        }
+      ],
+      "strongest_evidence": [
+        "Canonical state, external evidence and derived plans are separate owners; imported or LLM content never self-authorizes mutations.",
+        "Tri-state feasibility uses a separately validated witness for FEASIBLE; unsupported/budget-exhausted paths return UNKNOWN.",
+        "Client-generated operation IDs and an atomic operation-result record make server-side replay idempotent, surfacing conflicts rather than silently overwriting lifecycle state.",
+        "Browser client and native Android shell include release/update security checks and emulator/device workflows."
+      ],
+      "recruiter_signals": [
+        "architecture ownership",
+        "end-to-end product engineering",
+        "offline-first",
+        "Android",
+        "Python",
+        "state consistency",
+        "idempotency",
+        "authorization/privacy boundaries"
+      ],
+      "role_fit": [
+        "architecture",
+        "backend",
+        "general",
+        "systems"
+      ],
+      "resume_priority": "VERY_HIGH",
+      "do_not_claim": [
+        "commercial adoption",
+        "large active user base",
+        "production scale",
+        "formally verified planner",
+        "autonomous AI agent",
+        "distributed platform"
+      ],
+      "gaps": [
+        "Independent active-user/install snapshot",
+        "Hosted server uptime and deployed-version evidence"
+      ]
     }
   ],
   "skills": [
