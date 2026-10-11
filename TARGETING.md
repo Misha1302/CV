@@ -38,6 +38,7 @@ See [the claim matrix and before/after analysis](knowledge/cv-transformation-rep
 ## Age privacy (mandatory for every public CV)
 
 - Do not disclose birth date, age, school/pupil status, or expected graduation years in the public website, any RU/EN profile, or the generated PDFs.
+- Use an age-neutral `MR` monogram instead of a personal portrait on public CV pages: facial appearance can reveal approximate age even when prose does not.
 - Avoid youth-only competition names and dated school-age distinctions in public CV copy. Preserve their exact historical evidence in the research knowledge base, not in the application document.
 - Present HSE Software Engineering without attendance/graduation years; present professional roles with real dates (ISP RAS starts October 2026), since actual employment timing is legitimate evidence.
 - Describe earlier compiler/runtime engineering by technical progression, not a dated childhood timeline.
