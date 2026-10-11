@@ -19,7 +19,7 @@
       "timelineItems": 1,
       "projectRows": 3,
       "stackRows": 4,
-      "recognitionItems": 3,
+      "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0
     }
@@ -44,7 +44,7 @@
       "timelineItems": 1,
       "projectRows": 3,
       "stackRows": 4,
-      "recognitionItems": 3,
+      "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0
     }
@@ -55,7 +55,7 @@
     "viewport_height": 1100,
     "page_height": 5185,
     "h1": "Михаил Разаков",
-    "role": "NET Backend / Platform Engineer · State & Reliability",
+    "role": ".NET Backend / Platform Engineer · State & Reliability",
     "structure": {
       "sectionIds": [
         "top",
@@ -66,10 +66,10 @@
         "education",
         "contact"
       ],
-      "timelineItems": 3,
+      "timelineItems": 2,
       "projectRows": 0,
       "stackRows": 4,
-      "recognitionItems": 3,
+      "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0
     }
@@ -94,7 +94,7 @@
       "timelineItems": 1,
       "projectRows": 0,
       "stackRows": 4,
-      "recognitionItems": 3,
+      "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0
     }
@@ -119,7 +119,7 @@
       "timelineItems": 1,
       "projectRows": 3,
       "stackRows": 4,
-      "recognitionItems": 3,
+      "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0
     }
@@ -144,7 +144,7 @@
       "timelineItems": 1,
       "projectRows": 3,
       "stackRows": 4,
-      "recognitionItems": 3,
+      "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0
     }
@@ -155,7 +155,7 @@
     "viewport_height": 844,
     "page_height": 8593,
     "h1": "Михаил Разаков",
-    "role": "NET Backend / Platform Engineer · State & Reliability",
+    "role": ".NET Backend / Platform Engineer · State & Reliability",
     "structure": {
       "sectionIds": [
         "top",
@@ -166,10 +166,10 @@
         "education",
         "contact"
       ],
-      "timelineItems": 3,
+      "timelineItems": 2,
       "projectRows": 0,
       "stackRows": 4,
-      "recognitionItems": 3,
+      "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0
     }
@@ -194,7 +194,7 @@
       "timelineItems": 1,
       "projectRows": 0,
       "stackRows": 4,
-      "recognitionItems": 3,
+      "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0
     }
@@ -219,7 +219,7 @@
       "timelineItems": 1,
       "projectRows": 3,
       "stackRows": 4,
-      "recognitionItems": 3,
+      "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0
     }
@@ -230,7 +230,7 @@
     "viewport_height": 844,
     "page_height": 8943,
     "h1": "Михаил Разаков",
-    "role": "NET Backend / Platform Engineer · State & Reliability",
+    "role": ".NET Backend / Platform Engineer · State & Reliability",
     "structure": {
       "sectionIds": [
         "top",
@@ -241,10 +241,10 @@
         "education",
         "contact"
       ],
-      "timelineItems": 3,
+      "timelineItems": 2,
       "projectRows": 0,
       "stackRows": 4,
-      "recognitionItems": 3,
+      "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0
     }
