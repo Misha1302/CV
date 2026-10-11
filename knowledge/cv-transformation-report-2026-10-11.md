@@ -106,3 +106,53 @@ Check all relevant PDFs are **one A4 page with extractable text, 3+ links, reada
 **Highest marginal next evidence:** (1) anonymized live usage for VpnMediator, (2) independent botay! installs/uptime, (3) external UniversalToolchain package consumer, (4) shareable MCST role/review artifact, (5) exact paid/client-work scope for Diploma.school.
 
 **Remaining uncertainty:** successful release/build checks are revision- and environment-specific; VpnMediator and LMS public-production claims remain unsupported. Do not turn source-level tests or a green workflow into measured user or operational scale.
+
+
+## H. Independent second-pass audit and corrections — 11 October 2026
+
+This section records the follow-up review against PR #63, including inspection of actual CI PDF-preview PNGs rather than CSS alone.
+
+### Evidence hierarchy used in this pass
+
+- **VERIFIED:** an accessible direct source establishes the bounded claim (for example, organizer correspondence or inspectable project code); private evidence is explicitly not public evidence.
+- **STRONGLY SUPPORTED:** multiple mutually consistent records establish most of the statement but leave a material attribution/detail gap.
+- **USER-ATTESTED:** statement from the candidate without accessible independent confirmation.
+- **NEEDS VERIFICATION:** should not become a strong public-facing claim until an appropriate artifact is available.
+
+### What the second pass found
+
+1. The backend CV placed CompilationLabLMS and VpnMediator inside the Professional Experience section, despite both being independently owned projects. The selective software-protection CV likewise placed a historical Unity licensing prototype and personal VpnMediator work there. The correction keeps verified employer/client categories distinct from project engineering. Their implementation evidence remains in project/independent-work sections.
+2. The 5 June 2026 organizer's private MCST selection roundup reports 49 submitted solutions, the sole 104/104 official-test result, and the sole 5.0/5.0 top score. The candidate's reply to that same correspondence identifies his score as 5.0, consistent with the organizer's highest entry. This is **strong primary private organizer evidence**, not a public personal diploma or an independently published leaderboard. The 87 initial applicants are a different denominator. Result wording intentionally says "organizer correspondence".
+3. Default architecture and backend PDF captures had small 7–8 pt body type despite substantial unused page area. Selected sizes were increased in print CSS for those profiles, without introducing decorative diagrams or rasterized CV text. A successful PDF build alone remains insufficient to assert absence of clipping: inspect final screenshots and extraction after CI.
+4. In RU backend metadata, the '.NET' label lost its leading period, while project-work sections used inconsistent English and Russian headings. The source was corrected and experience copy simplified.
+5. The original architecture summary emphasized abstract 'decision boundaries' more than concrete ownership. Revised bilingual copy names UniversalToolchain's plan/verifier and botay!'s offline web/Android implementation, and clearly notes the summer MCST internship.
+
+### Strategy comparison and decision
+
+- **Experience-first:** employer context is easy to identify, but a two-month internship does not fully represent the candidate's independently built architecture.
+- **Engineering-evidence-first:** greatest technical detail; without categorical separation it can imply personal projects were paid jobs.
+- **Hybrid Software Engineer — Systems & Architecture (chosen):** one genuine internship, different compiler/product/backend projects, independently supported recognition. The improvement over experience-first is coverage of real systems ownership; over evidence-first, clarity about employer vs project status.
+
+### Before vs after — factual, nonnumeric review
+
+| Criterion | Before PR #63 follow-up | After source revision | Grounding |
+|---|---|---|---|
+| Recruiter clarity | broad identity, abstract wording | compiler plan and offline product named | bilingual architecture summaries |
+| Technical depth | strong but compressed | preserves LLVM LICM, planner/verifier, offline replay | actual project descriptions and sources |
+| Differentiation | MCST selection rank not displayed | scoped top technical-selection distinction | private organizer message, 5 June 2026 |
+| Evidence credibility | private/public validation blurred | explicitly attributed nonpublic distinction | evidence layer selection_result |
+| Natural writing | ownership jargon repeated | simpler technical sentences | summaries and skill copy |
+| Visual readability | tiny print body with excess space | larger selected print typography | changed CSS; final screenshot still must be assessed |
+| ATS compatibility | text PDF with two-column flow | preserved text + links; two-column tradeoff remains | current generator, extraction validation |
+| Role targeting | backend work misclassified | paid/client categories separated from projects | updated backend and selective protection CV |
+| Interview defensibility | personal projects under employment | explicit independence and narrower stage attribution | source change and evidence boundaries |
+
+### Adversarial findings and remaining limitations
+
+- **MCST 104/104** is one technical challenge during selection, not 104 internship-related tests. Organizer evidence is private and its broadcast lists the highest scorer by school/location rather than the candidate's full name; identity is supported by the candidate's contemporaneous reply. Interviewers can be shown the dated original privately if appropriate.
+- **botay!** Android release pipeline and offline idempotency do not prove active users or broad distribution.
+- **VpnMediator/CompilationLabLMS** payment-state code and tests do not independently establish 24/7 production availability, full provider E2E readiness or revenue.
+- **UniversalToolchain 1,324** is a repository-revision-scoped exact test manifest, not a time-independent or independent audit.
+- **Two-column PDF** has a possible ATS read-order disadvantage. A single-column version should be considered if a job portal's actual parser loses sections; it was not introduced here without evidence.
+- **Visual clipping and latest CI:** only claim pass when the exact post-change generated PDF and its screenshot have been checked. The previous workflow run is a baseline, not proof of the revised source.
+- **Further evidence rather than marketing:** dated anonymized usage for VpnMediator, externally used UniversalToolchain package, first independent botay! users, and a shareable MCST selection/result artifact would materially improve the next version.
