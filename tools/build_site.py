@@ -142,10 +142,17 @@ def action_links(data: dict[str, Any], lang: str, profile: dict[str, Any], compa
 </div>"""
 
 
+def identity_portrait(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
+    if not profile.get("show_portrait", True):
+        return '<div class="identity-mark identity-monogram" aria-hidden="true">MR</div>'
+    return f'<img class="identity-mark" src="{esc(profile.get("portrait_asset", "assets/portrait.svg"))}" alt="{esc(person_name(data, lang))}" width="460" height="460">'
+
+
 def hero(data: dict[str, Any], lang: str, profile: dict[str, Any], compact: bool = False) -> str:
     person = data["person"]
     location = person[f"location_{lang}"]
     education = person[f"education_{lang}"]
+    portrait = identity_portrait(data, lang, profile)
     if compact:
         compact_proofs = "".join(
             f'<div class="compact-proof"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>'
@@ -161,7 +168,7 @@ def hero(data: dict[str, Any], lang: str, profile: dict[str, Any], compact: bool
     </div>
   </div>
   <aside class="compact-aside" aria-label="{'Профиль и ключевые факты' if lang == 'ru' else 'Profile and key evidence'}">
-    <div class="identity-card compact-portrait"><img class="identity-mark" src="{esc(profile.get('portrait_asset', 'assets/portrait.svg'))}" data-local-photo="true" alt="{esc(person_name(data, lang))}" width="460" height="460"></div>
+    <div class="identity-card compact-portrait">{portrait}</div>
     <div class="compact-proof-list">{compact_proofs}</div>
   </aside>
 </section>"""
@@ -175,7 +182,7 @@ def hero(data: dict[str, Any], lang: str, profile: dict[str, Any], compact: bool
       <div class="hero-contact-line"><a href="mailto:{esc(person['email'])}">{esc(person['email'])}</a> · <a href="{esc(person['telegram'])}" rel="noopener noreferrer" target="_blank">{esc(person['telegram_label'])}</a> · <a href="{esc(person['github'])}" rel="noopener noreferrer" target="_blank">{esc(person['github_label'])}</a> · <a href="{esc(person['linkedin'])}" rel="noopener noreferrer" target="_blank">LinkedIn</a></div>
     </div>
   </div>
-  <aside class="identity-card" aria-label="{'Профиль' if lang == 'ru' else 'Profile'}"><img class="identity-mark" src="{esc(profile.get('portrait_asset', 'assets/portrait.svg'))}" alt="{esc(person_name(data, lang))}" width="460" height="460"><strong>{esc(role_description)}</strong><span>{esc(profile['brand'])}</span></aside>
+  <aside class="identity-card" aria-label="{'Профиль' if lang == 'ru' else 'Profile'}">{portrait}<strong>{esc(role_description)}</strong><span>{esc(profile['brand'])}</span></aside>
 </section>"""
 
 
@@ -188,6 +195,7 @@ def compiler_hero(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> s
         for title, body in profile.get("proofs", [])[:3]
     )
     proof_row = f'<div class="compiler-proof-row">{proof_items}</div>' if proof_items and profile.get("show_web_proofs", True) else ""
+    portrait = identity_portrait(data, lang, profile)
     return f"""
 <section class="shell compiler-intro" id="top">
   <div class="compiler-intro-copy">
@@ -205,7 +213,7 @@ def compiler_hero(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> s
     </div>
   </div>
   <aside class="compiler-portrait identity-card" aria-label="{'Фотография' if lang == 'ru' else 'Portrait'}">
-    <img class="identity-mark" src="{esc(profile.get('portrait_asset', 'assets/portrait.svg'))}" alt="{esc(person_name(data, lang))}" width="460" height="460">
+    {portrait}
   </aside>
 </section>"""
 

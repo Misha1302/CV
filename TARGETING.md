@@ -34,3 +34,13 @@ All profiles share canonical facts from `data/site.json`; they differ only in ev
 - **External adoption:** botay! release proof exists; independent external-user counts do not.
 
 See [the claim matrix and before/after analysis](knowledge/cv-transformation-report-2026-10-11.md).
+
+## Age privacy (mandatory for every public CV)
+
+- Do not disclose birth date, age, school/pupil status, or expected graduation years in the public website, any RU/EN profile, or the generated PDFs.
+- Use an age-neutral `MR` monogram instead of a personal portrait on public CV pages: facial appearance can reveal approximate age even when prose does not.
+- Avoid youth-only competition names and dated school-age distinctions in public CV copy. Preserve their exact historical evidence in the research knowledge base, not in the application document.
+- Present HSE Software Engineering without attendance/graduation years; present professional roles with real dates (ISP RAS starts October 2026), since actual employment timing is legitimate evidence.
+- Describe earlier compiler/runtime engineering by technical progression, not a dated childhood timeline.
+- Keep technical accomplishments and independently supportable adult/professional recognitions (MCST, LangDev, HSE open-source, Baltic diploma) prominent; never fabricate or rename a specific award to disguise its nature.
+- The `tools/validate_cv.py` age-privacy gate checks canonical public data, all rendered HTML pages, and all 20 PDF text layers. A check cannot guarantee that an outside linked repository or an external result page does not reveal personal context.
