@@ -18,6 +18,19 @@
 
 ## Systems & Architecture profile evidence order
 
-`UniversalToolchain -> VpnMediator -> x86-64 backend`. The profile proves architecture through implemented ownership boundaries, state/recovery semantics, and independent verification rather than through design-pattern vocabulary or an inflated seniority title.
+`UniversalToolchain -> botay! -> VpnMediator`. The profile proves architecture through a verified semantic-plan boundary, a user-facing offline web/Android product, and payment/access recovery semantics—not through design-pattern vocabulary or a seniority title. x86-64 codegen remains the stronger flagship for compiler-backend and systems vacancies.
 
 All profiles share canonical facts from `data/site.json`; they differ only in evidence ordering and role-specific vocabulary.
+
+## Evidence-led revision — 2026-10-11
+
+- **Broad systems/architecture:** UniversalToolchain → botay! → VpnMediator; product and offline architecture are now visible.
+- **Backend/platform:** VpnMediator → botay! → CompilationLabLMS. Do not claim production readiness or green CI for VPN/LMS.
+- **Compiler infrastructure:** UniversalToolchain → PlanFuzz → LLVM Global-IV; lead with semantic planning and independent verification.
+- **Compiler/program analysis:** LLVM Global-IV → UniversalToolchain → x86-64 backend; correctness/legal transformations first.
+- **Static/program analysis:** LLVM Global-IV → PS-form → Roslyn, reflecting three independent analysis styles.
+- **C++/systems:** LLVM Global-IV → x86-64 backend → PS-form; strongly scoped low-level technical depth.
+- **LangDev:** delivered on 9 Oct 2026, not merely accepted.
+- **External adoption:** botay! release proof exists; independent external-user counts do not.
+
+See [the claim matrix and before/after analysis](knowledge/cv-transformation-report-2026-10-11.md).
