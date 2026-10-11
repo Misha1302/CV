@@ -1,6 +1,6 @@
 {
-  "version": 64,
-  "updated_at": "2026-09-30",
+  "version": "2026-10-11-evidence-led",
+  "updated_at": "2026-10-11",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -45,7 +45,7 @@
       "label_ru": ".NET Backend / Reliability",
       "label_en": ".NET Backend / Reliability",
       "landing_title": ".NET Backend / Platform Reliability",
-      "landing_description_ru": "Payment state, idempotency, durable recovery, provider verification, migrations и rollback."
+      "landing_description_ru": "VpnMediator: подтверждения провайдера, идемпотентные изменения доступа и quarantine; botay!: offline replay; LMS: повторная проверка платежей."
     },
     "systems": {
       "label_ru": "C++ / Systems",
@@ -87,7 +87,7 @@
       "label_ru": "Systems / Architecture",
       "label_en": "Systems / Architecture",
       "landing_title": "Software Engineer — Systems & Architecture",
-      "landing_description_ru": "Широкий инженерный профиль: C++/.NET, software architecture, infrastructure, state/recovery и проверяемая корректность; compiler/runtime — сильный signal of depth, а не единственная специализация."
+      "landing_description_ru": "Широкий software engineering: архитектура UniversalToolchain, offline-first продукт botay!, надёжные платёжные workflows VpnMediator; независимая проверка вместо деклараций."
     }
   },
   "profiles": {
@@ -99,7 +99,7 @@
         "role": "Compiler Infrastructure / Language Tooling Engineer",
         "brand": "compiler infrastructure · language tooling · LLVM · deterministic composition",
         "eyebrow": "UniversalToolchain · LLVM · разрешение зависимостей · детерминированные pipelines",
-        "summary": "Compiler Infrastructure / Language Tooling Engineer с профессиональным опытом LLVM 22. Развиваю UniversalToolchain вокруг детерминированной композиции compiler pipelines; отдельный C#/.NET static-analysis проект выполнен в рамках отбора ИСП РАН.",
+        "summary": "Разрабатываю инфраструктуру языков и компиляторов, где семантические решения принимаются до выполнения. В UniversalToolchain зависимости и маршруты backend фиксируются в неизменяемом плане; PlanFuzz проверяет конфигурации через воспроизводимые эксперименты.",
         "description": "Михаил Разаков — Compiler Infrastructure / Language Tooling Engineer: разрешение зависимостей и конфликтов, выбор компонентов, детерминированные compiler pipelines, LLVM 22 и проверка до исполнения.",
         "proofs": [
           [
@@ -112,7 +112,7 @@
           ],
           [
             "Текущий основной проект",
-            "UniversalToolchain: 1 324/1 324 теста; архитектурный доклад принят на LangDev’26."
+            "UniversalToolchain: 1 324 теста на проверенной ревизии; выступление на LangDev 09.10.2026."
           ]
         ],
         "experience": [
@@ -129,8 +129,8 @@
         ],
         "project_ids": [
           "wist",
-          "globaliv",
-          "codegen"
+          "planfuzz",
+          "globaliv"
         ],
         "skills": [
           [
@@ -154,7 +154,7 @@
         "footer": "Compiler Infrastructure / Language Tooling Engineer",
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "project_summaries": {
           "wist": {
             "type": ".NET · инфраструктура компилятора и языков · детерминированная композиция",
@@ -170,6 +170,10 @@
             "type": "Rust · x86-64 backend · register allocation",
             "solution": "Проверка SSA/CFG → анализ живости и интерференции → register allocation и spills → phi lowering → генерация кода SysV x86-64.",
             "result": "Независимый verifier раскладки и differential execution: native-код сравнивается с эталонным интерпретатором; тесты покрывают ветвления, циклы, spills и parallel phi moves; отдельная публичная линия native-codegen начинается с Visk (2023) и Wist4 (2024)."
+          },
+          "planfuzz": {
+            "solution": "Проверяю не только программы, но и планы конфигурации toolchain: replay в отдельном процессе, стабильные fingerprints и минимизация контрпримеров.",
+            "result": "Фиксированные fault/control корпусы и воспроизводимые артефакты помогают исследовать ошибки планирования без заявлений о формальной верификации."
           }
         },
         "show_trajectory": true,
@@ -182,7 +186,7 @@
         "role": "Compiler Infrastructure / Language Tooling Engineer",
         "brand": "compiler infrastructure · language tooling · LLVM · deterministic composition",
         "eyebrow": "UniversalToolchain · LLVM · dependency resolution · deterministic pipelines",
-        "summary": "Compiler Infrastructure / Language Tooling Engineer with professional LLVM 22 experience. I build UniversalToolchain around deterministic compiler-pipeline composition; a separate C#/.NET static-analysis project was completed for an ISP RAS selection task.",
+        "summary": "I build language infrastructure that separates semantic decisions from execution. In UniversalToolchain, an immutable plan fixes dependencies and typed backend routes and is checked independently; PlanFuzz probes configuration failures with replayable evidence.",
         "description": "Mikhail Razakov — Compiler Infrastructure / Language Tooling Engineer: dependency/conflict resolution, component selection, deterministic compiler pipelines, LLVM 22, and pre-execution validation.",
         "proofs": [
           [
@@ -195,7 +199,7 @@
           ],
           [
             "Current flagship",
-            "UniversalToolchain: 1,324/1,324 tests; architecture talk accepted at LangDev’26."
+            "UniversalToolchain: 1,324-test manifest at the inspected revision; delivered LangDev talk on 9 Oct 2026."
           ]
         ],
         "experience": [
@@ -212,8 +216,8 @@
         ],
         "project_ids": [
           "wist",
-          "globaliv",
-          "codegen"
+          "planfuzz",
+          "globaliv"
         ],
         "skills": [
           [
@@ -237,7 +241,7 @@
         "footer": "Compiler Infrastructure / Language Tooling Engineer",
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "project_summaries": {
           "wist": {
             "type": ".NET · compiler/language infrastructure · deterministic composition",
@@ -253,6 +257,10 @@
             "type": "Rust · x86-64 compiler backend · register allocation",
             "solution": "SSA/CFG validation → liveness/interference → register allocation/spills → phi lowering → SysV x86-64 emission.",
             "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves; a separate public native-codegen lineage starts with Visk (2023) and Wist4 (2024)."
+          },
+          "planfuzz": {
+            "solution": "Fuzzed toolchain configuration plans—not just source programs—with fresh-process replay, stable fingerprints and reduced failures.",
+            "result": "Frozen fault/control corpora and replayable artifacts make planning defects inspectable without claiming formal proof."
           }
         },
         "show_trajectory": true,
@@ -297,8 +305,8 @@
         ],
         "project_ids": [
           "globaliv",
-          "codegen",
-          "deref"
+          "wist",
+          "codegen"
         ],
         "skills": [
           [
@@ -335,13 +343,17 @@
             "type": "Rust · compiler backend · register allocation · SysV x86-64",
             "solution": "Backend компилятора: проверка SSA/CFG, анализ живости и интерференции, linear-scan и seeded simulated-annealing allocators, spills, phi lowering и генерация SysV x86-64.",
             "result": "Независимый verifier раскладки и сравнение native-кода с эталонным интерпретатором; тесты покрывают ветвления, циклы, spills и parallel phi moves."
+          },
+          "wist": {
+            "solution": "Фиксирую зависимости, contributions и типизированные маршруты артефактов в неизменяемом плане до materialization runtime.",
+            "result": "Независимая проверка плана и точной идентичности пакетов; манифест из 1 324 тестов на ревизии октября 2026."
           }
         },
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "show_trajectory": true,
         "experience_heading": "Профессиональный опыт",
         "show_web_proofs": false,
@@ -384,8 +396,8 @@
         ],
         "project_ids": [
           "globaliv",
-          "codegen",
-          "deref"
+          "wist",
+          "codegen"
         ],
         "skills": [
           [
@@ -422,13 +434,17 @@
             "type": "Rust · compiler backend · register allocation · SysV x86-64",
             "solution": "A compiler backend with SSA/CFG validation, liveness/interference analysis, linear-scan and seeded simulated-annealing allocators, spills, phi lowering, and a SysV x86-64 emitter.",
             "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves; a separate public native-codegen lineage starts with Visk (2023) and Wist4 (2024)."
+          },
+          "wist": {
+            "solution": "Designed immutable semantic plans binding dependencies, contributions and typed artifact routes before runtime materialization.",
+            "result": "Independent plan verification and exact package-manifest identity; 1,324-test manifest at the inspected October 2026 revision."
           }
         },
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "show_trajectory": true,
         "experience_heading": "Professional Experience",
         "show_web_proofs": false,
@@ -443,7 +459,7 @@
         "role": "NET Backend / Platform Engineer · State & Reliability",
         "brand": "NET · payment state · recovery · platform reliability",
         "eyebrow": "ASP.NET Core · idempotency · recovery · rollback",
-        "summary": "Разрабатываю .NET backend-системы, где платежи, доступ и состояние должны переживать retries и restarts: explicit state machines, provider re-verification, durable inbox/outbox, idempotency, reconciliation, migrations и проверяемый rollback",
+        "summary": "Разрабатываю backend с явными гарантиями при повторах и частичных сбоях: подтверждения платежей и восстановление доступа в VpnMediator, офлайн-синхронизация в botay!, повторная проверка платежей и ledger в LMS.",
         "description": "NET Backend / Platform Engineer Михаил Разаков: payment state, idempotency, durable inbox/outbox, provider verification, recovery, migrations и rollback",
         "proofs": [
           [
@@ -488,9 +504,9 @@
           }
         ],
         "project_ids": [
-          "lms",
           "vpn",
-          "wist"
+          "botay",
+          "lms"
         ],
         "skills": [
           [
@@ -512,17 +528,24 @@
         ],
         "contact_heading": "Целевые роли: .NET Backend / Platform Engineer с ответственностью за состояние, recovery и эксплуатационную корректность",
         "footer": "NET Backend / Platform Engineer · State & Reliability",
-        "updated_at": "2026-10-07",
-        "print_spacious": true
+        "updated_at": "2026-10-11",
+        "print_spacious": true,
+        "print_project_limit": 3,
+        "project_summaries": {
+          "botay": {
+            "solution": "Реализовал offline-first операции для браузера/Android с клиентскими идентификаторами и атомарным серверным журналом; конфликтующие изменения не перезаписываются молча.",
+            "result": "Идемпотентное воспроизведение на сервере и проверка подписанного Android-релиза 0.8.3; число пользователей не заявляется."
+          }
+        }
       },
       "en": {
         "filename": "en-backend.html",
         "pdf": "Mikhail_Razakov_Backend_EN.pdf",
         "title": "Mikhail Razakov — .NET Backend / Platform Engineer · State & Reliability",
-        "role": "NET Backend / Platform Engineer · State & Reliability",
+        "role": ".NET Backend / Platform Engineer · State & Reliability",
         "brand": "NET · payment state · recovery · platform reliability",
         "eyebrow": "ASP.NET Core · idempotency · recovery · rollback",
-        "summary": "I build .NET backend systems where payments, access, and state must survive retries and restarts: explicit state machines, provider re-verification, durable inbox/outbox, idempotency, reconciliation, migrations, and verifiable rollback",
+        "summary": "I build backend workflows that stay consistent through retries and partial failure: payment evidence and access reconciliation in VpnMediator, offline operation replay in botay!, and provider-verified ledger updates in an LMS.",
         "description": "NET Backend / Platform Engineer Mikhail Razakov: payment state, idempotency, durable inbox/outbox, provider verification, recovery, migrations, and rollback",
         "proofs": [
           [
@@ -567,9 +590,9 @@
           }
         ],
         "project_ids": [
-          "lms",
           "vpn",
-          "wist"
+          "botay",
+          "lms"
         ],
         "skills": [
           [
@@ -590,9 +613,16 @@
           ]
         ],
         "contact_heading": "Targeting .NET Backend / Platform Engineer roles with ownership of state, recovery, and operational correctness",
-        "footer": "NET Backend / Platform Engineer · State & Reliability",
-        "updated_at": "2026-10-07",
-        "print_spacious": true
+        "footer": ".NET Backend / Platform Engineer · State & Reliability",
+        "updated_at": "2026-10-11",
+        "print_spacious": true,
+        "print_project_limit": 3,
+        "project_summaries": {
+          "botay": {
+            "solution": "Built offline-first browser/Android operations with durable client IDs and atomic server replay records; conflicting lifecycle changes remain explicit.",
+            "result": "Exactly-once replay at the operation boundary and signed Android 0.8.3 release checks; external user count is not asserted."
+          }
+        }
       }
     },
     "systems": {
@@ -603,7 +633,7 @@
         "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
         "brand": "C++23 · LLVM · x86-64 · algorithms",
         "eyebrow": "Compiler optimization · machine code · program analysis",
-        "summary": "C++/systems engineer с профессиональным опытом LLVM и практикой static analysis. Работаю с optimization legality, графовыми алгоритмами, x86-64 codegen/register allocation и differential execution; фокус — correctness, machine-level behavior и воспроизводимая проверка.",
+        "summary": "Работаю с C++/LLVM и системными задачами: консервативные преобразования IR, генерация x86-64 и анализ зависимостей памяти. Проверяю реализацию независимыми оракулами, негативными тестами и сравнением исполнения.",
         "description": "C++ / Systems Engineer Михаил Разаков: C++23, LLVM 22, x86-64 code generation, register allocation, algorithms, program analysis и differential execution.",
         "proofs": [
           [
@@ -631,8 +661,8 @@
           }
         ],
         "project_ids": [
-          "codegen",
           "globaliv",
+          "codegen",
           "psform"
         ],
         "skills": [
@@ -656,7 +686,7 @@
         "contact_heading": "Целевые роли: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
         "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
         "print_project_limit": 3,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "print_recognition_limit": 2,
         "print_spacious": true
       },
@@ -667,7 +697,7 @@
         "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
         "brand": "C++23 · LLVM · x86-64 · algorithms",
         "eyebrow": "Compiler optimization · machine code · program analysis",
-        "summary": "C++/systems engineer with professional LLVM experience and hands-on static-analysis work. I work with optimization legality, graph algorithms, x86-64 codegen/register allocation, and differential execution, with a focus on correctness, machine-level behavior, and reproducible verification.",
+        "summary": "C++/systems engineer with LLVM 22 internship experience and hands-on compiler work. I implement conservative IR transformations, native x86-64 codegen and memory-dependence analysis, then validate them with independent oracles and negative cases.",
         "description": "Mikhail Razakov — C++ / Systems Engineer: C++23, LLVM 22, x86-64 code generation, register allocation, algorithms, program analysis, and differential execution.",
         "proofs": [
           [
@@ -695,8 +725,8 @@
           }
         ],
         "project_ids": [
-          "codegen",
           "globaliv",
+          "codegen",
           "psform"
         ],
         "skills": [
@@ -720,7 +750,7 @@
         "contact_heading": "Target roles: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
         "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
         "print_project_limit": 3,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "print_recognition_limit": 2,
         "print_spacious": true
       }
@@ -786,7 +816,7 @@
         "contact_heading": "Целевые роли: Quantitative Research internships / research roles, где ценятся алгоритмы и строгая экспериментальная проверка",
         "footer": "Quantitative Research Candidate · C++ · Python",
         "print_project_limit": 3,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "print_spacious": true
       },
       "en": {
@@ -849,7 +879,7 @@
         "contact_heading": "Target roles: Quantitative Research internships / research roles valuing algorithms and rigorous experimental validation",
         "footer": "Quantitative Research Candidate · C++ · Python",
         "print_project_limit": 3,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "print_spacious": true
       }
     },
@@ -914,7 +944,7 @@
         "contact_heading": "Целевые роли: Quant Developer · Research Engineer · Algorithm / Research Software Engineering",
         "footer": "Quant Developer / Research Engineer · C++ · Python",
         "print_project_limit": 3,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "print_spacious": true
       },
       "en": {
@@ -977,14 +1007,14 @@
         "contact_heading": "Target roles: Quant Developer · Research Engineer · Algorithm / Research Software Engineering",
         "footer": "Quant Developer / Research Engineer · C++ · Python",
         "print_project_limit": 3,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "print_spacious": true
       }
     },
     "compiler_backend": {
       "ru": {
         "compiler_layout": true,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "filename": "ru-compiler-backend.html",
         "pdf": "Mikhail_Razakov_Compiler_Backend_RU.pdf",
         "title": "Михаил Разаков — Compiler Backend / Code Generation Engineer",
@@ -1069,7 +1099,7 @@
       },
       "en": {
         "compiler_layout": true,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "filename": "en-compiler-backend.html",
         "pdf": "Mikhail_Razakov_Compiler_Backend_EN.pdf",
         "title": "Mikhail Razakov — Compiler Backend / Code Generation Engineer",
@@ -1156,14 +1186,14 @@
     "program_analysis": {
       "ru": {
         "compiler_layout": true,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "filename": "ru-program-analysis.html",
         "pdf": "Mikhail_Razakov_Program_Analysis_RU.pdf",
         "title": "Михаил Разаков — Static Analysis / Program Analysis Engineer",
         "role": "Static Analysis / Program Analysis Engineer",
         "brand": "static analysis · data-flow · LLVM · Roslyn",
         "eyebrow": "Roslyn CFG · fixed point · interprocedural LLVM analysis",
-        "summary": "Инженер по статическому анализу и анализу программ с профессиональным опытом LLVM 22/C++ в МЦСТ. Публичные работы: Roslyn CFG data-flow до неподвижной точки и межпроцедурный LLVM-анализ с консервативной проверкой применимости преобразований; Roslyn analyzer также использовался как отборочное задание ИСП РАН.",
+        "summary": "Разрабатываю консервативные анализы программ: межпроцедурную LLVM-оптимизацию с отдельной проверкой применимости, C17-анализ зависимостей памяти с точным оракулом и Roslyn-анализ null-состояний по CFG.",
         "description": "Михаил Разаков — Static / Program Analysis Engineer: Roslyn CFG fixed-point data-flow, branch refinement, joins, loops и interprocedural LLVM analysis.",
         "proofs": [
           [
@@ -1192,8 +1222,9 @@
           }
         ],
         "project_ids": [
-          "deref",
-          "globaliv"
+          "globaliv",
+          "psform",
+          "deref"
         ],
         "skills": [
           [
@@ -1229,20 +1260,20 @@
         },
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
-        "print_project_limit": 2,
+        "print_project_limit": 3,
         "show_trajectory": true,
         "experience_heading": "Профессиональный опыт"
       },
       "en": {
         "compiler_layout": true,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "filename": "en-program-analysis.html",
         "pdf": "Mikhail_Razakov_Program_Analysis_EN.pdf",
         "title": "Mikhail Razakov — Static Analysis / Program Analysis Engineer",
         "role": "Static Analysis / Program Analysis Engineer",
         "brand": "static analysis · data flow · LLVM · Roslyn",
         "eyebrow": "Roslyn CFG · fixed point · interprocedural LLVM analysis",
-        "summary": "Static / Program Analysis Engineer with professional LLVM 22/C++ experience from MCST. Public work covers Roslyn CFG fixed-point data flow and interprocedural LLVM analysis with conservative applicability checks; the Roslyn analyzer also served as an ISP RAS selection task.",
+        "summary": "I build conservative program analyses: an LLVM 22 interprocedural global-IV optimization with a separate legality gate, a C17 memory-dependence analyzer with exact/metamorphic checks, and a Roslyn CFG null-state analyzer.",
         "description": "Mikhail Razakov — Static / Program Analysis Engineer: Roslyn CFG fixed-point data flow, branch refinement, joins, loops, and interprocedural LLVM analysis.",
         "proofs": [
           [
@@ -1271,8 +1302,9 @@
           }
         ],
         "project_ids": [
-          "deref",
-          "globaliv"
+          "globaliv",
+          "psform",
+          "deref"
         ],
         "skills": [
           [
@@ -1308,7 +1340,7 @@
         },
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
-        "print_project_limit": 2,
+        "print_project_limit": 3,
         "show_trajectory": true,
         "experience_heading": "Professional Experience"
       }
@@ -1316,7 +1348,7 @@
     "software_protection": {
       "ru": {
         "compiler_layout": true,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "publication_status": "SELECTIVE / EVIDENCE-LIMITED",
         "filename": "ru-software-protection.html",
         "pdf": "Mikhail_Razakov_Software_Protection_RU.pdf",
@@ -1416,7 +1448,7 @@
       },
       "en": {
         "compiler_layout": true,
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "publication_status": "SELECTIVE / EVIDENCE-LIMITED",
         "filename": "en-software-protection.html",
         "pdf": "Mikhail_Razakov_Software_Protection_EN.pdf",
@@ -1521,22 +1553,22 @@
         "pdf": "Mikhail_Razakov_Architecture_Platforms_RU.pdf",
         "title": "Михаил Разаков — Software Engineer — Systems & Architecture",
         "role": "Software Engineer — Systems & Architecture",
-        "brand": "systems · architecture · infrastructure · C++/.NET",
-        "eyebrow": "C++ · .NET · systems engineering · software architecture · correctness",
-        "summary": "Проектирую и реализую сложные программные системы на C++ и .NET — от compiler/runtime infrastructure и статического анализа до backend/service systems. Сильнее всего интересуют архитектурные задачи, где важны ясные границы компонентов, корректность, восстановление после сбоев и проверяемые инварианты.",
-        "description": "Михаил Разаков — Software Engineer — Systems & Architecture: C++/.NET, infrastructure, compiler/runtime, backend systems, correctness и архитектурные границы.",
+        "brand": "systems · architecture · продукты · инфраструктура",
+        "eyebrow": "Архитектура систем · offline-first · compiler infrastructure · recovery",
+        "summary": "Разрабатываю системы, где ошибки на границах состояния и выполнения особенно дороги: инфраструктуру компиляторов, офлайн-приложения для web/Android и серверные сценарии восстановления. В UniversalToolchain, botay! и VpnMediator отделяю принятие решений от их проверки и исполнения.",
+        "description": "Михаил Разаков — Software Engineer — Systems & Architecture: архитектура compiler/runtime, web/Android offline-first, надёжные платежные workflows и независимая проверка корректности.",
         "proofs": [
           [
-            "Системная инженерия",
-            "C++/.NET: compiler/runtime infrastructure, статический анализ, backend/service systems и low-level codegen."
+            "Инфраструктура",
+            "UniversalToolchain: неизменяемый план с независимой проверкой перед выполнением."
           ],
           [
-            "Архитектурная ответственность",
-            "UniversalToolchain: единый semantic planner и immutable plan; VpnMediator: explicit state/recovery; x86-64 backend: independent verifier + differential execution."
+            "Продукт целиком",
+            "botay!: браузер и Android, офлайн-очередь операций и проверяемое планирование."
           ],
           [
-            "Техническая глубина",
-            "МЦСТ: профессиональная стажировка по LLVM 22/C++23 · отбор ИСП РАН: Roslyn/C#/.NET static analysis."
+            "Надёжность",
+            "VpnMediator: сохранение платёжных свидетельств, идемпотентность и карантин конфликтов."
           ]
         ],
         "experience": [
@@ -1553,25 +1585,25 @@
         ],
         "project_ids": [
           "wist",
-          "vpn",
-          "codegen"
+          "botay",
+          "vpn"
         ],
         "skills": [
           [
-            "Software / Systems",
-            "C++23, C#/.NET, Python, Linux, backend/runtime infrastructure, low-level/system components"
+            "Языки и платформы",
+            "C++23, C#/.NET, Python, Rust, Java, JavaScript, SQL, Linux"
           ],
           [
             "Архитектура",
-            "ownership/module boundaries, typed contracts, immutable planning, explicit state machines, lifecycle/recovery"
+            "границы владения, типизированные контракты, неизменяемые планы, каноническое состояние"
           ],
           [
-            "Compiler / Program Analysis",
-            "LLVM 22/IR, CFG/SSA, .NET/CIL, static/data-flow analysis, optimization legality"
+            "Продукты и backend",
+            "offline-first синхронизация, Android, SQLite/PostgreSQL, платежи, миграции"
           ],
           [
-            "Reliability / Verification",
-            "idempotency, reconciliation, backup/restore, regression tests, independent verifiers, differential execution"
+            "Проверка корректности",
+            "независимые верификаторы, дифференциальные тесты, идемпотентность, восстановление"
           ]
         ],
         "contact_heading": "Целевые роли: Software / Systems Engineer · Infrastructure / Platform · Compiler / Runtime",
@@ -1579,19 +1611,19 @@
         "print_project_limit": 3,
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "project_summaries": {
           "wist": {
-            "solution": "Единственный публичный semantic planner разрешает зависимости и конфликты, выбирает providers, фиксирует порядок contributions и типизированные backend routes в одном immutable LanguagePlan до запуска runtime.",
-            "result": "Архитектурные решения защищены pre-execution validation, exact manifest/ownership checks и parity interpreter/CIL; текущий exact manifest — 1 324/1 324."
+            "solution": "Спроектировал единый этап планирования: зависимости и конфликты функций, порядок компонентов и маршруты backend фиксируются в неизменяемом LanguagePlan до выполнения.",
+            "result": "Независимый верификатор проверяет маршрут и идентичность пакетов; на ревизии 09.10.2026 прошли CI-гейты и манифест из 1 324 тестов."
+          },
+          "botay": {
+            "solution": "Разделил внешние наблюдения, канонические данные пользователя, производные планы и предложения LLM в web/Android-планировщике.",
+            "result": "Офлайн-операции воспроизводятся идемпотентно, выполнимость требует проверяемого свидетеля. Workflow подписанного Android-релиза 0.8.3 прошёл 10.10.2026."
           },
           "vpn": {
-            "solution": "Явные payment/access states отделяют приём внешних событий от идемпотентного reconciliation и recovery; миграции и operational gates делают lifecycle-переходы проверяемыми.",
-            "result": "Recovery включает backup/restore, health-gated переключение release и rollback; публичный кейс не раскрывает секреты и пользовательские данные."
-          },
-          "codegen": {
-            "solution": "Стратегия register allocation отделена от независимого assignment verifier до phi lowering и генерации SysV x86-64.",
-            "result": "Семантика сгенерированного native-кода проверяется differential execution относительно эталонного интерпретатора; тесты покрывают ветвления, циклы, spills и parallel phi moves."
+            "solution": "Сохраняю подтверждения платёжного провайдера отдельно от изменений доступа; повторные операции идемпотентны, восстановление выполняется через reconciliation.",
+            "result": "Неоднозначное расхождение локального и удалённого состояния отправляется на ручную проверку; предусмотрены backup/restore и безопасный откат."
           }
         },
         "print_show_trajectory": true,
@@ -1603,22 +1635,22 @@
         "pdf": "Mikhail_Razakov_Architecture_Platforms_EN.pdf",
         "title": "Mikhail Razakov — Software Engineer — Systems & Architecture",
         "role": "Software Engineer — Systems & Architecture",
-        "brand": "systems · architecture · infrastructure · C++/.NET",
-        "eyebrow": "C++ · .NET · systems engineering · software architecture · correctness",
-        "summary": "I design and implement complex software systems in C++ and .NET, from compiler/runtime infrastructure and program analysis to backend/service systems. I am especially interested in architecture-heavy problems where component boundaries, correctness, recovery, and verifiable invariants matter.",
-        "description": "Mikhail Razakov — Software Engineer — Systems & Architecture: C++/.NET, infrastructure, compiler/runtime, backend systems, correctness, and explicit architectural boundaries.",
+        "brand": "systems · architecture · product engineering · compiler infrastructure",
+        "eyebrow": "Systems architecture · offline products · compiler infrastructure · recovery",
+        "summary": "I build correctness-sensitive software across compiler infrastructure, offline web/Android products, and backend recovery workflows. In UniversalToolchain, botay!, and VpnMediator, I make state and decision boundaries explicit, then verify the result rather than relying on the happy path.",
+        "description": "Software Engineer — Systems & Architecture. Independent work in compiler/runtime infrastructure, offline web and Android software, payment recovery, and correctness-oriented verification.",
         "proofs": [
           [
-            "Systems engineering",
-            "C++/.NET across compiler/runtime infrastructure, program analysis, backend/service systems, and low-level codegen."
+            "Compiler infrastructure",
+            "UniversalToolchain: immutable, independently checked semantic plans before execution."
           ],
           [
-            "Architecture ownership",
-            "UniversalToolchain: one semantic planner and immutable plan; VpnMediator: explicit state/recovery; x86-64 backend: independent verifier plus differential execution."
+            "End-to-end product",
+            "botay!: browser/Android clients, offline operation replay and validated planning witnesses."
           ],
           [
-            "Technical depth",
-            "MCST: professional LLVM 22/C++23 internship · ISP RAS selection task: Roslyn/C#/.NET static analysis."
+            "Reliability",
+            "VpnMediator: durable payment evidence, idempotent access operations and quarantine."
           ]
         ],
         "experience": [
@@ -1635,25 +1667,25 @@
         ],
         "project_ids": [
           "wist",
-          "vpn",
-          "codegen"
+          "botay",
+          "vpn"
         ],
         "skills": [
           [
-            "Software / Systems",
-            "C++23, C#/.NET, Python, Linux, backend/runtime infrastructure, low-level/system components"
+            "Languages / platforms",
+            "C++23, C#/.NET, Python, Rust, Java, JavaScript, SQL, Linux"
           ],
           [
             "Architecture",
-            "ownership/module boundaries, typed contracts, immutable planning, explicit state machines, lifecycle/recovery"
+            "ownership boundaries, typed contracts, immutable planning, canonical vs derived state"
           ],
           [
-            "Compiler / Program Analysis",
-            "LLVM 22/IR, CFG/SSA, .NET/CIL, static/data-flow analysis, optimization legality"
+            "Product / backend",
+            "offline-first sync, Android, SQLite/PostgreSQL, payment workflows, migrations"
           ],
           [
-            "Reliability / Verification",
-            "idempotency, reconciliation, backup/restore, regression tests, independent verifiers, differential execution"
+            "Correctness",
+            "independent verifiers, differential tests, idempotency, reconciliation and recovery"
           ]
         ],
         "contact_heading": "Target roles: Software / Systems Engineer · Infrastructure / Platform · Compiler / Runtime",
@@ -1661,19 +1693,19 @@
         "print_project_limit": 3,
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg",
-        "updated_at": "2026-10-07",
+        "updated_at": "2026-10-11",
         "project_summaries": {
           "wist": {
-            "solution": "One public semantic planner resolves dependencies/conflicts, selects providers, and freezes contribution ordering plus typed backend routes into one immutable LanguagePlan before runtime starts.",
-            "result": "The design is enforced by pre-execution validation, exact manifest/ownership checks, and interpreter/CIL parity; the current exact manifest is 1,324/1,324."
+            "solution": "Built one semantic planning boundary: feature dependencies, conflicts and typed backend routes become an immutable LanguagePlan before runtime execution.",
+            "result": "A separate verifier checks exact package identity and routes; architecture gates and a 1,324-test manifest passed at the inspected 9 Oct 2026 revision."
+          },
+          "botay": {
+            "solution": "Built web/Android task planning with separate owners for external evidence, canonical user state, derived schedules and LLM suggestions.",
+            "result": "Offline commands replay idempotently; feasibility requires independently checked witnesses. Signed Android release 0.8.3 passed its workflow on 10 Oct 2026."
           },
           "vpn": {
-            "solution": "Explicit payment/access states separate external-event acceptance from idempotent reconciliation and recovery; migrations and operational gates keep lifecycle transitions inspectable.",
-            "result": "Recovery includes backup/restore, health-gated release switching, and rollback; the public case study excludes secrets and user data."
-          },
-          "codegen": {
-            "solution": "Register-allocation strategy is separated from an independent assignment verifier before phi lowering and SysV x86-64 emission.",
-            "result": "Generated native behavior is differentially checked against a reference interpreter; tests cover branches, loops, spills, and parallel phi moves."
+            "solution": "Persisted payment-provider evidence before subscription/access changes; idempotent entitlements and leased reconciliation handle retries and uncertain outcomes.",
+            "result": "Ambiguous remote/local divergence is quarantined for review; recovery includes backup/restore and rollback safeguards. Deployment scale is not asserted."
           }
         },
         "print_show_trajectory": true,
@@ -1800,6 +1832,21 @@
       "public": true,
       "case_ru": "cases/ru-deref.html",
       "case_en": "cases/en-deref.html"
+    },
+    "botay": {
+      "title": "botay! / student-execution-os",
+      "type_ru": "Python · web/Android · offline-first · надёжная синхронизация",
+      "type_en": "Python · web/Android · offline-first · reliable synchronization",
+      "problem_ru": "Импортированные события, локальные изменения и предложения LLM могут противоречить друг другу; при работе без сети нельзя терять намерения пользователя.",
+      "problem_en": "Imported evidence, local edits, and LLM proposals can conflict; disconnected clients must not lose or silently overwrite user intent.",
+      "solution_ru": "Разделил внешние наблюдения, каноническое состояние и плановые проекции; client operation IDs и атомарный серверный журнал обеспечивают идемпотентное воспроизведение операций. Решения планировщика проверяются по witness, неопределённость сохраняется как UNKNOWN.",
+      "solution_en": "Separated external observations, canonical state, and derived plans; client operation IDs and atomic server records make offline replay idempotent. Feasibility requires validated witnesses and preserves UNKNOWN where proof is missing.",
+      "result_ru": "Веб-клиент, нативный Android, миграции и CI-проверки устройств; workflow подписанного Android-релиза 0.8.3 успешно завершился 10.10.2026. Число внешних пользователей не установлено.",
+      "result_en": "Browser and native Android clients, migrations and device/release checks; the signed Android 0.8.3 release workflow passed on 10 Oct 2026. External adoption has not been established.",
+      "repo": "https://github.com/Misha1302/student-execution-os",
+      "case_ru": "cases/ru-botay.html",
+      "case_en": "cases/en-botay.html",
+      "public": true
     }
   },
   "recognition": {
@@ -1812,7 +1859,7 @@
       [
         "2026",
         "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-        "Доклад по архитектуре UniversalToolchain принят к выступлению на LangDev’26."
+        "9 октября 2026 выступил на LangDev с докладом об архитектуре UniversalToolchain."
       ],
       [
         "2025–2026",
@@ -1829,7 +1876,7 @@
       [
         "2026",
         "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-        "Accepted talk on UniversalToolchain’s architecture."
+        "Delivered the UniversalToolchain architecture talk at LangDev on 9 October 2026."
       ],
       [
         "2025–2026",
@@ -1917,15 +1964,15 @@
   "landing": {
     "eyebrow_ru": "C++ · .NET · systems engineering · software architecture",
     "hero_evidence_ru": [
-      "C++ · .NET · architecture / systems",
-      "UniversalToolchain / Wist2 · один из победителей open-source конкурса ФКН",
-      "МЦСТ · LLVM 22 · Roslyn/C# static-analysis project"
+      "UniversalToolchain · проверяемый LanguagePlan · 1 324 теста на ревизии 09.10.2026",
+      "botay! · offline web/Android · подписанный релиз 0.8.3",
+      "МЦСТ · LLVM 22 · доклад на LangDev 09.10.2026"
     ],
     "profiles_intro_ru": "Основной профиль — Software Engineer — Systems & Architecture. Специализированные версии меняют приоритет доказательств, но сохраняют единый набор проверенных фактов.",
     "project_ids": [
       "wist",
-      "vpn",
-      "codegen"
+      "botay",
+      "vpn"
     ]
   }
 }
