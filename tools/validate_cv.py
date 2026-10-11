@@ -25,10 +25,6 @@ STALE_MARKERS = [
 ]
 FORBIDDEN_SCRIPT_MARKERS = ["textContent =", "innerHTML =", "createTreeWalker", "availabilityReplacements"]
 FORBIDDEN_HIGH_RISK_CLAIM_MARKERS = [
-    "ИСП РАН — инженер по статическому анализу",
-    "ISP RAS — Static Analysis Engineer",
-    "Участвую в разработке SharpChecker",
-    "Contribute to SharpChecker",
     "Дважды абсолютный победитель",
     "Two-time overall winner",
     "Главная премия Балтийского",
@@ -70,6 +66,25 @@ def validate_source_of_truth(data: dict) -> None:
     for marker in FORBIDDEN_HIGH_RISK_CLAIM_MARKERS:
         if marker in serialized:
             raise RuntimeError(f"Render source contains evidence-bounded forbidden claim: {marker}")
+    # ISP RAS work was confirmed by the user after the previously recorded offer-only state.
+    # Enforce actual work in every bilingual CV without inventing start dates or methods.
+    isp_fact = data.get("experience_facts", {}).get("isp_ras", {})
+    if isp_fact.get("status") != "USER_CONFIRMED_ACTIVE":
+        raise RuntimeError("ISP RAS experience fact must reflect confirmed current work")
+    for key, localized in data["profiles"].items():
+        for lang in ("ru", "en"):
+            profile = localized[lang]
+            rows = [item for item in profile["experience"] if item.get("fact_ref") == "isp_ras"]
+            if len(rows) != 1 or profile["experience"][0] is not rows[0]:
+                raise RuntimeError(f"{key}/{lang}: missing or duplicate active ISP RAS entry")
+            item = rows[0]
+            text = " ".join([item["title"], item["org"], *item["bullets"]]).lower()
+            if "sharpchecker" not in text or ("символьн" if lang == "ru" else "symbolic") not in text:
+                raise RuntimeError(f"{key}/{lang}: SharpChecker symbolic-computation scope missing")
+            if lang == "en" and ("present" not in item["date"]):
+                raise RuntimeError(f"{key}/{lang}: active role incorrectly dated")
+            if lang == "ru" and ("настоящее время" not in item["date"]):
+                raise RuntimeError(f"{key}/{lang}: active role incorrectly dated")
     old_data = ROOT / "data" / "cv-print-profiles.json"
     if old_data.exists():
         raise RuntimeError("Legacy data/cv-print-profiles.json still exists")
