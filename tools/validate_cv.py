@@ -27,7 +27,7 @@ STALE_MARKERS = [
 # competition labels, graduation-year ranges, school status, or early project years.
 # Full historical evidence remains in the internal/source research record.
 AGE_DISCLOSURE_PATTERNS = {
-    "birth / age": re.compile(r"(?i)(?:\bdate of birth\b|\bDOB\s*[:=]|дата рождения|год рождения|родился в|\baged?\s+1[0-9]\b|\b1[0-9]\s+years?\s+old\b|1[0-9][ -]?летн)"),
+    "birth / age": re.compile(r"(?i)(?:\b(?:date of birth|birth date)\b|\bDOB\s*[:=]|\b(?:age|aged)\s*[:=]?\s*\d{1,3}\b|\b\d{1,3}\s*(?:years?\s+old|y/?o)\b|дата\s+рождения|год\s+рождения|родил(?:ся|ась)\s+в|\b\d{1,3}\s*лет\b|\d{1,3}[-–— ]?летн)"),
     "school-status language": re.compile(r"(?i)(?:школьник|школьница|гимнази[яи]|\bhigh school\b|\bschoolboy\b|\bschoolgirl\b|\bCS student\b|\bteenager\b)"),
     "youth competition": re.compile(r"(?i)(?:MEPhI\s+Junior|«Юниор»|Vysshaya\s+Proba|Высш(?:ая|ей)\s+проб(?:а|ы|е))"),
     "university timing": re.compile(r"(?i)\b2026\s*[–—-]\s*2030\b"),
