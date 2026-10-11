@@ -27,12 +27,12 @@ STALE_MARKERS = [
 # competition labels, graduation-year ranges, school status, or early project years.
 # Full historical evidence remains in the internal/source research record.
 AGE_DISCLOSURE_PATTERNS = {
-    "birth / age": re.compile(r"(?i)(?:\\bdate of birth\\b|\\bDOB\\s*[:=]|дата рождения|год рождения|родился в|\\baged?\\s+1[0-9]\\b|\\b1[0-9]\\s+years?\\s+old\\b|1[0-9][ -]?летн)"),
-    "school-status language": re.compile(r"(?i)(?:школьник|школьница|гимнази[яи]|\\bhigh school\\b|\\bschoolboy\\b|\\bschoolgirl\\b|\\bCS student\\b|\\bteenager\\b)"),
-    "youth competition": re.compile(r"(?i)(?:MEPhI\\s+Junior|«Юниор»|Vysshaya\\s+Proba|Высш(?:ая|ей)\\s+проб(?:а|ы|е))"),
-    "university timing": re.compile(r"(?i)\\b2026\\s*[–—-]\\s*2030\\b"),
+    "birth / age": re.compile(r"(?i)(?:\bdate of birth\b|\bDOB\s*[:=]|дата рождения|год рождения|родился в|\baged?\s+1[0-9]\b|\b1[0-9]\s+years?\s+old\b|1[0-9][ -]?летн)"),
+    "school-status language": re.compile(r"(?i)(?:школьник|школьница|гимнази[яи]|\bhigh school\b|\bschoolboy\b|\bschoolgirl\b|\bCS student\b|\bteenager\b)"),
+    "youth competition": re.compile(r"(?i)(?:MEPhI\s+Junior|«Юниор»|Vysshaya\s+Proba|Высш(?:ая|ей)\s+проб(?:а|ы|е))"),
+    "university timing": re.compile(r"(?i)\b2026\s*[–—-]\s*2030\b"),
 }
-EARLY_PUBLIC_PROJECT_YEAR = re.compile(r"(?<!\\d)202[234](?!\\d)")
+EARLY_PUBLIC_PROJECT_YEAR = re.compile(r"(?<!\d)202[234](?!\d)")
 
 
 def validate_age_privacy(text: str, source: str, *, public_profile: bool = False) -> None:
