@@ -23,24 +23,19 @@ STALE_MARKERS = [
     "from September 2026",
     "С сентября 2026",
 ]
-# Public CV pages and PDFs must not reveal age directly or via youth-specific
-# competition labels, graduation-year ranges, school status, or early project years.
-# Full historical evidence remains in the internal/source research record.
+# Explicit age and birth details are disallowed; genuine career/project dates and
+# age-restricted competition titles are allowed at the applicant's request.
+# University education dates remain forbidden as a separate exact-source invariant.
 AGE_DISCLOSURE_PATTERNS = {
     "birth / age": re.compile(r"(?i)(?:\b(?:date of birth|birth date)\b|\bDOB\s*[:=]|\b(?:age|aged)\s*[:=]?\s*\d{1,3}\b|\b\d{1,3}\s*(?:years?\s+old|y/?o)\b|дата\s+рождения|год\s+рождения|родил(?:ся|ась)\s+в|\b\d{1,3}\s*лет\b|\d{1,3}[-–— ]?летн)"),
     "school-status language": re.compile(r"(?i)(?:школьник|школьница|гимнази[яи]|\bhigh school\b|\bschoolboy\b|\bschoolgirl\b|\bCS student\b|\bteenager\b)"),
-    "youth competition": re.compile(r"(?i)(?:MEPhI\s+Junior|«Юниор»|Vysshaya\s+Proba|Высш(?:ая|ей)\s+проб(?:а|ы|е))"),
-    "university timing": re.compile(r"(?i)\b2026\s*[–—-]\s*2030\b"),
 }
-EARLY_PUBLIC_PROJECT_YEAR = re.compile(r"(?<!\d)202[234](?!\d)")
 
 
-def validate_age_privacy(text: str, source: str, *, public_profile: bool = False) -> None:
+def validate_age_privacy(text: str, source: str) -> None:
     for label, pattern in AGE_DISCLOSURE_PATTERNS.items():
         if match := pattern.search(text):
-            raise RuntimeError(f"{source}: age-privacy violation ({label}): {match.group(0)}")
-    if public_profile and (match := EARLY_PUBLIC_PROJECT_YEAR.search(text)):
-        raise RuntimeError(f"{source}: revealing early-project chronology: {match.group(0)}")
+            raise RuntimeError(f"{source}: explicit age-privacy violation ({label}): {match.group(0)}")
 
 
 FORBIDDEN_SCRIPT_MARKERS = ["textContent =", "innerHTML =", "createTreeWalker", "availabilityReplacements"]
@@ -83,8 +78,12 @@ def html_files(data: dict) -> list[Path]:
 def validate_source_of_truth(data: dict) -> None:
     write_or_check(build_outputs(data), check=True)
     serialized = json.dumps(data, ensure_ascii=False)
+    for lang in ("ru", "en"):
+        education = data["person"][f"education_{lang}"]
+        if re.search(r"\b(?:19|20)\d{2}\b", education):
+            raise RuntimeError(f"Public HSE education must not show dates ({lang})")
     for field in ("person", "profiles", "recognition", "trajectory", "profile_ui", "landing"):
-        validate_age_privacy(json.dumps(data[field], ensure_ascii=False), f"data/site.json:{field}", public_profile=True)
+        validate_age_privacy(json.dumps(data[field], ensure_ascii=False), f"data/site.json:{field}")
     for marker in FORBIDDEN_HIGH_RISK_CLAIM_MARKERS:
         if marker in serialized:
             raise RuntimeError(f"Render source contains evidence-bounded forbidden claim: {marker}")
@@ -201,7 +200,7 @@ def validate_html(data: dict) -> set[str]:
         if not path.exists():
             raise RuntimeError(f"Missing generated page: {path.relative_to(ROOT)}")
         raw = path.read_text(encoding="utf-8")
-        validate_age_privacy(raw, str(path.relative_to(ROOT)), public_profile=path.parent == ROOT and path.name != "index.html")
+        validate_age_privacy(raw, str(path.relative_to(ROOT)))
         for marker in STALE_MARKERS:
             if marker.casefold() in raw.casefold():
                 raise RuntimeError(f"{path.relative_to(ROOT)}: stale marker {marker!r}")
@@ -300,7 +299,7 @@ def validate_pdfs(data: dict, pdf_dir: Path) -> list[dict[str, object]]:
                 raise RuntimeError(f"{path.name}: expected one page")
             page = doc[0]
             text = normalized(page.get_text("text"))
-            validate_age_privacy(text, path.name, public_profile=True)
+            validate_age_privacy(text, path.name)
             if profile["role"].casefold() not in text.casefold():
                 raise RuntimeError(f"{path.name}: role mismatch")
             for marker in STALE_MARKERS:

@@ -35,12 +35,12 @@ All profiles share canonical facts from `data/site.json`; they differ only in ev
 
 See [the claim matrix and before/after analysis](knowledge/cv-transformation-report-2026-10-11.md).
 
-## Age privacy (mandatory for every public CV)
+## Age privacy and evidence retention (public CV policy)
 
-- Do not disclose birth date, age, school/pupil status, or expected graduation years in the public website, any RU/EN profile, or the generated PDFs.
-- Use an age-neutral `MR` monogram instead of a personal portrait on public CV pages: facial appearance can reveal approximate age even when prose does not.
-- Avoid youth-only competition names and dated school-age distinctions in public CV copy. Preserve their exact historical evidence in the research knowledge base, not in the application document.
-- Present HSE Software Engineering without attendance/graduation years; present professional roles with real dates (ISP RAS starts October 2026), since actual employment timing is legitimate evidence.
-- Describe earlier compiler/runtime engineering by technical progression, not a dated childhood timeline.
-- Keep technical accomplishments and independently supportable adult/professional recognitions (MCST, LangDev, HSE open-source, Baltic diploma) prominent; never fabricate or rename a specific award to disguise its nature.
-- The `tools/validate_cv.py` age-privacy gate checks canonical public data, all rendered HTML pages, and all 20 PDF text layers. A check cannot guarantee that an outside linked repository or an external result page does not reveal personal context.
+- Never publish age, date of birth, a school name, or an explicit school-age status in application CVs or PDFs.
+- **Do retain real years of professional experience, competitions and historical software projects.** Their timelines are credible evidence and should not be deleted just to obscure a possible age inference.
+- **Do retain the original names and verified scope of youth competitions** (including MEPhI Junior / «Юниор» and Vysshaya Proba / «Высшая проба»). These are achievements, not a statement of the applicant's age; do not mislabel or invent results.
+- **HSE University is the exception:** give the institution and Software Engineering program **without enrollment, attendance, or expected graduation years** in RU/EN public CVs.
+- Preserve the stronger engineering-oriented Quant Research summary rather than foregrounding a student's age/status.
+- Continue using a neutral `MR` identity mark instead of a portrait; the applicant asked to restore years and awards, not a personal photo.
+- `tools/validate_cv.py` protects against explicit age disclosures and years in the public HSE education field while allowing historical project years and genuine competition names in source, all generated HTML and PDF text layers. External linked pages and Git history are outside this public-CV guarantee.
