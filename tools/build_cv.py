@@ -10,7 +10,7 @@ from weasyprint import HTML
 from build_site import ROOT, build_outputs, load_data, write_or_check
 
 
-def validate_pdf(path: Path, expected_role: str) -> dict[str, object]:
+def validate_pdf(path: Path, expected_role: str, expected_projects: list[str], expected_education: str) -> dict[str, object]:
     doc = fitz.open(path)
     if doc.page_count != 1:
         raise RuntimeError(f"{path.name}: expected one page, got {doc.page_count}")
@@ -23,6 +23,16 @@ def validate_pdf(path: Path, expected_role: str) -> dict[str, object]:
         raise RuntimeError(f"{path.name}: role missing from text layer")
     if len(text.strip()) < 1100:
         raise RuntimeError(f"{path.name}: weak text layer ({len(text)})")
+    # A fixed-height print container can silently clip content while still yielding
+    # a valid, one-page A4 PDF. Assert that every selected project and education
+    # actually survived rendering into the selectable text layer.
+    extracted = " ".join(text.split()).casefold()
+    for project_title in expected_projects:
+        if " ".join(project_title.split()).casefold() not in extracted:
+            raise RuntimeError(f"{path.name}: project missing from text layer: {project_title}")
+    if " ".join(expected_education.split()).casefold() not in extracted:
+        raise RuntimeError(f"{path.name}: education missing from text layer")
+
     sizes = [
         span["size"]
         for block in page.get_text("dict")["blocks"] if "lines" in block
@@ -64,7 +74,8 @@ def main() -> None:
             html_path = ROOT / profile["filename"]
             pdf_path = args.output_dir / profile["pdf"]
             HTML(filename=str(html_path), base_url=str(ROOT)).write_pdf(str(pdf_path))
-            result = validate_pdf(pdf_path, profile["role"])
+            expected_titles = [data["projects"][project_id]["title"] for project_id in profile["project_ids"][:int(profile.get("print_project_limit", 3))]]
+            result = validate_pdf(pdf_path, profile["role"], expected_titles, data["person"][f"education_{lang}"])
             if args.evidence_dir:
                 doc = fitz.open(pdf_path)
                 pix = doc[0].get_pixmap(matrix=fitz.Matrix(1.6, 1.6), alpha=False)
