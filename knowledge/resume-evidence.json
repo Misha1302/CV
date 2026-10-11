@@ -87,9 +87,9 @@
     },
     {
       "id": "experience_isp_ras_2026",
-      "category": "opportunity",
-      "name": "ISP RAS — SharpChecker student track / static-analysis selection",
-      "time": "2026",
+      "category": "professional_experience",
+      "name": "ISP RAS — SharpChecker, symbolic computation",
+      "time": "2026 — present (exact start date not provided)",
       "evidence_level": [
         "PRIVATE_DOCUMENT",
         "USER_ATTESTED",
@@ -99,32 +99,37 @@
         "https://github.com/Misha1302/DerefAfterNullAnalyzer"
       ],
       "claims": {
-        "safe_ru": "В 2026 выполнил тестовое задание ИСП РАН по C#/.NET static analysis (DerefAfterNullAnalyzer) и получил оффер; по состоянию на 10 октября работу ещё не начал.",
-        "safe_en": "In 2026 I completed an ISP RAS C#/.NET static-analysis selection task (DerefAfterNullAnalyzer) and received an offer; as of 10 October I had not started the role."
+        "safe_ru": "Работаю в ИСП РАН над символьными вычислениями в SharpChecker, инструменте статического анализа C#/.NET. Конкретные методы, вклад и точная дата начала работы пока не уточнены.",
+        "safe_en": "I work on symbolic computation in SharpChecker, a C#/.NET static-analysis tool, at ISP RAS. Specific methods, contributions, and exact start date have not yet been provided."
       },
       "recruiter_signals": [
-        "static-analysis selection signal",
-        "C#/.NET",
-        "Roslyn program analysis"
+        "current professional experience in static analysis (user-confirmed)",
+        "symbolic computation in SharpChecker (user-confirmed)",
+        "C#/.NET static analysis",
+        "prior Roslyn CFG analyzer as separate selection task"
       ],
       "role_fit": [
         "program_analysis",
-        "compiler"
+        "compiler",
+        "general",
+        "architecture",
+        "backend",
+        "systems"
       ],
-      "resume_priority": "CONDITIONAL",
+      "resume_priority": "VERY_HIGH",
       "gaps": [
-        "Actual start date if/when the role begins",
-        "canonical title",
-        "first completed/shareable work"
+        "Exact employment start date",
+        "Canonical/formal job title",
+        "Specific symbolic-computation methods and shareable completed work",
+        "Independent public documentation of current individual role"
       ],
-      "status": "SELECTION_TASK_COMPLETED__OFFER_RECEIVED__NOT_STARTED",
+      "status": "ACTIVE_WORK__USER_CONFIRMED_2026_10_11",
       "strongest_evidence": [
-        "Direct organizer correspondence describes the ISP RAS student-group process and assigns the DEREF_AFTER_NULL Roslyn detector task.",
-        "The public DerefAfterNullAnalyzer repository implements a Roslyn CFG fixed-point null-state analysis with tests.",
-        "Later user-provided career context reports an offer, while later records still lack a confirmed start date/title/completed work.",
-        "On 2026-10-10 the user explicitly confirmed that the offer was received and that work had not yet started."
+        "On 2026-10-11 the user explicitly confirmed they actually work at ISP RAS on SharpChecker with symbolic computation. This supersedes the 2026-10-10 pre-start status.",
+        "Direct earlier organizer correspondence and DerefAfterNullAnalyzer repository establish the prior selection task, but are distinct from the current job.",
+        "No permission yet to identify internal algorithmic details or outcomes; precise start date/title remain unstated."
       ],
-      "resume_use": "May state 'received an offer from ISP RAS' as user-attested. Do not list ISP RAS as current employment before an actual start."
+      "resume_use": "List ISP RAS / SharpChecker as current professional experience, citing USER_ATTESTED for the employment and symbolic-computation scope. Do not assert unconfirmed implementation details, exact employment date or formal title. Keep prior independent Roslyn selection task separate."
     },
     {
       "id": "project_universaltoolchain",
@@ -1361,7 +1366,7 @@
         "PS-form",
         "ISP RAS selection task"
       ],
-      "level_for_resume": "strong project evidence; professional-employment claim not established"
+      "level_for_resume": "user-confirmed current professional role, method details not independently verified"
     },
     {
       "skill": "Algorithms",
@@ -1427,21 +1432,22 @@
       "Implemented runtime CIL generation and native x86-64 emission before entering professional compiler work.",
       "Designs and implements architecture-heavy C++/.NET systems.",
       "Presented at LangDev 2026 (public program + user-confirmed delivery).",
-      "MEPhI Junior: highest published Engineering Sciences total in 2025 (91/100) and second-highest in 2026 (96/100)."
+      "MEPhI Junior: highest published Engineering Sciences total in 2025 (91/100) and second-highest in 2026 (96/100).",
+      "Currently works at ISP RAS on SharpChecker symbolic computation (user-confirmed 2026-10-11; scope limited to the user's statement)."
     ],
     "can_say_with_qualifier": [
       "Several years of compiler engineering — qualify as personal/open-source projects followed by professional work.",
       "HSE open-source 1st place — user-confirmed; personalized public ranking artifact still pending.",
       "Baltic Grand Prize — user-confirmed and supported by the official final-news article, while the official protocol conflicts on Main-vs-Section labeling.",
       "PS-form ranked first / only 5.0 / only 104/104 — retain attribution to organizer results until primary result artifact is linked.",
-      "ISP RAS — selection task completed and offer received; role not started as of 2026-10-10.",
+      "Current ISP RAS work on SharpChecker symbolic computation — user-confirmed 2026-10-11; exact start date, formal title, and implementation details not yet verified.",
       "Vysshaya Proba prize-winner in Informatics and Industrial Programming — user-confirmed; exact primary result artifacts pending.",
       "VpnMediator used by dozens of real users — user-confirmed operational fact pending a dated anonymized usage artifact.",
       "Neyrmark 2025 — winner status, 10th place; user-confirmed pending the exact primary result artifact."
     ],
     "do_not_say": [
       "4 years of professional compiler experience.",
-      "Current ISP RAS / SharpChecker employee before an actual start.",
+      "Unverified exact ISP RAS employment start date, formal job title, production impact, or symbolic-execution/SMT techniques.",
       "Production-ready x86-64 backend.",
       "UniversalToolchain is a production universal compiler platform.",
       "Wist is generally as fast as C#.",
@@ -1465,7 +1471,7 @@
     "Re-run historical commit archaeology for exact earliest dates before using dates as headline marketing copy.",
     "If VpnMediator's 'dozens of active users' becomes a headline metric, add an anonymized dated usage snapshot.",
     "Add exact dated student count/period only if teaching is presented quantitatively.",
-    "If/when the ISP RAS role starts, ingest actual start date, canonical title, and first completed/shareable work before listing it as employment.",
+    "For the now user-confirmed active ISP RAS role, obtain exact start date, canonical title, and first completed/shareable work to strengthen the claim.",
     "Resolve the Baltic Main-Prize vs Section-Prize public-source conflict with the diploma/photo or organizer clarification; user currently confirms Grand Prize.",
     "Ingest a personalized organizer artifact for HSE open-source 2026 if 1st place is to be independently public-verifiable.",
     "Add LangDev event photos/recording/organizer recap if delivered-talk status is to be independently public-verifiable rather than user-confirmed + publicly scheduled.",
@@ -1581,7 +1587,7 @@
         "fixed point",
         "interprocedural effects",
         "conservative yes/no/maybe semantics",
-        "ISP RAS selection task may be a supporting signal, not employment"
+        "ISP RAS selection task is distinct from currently user-confirmed SharpChecker employment"
       ],
       "avoid": "Do not imply alias/points-to or interprocedural support in DerefAfterNull."
     },

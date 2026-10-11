@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - "refactor/**"
+      - "fix/**"
     paths:
       - "data/site.json"
       - "data/visual-baseline.json"

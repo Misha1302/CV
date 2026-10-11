@@ -1,5 +1,8 @@
 # Evidence-led CV transformation — 11 October 2026
 
+> **Correction, 2026-10-11 (user-confirmed):** The applicant **currently works at ISP RAS on SharpChecker, focused on symbolic computation**. Earlier paragraphs in this historical audit saying “offer / selection only / not employment” describe the evidence available at the time and have been superseded. Current `data/site.json` and `knowledge/resume-evidence.json` are the authoritative revised claims. Exact start date, formal title, internal algorithms, and measurable work outcomes are not supplied; avoid inventing them. This is separate from the earlier DerefAfterNullAnalyzer selection task.
+
+
 **Baseline:** `main` at `99fbea8cdb56de21a68306991e8e88853a05fad9` (10 Oct 2026).  
 **Scope:** canonical `data/site.json`, `knowledge/resume-evidence.json`, role targeting and generated RU/EN HTML/PDF assets.  
 **Evidence:** `Mikhail_Razakov_Project_Forensics_2026-10-10.md` (user-provided), existing `knowledge/achievement-audit-2026-10-10.md`, prior evidence map, and selected public source files.  

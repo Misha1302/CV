@@ -343,7 +343,7 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     proofs = "".join(f'<div class="pcv-proof"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["proofs"])
     proof_block = "" if is_compiler_print else f'<div class="pcv-proofs">{proofs}</div>'
     experiences = []
-    for item in profile["experience"][:3]:
+    for item in profile["experience"][:int(profile.get("print_experience_limit", 3))]:
         bullets = "".join(f"<li>{esc(text)}</li>" for text in item["bullets"][:2])
         experiences.append(f'<article class="pcv-entry"><div class="pcv-date">{esc(item["date"])}</div><div><h3>{esc(item["title"])}</h3><ul>{bullets}</ul></div></article>')
     experience_note = profile.get("experience_note")
