@@ -187,7 +187,8 @@
         },
         "show_trajectory": true,
         "experience_heading": "Профессиональный опыт",
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "show_portrait": false
       },
       "en": {
         "filename": "en.html",
@@ -284,7 +285,8 @@
         },
         "show_trajectory": true,
         "experience_heading": "Professional Experience",
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "show_portrait": false
       }
     },
     "compiler": {
@@ -378,7 +380,7 @@
             "result": "Независимая проверка плана и точной идентичности пакетов; манифест из 1 324 тестов на ревизии октября 2026."
           }
         },
-        "show_portrait": true,
+        "show_portrait": false,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "compiler_layout": true,
@@ -480,7 +482,7 @@
             "result": "Independent plan verification and exact package-manifest identity; 1,324-test manifest at the inspected October 2026 revision."
           }
         },
-        "show_portrait": true,
+        "show_portrait": false,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "compiler_layout": true,
@@ -581,7 +583,8 @@
           }
         },
         "experience_heading": "Профессиональный опыт и клиентская работа",
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "show_portrait": false
       },
       "en": {
         "filename": "en-backend.html",
@@ -670,7 +673,8 @@
           }
         },
         "experience_heading": "Professional experience & client work",
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "show_portrait": false
       }
     },
     "systems": {
@@ -746,7 +750,8 @@
         "updated_at": "2026-10-11",
         "print_recognition_limit": 2,
         "print_spacious": true,
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "show_portrait": false
       },
       "en": {
         "filename": "en-cpp-systems.html",
@@ -820,7 +825,8 @@
         "updated_at": "2026-10-11",
         "print_recognition_limit": 2,
         "print_spacious": true,
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "show_portrait": false
       }
     },
     "quant": {
@@ -895,7 +901,8 @@
         "print_project_limit": 3,
         "updated_at": "2026-10-11",
         "print_spacious": true,
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "show_portrait": false
       },
       "en": {
         "filename": "en-quant.html",
@@ -968,7 +975,8 @@
         "print_project_limit": 3,
         "updated_at": "2026-10-11",
         "print_spacious": true,
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "show_portrait": false
       }
     },
     "quantdev": {
@@ -1043,7 +1051,8 @@
         "print_project_limit": 3,
         "updated_at": "2026-10-11",
         "print_spacious": true,
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "show_portrait": false
       },
       "en": {
         "filename": "en-quant-dev.html",
@@ -1116,7 +1125,8 @@
         "print_project_limit": 3,
         "updated_at": "2026-10-11",
         "print_spacious": true,
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "show_portrait": false
       }
     },
     "compiler_backend": {
@@ -1208,7 +1218,7 @@
             "result": "1 324/1 324 теста; interpreter/CIL parity и проверка конфигурации до runtime."
           }
         },
-        "show_portrait": true,
+        "show_portrait": false,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "show_trajectory": true,
@@ -1303,7 +1313,7 @@
             "result": "1,324/1,324 tests; interpreter/CIL parity and configuration checks before runtime."
           }
         },
-        "show_portrait": true,
+        "show_portrait": false,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "show_trajectory": true,
@@ -1399,7 +1409,7 @@
             "result": "Проверяю выводы точным оракулом на малых областях и случайными/метаморфными тестами, не подменяя недостаток доказательств угадыванием."
           }
         },
-        "show_portrait": true,
+        "show_portrait": false,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "show_trajectory": true,
@@ -1493,7 +1503,7 @@
             "result": "Compared results with an exact small-domain oracle and randomized/metamorphic checks to preserve correctness under incomplete evidence."
           }
         },
-        "show_portrait": true,
+        "show_portrait": false,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "show_trajectory": true,
@@ -1591,7 +1601,7 @@
             "result": "Поддерживает method/property/index/event dereferences и invalidation после assignment/ref/out; отдельные analyzer tests используют Microsoft.CodeAnalysis.CSharp.Testing."
           }
         },
-        "show_portrait": true,
+        "show_portrait": false,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "experience_heading": "Профессиональный опыт",
@@ -1690,7 +1700,7 @@
             "result": "Handles method/property/index/event dereferences and invalidation after assignment/ref/out; dedicated analyzer tests use Microsoft.CodeAnalysis.CSharp.Testing."
           }
         },
-        "show_portrait": true,
+        "show_portrait": false,
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "experience_heading": "Professional experience",
@@ -1772,7 +1782,7 @@
         "contact_heading": "Целевые роли: Software / Systems Engineer · Infrastructure / Platform · Compiler / Runtime",
         "footer": "Software Engineer — Systems & Architecture",
         "print_project_limit": 3,
-        "show_portrait": true,
+        "show_portrait": false,
         "portrait_asset": "assets/portrait.jpg",
         "updated_at": "2026-10-11",
         "project_summaries": {
@@ -1864,7 +1874,7 @@
         "contact_heading": "Target roles: Software / Systems Engineer · Infrastructure / Platform · Compiler / Runtime",
         "footer": "Software Engineer — Systems & Architecture",
         "print_project_limit": 3,
-        "show_portrait": true,
+        "show_portrait": false,
         "portrait_asset": "assets/portrait.jpg",
         "updated_at": "2026-10-11",
         "project_summaries": {
