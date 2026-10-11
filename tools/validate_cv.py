@@ -71,6 +71,9 @@ def validate_source_of_truth(data: dict) -> None:
     isp_fact = data.get("experience_facts", {}).get("isp_ras", {})
     if isp_fact.get("status") != "USER_CONFIRMED_ACTIVE":
         raise RuntimeError("ISP RAS experience fact must reflect confirmed current work")
+    expected_start_month = {"ru": "октябрь 2026 — настоящее время", "en": "October 2026 — present"}
+    if isp_fact.get("date_ru") != expected_start_month["ru"] or isp_fact.get("date_en") != expected_start_month["en"]:
+        raise RuntimeError("ISP RAS start month must be October 2026 in both locales")
     for key, localized in data["profiles"].items():
         for lang in ("ru", "en"):
             profile = localized[lang]
@@ -78,6 +81,8 @@ def validate_source_of_truth(data: dict) -> None:
             if len(rows) != 1 or profile["experience"][0] is not rows[0]:
                 raise RuntimeError(f"{key}/{lang}: missing or duplicate active ISP RAS entry")
             item = rows[0]
+            if item["date"] != expected_start_month[lang]:
+                raise RuntimeError(f"{key}/{lang}: ISP RAS start month mismatch")
             text = " ".join([item["title"], item["org"], *item["bullets"]]).lower()
             if "sharpchecker" not in text or ("символьн" if lang == "ru" else "symbolic") not in text:
                 raise RuntimeError(f"{key}/{lang}: SharpChecker symbolic-computation scope missing")
