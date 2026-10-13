@@ -300,6 +300,8 @@ def validate_html(data: dict) -> set[str]:
     en_page = data["profiles"]["architecture"]["en"]["filename"]
     if not landing_soup.select_one(f'header a[aria-label="English version of the universal CV"][href="{en_page}"]'):
         raise RuntimeError("Landing: English switch must point to universal English CV")
+    if not landing_soup.select_one(f'.mobile-panel a[href="{en_page}"]'):
+        raise RuntimeError("Landing: mobile menu must expose universal English CV")
     for key in data["profile_order"]:
         for lang in ("ru", "en"):
             profile = data["profiles"][key][lang]
@@ -364,6 +366,8 @@ def validate_pdfs(data: dict, pdf_dir: Path) -> list[dict[str, object]]:
             links = [link.get("uri") for link in page.get_links() if link.get("uri")]
             if len(links) < 3:
                 raise RuntimeError(f"{path.name}: too few links")
+            if key == "architecture" and data["site_url"] not in links:
+                raise RuntimeError(f"{path.name}: universal PDF must link to its full portfolio")
             results.append({"file": path.name, "text_chars": len(text), "links": len(links)})
     return results
 
