@@ -44,3 +44,26 @@ See [the claim matrix and before/after analysis](knowledge/cv-transformation-rep
 - Preserve the stronger engineering-oriented Quant Research summary rather than foregrounding a student's age/status.
 - Continue using a neutral `MR` identity mark instead of a portrait; the applicant asked to restore years and awards, not a personal photo.
 - `tools/validate_cv.py` protects against explicit age disclosures and years in the public HSE education field while allowing historical project years and genuine competition names in source, all generated HTML and PDF text layers. External linked pages and Git history are outside this public-CV guarantee.
+
+
+## Universal positioning revision — 2026-10-13
+
+The canonical broad CV remains `Software Engineer — Systems & Architecture`.
+The landing hero now leads with professional experience (ISP RAS/MCST),
+end-to-end projects and the delivered LangDev talk, rather than internal
+compiler planning terminology or an isolated test count.
+
+Four discoverable specialist routes are shown on the landing page:
+.NET Backend / Reliability; C++ / Systems; Compiler Infrastructure;
+Static / Program Analysis. All other role-specific URLs remain unchanged.
+The language toggle from the Russian landing must point to
+`en-architecture.html`, not the narrow compiler-infrastructure `en.html`.
+
+The universal one-page PDFs drop compiler-only chronology and retain
+three distinct projects: UniversalToolchain, botay!, VpnMediator.
+Employer, selection and talk claims preserve their underlying evidence
+boundaries. Compiler-only, quant and protection variants remain available
+for targeted applications rather than being advertised as equal expertise.
+
+No unsupported production scale, formal verification, senior/staff
+architecture authority, or broad finance specialism has been introduced.

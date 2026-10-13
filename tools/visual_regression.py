@@ -98,6 +98,7 @@ def page_metrics(page: Page) -> dict[str, object]:
           contactPanels: document.querySelectorAll('main .contact-panel').length,
           profileCards: document.querySelectorAll('main .profile-card').length,
         },
+        landingCards: document.querySelectorAll('#profiles .selector-card').length,
         offenders: JSON.stringify(offenders),
       };
     }""")
@@ -105,6 +106,8 @@ def page_metrics(page: Page) -> dict[str, object]:
 
 def capture(browser: Browser, base_url: str, output_dir: Path, cases: list[tuple[str, str, int, int, bool]]) -> dict[str, dict[str, object]]:
     results: dict[str, dict[str, object]] = {}
+    data = load_data()
+    expected_cards = len(data.get('selector_order', data['profile_order'])) - 1
     for filename, mode, width, height, js_enabled in cases:
         context = browser.new_context(
             viewport={"width": width, "height": height},
@@ -136,6 +139,8 @@ def capture(browser: Browser, base_url: str, output_dir: Path, cases: list[tuple
             raise RuntimeError(f"Overflowing elements {filename}/{mode}: {metrics['offenders']}")
         if not metrics["h1"]:
             raise RuntimeError(f"Missing H1 without JS: {filename}/{mode}")
+        if filename == 'index.html' and metrics['landingCards'] != expected_cards:
+            raise RuntimeError(f"Landing direction cards lost on {mode}: {metrics}")
         if filename != "index.html" and not metrics["role"]:
             raise RuntimeError(f"Missing visible role: {filename}/{mode}")
         png = page.screenshot(full_page=(mode != "no-js"), timeout=15000)

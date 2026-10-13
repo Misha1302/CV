@@ -132,6 +132,47 @@ def validate_source_of_truth(data: dict) -> None:
             raise RuntimeError(f"Legacy generated artifacts remain for {pattern}: {[p.name for p in matches]}")
 
 
+def validate_universal_positioning(data: dict) -> None:
+    """Cross-check the broad CV, audience routes and retained evidence boundaries."""
+    if data.get("canonical_profile") != "architecture":
+        raise RuntimeError("Universal Software Engineer must remain the canonical profile")
+    expected = ["architecture", "backend", "systems", "general", "program_analysis"]
+    if data.get("selector_order") != expected or len(set(expected)) != len(expected):
+        raise RuntimeError("Landing routes must include four distinct engineering audiences")
+    selected = data["profiles"]["architecture"]
+    for lang in ("ru", "en"):
+        profile = selected[lang]
+        text = " ".join([profile["summary"], profile["description"], *[v for pair in profile["proofs"] for v in pair]])
+        required = ("ИСП РАН", "МЦСТ", "LLVM", "UniversalToolchain", "botay", "LangDev") if lang == "ru" else ("ISP RAS", "MCST", "LLVM", "UniversalToolchain", "botay", "LangDev")
+        for item in required:
+            if item.casefold() not in text.casefold():
+                raise RuntimeError(f"Universal {lang} missing cross-domain evidence: {item}")
+        if "Software Engineer" not in profile["role"]:
+            raise RuntimeError(f"Universal {lang} profile lost software engineering positioning")
+        if profile.get("project_ids")[:3] != ["wist", "botay", "vpn"]:
+            raise RuntimeError(f"Universal {lang}: projects must span compiler, product and backend")
+        if profile.get("print_show_trajectory") is not False:
+            raise RuntimeError(f"Universal {lang}: compiler-only chronology should not dominate PDF")
+        if len(profile.get("proofs", [])) != 3:
+            raise RuntimeError(f"Universal {lang}: expected three distinct proof pillars")
+        for item in profile["experience"]:
+            if item.get("fact_ref") not in data.get("experience_facts", {}):
+                raise RuntimeError(f"Universal {lang}: experience has no canonical fact reference")
+        for key in expected:
+            route = data["profiles"][key][lang]
+            if route["filename"] == profile["filename"] and key != "architecture":
+                raise RuntimeError(f"Universal {lang}: specialist route aliases canonical page")
+    # Do not reclassify a private selection result as public certification.
+    for lang in ("ru", "en"):
+        proof = selected[lang]["proofs"][-1][1].casefold()
+        if ("письму организатора" if lang == "ru" else "organizer correspondence") not in proof:
+            raise RuntimeError(f"Universal {lang}: MCST result must keep private attribution")
+    if "июль" not in selected["ru"]["experience"][1]["date"] or "July" not in selected["en"]["experience"][1]["date"]:
+        raise RuntimeError("MCST internship dates no longer grounded")
+    if "Senior" in selected["en"]["role"] or "Architect" == selected["en"]["role"]:
+        raise RuntimeError("Unsupported senior architecture job title")
+
+
 def validate_script() -> None:
     script = (ROOT / "script.js").read_text(encoding="utf-8")
     for marker in FORBIDDEN_SCRIPT_MARKERS:
@@ -244,6 +285,21 @@ def validate_html(data: dict) -> set[str]:
                 raise RuntimeError(f"{path.relative_to(ROOT)}: local accessible portrait missing")
             if not show_portrait and img:
                 raise RuntimeError(f"{path.relative_to(ROOT)}: portrait present despite show_portrait=false")
+    landing_soup = BeautifulSoup((ROOT / "index.html").read_text(encoding="utf-8"), "html.parser")
+    wanted_cards = len(data["selector_order"]) - 1
+    cards = landing_soup.select("#profiles .selector-card")
+    if len(cards) != wanted_cards:
+        raise RuntimeError(f"Landing: expected {wanted_cards} specialist cards, got {len(cards)}")
+    for key in data["selector_order"]:
+        if key == data["canonical_profile"]:
+            continue
+        for lang in ("ru", "en"):
+            filename = data["profiles"][key][lang]["filename"]
+            if not landing_soup.select_one(f'#profiles a[href="{filename}"]'):
+                raise RuntimeError(f"Landing: missing {lang} route to {key}: {filename}")
+    en_page = data["profiles"]["architecture"]["en"]["filename"]
+    if not landing_soup.select_one(f'header a[aria-label="English version of the universal CV"][href="{en_page}"]'):
+        raise RuntimeError("Landing: English switch must point to universal English CV")
     for key in data["profile_order"]:
         for lang in ("ru", "en"):
             profile = data["profiles"][key][lang]
@@ -365,6 +421,7 @@ def main() -> None:
 
     data = load_data()
     validate_source_of_truth(data)
+    validate_universal_positioning(data)
     validate_script()
     external = validate_html(data)
     link_results = []
