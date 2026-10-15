@@ -1587,18 +1587,18 @@
         "project_summaries": {
           "globaliv": {
             "type": "C++23 · LLVM 22 · interprocedural analysis · legality",
-            "solution": "LLVM 22 pass локализует поддерживаемые induction-like global variables после межпроцедурного анализа эффектов и аффинной эволюции с отдельным решением о допустимости; APInt моделирует fixed-width wraparound.",
-            "result": "29 позитивных и негативных regression cases: global-iv,verify, структурные ожидания, идемпотентность и сравнение наблюдаемого поведения до/после transformation."
+            "solution": "Плагин LLVM 22 переносит поддерживаемые глобальные переменные цикла в локальное хранение только после анализа эффектов вызовов и проверки допустимости; APInt учитывает переполнение фиксированной разрядности.",
+            "result": "29 положительных и отрицательных сценариев: LLVM Verifier, структура IR, идемпотентность и сравнение поведения программы до и после преобразования."
           },
           "codegen": {
             "type": "Rust · compiler backend · register allocation · SysV x86-64",
-            "solution": "Compiler backend с SSA/CFG validation, анализом живости и интерференции, linear-scan и seeded simulated-annealing allocators, spills, phi lowering и SysV x86-64 emitter.",
-            "result": "Независимый verifier раскладки и native-vs-interpreter differential execution; тесты покрывают ветвления, циклы, spills и parallel phi moves."
+            "solution": "Backend на Rust: проверка SSA/CFG, анализ живости, linear scan и simulated annealing для распределения регистров, spills, понижение phi и генерация SysV x86-64.",
+            "result": "Независимая проверка назначений регистров и сравнение машинного исполнения с интерпретатором; тесты на ветвления, циклы, spills и параллельные phi-переносы."
           },
           "deref": {
             "type": "C# · Roslyn · program analysis · fixed-point data-flow",
-            "solution": "Roslyn ControlFlowGraph analyzer распространяет null-state по conditional edges до неподвижной точки, обрабатывает loops/back edges и объединяет состояния нескольких predecessors.",
-            "result": "Поддерживает method/property/index/event dereferences и invalidation после assignment/ref/out; отдельные analyzer tests используют Microsoft.CodeAnalysis.CSharp.Testing."
+            "solution": "Анализатор Roslyn CFG распространяет null-состояния по ветвям до неподвижной точки, учитывает обратные рёбра циклов и объединяет состояния предшественников.",
+            "result": "Проверяет разыменования через методы, свойства, индексацию и события; сбрасывает знания после присваивания и ref/out, проверяется отдельными тестами Roslyn."
           }
         },
         "show_portrait": false,
@@ -1965,8 +1965,8 @@
       "problem_en": "The task is to conservatively determine whether two parametric memory accesses can overlap without enumerating large value domains.",
       "solution_ru": "Для аффинной разности адресов считаю пары итераций без полного перебора; модульные проверки и НОД доказывают часть случаев независимости, а неизвестные остаются maybe.",
       "solution_en": "Counts iteration pairs exactly for supported affine address differences; modular/GCD conditions prove selected disjointness cases, while unresolved symbolic inputs remain maybe.",
-      "result_ru": "Точный оракул на малых областях и randomized/metamorphic harness проверяют yes/no; поиск свидетеля может подтвердить yes, но неудача не доказывает no.",
-      "result_en": "An exact small-domain oracle and randomized/metamorphic harness check yes/no; a verified witness can establish yes, but a failed search cannot prove no.",
+      "result_ru": "Точный подсчёт пар итераций в аффинных случаях и модульные/НОД-доказательства независимости; yes/no проверяются независимым оракулом и метаморфными тестами, неопределённость — maybe.",
+      "result_en": "Exact affine iteration-pair counting and modular/GCD disjointness proofs; yes/no cross-checked with a small-domain oracle and metamorphic tests, unresolved cases remain maybe.",
       "repo": "https://github.com/Misha1302/ps_form_analizer",
       "case_ru": "cases/ru-ps-form.html",
       "case_en": "cases/en-ps-form.html",
