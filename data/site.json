@@ -1,6 +1,6 @@
 {
-  "version": "2026-10-13-universal-positioning",
-  "updated_at": "2026-10-13",
+  "version": "2026-10-16-algorithms-architecture-correctness",
+  "updated_at": "2026-10-16",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -163,11 +163,11 @@
         "footer": "Compiler Infrastructure / Language Tooling Engineer",
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "project_summaries": {
           "wist": {
             "type": ".NET · инфраструктура компилятора и языков · детерминированная композиция",
-            "solution": "Модули языка разрешают зависимости и конфликты, однозначно выбирают реализации требуемых возможностей и runtime-компонентов, получают детерминированный порядок проходов и типизированные маршруты артефактов до создания runtime.",
+            "solution": "Разрешаю зависимости, конфликты и маршруты backend в неизменяемом LanguagePlan. Отдельный verifier проверяет план, а runtime не повторяет семантический выбор.",
             "result": "Текущий manifest: 1 324/1 324 теста; отдельно проверяются совпадение результатов interpreter/CIL и целостность конфигурации до исполнения."
           },
           "globaliv": {
@@ -181,7 +181,7 @@
             "result": "Независимый verifier раскладки и differential execution: native-код сравнивается с эталонным интерпретатором; тесты покрывают ветвления, циклы, spills и parallel phi moves; отдельная публичная линия native-codegen начинается с Visk (2023) и Wist4 (2024)."
           },
           "planfuzz": {
-            "solution": "Проверяю не только программы, но и планы конфигурации toolchain: replay в отдельном процессе, стабильные fingerprints и минимизация контрпримеров.",
+            "solution": "Экспериментально проверяю программы и варианты конфигурации: изолированный replay, контрольные и fault-сценарии, минимизация контрпримеров с сохранением fingerprint.",
             "result": "Фиксированные fault/control корпусы и воспроизводимые артефакты помогают исследовать ошибки планирования без заявлений о формальной верификации."
           }
         },
@@ -261,11 +261,11 @@
         "footer": "Compiler Infrastructure / Language Tooling Engineer",
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "project_summaries": {
           "wist": {
             "type": ".NET · compiler/language infrastructure · deterministic composition",
-            "solution": "Language features resolve dependencies and conflicts, select capability/runtime providers, obtain deterministic contribution ordering, and build typed artifact routes before runtime materialization.",
+            "solution": "Resolve dependencies, conflicts, and backend routes into an immutable LanguagePlan. An independent verifier checks the plan; runtime does not repeat semantic selection.",
             "result": "Current manifest: 1,324/1,324 tests; dedicated checks cover interpreter/CIL parity and configuration integrity before execution."
           },
           "globaliv": {
@@ -279,7 +279,7 @@
             "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves; a separate public native-codegen lineage starts with Visk (2023) and Wist4 (2024)."
           },
           "planfuzz": {
-            "solution": "Fuzzed toolchain configuration plans—not just source programs—with fresh-process replay, stable fingerprints and reduced failures.",
+            "solution": "Experimental testing of programs and configuration plans: isolated replay, control/fault cases, and counterexample reduction that preserves failure fingerprints.",
             "result": "Frozen fault/control corpora and replayable artifacts make planning defects inspectable without claiming formal proof."
           }
         },
@@ -384,7 +384,7 @@
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "show_trajectory": true,
         "experience_heading": "Профессиональный опыт",
         "show_web_proofs": false,
@@ -486,7 +486,7 @@
         "portrait_asset": "assets/portrait.jpg",
         "print_project_limit": 3,
         "compiler_layout": true,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "show_trajectory": true,
         "experience_heading": "Professional Experience",
         "show_web_proofs": false,
@@ -573,7 +573,7 @@
         ],
         "contact_heading": "Целевые роли: .NET Backend / Platform Engineer с ответственностью за состояние, recovery и эксплуатационную корректность",
         "footer": "NET Backend / Platform Engineer · State & Reliability",
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "print_spacious": true,
         "print_project_limit": 3,
         "project_summaries": {
@@ -663,13 +663,13 @@
         ],
         "contact_heading": "Targeting .NET Backend / Platform Engineer roles with ownership of state, recovery, and operational correctness",
         "footer": ".NET Backend / Platform Engineer · State & Reliability",
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "print_spacious": true,
         "print_project_limit": 3,
         "project_summaries": {
           "botay": {
             "solution": "Built offline-first browser/Android operations with durable client IDs and atomic server replay records; conflicting lifecycle changes remain explicit.",
-            "result": "Exactly-once replay at the operation boundary and signed Android 0.8.3 release checks; external user count is not asserted."
+            "result": "Idempotent server-side operation replay and signed Android 0.8.3 release checks; no claim about external user count or network exactly-once delivery."
           }
         },
         "experience_heading": "Professional experience & client work",
@@ -685,7 +685,7 @@
         "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
         "brand": "C++23 · LLVM · x86-64 · algorithms",
         "eyebrow": "Compiler optimization · machine code · program analysis",
-        "summary": "Работаю с C++/LLVM и системными задачами: консервативные преобразования IR, генерация x86-64 и анализ зависимостей памяти. Проверяю реализацию независимыми оракулами, негативными тестами и сравнением исполнения.",
+        "summary": "Разрабатываю C++/LLVM и системные компоненты: безопасные преобразования IR, генерацию x86-64 и анализ зависимостей памяти. Для аффинных случаев использую точный подсчёт, для остальных — консервативные проверки и независимые тестовые оракулы.",
         "description": "C++ / Systems Engineer Михаил Разаков: C++23, LLVM 22, x86-64 code generation, register allocation, algorithms, program analysis и differential execution.",
         "proofs": [
           [
@@ -747,7 +747,7 @@
         "contact_heading": "Целевые роли: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
         "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
         "print_project_limit": 3,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "print_recognition_limit": 2,
         "print_spacious": true,
         "print_experience_limit": 2,
@@ -760,7 +760,7 @@
         "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
         "brand": "C++23 · LLVM · x86-64 · algorithms",
         "eyebrow": "Compiler optimization · machine code · program analysis",
-        "summary": "C++/systems engineer with LLVM 22 internship experience and hands-on compiler work. I implement conservative IR transformations, native x86-64 codegen and memory-dependence analysis, then validate them with independent oracles and negative cases.",
+        "summary": "I build C++/LLVM and low-level systems components: conservative IR transformations, x86-64 code generation, and memory-dependence analysis. Exact affine counting, bounded algorithms, and independent oracles constrain what the tools may claim.",
         "description": "Mikhail Razakov — C++ / Systems Engineer: C++23, LLVM 22, x86-64 code generation, register allocation, algorithms, program analysis, and differential execution.",
         "proofs": [
           [
@@ -822,7 +822,7 @@
         "contact_heading": "Target roles: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
         "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
         "print_project_limit": 3,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "print_recognition_limit": 2,
         "print_spacious": true,
         "print_experience_limit": 2,
@@ -899,7 +899,7 @@
         "contact_heading": "Целевые роли: Quantitative Research internships / research roles, где ценятся алгоритмы и строгая экспериментальная проверка",
         "footer": "Quantitative Research Candidate · C++ · Python",
         "print_project_limit": 3,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": false
@@ -973,7 +973,7 @@
         "contact_heading": "Target roles: Quantitative Research internships / research roles valuing algorithms and rigorous experimental validation",
         "footer": "Quantitative Research Candidate · C++ · Python",
         "print_project_limit": 3,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": false
@@ -987,7 +987,7 @@
         "role": "Quant Developer / Research Engineer | C++ · Python",
         "brand": "C++ · Python · алгоритмы · research engineering",
         "eyebrow": "Алгоритмы · экспериментальная проверка · correctness-critical systems",
-        "summary": "Research engineer с профессиональным compiler-опытом и сильной базой C++/Python и алгоритмов. Разрабатываю correctness-critical анализы и экспериментальную инфраструктуру: exact/reference oracles, differential/randomized/metamorphic testing, воспроизводимые harnesses и консервативные LLVM-преобразования.",
+        "summary": "Разрабатываю алгоритмы анализа программ и воспроизводимую исследовательскую инфраструктуру на C++ и Python. PS-form сочетает точный подсчёт для аффинных случаев с модульными доказательствами; корректность проверяю независимыми оракулами и метаморфными тестами.",
         "description": "Quant Developer / Research Engineer Михаил Разаков: C++, Python, LLVM, алгоритмы, program analysis, exact/reference oracles и воспроизводимая экспериментальная проверка.",
         "proofs": [
           [
@@ -1049,7 +1049,7 @@
         "contact_heading": "Целевые роли: Quant Developer · Research Engineer · Algorithm / Research Software Engineering",
         "footer": "Quant Developer / Research Engineer · C++ · Python",
         "print_project_limit": 3,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": false
@@ -1061,7 +1061,7 @@
         "role": "Quant Developer / Research Engineer | C++ · Python",
         "brand": "C++ · Python · algorithms · research engineering",
         "eyebrow": "Algorithms · experimental validation · correctness-critical systems",
-        "summary": "Research engineer with professional compiler experience and a strong C++/Python algorithms background. I build correctness-critical analyses and experimental infrastructure using exact/reference oracles, differential/randomized/metamorphic testing, reproducible harnesses, and conservative LLVM transformations.",
+        "summary": "I build algorithmic program analyses and reproducible research tooling in C++ and Python. PS-form combines exact affine counting with modular proofs; independent reference oracles and metamorphic tests check the results.",
         "description": "Mikhail Razakov — Quant Developer / Research Engineer: C++, Python, LLVM, algorithms, program analysis, exact/reference oracles, and reproducible experimental validation.",
         "proofs": [
           [
@@ -1123,7 +1123,7 @@
         "contact_heading": "Target roles: Quant Developer · Research Engineer · Algorithm / Research Software Engineering",
         "footer": "Quant Developer / Research Engineer · C++ · Python",
         "print_project_limit": 3,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": false
@@ -1132,14 +1132,14 @@
     "compiler_backend": {
       "ru": {
         "compiler_layout": true,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "filename": "ru-compiler-backend.html",
         "pdf": "Mikhail_Razakov_Compiler_Backend_RU.pdf",
         "title": "Михаил Разаков — Compiler Backend / Code Generation Engineer",
         "role": "Compiler Backend / Code Generation Engineer",
         "brand": "x86-64 backend · register allocation · LLVM · code generation",
         "eyebrow": "SSA/CFG · liveness/interference · register allocation · SysV x86-64",
-        "summary": "Compiler Backend / Code Generation Engineer с профессиональным LLVM 22/C++ опытом в МЦСТ. Практические proof points: SSA/CFG validation, liveness/interference, register allocation и spills, phi lowering, SysV x86-64 emission и native-vs-interpreter differential execution.",
+        "summary": "Разрабатываю backend компилятора: проверка SSA/CFG, анализ живости, распределение регистров, spills, phi lowering и генерация SysV x86-64. Проверяю назначения независимым verifier и сравниваю машинное исполнение с интерпретатором; ранее работал с LLVM 22/C++ в МЦСТ.",
         "description": "Михаил Разаков — Compiler Backend / Code Generation Engineer: SSA/CFG, liveness, register allocation, spills, phi lowering, SysV x86-64 и LLVM 22.",
         "proofs": [
           [
@@ -1227,14 +1227,14 @@
       },
       "en": {
         "compiler_layout": true,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "filename": "en-compiler-backend.html",
         "pdf": "Mikhail_Razakov_Compiler_Backend_EN.pdf",
         "title": "Mikhail Razakov — Compiler Backend / Code Generation Engineer",
         "role": "Compiler Backend / Code Generation Engineer",
         "brand": "x86-64 backend · register allocation · LLVM · code generation",
         "eyebrow": "SSA/CFG · liveness/interference · register allocation · SysV x86-64",
-        "summary": "Compiler Backend / Code Generation Engineer with professional LLVM 22/C++ experience at MCST. Practical proof points: SSA/CFG validation, liveness/interference, register allocation and spills, phi lowering, SysV x86-64 emission, and native-vs-interpreter differential execution.",
+        "summary": "I build compiler-backend components from SSA/CFG validation and liveness to register allocation, spills, phi lowering, and SysV x86-64 emission. I check assignments independently and compare native execution with a reference interpreter; earlier worked with LLVM 22/C++ at MCST.",
         "description": "Mikhail Razakov — Compiler Backend / Code Generation Engineer: SSA/CFG, liveness, register allocation, spills, phi lowering, SysV x86-64, and LLVM 22.",
         "proofs": [
           [
@@ -1324,7 +1324,7 @@
     "program_analysis": {
       "ru": {
         "compiler_layout": true,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "filename": "ru-program-analysis.html",
         "pdf": "Mikhail_Razakov_Program_Analysis_RU.pdf",
         "title": "Михаил Разаков — Static Analysis / Program Analysis Engineer",
@@ -1405,8 +1405,8 @@
             "result": "29 позитивных и негативных регрессионных сценариев: LLVM Verifier, структурные ожидания, идемпотентность и сравнение наблюдаемого поведения до/после преобразования."
           },
           "psform": {
-            "solution": "Создал C17-анализатор зависимостей памяти: арифметические методы доказывают пересечение или независимость там, где применимы, а в остальных случаях возвращают maybe.",
-            "result": "Проверяю выводы точным оракулом на малых областях и случайными/метаморфными тестами, не подменяя недостаток доказательств угадыванием."
+            "solution": "Реализовал C17-анализ зависимостей памяти: точный подсчёт пар итераций для аффинных случаев, модульные/НОД-доказательства независимости и консервативный maybe.",
+            "result": "Сопоставляю выводы с независимым точным оракулом для малых областей и проверяю случайными/метаморфными тестами; отсутствие свидетеля не становится доказательством no."
           }
         },
         "show_portrait": false,
@@ -1418,7 +1418,7 @@
       },
       "en": {
         "compiler_layout": true,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "filename": "en-program-analysis.html",
         "pdf": "Mikhail_Razakov_Program_Analysis_EN.pdf",
         "title": "Mikhail Razakov — Static Analysis / Program Analysis Engineer",
@@ -1499,8 +1499,8 @@
             "result": "29 positive/negative regression cases cover LLVM Verifier checks, structural expectations, idempotence, and observable before/after behavior."
           },
           "psform": {
-            "solution": "Built a C17 memory-dependence analyzer with conservative arithmetic reasoning: exact overlap/disjointness proofs where supported, and 'maybe' otherwise.",
-            "result": "Compared results with an exact small-domain oracle and randomized/metamorphic checks to preserve correctness under incomplete evidence."
+            "solution": "Built a C17 memory-dependence analyzer combining exact affine iteration-pair counting, modular/GCD disjointness proofs, and conservative maybe for unresolved cases.",
+            "result": "Cross-checks use an independent exact small-domain oracle and randomized/metamorphic cases; failure to find a witness never proves no."
           }
         },
         "show_portrait": false,
@@ -1514,7 +1514,7 @@
     "software_protection": {
       "ru": {
         "compiler_layout": true,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "publication_status": "SELECTIVE / EVIDENCE-LIMITED",
         "filename": "ru-software-protection.html",
         "pdf": "Mikhail_Razakov_Software_Protection_RU.pdf",
@@ -1522,7 +1522,7 @@
         "role": "Compiler / Software Protection Engineer",
         "brand": "LLVM · program analysis · low-level codegen · software protection",
         "eyebrow": "LLVM 22 · program analysis · x86-64 · bounded protection evidence",
-        "summary": "Инженер по компиляторам и анализу программ с профессиональным LLVM-опытом и текущей работой над символьными вычислениями в SharpChecker (ИСП РАН) и историческим Unity licensing-проектом. Сильнейшие проверяемые сигналы — LLVM legality/transformations, x86-64 codegen/register allocation и Roslyn data-flow; protection-опыт ограниченно заявлен как server-side key activation, лимиты активаций и интеграция с Unity-клиентом.",
+        "summary": "Работаю над символьными вычислениями в SharpChecker (ИСП РАН). В открытых проектах — LLVM-анализ и преобразования, x86-64 codegen и Roslyn CFG. Подтверждённый опыт software protection ограничен историческим Unity-проектом с серверной активацией ключей и лимитами активаций.",
         "description": "Михаил Разаков — selective Compiler / Software Protection Engineer: LLVM, program analysis, x86-64 codegen и bounded Unity licensing evidence.",
         "proofs": [
           [
@@ -1613,7 +1613,7 @@
       },
       "en": {
         "compiler_layout": true,
-        "updated_at": "2026-10-11",
+        "updated_at": "2026-10-16",
         "publication_status": "SELECTIVE / EVIDENCE-LIMITED",
         "filename": "en-software-protection.html",
         "pdf": "Mikhail_Razakov_Software_Protection_EN.pdf",
@@ -1621,7 +1621,7 @@
         "role": "Compiler / Software Protection Engineer",
         "brand": "LLVM · program analysis · low-level codegen · software protection",
         "eyebrow": "LLVM 22 · program analysis · x86-64 · bounded protection evidence",
-        "summary": "Compiler/program-analysis engineer with professional LLVM experience and current symbolic-computation work in SharpChecker at ISP RAS and a historical Unity licensing project. Strongest inspectable signals are LLVM legality/transformations, x86-64 codegen/register allocation, and Roslyn data flow; protection experience is deliberately bounded to server-side key activation, activation limits, and Unity-client integration.",
+        "summary": "I work on symbolic computation in SharpChecker at ISP RAS. Public projects cover LLVM analysis and transformations, x86-64 codegen, and Roslyn CFG. Software-protection evidence is limited to a historical Unity licensing prototype with server-side key activation and activation limits.",
         "description": "Mikhail Razakov — selective Compiler / Software Protection Engineer: LLVM, program analysis, x86-64 codegen, and bounded Unity licensing evidence.",
         "proofs": [
           [
@@ -1784,14 +1784,14 @@
         "print_project_limit": 3,
         "show_portrait": false,
         "portrait_asset": "assets/portrait.jpg",
-        "updated_at": "2026-10-13",
+        "updated_at": "2026-10-16",
         "project_summaries": {
           "wist": {
-            "solution": "Спроектировал модульную инфраструктуру компилятора и runtime: компоненты и их зависимости фиксируются в проверяемом плане до запуска.",
+            "solution": "Свёл зависимости, конфликты и выбор backend в неизменяемый LanguagePlan: runtime использует проверенный план без повторного выбора компонентов.",
             "result": "Работают frontend, IR, оптимизации, interpreter и CIL backend; независимая проверка конфигурации и 1 324 теста на ревизии 09.10.2026."
           },
           "botay": {
-            "solution": "Создал web/Android-планировщик с офлайн-очередью действий и раздельным хранением внешних событий, пользовательского состояния и планов.",
+            "solution": "Создал web/Android-планировщик: внешние наблюдения и данные пользователя отделены от планов; выполнимость расписания подтверждается проверенным вариантом.",
             "result": "Повторные операции обрабатываются идемпотентно; workflow подписанного Android-релиза 0.8.3 прошёл 10.10.2026."
           },
           "vpn": {
@@ -1876,14 +1876,14 @@
         "print_project_limit": 3,
         "show_portrait": false,
         "portrait_asset": "assets/portrait.jpg",
-        "updated_at": "2026-10-13",
+        "updated_at": "2026-10-16",
         "project_summaries": {
           "wist": {
-            "solution": "Designed a modular compiler/runtime platform that resolves component dependencies in a checked plan before execution.",
+            "solution": "Resolved component dependencies, conflicts, and backend routes into an immutable LanguagePlan; runtime materializes the checked selection without replanning.",
             "result": "Frontend, IR, optimization passes, interpreter and CIL backend; independent configuration checks and 1,324 tests at the 9 Oct 2026 revision."
           },
           "botay": {
-            "solution": "Built a web/Android planning app with offline actions and clear separation of external events, user state, and derived plans.",
+            "solution": "Built a web/Android planner separating external observations and user state from derived plans; feasible schedules require a validated witness.",
             "result": "Offline operations replay idempotently; the signed Android 0.8.3 release workflow passed on 10 Oct 2026."
           },
           "vpn": {
@@ -1963,10 +1963,10 @@
       "type_en": "C17 · program analysis · memory dependence",
       "problem_ru": "Нужно консервативно определить, могут ли два параметрических обращения к памяти пересечься, не перебирая большие области значений.",
       "problem_en": "The task is to conservatively determine whether two parametric memory accesses can overlap without enumerating large value domains.",
-      "solution_ru": "Нормализация, интервальные ограничения, сравнения по модулю и НОД, а также точный оракул для малых областей и метаморфные проверки.",
-      "solution_en": "Normalization, interval constraints, modular reasoning, gcd conditions, plus an exact oracle for small domains and metamorphic checks.",
-      "result_ru": "Консервативный результат yes/no/maybe с независимым exact oracle на малых областях, randomized/metamorphic проверками и воспроизводимыми контрпримерами.",
-      "result_en": "Conservative yes/no/maybe results checked by an independent exact oracle on small domains, randomized/metamorphic tests, and reproducible counterexamples.",
+      "solution_ru": "Для аффинной разности адресов считаю пары итераций без полного перебора; модульные проверки и НОД доказывают часть случаев независимости, а неизвестные остаются maybe.",
+      "solution_en": "Counts iteration pairs exactly for supported affine address differences; modular/GCD conditions prove selected disjointness cases, while unresolved symbolic inputs remain maybe.",
+      "result_ru": "Точный оракул на малых областях и randomized/metamorphic harness проверяют yes/no; поиск свидетеля может подтвердить yes, но неудача не доказывает no.",
+      "result_en": "An exact small-domain oracle and randomized/metamorphic harness check yes/no; a verified witness can establish yes, but a failed search cannot prove no.",
       "repo": "https://github.com/Misha1302/ps_form_analizer",
       "case_ru": "cases/ru-ps-form.html",
       "case_en": "cases/en-ps-form.html",
