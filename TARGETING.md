@@ -16,6 +16,8 @@
 - `Quant Developer / Research Engineer` and `Quant Research Candidate` — selective roles where algorithmic experimentation and reproducible validation are central.
 - `Compiler / Software Protection Engineer` — selective / evidence-limited; use only for directly relevant roles.
 
+For algorithm-oriented C++/research roles, PS-form offers a stronger differentiator than a generic algorithm list: exact affine iteration-pair counting, modular/GCD disjointness proofs, cost-guarded fallbacks, and independent small-domain oracles. In the broad architecture CV, keep the UniversalToolchain → botay! → VpnMediator triad and link to the algorithmic case rather than adding a fourth project.
+
 ## Systems & Architecture profile evidence order
 
 `UniversalToolchain -> botay! -> VpnMediator`. The profile proves architecture through a verified semantic-plan boundary, a user-facing offline web/Android product, and payment/access recovery semantics—not through design-pattern vocabulary or a seniority title. x86-64 codegen remains the stronger flagship for compiler-backend and systems vacancies.

@@ -31,6 +31,7 @@ Generated HTML and PDF files must not be edited manually.
 7. Static Analysis / Program Analysis Engineer
 8. Quant Developer / Research Engineer
 9. Quantitative Research / Research Software Engineering
+10. Compiler / Software Protection Engineer (selective; evidence-limited)
 
 The landing page uses Software Engineer — Systems & Architecture as the canonical identity and exposes role-specific alternatives. Compiler/runtime work remains a primary proof of technical depth, but it is not the site's only positioning axis. The architecture profile is deliberately a hands-on engineering profile rather than a `Software Architect` seniority claim. Profile navigation and landing-card labels are defined by the canonical `profile_ui` metadata in `data/site.json`. Older narrow URLs redirect to the nearest canonical profile.
 
