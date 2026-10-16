@@ -145,7 +145,7 @@ def action_links(data: dict[str, Any], lang: str, profile: dict[str, Any], compa
 def identity_portrait(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     if not profile.get("show_portrait", True):
         return '<div class="identity-mark identity-monogram" aria-hidden="true">MR</div>'
-    return f'<img class="identity-mark" src="{esc(profile.get("portrait_asset", "assets/portrait.svg"))}" alt="{esc(person_name(data, lang))}" width="460" height="460">'
+    return f'<img class="identity-mark" src="{esc(profile.get("portrait_asset", "assets/portrait.jpg"))}" data-local-photo="true" alt="{esc(person_name(data, lang))}" width="460" height="460" loading="eager" decoding="async">'
 
 
 def hero(data: dict[str, Any], lang: str, profile: dict[str, Any], compact: bool = False) -> str:

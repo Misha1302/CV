@@ -116,13 +116,6 @@ def capture(browser: Browser, base_url: str, output_dir: Path, cases: list[tuple
             reduced_motion="reduce",
         )
         page = context.new_page()
-        # Keep screenshots deterministic and independent of GitHub avatar CDN timing.
-        # The site may swap the portrait to the public GitHub avatar at runtime;
-        # for visual regression we exercise the same DOM/CSS path with the checked-in portrait bytes.
-        page.route(
-            "https://avatars.githubusercontent.com/**",
-            lambda route: route.fulfill(path=str(ROOT / "assets" / "portrait.jpg"), content_type="image/jpeg"),
-        )
         page.goto(base_url + filename, wait_until="domcontentloaded", timeout=15000)
         page.evaluate("() => document.fonts.ready")
         page.wait_for_function(
@@ -130,6 +123,18 @@ def capture(browser: Browser, base_url: str, output_dir: Path, cases: list[tuple
             timeout=15000,
         )
         page.wait_for_timeout(150)
+        if filename != "index.html":
+            photo_ok = page.evaluate("""() => {
+                const portrait = document.querySelector('img.identity-mark');
+                const box = portrait?.getBoundingClientRect();
+                return Boolean(portrait && portrait.complete && portrait.naturalWidth > 0
+                    && portrait.dataset.localPhoto === 'true'
+                    && new URL(portrait.currentSrc).pathname.endsWith('/assets/portrait.jpg')
+                    && box.width >= 80 && box.height >= 80
+                    && box.height / box.width >= 0.8 && box.height / box.width <= 1.3);
+            }""")
+            if not photo_ok:
+                raise RuntimeError(f"Profile photo missing or not loaded: {filename}/{mode}")
         if js_enabled:
             page.add_style_tag(content="*{animation:none!important;transition:none!important;caret-color:transparent!important}")
         metrics = page_metrics(page)

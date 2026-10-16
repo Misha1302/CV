@@ -98,8 +98,10 @@ def validate_source_of_truth(data: dict) -> None:
     for key, localized in data["profiles"].items():
         for lang in ("ru", "en"):
             profile = localized[lang]
-            if profile.get("show_portrait", True) is not False:
-                raise RuntimeError(f"{key}/{lang}: portrait would disclose approximate age")
+            # The candidate wants the existing local portrait visible; keep
+            # explicit age/birth/education-year privacy checks independent.
+            if profile.get("show_portrait") is not True or profile.get("portrait_asset") != "assets/portrait.jpg":
+                raise RuntimeError(f"{key}/{lang}: locally hosted profile photo must be enabled")
             rows = [item for item in profile["experience"] if item.get("fact_ref") == "isp_ras"]
             if len(rows) != 1 or profile["experience"][0] is not rows[0]:
                 raise RuntimeError(f"{key}/{lang}: missing or duplicate active ISP RAS entry")
@@ -180,6 +182,8 @@ def validate_script() -> None:
             raise RuntimeError(f"script.js mutates document content: {marker}")
     if "mobile-menu" not in script:
         raise RuntimeError("script.js lost mobile-menu behavior")
+    if "avatars.githubusercontent.com" in script:
+        raise RuntimeError("Portraits must not depend on GitHub avatar CDN")
 
 
 def page_role(profile: dict, soup: BeautifulSoup) -> None:
@@ -237,6 +241,10 @@ def validate_languages(path: Path, soup: BeautifulSoup) -> None:
 def validate_html(data: dict) -> set[str]:
     external: set[str] = set()
     existing = {path.relative_to(ROOT).as_posix() for path in ROOT.rglob("*") if path.is_file()}
+    profile_pages = {data["profiles"][key][lang]["filename"] for key in data["profile_order"] for lang in ("ru", "en")}
+    portrait_asset = ROOT / "assets" / "portrait.jpg"
+    if not portrait_asset.is_file() or not portrait_asset.read_bytes().startswith(b"\xff\xd8\xff"):
+        raise RuntimeError("Local portrait.jpg is missing or is not a JPEG image")
     for path in html_files(data):
         if not path.exists():
             raise RuntimeError(f"Missing generated page: {path.relative_to(ROOT)}")
@@ -249,6 +257,12 @@ def validate_html(data: dict) -> set[str]:
             raise RuntimeError(f"{path.relative_to(ROOT)}: remote avatar dependency remains")
         soup = BeautifulSoup(raw, "html.parser")
         validate_languages(path, soup)
+        if path.name in profile_pages:
+            portrait = soup.select_one("img.identity-mark")
+            if (portrait is None or portrait.get("src") != "assets/portrait.jpg"
+                    or portrait.get("data-local-photo") != "true"
+                    or not portrait.get("alt") or soup.select_one(".identity-monogram")):
+                raise RuntimeError(f"{path.relative_to(ROOT)}: local profile photo was replaced by a placeholder")
         for link in soup.select("a[href], link[href], img[src], script[src]"):
             attr = "href" if link.has_attr("href") else "src"
             value = link.get(attr, "")
