@@ -126,9 +126,12 @@ def capture(browser: Browser, base_url: str, output_dir: Path, cases: list[tuple
         if filename != "index.html":
             photo_ok = page.evaluate("""() => {
                 const portrait = document.querySelector('img.identity-mark');
+                const box = portrait?.getBoundingClientRect();
                 return Boolean(portrait && portrait.complete && portrait.naturalWidth > 0
                     && portrait.dataset.localPhoto === 'true'
-                    && new URL(portrait.currentSrc).pathname.endsWith('/assets/portrait.jpg'));
+                    && new URL(portrait.currentSrc).pathname.endsWith('/assets/portrait.jpg')
+                    && box.width >= 80 && box.height >= 80
+                    && box.height / box.width >= 0.8 && box.height / box.width <= 1.3);
             }""")
             if not photo_ok:
                 raise RuntimeError(f"Profile photo missing or not loaded: {filename}/{mode}")
