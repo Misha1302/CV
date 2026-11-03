@@ -13,6 +13,8 @@ on:
       - "script.js"
       - "assets/**"
       - "tools/build_site.py"
+      - "tools/build_application_sites.py"
+      - "tools/validate_application_sites.py"
       - "tools/build_cv.py"
       - "tools/build_release.py"
       - "tools/validate_release.py"
@@ -71,6 +73,7 @@ jobs:
         run: |
           python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
           python tools/validate_release.py
+          python tools/validate_application_sites.py
       - name: Capture or verify visual baseline
         run: |
           python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
@@ -80,6 +83,7 @@ jobs:
           python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf
           python tools/validate_release.py
+          python tools/validate_application_sites.py
       - name: Commit generated artifacts
         run: |
           git config user.name "github-actions[bot]"

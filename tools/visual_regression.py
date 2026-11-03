@@ -40,6 +40,9 @@ def smoke_cases(data: dict) -> list[tuple[str, str, int, int, bool]]:
     covered = {(filename, mode) for filename, mode, *_ in REGRESSION_CASES}
     cases: list[tuple[str, str, int, int, bool]] = []
     candidates = ["index.html", "ru-engineering.html", "en-engineering.html"]
+    candidates.extend(pages[lang]
+                      for pages in data["application_cvs"]["pages"].values()
+                      for lang in ("ru","en"))
     for key in data["profile_order"]:
         for lang in ("ru", "en"):
             candidates.append(data["profiles"][key][lang]["filename"])
@@ -88,7 +91,7 @@ def page_metrics(page: Page) -> dict[str, object]:
         scrollWidth: Math.max(html.scrollWidth, body.scrollWidth),
         scrollHeight: Math.max(html.scrollHeight, body.scrollHeight),
         h1: document.querySelector('main h1')?.textContent?.trim() || '',
-        role: document.querySelector('.hero-role, .engineering-role')?.textContent?.trim() || '',
+        role: document.querySelector('.hero-role, .engineering-role, .ap-role-title')?.textContent?.trim() || '',
         structure: {
           sectionIds: Array.from(document.querySelectorAll('main section[id]')).map(el => el.id),
           timelineItems: document.querySelectorAll('main .timeline article').length,

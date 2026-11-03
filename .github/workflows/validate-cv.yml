@@ -46,8 +46,10 @@ jobs:
             --report /tmp/cv-validation.json
       - name: "Visual regression: desktop, mobile, and no-JS"
         run: python tools/visual_regression.py --output-dir /tmp/cv-visual
-      - name: Validate application CV evidence and formats
-        run: python tools/validate_release.py
+      - name: Validate application CV evidence, formats and six public sites
+        run: |
+          python tools/validate_release.py
+          python tools/validate_application_sites.py
       - name: Ensure generators are deterministic
         run: python tools/build_site.py --check
       - uses: actions/upload-artifact@v4

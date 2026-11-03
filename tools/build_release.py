@@ -186,16 +186,18 @@ This is a sanitized public research summary. It intentionally excludes internal 
 
 def write_readmes(site,out):
     rows=["# Mikhail Razakov — CV / Резюме","",
-          "Три специализации, русская и английская версии, три синхронизированных формата.","",
-          "| Аудитория | PDF RU | PDF EN | DOCX RU | DOCX EN | Markdown RU | Markdown EN |",
-          "|---|---|---|---|---|---|---|"]
+          "Три специализации, отдельные сайты RU/EN и три синхронизированных формата для скачивания.","",
+           "| Аудитория | Сайт RU | Website EN | PDF RU | PDF EN | DOCX RU | DOCX EN | Markdown RU | Markdown EN |",
+          "|---|---|---|---|---|---|---|---|---|"]
     for key in KINDS:
         v=site["application_cvs"]["variants"][key]
         ru=v["basename"]["ru"];en=v["basename"]["en"]
-        rows.append(f"| {v['audience_ru']} | [PDF]({ru}.pdf) | [PDF]({en}.pdf) | [DOCX]({ru}.docx) | [DOCX]({en}.docx) | [MD]({ru}.md) | [MD]({en}.md) |")
+        ru_url=site["site_url"]+site["application_cvs"]["pages"][key]["ru"]
+        en_url=site["site_url"]+site["application_cvs"]["pages"][key]["en"]
+        rows.append(f"| {v['audience_ru']} | [Открыть]({ru_url}) | [View]({en_url}) | [PDF]({ru}.pdf) | [PDF]({en}.pdf) | [DOCX]({ru}.docx) | [DOCX]({en}.docx) | [MD]({ru}.md) | [MD]({en}.md) |")
     rows+=["","Для первичного отклика — Backend ATS; для руководителя разработки — Tech Lead; для CLR/LLVM-команд — Runtime/Compiler.",
           "Кандидат подтверждает суммарный коммерческий стаж и эксплуатацию VpnMediator. Часть архитектурных утверждений подтверждена исходниками; детали и границы приведены в открытой сводке.",
-          "[Evidence boundaries](04_Public_Evidence_Boundaries.md) · [CV website](https://misha1302.github.io/CV/) · [Engineering profile](https://misha1302.github.io/CV/ru-engineering.html)","",
+           "[Evidence boundaries](04_Public_Evidence_Boundaries.md) · [CV website](https://misha1302.github.io/CV/) · [Engineering profile](https://misha1302.github.io/CV/ru-tech-lead.html)","",
           "[Complete CV ZIP]("+ZIP_NAME+")",""]
     (out/"README.md").write_text("\n".join(rows),encoding="utf-8")
     (out/"00_README_Choose_Version.md").write_text(

@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-03-unified-career-edition",
+  "version": "2026-11-03-targeted-cv-websites",
   "updated_at": "2026-11-03",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
@@ -2203,7 +2203,7 @@
       "ИСП РАН / SharpChecker — символьные вычисления; МЦСТ / LLVM 22",
       "VpnMediator — работающий сервис; UniversalToolchain — .NET compiler/runtime"
     ],
-    "profiles_intro_ru": "Основная специализация — C#/.NET backend. Для собеседований с инженерными командами доступны технические профили по компиляторам, системному программированию и анализу кода.",
+    "profiles_intro_ru": "Базовый маршрут — новое C#/.NET Backend портфолио. Ниже сохранены специализированные инженерные направления и прежние адреса для обратной совместимости.",
     "project_ids": [
       "vpn",
       "wist",
@@ -2548,6 +2548,20 @@
           "education": "HSE University — Software Engineering.",
           "recognition": "MEPhI Junior 2026, 1st-degree diploma; LangDev 2026 speaker."
         }
+      }
+    },
+    "pages": {
+      "ats": {
+        "ru": "ru-backend-ats.html",
+        "en": "en-backend-ats.html"
+      },
+      "lead": {
+        "ru": "ru-tech-lead.html",
+        "en": "en-tech-lead.html"
+      },
+      "runtime": {
+        "ru": "ru-runtime-compiler.html",
+        "en": "en-runtime-compiler.html"
       }
     }
   }

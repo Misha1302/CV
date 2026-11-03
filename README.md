@@ -97,3 +97,33 @@ Rebuild with:
     python tools/validate_release.py
 
 The public release ZIP intentionally excludes internal research notes. No Git history rewriting or force pushes are used. The previous public attachment may remain in immutable Git history; treat any underlying private information in that old attachment separately.
+
+## Complete application portfolio websites (3 November 2026)
+
+Three independent, shareable editorial CV websites are now built from the same
+data/site.json application_cvs variant records as PDF/DOCX/Markdown.
+
+| Target | Russian website | English website |
+| --- | --- | --- |
+| C#/.NET Backend / ATS | [RU](ru-backend-ats.html) | [EN](en-backend-ats.html) |
+| Backend / Engineering Lead | [RU](ru-tech-lead.html) | [EN](en-tech-lead.html) |
+| Runtime / Compilers / Performance | [RU](ru-runtime-compiler.html) | [EN](en-runtime-compiler.html) |
+
+Each page contains the full CV profile, all three professional experience rows,
+all variant-specific technical skills and project claims, detailed problem/approach/
+outcome sections, source/case links, education, recognition and explicit evidence
+limitations. It also offers the corresponding one-page PDF, DOCX and Markdown.
+The previously published ru-engineering.html/en-engineering.html URLs remain
+functional and now show the current Tech Lead edition.
+
+Regenerate using:
+
+    python tools/build_site.py
+    python tools/build_release.py
+    python tools/validate_application_sites.py
+    python tools/validate_cv.py --pdf-dir pdf
+
+No production code in portfolio reference projects is changed by this work.
+The application-sites.css stylesheet is self-contained and requires no JS or
+remote asset services. The canonical public fact model remains data/site.json,
+bounded by knowledge/resume-evidence.json.
