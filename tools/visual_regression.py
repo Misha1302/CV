@@ -39,7 +39,7 @@ VIEW_MODES = [
 def smoke_cases(data: dict) -> list[tuple[str, str, int, int, bool]]:
     covered = {(filename, mode) for filename, mode, *_ in REGRESSION_CASES}
     cases: list[tuple[str, str, int, int, bool]] = []
-    candidates = ["index.html"]
+    candidates = ["index.html", "ru-engineering.html", "en-engineering.html"]
     for key in data["profile_order"]:
         for lang in ("ru", "en"):
             candidates.append(data["profiles"][key][lang]["filename"])
@@ -88,7 +88,7 @@ def page_metrics(page: Page) -> dict[str, object]:
         scrollWidth: Math.max(html.scrollWidth, body.scrollWidth),
         scrollHeight: Math.max(html.scrollHeight, body.scrollHeight),
         h1: document.querySelector('main h1')?.textContent?.trim() || '',
-        role: document.querySelector('.hero-role')?.textContent?.trim() || '',
+        role: document.querySelector('.hero-role, .engineering-role')?.textContent?.trim() || '',
         structure: {
           sectionIds: Array.from(document.querySelectorAll('main section[id]')).map(el => el.id),
           timelineItems: document.querySelectorAll('main .timeline article').length,
@@ -123,7 +123,7 @@ def capture(browser: Browser, base_url: str, output_dir: Path, cases: list[tuple
             timeout=15000,
         )
         page.wait_for_timeout(150)
-        if filename != "index.html":
+        if filename in {data["profiles"][k][l]["filename"] for k in data["profile_order"] for l in ("ru", "en")}:
             photo_ok = page.evaluate("""() => {
                 const portrait = document.querySelector('img.identity-mark');
                 const box = portrait?.getBoundingClientRect();

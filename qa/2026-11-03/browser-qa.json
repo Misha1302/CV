@@ -1,0 +1,102 @@
+[
+  {
+    "page": "index.html",
+    "view": "landing-desktop",
+    "http": 200,
+    "title": "Михаил Разаков — C#/.NET Backend Developer | Systems & Compilers",
+    "h1": "Михаил Разаков\nC#/.NET Backend Developer",
+    "overflow": false,
+    "links": 52,
+    "page_errors": [],
+    "screenshot": "landing-desktop.webp",
+    "size": [
+      1151,
+      3000
+    ]
+  },
+  {
+    "page": "index.html",
+    "view": "landing-mobile",
+    "http": 200,
+    "title": "Михаил Разаков — C#/.NET Backend Developer | Systems & Compilers",
+    "h1": "Михаил Разаков\nC#/.NET Backend Developer",
+    "overflow": false,
+    "links": 52,
+    "page_errors": [],
+    "screenshot": "landing-mobile.webp",
+    "size": [
+      278,
+      4200
+    ]
+  },
+  {
+    "page": "ru-engineering.html",
+    "view": "engineering-desktop",
+    "http": 200,
+    "title": "Михаил Разаков — C#/.NET Backend Engineering",
+    "h1": "Михаил Разаков",
+    "overflow": false,
+    "links": 17,
+    "page_errors": [],
+    "screenshot": "engineering-desktop.webp",
+    "size": [
+      1200,
+      1973
+    ]
+  },
+  {
+    "page": "cases/ru-vpn.html",
+    "view": "vpn-case-desktop",
+    "http": 200,
+    "title": "VpnMediator — архитектурный кейс",
+    "h1": "VpnMediator",
+    "overflow": false,
+    "links": 2,
+    "page_errors": [],
+    "screenshot": "vpn-case-desktop.webp",
+    "size": [
+      1200,
+      1188
+    ]
+  },
+  {
+    "page": "ru-backend.html",
+    "view": "backend-profile-mobile",
+    "http": 200,
+    "title": "Михаил Разаков — C#/.NET Backend Developer · системы и надёжность",
+    "h1": "Михаил Разаков",
+    "overflow": false,
+    "links": 45,
+    "page_errors": [],
+    "screenshot": "backend-profile-mobile.webp",
+    "size": [
+      182,
+      4200
+    ]
+  },
+  {
+    "page": "cases/ru-quark2.html",
+    "view": "quark2-case-mobile",
+    "http": 200,
+    "title": "Quark2 / CLR experiments — архитектурный кейс",
+    "h1": "Quark2 / CLR experiments",
+    "overflow": false,
+    "links": 3,
+    "page_errors": [],
+    "screenshot": "quark2-case-mobile.webp",
+    "size": [
+      390,
+      2471
+    ]
+  },
+  {
+    "page": "releases/2026-11-03/01_Backend_ATS.pdf",
+    "view": "ats-pdf",
+    "pages": 1,
+    "screenshot": "ats-pdf.webp",
+    "size": [
+      774,
+      1095
+    ]
+  }
+]

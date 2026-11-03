@@ -80,4 +80,20 @@ Send-ready, one-page C#/.NET resumes (Russian): **[choose the right version](rel
 - [Runtime / Compiler PDF](releases/2026-11-03/03_Runtime_Compiler.pdf) — for systems and compiler teams.
 - [Full package ZIP](releases/2026-11-03/Mikhail_Razakov_CV_Complete_Package_2026-11-03.zip) — PDFs, editable DOCX, Markdown, evidence review and outreach texts.
 
-These files supplement the existing generated CV site and do not alter canonical site content.
+The application CVs and site are now generated from the same data/site.json presentation model, checked against the evidence knowledge base. Run python tools/build_release.py and python tools/validate_release.py after changing public CV content.
+
+## Unified bilingual application edition (2026-11-03)
+
+The landing page presents C#/.NET Backend as the default recruiting route while retaining all ten established specialist profiles. A new RU/EN engineering deep-dive is available at ru-engineering.html and en-engineering.html. Quark2 has a source-backed research case; TuringSquare-LMS is explicitly scoped as work in progress with agent contributions and T-Bank sandbox.
+
+Rebuild with:
+
+    python tools/validate_resume_knowledge.py
+    python tools/build_site.py
+    python tools/build_cv.py --output-dir pdf
+    python tools/build_release.py
+    python tools/build_site.py --manifest
+    python tools/validate_cv.py --pdf-dir pdf
+    python tools/validate_release.py
+
+The public release ZIP intentionally excludes internal research notes. No Git history rewriting or force pushes are used. The previous public attachment may remain in immutable Git history; treat any underlying private information in that old attachment separately.

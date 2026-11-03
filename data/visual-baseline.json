@@ -50,12 +50,12 @@
     }
   },
   "ru-backend.html|desktop": {
-    "dhash": "3e0b3fcf399c077a0f36271e067f1b5f1b7f2636263e25f227b6631a07fb1fb3",
+    "dhash": "3acb32c72ddc25fe0f0e26320e77184f39cf05e6266c24fc277c663407b31f93",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 5278,
+    "page_height": 5218,
     "h1": "Михаил Разаков",
-    "role": ".NET Backend / Platform Engineer · State & Reliability",
+    "role": "C# / .NET Backend Developer · Systems & Reliability",
     "structure": {
       "sectionIds": [
         "top",
@@ -150,12 +150,12 @@
     }
   },
   "ru-backend.html|mobile": {
-    "dhash": "6dbf28ff2c9f3cbf39ff397f2eef39ef39ff289f1fe65be76e7f697f23ef18ef",
+    "dhash": "427f28ff2def3bbf2b3f349f3cdf3c5f3a7f39ef362f770f5cff69f727df3cdf",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 8727,
+    "page_height": 9009,
     "h1": "Михаил Разаков",
-    "role": ".NET Backend / Platform Engineer · State & Reliability",
+    "role": "C# / .NET Backend Developer · Systems & Reliability",
     "structure": {
       "sectionIds": [
         "top",
@@ -225,12 +225,12 @@
     }
   },
   "ru-backend.html|no-js": {
-    "dhash": "53d340c12846738064c1293e2ca4171a53ab1a9e491b689341e124c943708160",
+    "dhash": "53d340c128c476cb536f506628b66a5f2b4f247e757948c180e0016049684968",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 8727,
+    "page_height": 9009,
     "h1": "Михаил Разаков",
-    "role": ".NET Backend / Platform Engineer · State & Reliability",
+    "role": "C# / .NET Backend Developer · Systems & Reliability",
     "structure": {
       "sectionIds": [
         "top",

@@ -14,6 +14,9 @@ on:
       - "assets/**"
       - "tools/build_site.py"
       - "tools/build_cv.py"
+      - "tools/build_release.py"
+      - "tools/validate_release.py"
+      - "releases/2026-11-03/**"
       - "tools/validate_cv.py"
       - "tools/visual_regression.py"
       - "tools/validate_resume_knowledge.py"
@@ -48,7 +51,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          pip install beautifulsoup4 pymupdf pillow playwright weasyprint python-docx
           python -m playwright install --with-deps chromium
       - name: Remove deprecated generated sources and artifacts
         run: |
@@ -63,9 +66,11 @@ jobs:
         run: |
           python tools/build_site.py
           python tools/build_cv.py --output-dir pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
+          python tools/build_release.py
       - name: Validate content, links, and PDFs
         run: |
           python tools/validate_cv.py --pdf-dir pdf --skip-manifest --check-external --report /tmp/cv-validation.json
+          python tools/validate_release.py
       - name: Capture or verify visual baseline
         run: |
           python tools/visual_regression.py --output-dir /tmp/cv-visual --update-if-missing
@@ -74,6 +79,7 @@ jobs:
           find tools -type d -name __pycache__ -prune -exec rm -rf {} +
           python tools/build_site.py --manifest
           python tools/validate_cv.py --pdf-dir pdf
+          python tools/validate_release.py
       - name: Commit generated artifacts
         run: |
           git config user.name "github-actions[bot]"

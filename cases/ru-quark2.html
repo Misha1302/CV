@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f0c0d">
+<title>Quark2 / CLR experiments — архитектурный кейс</title>
+<meta name="description" content="Воспроизводимый исследовательский прототип, а не production-оптимизация или универсальное ускорение CLR.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Quark2 / CLR experiments — архитектурный кейс">
+<meta property="og:description" content="Воспроизводимый исследовательский прототип, а не production-оптимизация или универсальное ускорение CLR.">
+<meta property="og:url" content="https://misha1302.github.io/CV/cases/ru-quark2.html">
+<meta property="og:image" content="https://misha1302.github.io/CV/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quark2 / CLR experiments — архитектурный кейс">
+<meta name="twitter:description" content="Воспроизводимый исследовательский прототип, а не production-оптимизация или универсальное ускорение CLR.">
+<meta name="twitter:image" content="https://misha1302.github.io/CV/assets/og-card.png">
+<link rel="canonical" href="https://misha1302.github.io/CV/cases/ru-quark2.html">
+<link rel="alternate" hreflang="ru" href="https://misha1302.github.io/CV/cases/ru-quark2.html">
+<link rel="alternate" hreflang="en" href="https://misha1302.github.io/CV/cases/en-quark2.html">
+<link rel="alternate" hreflang="x-default" href="https://misha1302.github.io/CV/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../style.css?v=2026-11-03-unified-career-edition">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Михаил Разаков","jobTitle":"Software Engineer — Systems & Architecture","email":"mailto:razakov.mikhail@outlook.com","url":"https://misha1302.github.io/CV/cases/ru-quark2.html","sameAs":["https://github.com/Misha1302","https://t.me/Micodiy","https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/"]}</script>
+</head>
+<body class="case-page"><header class="site-header"><div class="shell header-inner"><a class="brand" href="../index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>Михаил Разаков</strong><span>инженерный кейс</span></span></a><div></div><div class="header-actions"><a class="button compact" href="../ru-architecture.html">Вернуться к резюме</a></div></div></header>
+<main class="shell case-main" id="main"><section class="case-hero"><p class="eyebrow">Экспериментальный .NET Runtime / performance</p><h1>Quark2 / CLR experiments</h1><p>Обычные абстракции скрывают стоимость вызова динамически сгенерированного кода и границы доступности внутренних механизмов CLR.</p><div class="hero-actions"><a class="button" href="https://github.com/Misha1302/Quark2" target="_blank" rel="noopener noreferrer">GitHub</a></div></section>
+<section class="case-grid"><article><span>01</span><h2>Проблема</h2><p>Обычные абстракции скрывают стоимость вызова динамически сгенерированного кода и границы доступности внутренних механизмов CLR.</p></article><article><span>02</span><h2>Ограничения</h2><p>Внутренние API CLR нестабильны; микробенчмарки не доказывают общий выигрыш в production.</p></article><article><span>03</span><h2>Решение</h2><p>Эксперименты с DynamicMethod, Reflection.Emit, RuntimeMethodHandle и native function pointer; сравнение Invoke, delegate и указателя через BenchmarkDotNet.</p></article><article><span>04</span><h2>Результат</h2><p>Воспроизводимый исследовательский прототип, а не production-оптимизация или универсальное ускорение CLR.</p></article><article><span>05</span><h2>Как проверялось</h2><p>BenchmarkDotNet и воспроизводимые режимы вызова; без production-утверждений.</p></article><article><span>06</span><h2>Моя ответственность</h2><p>Эксперименты с CIL, DynamicMethod и вызовами; результаты интерпретируются как исследовательские.</p></article></section></main>
+<footer class="shell site-footer"><span>Quark2 / CLR experiments</span><span>Обновлено 2026-11-03</span></footer></body></html>

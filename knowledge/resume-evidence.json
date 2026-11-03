@@ -1310,6 +1310,32 @@
         "Independent active-user/install snapshot",
         "Hosted server uptime and deployed-version evidence"
       ]
+    },
+    {
+      "id": "experience_commercial_aggregate_2026",
+      "category": "experience",
+      "name": "Aggregate commercial development (candidate-attested)",
+      "time": "approx. one year total; individual dates not independently verified",
+      "evidence_level": [
+        "USER_ATTESTED"
+      ],
+      "public_sources": [],
+      "claims": [
+        "Approximately one year of combined commercial work involving C#/.NET, Unity, ASP.NET Core, PostgreSQL, file systems and servers, according to the candidate."
+      ],
+      "recruiter_signals": [
+        "Commercial exposure to .NET and adjacent software development."
+      ],
+      "role_fit": [
+        "backend_platform",
+        "architecture",
+        "compiler_infrastructure"
+      ],
+      "resume_priority": "secondary",
+      "strongest_evidence": "Candidate's account from November 2026; no independent duration or employer-level employment certificate verified.",
+      "gaps": [
+        "Independent work dates and employer references not supplied."
+      ]
     }
   ],
   "skills": [

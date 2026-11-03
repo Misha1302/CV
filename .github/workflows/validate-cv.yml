@@ -29,10 +29,12 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install beautifulsoup4 pymupdf pillow playwright weasyprint
+          pip install beautifulsoup4 pymupdf pillow playwright weasyprint python-docx
           python -m playwright install --with-deps chromium
-      - name: Generate site from canonical source
-        run: python tools/build_site.py
+      - name: Generate site and all bilingual application CV formats
+        run: |
+          python tools/build_site.py
+          python tools/build_release.py
       - name: Clean PDF rebuild
         run: python tools/build_cv.py --output-dir /tmp/cv-pdf --evidence-dir /tmp/cv-pdf-evidence --report /tmp/cv-pdf-report.json
       - name: Validate canonical source and generated output
@@ -44,6 +46,8 @@ jobs:
             --report /tmp/cv-validation.json
       - name: "Visual regression: desktop, mobile, and no-JS"
         run: python tools/visual_regression.py --output-dir /tmp/cv-visual
+      - name: Validate application CV evidence and formats
+        run: python tools/validate_release.py
       - name: Ensure generators are deterministic
         run: python tools/build_site.py --check
       - uses: actions/upload-artifact@v4

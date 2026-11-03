@@ -72,11 +72,11 @@ def common_head(data: dict[str, Any], lang: str, filename: str, title: str, desc
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:url" content="{esc(canonical_url)}">
-<meta property="og:image" content="{esc(data['site_url'])}assets/og-card.svg">
+<meta property="og:image" content="{esc(data['site_url'])}assets/og-card.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(title)}">
 <meta name="twitter:description" content="{esc(description)}">
-<meta name="twitter:image" content="{esc(data['site_url'])}assets/og-card.svg">
+<meta name="twitter:image" content="{esc(data['site_url'])}assets/og-card.png">
 <link rel="canonical" href="{esc(canonical_url)}">
 <link rel="alternate" hreflang="{esc(lang)}" href="{esc(canonical_url)}">
 <link rel="alternate" hreflang="{esc(other)}" href="{esc(page_url(data, alternate))}">
@@ -133,12 +133,21 @@ def action_links(data: dict[str, Any], lang: str, profile: dict[str, Any], compa
         "profiles": "Другие версии" if lang == "ru" else "Other profiles",
         "pdf": "Скачать PDF" if lang == "ru" else "Download PDF",
     }
+    cv_application_links = ""
+    if profile["filename"] in {"ru-backend.html", "en-backend.html"}:
+        lang = "ru" if profile["filename"].startswith("ru") else "en"
+        base = data["application_cvs"]["release_dir"]
+        forms = data["application_cvs"]["variants"]
+        cv_application_links = (
+            f'<a class="button" href="{esc(base)}/{esc(forms["ats"]["basename"][lang])}.pdf" download>{"PDF для HR" if lang == "ru" else "ATS PDF"}</a>'
+            f'<a class="button" href="{esc(base)}/{esc(forms["lead"]["basename"][lang])}.pdf" download>{"PDF для тимлида" if lang == "ru" else "Engineering PDF"}</a>'
+        )
     profiles_link = "" if compact else f'\n  <a class="button" href="index.html">{labels["profiles"]}</a>'
     return f"""
 <div class="hero-actions">
   <a class="button primary" href="mailto:{esc(data['person']['email'])}">{labels['mail']}</a>
   <a class="button" href="{esc(data['person']['github'])}" rel="noopener noreferrer" target="_blank">{labels['github']}</a>{profiles_link}
-  <a class="button" href="pdf/{esc(profile['pdf'])}" download>{labels['pdf']}</a>
+  <a class="button" href="pdf/{esc(profile['pdf'])}" download>{labels['pdf']}</a>{cv_application_links}
 </div>"""
 
 
@@ -412,15 +421,70 @@ def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
 """
 
 
+def application_cv_links(data: dict[str, Any], lang: str) -> str:
+    directory = data["application_cvs"]["release_dir"]
+    rows = []
+    for key in ("ats", "lead", "runtime"):
+        entry = data["application_cvs"]["variants"][key]
+        basename = entry["basename"][lang]
+        label = entry[f"audience_{lang}"]
+        base = f"{directory}/{basename}"
+        rows.append(
+            f'<article class="cv-option"><div><span class="cv-option-num">{("01" if key == "ats" else "02" if key == "lead" else "03")}</span>'
+            f'<h3>{esc(label)}</h3></div>'
+            f'<p><a href="{esc(base)}.pdf" download>PDF</a>'
+            f'<a href="{esc(base)}.docx" download>DOCX</a>'
+            f'<a href="{esc(base)}.md" download>Markdown</a></p></article>'
+        )
+    return "".join(rows)
+
+
+def engineering_page(data: dict[str, Any], lang: str) -> str:
+    cv = data["application_cvs"]["variants"]["lead"][lang]
+    experience = data["application_cvs"]["experience"][lang]
+    other = other_language(lang)
+    filename = f"{lang}-engineering.html"
+    name = person_name(data, lang)
+    title = f"{name} — C#/.NET Backend Engineering"
+    description = cv["summary"]
+    head = common_head(data, lang, filename, title, description, cv["role"])
+    title_experience = "Коммерческая практика и инженерная работа" if lang == "ru" else "Experience and engineering work"
+    title_cases = "Четыре инженерных кейса" if lang == "ru" else "Four engineering cases"
+    own = "Область ответственности и границы" if lang == "ru" else "Ownership and boundaries"
+    back = "Все профили" if lang == "ru" else "All profiles"
+    detailed = "Расширенная версия для тимлида" if lang == "ru" else "Extended CV for engineering leads"
+    rows = "".join(
+        f'<article class="engineering-entry"><p class="micro-label">{esc(item["date"])}</p><h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></article>'
+        for item in experience
+    )
+    cases = "".join(
+        f'<article class="engineering-case"><p class="micro-label">0{idx}</p>'
+        f'<h3><a href="{esc(data["projects"][entry["id"]].get("repo") or data["projects"][entry["id"]][f"case_{lang}"])}">{esc(entry["title"])}</a></h3>'
+        f'<p>{esc(entry["text"])}</p></article>'
+        for idx,entry in enumerate(cv["projects"],1)
+    )
+    download = data["application_cvs"]["release_dir"] + "/" + data["application_cvs"]["variants"]["lead"]["basename"][lang]
+    return f"""{head}
+<body class="engineering-page"><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(name)}</strong><span>Backend Engineering</span></span></a><nav class="primary-nav"><a href="#experience">{"Опыт" if lang=="ru" else "Experience"}</a><a href="#cases">{"Кейсы" if lang=="ru" else "Cases"}</a><a href="#contact">{"Контакты" if lang=="ru" else "Contact"}</a></nav><div class="header-actions"><a class="button compact" href="{other}-engineering.html">{other.upper()}</a><a class="button compact" href="index.html">{back}</a></div></div></header>
+<main class="shell engineering-main" id="main">
+<section class="engineering-hero"><p class="eyebrow">{detailed}</p><h1>{esc(name)}</h1><p class="engineering-role">{esc(cv["role"])}</p><p class="engineering-summary">{esc(cv["summary"])}</p><div class="hero-actions"><a class="button primary" href="{esc(download)}.pdf" download>PDF</a><a class="button" href="{esc(download)}.docx" download>DOCX</a><a class="button" href="{lang}-backend.html" >{"Backend-профиль" if lang=="ru" else "Backend profile"}</a></div></section>
+<section class="engineering-section" id="experience"><h2>{title_experience}</h2><div class="engineering-grid">{rows}</div></section>
+<section class="engineering-section" id="cases"><h2>{title_cases}</h2><div class="engineering-grid">{cases}</div></section>
+<section class="engineering-section engineering-boundary"><h2>{own}</h2><p>{"В LMS отвечаю за требования, архитектурные инварианты и ревью; реализация частично выполнена AI-агентами, платежи только в sandbox. Около года коммерческого опыта — оценка кандидата, а не проверенная непрерывная занятость." if lang=="ru" else "For LMS I define requirements, architectural invariants and review contributions; some implementation was agent-generated and payments are sandbox only. Approx. one year of commercial experience is candidate-reported, not verified continuous employment."}</p></section>
+<section id="contact" class="contact-section"><div class="contact-panel"><div><h2>{"Связаться" if lang=="ru" else "Get in touch"}</h2><p>{esc(data["person"][f"location_{lang}"])}</p></div><div class="contact-links"><a class="button primary" href="mailto:{esc(data["person"]["email"])}">Email</a><a class="button" href="{esc(data["person"]["telegram"])}">Telegram</a><a class="button" href="{esc(data["person"]["github"])}">GitHub</a></div></div></section>
+</main><footer class="shell site-footer"><span>{esc(name)}</span><span>{esc(data["updated_at"])}</span></footer></body></html>"""
+
+
 def landing_page(data: dict[str, Any]) -> str:
     lang = "ru"
     canonical_key = data.get("canonical_profile", "compiler")
     primary = data["profiles"][canonical_key][lang]
     primary_en = data["profiles"][canonical_key]["en"]
     landing = data.get("landing", {})
-    title = primary["title"]
-    description = primary["description"]
-    head = common_head(data, lang, "index.html", title, description, primary["role"], data["site_url"])
+    title = "Михаил Разаков — C#/.NET Backend Developer | Systems & Compilers"
+    description = "C#/.NET backend, ASP.NET Core, payment recovery, SharpChecker at ISP RAS, LLVM at MCST, UniversalToolchain and hands-on engineering projects."
+    head = common_head(data, lang, "index.html", title, description, data["profiles"]["backend"][lang]["role"], data["site_url"])
     cards = []
     for key in (profile_key for profile_key in data.get("selector_order", data["profile_order"]) if profile_key != canonical_key):
         ru = data["profiles"][key]["ru"]
@@ -430,7 +494,21 @@ def landing_page(data: dict[str, Any]) -> str:
         body = ui["landing_description_ru"]
         cards.append(f'<article class="selector-card"><span>RU / EN</span><h2>{esc(heading)}</h2><p>{esc(body)}</p><div class="selector-links"><a href="{esc(ru["filename"])}">Русская версия</a><a href="{esc(en["filename"])}">English version</a></div><div class="selector-pdf-links"><a href="pdf/{esc(ru["pdf"])}" download>PDF RU</a><a href="pdf/{esc(en["pdf"])}" download>PDF EN</a></div></article>')
     project_ids = landing.get("project_ids", ["globaliv", "deref", "wist"])
-    project_cases = "".join(project_card(data, "ru", project_id) for project_id in project_ids)
+    case_items = []
+    for number, project_id in enumerate(project_ids, 1):
+        project = data["projects"][project_id]
+        code_link = (
+            f'<a href="{esc(project["repo"])}" target="_blank" rel="noopener noreferrer">Исходники</a>'
+            if project.get("repo") else ""
+        )
+        case_items.append(
+            f'<article class="landing-case"><span class="micro-label">{number:02d} / {esc(project["type_ru"])}</span>'
+            f'<h3>{esc(project["title"])}</h3>'
+            f'<p>{esc(project["problem_ru"])}</p>'
+            f'<div class="landing-case-actions"><a href="{esc(project["case_ru"])}">Читать инженерный разбор</a>{code_link}</div>'
+            f'</article>'
+        )
+    project_cases = "".join(case_items)
     evidence = "".join(f"<span>{esc(item)}</span>" for item in landing.get("hero_evidence_ru", []))
     evidence_block = f'<div class="landing-evidence">{evidence}</div>' if evidence else ""
     profiles_intro = landing.get(
@@ -440,12 +518,13 @@ def landing_page(data: dict[str, Any]) -> str:
     p = data["person"]
     return f"""{head}
 <body class="selector-page">
-<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(p['name_ru'])}</strong><span>{esc(primary['role'])}</span></span></a><nav class="primary-nav"><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="{esc(primary_en['filename'])}" aria-label="English version of the universal CV">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a><a href="{esc(primary_en['filename'])}">English CV</a></nav></div></details></div></div></header>
-<main id="main" class="shell landing-main"><section class="selector-intro landing-hero"><p class="eyebrow">{esc(landing.get('eyebrow_ru', primary['eyebrow']))}</p><h1>{esc(primary['role'])}</h1><p>{esc(primary['summary'])}</p><div class="hero-actions"><a class="button primary" href="{esc(primary['filename'])}">Универсальное резюме</a><a class="button" href="pdf/{esc(primary['pdf'])}" download>Скачать PDF</a><a class="button" href="#cases">Посмотреть проекты</a></div>{evidence_block}</section>
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(p['name_ru'])}</strong><span>{esc(data['profiles']['backend']['ru']['role'])}</span></span></a><nav class="primary-nav"><a href="#download">Резюме</a><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="{esc(primary_en['filename'])}" aria-label="English version of the universal CV">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#download">Резюме</a><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a><a href="{esc(primary_en['filename'])}">English CV</a></nav></div></details></div></div></header>
+<main id="main" class="shell landing-main"><section class="selector-intro landing-hero"><p class="eyebrow">{esc(landing.get('eyebrow_ru', primary['eyebrow']))}</p><h1><span class="landing-name">Михаил Разаков</span><span class="landing-role">C#/.NET Backend Developer</span></h1><p>{esc(data['profiles']['backend']['ru']['summary'])}</p><div class="hero-actions"><a class="button primary" href="releases/2026-11-03/01_Backend_ATS.pdf" download>Скачать резюме Backend</a><a class="button" href="ru-backend.html">Профиль C#/.NET</a><a class="button" href="#cases">Посмотреть проекты</a></div>{evidence_block}</section>
+<section class="landing-section application-section" id="download"><div class="section-heading"><p class="section-label">00 · Резюме</p><div><h2>Выберите версию под вакансию.</h2><p class="section-intro">Одностраничные PDF, редактируемые DOCX и Markdown. Для HR — backend, для тимлида — инженерные решения, для runtime-команд — компиляторы и CLR.</p></div></div><div class="cv-options">{application_cv_links(data,"ru")}</div><p class="cv-alt-langs"><a href="en-engineering.html">English engineering profile</a> · <a href="releases/2026-11-03/README.md">Все форматы RU / EN</a></p></section>
 <section id="profiles" class="landing-section"><div class="section-heading"><p class="section-label">01 · Профили</p><div><h2>Четыре инженерных направления.</h2><p class="section-intro">{esc(profiles_intro)}</p></div></div><div class="selector-grid">{''.join(cards)}</div></section>
 <section id="cases" class="landing-section"><div class="section-heading"><p class="section-label">02 · Кейсы</p><div><h2>Что спроектировал, реализовал и проверил.</h2><p class="section-intro">Открытые проекты ведут к коду и документации; закрытые — к публичному архитектурному разбору без секретов и пользовательских данных.</p></div></div><div class="project-grid">{project_cases}</div></section>
 <section class="contact-section" id="contact"><div class="contact-panel"><div><h2>Связаться по инженерной роли или проекту.</h2><p>{esc(p['location_ru'])}</p></div><div class="contact-links"><a class="button primary" href="mailto:{esc(p['email'])}">Почта</a><a class="button" href="{esc(p['telegram'])}" target="_blank" rel="noopener noreferrer">Telegram</a><a class="button" href="{esc(p['github'])}" target="_blank" rel="noopener noreferrer">GitHub</a></div></div></section></main>
-<footer class="shell site-footer"><span>{esc(p['name_ru'])} · {esc(primary['role'])}</span><span>Обновлено {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
+<footer class="shell site-footer"><span>{esc(p['name_ru'])} · C#/.NET Backend Developer</span><span>Обновлено {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
 """
 
 
@@ -474,10 +553,11 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         "botay": "Офлайн-клиенты могут повторять операции после перезапуска; внешние события, локальное состояние и предложения модели нельзя считать равноправными источниками истины." if lang == "ru" else "Offline clients replay commands after restarts; external observations, local state and model proposals must not share mutation authority.",
         "planfuzz": "Нестабильные исполнения, инфраструктурные сбои и необходимость сохранять точный тип расхождения." if lang == "ru" else "Flaky executions, infrastructure failures, and preserving the exact mismatch category.",
         "vpn": "Повторные webhooks, сетевые таймауты, перезапуски, миграции и невозможность раскрывать production-данные." if lang == "ru" else "Duplicate webhooks, network timeouts, restarts, migrations, and private production data.",
-        "lms": "Финансовые операции и пользовательские workflows должны развиваться независимо, не нарушая ledger-инварианты." if lang == "ru" else "Financial operations and user workflows must evolve independently without violating ledger invariants.",
+         "lms": "Роли и course entitlements, повторные заказы и проверка T-Bank; один платеж не даёт доступа без подтверждения провайдера." if lang == "ru" else "Roles, course entitlements, duplicate orders and T-Bank verification; payment intent alone does not grant access.",
         "psform": "Анализ должен быть консервативным, быстрым на больших диапазонах и проверяемым на малых областях." if lang == "ru" else "The analysis must be conservative, fast on large domains, and checkable on small domains.",
         "codegen": "Нужно сравнивать высокоуровневую семантику и машинный код в изолированном процессе с ограничениями ресурсов." if lang == "ru" else "High-level semantics and machine code must be compared in an isolated, resource-limited process.",
         "globaliv": "Transform допустим только при доказанной affine evolution и legality; unsupported CFG/calls должны приводить к отказу, а не к небезопасной оптимизации." if lang == "ru" else "The transform is allowed only when affine evolution and legality are established; unsupported CFG/calls must be rejected rather than optimized unsafely.",
+        "quark2": "Внутренние API CLR нестабильны; микробенчмарки не доказывают общий выигрыш в production." if lang == "ru" else "CLR internals are unstable; microbenchmarks do not prove general production speedups.",
         "deref": "Анализ должен корректно сходиться на ветвлениях, циклах и join points без path explosion." if lang == "ru" else "The analysis must converge correctly across branches, loops, and join points without path explosion.",
     }[project_id]
     verification = {
@@ -485,10 +565,11 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         "botay": "Operation IDs and atomic server records, explicit lifecycle conflicts, witness validation, emulator/device checks and signed APK provenance." if lang == "en" else "Идентификаторы операций и атомарные серверные записи, явные конфликты, проверка witness, эмулятор/device-тесты и происхождение подписанного APK.",
         "planfuzz": "Fresh-process confirmation, exact fingerprints, typed outcomes, and deterministic reduction." if lang == "en" else "Подтверждение в свежем процессе, exact fingerprints, типизированные исходы и детерминированное сокращение.",
         "vpn": "State-transition checks, negative webhook cases, audit records, backup/restore rehearsal, health gates, and rollback verification." if lang == "en" else "Проверки переходов состояния, негативные webhook-сценарии, audit records, репетиция backup/restore, health gates и проверка rollback.",
-        "lms": "Ledger invariants, idempotent payment completion, role checks, migrations, and critical-flow acceptance." if lang == "en" else "Ledger-инварианты, идемпотентное завершение платежа, проверки ролей, миграции и acceptance критических flows.",
+         "lms": "Review of role and entitlement checks, T-Bank sandbox payment verification, migrations and critical flows; no production launch." if lang == "en" else "Ревью ролей и доступов, перепроверки T-Bank sandbox, миграций и критических flows; без заявления о production-запуске.",
         "psform": "Exact brute-force oracle on small domains, metamorphic generation, sanitizers, and reproducible WA/TL examples." if lang == "en" else "Точный brute-force oracle на малых областях, метаморфная генерация, sanitizers и воспроизводимые WA/TL-примеры.",
         "codegen": "Differential comparison with an IR interpreter, isolated execution, disassembly, and spill/reload metrics." if lang == "en" else "Дифференциальное сравнение с IR-интерпретатором, изолированный запуск, дизассемблирование и метрики spill/reload.",
         "globaliv": "29 positive/negative IR regressions, LLVM verifier checks, idempotence, and before/after execution comparison." if lang == "en" else "29 positive/negative IR regression cases, LLVM verifier, idempotence и сравнение исполнения до/после преобразования.",
+        "quark2": "BenchmarkDotNet harness and reproducible invocation modes; no production claim." if lang == "en" else "BenchmarkDotNet и воспроизводимые режимы вызова; без production-утверждений.",
         "deref": "Analyzer tests plus fixed-point worklist convergence over the Roslyn CFG, including branches and loops." if lang == "en" else "Analyzer tests и сходимость fixed-point worklist по Roslyn CFG, включая ветвления и циклы.",
     }[project_id]
     ownership = {
@@ -496,10 +577,11 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         "botay": "Canonical/evidence/projection boundaries, offline command replay, feasibility witnesses, LLM intent limits and native Android release path." if lang == "en" else "Границы канонических данных, внешних наблюдений и проекций; replay офлайн-команд, проверка выполнимости, серверная авторизация LLM-действий и выпуск Android.",
         "planfuzz": "Модель исходов, ядро оракулов, replay, fingerprinting и reducers." if lang == "ru" else "Outcome model, oracle core, replay, fingerprinting, and reducers.",
         "vpn": "Backend-архитектура, состояния, платежные интеграции, recovery, миграции и эксплуатационные gates." if lang == "ru" else "Backend architecture, state transitions, payment integrations, recovery, migrations, and operational gates.",
-        "lms": "Роли, баланс, платежные workflows, инварианты и release-проверки." if lang == "ru" else "Roles, balances, payment workflows, invariants, and release checks.",
+         "lms": "Архитектура и критерии приёмки, ревью агентной реализации ролей, прав доступа и T-Bank sandbox." if lang == "ru" else "Architecture and acceptance criteria; review of agent-generated roles, entitlements and T-Bank sandbox payments.",
         "psform": "Алгоритм анализа, точный оракул, stress infrastructure и разбор контрпримеров." if lang == "ru" else "Analysis algorithm, exact oracle, stress infrastructure, and counterexample analysis.",
         "codegen": "IR, liveness, register allocation, code emission и differential harness." if lang == "ru" else "IR, liveness, register allocation, code emission, and the differential harness.",
         "globaliv": "Модель affine evolution, interprocedural effects, legality analysis, LLVM IR transform и regression harness." if lang == "ru" else "Affine-evolution model, interprocedural effects, legality analysis, LLVM IR transform, and regression harness.",
+        "quark2": "Эксперименты с CIL, DynamicMethod и вызовами; результаты интерпретируются как исследовательские." if lang == "ru" else "CIL/DynamicMethod invocation experiments; results remain research-only.",
         "deref": "CFG/data-flow реализация, merge logic, diagnostics и analyzer tests." if lang == "ru" else "CFG/data-flow implementation, merge logic, diagnostics, and analyzer tests.",
     }[project_id]
     links = []
@@ -531,6 +613,7 @@ def sitemap(data: dict[str, Any]) -> str:
     for project in data["projects"].values():
         urls.append(page_url(data, project["case_ru"]))
         urls.append(page_url(data, project["case_en"]))
+    urls.extend(page_url(data, f"{lang}-engineering.html") for lang in ("ru", "en"))
     body = "".join(f"<url><loc>{esc(url)}</loc><lastmod>{esc(data['updated_at'])}</lastmod></url>" for url in urls)
     return f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}</urlset>\n'
 
@@ -544,6 +627,8 @@ def build_outputs(data: dict[str, Any]) -> dict[Path, str]:
     for project_id, project in data["projects"].items():
         outputs[ROOT / project["case_ru"]] = case_page(data, project_id, "ru")
         outputs[ROOT / project["case_en"]] = case_page(data, project_id, "en")
+    for lang in ("ru", "en"):
+        outputs[ROOT / f"{lang}-engineering.html"] = engineering_page(data, lang)
     for source, target in data["redirects"].items():
         outputs[ROOT / source] = redirect_page(data, source, target)
     outputs[ROOT / "sitemap.xml"] = sitemap(data)
