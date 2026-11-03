@@ -119,3 +119,5 @@ jobs:
           grep -Fq 'en-runtime-compiler.html' "$temp/sitemap.xml"
 
           echo 'PUBLIC PAGES SMOKE: PASS — live HTTPS responses contain new CV content and real downloads.'
+
+# Post-publication verification of the six bilingual recruiting portfolio websites.
