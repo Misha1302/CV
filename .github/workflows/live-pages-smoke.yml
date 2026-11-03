@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - qa/public-pages-smoke-20261103
+      - qa/cv-sites-public-20261103
     paths:
       - .github/workflows/live-pages-smoke.yml
 
@@ -57,6 +58,37 @@ jobs:
           get 'en-engineering.html' "$temp/engineering-en.html"
           grep -Fq '02_Tech_Lead_EN.pdf' "$temp/engineering-en.html"
 
+          # Full role-specific portfolio websites: source, content, localization and links.
+          get 'ru-backend-ats.html' "$temp/backend-ats.html"
+          grep -Fq 'C# / .NET BACKEND DEVELOPER' "$temp/backend-ats.html"
+          grep -Fq 'TuringSquare-LMS' "$temp/backend-ats.html"
+          grep -Fq 'ru-tech-lead.html' "$temp/backend-ats.html"
+
+          get 'en-backend-ats.html' "$temp/backend-ats-en.html"
+          grep -Fq 'C# / .NET BACKEND DEVELOPER' "$temp/backend-ats-en.html"
+          grep -Fq 'UniversalToolchain' "$temp/backend-ats-en.html"
+
+          get 'ru-tech-lead.html' "$temp/techlead.html"
+          grep -Fq 'Quark2' "$temp/techlead.html"
+          grep -Fq 'VpnMediator' "$temp/techlead.html"
+          grep -Fq '02_Tech_Lead.pdf' "$temp/techlead.html"
+
+          get 'en-tech-lead.html' "$temp/techlead-en.html"
+          grep -Fq 'Quark2' "$temp/techlead-en.html"
+          grep -Fq '02_Tech_Lead_EN.pdf' "$temp/techlead-en.html"
+
+          get 'ru-runtime-compiler.html' "$temp/runtime-site.html"
+          grep -Fq 'LLVM' "$temp/runtime-site.html"
+          grep -Fq 'Quark2' "$temp/runtime-site.html"
+          grep -Fq '03_Runtime_Compiler.pdf' "$temp/runtime-site.html"
+
+          get 'en-runtime-compiler.html' "$temp/runtime-site-en.html"
+          grep -Fq 'LanguagePlan' "$temp/runtime-site-en.html"
+          grep -Fq '03_Runtime_Compiler_EN.pdf' "$temp/runtime-site-en.html"
+
+          get 'assets/application-sites.css' "$temp/application-sites.css"
+          grep -Fq '.ap-hero' "$temp/application-sites.css"
+
           get 'cases/ru-vpn.html' "$temp/vpn.html"
           grep -Fq 'VpnMediator' "$temp/vpn.html"
 
@@ -79,5 +111,11 @@ jobs:
 
           get 'sitemap.xml' "$temp/sitemap.xml"
           grep -Fq 'ru-engineering.html' "$temp/sitemap.xml"
+          grep -Fq 'ru-backend-ats.html' "$temp/sitemap.xml"
+          grep -Fq 'en-backend-ats.html' "$temp/sitemap.xml"
+          grep -Fq 'ru-tech-lead.html' "$temp/sitemap.xml"
+          grep -Fq 'en-tech-lead.html' "$temp/sitemap.xml"
+          grep -Fq 'ru-runtime-compiler.html' "$temp/sitemap.xml"
+          grep -Fq 'en-runtime-compiler.html' "$temp/sitemap.xml"
 
           echo 'PUBLIC PAGES SMOKE: PASS — live HTTPS responses contain new CV content and real downloads.'

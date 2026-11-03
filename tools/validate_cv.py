@@ -64,6 +64,9 @@ def normalized(value: str) -> str:
 
 def html_files(data: dict) -> list[Path]:
     files = [ROOT / "index.html", ROOT / "ru-engineering.html", ROOT / "en-engineering.html"]
+    files.extend(ROOT / pages[lang]
+                 for pages in data["application_cvs"]["pages"].values()
+                 for lang in ("ru","en"))
     for key in data["profile_order"]:
         for lang in ("ru", "en"):
             files.append(ROOT / data["profiles"][key][lang]["filename"])
@@ -311,8 +314,8 @@ def validate_html(data: dict) -> set[str]:
             filename = data["profiles"][key][lang]["filename"]
             if not landing_soup.select_one(f'#profiles a[href="{filename}"]'):
                 raise RuntimeError(f"Landing: missing {lang} route to {key}: {filename}")
-    en_page = data["profiles"]["architecture"]["en"]["filename"]
-    if not landing_soup.select_one(f'header a[aria-label="English version of the universal CV"][href="{en_page}"]'):
+    en_page = data["application_cvs"]["pages"]["ats"]["en"]
+    if not landing_soup.select_one(f'header a[aria-label="English version of the backend CV"][href="{en_page}"]'):
         raise RuntimeError("Landing: English switch must point to universal English CV")
     if not landing_soup.select_one(f'.mobile-panel a[href="{en_page}"]'):
         raise RuntimeError("Landing: mobile menu must expose universal English CV")

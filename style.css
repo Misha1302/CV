@@ -935,3 +935,16 @@ body.profile-compiler::before {
  .selector-page #cases .landing-case:nth-child(even){padding-left:0;}
  .selector-page #cases .landing-case {padding:23px 0 25px;}
 }
+
+/* New primary links into full bilingual application portfolio sites. */
+.selector-page .cv-option .cv-site-link {
+  border-color:var(--accent);background:rgba(216,80,97,.1);
+  min-width:146px;color:var(--text);font-weight:780;
+}
+.selector-page .cv-option .cv-site-link:hover,
+.selector-page .cv-option .cv-site-link:focus-visible {
+  background:var(--accent-strong);color:white;
+}
+@media(max-width:760px) {
+  .selector-page .cv-option .cv-site-link {min-width:116px;}
+}

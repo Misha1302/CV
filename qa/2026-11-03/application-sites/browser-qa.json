@@ -1,0 +1,112 @@
+[
+  {
+    "page": "ru-backend-ats.html",
+    "view": "backend-ru-desktop",
+    "http": 200,
+    "viewport": 1440,
+    "page_width": 1440,
+    "h1": "Михаил Разаков\nC# / .NET BACKEND DEVELOPER",
+    "sections": 6,
+    "js_errors": 0,
+    "screenshot": "backend-ru-desktop-full.webp"
+  },
+  {
+    "page": "ru-backend-ats.html",
+    "view": "backend-ru-mobile",
+    "http": 200,
+    "viewport": 390,
+    "page_width": 390,
+    "h1": "Михаил Разаков\nC# / .NET BACKEND DEVELOPER",
+    "sections": 6,
+    "js_errors": 0,
+    "screenshot": "backend-ru-mobile-full.webp"
+  },
+  {
+    "page": "ru-tech-lead.html",
+    "view": "engineering-ru-desktop",
+    "http": 200,
+    "viewport": 1440,
+    "page_width": 1440,
+    "h1": "Михаил Разаков\nC# / .NET BACKEND · SYSTEMS & RELIABILITY",
+    "sections": 6,
+    "js_errors": 0,
+    "screenshot": "engineering-ru-desktop-full.webp"
+  },
+  {
+    "page": "ru-tech-lead.html",
+    "view": "engineering-ru-mobile",
+    "http": 200,
+    "viewport": 390,
+    "page_width": 390,
+    "h1": "Михаил Разаков\nC# / .NET BACKEND · SYSTEMS & RELIABILITY",
+    "sections": 6,
+    "js_errors": 0,
+    "screenshot": "engineering-ru-mobile-full.webp"
+  },
+  {
+    "page": "ru-runtime-compiler.html",
+    "view": "runtime-ru-desktop",
+    "http": 200,
+    "viewport": 1440,
+    "page_width": 1440,
+    "h1": "Михаил Разаков\nC# / .NET · RUNTIME, COMPILERS & PERFORMANCE",
+    "sections": 6,
+    "js_errors": 0,
+    "screenshot": "runtime-ru-desktop-full.webp"
+  },
+  {
+    "page": "ru-runtime-compiler.html",
+    "view": "runtime-ru-mobile",
+    "http": 200,
+    "viewport": 390,
+    "page_width": 390,
+    "h1": "Михаил Разаков\nC# / .NET · RUNTIME, COMPILERS & PERFORMANCE",
+    "sections": 6,
+    "js_errors": 0,
+    "screenshot": "runtime-ru-mobile-full.webp"
+  },
+  {
+    "page": "en-backend-ats.html",
+    "view": "backend-en-desktop",
+    "http": 200,
+    "viewport": 1440,
+    "page_width": 1440,
+    "h1": "Mikhail Razakov\nC# / .NET BACKEND DEVELOPER",
+    "sections": 6,
+    "js_errors": 0,
+    "screenshot": "backend-en-desktop-full.webp"
+  },
+  {
+    "page": "en-tech-lead.html",
+    "view": "engineering-en-mobile",
+    "http": 200,
+    "viewport": 390,
+    "page_width": 390,
+    "h1": "Mikhail Razakov\nC# / .NET BACKEND · SYSTEMS & RELIABILITY",
+    "sections": 6,
+    "js_errors": 0,
+    "screenshot": "engineering-en-mobile-full.webp"
+  },
+  {
+    "page": "en-runtime-compiler.html",
+    "view": "runtime-en-desktop",
+    "http": 200,
+    "viewport": 1440,
+    "page_width": 1440,
+    "h1": "Mikhail Razakov\nC# / .NET · RUNTIME, COMPILERS & PERFORMANCE",
+    "sections": 6,
+    "js_errors": 0,
+    "screenshot": "runtime-en-desktop-full.webp"
+  },
+  {
+    "page": "index.html",
+    "view": "home-mobile",
+    "http": 200,
+    "viewport": 390,
+    "page_width": 390,
+    "h1": "Михаил Разаков\nC#/.NET Backend Developer",
+    "sections": 5,
+    "js_errors": 0,
+    "screenshot": "home-mobile-full.webp"
+  }
+]

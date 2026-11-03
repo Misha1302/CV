@@ -78,3 +78,15 @@ architecture authority, or broad finance specialism has been introduced.
 - The broad Software Engineer — Systems & Architecture remains a retained technical profile and canonical wide-spectrum counterpart, not a seniority title.
 - Dates and aggregate commercial duration are candidate-attested; do not conflate with independently verified continuous employment.
 - TuringSquare-LMS uses role-based course entitlements and T-Bank sandbox; no coin-wallet model. Do not attribute agent-produced code as exclusively handwritten by the candidate.
+
+## Direct links for recruiting (website-first, 2026-11-03)
+
+Share /CV/ru-backend-ats.html with HR and general .NET backend teams.
+Share /CV/ru-tech-lead.html with team leads and engineering managers.
+Share /CV/ru-runtime-compiler.html with compiler, CLR and runtime teams.
+English variants have the corresponding en- prefix. All six public website
+editions include complete roles, evidence-bounded experience, projects,
+architecture details and downloadable PDF/DOCX/Markdown.
+
+The legacy technical-profile URLs remain available for narrower targeting;
+the RU/EN engineering deep-dive aliases now use the current Tech Lead edition.
