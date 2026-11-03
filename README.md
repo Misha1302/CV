@@ -70,3 +70,14 @@ The checks enforce:
 - one-page A4 PDFs with text layers and links;
 - desktop, mobile, and JavaScript-disabled screenshot regression/smoke checks;
 - recursive SHA-256 manifest integrity.
+
+## CV release — 2026-11-03
+
+Send-ready, one-page C#/.NET resumes (Russian): **[choose the right version](releases/2026-11-03/README.md)**.
+
+- [Backend / ATS PDF](releases/2026-11-03/01_Backend_ATS.pdf) — default for HR applications.
+- [Tech Lead PDF](releases/2026-11-03/02_Tech_Lead.pdf) — for direct engineering outreach.
+- [Runtime / Compiler PDF](releases/2026-11-03/03_Runtime_Compiler.pdf) — for systems and compiler teams.
+- [Full package ZIP](releases/2026-11-03/Mikhail_Razakov_CV_Complete_Package_2026-11-03.zip) — PDFs, editable DOCX, Markdown, evidence review and outreach texts.
+
+These files supplement the existing generated CV site and do not alter canonical site content.
