@@ -1,0 +1,83 @@
+name: Verify public CV Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - qa/public-pages-smoke-20261103
+    paths:
+      - .github/workflows/live-pages-smoke.yml
+
+permissions:
+  contents: read
+
+jobs:
+  public-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Verify rendered public Pages URLs, content and downloadable assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://misha1302.github.io/CV'
+          temp="$(mktemp -d)"
+          trap 'rm -rf "$temp"' EXIT
+
+          get() {
+            local path="$1"
+            local output="$2"
+            echo "GET $base/$path"
+            curl --fail --location --show-error --silent \
+              --retry 7 --retry-delay 5 --retry-all-errors \
+              --connect-timeout 12 --max-time 30 \
+              -H 'Cache-Control: no-cache' \
+              --output "$output" "$base/$path"
+            test -s "$output"
+            wc -c "$output"
+          }
+
+          get '' "$temp/index.html"
+          grep -Fq 'Михаил Разаков' "$temp/index.html"
+          grep -Fq 'C#/.NET Backend Developer' "$temp/index.html"
+          grep -Fq 'releases/2026-11-03/01_Backend_ATS.pdf' "$temp/index.html"
+          grep -Fq 'cases/ru-quark2.html' "$temp/index.html"
+
+          get 'ru-backend.html' "$temp/backend.html"
+          grep -Fq 'TuringSquare-LMS' "$temp/backend.html"
+          grep -Fq '01_Backend_ATS.pdf' "$temp/backend.html"
+
+          get 'en-backend.html' "$temp/backend-en.html"
+          grep -Fq 'Backend Developer' "$temp/backend-en.html"
+
+          get 'ru-engineering.html' "$temp/engineering.html"
+          grep -Fq '02_Tech_Lead.pdf' "$temp/engineering.html"
+          grep -Fq 'Quark2' "$temp/engineering.html"
+
+          get 'en-engineering.html' "$temp/engineering-en.html"
+          grep -Fq '02_Tech_Lead_EN.pdf' "$temp/engineering-en.html"
+
+          get 'cases/ru-vpn.html' "$temp/vpn.html"
+          grep -Fq 'VpnMediator' "$temp/vpn.html"
+
+          get 'cases/ru-quark2.html' "$temp/quark2.html"
+          grep -Fq 'DynamicMethod' "$temp/quark2.html"
+
+          get 'releases/2026-11-03/README.md' "$temp/release.md"
+          grep -Fq '03_Runtime_Compiler_EN.pdf' "$temp/release.md"
+
+          get 'releases/2026-11-03/01_Backend_ATS.pdf' "$temp/ats.pdf"
+          test "$(head -c 4 "$temp/ats.pdf")" = '%PDF'
+          test "$(wc -c < "$temp/ats.pdf")" -gt 10000
+
+          get 'releases/2026-11-03/02_Tech_Lead.docx' "$temp/tech-lead.docx"
+          test "$(head -c 2 "$temp/tech-lead.docx")" = 'PK'
+          test "$(wc -c < "$temp/tech-lead.docx")" -gt 10000
+
+          get 'releases/2026-11-03/03_Runtime_Compiler_EN.md' "$temp/runtime.md"
+          grep -Fq 'UniversalToolchain' "$temp/runtime.md"
+
+          get 'sitemap.xml' "$temp/sitemap.xml"
+          grep -Fq 'ru-engineering.html' "$temp/sitemap.xml"
+
+          echo 'PUBLIC PAGES SMOKE: PASS — live HTTPS responses contain new CV content and real downloads.'
