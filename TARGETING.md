@@ -69,3 +69,12 @@ for targeted applications rather than being advertised as equal expertise.
 
 No unsupported production scale, formal verification, senior/staff
 architecture authority, or broad finance specialism has been introduced.
+
+## November 3, 2026 — application-first targeting
+
+- Default applicant entry point: C#/.NET Backend Developer, with an ATS-focused, one-page bilingual PDF/DOCX/Markdown release.
+- Engineering lead: use the longer RU/EN web profile and 02_Tech_Lead release, which differentiates operator responsibilities, compiler research, and review/agent-managed implementation.
+- Compiler/runtime: use 03_Runtime_Compiler and Quark2 as experimental proof, not evidence of a production CLR optimization.
+- The broad Software Engineer — Systems & Architecture remains a retained technical profile and canonical wide-spectrum counterpart, not a seniority title.
+- Dates and aggregate commercial duration are candidate-attested; do not conflate with independently verified continuous employment.
+- TuringSquare-LMS uses role-based course entitlements and T-Bank sandbox; no coin-wallet model. Do not attribute agent-produced code as exclusively handwritten by the candidate.

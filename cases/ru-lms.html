@@ -4,26 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0f0c0d">
-<title>CompilationLabLMS — архитектурный кейс</title>
-<meta name="description" content="Архитектура отделяет пользовательские workflows от финансовых инвариантов и поддерживает безопасную миграцию и откат.">
+<title>TuringSquare-LMS — архитектурный кейс</title>
+<meta name="description" content="Продукт в разработке: проверяемые сценарии и sandbox-платежи не эквивалентны production-релизу. Баланса внутренних монет нет.">
 <meta property="og:type" content="profile">
-<meta property="og:title" content="CompilationLabLMS — архитектурный кейс">
-<meta property="og:description" content="Архитектура отделяет пользовательские workflows от финансовых инвариантов и поддерживает безопасную миграцию и откат.">
+<meta property="og:title" content="TuringSquare-LMS — архитектурный кейс">
+<meta property="og:description" content="Продукт в разработке: проверяемые сценарии и sandbox-платежи не эквивалентны production-релизу. Баланса внутренних монет нет.">
 <meta property="og:url" content="https://misha1302.github.io/CV/cases/ru-lms.html">
-<meta property="og:image" content="https://misha1302.github.io/CV/assets/og-card.svg">
+<meta property="og:image" content="https://misha1302.github.io/CV/assets/og-card.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="CompilationLabLMS — архитектурный кейс">
-<meta name="twitter:description" content="Архитектура отделяет пользовательские workflows от финансовых инвариантов и поддерживает безопасную миграцию и откат.">
-<meta name="twitter:image" content="https://misha1302.github.io/CV/assets/og-card.svg">
+<meta name="twitter:title" content="TuringSquare-LMS — архитектурный кейс">
+<meta name="twitter:description" content="Продукт в разработке: проверяемые сценарии и sandbox-платежи не эквивалентны production-релизу. Баланса внутренних монет нет.">
+<meta name="twitter:image" content="https://misha1302.github.io/CV/assets/og-card.png">
 <link rel="canonical" href="https://misha1302.github.io/CV/cases/ru-lms.html">
 <link rel="alternate" hreflang="ru" href="https://misha1302.github.io/CV/cases/ru-lms.html">
 <link rel="alternate" hreflang="en" href="https://misha1302.github.io/CV/cases/en-lms.html">
 <link rel="alternate" hreflang="x-default" href="https://misha1302.github.io/CV/">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../style.css?v=2026-10-16-restore-local-portraits">
+<link rel="stylesheet" href="../style.css?v=2026-11-03-unified-career-edition">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Михаил Разаков","jobTitle":"Software Engineer — Systems & Architecture","email":"mailto:razakov.mikhail@outlook.com","url":"https://misha1302.github.io/CV/cases/ru-lms.html","sameAs":["https://github.com/Misha1302","https://t.me/Micodiy","https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D1%80%D0%B0%D0%B7%D0%B0%D0%BA%D0%BE%D0%B2-b100a9248/"]}</script>
 </head>
 <body class="case-page"><header class="site-header"><div class="shell header-inner"><a class="brand" href="../index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>Михаил Разаков</strong><span>инженерный кейс</span></span></a><div></div><div class="header-actions"><a class="button compact" href="../ru-architecture.html">Вернуться к резюме</a></div></div></header>
-<main class="shell case-main" id="main"><section class="case-hero"><p class="eyebrow">.NET backend · роли · ledger · платежные workflows</p><h1>CompilationLabLMS</h1><p>Учебные роли, баланс и платежные операции должны сохранять инварианты при повторных запросах, миграциях и частичных сбоях.</p><div class="case-note">Код проекта закрыт. Разбор намеренно не содержит секретов, персональных данных и эксплуатационных идентификаторов.</div><div class="hero-actions"></div></section>
-<section class="case-grid"><article><span>01</span><h2>Проблема</h2><p>Учебные роли, баланс и платежные операции должны сохранять инварианты при повторных запросах, миграциях и частичных сбоях.</p></article><article><span>02</span><h2>Ограничения</h2><p>Финансовые операции и пользовательские workflows должны развиваться независимо, не нарушая ledger-инварианты.</p></article><article><span>03</span><h2>Решение</h2><p>Явные роли и состояния, ledger-подход к балансу, проверяемые webhooks, идемпотентное завершение платежей и critical-flow gates.</p></article><article><span>04</span><h2>Результат</h2><p>Архитектура отделяет пользовательские workflows от финансовых инвариантов и поддерживает безопасную миграцию и откат.</p></article><article><span>05</span><h2>Как проверялось</h2><p>Ledger-инварианты, идемпотентное завершение платежа, проверки ролей, миграции и acceptance критических flows.</p></article><article><span>06</span><h2>Моя ответственность</h2><p>Роли, баланс, платежные workflows, инварианты и release-проверки.</p></article></section></main>
-<footer class="shell site-footer"><span>CompilationLabLMS</span><span>Обновлено 2026-10-16</span></footer></body></html>
+<main class="shell case-main" id="main"><section class="case-hero"><p class="eyebrow">Разрабатываемая образовательная платформа · агентная реализация</p><h1>TuringSquare-LMS</h1><p>Роли администратора, преподавателя, куратора и ученика, доступ к курсам и разовые/подписочные платежи должны работать согласованно при повторах и сетевых сбоях.</p><div class="case-note">Код проекта закрыт. Разбор намеренно не содержит секретов, персональных данных и эксплуатационных идентификаторов.</div><div class="hero-actions"></div></section>
+<section class="case-grid"><article><span>01</span><h2>Проблема</h2><p>Роли администратора, преподавателя, куратора и ученика, доступ к курсам и разовые/подписочные платежи должны работать согласованно при повторах и сетевых сбоях.</p></article><article><span>02</span><h2>Ограничения</h2><p>Роли и course entitlements, повторные заказы и проверка T-Bank; один платеж не даёт доступа без подтверждения провайдера.</p></article><article><span>03</span><h2>Решение</h2><p>Проектирую и проверяю серверные контракты ASP.NET Core/PostgreSQL и требования к интеграции T-Bank: идемпотентность заказа, проверка состояния у провайдера перед выдачей доступа; реализация частично выполнена AI-агентами.</p></article><article><span>04</span><h2>Результат</h2><p>Продукт в разработке: проверяемые сценарии и sandbox-платежи не эквивалентны production-релизу. Баланса внутренних монет нет.</p></article><article><span>05</span><h2>Как проверялось</h2><p>Ревью ролей и доступов, перепроверки T-Bank sandbox, миграций и критических flows; без заявления о production-запуске.</p></article><article><span>06</span><h2>Моя ответственность</h2><p>Архитектура и критерии приёмки, ревью агентной реализации ролей, прав доступа и T-Bank sandbox.</p></article></section></main>
+<footer class="shell site-footer"><span>TuringSquare-LMS</span><span>Обновлено 2026-11-03</span></footer></body></html>

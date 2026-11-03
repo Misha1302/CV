@@ -1,6 +1,6 @@
 {
-  "version": "2026-10-16-restore-local-portraits",
-  "updated_at": "2026-10-16",
+  "version": "2026-11-03-unified-career-edition",
+  "updated_at": "2026-11-03",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -44,8 +44,8 @@
     "backend": {
       "label_ru": ".NET Backend / Reliability",
       "label_en": ".NET Backend / Reliability",
-      "landing_title": ".NET Backend / Platform Reliability",
-      "landing_description_ru": "Сервисы и продуктовая разработка на C#/.NET: платежи, подписки, синхронизация, восстановление после сбоев и операционная надёжность."
+      "landing_title": "C# / .NET Backend Development",
+      "landing_description_ru": "ASP.NET Core, SQL, интеграции платежей, идемпотентность, восстановление состояния и практическая эксплуатация."
     },
     "systems": {
       "label_ru": "C++ / Systems",
@@ -501,12 +501,12 @@
       "ru": {
         "filename": "ru-backend.html",
         "pdf": "Mikhail_Razakov_Backend_RU.pdf",
-        "title": "Михаил Разаков — .NET Backend / Platform Engineer · State & Reliability",
-        "role": ".NET Backend / Platform Engineer · State & Reliability",
+        "title": "Михаил Разаков — C#/.NET Backend Developer · системы и надёжность",
+        "role": "C# / .NET Backend Developer · Systems & Reliability",
         "brand": ".NET · payment state · recovery · platform reliability",
         "eyebrow": "ASP.NET Core · idempotency · recovery · rollback",
-        "summary": "Разрабатываю .NET-системы для платежей, подписок и синхронизации, где повторы запросов и частичные сбои не должны портить состояние. В VpnMediator реализовал проверку и восстановление доступа, в botay! — повторяемые офлайн-операции, в LMS — перепроверку платежей перед записью в ledger.",
-        "description": ".NET Backend / Platform Engineer Михаил Разаков: payment state, idempotency, durable inbox/outbox, provider verification, recovery, migrations и rollback",
+        "summary": "C#/.NET backend-разработчик: коммерческая практика на смешанном стеке — около года суммарно (по данным автора). Работаю в ИСП РАН над SharpChecker, ранее — LLVM в МЦСТ. Поддерживаю работающий VpnMediator; в UniversalToolchain исследую compiler/runtime, в LMS проектирую и проверяю платежные сценарии.",
+        "description": "Михаил Разаков: ASP.NET Core, SQL/PostgreSQL, действующий VpnMediator, SharpChecker в ИСП РАН, LLVM в МЦСТ и UniversalToolchain.",
         "proofs": [
           [
             "Payment correctness",
@@ -552,8 +552,9 @@
         ],
         "project_ids": [
           "vpn",
-          "botay",
-          "lms"
+          "wist",
+          "lms",
+          "quark2"
         ],
         "skills": [
           [
@@ -575,7 +576,7 @@
         ],
         "contact_heading": "Целевые роли: .NET Backend / Platform Engineer с ответственностью за состояние, recovery и эксплуатационную корректность",
         "footer": "NET Backend / Platform Engineer · State & Reliability",
-        "updated_at": "2026-10-16",
+        "updated_at": "2026-11-03",
         "print_spacious": true,
         "print_project_limit": 3,
         "project_summaries": {
@@ -592,12 +593,12 @@
       "en": {
         "filename": "en-backend.html",
         "pdf": "Mikhail_Razakov_Backend_EN.pdf",
-        "title": "Mikhail Razakov — .NET Backend / Platform Engineer · State & Reliability",
-        "role": ".NET Backend / Platform Engineer · State & Reliability",
+        "title": "Mikhail Razakov — C#/.NET Backend Developer · systems and reliability",
+        "role": "C# / .NET Backend Developer · Systems & Reliability",
         "brand": ".NET · payment state · recovery · platform reliability",
         "eyebrow": "ASP.NET Core · idempotency · recovery · rollback",
-        "summary": "I build .NET systems for payments, subscriptions, and synchronization where retries and partial failures must not corrupt state. VpnMediator reconciles payment and access state; botay! replays offline operations idempotently; the LMS verifies provider payments before ledger updates.",
-        "description": ".NET Backend / Platform Engineer Mikhail Razakov: payment state, idempotency, durable inbox/outbox, provider verification, recovery, migrations, and rollback",
+        "summary": "C#/.NET backend developer with approximately one year of aggregate commercial experience across related technologies (candidate-reported). I work on SharpChecker at ISP RAS, previously built LLVM tooling at MCST, operate VpnMediator, and design and review LMS payment flows.",
+        "description": "Mikhail Razakov: ASP.NET Core, SQL/PostgreSQL, operational VpnMediator, SharpChecker at ISP RAS, LLVM at MCST, and UniversalToolchain.",
         "proofs": [
           [
             "Payment correctness",
@@ -643,8 +644,9 @@
         ],
         "project_ids": [
           "vpn",
-          "botay",
-          "lms"
+          "wist",
+          "lms",
+          "quark2"
         ],
         "skills": [
           [
@@ -666,7 +668,7 @@
         ],
         "contact_heading": "Targeting .NET Backend / Platform Engineer roles with ownership of state, recovery, and operational correctness",
         "footer": ".NET Backend / Platform Engineer · State & Reliability",
-        "updated_at": "2026-10-16",
+        "updated_at": "2026-11-03",
         "print_spacious": true,
         "print_project_limit": 3,
         "project_summaries": {
@@ -1954,15 +1956,15 @@
       "public": false
     },
     "lms": {
-      "title": "CompilationLabLMS",
-      "type_ru": ".NET backend · роли · ledger · платежные workflows",
-      "type_en": ".NET backend · roles · ledger · payment workflows",
-      "problem_ru": "Учебные роли, баланс и платежные операции должны сохранять инварианты при повторных запросах, миграциях и частичных сбоях.",
-      "problem_en": "Learning roles, balances, and payment operations must preserve invariants across retries, migrations, and partial failures.",
-      "solution_ru": "Явные роли и состояния, ledger-подход к балансу, проверяемые webhooks, идемпотентное завершение платежей и critical-flow gates.",
-      "solution_en": "Explicit roles and states, a balance ledger, verified webhooks, idempotent payment completion, and critical-flow gates.",
-      "result_ru": "Архитектура отделяет пользовательские workflows от финансовых инвариантов и поддерживает безопасную миграцию и откат.",
-      "result_en": "The architecture separates user workflows from financial invariants and supports safe migration and rollback.",
+      "title": "TuringSquare-LMS",
+      "type_ru": "Разрабатываемая образовательная платформа · агентная реализация",
+      "type_en": "In-development learning platform · agent-assisted implementation",
+      "problem_ru": "Роли администратора, преподавателя, куратора и ученика, доступ к курсам и разовые/подписочные платежи должны работать согласованно при повторах и сетевых сбоях.",
+      "problem_en": "Administrator, teacher, curator and student roles, course entitlements, and one-time/subscription payments must remain consistent under retries and network failures.",
+      "solution_ru": "Проектирую и проверяю серверные контракты ASP.NET Core/PostgreSQL и требования к интеграции T-Bank: идемпотентность заказа, проверка состояния у провайдера перед выдачей доступа; реализация частично выполнена AI-агентами.",
+      "solution_en": "I define and review ASP.NET Core/PostgreSQL contracts and T-Bank payment requirements: order idempotency and authoritative provider state checks before entitlement grants. Parts of implementation were produced by AI agents.",
+      "result_ru": "Продукт в разработке: проверяемые сценарии и sandbox-платежи не эквивалентны production-релизу. Баланса внутренних монет нет.",
+      "result_en": "Work in progress: checks and sandbox payments do not establish production readiness. No internal coin-wallet model.",
       "case_ru": "cases/ru-lms.html",
       "case_en": "cases/en-lms.html",
       "public": false
@@ -2041,6 +2043,21 @@
       "case_ru": "cases/ru-botay.html",
       "case_en": "cases/en-botay.html",
       "public": true
+    },
+    "quark2": {
+      "title": "Quark2 / CLR experiments",
+      "type_ru": "Экспериментальный .NET Runtime / performance",
+      "type_en": "Experimental .NET runtime and performance",
+      "problem_ru": "Обычные абстракции скрывают стоимость вызова динамически сгенерированного кода и границы доступности внутренних механизмов CLR.",
+      "problem_en": "Public .NET abstractions can obscure invocation overhead and the fragile boundary around CLR internals.",
+      "solution_ru": "Эксперименты с DynamicMethod, Reflection.Emit, RuntimeMethodHandle и native function pointer; сравнение Invoke, delegate и указателя через BenchmarkDotNet.",
+      "solution_en": "Experiments with DynamicMethod, Reflection.Emit, RuntimeMethodHandle and native function pointers; BenchmarkDotNet comparisons of Invoke, delegates and pointers.",
+      "result_ru": "Воспроизводимый исследовательский прототип, а не production-оптимизация или универсальное ускорение CLR.",
+      "result_en": "A reproducible research prototype, not a production optimization or a general CLR performance claim.",
+      "repo": "https://github.com/Misha1302/Quark2",
+      "case_ru": "cases/ru-quark2.html",
+      "case_en": "cases/en-quark2.html",
+      "public": true
     }
   },
   "recognition": {
@@ -2115,6 +2132,14 @@
       "date_en": "July — August 2026",
       "title_ru": "МЦСТ — стажёр по разработке компиляторов",
       "title_en": "MCST — Compiler Engineering Intern"
+    },
+    "commercial": {
+      "date_ru": "суммарно около 1 года",
+      "date_en": "approximately 1 year total",
+      "title_ru": "Коммерческая разработка C#/.NET и смежного ПО",
+      "title_en": "Commercial C#/.NET and adjacent software development",
+      "status": "USER_ATTESTED",
+      "date_boundary": "Aggregate duration and stack attested by candidate; individual client timelines and responsibility require employer references."
     }
   },
   "selector_order": [
@@ -2172,17 +2197,358 @@
   },
   "canonical_profile": "architecture",
   "landing": {
-    "eyebrow_ru": "C++ · C#/.NET · Python · Software / Systems Engineering",
+    "eyebrow_ru": "C# / .NET BACKEND  ·  SYSTEMS & COMPILER ENGINEERING",
     "hero_evidence_ru": [
-      "ИСП РАН · SharpChecker · статический анализ C#/.NET",
-      "МЦСТ · LLVM 22 / C++ · оптимизация и проверка корректности",
-      "LangDev 2026 · доклад о UniversalToolchain · 9 октября"
+      "Коммерческая разработка: около 1 года суммарно (по данным автора)",
+      "ИСП РАН / SharpChecker — символьные вычисления; МЦСТ / LLVM 22",
+      "VpnMediator — работающий сервис; UniversalToolchain — .NET compiler/runtime"
     ],
-    "profiles_intro_ru": "Единая инженерная база, четыре направления для разных команд. Все версии используют одни проверяемые факты и по-разному расставляют акценты.",
+    "profiles_intro_ru": "Основная специализация — C#/.NET backend. Для собеседований с инженерными командами доступны технические профили по компиляторам, системному программированию и анализу кода.",
     "project_ids": [
+      "vpn",
       "wist",
       "botay",
-      "vpn"
+      "quark2"
     ]
+  },
+  "application_cvs": {
+    "version": "2026-11-03",
+    "release_dir": "releases/2026-11-03",
+    "experience": {
+      "ru": [
+        {
+          "id": "isp",
+          "title": "ИСП РАН · SharpChecker",
+          "date": "октябрь 2026 — н. в.",
+          "text": "Символьные вычисления и структурная метаинформация C#-кода/деклараций для статического анализа и задач обнаружения ошибок.",
+          "evidence_refs": [
+            "experience_isp_ras_2026"
+          ]
+        },
+        {
+          "id": "mcst",
+          "title": "МЦСТ · стажировка по компиляторам",
+          "date": "июль — август 2026",
+          "text": "C++23/LLVM 22: экспериментальный LICM с консервативными условиями допустимости; Python-проверки поведения до/после преобразования.",
+          "evidence_refs": [
+            "experience_mcst_2026"
+          ]
+        },
+        {
+          "id": "commercial",
+          "title": "Коммерческая разработка · C#/.NET и смежный стек",
+          "date": "суммарно около 1 года",
+          "text": "Прикладные и серверные задачи на C#/.NET и Unity: ASP.NET Core, SQL/PostgreSQL, файловая система и серверное окружение. Продолжительность — по данным кандидата.",
+          "evidence_refs": [
+            "experience_commercial_aggregate_2026"
+          ]
+        }
+      ],
+      "en": [
+        {
+          "id": "isp",
+          "title": "ISP RAS · SharpChecker",
+          "date": "Oct 2026 — present",
+          "text": "Symbolic computation and structured C# code/declaration metadata for static analysis and AI-assisted defect recognition.",
+          "evidence_refs": [
+            "experience_isp_ras_2026"
+          ]
+        },
+        {
+          "id": "mcst",
+          "title": "MCST · compiler engineering internship",
+          "date": "Jul — Aug 2026",
+          "text": "C++23/LLVM 22: experimental LICM with conservative legality checks; Python differential checks of before/after behavior.",
+          "evidence_refs": [
+            "experience_mcst_2026"
+          ]
+        },
+        {
+          "id": "commercial",
+          "title": "Commercial development · C#/.NET & adjacent technologies",
+          "date": "approx. 1 year total",
+          "text": "Application and backend work with C#/.NET, Unity, ASP.NET Core, SQL/PostgreSQL, file I/O and servers. Duration is candidate-reported.",
+          "evidence_refs": [
+            "experience_commercial_aggregate_2026"
+          ]
+        }
+      ]
+    },
+    "variants": {
+      "ats": {
+        "basename": {
+          "ru": "01_Backend_ATS",
+          "en": "01_Backend_ATS_EN"
+        },
+        "audience_ru": "HR / ATS · основной отклик",
+        "audience_en": "HR / ATS · default application",
+        "ru": {
+          "role": "C# / .NET BACKEND DEVELOPER",
+          "summary": "Разрабатываю backend-сервисы на C#/.NET и сопровождаю работающий VpnMediator. Около 1 года совокупной коммерческой практики на C#/.NET и смежном стеке (по данным автора). Отдельно — работа в ИСП РАН и стажировка в МЦСТ. Фокус: API, данные, идемпотентность и восстановление после сбоев.",
+          "skills": [
+            "C#, .NET, ASP.NET Core, REST API, OpenAPI, SQL, PostgreSQL, SQLite, EF Core",
+            "Транзакции, миграции, фоновые задачи, платежные состояния, идемпотентность; Git, Linux, Docker Compose, nginx, systemd"
+          ],
+          "projects": [
+            {
+              "id": "vpn",
+              "title": "VpnMediator / Razaltush VPN · действующий сервис",
+              "text": "ASP.NET Core — доступ и устройства, Python — Telegram-бот и платежные сценарии, SQLite. В исходниках есть payment-event inbox, idempotency/reconciliation и механизмы backup/rollback; число пользователей сообщено автором.",
+              "evidence_refs": [
+                "project_vpnmediator"
+              ]
+            },
+            {
+              "id": "wist",
+              "title": "UniversalToolchain · C#/.NET",
+              "text": "Развиваю расширяемую инфраструктуру языков: типизированный LanguagePlan, interpreter/CIL backends и тесты согласованности выполнения.",
+              "evidence_refs": [
+                "project_universaltoolchain"
+              ]
+            },
+            {
+              "id": "lms",
+              "title": "TuringSquare-LMS · в разработке",
+              "text": "Архитектура и ревью course entitlements, ролей и T-Bank sandbox; повторная проверка платежей у провайдера. Часть кода реализована агентами; production-запуска нет.",
+              "evidence_refs": [
+                "project_compilationlab_lms"
+              ]
+            }
+          ],
+          "education": "НИУ ВШЭ, ФКН — Программная инженерия.",
+          "recognition": "Диплом I степени конкурса «Юниор» НИЯУ МИФИ (2026) за UniversalToolchain; доклад LangDev 2026."
+        },
+        "en": {
+          "role": "C# / .NET BACKEND DEVELOPER",
+          "summary": "I build C#/.NET backend services and maintain the operational VpnMediator project. Approx. one year of aggregate commercial development on C#/.NET and adjacent technologies (candidate-reported), alongside ISP RAS work and an MCST internship. Focus: APIs, data integrity, idempotency and recovery.",
+          "skills": [
+            "C#, .NET, ASP.NET Core, REST API, OpenAPI, SQL, PostgreSQL, SQLite, EF Core",
+            "Transactions, migrations, background work, payment state, idempotency; Git, Linux, Docker Compose, nginx, systemd"
+          ],
+          "projects": [
+            {
+              "id": "vpn",
+              "title": "VpnMediator / Razaltush VPN · operational service",
+              "text": "ASP.NET Core access/device backend, Python Telegram/payment bot and SQLite. Source includes payment event inbox, reconciliation and backup/rollback workflows; user numbers are candidate-reported.",
+              "evidence_refs": [
+                "project_vpnmediator"
+              ]
+            },
+            {
+              "id": "wist",
+              "title": "UniversalToolchain · C#/.NET",
+              "text": "Extensible language infrastructure with a typed LanguagePlan, interpreter/CIL backends and execution-parity tests.",
+              "evidence_refs": [
+                "project_universaltoolchain"
+              ]
+            },
+            {
+              "id": "lms",
+              "title": "TuringSquare-LMS · in development",
+              "text": "Architecture and review of entitlements, roles and T-Bank sandbox payment verification. Some code is agent-implemented; no production launch claimed.",
+              "evidence_refs": [
+                "project_compilationlab_lms"
+              ]
+            }
+          ],
+          "education": "HSE University, Faculty of Computer Science — Software Engineering.",
+          "recognition": "1st-degree diploma, MEPhI Junior 2026 (UniversalToolchain); LangDev 2026 speaker."
+        }
+      },
+      "lead": {
+        "basename": {
+          "ru": "02_Tech_Lead",
+          "en": "02_Tech_Lead_EN"
+        },
+        "audience_ru": "Технический руководитель · инженерный разбор",
+        "audience_en": "Engineering lead · architecture & reliability",
+        "ru": {
+          "role": "C# / .NET BACKEND · SYSTEMS & RELIABILITY",
+          "summary": "Разрабатываю и сопровождаю .NET-сервисы с акцентом на повторы запросов, состояние платежей, восстановление и диагностируемость. Основной работающий сервис — VpnMediator; в UniversalToolchain исследую границу семантического планирования и исполнения. Коммерческая практика на смешанном стеке — около года суммарно.",
+          "skills": [
+            "C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await",
+            "Idempotency, provider reconciliation, transactions, operational recovery; CIL, Reflection.Emit, C++/LLVM, Python, Linux"
+          ],
+          "projects": [
+            {
+              "id": "vpn",
+              "title": "VpnMediator · платеж не равен праву доступа",
+              "text": "Состояния доступа и платежей разделены; проверка привязки события к заказу, идемпотентная обработка, reconciliation и restart recovery. Скрипты выпуска содержат backup, health gates и rollback.",
+              "evidence_refs": [
+                "project_vpnmediator"
+              ]
+            },
+            {
+              "id": "wist",
+              "title": "UniversalToolchain · план до выполнения",
+              "text": "LanguageCompiler формирует проверяемый LanguagePlan с зависимостями и типизированными маршрутами; Bytecode/AIR, interpreter/CIL. 1 324 теста указаны в репозиторном манифесте, не выдаются за повторно пройденные.",
+              "evidence_refs": [
+                "project_universaltoolchain"
+              ]
+            },
+            {
+              "id": "lms",
+              "title": "TuringSquare-LMS · архитектура и ревью",
+              "text": "Определяю инварианты ролей/доступа и критерии проверки T-Bank sandbox. Часть реализации выполнена AI-агентами; релиз в production не заявляется.",
+              "evidence_refs": [
+                "project_compilationlab_lms"
+              ]
+            },
+            {
+              "id": "quark2",
+              "title": "Quark2 · исследование CLR",
+              "text": "Эксперименты DynamicMethod/Reflection.Emit и внутренних CLR API; сравнение Invoke, delegate и native pointer через BenchmarkDotNet.",
+              "evidence_refs": [
+                "history_quark2"
+              ]
+            }
+          ],
+          "education": "НИУ ВШЭ — ФКН, Программная инженерия.",
+          "recognition": "«Юниор» НИЯУ МИФИ, диплом I степени (2026); LangDev 2026, доклад об UniversalToolchain."
+        },
+        "en": {
+          "role": "C# / .NET BACKEND · SYSTEMS & RELIABILITY",
+          "summary": "I build .NET services with explicit treatment of retries, payment state, recovery and diagnosability. I operate VpnMediator and develop UniversalToolchain's plan/execution boundary. Approx. one year of aggregate commercial work across a mixed stack (candidate-reported).",
+          "skills": [
+            "C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await",
+            "Idempotency, provider reconciliation, transactions and recovery; CIL, Reflection.Emit, C++/LLVM, Python, Linux"
+          ],
+          "projects": [
+            {
+              "id": "vpn",
+              "title": "VpnMediator · payment is not entitlement",
+              "text": "Separated payment/access state; order-event binding, idempotent handling, reconciliation and restart recovery. Release scripts include backups, health gates and rollback.",
+              "evidence_refs": [
+                "project_vpnmediator"
+              ]
+            },
+            {
+              "id": "wist",
+              "title": "UniversalToolchain · plan before execution",
+              "text": "A validated LanguagePlan captures dependencies and typed backend routes; Bytecode/AIR, interpreter/CIL. 1,324 tests are listed in repository manifests, not claimed as freshly executed.",
+              "evidence_refs": [
+                "project_universaltoolchain"
+              ]
+            },
+            {
+              "id": "lms",
+              "title": "TuringSquare-LMS · architecture and review",
+              "text": "I define access-role invariants and T-Bank sandbox acceptance criteria. Implementation is partly agent-generated; no production release claimed.",
+              "evidence_refs": [
+                "project_compilationlab_lms"
+              ]
+            },
+            {
+              "id": "quark2",
+              "title": "Quark2 · CLR research",
+              "text": "DynamicMethod/Reflection.Emit and experimental CLR internals; BenchmarkDotNet comparisons of Invoke, delegates and native pointers.",
+              "evidence_refs": [
+                "history_quark2"
+              ]
+            }
+          ],
+          "education": "HSE University — Software Engineering.",
+          "recognition": "MEPhI Junior 2026, 1st-degree diploma; LangDev 2026 UniversalToolchain talk."
+        }
+      },
+      "runtime": {
+        "basename": {
+          "ru": "03_Runtime_Compiler",
+          "en": "03_Runtime_Compiler_EN"
+        },
+        "audience_ru": "Compiler / CLR / Performance",
+        "audience_en": "Compiler / CLR / Performance",
+        "ru": {
+          "role": "C# / .NET · RUNTIME, COMPILERS & PERFORMANCE",
+          "summary": "Работаю с CLR/CIL, инфраструктурой компиляторов, LLVM и статическим анализом. Сейчас — символьные вычисления в SharpChecker (ИСП РАН), ранее — LLVM 22 в МЦСТ. Дополнительно создаю и сопровождаю backend; около года суммарной коммерческой разработки на смешанном стеке.",
+          "skills": [
+            "C#/.NET, CIL, Reflection.Emit, DynamicMethod, CLR internals, Roslyn, BenchmarkDotNet",
+            "LLVM 22/C++23, CFG/SSA, x86-64/SysV, Rust, differential testing; ASP.NET Core, PostgreSQL, Git/Linux"
+          ],
+          "projects": [
+            {
+              "id": "wist",
+              "title": "UniversalToolchain · модульная compiler/runtime-платформа",
+              "text": "Типизированные контракты и зависимости → проверяемый LanguagePlan → runtime; Bytecode/AIR, interpreter и CIL backend. Манифест заявляет 1 324 теста; паритет проверяется отдельными сценариями.",
+              "evidence_refs": [
+                "project_universaltoolchain"
+              ]
+            },
+            {
+              "id": "quark2",
+              "title": "Quark2 · вызов сгенерированного кода",
+              "text": "DynamicMethod/Reflection.Emit, RuntimeMethodHandle и native pointer. BenchmarkDotNet сравнивает reflection Invoke, delegate и вызов по указателю; внутренние CLR API — только эксперимент.",
+              "evidence_refs": [
+                "history_quark2"
+              ]
+            },
+            {
+              "id": "codegen",
+              "title": "x86-64 codegen · Rust",
+              "text": "SSA/CFG, liveness, register allocation, spills, phi-lowering, SysV ABI; для поддерживаемого подмножества — differential native execution с IR-интерпретатором.",
+              "evidence_refs": [
+                "project_x86_codegen"
+              ]
+            },
+            {
+              "id": "globaliv",
+              "title": "LLVM Global IV / LICM · C++",
+              "text": "Межпроцедурный анализ эффектов и legality условий оптимизаций; негативные регрессии защищают от некорректных преобразований.",
+              "evidence_refs": [
+                "project_global_iv",
+                "experience_mcst_2026"
+              ]
+            }
+          ],
+          "education": "НИУ ВШЭ — ФКН, Программная инженерия.",
+          "recognition": "«Юниор» НИЯУ МИФИ, диплом I степени (2026); доклад LangDev 2026."
+        },
+        "en": {
+          "role": "C# / .NET · RUNTIME, COMPILERS & PERFORMANCE",
+          "summary": "I work on CLR/CIL, compiler infrastructure, LLVM and static analysis. Current focus: SharpChecker symbolic computation at ISP RAS; previously LLVM 22 at MCST. I also build backend systems, with approximately one year of aggregate commercial work across a mixed stack.",
+          "skills": [
+            "C#/.NET, CIL, Reflection.Emit, DynamicMethod, CLR internals, Roslyn, BenchmarkDotNet",
+            "LLVM 22/C++23, CFG/SSA, x86-64/SysV, Rust, differential testing; ASP.NET Core, PostgreSQL, Git/Linux"
+          ],
+          "projects": [
+            {
+              "id": "wist",
+              "title": "UniversalToolchain · modular compiler/runtime",
+              "text": "Typed contracts and dependencies → validated LanguagePlan → runtime; Bytecode/AIR, interpreter and CIL backends. Repository manifest lists 1,324 tests; parity has dedicated scenarios.",
+              "evidence_refs": [
+                "project_universaltoolchain"
+              ]
+            },
+            {
+              "id": "quark2",
+              "title": "Quark2 · generated-code invocation",
+              "text": "DynamicMethod/Reflection.Emit, RuntimeMethodHandle and native pointers. BenchmarkDotNet compares reflection Invoke, delegates and pointer calls; CLR internals are experimental only.",
+              "evidence_refs": [
+                "history_quark2"
+              ]
+            },
+            {
+              "id": "codegen",
+              "title": "x86-64 codegen · Rust",
+              "text": "SSA/CFG, liveness, register allocation, spills, phi-lowering and SysV ABI; supported subset has differential native execution versus an IR interpreter.",
+              "evidence_refs": [
+                "project_x86_codegen"
+              ]
+            },
+            {
+              "id": "globaliv",
+              "title": "LLVM Global IV / LICM · C++",
+              "text": "Interprocedural effects and legality checks for optimizations; negative regression cases prevent unsafe transformations.",
+              "evidence_refs": [
+                "project_global_iv",
+                "experience_mcst_2026"
+              ]
+            }
+          ],
+          "education": "HSE University — Software Engineering.",
+          "recognition": "MEPhI Junior 2026, 1st-degree diploma; LangDev 2026 speaker."
+        }
+      }
+    }
   }
 }

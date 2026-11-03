@@ -63,7 +63,7 @@ def normalized(value: str) -> str:
 
 
 def html_files(data: dict) -> list[Path]:
-    files = [ROOT / "index.html"]
+    files = [ROOT / "index.html", ROOT / "ru-engineering.html", ROOT / "en-engineering.html"]
     for key in data["profile_order"]:
         for lang in ("ru", "en"):
             files.append(ROOT / data["profiles"][key][lang]["filename"])
