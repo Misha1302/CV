@@ -81,13 +81,14 @@ def docx(site,kind,lang,path):
     sec.top_margin=Mm(10);sec.bottom_margin=Mm(10)
     sec.left_margin=Mm(14);sec.right_margin=Mm(14)
     normal=d.styles["Normal"]
-    normal.font.name="Arial";normal.font.size=Pt(9.0)
-    normal.paragraph_format.space_after=Pt(2)
-    normal.paragraph_format.line_spacing=1.10
-    h2=d.styles["Heading 2"];h2.font.name="Arial";h2.font.size=Pt(10.2)
+    spacious = kind in ("lead", "runtime")
+    normal.font.name="Arial";normal.font.size=Pt(10.0 if spacious else 9.0)
+    normal.paragraph_format.space_after=Pt(3.2 if spacious else 2)
+    normal.paragraph_format.line_spacing=1.16 if spacious else 1.10
+    h2=d.styles["Heading 2"];h2.font.name="Arial";h2.font.size=Pt(11.0 if spacious else 10.2)
     h2.font.color.rgb=RGBColor(25,56,69)
-    h2.paragraph_format.space_before=Pt(5)
-    h2.paragraph_format.space_after=Pt(1.5)
+    h2.paragraph_format.space_before=Pt(6.5 if spacious else 5)
+    h2.paragraph_format.space_after=Pt(2.0 if spacious else 1.5)
     p=d.add_paragraph();p.paragraph_format.space_after=Pt(0)
     n=p.add_run(name);n.bold=True;n.font.size=Pt(16.5)
     p=d.add_paragraph();p.paragraph_format.space_after=Pt(2)
@@ -142,21 +143,27 @@ def pdf(site,kind,lang,path):
     projects="".join(
         f"<article><h3><a href='{e(url_for(site,item,lang),quote=True)}'>{e(item['title'])}</a></h3><p>{e(item['text'])}</p></article>"
         for item in cv["projects"])
+    spacious = kind in ("lead", "runtime")
+    base_size = "9.6" if spacious else "8.95"
+    body_line = "1.32" if spacious else "1.25"
+    heading_size = "10.0" if spacious else "9.3"
+    item_size = "9.6" if spacious else "8.95"
+    contact_size = "8.75" if spacious else "8.35"
     page=f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><style>
     @page {{size:A4;margin:10mm 14mm;}}
-    html {{font-family:'DejaVu Sans','Liberation Sans',sans-serif;font-size:8.95pt;color:#1e2931;}}
-    body {{margin:0;line-height:1.25;}}
+    html {{font-family:'DejaVu Sans','Liberation Sans',sans-serif;font-size:{base_size}pt;color:#1e2931;}}
+    body {{margin:0;line-height:{body_line};}}
     h1 {{font-size:17pt;letter-spacing:-.025em;margin:0;}}
     .role {{font-size:10pt;font-weight:bold;margin:1mm 0 1.5mm;color:#234457;}}
-    .contact {{font-size:8.35pt;margin:0 0 3mm;}}
+    .contact {{font-size:{contact_size}pt;margin:0 0 3mm;}}
     a {{color:#255670;text-decoration:none;}}
-    h2 {{font-size:9.3pt;color:#234457;text-transform:uppercase;letter-spacing:.02em;
+    h2 {{font-size:{heading_size}pt;color:#234457;text-transform:uppercase;letter-spacing:.02em;
        border-bottom:.4pt solid #adc0c8;padding-bottom:.6mm;margin:2.6mm 0 1.1mm;}}
     p {{margin:0 0 1.4mm;}}
     ul {{margin:0 0 1.4mm;padding-left:4mm;}}
     li {{margin:0 0 .6mm;}}
     article {{break-inside:avoid;margin:0 0 1.6mm;}}
-    h3 {{font-size:8.95pt;margin:0 0 .55mm;}}
+    h3 {{font-size:{item_size}pt;margin:0 0 .55mm;}}
     h3 span {{float:right;font-weight:normal;font-size:8.6pt;color:#64737b;}}
     article p {{margin:0;}}
     </style></head><body>
@@ -181,6 +188,8 @@ This is a sanitized public research summary. It intentionally excludes internal 
 - UniversalToolchain: a repository test manifest is not proof that all tests were executed again during resume preparation.
 - TuringSquare-LMS: ongoing work, partly AI-agent implemented; payments evaluated in sandbox, not production.
 - Quark2: experimental CLR internals and microbenchmarks, not general production speedup.
+- LLVM Global IV: source-backed legality gates, not verified production speedups.
+- Systems/Platform: hands-on engineering, not a formal architect or Tech Lead appointment.
 - Competition results and conference claims have mixed public and author-supplied evidence, recorded in the knowledge layer.
 """
 
@@ -195,7 +204,7 @@ def write_readmes(site,out):
         ru_url=site["site_url"]+site["application_cvs"]["pages"][key]["ru"]
         en_url=site["site_url"]+site["application_cvs"]["pages"][key]["en"]
         rows.append(f"| {v['audience_ru']} | [Открыть]({ru_url}) | [View]({en_url}) | [PDF]({ru}.pdf) | [PDF]({en}.pdf) | [DOCX]({ru}.docx) | [DOCX]({en}.docx) | [MD]({ru}.md) | [MD]({en}.md) |")
-    rows+=["","Для первичного отклика — Backend ATS; для руководителя разработки — Tech Lead; для CLR/LLVM-команд — Runtime/Compiler.",
+    rows+=["","Для обычного backend-отклика — Backend ATS; для архитектуры/platform — Systems / Platform (02); для LLVM/CLR/performance — Compiler / Performance (03).",
           "Кандидат подтверждает суммарный коммерческий стаж и эксплуатацию VpnMediator. Часть архитектурных утверждений подтверждена исходниками; детали и границы приведены в открытой сводке.",
            "[Evidence boundaries](04_Public_Evidence_Boundaries.md) · [CV website](https://misha1302.github.io/CV/) · [Engineering profile](https://misha1302.github.io/CV/ru-tech-lead.html)","",
           "[Complete CV ZIP]("+ZIP_NAME+")",""]
@@ -203,8 +212,8 @@ def write_readmes(site,out):
     (out/"00_README_Choose_Version.md").write_text(
         "# Выбор версии CV / Choosing a version\n\n"
         "01_Backend_ATS — основной CV для HR и ATS.\n\n"
-        "02_Tech_Lead — инженерные решения, платежные состояния и границы ответственности.\n\n"
-        "03_Runtime_Compiler — CLR, CIL, LLVM, static analysis и производительность.\n\n"
+        "02_Tech_Lead (старое имя файла) — Systems / Platform: границы модулей, состояния, восстановление.\n\n"
+        "03_Runtime_Compiler — compiler/runtime engineering, проверка корректности оптимизаций и микробенчмарки.\n\n"
         "Суффикс _EN обозначает английский перевод с тем же набором проверяемых фактов.\n",encoding="utf-8")
     (out/"04_Public_Evidence_Boundaries.md").write_text(PUBLIC_NOTE,encoding="utf-8")
 

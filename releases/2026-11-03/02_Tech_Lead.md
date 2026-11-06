@@ -1,17 +1,17 @@
 # Михаил Разаков
 
-**C# / .NET BACKEND · SYSTEMS & RELIABILITY**
+**SYSTEMS / PLATFORM ENGINEER · .NET**
 
 Москва / удалённо · [razakov.mikhail@outlook.com](mailto:razakov.mikhail@outlook.com) · [Telegram](https://t.me/Micodiy) · [GitHub](https://github.com/Misha1302)
 
 ## Профиль
 
-Разрабатываю и сопровождаю .NET-сервисы с акцентом на повторы запросов, состояние платежей, восстановление и диагностируемость. Основной работающий сервис — VpnMediator; в UniversalToolchain исследую границу семантического планирования и исполнения. Коммерческая практика на смешанном стеке — около года суммарно.
+Проектирую и реализую .NET-сервисы и инфраструктурные компоненты с явными границами модулей и состояниями, которые можно проверить и восстановить. В VpnMediator — обработка повторных событий оплаты и восстановление доступа; в UniversalToolchain — проверка зависимостей до исполнения; в LMS — архитектурные инварианты и ревью. Коммерческая практика на смешанном стеке — около года суммарно.
 
 ## Технологии
 
-- C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await
-- Idempotency, provider reconciliation, transactions, operational recovery; CIL, Reflection.Emit, C++/LLVM, Python, Linux
+- C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await, Git/Linux
+- Идемпотентность, состояния оплаты и доступа, reconciliation, восстановление/rollback; контракты модулей, графы зависимостей, проверка инвариантов
 
 ## Опыт
 
@@ -29,21 +29,17 @@ C++23/LLVM 22: экспериментальный LICM с консерватив
 
 ## Проекты
 
-**[VpnMediator · платеж не равен праву доступа](https://misha1302.github.io/CV/cases/ru-vpn.html)**
+**[UniversalToolchain · контракты модулей до исполнения](https://github.com/Misha1302/UniversalToolchain)**
 
-Состояния доступа и платежей разделены; проверка привязки события к заказу, идемпотентная обработка, reconciliation и restart recovery. Скрипты выпуска содержат backup, health gates и rollback.
+Контракты модулей и зависимости сводятся в проверяемый LanguagePlan до запуска. Отдельные маршруты interpreter/CIL позволяют сопоставлять результат исполнения, а не полагаться на порядок подключения компонентов.
 
-**[UniversalToolchain · план до выполнения](https://github.com/Misha1302/UniversalToolchain)**
+**[VpnMediator · согласованность платежей и доступа](https://misha1302.github.io/CV/cases/ru-vpn.html)**
 
-LanguageCompiler формирует проверяемый LanguagePlan с зависимостями и типизированными маршрутами; Bytecode/AIR, interpreter/CIL. 1 324 теста указаны в репозиторном манифесте, не выдаются за повторно пройденные.
+Разделены факт платежа и право доступа; повторные события обрабатываются идемпотентно, расхождения сверяются с провайдером. В эксплуатационных скриптах предусмотрены backup, health gates и rollback.
 
-**[TuringSquare-LMS · архитектура и ревью](https://misha1302.github.io/CV/cases/ru-lms.html)**
+**[TuringSquare-LMS · права доступа и контроль реализации](https://misha1302.github.io/CV/cases/ru-lms.html)**
 
-Определяю инварианты ролей/доступа и критерии проверки T-Bank sandbox. Часть реализации выполнена AI-агентами; релиз в production не заявляется.
-
-**[Quark2 · исследование CLR](https://github.com/Misha1302/Quark2)**
-
-Эксперименты DynamicMethod/Reflection.Emit и внутренних CLR API; сравнение Invoke, delegate и native pointer через BenchmarkDotNet.
+Проектирование инвариантов ролей, доступа к курсам и критериев проверки платежей T-Bank в sandbox. Проект в разработке; мой фокус — архитектурные решения и ревью агентной реализации.
 
 ## Образование и достижения
 

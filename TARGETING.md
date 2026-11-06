@@ -90,3 +90,12 @@ architecture details and downloadable PDF/DOCX/Markdown.
 
 The legacy technical-profile URLs remain available for narrower targeting;
 the RU/EN engineering deep-dive aliases now use the current Tech Lead edition.
+
+
+## 2026-11-07 — performance / systems positioning
+
+- 02 Systems / Platform (legacy filenames 02_Tech_Lead and ru-tech-lead.html): architecture-heavy .NET/platform work. This is a hands-on engineer title, not a previous Tech Lead or enterprise architect appointment. Evidence order: UniversalToolchain, VpnMediator, TuringSquare-LMS; LMS is in progress and partly agent-implemented.
+- 03 Compiler / Runtime / Performance: compiler infrastructure, LLVM legality, codegen, selected CLR work. Evidence order: UniversalToolchain, LLVM Global IV, x86-64 backend, Quark2. Scoped CLR microbenchmarks are not general production acceleration.
+- 01 Backend ATS: unchanged for ordinary C# backend roles.
+- Do not introduce unsupported ETW/PerfView, GC-allocation, lock-free, SIMD, percentage speedups, production throughput or formal leadership claims.
+- Visible headings and selectors replace old role labels; legacy filenames and routes remain for compatibility.

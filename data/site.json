@@ -1,6 +1,6 @@
 {
-  "version": "2026-11-03-targeted-cv-websites",
-  "updated_at": "2026-11-03",
+  "version": "2026-11-07-performance-systems-cv",
+  "updated_at": "2026-11-07",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -2360,46 +2360,38 @@
           "ru": "02_Tech_Lead",
           "en": "02_Tech_Lead_EN"
         },
-        "audience_ru": "Технический руководитель · инженерный разбор",
-        "audience_en": "Engineering lead · architecture & reliability",
+        "audience_ru": "Systems / Platform · архитектура и надёжность",
+        "audience_en": "Systems / Platform · architecture & reliability",
         "ru": {
-          "role": "C# / .NET BACKEND · SYSTEMS & RELIABILITY",
-          "summary": "Разрабатываю и сопровождаю .NET-сервисы с акцентом на повторы запросов, состояние платежей, восстановление и диагностируемость. Основной работающий сервис — VpnMediator; в UniversalToolchain исследую границу семантического планирования и исполнения. Коммерческая практика на смешанном стеке — около года суммарно.",
+          "role": "SYSTEMS / PLATFORM ENGINEER · .NET",
+          "summary": "Проектирую и реализую .NET-сервисы и инфраструктурные компоненты с явными границами модулей и состояниями, которые можно проверить и восстановить. В VpnMediator — обработка повторных событий оплаты и восстановление доступа; в UniversalToolchain — проверка зависимостей до исполнения; в LMS — архитектурные инварианты и ревью. Коммерческая практика на смешанном стеке — около года суммарно.",
           "skills": [
-            "C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await",
-            "Idempotency, provider reconciliation, transactions, operational recovery; CIL, Reflection.Emit, C++/LLVM, Python, Linux"
+            "C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await, Git/Linux",
+            "Идемпотентность, состояния оплаты и доступа, reconciliation, восстановление/rollback; контракты модулей, графы зависимостей, проверка инвариантов"
           ],
           "projects": [
             {
-              "id": "vpn",
-              "title": "VpnMediator · платеж не равен праву доступа",
-              "text": "Состояния доступа и платежей разделены; проверка привязки события к заказу, идемпотентная обработка, reconciliation и restart recovery. Скрипты выпуска содержат backup, health gates и rollback.",
-              "evidence_refs": [
-                "project_vpnmediator"
-              ]
-            },
-            {
               "id": "wist",
-              "title": "UniversalToolchain · план до выполнения",
-              "text": "LanguageCompiler формирует проверяемый LanguagePlan с зависимостями и типизированными маршрутами; Bytecode/AIR, interpreter/CIL. 1 324 теста указаны в репозиторном манифесте, не выдаются за повторно пройденные.",
+              "title": "UniversalToolchain · контракты модулей до исполнения",
+              "text": "Контракты модулей и зависимости сводятся в проверяемый LanguagePlan до запуска. Отдельные маршруты interpreter/CIL позволяют сопоставлять результат исполнения, а не полагаться на порядок подключения компонентов.",
               "evidence_refs": [
                 "project_universaltoolchain"
               ]
             },
             {
-              "id": "lms",
-              "title": "TuringSquare-LMS · архитектура и ревью",
-              "text": "Определяю инварианты ролей/доступа и критерии проверки T-Bank sandbox. Часть реализации выполнена AI-агентами; релиз в production не заявляется.",
+              "id": "vpn",
+              "title": "VpnMediator · согласованность платежей и доступа",
+              "text": "Разделены факт платежа и право доступа; повторные события обрабатываются идемпотентно, расхождения сверяются с провайдером. В эксплуатационных скриптах предусмотрены backup, health gates и rollback.",
               "evidence_refs": [
-                "project_compilationlab_lms"
+                "project_vpnmediator"
               ]
             },
             {
-              "id": "quark2",
-              "title": "Quark2 · исследование CLR",
-              "text": "Эксперименты DynamicMethod/Reflection.Emit и внутренних CLR API; сравнение Invoke, delegate и native pointer через BenchmarkDotNet.",
+              "id": "lms",
+              "title": "TuringSquare-LMS · права доступа и контроль реализации",
+              "text": "Проектирование инвариантов ролей, доступа к курсам и критериев проверки платежей T-Bank в sandbox. Проект в разработке; мой фокус — архитектурные решения и ревью агентной реализации.",
               "evidence_refs": [
-                "history_quark2"
+                "project_compilationlab_lms"
               ]
             }
           ],
@@ -2407,43 +2399,35 @@
           "recognition": "«Юниор» НИЯУ МИФИ, диплом I степени (2026); LangDev 2026, доклад об UniversalToolchain."
         },
         "en": {
-          "role": "C# / .NET BACKEND · SYSTEMS & RELIABILITY",
-          "summary": "I build .NET services with explicit treatment of retries, payment state, recovery and diagnosability. I operate VpnMediator and develop UniversalToolchain's plan/execution boundary. Approx. one year of aggregate commercial work across a mixed stack (candidate-reported).",
+          "role": "SYSTEMS / PLATFORM ENGINEER · .NET",
+          "summary": "I design and build .NET services and infrastructure with explicit module boundaries and recoverable, testable state. VpnMediator handles duplicate payment events and access recovery; UniversalToolchain checks dependencies before execution; in the LMS I own architectural invariants and review. Approx. one year of aggregate commercial development across a mixed stack.",
           "skills": [
-            "C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await",
-            "Idempotency, provider reconciliation, transactions and recovery; CIL, Reflection.Emit, C++/LLVM, Python, Linux"
+            "C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await, Git/Linux",
+            "Idempotency, payment/access state, reconciliation, recovery/rollback; typed module contracts, dependency graphs, invariant checks"
           ],
           "projects": [
             {
-              "id": "vpn",
-              "title": "VpnMediator · payment is not entitlement",
-              "text": "Separated payment/access state; order-event binding, idempotent handling, reconciliation and restart recovery. Release scripts include backups, health gates and rollback.",
-              "evidence_refs": [
-                "project_vpnmediator"
-              ]
-            },
-            {
               "id": "wist",
-              "title": "UniversalToolchain · plan before execution",
-              "text": "A validated LanguagePlan captures dependencies and typed backend routes; Bytecode/AIR, interpreter/CIL. 1,324 tests are listed in repository manifests, not claimed as freshly executed.",
+              "title": "UniversalToolchain · module contracts before runtime",
+              "text": "Module contracts and dependencies form a validated LanguagePlan before runtime. Separate interpreter/CIL routes allow execution results to be compared instead of relying on module registration order.",
               "evidence_refs": [
                 "project_universaltoolchain"
               ]
             },
             {
-              "id": "lms",
-              "title": "TuringSquare-LMS · architecture and review",
-              "text": "I define access-role invariants and T-Bank sandbox acceptance criteria. Implementation is partly agent-generated; no production release claimed.",
+              "id": "vpn",
+              "title": "VpnMediator · payment/access consistency",
+              "text": "Payment events and access entitlements are separate. Duplicate events are processed idempotently, provider state is reconciled, and operational scripts provide backup, health gates and rollback.",
               "evidence_refs": [
-                "project_compilationlab_lms"
+                "project_vpnmediator"
               ]
             },
             {
-              "id": "quark2",
-              "title": "Quark2 · CLR research",
-              "text": "DynamicMethod/Reflection.Emit and experimental CLR internals; BenchmarkDotNet comparisons of Invoke, delegates and native pointers.",
+              "id": "lms",
+              "title": "TuringSquare-LMS · access control and implementation review",
+              "text": "Role/course-access invariants and acceptance criteria for T-Bank sandbox payments. The project is in development; my focus is architecture decisions and review of agent-produced implementation.",
               "evidence_refs": [
-                "history_quark2"
+                "project_compilationlab_lms"
               ]
             }
           ],
@@ -2456,47 +2440,47 @@
           "ru": "03_Runtime_Compiler",
           "en": "03_Runtime_Compiler_EN"
         },
-        "audience_ru": "Compiler / CLR / Performance",
-        "audience_en": "Compiler / CLR / Performance",
+        "audience_ru": "Performance / Compiler / Runtime",
+        "audience_en": "Performance / Compiler / Runtime",
         "ru": {
-          "role": "C# / .NET · RUNTIME, COMPILERS & PERFORMANCE",
-          "summary": "Работаю с CLR/CIL, инфраструктурой компиляторов, LLVM и статическим анализом. Сейчас — символьные вычисления в SharpChecker (ИСП РАН), ранее — LLVM 22 в МЦСТ. Дополнительно создаю и сопровождаю backend; около года суммарной коммерческой разработки на смешанном стеке.",
+          "role": "SOFTWARE ENGINEER · COMPILERS, RUNTIME & PERFORMANCE",
+          "summary": "Разрабатываю компиляторные и runtime-компоненты на C#/.NET и C++/LLVM: от проверки допустимости преобразований до генерации и проверки исполняемого кода. В SharpChecker (ИСП РАН) работаю с символьным анализом C#, в МЦСТ занимался LLVM/LICM. Для экспериментальных оптимизаций отделяю проверку корректности от измерений производительности.",
           "skills": [
-            "C#/.NET, CIL, Reflection.Emit, DynamicMethod, CLR internals, Roslyn, BenchmarkDotNet",
-            "LLVM 22/C++23, CFG/SSA, x86-64/SysV, Rust, differential testing; ASP.NET Core, PostgreSQL, Git/Linux"
+            "C#/.NET, CIL/CLR, DynamicMethod, Reflection.Emit, Roslyn, BenchmarkDotNet; interpreter/CIL backends",
+            "C++23/LLVM 22, IR/CFG/SSA, LICM, анализ эффектов, Rust/x86-64 (SysV ABI), differential testing, Git/Linux"
           ],
           "projects": [
             {
               "id": "wist",
-              "title": "UniversalToolchain · модульная compiler/runtime-платформа",
-              "text": "Типизированные контракты и зависимости → проверяемый LanguagePlan → runtime; Bytecode/AIR, interpreter и CIL backend. Манифест заявляет 1 324 теста; паритет проверяется отдельными сценариями.",
+              "title": "UniversalToolchain · compiler/runtime-инфраструктура",
+              "text": "Контракты модулей и зависимости проверяются в LanguagePlan до исполнения; раздельные interpreter/CIL backends позволяют сравнивать результаты одного языка. Есть отдельные сценарии проверки паритета.",
               "evidence_refs": [
                 "project_universaltoolchain"
               ]
             },
             {
-              "id": "quark2",
-              "title": "Quark2 · вызов сгенерированного кода",
-              "text": "DynamicMethod/Reflection.Emit, RuntimeMethodHandle и native pointer. BenchmarkDotNet сравнивает reflection Invoke, delegate и вызов по указателю; внутренние CLR API — только эксперимент.",
+              "id": "globaliv",
+              "title": "LLVM Global IV / LICM · допустимость оптимизаций",
+              "text": "Анализ межпроцедурных эффектов отделён от PromotionLegality и IR-преобразования. Volatile/atomic доступы, неизвестные вызовы и неподдерживаемый CFG приводят к отказу от оптимизации; есть негативные регрессии.",
               "evidence_refs": [
-                "history_quark2"
+                "project_global_iv",
+                "experience_mcst_2026"
               ]
             },
             {
               "id": "codegen",
               "title": "x86-64 codegen · Rust",
-              "text": "SSA/CFG, liveness, register allocation, spills, phi-lowering, SysV ABI; для поддерживаемого подмножества — differential native execution с IR-интерпретатором.",
+              "text": "Пайплайн SSA/CFG → liveness → register allocation → x86-64. Отдельный verifier проверяет назначения регистров и spills; native execution сравнивается с эталонным IR-интерпретатором.",
               "evidence_refs": [
                 "project_x86_codegen"
               ]
             },
             {
-              "id": "globaliv",
-              "title": "LLVM Global IV / LICM · C++",
-              "text": "Межпроцедурный анализ эффектов и legality условий оптимизаций; негативные регрессии защищают от некорректных преобразований.",
+              "id": "quark2",
+              "title": "Quark2 · измерение вызовов сгенерированного кода",
+              "text": "DynamicMethod/Reflection.Emit и RuntimeMethodHandle; BenchmarkDotNet сравнивает reflection Invoke, delegate и вызов по указателю для сгенерированного метода.",
               "evidence_refs": [
-                "project_global_iv",
-                "experience_mcst_2026"
+                "history_quark2"
               ]
             }
           ],
@@ -2504,44 +2488,44 @@
           "recognition": "«Юниор» НИЯУ МИФИ, диплом I степени (2026); доклад LangDev 2026."
         },
         "en": {
-          "role": "C# / .NET · RUNTIME, COMPILERS & PERFORMANCE",
-          "summary": "I work on CLR/CIL, compiler infrastructure, LLVM and static analysis. Current focus: SharpChecker symbolic computation at ISP RAS; previously LLVM 22 at MCST. I also build backend systems, with approximately one year of aggregate commercial work across a mixed stack.",
+          "role": "SOFTWARE ENGINEER · COMPILERS, RUNTIME & PERFORMANCE",
+          "summary": "I build compiler/runtime components in C#/.NET and C++/LLVM, from optimization-legality checks to generated-code validation. At ISP RAS I work on C# symbolic analysis in SharpChecker; at MCST I worked on LLVM/LICM. I keep correctness evidence and performance measurements separate for experimental optimizations.",
           "skills": [
-            "C#/.NET, CIL, Reflection.Emit, DynamicMethod, CLR internals, Roslyn, BenchmarkDotNet",
-            "LLVM 22/C++23, CFG/SSA, x86-64/SysV, Rust, differential testing; ASP.NET Core, PostgreSQL, Git/Linux"
+            "C#/.NET, CIL/CLR, DynamicMethod, Reflection.Emit, Roslyn, BenchmarkDotNet; interpreter/CIL backends",
+            "C++23/LLVM 22, IR/CFG/SSA, LICM, effect analysis, Rust/x86-64 (SysV ABI), differential testing, Git/Linux"
           ],
           "projects": [
             {
               "id": "wist",
-              "title": "UniversalToolchain · modular compiler/runtime",
-              "text": "Typed contracts and dependencies → validated LanguagePlan → runtime; Bytecode/AIR, interpreter and CIL backends. Repository manifest lists 1,324 tests; parity has dedicated scenarios.",
+              "title": "UniversalToolchain · compiler/runtime infrastructure",
+              "text": "Module contracts and dependencies are checked in LanguagePlan before execution. Separate interpreter/CIL backends allow result comparisons for the same language, with dedicated parity scenarios.",
               "evidence_refs": [
                 "project_universaltoolchain"
               ]
             },
             {
-              "id": "quark2",
-              "title": "Quark2 · generated-code invocation",
-              "text": "DynamicMethod/Reflection.Emit, RuntimeMethodHandle and native pointers. BenchmarkDotNet compares reflection Invoke, delegates and pointer calls; CLR internals are experimental only.",
+              "id": "globaliv",
+              "title": "LLVM Global IV / LICM · optimization legality",
+              "text": "Interprocedural effect analysis is separated from PromotionLegality and the IR transformation. Volatile/atomic accesses, unknown calls and unsupported CFG conservatively reject optimization; negative regression cases cover unsafe paths.",
               "evidence_refs": [
-                "history_quark2"
+                "project_global_iv",
+                "experience_mcst_2026"
               ]
             },
             {
               "id": "codegen",
               "title": "x86-64 codegen · Rust",
-              "text": "SSA/CFG, liveness, register allocation, spills, phi-lowering and SysV ABI; supported subset has differential native execution versus an IR interpreter.",
+              "text": "SSA/CFG → liveness → register allocation → x86-64 pipeline. An independent verifier checks register assignments and spills; native execution is compared against a reference IR interpreter.",
               "evidence_refs": [
                 "project_x86_codegen"
               ]
             },
             {
-              "id": "globaliv",
-              "title": "LLVM Global IV / LICM · C++",
-              "text": "Interprocedural effects and legality checks for optimizations; negative regression cases prevent unsafe transformations.",
+              "id": "quark2",
+              "title": "Quark2 · generated-code invocation measurements",
+              "text": "DynamicMethod/Reflection.Emit and RuntimeMethodHandle; BenchmarkDotNet compares reflection Invoke, delegate and pointer calls on generated methods.",
               "evidence_refs": [
-                "project_global_iv",
-                "experience_mcst_2026"
+                "history_quark2"
               ]
             }
           ],
