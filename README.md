@@ -127,3 +127,14 @@ No production code in portfolio reference projects is changed by this work.
 The application-sites.css stylesheet is self-contained and requires no JS or
 remote asset services. The canonical public fact model remains data/site.json,
 bounded by knowledge/resume-evidence.json.
+
+
+## 2026-11-07 — specialized performance and architecture CVs
+
+The existing November 3 release is retargeted: **02 Systems / Platform** and **03 Compiler / Runtime / Performance**. Legacy filenames and page URLs are preserved for previously shared links; visible headings and role selectors are updated. 01 Backend ATS remains unchanged.
+
+- Systems / Platform: [RU](ru-tech-lead.html) / [EN](en-tech-lead.html)
+- Compiler / Runtime / Performance: [RU](ru-runtime-compiler.html) / [EN](en-runtime-compiler.html)
+- [Independent review and measurement roadmap](reviews/PERFORMANCE_SYSTEMS_CV_REVIEW_2026-11-07.md)
+
+Application CVs and generated HTML, DOCX, PDF and Markdown are all owned by data/site.json, with claim boundaries in knowledge/resume-evidence.json. Never hand-edit generated outputs.

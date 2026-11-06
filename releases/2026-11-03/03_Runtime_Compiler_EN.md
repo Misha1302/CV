@@ -1,17 +1,17 @@
 # Mikhail Razakov
 
-**C# / .NET · RUNTIME, COMPILERS & PERFORMANCE**
+**SOFTWARE ENGINEER · COMPILERS, RUNTIME & PERFORMANCE**
 
 Moscow / remote · [razakov.mikhail@outlook.com](mailto:razakov.mikhail@outlook.com) · [Telegram](https://t.me/Micodiy) · [GitHub](https://github.com/Misha1302)
 
 ## Profile
 
-I work on CLR/CIL, compiler infrastructure, LLVM and static analysis. Current focus: SharpChecker symbolic computation at ISP RAS; previously LLVM 22 at MCST. I also build backend systems, with approximately one year of aggregate commercial work across a mixed stack.
+I build compiler/runtime components in C#/.NET and C++/LLVM, from optimization-legality checks to generated-code validation. At ISP RAS I work on C# symbolic analysis in SharpChecker; at MCST I worked on LLVM/LICM. I keep correctness evidence and performance measurements separate for experimental optimizations.
 
 ## Technical skills
 
-- C#/.NET, CIL, Reflection.Emit, DynamicMethod, CLR internals, Roslyn, BenchmarkDotNet
-- LLVM 22/C++23, CFG/SSA, x86-64/SysV, Rust, differential testing; ASP.NET Core, PostgreSQL, Git/Linux
+- C#/.NET, CIL/CLR, DynamicMethod, Reflection.Emit, Roslyn, BenchmarkDotNet; interpreter/CIL backends
+- C++23/LLVM 22, IR/CFG/SSA, LICM, effect analysis, Rust/x86-64 (SysV ABI), differential testing, Git/Linux
 
 ## Experience
 
@@ -29,21 +29,21 @@ Application and backend work with C#/.NET, Unity, ASP.NET Core, SQL/PostgreSQL, 
 
 ## Projects
 
-**[UniversalToolchain · modular compiler/runtime](https://github.com/Misha1302/UniversalToolchain)**
+**[UniversalToolchain · compiler/runtime infrastructure](https://github.com/Misha1302/UniversalToolchain)**
 
-Typed contracts and dependencies → validated LanguagePlan → runtime; Bytecode/AIR, interpreter and CIL backends. Repository manifest lists 1,324 tests; parity has dedicated scenarios.
+Module contracts and dependencies are checked in LanguagePlan before execution. Separate interpreter/CIL backends allow result comparisons for the same language, with dedicated parity scenarios.
 
-**[Quark2 · generated-code invocation](https://github.com/Misha1302/Quark2)**
+**[LLVM Global IV / LICM · optimization legality](https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization)**
 
-DynamicMethod/Reflection.Emit, RuntimeMethodHandle and native pointers. BenchmarkDotNet compares reflection Invoke, delegates and pointer calls; CLR internals are experimental only.
+Interprocedural effect analysis is separated from PromotionLegality and the IR transformation. Volatile/atomic accesses, unknown calls and unsupported CFG conservatively reject optimization; negative regression cases cover unsafe paths.
 
 **[x86-64 codegen · Rust](https://github.com/Misha1302/x86-64-codegen-ra-playground)**
 
-SSA/CFG, liveness, register allocation, spills, phi-lowering and SysV ABI; supported subset has differential native execution versus an IR interpreter.
+SSA/CFG → liveness → register allocation → x86-64 pipeline. An independent verifier checks register assignments and spills; native execution is compared against a reference IR interpreter.
 
-**[LLVM Global IV / LICM · C++](https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization)**
+**[Quark2 · generated-code invocation measurements](https://github.com/Misha1302/Quark2)**
 
-Interprocedural effects and legality checks for optimizations; negative regression cases prevent unsafe transformations.
+DynamicMethod/Reflection.Emit and RuntimeMethodHandle; BenchmarkDotNet compares reflection Invoke, delegate and pointer calls on generated methods.
 
 ## Education and recognition
 

@@ -8,4 +8,6 @@ This is a sanitized public research summary. It intentionally excludes internal 
 - UniversalToolchain: a repository test manifest is not proof that all tests were executed again during resume preparation.
 - TuringSquare-LMS: ongoing work, partly AI-agent implemented; payments evaluated in sandbox, not production.
 - Quark2: experimental CLR internals and microbenchmarks, not general production speedup.
+- LLVM Global IV: source-backed legality gates, not verified production speedups.
+- Systems/Platform: hands-on engineering, not a formal architect or Tech Lead appointment.
 - Competition results and conference claims have mixed public and author-supplied evidence, recorded in the knowledge layer.

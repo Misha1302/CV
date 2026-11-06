@@ -1,17 +1,17 @@
 # Mikhail Razakov
 
-**C# / .NET BACKEND · SYSTEMS & RELIABILITY**
+**SYSTEMS / PLATFORM ENGINEER · .NET**
 
 Moscow / remote · [razakov.mikhail@outlook.com](mailto:razakov.mikhail@outlook.com) · [Telegram](https://t.me/Micodiy) · [GitHub](https://github.com/Misha1302)
 
 ## Profile
 
-I build .NET services with explicit treatment of retries, payment state, recovery and diagnosability. I operate VpnMediator and develop UniversalToolchain's plan/execution boundary. Approx. one year of aggregate commercial work across a mixed stack (candidate-reported).
+I design and build .NET services and infrastructure with explicit module boundaries and recoverable, testable state. VpnMediator handles duplicate payment events and access recovery; UniversalToolchain checks dependencies before execution; in the LMS I own architectural invariants and review. Approx. one year of aggregate commercial development across a mixed stack.
 
 ## Technical skills
 
-- C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await
-- Idempotency, provider reconciliation, transactions and recovery; CIL, Reflection.Emit, C++/LLVM, Python, Linux
+- C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await, Git/Linux
+- Idempotency, payment/access state, reconciliation, recovery/rollback; typed module contracts, dependency graphs, invariant checks
 
 ## Experience
 
@@ -29,21 +29,17 @@ Application and backend work with C#/.NET, Unity, ASP.NET Core, SQL/PostgreSQL, 
 
 ## Projects
 
-**[VpnMediator · payment is not entitlement](https://misha1302.github.io/CV/cases/en-vpn.html)**
+**[UniversalToolchain · module contracts before runtime](https://github.com/Misha1302/UniversalToolchain)**
 
-Separated payment/access state; order-event binding, idempotent handling, reconciliation and restart recovery. Release scripts include backups, health gates and rollback.
+Module contracts and dependencies form a validated LanguagePlan before runtime. Separate interpreter/CIL routes allow execution results to be compared instead of relying on module registration order.
 
-**[UniversalToolchain · plan before execution](https://github.com/Misha1302/UniversalToolchain)**
+**[VpnMediator · payment/access consistency](https://misha1302.github.io/CV/cases/en-vpn.html)**
 
-A validated LanguagePlan captures dependencies and typed backend routes; Bytecode/AIR, interpreter/CIL. 1,324 tests are listed in repository manifests, not claimed as freshly executed.
+Payment events and access entitlements are separate. Duplicate events are processed idempotently, provider state is reconciled, and operational scripts provide backup, health gates and rollback.
 
-**[TuringSquare-LMS · architecture and review](https://misha1302.github.io/CV/cases/en-lms.html)**
+**[TuringSquare-LMS · access control and implementation review](https://misha1302.github.io/CV/cases/en-lms.html)**
 
-I define access-role invariants and T-Bank sandbox acceptance criteria. Implementation is partly agent-generated; no production release claimed.
-
-**[Quark2 · CLR research](https://github.com/Misha1302/Quark2)**
-
-DynamicMethod/Reflection.Emit and experimental CLR internals; BenchmarkDotNet comparisons of Invoke, delegates and native pointers.
+Role/course-access invariants and acceptance criteria for T-Bank sandbox payments. The project is in development; my focus is architecture decisions and review of agent-produced implementation.
 
 ## Education and recognition
 

@@ -18,16 +18,16 @@ ROLE_META = {
         "hint_en": "ASP.NET Core · data · reliability",
     },
     "lead": {
-        "id": "02", "title_ru": "Engineering / Tech Lead",
-        "title_en": "Engineering / Tech Lead",
-        "hint_ru": "Архитектура · сбои · владение результатом",
-        "hint_en": "Architecture · failure modes · ownership",
+        "id": "02", "title_ru": "Systems / Platform",
+        "title_en": "Systems / Platform",
+        "hint_ru": "Архитектура · состояния · восстановление",
+        "hint_en": "Architecture · state · recovery",
     },
     "runtime": {
-        "id": "03", "title_ru": "Runtime / Compiler",
-        "title_en": "Runtime / Compiler",
-        "hint_ru": "CLR · CIL · LLVM · анализ программ",
-        "hint_en": "CLR · CIL · LLVM · program analysis",
+        "id": "03", "title_ru": "Compiler / Performance",
+        "title_en": "Compiler / Performance",
+        "hint_ru": "LLVM · CIL · проверки оптимизаций",
+        "hint_en": "LLVM · CIL · optimization legality",
     },
 }
 

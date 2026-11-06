@@ -1,17 +1,17 @@
 # Михаил Разаков
 
-**C# / .NET · RUNTIME, COMPILERS & PERFORMANCE**
+**SOFTWARE ENGINEER · COMPILERS, RUNTIME & PERFORMANCE**
 
 Москва / удалённо · [razakov.mikhail@outlook.com](mailto:razakov.mikhail@outlook.com) · [Telegram](https://t.me/Micodiy) · [GitHub](https://github.com/Misha1302)
 
 ## Профиль
 
-Работаю с CLR/CIL, инфраструктурой компиляторов, LLVM и статическим анализом. Сейчас — символьные вычисления в SharpChecker (ИСП РАН), ранее — LLVM 22 в МЦСТ. Дополнительно создаю и сопровождаю backend; около года суммарной коммерческой разработки на смешанном стеке.
+Разрабатываю компиляторные и runtime-компоненты на C#/.NET и C++/LLVM: от проверки допустимости преобразований до генерации и проверки исполняемого кода. В SharpChecker (ИСП РАН) работаю с символьным анализом C#, в МЦСТ занимался LLVM/LICM. Для экспериментальных оптимизаций отделяю проверку корректности от измерений производительности.
 
 ## Технологии
 
-- C#/.NET, CIL, Reflection.Emit, DynamicMethod, CLR internals, Roslyn, BenchmarkDotNet
-- LLVM 22/C++23, CFG/SSA, x86-64/SysV, Rust, differential testing; ASP.NET Core, PostgreSQL, Git/Linux
+- C#/.NET, CIL/CLR, DynamicMethod, Reflection.Emit, Roslyn, BenchmarkDotNet; interpreter/CIL backends
+- C++23/LLVM 22, IR/CFG/SSA, LICM, анализ эффектов, Rust/x86-64 (SysV ABI), differential testing, Git/Linux
 
 ## Опыт
 
@@ -29,21 +29,21 @@ C++23/LLVM 22: экспериментальный LICM с консерватив
 
 ## Проекты
 
-**[UniversalToolchain · модульная compiler/runtime-платформа](https://github.com/Misha1302/UniversalToolchain)**
+**[UniversalToolchain · compiler/runtime-инфраструктура](https://github.com/Misha1302/UniversalToolchain)**
 
-Типизированные контракты и зависимости → проверяемый LanguagePlan → runtime; Bytecode/AIR, interpreter и CIL backend. Манифест заявляет 1 324 теста; паритет проверяется отдельными сценариями.
+Контракты модулей и зависимости проверяются в LanguagePlan до исполнения; раздельные interpreter/CIL backends позволяют сравнивать результаты одного языка. Есть отдельные сценарии проверки паритета.
 
-**[Quark2 · вызов сгенерированного кода](https://github.com/Misha1302/Quark2)**
+**[LLVM Global IV / LICM · допустимость оптимизаций](https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization)**
 
-DynamicMethod/Reflection.Emit, RuntimeMethodHandle и native pointer. BenchmarkDotNet сравнивает reflection Invoke, delegate и вызов по указателю; внутренние CLR API — только эксперимент.
+Анализ межпроцедурных эффектов отделён от PromotionLegality и IR-преобразования. Volatile/atomic доступы, неизвестные вызовы и неподдерживаемый CFG приводят к отказу от оптимизации; есть негативные регрессии.
 
 **[x86-64 codegen · Rust](https://github.com/Misha1302/x86-64-codegen-ra-playground)**
 
-SSA/CFG, liveness, register allocation, spills, phi-lowering, SysV ABI; для поддерживаемого подмножества — differential native execution с IR-интерпретатором.
+Пайплайн SSA/CFG → liveness → register allocation → x86-64. Отдельный verifier проверяет назначения регистров и spills; native execution сравнивается с эталонным IR-интерпретатором.
 
-**[LLVM Global IV / LICM · C++](https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization)**
+**[Quark2 · измерение вызовов сгенерированного кода](https://github.com/Misha1302/Quark2)**
 
-Межпроцедурный анализ эффектов и legality условий оптимизаций; негативные регрессии защищают от некорректных преобразований.
+DynamicMethod/Reflection.Emit и RuntimeMethodHandle; BenchmarkDotNet сравнивает reflection Invoke, delegate и вызов по указателю для сгенерированного метода.
 
 ## Образование и достижения
 
