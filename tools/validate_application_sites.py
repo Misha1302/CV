@@ -45,9 +45,12 @@ def validate() -> dict[str, object]:
             text = norm(main.get_text(" ",strip=True))
             for label in [data["person"]["name_"+lang],cv["role"],cv["summary"],cv["education"],cv["recognition"]]:
                 require(norm(label) in text,f"Missing canonical CV content on {route}: {label[:85]}")
+            if cv.get("recognition_link"):
+                link=cv["recognition_link"]
+                require(soup.select_one(f'a[href="{link["url"]}"]') is not None,f"Missing recognition video link: {route}")
             for skill in cv["skills"]:
                 require(norm(skill) in text,f"Missing skill on {route}: {skill[:85]}")
-            for exp in release["experience"][lang]:
+            for exp in release["variants"][kind].get("experience",release["experience"])[lang]:
                 for value in (exp["date"],exp["title"],exp["text"]):
                     require(norm(value) in text,f"Missing experience on {route}: {value[:85]}")
             project_rows = soup.select("article.ap-case")

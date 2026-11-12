@@ -25,7 +25,7 @@ def load():
 def record(site,kind,lang):
     release=site["application_cvs"]
     v=release["variants"][kind]
-    return v[lang],release["experience"][lang],v["basename"][lang]
+    return v[lang],v.get("experience",release["experience"])[lang],v["basename"][lang]
 
 def contact(site,lang):
     p=site["person"]
@@ -55,7 +55,11 @@ def markdown(site,kind,lang):
     parts+=["## "+project_label,""]
     for item in cv["projects"]:
         parts.extend([f"**[{item['title']}]({url_for(site,item,lang)})**","",item["text"],""])
-    parts+=["## "+education,"",cv["education"],"",cv["recognition"],""]
+    recognition = cv["recognition"]
+    if cv.get("recognition_link"):
+        link = cv["recognition_link"]
+        recognition += f" — [{link['label']}]({link['url']})"
+    parts+=["## "+education,"",cv["education"],"",recognition,""]
     return "\n".join(parts).strip()+"\n"
 
 def add_hyperlink(paragraph,text,url):
@@ -82,7 +86,7 @@ def docx(site,kind,lang,path):
     sec.left_margin=Mm(14);sec.right_margin=Mm(14)
     normal=d.styles["Normal"]
     spacious = kind in ("lead", "runtime")
-    normal.font.name="Arial";normal.font.size=Pt(10.0 if spacious else 9.0)
+    normal.font.name="Arial";normal.font.size=Pt(10.0 if spacious else 9.5)
     normal.paragraph_format.space_after=Pt(3.2 if spacious else 2)
     normal.paragraph_format.line_spacing=1.16 if spacious else 1.10
     h2=d.styles["Heading 2"];h2.font.name="Arial";h2.font.size=Pt(11.0 if spacious else 10.2)
@@ -114,7 +118,11 @@ def docx(site,kind,lang,path):
         p=d.add_paragraph(item["text"]);p.paragraph_format.left_indent=Mm(2)
     d.add_heading(education,2)
     d.add_paragraph(cv["education"])
-    d.add_paragraph(cv["recognition"])
+    p=d.add_paragraph(cv["recognition"])
+    if cv.get("recognition_link"):
+        p.add_run(" — ")
+        link=cv["recognition_link"]
+        add_hyperlink(p,link["label"],link["url"])
     d.core_properties.author=name
     d.core_properties.title=name+" — "+cv["role"]
     d.save(path)
@@ -144,11 +152,15 @@ def pdf(site,kind,lang,path):
         f"<article><h3><a href='{e(url_for(site,item,lang),quote=True)}'>{e(item['title'])}</a></h3><p>{e(item['text'])}</p></article>"
         for item in cv["projects"])
     spacious = kind in ("lead", "runtime")
-    base_size = "9.6" if spacious else "8.95"
+    base_size = "9.6" if spacious else "9.5"
     body_line = "1.32" if spacious else "1.25"
-    heading_size = "10.0" if spacious else "9.3"
-    item_size = "9.6" if spacious else "8.95"
-    contact_size = "8.75" if spacious else "8.35"
+    heading_size = "10.0" if spacious else "10.0"
+    item_size = "9.6" if spacious else "9.5"
+    contact_size = "8.75"
+    recognition_html = e(cv["recognition"])
+    if cv.get("recognition_link"):
+        link = cv["recognition_link"]
+        recognition_html += f' — <a href="{e(link["url"],quote=True)}">{e(link["label"])}</a>'
     page=f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><style>
     @page {{size:A4;margin:10mm 14mm;}}
     html {{font-family:'DejaVu Sans','Liberation Sans',sans-serif;font-size:{base_size}pt;color:#1e2931;}}
@@ -174,7 +186,7 @@ def pdf(site,kind,lang,path):
     <h2>{e(skills)}</h2><ul>{rows}</ul>
     <h2>{e(exp_label)}</h2>{exps}
     <h2>{e(project_label)}</h2>{projects}
-    <h2>{e(education)}</h2><p>{e(cv['education'])}</p><p>{e(cv['recognition'])}</p>
+    <h2>{e(education)}</h2><p>{e(cv['education'])}</p><p>{recognition_html}</p>
     </body></html>"""
     HTML(string=page,base_url=str(ROOT)).write_pdf(str(path))
 
@@ -183,7 +195,7 @@ PUBLIC_NOTE="""# Public claim boundaries / Открытые границы до�
 This is a sanitized public research summary. It intentionally excludes internal project paths, private employers' documents, operational hosts and application credentials.
 
 - Employment: ISP RAS / SharpChecker and MCST / LLVM dates and responsibility are recorded from the candidate and available evidence.
-- Commercial experience: approximately one year in aggregate is candidate-attested, not independently verified as a single continuous .NET position.
+- Commercial experience: separate client software deliveries are documented from 2023, but exact full-time-equivalent duration is not established. Older CV variants may still contain a historical candidate estimate pending separate approval.
 - VpnMediator: current operation and user numbers are candidate-reported. Architecture is described from source inspection. Python Telegram bot is distinct from the ASP.NET Core service.
 - UniversalToolchain: a repository test manifest is not proof that all tests were executed again during resume preparation.
 - TuringSquare-LMS: ongoing work, partly AI-agent implemented; payments evaluated in sandbox, not production.
@@ -205,7 +217,7 @@ def write_readmes(site,out):
         en_url=site["site_url"]+site["application_cvs"]["pages"][key]["en"]
         rows.append(f"| {v['audience_ru']} | [Открыть]({ru_url}) | [View]({en_url}) | [PDF]({ru}.pdf) | [PDF]({en}.pdf) | [DOCX]({ru}.docx) | [DOCX]({en}.docx) | [MD]({ru}.md) | [MD]({en}.md) |")
     rows+=["","Для обычного backend-отклика — Backend ATS; для архитектуры/platform — Systems / Platform (02); для LLVM/CLR/performance — Compiler / Performance (03).",
-          "Кандидат подтверждает суммарный коммерческий стаж и эксплуатацию VpnMediator. Часть архитектурных утверждений подтверждена исходниками; детали и границы приведены в открытой сводке.",
+          "Отдельные заказные проекты датируются с 2023 года, общий FTE-стаж не подтверждён. Версии 02/03 пересматриваются отдельно. Архитектурные claims подтверждаются исходниками в оговорённых пределах.",
            "[Evidence boundaries](04_Public_Evidence_Boundaries.md) · [CV website](https://misha1302.github.io/CV/) · [Engineering profile](https://misha1302.github.io/CV/ru-tech-lead.html)","",
           "[Complete CV ZIP]("+ZIP_NAME+")",""]
     (out/"README.md").write_text("\n".join(rows),encoding="utf-8")

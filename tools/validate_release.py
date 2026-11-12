@@ -22,10 +22,11 @@ def main():
     kb=json.loads((ROOT/"knowledge/resume-evidence.json").read_text(encoding="utf-8"))
     ids={a["id"] for a in kb["assets"]}
     report=[]
-    for lang in LANGS:
-        for ex in site["application_cvs"]["experience"][lang]:
-            require(bool(ex.get("evidence_refs")),f"missing experience evidence: {ex['id']}")
-            require(set(ex["evidence_refs"])<=ids,f"unknown experience evidence: {ex['id']}")
+    for kind in KINDS:
+        for lang in LANGS:
+            for ex in record(site,kind,lang)[1]:
+                require(bool(ex.get("evidence_refs")),f"missing experience evidence: {ex['id']}")
+                require(set(ex["evidence_refs"])<=ids,f"unknown experience evidence: {ex['id']}")
     for kind in KINDS:
         for lang in LANGS:
             cv,experiences,stem=record(site,kind,lang)
@@ -61,6 +62,9 @@ def main():
             require(sizes and min(sizes)>=8.3,f"PDF small fonts {stem}: {min(sizes) if sizes else '-'}")
             links=[x.get("uri") for x in page.get_links() if x.get("uri")]
             require(len(links)>=5,f"PDF clickable links missing {stem}")
+            if cv.get("recognition_link"):
+                require(cv["recognition_link"]["url"] in links,f"PDF recording link missing: {stem}")
+                require(cv["recognition_link"]["url"] in rel,f"DOCX recording link missing: {stem}")
             fonts=d.get_page_fonts(0)
             require(fonts and any("DejaVu" in str(f) for f in fonts),f"Cyrillic-capable font not seen {stem}")
             report.append({"name":stem,"lang":lang,"pages":1,"chars":len(text),"min_font":round(min(sizes),2),"pdf_links":len(links),"docx":"valid","md":"synced"})

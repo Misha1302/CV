@@ -2284,75 +2284,129 @@
         "audience_en": "HR / ATS · default application",
         "ru": {
           "role": "C# / .NET BACKEND DEVELOPER",
-          "summary": "Разрабатываю backend-сервисы на C#/.NET и сопровождаю работающий VpnMediator. Около 1 года совокупной коммерческой практики на C#/.NET и смежном стеке (по данным автора). Отдельно — работа в ИСП РАН и стажировка в МЦСТ. Фокус: API, данные, идемпотентность и восстановление после сбоев.",
+          "summary": "Разрабатываю backend-сервисы на C#/.NET. В заказных проектах 2023–2024 годов создал ASP.NET Core API лицензирования и сопровождал его интеграцию с Unity-приложениями. В собственном VpnMediator работаю с подписками, повторными событиями оплаты и восстановлением состояния. С октября 2026 года работаю над SharpChecker в ИСП РАН.",
           "skills": [
-            "C#, .NET, ASP.NET Core, REST API, OpenAPI, SQL, PostgreSQL, SQLite, EF Core",
-            "Транзакции, миграции, фоновые задачи, платежные состояния, идемпотентность; Git, Linux, Docker Compose, nginx, systemd"
+            "Backend и данные: C#, .NET, ASP.NET Core, REST API, OpenAPI, EF Core, SQL, PostgreSQL, SQLite; Python",
+            "Надёжность и инструменты: идемпотентность, фоновые задачи, миграции, резервное копирование и откат обновлений; Git, Linux, Docker Compose, nginx, systemd"
           ],
           "projects": [
             {
               "id": "vpn",
-              "title": "VpnMediator / Razaltush VPN · действующий сервис",
-              "text": "ASP.NET Core — доступ и устройства, Python — Telegram-бот и платежные сценарии, SQLite. В исходниках есть payment-event inbox, idempotency/reconciliation и механизмы backup/rollback; число пользователей сообщено автором.",
+              "title": "VpnMediator / Razaltush VPN · собственный сервис",
+              "text": "Поддерживаю ASP.NET Core backend подписок, доступа и устройств в системе с Python Telegram-ботом и SQLite. В коде реализованы идемпотентная обработка повторных платёжных событий, сверка состояний, восстановление операций и согласованное резервное копирование с откатом обновлений.",
               "evidence_refs": [
                 "project_vpnmediator"
               ]
             },
             {
               "id": "wist",
-              "title": "UniversalToolchain · C#/.NET",
-              "text": "Развиваю расширяемую инфраструктуру языков: типизированный LanguagePlan, interpreter/CIL backends и тесты согласованности выполнения.",
+              "title": "UniversalToolchain · открытый проект C#/.NET",
+              "text": "Разрабатываю модульную инфраструктуру языков: типизированный LanguagePlan проверяет зависимости до исполнения; интерпретатор и CIL backend сопоставляются тестами согласованности результатов.",
               "evidence_refs": [
                 "project_universaltoolchain"
               ]
-            },
-            {
-              "id": "lms",
-              "title": "TuringSquare-LMS · в разработке",
-              "text": "Архитектура и ревью course entitlements, ролей и T-Bank sandbox; повторная проверка платежей у провайдера. Часть кода реализована агентами; production-запуска нет.",
-              "evidence_refs": [
-                "project_compilationlab_lms"
-              ]
             }
           ],
-          "education": "НИУ ВШЭ, ФКН — Программная инженерия.",
-          "recognition": "Диплом I степени конкурса «Юниор» НИЯУ МИФИ (2026) за UniversalToolchain; доклад LangDev 2026."
+          "education": "НИУ ВШЭ, ФКН — Программная инженерия, с 2026 года.",
+          "recognition": "Диплом I степени конкурса «Юниор» НИЯУ МИФИ (2026, UniversalToolchain); доклад на LangDev 2026",
+          "recognition_link": {
+            "label": "Видеозапись доклада",
+            "url": "https://youtu.be/2jqmw-1c7kE"
+          }
         },
         "en": {
           "role": "C# / .NET BACKEND DEVELOPER",
-          "summary": "I build C#/.NET backend services and maintain the operational VpnMediator project. Approx. one year of aggregate commercial development on C#/.NET and adjacent technologies (candidate-reported), alongside ISP RAS work and an MCST internship. Focus: APIs, data integrity, idempotency and recovery.",
+          "summary": "I build C#/.NET backend services. In client projects in 2023–2024, I built an ASP.NET Core licensing API and supported its integration with Unity applications. In VpnMediator, my own service, I work on subscriptions, duplicate payment events and state recovery. Since October 2026, I have worked on SharpChecker at ISP RAS.",
           "skills": [
-            "C#, .NET, ASP.NET Core, REST API, OpenAPI, SQL, PostgreSQL, SQLite, EF Core",
-            "Transactions, migrations, background work, payment state, idempotency; Git, Linux, Docker Compose, nginx, systemd"
+            "Backend and data: C#, .NET, ASP.NET Core, REST API, OpenAPI, EF Core, SQL, PostgreSQL, SQLite; Python",
+            "Reliability and tooling: idempotency, background jobs, migrations, backups and deployment rollback; Git, Linux, Docker Compose, nginx, systemd"
           ],
           "projects": [
             {
               "id": "vpn",
-              "title": "VpnMediator / Razaltush VPN · operational service",
-              "text": "ASP.NET Core access/device backend, Python Telegram/payment bot and SQLite. Source includes payment event inbox, reconciliation and backup/rollback workflows; user numbers are candidate-reported.",
+              "title": "VpnMediator / Razaltush VPN · independently maintained service",
+              "text": "Maintain the ASP.NET Core subscription, access, and device backend in a system with a Python Telegram bot and SQLite. The code implements idempotent processing of duplicate payment events, state reconciliation, operation recovery, and coordinated backups with deployment rollback.",
               "evidence_refs": [
                 "project_vpnmediator"
               ]
             },
             {
               "id": "wist",
-              "title": "UniversalToolchain · C#/.NET",
-              "text": "Extensible language infrastructure with a typed LanguagePlan, interpreter/CIL backends and execution-parity tests.",
+              "title": "UniversalToolchain · open-source C#/.NET project",
+              "text": "Developing modular language infrastructure: a typed LanguagePlan validates dependencies before execution, while interpreter and CIL backends are checked for agreement between execution results.",
               "evidence_refs": [
                 "project_universaltoolchain"
               ]
+            }
+          ],
+          "education": "HSE University, Faculty of Computer Science — Software Engineering, since 2026.",
+          "recognition": "First-degree diploma, MEPhI Junior competition (2026, UniversalToolchain); speaker at LangDev 2026",
+          "recognition_link": {
+            "label": "Official talk recording",
+            "url": "https://youtu.be/2jqmw-1c7kE"
+          }
+        },
+        "experience": {
+          "ru": [
+            {
+              "id": "commercial",
+              "title": "Заказная разработка · C#/.NET, Unity",
+              "date": "отдельные проекты, 2023–2024",
+              "text": "KeyAuth: разработал ASP.NET Core API регистрации и активации лицензий с EF Core/PostgreSQL и интеграцию с Unity-клиентами. Передал компоненты заказчику; сопровождал авторизацию и решал проблемы совместимости старых сборок. В 2023 году выполнил оплаченный заказ на интерактивное Unity-приложение с отдельным экраном.",
+              "evidence_refs": [
+                "project_keyauth_2023_2024",
+                "experience_paid_unity_2023"
+              ]
             },
             {
-              "id": "lms",
-              "title": "TuringSquare-LMS · in development",
-              "text": "Architecture and review of entitlements, roles and T-Bank sandbox payment verification. Some code is agent-implemented; no production launch claimed.",
+              "id": "isp",
+              "title": "ИСП РАН · SharpChecker",
+              "date": "октябрь 2026 — н. в.",
+              "text": "Работаю над символьными вычислениями для статического анализа программ на C#/.NET.",
               "evidence_refs": [
-                "project_compilationlab_lms"
+                "experience_isp_ras_2026"
+              ]
+            },
+            {
+              "id": "mcst",
+              "title": "МЦСТ · стажировка по разработке компиляторов",
+              "date": "июль — август 2026",
+              "text": "C++23/LLVM 22: экспериментальный LICM, консервативные условия допустимости преобразований и Python-проверки поведения до/после.",
+              "evidence_refs": [
+                "experience_mcst_2026"
               ]
             }
           ],
-          "education": "HSE University, Faculty of Computer Science — Software Engineering.",
-          "recognition": "1st-degree diploma, MEPhI Junior 2026 (UniversalToolchain); LangDev 2026 speaker."
+          "en": [
+            {
+              "id": "commercial",
+              "title": "Client software development · C#/.NET, Unity",
+              "date": "individual projects, 2023–2024",
+              "text": "KeyAuth: built an ASP.NET Core license-key registration and activation API with EF Core/PostgreSQL and Unity client integration. Delivered components to the client; supported authentication and addressed compatibility issues with older builds. In 2023, delivered a paid interactive Unity application with a separate display output.",
+              "evidence_refs": [
+                "project_keyauth_2023_2024",
+                "experience_paid_unity_2023"
+              ]
+            },
+            {
+              "id": "isp",
+              "title": "ISP RAS · SharpChecker",
+              "date": "Oct 2026 — present",
+              "text": "Working on symbolic computation for C#/.NET static program analysis.",
+              "evidence_refs": [
+                "experience_isp_ras_2026"
+              ]
+            },
+            {
+              "id": "mcst",
+              "title": "MCST · Compiler Engineering Internship",
+              "date": "Jul — Aug 2026",
+              "text": "C++23/LLVM 22: experimental LICM, conservative transformation legality checks, and Python-based before/after behavior checks.",
+              "evidence_refs": [
+                "experience_mcst_2026"
+              ]
+            }
+          ]
         }
       },
       "lead": {

@@ -129,7 +129,7 @@ def render(data: dict[str, Any], kind: str, lang: str, filename: str | None = No
     person = data["person"]
     name = person["name_"+lang]
     loc_name = person["location_"+lang]
-    experience = data["application_cvs"]["experience"][lang]
+    experience = data["application_cvs"]["variants"][kind].get("experience",data["application_cvs"]["experience"])[lang]
     meta = ROLE_META[kind]
     other_lang = "en" if lang == "ru" else "ru"
     other_page = data["application_cvs"]["pages"][kind][other_lang]
@@ -255,11 +255,20 @@ def render(data: dict[str, Any], kind: str, lang: str, filename: str | None = No
         "Совокупный коммерческий стаж указан по данным кандидата. Доступность исходников, манифест тестов и успешное прохождение тестов — разные виды доказательств. TuringSquare-LMS в разработке: реализация частично агентная, платежи — sandbox. Ни одно из этих утверждений не выдаётся за независимую проверку production.",
         "Aggregate commercial tenure is candidate-reported. Source availability, a test manifest and freshly executed tests are different evidence levels. TuringSquare-LMS is in development: parts are agent-implemented, payments are sandbox only. None of these statements claim independently verified production behavior.",
     )
+    if kind == "ats":
+        notes = loc(lang,
+          "KeyAuth подтверждён историческим кодом и перепиской о передаче и сопровождении, но серверная сборка 2024 года и эффект защиты от копирования независимо не проверены. Проекты 2023–2024 не означают непрерывную полную занятость; эксплуатация VpnMediator сообщена кандидатом.",
+          "KeyAuth has historical source and correspondence supporting delivery and support; the 2024 deployed server and anti-copying impact are not independently verified. Projects from 2023–2024 do not establish continuous full-time employment; VpnMediator operation is candidate-reported."
+        )
+    recognition_html = esc(cv["recognition"])
+    if cv.get("recognition_link"):
+        link = cv["recognition_link"]
+        recognition_html += f' — <a href="{esc(link["url"])}">{esc(link["label"])}</a>'
     edu = f"""<section class="ap-section ap-education" id="education">
         <div class="ap-section-aside"><span class="ap-number">04 / 04</span><h2>{detail['education']}</h2></div>
         <div class="ap-education-content">
           <h3>{esc(cv['education'])}</h3>
-          <p>{esc(cv['recognition'])}</p>
+          <p>{recognition_html}</p>
           <div class="ap-evidence"><strong>{loc(lang,'Границы доказательств','Evidence boundaries')}</strong>
             <p>{esc(notes)}</p>
             <a href="releases/2026-11-03/04_Public_Evidence_Boundaries.md">{loc(lang,'Подробнее о подтверждениях','Read source limitations')} <span aria-hidden="true">↗</span></a>

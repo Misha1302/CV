@@ -1336,6 +1336,79 @@
       "gaps": [
         "Independent work dates and employer references not supplied."
       ]
+    },
+    {
+      "id": "project_keyauth_2023_2024",
+      "category": "project",
+      "name": "KeyAuth — client licensing API and Unity integration",
+      "time": "2023-11..2024-04 (source history and client support)",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT",
+        "PRIVATE_DOCUMENT",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/KeyAuth",
+        "https://github.com/Misha1302/LoginAsset"
+      ],
+      "claims": {
+        "safe_ru": "Разработал исторический ASP.NET Core API регистрации и активации лицензий с EF Core/PostgreSQL и Unity-клиентские компоненты; приватная переписка подтверждает передачу и сопровождение клиентской авторизации в 2024 году.",
+        "safe_en": "Built an ASP.NET Core license registration/activation API with EF Core/PostgreSQL and Unity client components; dated private correspondence supports delivery and client authentication support in 2024."
+      },
+      "strongest_evidence": [
+        "Public source and commits date separate Unity client prototype and ASP.NET Core server to November 2023.",
+        "Private correspondence from February–April 2024 supports component handoff, ongoing authorization support, and compatibility troubleshooting.",
+        "Client anti-piracy outcome is only candidate-attested as of November 12, 2026 and has no independent usage or infringement statistics."
+      ],
+      "recruiter_signals": [
+        "client-facing backend implementation",
+        "ASP.NET Core and PostgreSQL",
+        "API/client compatibility",
+        "post-delivery support"
+      ],
+      "role_fit": [
+        "backend",
+        "systems"
+      ],
+      "resume_priority": "HIGH",
+      "boundaries": [
+        "Historical public source is not proved to be the deployed April 2024 server build; no security audit is claimed.",
+        "The candidate-reported end of illicit copying is excluded from the one-page ATS CV without independent verification.",
+        "Do not attribute entire Unity client games to this license API implementation or imply uninterrupted full-time employment."
+      ]
+    },
+    {
+      "id": "experience_paid_unity_2023",
+      "category": "experience",
+      "name": "Paid Unity interactive application delivery (client project)",
+      "time": "2023 (individual paid client delivery)",
+      "evidence_level": [
+        "PRIVATE_DOCUMENT",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [],
+      "claims": {
+        "safe_ru": "В 2023 году выполнил отдельный платный заказ на интерактивное Unity-приложение с отдельным экраном; переписка содержит передачу исправленной сборки и согласование оплаты.",
+        "safe_en": "Delivered an individual paid Unity interactive-application project with a separate display in 2023; private correspondence includes revised build handoff and payment acknowledgement."
+      },
+      "strongest_evidence": [
+        "Dated private correspondence supports client request, revised delivery and acknowledgment of payment in August 2023."
+      ],
+      "recruiter_signals": [
+        "client delivery",
+        "commercial software experience predating 2026",
+        "Unity/C#"
+      ],
+      "role_fit": [
+        "backend",
+        "general"
+      ],
+      "resume_priority": "SECONDARY",
+      "boundaries": [
+        "A customer message is not an independent bank record; no fee amount is asserted.",
+        "A 2023 paid project does not prove uninterrupted full-time work for several years.",
+        "Client identity and private messages are excluded from public CV artifacts."
+      ]
     }
   ],
   "skills": [
