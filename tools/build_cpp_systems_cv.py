@@ -318,4 +318,3 @@ def render_files(data: dict[str, Any], lang: str, out_dir: Path) -> dict[str, Pa
     save_docx(data, lang, docx)
     HTML(string=html_for_pdf(data, lang)).write_pdf(str(pdf))
     return {"pdf": pdf, "docx": docx, "md": md}
-

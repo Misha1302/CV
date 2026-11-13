@@ -94,4 +94,3 @@ def validate(data: dict, output_dir: Path) -> list[dict]:
         })
         pdf.close()
     return summaries
-
