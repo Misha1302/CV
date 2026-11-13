@@ -12,7 +12,8 @@
     "INFERENCE": "Analyst interpretation. Never present as a raw fact.",
     "NEEDS_VERIFICATION": "Potentially useful claim with insufficient evidence for strong resume wording.",
     "PUBLIC_SELF_AUTHORED": "Public material authored by the user (article/profile/project description). Good evidence of authorship/communication, not independent validation of stronger claims.",
-    "LOCAL_REPRODUCED": "Clean source snapshot built and tested locally on the stated date and toolchain; only the explicitly described cases and checks passed. Not independent production validation."
+    "LOCAL_REPRODUCED": "Clean source snapshot built and tested locally on the stated date and toolchain; only the explicitly described cases and checks passed. Not independent production validation.",
+    "PRIVATE_LOCAL_REPRODUCED": "Private local research files were inspected and their structural validators rerun on the authorized machine on the stated date. The source and raw data are not public; the checks are not independently reproducible or evidence of predictive/financial effectiveness."
   },
   "canonical_positioning": {
     "primary": {
@@ -1511,6 +1512,86 @@
         "A 2023 paid project does not prove uninterrupted full-time work for several years.",
         "Client identity and private messages are excluded from public CV artifacts."
       ]
+    },
+    {
+      "id": "research_channel_tracker_benchmark",
+      "category": "research_project",
+      "name": "Simple Parallel Channel Tracker — XAGUSD OHLC benchmark",
+      "time": "2026-09-17, structural replay 2026-11-14",
+      "evidence_level": [
+        "PRIVATE_LOCAL_REPRODUCED",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [],
+      "source_visibility": "private_local_only__public_cv_uses_aggregate_nonconfidential_description",
+      "claims": {
+        "safe_ru": "Детерминированный Python-пакет обработки XAGUSD OHLC с 10 таймфреймами, 31 эвристически размеченным benchmark-case, 6 вложенными парами и 3 переходами old/break/new; структурный валидатор завершился VALIDATION_OK.",
+        "safe_en": "A deterministic Python research package over XAGUSD OHLC with 10 timeframes, 31 heuristic machine-labeled benchmark cases, six nested pairs and three channel-successor sequences; structural validator returned VALIDATION_OK."
+      },
+      "checks": {
+        "date": "2026-11-14",
+        "source_snapshots_sha256": {
+          "README.md": "ca3ab565546e6f2c2a23776b7b2b9cfbfd0b5e453620fb165c5fddd6fc26c0d6",
+          "benchmark_builder": "63a0d71e3bc8447196827825ed2ce5afe42e3f13d6e0f87caea8d0760bfbf93b",
+          "benchmark_summary": "4c47b21b957ad67c95eda68bbd2007c30511ad4ee700321bc05f0f6413751daf"
+        },
+        "validator": "scripts/validate_benchmark.py",
+        "observed": "VALIDATION_OK; cases=31, positive=25 machine-labeled, negative=6, nested_pairs=6, successor_pairs=3; timeframes=10",
+        "source_rows": "179857 recent intraday rows and 3173 saved daily rows",
+        "boundary": "Structural validity only; 25 accepted labels are machine heuristic, not expert ground truth; 3M/6M/12M timeframes have insufficient long history for quality coverage."
+      },
+      "recruiter_signals": [
+        "time-series data engineering",
+        "Python NumPy/pandas/SciPy",
+        "deterministic dataset validation",
+        "financial OHLC workflow"
+      ],
+      "role_fit": [
+        "quantdev",
+        "quant"
+      ],
+      "resume_priority": "HIGH_FOR_QUANTDEV",
+      "boundaries": [
+        "Source, raw OHLC, private audio and potential client rules are not published in CV/GitHub.",
+        "No measured predictive accuracy, backtest profitability, execution simulation, transaction cost model, external user adoption or expert gold validation."
+      ]
+    },
+    {
+      "id": "research_channel_tracker_calibration",
+      "category": "research_project",
+      "name": "Simple Parallel Channel Tracker — blinded expert calibration package",
+      "time": "2026-09-17, structural replay 2026-11-14",
+      "evidence_level": [
+        "PRIVATE_LOCAL_REPRODUCED",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [],
+      "source_visibility": "private_local_only__no_source_data_published",
+      "claims": {
+        "safe_ru": "Подготовлен и структурно проверен blind-calibration интерфейс для 20 индивидуальных кейсов и 8 отношений (5 вложенных и 3 successor), включая 20 изображений; экспертная gold-разметка не собрана.",
+        "safe_en": "A blind-calibration interface structurally validated for 20 individual cases and eight relationships (five nested and three successor), with 20 images; no expert gold annotations have been collected."
+      },
+      "checks": {
+        "date": "2026-11-14",
+        "validator": "calibration/validate_pack.py",
+        "observed": "CALIBRATION_VALIDATION_OK; cases=20, relations=8, images=20",
+        "expert_gold": "NOT_COLLECTED; compiled gold folder absent",
+        "boundary": "The UI and export protocol exist and pass static validation, but no expert answers, precision/recall, prediction quality or profitable trading results were measured."
+      },
+      "recruiter_signals": [
+        "blind calibration UI",
+        "human-in-the-loop evaluation design",
+        "separation of bootstrap labels from expert truth"
+      ],
+      "role_fit": [
+        "quantdev",
+        "quant"
+      ],
+      "resume_priority": "HIGH_FOR_QUANTDEV",
+      "boundaries": [
+        "Validation covers structure and artifacts, not expert approval or model accuracy.",
+        "No raw data, original client materials, voice notes or proprietary strategy details are published."
+      ]
     }
   ],
   "skills": [
@@ -1854,6 +1935,8 @@
       "thesis": "Algorithmic and systems experimentation with exact/reference oracles, controlled corpora, deterministic replay, counterexamples and performance-aware implementations.",
       "top_assets": [
         "project_ps_form",
+        "research_channel_tracker_benchmark",
+        "research_channel_tracker_calibration",
         "research_contract_reverification",
         "research_planfuzz",
         "project_global_iv",
@@ -1866,7 +1949,7 @@
       ],
       "project_slots": [
         "project_ps_form",
-        "research_contract_reverification",
+        "research_channel_tracker_benchmark",
         "project_global_iv"
       ],
       "preserve_signal": [
@@ -1875,7 +1958,7 @@
         "algorithms",
         "C++/systems"
       ],
-      "avoid": "Do not imply finance/trading production experience."
+      "avoid": "Do not imply profitable trading, validated alpha, expert gold labels, financial production experience, or publication rights for the private tracker."
     }
   },
   "repository_triage": {

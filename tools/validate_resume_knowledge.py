@@ -217,6 +217,38 @@ def validate_semantic_boundaries(by_id: dict[str, dict]) -> None:
             and ci.get("conclusion") == "success",
             "Public CI source identity must match the pinned Rust backend commit")
 
+    # Financial research evidence is private, structural and not predictive.
+    # Never replace machine bootstrap labels with expert gold ground truth.
+    benchmark = by_id.get("research_channel_tracker_benchmark")
+    calib = by_id.get("research_channel_tracker_calibration")
+    for asset in (benchmark, calib):
+        require(asset is not None, "Missing private Quant Developer research evidence")
+        require("PRIVATE_LOCAL_REPRODUCED" in asset.get("evidence_level", [])
+                and not asset.get("public_sources"),
+                "Private research cannot be upgraded to public-source evidence")
+        require(str(asset.get("source_visibility", "")).startswith("private_local_only"),
+                "Private tracker provenance/privacy boundary missing")
+        checks = asset.get("checks", {})
+        require(checks.get("date") == "2026-11-14",
+                "Quant private structural verification date must remain exact")
+    b = benchmark.get("checks", {})
+    require(b.get("source_snapshots_sha256", {}).get("README.md")
+            == "ca3ab565546e6f2c2a23776b7b2b9cfbfd0b5e453620fb165c5fddd6fc26c0d6"
+            and "VALIDATION_OK" in b.get("observed", "")
+            and all(part in b.get("observed", "") for part in ("cases=31", "positive=25", "negative=6",
+                                                               "nested_pairs=6", "successor_pairs=3")),
+            "Private OHLC data contract must remain reproducible and bounded")
+    c = calib.get("checks", {})
+    require("CALIBRATION_VALIDATION_OK" in c.get("observed", "")
+            and all(part in c.get("observed", "") for part in ("cases=20", "relations=8", "images=20"))
+            and "NOT_COLLECTED" in c.get("expert_gold", ""),
+            "Blind-calibration structural completion is not expert gold or accuracy")
+    for asset in (benchmark, calib):
+        boundary = " ".join(str(x) for x in asset.get("boundaries", [])).lower()
+        require("no" in boundary
+                and any(word in boundary for word in ("profit", "accuracy", "expert")),
+                "Quant outcomes must retain explicit non-performance boundaries")
+
     langdev = by_id.get("achievement_langdev_2026")
     require(langdev is not None, "missing LangDev achievement asset")
     require(

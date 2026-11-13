@@ -78,11 +78,15 @@ def main() -> None:
             profile = data["profiles"][key][lang]
             html_path = ROOT / profile["filename"]
             pdf_path = args.output_dir / profile["pdf"]
-            if key in ("systems", "program_analysis", "general", "compiler_backend"):
+            if key in ("systems", "program_analysis", "general", "compiler_backend", "quantdev"):
                 render_cpp_systems_files(data, lang, args.output_dir, profile_key=key)
             else:
                 HTML(filename=str(html_path), base_url=str(ROOT)).write_pdf(str(pdf_path))
-            expected_titles = [data["projects"][project_id]["title"] for project_id in profile["project_ids"][:int(profile.get("print_project_limit", 3))]]
+            expected_titles = [
+                (data["projects"][project_id]["title"] if project_id in data["projects"]
+                 else profile.get("project_entries", {})[project_id]["title"])
+                for project_id in profile["project_ids"][:int(profile.get("print_project_limit", 3))]
+            ]
             result = validate_pdf(pdf_path, profile["role"], expected_titles, data["person"][f"education_{lang}"])
             if args.evidence_dir:
                 doc = fitz.open(pdf_path)

@@ -34,9 +34,26 @@ def validate(data: dict, output_dir: Path, profile_key: str = "systems") -> list
             "program_analysis": ("104/104", "29/29", "18/18"),
             "general": ("104/104", "29/29"),
             "compiler_backend": ("104/104", "29/29", "42/42"),
+            "quantdev": ("104/104", "29/29", "14/14", "31", "20", "8"),
         }[profile_key]
         require("907/912" not in text_md and all(count in text_md for count in counts),
                 f"Broken bounded statistics or overly detailed smoke outcome in the CV: {stem}")
+        if profile_key == "quantdev":
+            require(text_md.index("PS-form Memory Dependence Analyzer")
+                    < text_md.index("Simple Parallel Channel Tracker")
+                    < text_md.index("LLVM Interprocedural Global IV Optimization"),
+                    f"Quant Developer project order incorrect: {stem}")
+            require("XAGUSD" in text_md and "31" in text_md and "10" in text_md
+                    and "20" in text_md and "8" in text_md,
+                    f"Missing scoped financial research data evidence: {stem}")
+            require(("gold set" in text_md.lower() or "gold-разметка" in text_md.lower())
+                    and ("не подтвержд" in text_md.lower() if lang == "ru" else
+                         "not been established" in text_md.lower()),
+                    f"Quant Developer must not imply expert truth or trading accuracy: {stem}")
+            private = [p for p in info["projects"] if p.get("privacy_status") == "private_unpublished"]
+            require(len(private) == 1 and private[0]["id"] == "parallel_channel_tracker"
+                    and not private[0].get("source_url"),
+                    f"Private financial case must not publish a source link: {stem}")
         if profile_key == "compiler_backend":
             require(text_md.index("x86-64 Compiler Backend & Register Allocation")
                     < text_md.index("LLVM Interprocedural Global IV Optimization")
@@ -90,9 +107,13 @@ def validate(data: dict, output_dir: Path, profile_key: str = "systems") -> list
         expected_urls = {
             info["person"]["telegram"], info["person"]["github"], "mailto:" + info["person"]["email"],
             "https://youtu.be/2jqmw-1c7kE",
-            *(p["source_url"] for p in info["projects"]),
+            *(p["source_url"] for p in info["projects"] if p.get("source_url")),
         }
         require(expected_urls <= urls, f"Broken/missing PDF hyperlinks: {stem}")
+        if profile_key == "quantdev":
+            require(len(urls) == 6 and not any("file://" in url or
+                    "Parallel Channel Tracker" in url for url in urls),
+                    f"Private quant source was exposed as PDF hyperlink: {stem}")
         require(all(p["name"] in text for p in info["projects"]),
                 f"Project omitted from PDF text layer: {stem}")
         with ZipFile(docx_path) as z:
@@ -108,6 +129,10 @@ def validate(data: dict, output_dir: Path, profile_key: str = "systems") -> list
                 f"Invalid C++ DOCX document structure: {stem}")
         require("SharpChecker" in text and all(count in text for count in counts),
                 f"Key bounded achievements missing: {stem}")
+        if profile_key == "quantdev":
+            require("XAGUSD" in text and "31" in text and "29/29" in text
+                    and "104/104" in text and "14/14" in text,
+                    f"Quant Developer test evidence missing: {stem}")
         if profile_key == "compiler_backend":
             require("42/42" in text and "29/29" in text and "Rust" in text,
                     f"Compiler Backend measured evidence missing: {stem}")

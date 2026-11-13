@@ -272,13 +272,42 @@ def experience_section(lang: str, profile: dict[str, Any], compact: bool = False
 
 
 def project_card(data: dict[str, Any], lang: str, project_id: str, featured: bool = False, profile: dict[str, Any] | None = None) -> str:
+    private_case = (profile or {}).get("project_entries", {}).get(project_id)
+    if private_case:
+        details = (profile or {}).get("project_summaries", {}).get(project_id, {})
+        if (private_case.get("privacy_status") != "private_unpublished"
+                or details.get("privacy_status") != "private_unpublished"
+                or details.get("source_url")):
+            raise ValueError("Private research case cannot contain public source URL")
+        title = esc(private_case["title"])
+        kind = esc(private_case["type_" + lang])
+        problem = esc(details["problem"])
+        solution = esc(details["solution"])
+        result = esc(details["result"])
+        labels = (("Проблема", "Решение", "Результат", "Исходники не опубликованы")
+                  if lang == "ru" else
+                  ("Problem", "Approach", "Result", "Source not published"))
+        proof = (f'<p><strong>{labels[0]}:</strong> {problem}</p>'
+                 f'<p><strong>{labels[1]}:</strong> {solution}</p>'
+                 f'<p><strong>{labels[2]}:</strong> {result}</p>')
+        private_badge = f'<span class="project-private-note">{esc(labels[3])}</span>'
+        if featured:
+            return (f'<article class="project-featured"><div><span class="project-type">{kind}</span>'
+                    f'<h3>{title}</h3><p>{problem}</p>{private_badge}</div>'
+                    f'<div class="project-points">{proof}</div></article>')
+        return (f'<article class="project-card"><span class="project-type">{kind}</span>'
+                f'<h3>{title}</h3><div class="project-mini">{proof}</div>'
+                f'<div class="project-links">{private_badge}</div></article>')
     project = data["projects"][project_id]
     case_url = project[f"case_{lang}"]
     problem = project[f"problem_{lang}"]
     solution = project[f"solution_{lang}"]
     result = project[f"result_{lang}"]
     owned_copy = (profile or {}).get("systems_project_copy", {}).get(project_id)
+    if not owned_copy and (profile or {}).get("project_entries"):
+        owned_copy = (profile or {}).get("project_summaries", {}).get(project_id)
     if owned_copy:
+        problem = owned_copy.get("problem", problem)
         solution, result = owned_copy["solution"], owned_copy["result"]
     type_label = project[f"type_{lang}"]
     labels = {
@@ -291,7 +320,7 @@ def project_card(data: dict[str, Any], lang: str, project_id: str, featured: boo
     }
     links = [f'<a href="{esc(case_url)}">{labels["case"]} ↗</a>']
     if project.get("repo"):
-        source_url = (profile or {}).get("systems_project_copy", {}).get(project_id, {}).get("source_url", project["repo"])
+        source_url = (owned_copy or {}).get("source_url", project["repo"])
         links.append(f'<a href="{esc(source_url)}" rel="noopener noreferrer" target="_blank">{labels["repo"]} ↗</a>')
     if project.get("docs"):
         links.append(f'<a href="{esc(project["docs"])}" rel="noopener noreferrer" target="_blank">{labels["docs"]} ↗</a>')
@@ -390,14 +419,22 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     project_limit = int(profile.get("print_project_limit", 3))
     project_summaries = profile.get("project_summaries", {})
     for project_id in profile["project_ids"][:project_limit]:
-        project = data["projects"][project_id]
+        project = (data["projects"][project_id] if project_id in data["projects"]
+                   else profile.get("project_entries", {})[project_id])
         summary = project_summaries.get(project_id, {})
-        target = summary.get("source_url") or project.get("repo") or project[f"case_{lang}"]
+        target = summary.get("source_url") or project.get("repo") or project.get(f"case_{lang}")
+        if project_id not in data["projects"] and (
+                project.get("privacy_status") != "private_unpublished"
+                or summary.get("privacy_status") != "private_unpublished"
+                or target):
+            raise ValueError("Private research case must not have a public source URL")
         if summary:
             project_body = f'<p>{esc(summary.get("solution", ""))}</p><p class="pcv-project-result">{esc(summary.get("result", ""))}</p>'
         else:
             project_body = f'<p>{esc(project[f"result_{lang}"])}</p>'
-        projects.append(f'<article class="pcv-project"><h3><a href="{esc(target)}">{esc(project["title"])}</a></h3>{project_body}</article>')
+        title = (f'<a href="{esc(target)}">{esc(project["title"])}</a>'
+                 if target else esc(project["title"]))
+        projects.append(f'<article class="pcv-project"><h3>{title}</h3>{project_body}</article>')
     skills = "".join(f'<div class="pcv-skill"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["skills"])
     education = p[f"education_{lang}"]
     recognition_data = recognition_items(data, lang, profile)

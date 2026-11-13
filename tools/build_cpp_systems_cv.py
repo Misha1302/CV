@@ -24,6 +24,7 @@ SUPPORTED_PROFILES = {
     "program_analysis": (["deref", "globaliv", "psform"], "project_summaries"),
     "general": (["wist", "globaliv", "codegen"], "project_summaries"),
     "compiler_backend": (["codegen", "globaliv", "wist"], "project_summaries"),
+    "quantdev": (["psform", "parallel_channel_tracker", "globaliv"], "project_summaries"),
 }
 
 
@@ -44,8 +45,16 @@ def snapshot(data: dict[str, Any], lang: str, profile_key: str = PROFILE_KEY) ->
         raise ValueError(f"{profile_key} project selection changed unexpectedly: {ids}")
     for project_id in ids:
         item = project_copy[project_id]
-        if not all(item.get(key) for key in ("solution", "result", "source_url")):
+        if not all(item.get(key) for key in ("solution", "result")):
             raise ValueError(f"Unclear project proof in {lang}: {project_id}")
+        if project_id not in data["projects"]:
+            entry = profile.get("project_entries", {}).get(project_id, {})
+            if (entry.get("privacy_status") != "private_unpublished"
+                    or item.get("source_url") or item.get("privacy_status") != "private_unpublished"
+                    or not entry.get("title")):
+                raise ValueError(f"Unpublished private case needs no URL and explicit privacy boundaries: {project_id}")
+        elif not item.get("source_url"):
+            raise ValueError(f"Public case needs evidence URL: {project_id}")
     expected_recognition = 4 if profile_key == "general" else 3
     if len(profile["experience"]) != 2 or len(profile["recognition"]) != expected_recognition:
         raise ValueError(f"Missing owned experience/recognition for {profile_key} CV")
@@ -60,7 +69,8 @@ def snapshot(data: dict[str, Any], lang: str, profile_key: str = PROFILE_KEY) ->
         "projects": [
             {
                 "id": pid,
-                "name": data["projects"][pid]["title"],
+                "name": (data["projects"][pid]["title"] if pid in data["projects"]
+                         else profile["project_entries"][pid]["title"]),
                 **project_copy[pid],
             }
             for pid in ids
@@ -102,8 +112,10 @@ def markdown(data: dict[str, Any], lang: str, profile_key: str = PROFILE_KEY) ->
         lines.append("")
     lines += ["## " + labels["projects"], ""]
     for project in m["projects"]:
+        url = project.get("source_url")
+        project_title = f'[{project["name"]}]({url})' if url else project["name"]
         lines += [
-            f'**[{project["name"]}]({project["source_url"]})**', "",
+            f'**{project_title}**', "",
             project["solution"] + " " + project["result"], "",
         ]
     lines += ["## " + labels["education"], "", m["education"], "",
@@ -132,11 +144,16 @@ def html_for_pdf(data: dict[str, Any], lang: str, profile_key: str = PROFILE_KEY
         + "</article>"
         for item in p["experience"]
     )
-    projects = "".join(
-        f'<article class="project"><h3><a href="{h(item["source_url"])}">{h(item["name"])}</a></h3>'
-        f'<p>{h(item["solution"])} {h(item["result"])}</p></article>'
-        for item in m["projects"]
-    )
+    project_html = []
+    for item in m["projects"]:
+        url = item.get("source_url")
+        heading = (f'<a href="{h(url)}">{h(item["name"])}</a>'
+                   if url else h(item["name"]))
+        project_html.append(
+            f'<article class="project"><h3>{heading}</h3>'
+            f'<p>{h(item["solution"])} {h(item["result"])}</p></article>'
+        )
+    projects = "".join(project_html)
     recognition = "".join(
         f'<p><strong>{h(item[0])} · {h(item[1])}:</strong> {h(item[2])}'
         + (f' — <a href="{h(item[3])}">{h(labels["recording"])}</a>' if len(item) == 4 else "")
@@ -297,7 +314,10 @@ def save_docx(data: dict[str, Any], lang: str, path: Path, profile_key: str = PR
     for item in m["projects"]:
         q = doc.add_paragraph()
         q.paragraph_format.space_after = Pt(1)
-        hyperlink(q, item["name"], item["source_url"])
+        if item.get("source_url"):
+            hyperlink(q, item["name"], item["source_url"])
+        else:
+            q.add_run(item["name"]).bold = True
         doc.add_paragraph(item["solution"] + " " + item["result"])
 
     doc.add_heading(labels["education"], level=2)
@@ -317,6 +337,7 @@ def save_docx(data: dict[str, Any], lang: str, path: Path, profile_key: str = PR
         "program_analysis": "Static Analysis / Program Analysis Engineer CV",
         "general": "Compiler Infrastructure / Language Tooling Engineer CV",
         "compiler_backend": "Compiler Backend / Code Generation Engineer CV",
+        "quantdev": "Quant Developer / Research Software Engineer CV",
     }[profile_key]
     doc.core_properties.author = m["name"]
     doc.save(path)

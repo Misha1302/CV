@@ -181,6 +181,45 @@ LLVM IR Global IV project passed 29/29 selected tests on pinned LLVM
 22.1.8; the UT 1324 figure refers to the checked-in test manifest,
 not a freshly rerun entire test suite.
 
+## Quant Developer / Research Software Engineer — ATS specialist (14 November 2026)
+
+The [Russian](ru-quant-dev.html) and [English](en-quant-dev.html) Quant Developer
+profile is authored in data/site.json -> profiles.quantdev, separately from
+profiles.quant (Quantitative Research Candidate). It generates an ATS-friendly,
+single-column, one-page A4 PDF and companion editable DOCX and Markdown.
+
+- RU: [PDF](pdf/Mikhail_Razakov_Quant_Developer_RU.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Quant_Developer_RU.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Quant_Developer_RU.md)
+- EN: [PDF](pdf/Mikhail_Razakov_Quant_Developer_EN.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Quant_Developer_EN.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Quant_Developer_EN.md)
+
+Run the profile-scoped renderer and validators:
+
+    python tools/build_site.py
+    python tools/build_cv.py --output-dir pdf --profile quantdev
+    python tools/build_site.py --manifest
+    python tools/validate_cv.py --pdf-dir pdf
+    python tools/validate_resume_knowledge.py
+
+The financial research example Simple Parallel Channel Tracker is **private
+and unpublished**. Only a brief evidence-bounded textual summary appears
+in the public CV. Do not add its local source path, raw OHLC files, audio
+notes, methodology, input materials or a fake download/case link to the
+public GitHub repo. A separate public project case requires verifying rights
+to disclose its contents; approval of CV copy is not approval of raw-source
+publication.
+
+On 14 November the authorized local private structural validators reported:
+benchmark 31 machine-labeled cases over ten timeframes (six nested and three
+successor relationships), and calibration pack 20 individual cases plus eight
+relationships. Neither test implies expert-labeled gold data, a validated
+market signal, profitability, Sharpe, backtesting performance or user adoption.
+The separate PS-form extended smoke suite had 907/912 cases pass, with five
+conservative maybe outcomes where the oracle expected no. LLVM Global IV's
+29/29 regressions are tied to its pinned LLVM 22.1.8 source.
+
 ## CV release — 2026-11-03
 
 Send-ready, one-page C#/.NET resumes (Russian): **[choose the right version](releases/2026-11-03/README.md)**.
