@@ -196,6 +196,27 @@ def validate_semantic_boundaries(by_id: dict[str, dict]) -> None:
             and "no complete lint" in graph.get("boundary", "").lower(),
             "C++23 graph fixture verification must not imply full lint or selection result")
 
+    # Pinned Rust compiler-backend results: a clean Fedora debug run,
+    # not a completed local release run or a production-ready backend.
+    rust = by_id.get("project_x86_codegen")
+    require(rust is not None and "LOCAL_REPRODUCED" in rust.get("evidence_level", []),
+            "Rust backend must retain local verification provenance")
+    receipt = rust.get("local_replay_2026_11_14", {})
+    require(receipt.get("source_commit") == "dd0693c3af06dc9a3612b68ecb94f9637d6b0514"
+            and receipt.get("date") == "2026-11-14"
+            and "42 passed" in receipt.get("debug_observed", "")
+            and "0 failed" in receipt.get("debug_observed", ""),
+            "Rust backend 42/42 claim must be pinned to the verified source and date")
+    require("NOT_VERIFIED" in receipt.get("release_status", "")
+            and "disk quota" in receipt.get("release_status", "").lower()
+            and "NOT_VERIFIED" not in receipt.get("debug_observed", ""),
+            "Local release build limitations cannot be interpreted as test success/failure")
+    ci = receipt.get("public_ci", {})
+    require(ci.get("head_sha") == receipt.get("source_commit")
+            and ci.get("run_id") == 34896109843
+            and ci.get("conclusion") == "success",
+            "Public CI source identity must match the pinned Rust backend commit")
+
     langdev = by_id.get("achievement_langdev_2026")
     require(langdev is not None, "missing LangDev achievement asset")
     require(

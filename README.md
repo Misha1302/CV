@@ -147,6 +147,40 @@ and counterexample reduction, not a complete compiler fuzzer or an
 independent proof of compiler correctness. The Rust x86-64 codegen is
 experimental and separate from LLVM/UT production integration.
 
+## Compiler Backend / Code Generation — ATS specialist (14 November 2026)
+
+The specialist [RU](ru-compiler-backend.html) and
+[EN](en-compiler-backend.html) pages are generated from
+`data/site.json -> profiles.compiler_backend`. The editorial HTML
+remains separate from the one-column ATS PDF, DOCX and Markdown exports:
+
+- RU: [PDF](pdf/Mikhail_Razakov_Compiler_Backend_RU.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Compiler_Backend_RU.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Compiler_Backend_RU.md)
+- EN: [PDF](pdf/Mikhail_Razakov_Compiler_Backend_EN.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Compiler_Backend_EN.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Compiler_Backend_EN.md)
+
+Regenerate without touching other specialty PDF files:
+
+```bash
+python tools/build_site.py
+python tools/build_cv.py --output-dir pdf --profile compiler_backend
+python tools/build_site.py --manifest
+python tools/validate_cv.py --pdf-dir pdf
+```
+
+The Rust backend's local verification is pinned to commit
+`dd0693c3af06dc9a3612b68ecb94f9637d6b0514` (42/42 debug
+tests, fmt and strict Clippy on 2026-11-14). The release-test attempt
+did not reach testing because the local build exceeded disk quota.
+GitHub Actions run 34896109843 independently reports success for the
+same commit on 2026-09-14. This is a restricted i64 IR playground,
+not a full x86-64 target backend or a security sandbox. The separate
+LLVM IR Global IV project passed 29/29 selected tests on pinned LLVM
+22.1.8; the UT 1324 figure refers to the checked-in test manifest,
+not a freshly rerun entire test suite.
+
 ## CV release — 2026-11-03
 
 Send-ready, one-page C#/.NET resumes (Russian): **[choose the right version](releases/2026-11-03/README.md)**.

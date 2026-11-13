@@ -1248,47 +1248,46 @@
     "compiler_backend": {
       "ru": {
         "compiler_layout": true,
-        "updated_at": "2026-10-16",
+        "updated_at": "2026-11-14",
         "filename": "ru-compiler-backend.html",
         "pdf": "Mikhail_Razakov_Compiler_Backend_RU.pdf",
         "title": "Михаил Разаков — Compiler Backend / Code Generation Engineer",
         "role": "Compiler Backend / Code Generation Engineer",
-        "brand": "x86-64 backend · register allocation · LLVM · code generation",
-        "eyebrow": "SSA/CFG · liveness/interference · register allocation · SysV x86-64",
-        "summary": "Разрабатываю backend компилятора: проверка SSA/CFG, анализ живости, распределение регистров, spills, phi lowering и генерация SysV x86-64. Проверяю назначения независимым verifier и сравниваю машинное исполнение с интерпретатором; ранее работал с LLVM 22/C++ в МЦСТ.",
-        "description": "Михаил Разаков — Compiler Backend / Code Generation Engineer: SSA/CFG, liveness, register allocation, spills, phi lowering, SysV x86-64 и LLVM 22.",
+        "brand": "Rust · iced-x86 · SSA/CFG · LLVM 22 · CIL",
+        "eyebrow": "register allocation · spills · phi lowering · differential correctness",
+        "summary": "Разрабатываю экспериментальные компоненты compiler backend на Rust, C++/LLVM и C#/.NET. В собственном Rust-проекте реализовал проверку SSA/CFG, register allocation, spills, phi lowering и генерацию SysV x86-64. Отдельный verifier проверяет назначения регистров, а native-исполнение сравнивается с эталонным IR-интерпретатором. В МЦСТ работал с LLVM LICM; сейчас занимаюсь символьными вычислениями в SharpChecker (ИСП РАН).",
+        "description": "Rust / iced-x86 codegen, SSA/CFG, liveness, register allocation, phi lowering; C++23 LLVM IR и CIL; локальная проверка Rust 42/42.",
         "proofs": [
           [
-            "Профессиональный LLVM",
-            "МЦСТ: LLVM 22 compiler engineering."
+            "Rust backend",
+            "Ограниченный i64 IR; независимый assignment verifier, phi lowering и native-vs-interpreter."
           ],
           [
-            "Native codegen до стажировки",
-            "Visk: x86-64 в 2023 · Wist4: AST→IR→x64 в 2024."
+            "42/42 теста",
+            "Чистый Git-снимок dd0693c; Rust 1.93.1, форматирование и строгий Clippy пройдены 14.11.2026."
           ],
           [
-            "Современная проверка",
-            "Verifier раскладки + native-vs-interpreter differential execution на ветвлениях, циклах и spills."
+            "LLVM 29/29",
+            "Независимый Global IV pass на LLVM 22.1.8 с консервативной проверкой допустимости."
           ]
         ],
         "experience": [
           {
             "fact_ref": "isp_ras",
             "date": "октябрь 2026 — настоящее время",
-            "title": "ИСП РАН — разработка SharpChecker",
-            "org": "C#/.NET · статический анализ · символьные вычисления",
+            "title": "ИСП РАН · SharpChecker",
+            "org": "C#/.NET · статический анализ",
             "bullets": [
-              "Работаю над символьными вычислениями в SharpChecker — инструменте статического анализа C#/.NET."
+              "Работаю над символьными вычислениями для статического анализа программ на C#/.NET."
             ]
           },
           {
             "fact_ref": "mcst",
             "date": "июль — август 2026",
-            "title": "МЦСТ — стажёр по разработке компиляторов",
-            "org": "LLVM 22 · C++23 · compiler engineering",
+            "title": "МЦСТ · стажировка по разработке компиляторов",
+            "org": "C++23 · LLVM 22",
             "bullets": [
-              "Реализовал LICM-проход для LLVM 22 на C++; перенос выполняется только при выполнении условий по структуре цикла, обращениям к памяти, побочным эффектам и безопасности спекулятивного выполнения.",
-              "Собрал Python-обвязку для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
+              "Работал над экспериментальным LLVM LICM: проверял допустимость переноса инструкций с учётом структуры цикла, обращений к памяти и побочных эффектов; сравнивал поведение до/после с помощью Python."
             ]
           }
         ],
@@ -1300,38 +1299,37 @@
         "skills": [
           [
             "Backend / Codegen",
-            "x86-64, SysV ABI, stack frames, calling conventions, liveness/interference, register allocation, spills, phi lowering, native execution"
+            "Rust, iced-x86, SSA/CFG, dominance, edge-specific liveness, linear scan, seeded simulated annealing, spills, phi lowering, SysV x86-64"
           ],
           [
-            "Low-level / Assembly",
-            "Iced.Intel code emission, executable-memory JIT experiments; NASM IA-32, CDECL, x87"
+            "Compiler / Runtime",
+            "C++23, LLVM 22/IR, APInt, IR transformations; C#, .NET, CIL/CLR, interpreter и backend execution"
           ],
           [
-            "LLVM / IR",
-            "C++23, LLVM 22/IR, CFG/SSA, анализ циклов, межпроцедурный анализ, преобразования IR"
-          ],
-          [
-            "Проверка",
-            "verifier раскладки, LLVM Verifier, структурные проверки, идемпотентность, differential execution"
+            "Проверка / Инструменты",
+            "Независимый assignment verifier, reference interpreter, differential testing, Cargo tests, Clippy, Python, Git, Linux, CMake"
           ]
         ],
         "contact_heading": "Целевые роли: Compiler Backend · Code Generation · Register Allocation · LLVM",
         "footer": "Compiler Backend / Code Generation Engineer",
         "project_summaries": {
           "codegen": {
-            "type": "Rust · x86-64 backend · register allocation",
-            "solution": "Проверка SSA/CFG → анализ живости и интерференции → register allocation/spills → phi lowering → генерация SysV x86-64.",
-            "result": "Verifier раскладки + сравнение native execution с эталонным интерпретатором; актуальный CI проекта зелёный; отдельная публичная линия native-codegen начинается с Visk (2023) и Wist4 (2024)."
+            "type": "Rust / iced-x86 · экспериментальный backend",
+            "solution": "Реализовал backend для ограниченного i64 IR: SSA/CFG, liveness, linear-scan и seeded simulated-annealing allocation, spills, phi lowering и SysV x86-64. Независимый verifier обнаруживает конфликты регистров и stack slots; phi lowering обрабатывает циклы параллельных перемещений.",
+            "result": "Native-код исполняется в отдельном процессе и сравнивается с IR-интерпретатором. На коммите dd0693c локально пройдены 42/42 debug-тестов, cargo fmt и строгий Clippy; release-тесты локально не завершились из-за дисковой квоты.",
+            "source_url": "https://github.com/Misha1302/x86-64-codegen-ra-playground/tree/dd0693c3af06dc9a3612b68ecb94f9637d6b0514"
           },
           "globaliv": {
-            "type": "C++23 · LLVM 22 · межпроцедурный анализ · преобразования",
-            "solution": "LLVM 22 pass локализует поддерживаемые глобальные переменные, изменяющиеся как индукционные, после межпроцедурного анализа эффектов, аффинной эволюции и отдельной проверки условий применимости; APInt моделирует арифметику фиксированной разрядности.",
-            "result": "29 позитивных и негативных регрессионных сценариев: LLVM Verifier, структурные ожидания, идемпотентность и сравнение наблюдаемого поведения до/после преобразования."
+            "type": "C++23 / LLVM 22 · отдельная middle-end оптимизация",
+            "solution": "LLVM pass анализирует межпроцедурные эффекты и аффинную эволюцию выбранных глобальных целочисленных переменных, затем проверяет допустимость и выполняет консервативное IR-преобразование.",
+            "result": "На LLVM 22.1.8 пройдены 29/29 регрессионных сценариев, включая неподдерживаемые случаи, где преобразование отклоняется. Это не LLVM target backend.",
+            "source_url": "https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization/tree/0d759dcf3af7a5652432eb0fea5b9ca27ec88f74"
           },
           "wist": {
-            "type": ".NET · инфраструктура компилятора · композиция pipeline",
-            "solution": "Разрешение зависимостей и конфликтов, выбор реализаций, порядок проходов и типизированные маршруты артефактов до исполнения.",
-            "result": "1 324/1 324 теста; interpreter/CIL parity и проверка конфигурации до runtime."
+            "type": "C#/.NET · CIL backend / interpreter",
+            "solution": "Разрабатываю модульную инфраструктуру с Bytecode/AIR, интерпретатором и CIL backend. LanguagePlan фиксирует маршруты исполнения; тесты проверяют совпадение поддерживаемых результатов interpreter/CIL.",
+            "result": "Репозиторный манифест содержит 1324 ожидаемых тестовых прохождения — это не повторный полный тестовый прогон во время аудита.",
+            "source_url": "https://github.com/Misha1302/UniversalToolchain"
           }
         },
         "show_portrait": true,
@@ -1339,51 +1337,71 @@
         "print_project_limit": 3,
         "show_trajectory": true,
         "experience_heading": "Профессиональный опыт",
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "print_recognition_limit": 3,
+        "print_show_trajectory": false,
+        "dedicated_ats_export": true,
+        "recognition": [
+          [
+            "2026",
+            "LangDev — UniversalToolchain",
+            "Доклад об архитектуре компиляторной инфраструктуры 9 октября 2026 года.",
+            "https://youtu.be/2jqmw-1c7kE"
+          ],
+          [
+            "2025–2026",
+            "«Юниор» НИЯУ МИФИ",
+            "Дипломы I степени в секции информационных технологий в 2025 и 2026 годах."
+          ],
+          [
+            "2026",
+            "Отбор МЦСТ — LLVM/C++",
+            "По переписке организатора: 5,0/5,0 и 104/104 официальных тестов среди 49 представленных решений."
+          ]
+        ]
       },
       "en": {
         "compiler_layout": true,
-        "updated_at": "2026-10-16",
+        "updated_at": "2026-11-14",
         "filename": "en-compiler-backend.html",
         "pdf": "Mikhail_Razakov_Compiler_Backend_EN.pdf",
         "title": "Mikhail Razakov — Compiler Backend / Code Generation Engineer",
         "role": "Compiler Backend / Code Generation Engineer",
-        "brand": "x86-64 backend · register allocation · LLVM · code generation",
-        "eyebrow": "SSA/CFG · liveness/interference · register allocation · SysV x86-64",
-        "summary": "I build compiler-backend components from SSA/CFG validation and liveness to register allocation, spills, phi lowering, and SysV x86-64 emission. I check assignments independently and compare native execution with a reference interpreter; earlier worked with LLVM 22/C++ at MCST.",
-        "description": "Mikhail Razakov — Compiler Backend / Code Generation Engineer: SSA/CFG, liveness, register allocation, spills, phi lowering, SysV x86-64, and LLVM 22.",
+        "brand": "Rust · iced-x86 · SSA/CFG · LLVM 22 · CIL",
+        "eyebrow": "register allocation · spills · phi lowering · differential correctness",
+        "summary": "I develop experimental compiler-backend components in Rust, C++/LLVM and C#/.NET. My Rust project covers SSA/CFG validation, register allocation, spills, phi lowering and SysV x86-64 emission. An independent verifier checks assignments, and native execution is compared with a reference IR interpreter. At MCST I worked on experimental LLVM LICM; I now work on symbolic computation for SharpChecker at ISP RAS.",
+        "description": "Rust / iced-x86 backend, SSA/CFG, liveness, register allocation, phi lowering; C++23 LLVM IR and CIL; pinned 42/42 Rust test run.",
         "proofs": [
           [
-            "Professional LLVM",
-            "MCST: LLVM 22 compiler engineering."
+            "Rust backend",
+            "Restricted i64 IR; independent assignment verification, phi lowering and native-vs-interpreter comparisons."
           ],
           [
-            "Native codegen before the internship",
-            "Visk: x86-64 in 2023 · Wist4: AST→IR→x64 in 2024."
+            "42/42 tests",
+            "Pinned dd0693c source; Rust 1.93.1, formatting and strict Clippy passed on 14 Nov 2026."
           ],
           [
-            "Current verification",
-            "Assignment verifier + native-vs-interpreter differential execution across branches, loops, and spills."
+            "LLVM 29/29",
+            "Independent Global IV pass on LLVM 22.1.8 with conservative legality checks."
           ]
         ],
         "experience": [
           {
             "fact_ref": "isp_ras",
             "date": "October 2026 — present",
-            "title": "ISP RAS — SharpChecker development",
-            "org": "C#/.NET · static analysis · symbolic computation",
+            "title": "ISP RAS · SharpChecker",
+            "org": "C#/.NET · static analysis",
             "bullets": [
-              "Work on symbolic computation in SharpChecker, a C#/.NET static-analysis tool."
+              "Working on symbolic computation for C#/.NET static program analysis."
             ]
           },
           {
             "fact_ref": "mcst",
             "date": "July — August 2026",
-            "title": "MCST — Compiler Engineering Intern",
-            "org": "LLVM 22 · C++23 · compiler engineering",
+            "title": "MCST · Compiler Engineering Internship",
+            "org": "C++23 · LLVM 22",
             "bullets": [
-              "Implemented a LICM pass for LLVM 22 in C++; hoisting conditions check loop structure, memory access, side effects, and speculative safety.",
-              "Built a Python harness comparing program behavior before/after optimization and checking transform/no-transform cases."
+              "Worked on experimental LLVM LICM, checking instruction-hoisting legality against loop structure, memory access and side effects; compared before/after behavior using Python."
             ]
           }
         ],
@@ -1395,38 +1413,37 @@
         "skills": [
           [
             "Backend / Codegen",
-            "x86-64, SysV ABI, stack frames, calling conventions, liveness/interference, register allocation, spills, phi lowering, native execution"
+            "Rust, iced-x86, SSA/CFG, dominance, edge-specific liveness, linear scan, seeded simulated annealing, spills, phi lowering, SysV x86-64"
           ],
           [
-            "Low-level / Assembly",
-            "Iced.Intel code emission, executable-memory JIT experiments; NASM IA-32, CDECL, x87"
+            "Compiler / Runtime",
+            "C++23, LLVM 22/IR, APInt, IR transformations; C#, .NET, CIL/CLR, interpreter/backend execution"
           ],
           [
-            "LLVM / IR",
-            "C++23, LLVM 22/IR, CFG/SSA, loop/interprocedural analysis, IR transformations"
-          ],
-          [
-            "Verification",
-            "assignment verifier, LLVM Verifier, structural checks, idempotence, differential execution"
+            "Correctness / Tooling",
+            "Independent assignment verifier, reference interpreter, differential testing, Cargo tests, Clippy, Python, Git, Linux, CMake"
           ]
         ],
         "contact_heading": "Target roles: Compiler Backend · Code Generation · Register Allocation · LLVM",
         "footer": "Compiler Backend / Code Generation Engineer",
         "project_summaries": {
           "codegen": {
-            "type": "Rust · x86-64 compiler backend · register allocation",
-            "solution": "SSA/CFG validation → liveness/interference → register allocation/spills → phi lowering → SysV x86-64 emission.",
-            "result": "Assignment verifier plus native-vs-interpreter differential execution; the current project CI is green; a separate public native-codegen lineage starts with Visk (2023) and Wist4 (2024)."
+            "type": "Rust / iced-x86 · experimental backend",
+            "solution": "Built a backend for restricted i64 IR: SSA/CFG, liveness, linear-scan and seeded simulated-annealing allocation, spills, phi lowering and SysV x86-64 emission. An independent verifier rejects register/stack-slot conflicts; phi lowering handles parallel-copy cycles.",
+            "result": "Native execution runs in a separate process and is compared with an IR interpreter. Passed 42/42 local debug tests, cargo fmt and strict Clippy on commit dd0693c; local release tests were blocked by disk quota during compilation.",
+            "source_url": "https://github.com/Misha1302/x86-64-codegen-ra-playground/tree/dd0693c3af06dc9a3612b68ecb94f9637d6b0514"
           },
           "globaliv": {
-            "type": "C++23 · LLVM 22 · interprocedural analysis · transformations",
-            "solution": "An LLVM 22 pass localizes supported induction-like globals after interprocedural effect analysis, affine evolution, and a separate applicability check; APInt models fixed-width wraparound.",
-            "result": "29 positive/negative regression cases cover LLVM Verifier checks, structural expectations, idempotence, and observable before/after behavior."
+            "type": "C++23 / LLVM 22 · separate middle-end optimization",
+            "solution": "An LLVM pass analyzes interprocedural effects and affine evolution of selected integer-global accesses, then checks legality and conservatively rewrites IR.",
+            "result": "Passed 29/29 regression cases on LLVM 22.1.8, including unsupported cases where the transformation is rejected. This is not an LLVM target backend.",
+            "source_url": "https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization/tree/0d759dcf3af7a5652432eb0fea5b9ca27ec88f74"
           },
           "wist": {
-            "type": ".NET · compiler infrastructure · pipeline composition",
-            "solution": "Dependency/conflict resolution, implementation selection, pass ordering, and typed artifact routes before execution.",
-            "result": "1,324/1,324 tests; interpreter/CIL parity and configuration checks before runtime."
+            "type": "C#/.NET · CIL backend / interpreter",
+            "solution": "Developing modular infrastructure with Bytecode/AIR, interpreter and CIL backends. LanguagePlan records selected execution routes; tests check interpreter/CIL parity for supported behavior.",
+            "result": "The repository manifest records 1,324 expected passing tests, not a fresh full-suite run during this CV audit.",
+            "source_url": "https://github.com/Misha1302/UniversalToolchain"
           }
         },
         "show_portrait": true,
@@ -1434,7 +1451,28 @@
         "print_project_limit": 3,
         "show_trajectory": true,
         "experience_heading": "Professional Experience",
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "print_recognition_limit": 3,
+        "print_show_trajectory": false,
+        "dedicated_ats_export": true,
+        "recognition": [
+          [
+            "2026",
+            "LangDev — UniversalToolchain",
+            "Presented the compiler infrastructure architecture on 9 October 2026.",
+            "https://youtu.be/2jqmw-1c7kE"
+          ],
+          [
+            "2025–2026",
+            "MEPhI Junior",
+            "First-degree diplomas in the Information Technologies section in 2025 and 2026."
+          ],
+          [
+            "2026",
+            "MCST LLVM/C++ selection",
+            "According to organizer correspondence: 5.0/5.0 and 104/104 official tests among 49 submitted solutions."
+          ]
+        ]
       }
     },
     "program_analysis": {

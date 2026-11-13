@@ -259,7 +259,8 @@
       "name": "x86-64 Codegen & Register Allocation Lab",
       "time": "2026",
       "evidence_level": [
-        "PUBLIC_REPO_DIRECT"
+        "PUBLIC_REPO_DIRECT",
+        "LOCAL_REPRODUCED"
       ],
       "public_sources": [
         "https://github.com/Misha1302/x86-64-codegen-ra-playground"
@@ -292,7 +293,54 @@
         "production backend",
         "security sandbox",
         "complete AVX backend"
-      ]
+      ],
+      "local_replay_2026_11_14": {
+        "source_commit": "dd0693c3af06dc9a3612b68ecb94f9637d6b0514",
+        "date": "2026-11-14",
+        "environment": "Fedora Linux x86-64, Rust 1.93.1, clean git archive of pinned public commit",
+        "debug_command": "cargo test --workspace --all-targets --offline",
+        "debug_observed": "42 passed, 0 failed, 0 ignored across 28 test report groups",
+        "format_command": "cargo fmt --all -- --check",
+        "format_observed": "PASS",
+        "clippy_command": "cargo clippy --workspace --all-targets --offline -- -D warnings",
+        "clippy_observed": "PASS",
+        "cli_scenarios": [
+          {
+            "example": "basicblock",
+            "allocator": "linear-scan",
+            "regs": 0,
+            "differential": "37 passed"
+          },
+          {
+            "example": "trace",
+            "allocator": "sim-anneal",
+            "regs": 2,
+            "differential": "49 passed"
+          },
+          {
+            "example": "loop-sum",
+            "allocator": "linear-scan",
+            "regs": 1,
+            "differential": "44 passed"
+          },
+          {
+            "example": "phi-swap-loop",
+            "allocator": "sim-anneal",
+            "regs": 2,
+            "differential": "34 passed"
+          }
+        ],
+        "release_command": "cargo test --release --workspace --all-targets --offline",
+        "release_status": "NOT_VERIFIED; dependency archive build failed with Disk quota exceeded (os error 122) before running release tests",
+        "public_ci": {
+          "run_id": 34896109843,
+          "url": "https://github.com/Misha1302/x86-64-codegen-ra-playground/actions/runs/34896109843",
+          "head_sha": "dd0693c3af06dc9a3612b68ecb94f9637d6b0514",
+          "conclusion": "success",
+          "created_at": "2026-09-14T20:58:41Z"
+        },
+        "boundary": "Selected tests and scenarios for a restricted IR and test environment; no full x86-64 ISA, production LLVM target backend, formal correctness or security sandbox. Release tests were not verified locally; GitHub CI belongs to pinned revision only."
+      }
     },
     {
       "id": "project_ps_form",

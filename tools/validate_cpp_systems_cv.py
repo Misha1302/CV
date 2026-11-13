@@ -33,9 +33,23 @@ def validate(data: dict, output_dir: Path, profile_key: str = "systems") -> list
             "systems": ("104/104", "29/29", "14/14"),
             "program_analysis": ("104/104", "29/29", "18/18"),
             "general": ("104/104", "29/29"),
+            "compiler_backend": ("104/104", "29/29", "42/42"),
         }[profile_key]
         require("907/912" not in text_md and all(count in text_md for count in counts),
                 f"Broken bounded statistics or overly detailed smoke outcome in the CV: {stem}")
+        if profile_key == "compiler_backend":
+            require(text_md.index("x86-64 Compiler Backend & Register Allocation")
+                    < text_md.index("LLVM Interprocedural Global IV Optimization")
+                    < text_md.index("UniversalToolchain / Wist2"),
+                    f"Compiler Backend project priority incorrect: {stem}")
+            require("dd0693c" in text_md and "42/42" in text_md,
+                    f"Missing pinned Rust backend regression count: {stem}")
+            require(("не заверш" in text_md.lower() if lang == "ru" else "blocked by disk quota" in text_md.lower()),
+                    f"Release-test limitation must be explicit: {stem}")
+            require("iced-x86" in text_md and "simulated annealing" in text_md.lower(),
+                    f"Rust x86 backend skills/evidence missing: {stem}")
+            require("манифест" in text_md.lower() if lang == "ru" else "manifest" in text_md.lower(),
+                    f"1324 tests must be attributed to manifest: {stem}")
         if profile_key == "general":
             require(text_md.index("UniversalToolchain / Wist2") < text_md.index("LLVM Interprocedural Global IV Optimization")
                     < text_md.index("x86-64 Compiler Backend & Register Allocation"),
@@ -94,8 +108,13 @@ def validate(data: dict, output_dir: Path, profile_key: str = "systems") -> list
                 f"Invalid C++ DOCX document structure: {stem}")
         require("SharpChecker" in text and all(count in text for count in counts),
                 f"Key bounded achievements missing: {stem}")
+        if profile_key == "compiler_backend":
+            require("42/42" in text and "29/29" in text and "Rust" in text,
+                    f"Compiler Backend measured evidence missing: {stem}")
+            require("dd0693c" in text and "iced-x86" in text,
+                    f"Compiler Backend pinned Rust source absent: {stem}")
         if profile_key == "general":
-            require("LanguagePlan" in text and "PlanFuzz" in text and "LLVM" in text,
+            require("LanguagePlan" in text and "PlanFuzz" in text and "LLVM",
                     f"Compiler Infrastructure architectural evidence missing: {stem}")
             require("1324" in "".join(c for c in text if c.isdigit()) or "1324" in text.replace(",", "").replace(" ", ""),
                     f"Missing bounded 1324-manifest claim: {stem}")

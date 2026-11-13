@@ -23,6 +23,7 @@ SUPPORTED_PROFILES = {
     "systems": (["globaliv", "psform", "codegen"], "systems_project_copy"),
     "program_analysis": (["deref", "globaliv", "psform"], "project_summaries"),
     "general": (["wist", "globaliv", "codegen"], "project_summaries"),
+    "compiler_backend": (["codegen", "globaliv", "wist"], "project_summaries"),
 }
 
 
@@ -315,6 +316,7 @@ def save_docx(data: dict[str, Any], lang: str, path: Path, profile_key: str = PR
         "systems": "C++ / Systems Engineer CV",
         "program_analysis": "Static Analysis / Program Analysis Engineer CV",
         "general": "Compiler Infrastructure / Language Tooling Engineer CV",
+        "compiler_backend": "Compiler Backend / Code Generation Engineer CV",
     }[profile_key]
     doc.core_properties.author = m["name"]
     doc.save(path)

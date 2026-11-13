@@ -78,7 +78,7 @@ def main() -> None:
             profile = data["profiles"][key][lang]
             html_path = ROOT / profile["filename"]
             pdf_path = args.output_dir / profile["pdf"]
-            if key in ("systems", "program_analysis", "general"):
+            if key in ("systems", "program_analysis", "general", "compiler_backend"):
                 render_cpp_systems_files(data, lang, args.output_dir, profile_key=key)
             else:
                 HTML(filename=str(html_path), base_url=str(ROOT)).write_pdf(str(pdf_path))
