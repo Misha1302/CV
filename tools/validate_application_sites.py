@@ -98,6 +98,13 @@ def validate() -> dict[str, object]:
                         f"Home needs direct website route {route}")
             all_pages.append({"route":route,"kind":kind,"lang":lang,"projects":len(project_rows),"format_links":3,"status":"PASS"})
     for lang in ("ru","en"):
+        legacy=ROOT/release["variants"]["lead"]["legacy_pages"][lang]
+        new=ROOT/release["pages"]["lead"][lang]
+        require(legacy.is_file() and new.is_file(),"Previous Systems page alias missing")
+        a=BeautifulSoup(legacy.read_text(encoding="utf-8"),"html.parser")
+        require(a.select_one('link[rel="canonical"]').get("href")==data["site_url"]+new.name,f"Old route canonical missing: {legacy.name}")
+        require(norm(a.select_one("main").get_text(" ",strip=True))==norm(BeautifulSoup(new.read_text(encoding="utf-8"),"html.parser").select_one("main").get_text(" ",strip=True)),f"Old route content stale: {legacy.name}")
+    for lang in ("ru","en"):
         alias=ROOT/f"{lang}-engineering.html"
         new=ROOT/release["pages"]["lead"][lang]
         require(alias.is_file() and new.is_file(),"Old engineering alias missing")
@@ -107,7 +114,7 @@ def validate() -> dict[str, object]:
         require(norm(a.select_one('main').get_text(" ",strip=True))==
                 norm(BeautifulSoup(new.read_text(encoding="utf-8"),"html.parser").select_one('main').get_text(" ",strip=True)),
                 f"Old engineering URL has stale content: {alias.name}")
-    return {"status":"PASS","pages":all_pages,"legacy_engineering_aliases":2}
+    return {"status":"PASS","pages":all_pages,"legacy_engineering_aliases":2,"legacy_tech_lead_aliases":2}
 
 
 if __name__=="__main__":

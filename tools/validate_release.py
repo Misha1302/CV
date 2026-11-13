@@ -21,6 +21,13 @@ def main():
     out=args.output_dir or ROOT/site["application_cvs"]["release_dir"]
     kb=json.loads((ROOT/"knowledge/resume-evidence.json").read_text(encoding="utf-8"))
     ids={a["id"] for a in kb["assets"]}
+    lead = site["application_cvs"]["variants"]["lead"]
+    for lang, qualifier in (("ru", "по моим данным"), ("en", "by my account")):
+        lms_rows = [p for p in lead[lang]["projects"] if p["id"] == "lms"]
+        require(len(lms_rows) == 1, f"Systems CV must retain one LMS project ({lang})")
+        lms_copy = lms_rows[0]["text"].lower()
+        require("40" in lms_copy and qualifier in lms_copy,
+                f"Systems LMS usage must be self-attributed and approximate ({lang})")
     report=[]
     for kind in KINDS:
         for lang in LANGS:
@@ -30,6 +37,11 @@ def main():
     for kind in KINDS:
         for lang in LANGS:
             cv,experiences,stem=record(site,kind,lang)
+            if kind=="lead":
+                old_stem=site["application_cvs"]["variants"][kind]["legacy_basename"][lang]
+                for extension in (".md",".docx",".pdf"):
+                    require((out/(old_stem+extension)).exists(),f"Legacy download missing: {old_stem+extension}")
+                    require((out/(old_stem+extension)).read_bytes()==(out/(stem+extension)).read_bytes(),f"Legacy alias stale: {old_stem+extension}")
             for proj in cv["projects"]:
                 require(proj["id"] in site["projects"],f"unknown project {proj['id']}")
                 require(bool(proj.get("evidence_refs")),f"missing project evidence {proj['id']}")
@@ -77,6 +89,10 @@ def main():
         for variant in report:
             for suffix in (".md",".docx",".pdf"):
                 require(variant["name"]+suffix in names,f"ZIP missing {variant['name']+suffix}")
+        for lang in LANGS:
+            stem=site["application_cvs"]["variants"]["lead"]["legacy_basename"][lang]
+            for suffix in (".md",".docx",".pdf"):
+                require(stem+suffix in names,f"ZIP missing legacy alias: {stem+suffix}")
         require("04_Evidence_Research_and_Review.md" not in names,"private research exposed in ZIP")
         require("MANIFEST.sha256" in names,"internal manifest not packaged")
     print(json.dumps({"status":"PASS","variants":report,"zip_entries":len(names),"evidence_assets":len(ids)},ensure_ascii=False,indent=2))

@@ -2411,82 +2411,158 @@
       },
       "lead": {
         "basename": {
-          "ru": "02_Tech_Lead",
-          "en": "02_Tech_Lead_EN"
+          "ru": "02_Systems_Platform",
+          "en": "02_Systems_Platform_EN"
         },
-        "audience_ru": "Systems / Platform · архитектура и надёжность",
-        "audience_en": "Systems / Platform · architecture & reliability",
+        "audience_ru": "Systems / Reliability · .NET-сервисы и надёжность",
+        "audience_en": "Systems / Reliability · .NET systems and correctness",
         "ru": {
-          "role": "SYSTEMS / PLATFORM ENGINEER · .NET",
-          "summary": "Проектирую и реализую .NET-сервисы и инфраструктурные компоненты с явными границами модулей и состояниями, которые можно проверить и восстановить. В VpnMediator — обработка повторных событий оплаты и восстановление доступа; в UniversalToolchain — проверка зависимостей до исполнения; в LMS — архитектурные инварианты и ревью. Коммерческая практика на смешанном стеке — около года суммарно.",
+          "role": "SOFTWARE ENGINEER · .NET SYSTEMS & RELIABILITY",
+          "summary": "Разрабатываю .NET-сервисы с явными границами состояния и восстановлением после сбоев. В VpnMediator — идемпотентные события оплаты, сверка доступа и обновления с откатом; в UniversalToolchain — проверка контрактов до исполнения. Для заказчика создал API лицензирования KeyAuth. В TuringSquare-LMS отвечаю за архитектурные правила доступа.",
           "skills": [
-            "C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await, Git/Linux",
-            "Идемпотентность, состояния оплаты и доступа, reconciliation, восстановление/rollback; контракты модулей, графы зависимостей, проверка инвариантов"
+            "Стек: C#, .NET, ASP.NET Core, EF Core, REST/OpenAPI, SQL, PostgreSQL, SQLite; Python, C++/LLVM; Git, Linux, Docker Compose, systemd",
+            "Практики: идемпотентность, конечные автоматы, фоновые обработчики, сверка и восстановление состояния, согласованный backup/rollback, проверка контрактов и регрессионные тесты"
           ],
           "projects": [
-            {
-              "id": "wist",
-              "title": "UniversalToolchain · контракты модулей до исполнения",
-              "text": "Контракты модулей и зависимости сводятся в проверяемый LanguagePlan до запуска. Отдельные маршруты interpreter/CIL позволяют сопоставлять результат исполнения, а не полагаться на порядок подключения компонентов.",
-              "evidence_refs": [
-                "project_universaltoolchain"
-              ]
-            },
             {
               "id": "vpn",
               "title": "VpnMediator · согласованность платежей и доступа",
-              "text": "Разделены факт платежа и право доступа; повторные события обрабатываются идемпотентно, расхождения сверяются с провайдером. В эксплуатационных скриптах предусмотрены backup, health gates и rollback.",
+              "text": "Двухсервисная система .NET/Python: отдельные состояния оплаты и доступа, идемпотентная обработка повторов и сверка состояний. Скрипт обновления создаёт согласованную копию двух SQLite БД, переключает версии и откатывает сервисы при неуспешной проверке состояния.",
               "evidence_refs": [
                 "project_vpnmediator"
               ]
             },
             {
-              "id": "lms",
-              "title": "TuringSquare-LMS · права доступа и контроль реализации",
-              "text": "Проектирование инвариантов ролей, доступа к курсам и критериев проверки платежей T-Bank в sandbox. Проект в разработке; мой фокус — архитектурные решения и ревью агентной реализации.",
-              "evidence_refs": [
-                "project_compilationlab_lms"
-              ]
-            }
-          ],
-          "education": "НИУ ВШЭ — ФКН, Программная инженерия.",
-          "recognition": "«Юниор» НИЯУ МИФИ, диплом I степени (2026); LangDev 2026, доклад об UniversalToolchain."
-        },
-        "en": {
-          "role": "SYSTEMS / PLATFORM ENGINEER · .NET",
-          "summary": "I design and build .NET services and infrastructure with explicit module boundaries and recoverable, testable state. VpnMediator handles duplicate payment events and access recovery; UniversalToolchain checks dependencies before execution; in the LMS I own architectural invariants and review. Approx. one year of aggregate commercial development across a mixed stack.",
-          "skills": [
-            "C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await, Git/Linux",
-            "Idempotency, payment/access state, reconciliation, recovery/rollback; typed module contracts, dependency graphs, invariant checks"
-          ],
-          "projects": [
-            {
               "id": "wist",
-              "title": "UniversalToolchain · module contracts before runtime",
-              "text": "Module contracts and dependencies form a validated LanguagePlan before runtime. Separate interpreter/CIL routes allow execution results to be compared instead of relying on module registration order.",
+              "title": "UniversalToolchain · проверяемые контракты модулей",
+              "text": "Разрабатываю модульную инфраструктуру языков: LanguagePlan проверяет состав компонентов, маршруты исполнения и ограничения порядка до запуска. Интерпретатор и CIL backend проверяются тестами согласованности.",
               "evidence_refs": [
                 "project_universaltoolchain"
               ]
             },
             {
-              "id": "vpn",
-              "title": "VpnMediator · payment/access consistency",
-              "text": "Payment events and access entitlements are separate. Duplicate events are processed idempotently, provider state is reconciled, and operational scripts provide backup, health gates and rollback.",
-              "evidence_refs": [
-                "project_vpnmediator"
-              ]
-            },
-            {
               "id": "lms",
-              "title": "TuringSquare-LMS · access control and implementation review",
-              "text": "Role/course-access invariants and acceptance criteria for T-Bank sandbox payments. The project is in development; my focus is architecture decisions and review of agent-produced implementation.",
+              "title": "TuringSquare-LMS · учебная платформа",
+              "text": "Проектирую правила ролей, доступа к курсам и материалам; проверяю агентную реализацию. По моим данным, у платформы около 40 пользователей (ноябрь 2026). Полная публикация задач и Judge ещё не подтверждены в production.",
               "evidence_refs": [
                 "project_compilationlab_lms"
               ]
             }
           ],
-          "education": "HSE University — Software Engineering.",
-          "recognition": "MEPhI Junior 2026, 1st-degree diploma; LangDev 2026 UniversalToolchain talk."
+          "education": "НИУ ВШЭ, ФКН — Программная инженерия, с 2026 года.",
+          "recognition": "Диплом I степени конкурса «Юниор» НИЯУ МИФИ (2026); доклад об UniversalToolchain на LangDev 2026",
+          "recognition_link": {
+            "label": "Официальная запись",
+            "url": "https://youtu.be/2jqmw-1c7kE"
+          }
+        },
+        "en": {
+          "role": "SOFTWARE ENGINEER · .NET SYSTEMS & RELIABILITY",
+          "summary": "I build .NET services with explicit state boundaries and recovery paths. VpnMediator handles duplicate payment events, access reconciliation and deployment rollback; UniversalToolchain validates module contracts before execution. I built the client licensing API KeyAuth and design access-control boundaries for TuringSquare-LMS.",
+          "skills": [
+            "Stack: C#, .NET, ASP.NET Core, EF Core, REST/OpenAPI, SQL, PostgreSQL, SQLite; Python, C++/LLVM; Git, Linux, Docker Compose, systemd",
+            "Engineering: idempotency, state machines, background workers, state reconciliation and recovery, coordinated backup/rollback, contract validation and regression testing"
+          ],
+          "projects": [
+            {
+              "id": "vpn",
+              "title": "VpnMediator · payment and access consistency",
+              "text": "Two-service .NET/Python system with separate payment/access state, idempotent duplicate handling and reconciliation. The updater coordinates backups of two SQLite databases, switches releases and rolls back services after failed health checks.",
+              "evidence_refs": [
+                "project_vpnmediator"
+              ]
+            },
+            {
+              "id": "wist",
+              "title": "UniversalToolchain · validated module contracts",
+              "text": "Building modular language infrastructure: LanguagePlan validates module composition, execution routes and ordering constraints before runtime. Interpreter and CIL backends are checked with execution-parity tests.",
+              "evidence_refs": [
+                "project_universaltoolchain"
+              ]
+            },
+            {
+              "id": "lms",
+              "title": "TuringSquare-LMS · learning platform",
+              "text": "I design role/course/material-access rules and review agent-produced implementation. The platform has approximately 40 users by my account (November 2026). Full task publication and judging are not yet production-verified.",
+              "evidence_refs": [
+                "project_compilationlab_lms"
+              ]
+            }
+          ],
+          "education": "HSE University, Faculty of Computer Science — Software Engineering, since 2026.",
+          "recognition": "First-degree diploma, MEPhI Junior competition (2026); presented UniversalToolchain at LangDev 2026",
+          "recognition_link": {
+            "label": "Official recording",
+            "url": "https://youtu.be/2jqmw-1c7kE"
+          }
+        },
+        "legacy_basename": {
+          "ru": "02_Tech_Lead",
+          "en": "02_Tech_Lead_EN"
+        },
+        "legacy_pages": {
+          "ru": "ru-tech-lead.html",
+          "en": "en-tech-lead.html"
+        },
+        "experience": {
+          "ru": [
+            {
+              "id": "commercial",
+              "title": "Заказная разработка · C#/.NET и Unity",
+              "date": "отдельные проекты, 2023–2024",
+              "text": "Создал KeyAuth: ASP.NET Core API регистрации и активации лицензий с EF Core/PostgreSQL и интеграцией с Unity. Передал компоненты заказчику, сопровождал авторизацию и совместимость старых клиентских сборок.",
+              "evidence_refs": [
+                "project_keyauth_2023_2024"
+              ]
+            },
+            {
+              "id": "isp",
+              "title": "ИСП РАН · SharpChecker",
+              "date": "октябрь 2026 — н. в.",
+              "text": "Работаю над символьными вычислениями для статического анализа C#/.NET.",
+              "evidence_refs": [
+                "experience_isp_ras_2026"
+              ]
+            },
+            {
+              "id": "mcst",
+              "title": "МЦСТ · стажировка по разработке компиляторов",
+              "date": "июль — август 2026",
+              "text": "C++23/LLVM 22: экспериментальный LICM, проверка допустимости преобразований и сравнение поведения до/после с помощью Python.",
+              "evidence_refs": [
+                "experience_mcst_2026"
+              ]
+            }
+          ],
+          "en": [
+            {
+              "id": "commercial",
+              "title": "Client software development · C#/.NET and Unity",
+              "date": "individual projects, 2023–2024",
+              "text": "Built KeyAuth, an ASP.NET Core license registration and activation API using EF Core/PostgreSQL, with Unity client integration. Delivered the components and supported authentication and compatibility with older clients.",
+              "evidence_refs": [
+                "project_keyauth_2023_2024"
+              ]
+            },
+            {
+              "id": "isp",
+              "title": "ISP RAS · SharpChecker",
+              "date": "Oct 2026 — present",
+              "text": "Working on symbolic computation for C#/.NET static program analysis.",
+              "evidence_refs": [
+                "experience_isp_ras_2026"
+              ]
+            },
+            {
+              "id": "mcst",
+              "title": "MCST · Compiler Engineering Internship",
+              "date": "Jul — Aug 2026",
+              "text": "C++23/LLVM 22: experimental LICM, conservative legality checks and Python-based before/after behavior comparison.",
+              "evidence_refs": [
+                "experience_mcst_2026"
+              ]
+            }
+          ]
         }
       },
       "runtime": {
@@ -2594,8 +2670,8 @@
         "en": "en-backend-ats.html"
       },
       "lead": {
-        "ru": "ru-tech-lead.html",
-        "en": "en-tech-lead.html"
+        "ru": "ru-systems-platform.html",
+        "en": "en-systems-platform.html"
       },
       "runtime": {
         "ru": "ru-runtime-compiler.html",

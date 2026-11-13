@@ -390,7 +390,8 @@
       "name": "CompilationLabLMS",
       "time": "2026",
       "evidence_level": [
-        "PUBLIC_REPO_DIRECT"
+        "PUBLIC_REPO_DIRECT",
+        "USER_ATTESTED"
       ],
       "public_sources": [
         "https://github.com/Misha1302/CompilationLabLMS"
@@ -413,7 +414,19 @@
         "architecture",
         "backend"
       ],
-      "resume_priority": "MEDIUM"
+      "resume_priority": "MEDIUM",
+      "user_attested_current_users": {
+        "as_of": "2026-11-13",
+        "reported_count": "approximately 40",
+        "subject": "TuringSquare-LMS users",
+        "provenance": "Candidate's direct statement, 13 November 2026; not verified against database, server analytics or service logs",
+        "safe_ru": "По данным автора, у TuringSquare-LMS примерно 40 пользователей по состоянию на ноябрь 2026.",
+        "safe_en": "According to the candidate, TuringSquare-LMS has approximately 40 users as of November 2026.",
+        "boundary": "No independently measured registered, active, monthly active, paying or concurrent user totals. Does not establish full production readiness or the published Judge workflow."
+      },
+      "gaps": [
+        "Independent privacy-safe aggregate evidence for the approximate 40-user claim and clearly defined metric (registered vs active); production Judge publication is separately gated."
+      ]
     },
     {
       "id": "teaching_nasm_course",

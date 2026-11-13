@@ -147,6 +147,18 @@ def validate_semantic_boundaries(by_id: dict[str, dict]) -> None:
     safe_junior = " ".join(str(junior_claims.get(k, "")) for k in ("safe_ru", "safe_en")).casefold()
     require("абсолют" not in safe_junior and "overall winner" not in safe_junior, "Junior safe claim overstates public evidence")
 
+    # A self-reported LMS user count is evidence of the candidate's statement, not
+    # independent analytics and not proof that the full Judge workflow is live.
+    lms = by_id.get("project_compilationlab_lms")
+    require(lms is not None, "missing LMS evidence asset")
+    usage = lms.get("user_attested_current_users", {})
+    require("USER_ATTESTED" in lms.get("evidence_level", []), "LMS user estimate must retain USER_ATTESTED provenance")
+    require(usage.get("as_of") == "2026-11-13" and usage.get("reported_count") == "approximately 40",
+            "LMS count must remain a dated approximate self-report")
+    boundary = str(usage.get("boundary", "")).lower()
+    require("independently" in boundary and "active" in boundary and "paying" in boundary,
+            "LMS 40-user claim must not be upgraded to independent active/paying users")
+
     langdev = by_id.get("achievement_langdev_2026")
     require(langdev is not None, "missing LangDev achievement asset")
     require(

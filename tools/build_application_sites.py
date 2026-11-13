@@ -18,10 +18,10 @@ ROLE_META = {
         "hint_en": "ASP.NET Core · data · reliability",
     },
     "lead": {
-        "id": "02", "title_ru": "Systems / Platform",
-        "title_en": "Systems / Platform",
-        "hint_ru": "Архитектура · состояния · восстановление",
-        "hint_en": "Architecture · state · recovery",
+        "id": "02", "title_ru": "Systems / Reliability",
+        "title_en": "Systems / Reliability",
+        "hint_ru": "Надёжность · состояние · восстановление",
+        "hint_en": "Reliability · state · recovery",
     },
     "runtime": {
         "id": "03", "title_ru": "Compiler / Performance",
@@ -305,8 +305,10 @@ def outputs(data: dict[str, Any], root: Path) -> dict[Path, str]:
         for lang in ("ru", "en"):
             filename = data["application_cvs"]["pages"][kind][lang]
             created[root/filename] = "\n".join(line.rstrip() for line in render(data,kind,lang).splitlines()) + "\n"
-    # Previous public engineering URLs keep the current engineering edition,
-    # with a canonical URL pointing at the named Tech Lead route.
+    # Deprecated URLs remain live mirrors with a canonical URL pointing to the new edition.
+    for lang in ("ru", "en"):
+        old_route = data["application_cvs"]["variants"]["lead"]["legacy_pages"][lang]
+        created[root/old_route] = "\n".join(line.rstrip() for line in render(data,"lead",lang,old_route).splitlines()) + "\n"
     for lang in ("ru", "en"):
         filename = f"{lang}-engineering.html"
         created[root/filename] = "\n".join(line.rstrip() for line in render(data, "lead", lang, filename).splitlines()) + "\n"

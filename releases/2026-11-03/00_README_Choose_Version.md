@@ -2,7 +2,7 @@
 
 01_Backend_ATS — основной CV для HR и ATS.
 
-02_Tech_Lead (старое имя файла) — Systems / Platform: границы модулей, состояния, восстановление.
+02_Systems_Platform — Systems / Reliability: состояние, восстановление и контракты. Прежнее имя 02_Tech_Lead сохранено как совместимый alias.
 
 03_Runtime_Compiler — compiler/runtime engineering, проверка корректности оптимизаций и микробенчмарки.
 

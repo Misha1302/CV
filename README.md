@@ -76,7 +76,7 @@ The checks enforce:
 Send-ready, one-page C#/.NET resumes (Russian): **[choose the right version](releases/2026-11-03/README.md)**.
 
 - [Backend / ATS PDF](releases/2026-11-03/01_Backend_ATS.pdf) — default for HR applications.
-- [Tech Lead PDF](releases/2026-11-03/02_Tech_Lead.pdf) — for direct engineering outreach.
+- [Systems / Reliability PDF](releases/2026-11-03/02_Systems_Platform.pdf) — for direct engineering outreach (legacy 02_Tech_Lead link preserved).
 - [Runtime / Compiler PDF](releases/2026-11-03/03_Runtime_Compiler.pdf) — for systems and compiler teams.
 - [Full package ZIP](releases/2026-11-03/Mikhail_Razakov_CV_Complete_Package_2026-11-03.zip) — PDFs, editable DOCX, Markdown, evidence review and outreach texts.
 
@@ -106,7 +106,7 @@ data/site.json application_cvs variant records as PDF/DOCX/Markdown.
 | Target | Russian website | English website |
 | --- | --- | --- |
 | C#/.NET Backend / ATS | [RU](ru-backend-ats.html) | [EN](en-backend-ats.html) |
-| Backend / Engineering Lead | [RU](ru-tech-lead.html) | [EN](en-tech-lead.html) |
+| Systems / Reliability | [RU](ru-systems-platform.html) | [EN](en-systems-platform.html) |
 | Runtime / Compilers / Performance | [RU](ru-runtime-compiler.html) | [EN](en-runtime-compiler.html) |
 
 Each page contains the full CV profile, all three professional experience rows,
@@ -133,7 +133,7 @@ bounded by knowledge/resume-evidence.json.
 
 The existing November 3 release is retargeted: **02 Systems / Platform** and **03 Compiler / Runtime / Performance**. Legacy filenames and page URLs are preserved for previously shared links; visible headings and role selectors are updated. 01 Backend ATS remains unchanged.
 
-- Systems / Platform: [RU](ru-tech-lead.html) / [EN](en-tech-lead.html)
+- Systems / Reliability: [RU](ru-systems-platform.html) / [EN](en-systems-platform.html) (legacy Tech Lead URLs retained)
 - Compiler / Runtime / Performance: [RU](ru-runtime-compiler.html) / [EN](en-runtime-compiler.html)
 - [Independent review and measurement roadmap](reviews/PERFORMANCE_SYSTEMS_CV_REVIEW_2026-11-07.md)
 
