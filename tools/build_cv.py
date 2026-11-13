@@ -78,8 +78,8 @@ def main() -> None:
             profile = data["profiles"][key][lang]
             html_path = ROOT / profile["filename"]
             pdf_path = args.output_dir / profile["pdf"]
-            if key == "systems":
-                render_cpp_systems_files(data, lang, args.output_dir)
+            if key in ("systems", "program_analysis"):
+                render_cpp_systems_files(data, lang, args.output_dir, profile_key=key)
             else:
                 HTML(filename=str(html_path), base_url=str(ROOT)).write_pdf(str(pdf_path))
             expected_titles = [data["projects"][project_id]["title"] for project_id in profile["project_ids"][:int(profile.get("print_project_limit", 3))]]

@@ -207,6 +207,10 @@ def compiler_hero(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> s
     )
     proof_row = f'<div class="compiler-proof-row">{proof_items}</div>' if proof_items and profile.get("show_web_proofs", True) else ""
     portrait = identity_portrait(data, lang, profile)
+    extras = ""
+    if profile.get("dedicated_ats_export"):
+        stem = "pdf/" + profile["pdf"].removesuffix(".pdf")
+        extras = f'<a href="{esc(stem)}.docx" download>DOCX</a><a href="{esc(stem)}.md" download>Markdown</a>'
     return f"""
 <section class="shell compiler-intro" id="top">
   <div class="compiler-intro-copy">
@@ -220,7 +224,7 @@ def compiler_hero(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> s
       <a href="{esc(person['telegram'])}" rel="noopener noreferrer" target="_blank">Telegram</a>
       <a href="{esc(person['github'])}" rel="noopener noreferrer" target="_blank">GitHub</a>
       <a href="{esc(person['linkedin'])}" rel="noopener noreferrer" target="_blank">LinkedIn</a>
-      <a href="pdf/{esc(profile['pdf'])}" download>PDF</a>
+      <a href="pdf/{esc(profile['pdf'])}" download>PDF</a>{extras}
     </div>
   </div>
   <aside class="compiler-portrait identity-card" aria-label="{'Фотография' if lang == 'ru' else 'Portrait'}">
@@ -315,7 +319,8 @@ def compiler_project_card(data: dict[str, Any], lang: str, profile: dict[str, An
     labels = {"case": "Подробнее" if lang == "ru" else "Details", "repo": "GitHub"}
     links = [f'<a href="{esc(case_url)}">{labels["case"]} ↗</a>']
     if project.get("repo"):
-        links.append(f'<a href="{esc(project["repo"])}" rel="noopener noreferrer" target="_blank">GitHub ↗</a>')
+        source_url = copy.get("source_url", project["repo"])
+        links.append(f'<a href="{esc(source_url)}" rel="noopener noreferrer" target="_blank">GitHub ↗</a>')
     type_label = copy.get("type", project[f"type_{lang}"])
     return f'<article class="project-row"><div><span class="project-type">{esc(type_label)}</span><h3>{esc(project["title"])}</h3></div><div><p>{esc(copy['solution'])}</p><p class="project-result">{esc(copy['result'])}</p><div class="project-links">{"".join(links)}</div></div></article>'
 
@@ -350,7 +355,7 @@ def education_section(data: dict[str, Any], lang: str) -> str:
 def contact_section(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     p = data["person"]
     exports = ""
-    if profile.get("systems_project_copy"):
+    if profile.get("systems_project_copy") or profile.get("dedicated_ats_export"):
         stem = "pdf/" + profile["pdf"].removesuffix(".pdf")
         exports = f'<a class="button" href="{esc(stem)}.docx" download>DOCX</a><a class="button" href="{esc(stem)}.md" download>Markdown</a>'
     return f"""
@@ -386,8 +391,8 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     project_summaries = profile.get("project_summaries", {})
     for project_id in profile["project_ids"][:project_limit]:
         project = data["projects"][project_id]
-        target = project.get("repo") or project[f"case_{lang}"]
         summary = project_summaries.get(project_id, {})
+        target = summary.get("source_url") or project.get("repo") or project[f"case_{lang}"]
         if summary:
             project_body = f'<p>{esc(summary.get("solution", ""))}</p><p class="pcv-project-result">{esc(summary.get("result", ""))}</p>'
         else:

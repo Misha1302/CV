@@ -462,7 +462,8 @@ def main() -> None:
         "external_links": [{"url": url, "status": status} for url, status in link_results],
         "pdfs": pdf_results,
     }
-    report["cpp_systems_ats"] = validate_cpp_systems_cv(data, args.pdf_dir)
+    report["cpp_systems_ats"] = validate_cpp_systems_cv(data, args.pdf_dir, "systems")
+    report["program_analysis_ats"] = validate_cpp_systems_cv(data, args.pdf_dir, "program_analysis")
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

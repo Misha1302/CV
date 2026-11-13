@@ -1,4 +1,4 @@
-"""Semantic and rendered-form checks for the isolated C++ / Systems CV."""
+"""Semantic and rendered checks for specialized one-column ATS exports."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -14,31 +14,39 @@ def require(value: object, message: str) -> None:
         raise RuntimeError(message)
 
 
-def validate(data: dict, output_dir: Path) -> list[dict]:
+def validate(data: dict, output_dir: Path, profile_key: str = "systems") -> list[dict]:
     summaries = []
     for lang, labels in (
         ("ru", ("ПРОФИЛЬ", "ТЕХНОЛОГИИ", "ОПЫТ", "ИНЖЕНЕРНЫЕ ПРОЕКТЫ", "ОБРАЗОВАНИЕ", "ДОСТИЖЕНИЯ")),
         ("en", ("PROFILE", "TECHNICAL SKILLS", "EXPERIENCE", "ENGINEERING PROJECTS", "EDUCATION", "RECOGNITION")),
     ):
-        info = snapshot(data, lang)
+        info = snapshot(data, lang, profile_key)
         profile = info["profile"]
         stem = Path(profile["pdf"]).stem
         pdf_path, docx_path, md_path = (output_dir / (stem + ext) for ext in (".pdf", ".docx", ".md"))
         require(all(p.is_file() for p in (pdf_path, docx_path, md_path)),
                 f"Missing C++ Systems document forms: {stem}")
-        require(md_path.read_text(encoding="utf-8") == markdown(data, lang),
+        require(md_path.read_text(encoding="utf-8") == markdown(data, lang, profile_key),
                 f"Stale C++ Systems Markdown: {stem}")
         text_md = md_path.read_text(encoding="utf-8")
-        require("907/912" not in text_md and "104/104" in text_md and "29/29" in text_md and "14/14" in text_md,
+        counts = ("104/104", "29/29", "14/14") if profile_key == "systems" else ("104/104", "29/29", "18/18")
+        require("907/912" not in text_md and all(count in text_md for count in counts),
                 f"Broken bounded statistics or overly detailed smoke outcome in the CV: {stem}")
+        if profile_key == "program_analysis":
+            require(text_md.index("DerefAfterNullAnalyzer") < text_md.index("LLVM Interprocedural Global IV Optimization")
+                    < text_md.index("PS-form Memory Dependence Analyzer"),
+                    f"Wrong Program Analysis priority order: {stem}")
         pdf = fitz.open(pdf_path)
         require(pdf.page_count == 1, f"ATS C++ PDF is not one page: {stem}")
         page = pdf[0]
         require(abs(page.rect.width - 595.28) < 3 and abs(page.rect.height - 841.89) < 3,
                 f"ATS C++ PDF is not A4: {stem}")
         text = page.get_text("text")
-        folded = text.upper()
-        positions = [folded.find(label) for label in labels]
+        # Section titles are exact lines: substrings such as the Russian
+        # "преобразование" must not be mistaken for the heading "Образование".
+        extracted_lines = [line.strip().upper() for line in text.splitlines()]
+        positions = [extracted_lines.index(label) if label in extracted_lines else -1
+                     for label in labels]
         require(all(pos >= 0 for pos in positions) and positions == sorted(positions),
                 f"Out-of-order ATS PDF sections: {stem}; {dict(zip(labels, positions))}")
         # Ensure paragraphs are not clipped. PDF font sizes use pt; contact can be smaller.
@@ -72,8 +80,12 @@ def validate(data: dict, output_dir: Path) -> list[dict]:
         doc = Document(docx_path)
         require(len(doc.sections) == 1 and len(doc.paragraphs) >= 18,
                 f"Invalid C++ DOCX document structure: {stem}")
-        require("SharpChecker" in text and "104/104" in text and "14/14" in text
-                and "29/29" in text, f"Key bounded achievements missing: {stem}")
+        require("SharpChecker" in text and all(count in text for count in counts),
+                f"Key bounded achievements missing: {stem}")
+        if profile_key == "program_analysis":
+            require("Roslyn" in text and "fixed-point" in text.lower()
+                    and "18/18" in text and "29/29" in text,
+                    f"Program Analysis evidence missing: {stem}")
         # No unverified C++ years-of-industry claim, false performance claims or
         # claiming the entire Rust backend was authored in C++.
         unsupported = ("99.9%", "100% safe", "высоконагруженном продакшене",
@@ -82,6 +94,7 @@ def validate(data: dict, output_dir: Path) -> list[dict]:
                 f"Unsupported systems claim: {stem}")
         summaries.append({
             "stem": stem,
+            "specialization": profile_key,
             "lang": lang,
             "pages": pdf.page_count,
             "body_font_pt": 9.65,

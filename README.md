@@ -95,6 +95,31 @@ verification. An extended PS-form smoke suite passed 907/912 cases, with
 five conservative `maybe` answers where the oracle expected `no`; these
 are not the 104 official MCST selection cases.
 
+## Static Analysis / Program Analysis — ATS specialist (13 November 2026)
+
+The specialist route [RU](ru-program-analysis.html) / [EN](en-program-analysis.html)
+keeps the editorial HTML presentation while producing single-column, text-extractable
+A4 PDF, DOCX and Markdown from the canonical model
+`data/site.json -> profiles.program_analysis`.
+
+- RU: [PDF](pdf/Mikhail_Razakov_Program_Analysis_RU.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Program_Analysis_RU.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Program_Analysis_RU.md)
+- EN: [PDF](pdf/Mikhail_Razakov_Program_Analysis_EN.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Program_Analysis_EN.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Program_Analysis_EN.md)
+
+Generate only this specialist without changing unrelated PDFs:
+`python tools/build_cv.py --output-dir pdf --profile program_analysis`.
+
+Checks: `python tools/validate_cv.py --pdf-dir pdf` verifies ATS reading order,
+pinned project links and synchronized DOCX/MD alongside the C++ specialist.
+DerefAfterNullAnalyzer is a separate public project from ISP RAS SharpChecker.
+The reproducible pinned runs are 18/18 Roslyn and 29/29 LLVM 22.1.8;
+these do not prove arbitrary program soundness, production integration or speedup.
+The PS-form extended smoke run of 907/912 is recorded separately, with
+five conservative `maybe` returns where the oracle expected `no`.
+
 ## CV release — 2026-11-03
 
 Send-ready, one-page C#/.NET resumes (Russian): **[choose the right version](releases/2026-11-03/README.md)**.

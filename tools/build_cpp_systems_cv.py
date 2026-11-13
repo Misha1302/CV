@@ -1,7 +1,7 @@
-"""Canonical, one-column C++ / Systems Engineer CV exports.
+"""Canonical one-column ATS exports for C++ Systems and Program Analysis.
 
 The separate website retains its editorial layout. PDF, DOCX and Markdown
-are rendered from data/site.json -> profiles.systems and owned project copy.
+are rendered from data/site.json -> specialized profile copy.
 Do not copy/edit completed artifacts in place.
 """
 from __future__ import annotations
@@ -19,27 +19,35 @@ from docx.shared import Cm, Mm, Pt, RGBColor
 from weasyprint import HTML
 
 PROFILE_KEY = "systems"
+SUPPORTED_PROFILES = {
+    "systems": (["globaliv", "psform", "codegen"], "systems_project_copy"),
+    "program_analysis": (["deref", "globaliv", "psform"], "project_summaries"),
+}
 
 
 def h(value: Any) -> str:
     return html.escape(str(value), quote=True)
 
 
-def snapshot(data: dict[str, Any], lang: str) -> dict[str, Any]:
+def snapshot(data: dict[str, Any], lang: str, profile_key: str = PROFILE_KEY) -> dict[str, Any]:
     if lang not in ("ru", "en"):
         raise ValueError(lang)
-    profile = data["profiles"][PROFILE_KEY][lang]
-    project_copy = profile["systems_project_copy"]
+    if profile_key not in SUPPORTED_PROFILES:
+        raise ValueError(f"Unsupported ATS specialist: {profile_key}")
+    profile = data["profiles"][profile_key][lang]
+    expected_ids, copy_key = SUPPORTED_PROFILES[profile_key]
+    project_copy = profile[copy_key]
     ids = profile["project_ids"]
-    if ids != ["globaliv", "psform", "codegen"]:
-        raise ValueError(f"Systems project selection changed unexpectedly: {ids}")
+    if ids != expected_ids:
+        raise ValueError(f"{profile_key} project selection changed unexpectedly: {ids}")
     for project_id in ids:
         item = project_copy[project_id]
         if not all(item.get(key) for key in ("solution", "result", "source_url")):
             raise ValueError(f"Unclear project proof in {lang}: {project_id}")
     if len(profile["experience"]) != 2 or len(profile["recognition"]) != 3:
-        raise ValueError("Missing owned experience/recognition for Systems CV")
+        raise ValueError(f"Missing owned experience/recognition for {profile_key} CV")
     return {
+        "profile_key": profile_key,
         "lang": lang,
         "person": data["person"],
         "name": data["person"]["name_" + lang],
@@ -71,8 +79,8 @@ def sections(lang: str) -> dict[str, str]:
     })
 
 
-def markdown(data: dict[str, Any], lang: str) -> str:
-    m = snapshot(data, lang)
+def markdown(data: dict[str, Any], lang: str, profile_key: str = PROFILE_KEY) -> str:
+    m = snapshot(data, lang, profile_key)
     p = m["profile"]
     person = m["person"]
     labels = sections(lang)
@@ -104,8 +112,8 @@ def markdown(data: dict[str, Any], lang: str) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
-def html_for_pdf(data: dict[str, Any], lang: str) -> str:
-    m = snapshot(data, lang)
+def html_for_pdf(data: dict[str, Any], lang: str, profile_key: str = PROFILE_KEY) -> str:
+    m = snapshot(data, lang, profile_key)
     p = m["profile"]
     person = m["person"]
     labels = sections(lang)
@@ -216,8 +224,8 @@ def normalize_docx_container(path: Path) -> None:
     path.write_bytes(memory.getvalue())
 
 
-def save_docx(data: dict[str, Any], lang: str, path: Path) -> None:
-    m = snapshot(data, lang)
+def save_docx(data: dict[str, Any], lang: str, path: Path, profile_key: str = PROFILE_KEY) -> None:
+    m = snapshot(data, lang, profile_key)
     p = m["profile"]
     person = m["person"]
     labels = sections(lang)
@@ -301,20 +309,22 @@ def save_docx(data: dict[str, Any], lang: str, path: Path) -> None:
             hyperlink(q, labels["recording"], item[3])
 
     doc.core_properties.title = p["role"]
-    doc.core_properties.subject = "C++ / Systems Engineer CV"
+    doc.core_properties.subject = ("C++ / Systems Engineer CV"
+                                   if profile_key == "systems"
+                                   else "Static Analysis / Program Analysis Engineer CV")
     doc.core_properties.author = m["name"]
     doc.save(path)
     normalize_docx_container(path)
 
 
-def render_files(data: dict[str, Any], lang: str, out_dir: Path) -> dict[str, Path]:
+def render_files(data: dict[str, Any], lang: str, out_dir: Path, profile_key: str = PROFILE_KEY) -> dict[str, Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
-    model = snapshot(data, lang)
+    model = snapshot(data, lang, profile_key)
     stem = Path(model["profile"]["pdf"]).stem
     pdf = out_dir / (stem + ".pdf")
     md = out_dir / (stem + ".md")
     docx = out_dir / (stem + ".docx")
-    md.write_text(markdown(data, lang), encoding="utf-8")
-    save_docx(data, lang, docx)
-    HTML(string=html_for_pdf(data, lang)).write_pdf(str(pdf))
+    md.write_text(markdown(data, lang, profile_key), encoding="utf-8")
+    save_docx(data, lang, docx, profile_key)
+    HTML(string=html_for_pdf(data, lang, profile_key)).write_pdf(str(pdf))
     return {"pdf": pdf, "docx": docx, "md": md}
