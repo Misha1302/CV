@@ -107,7 +107,7 @@ data/site.json application_cvs variant records as PDF/DOCX/Markdown.
 | --- | --- | --- |
 | C#/.NET Backend / ATS | [RU](ru-backend-ats.html) | [EN](en-backend-ats.html) |
 | Systems / Reliability | [RU](ru-systems-platform.html) | [EN](en-systems-platform.html) |
-| Runtime / Compilers / Performance | [RU](ru-runtime-compiler.html) | [EN](en-runtime-compiler.html) |
+| Compiler / Runtime / Program Analysis | [RU](ru-runtime-compiler.html) | [EN](en-runtime-compiler.html) |
 
 Each page contains the full CV profile, all three professional experience rows,
 all variant-specific technical skills and project claims, detailed problem/approach/
@@ -134,7 +134,7 @@ bounded by knowledge/resume-evidence.json.
 The existing November 3 release is retargeted: **02 Systems / Platform** and **03 Compiler / Runtime / Performance**. Legacy filenames and page URLs are preserved for previously shared links; visible headings and role selectors are updated. 01 Backend ATS remains unchanged.
 
 - Systems / Reliability: [RU](ru-systems-platform.html) / [EN](en-systems-platform.html) (legacy Tech Lead URLs retained)
-- Compiler / Runtime / Performance: [RU](ru-runtime-compiler.html) / [EN](en-runtime-compiler.html)
+- Compiler / Runtime / Program Analysis: [RU](ru-runtime-compiler.html) / [EN](en-runtime-compiler.html)
 - [Independent review and measurement roadmap](reviews/PERFORMANCE_SYSTEMS_CV_REVIEW_2026-11-07.md)
 
 Application CVs and generated HTML, DOCX, PDF and Markdown are all owned by data/site.json, with claim boundaries in knowledge/resume-evidence.json. Never hand-edit generated outputs.

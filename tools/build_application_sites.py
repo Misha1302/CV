@@ -24,10 +24,10 @@ ROLE_META = {
         "hint_en": "Reliability · state · recovery",
     },
     "runtime": {
-        "id": "03", "title_ru": "Compiler / Performance",
-        "title_en": "Compiler / Performance",
-        "hint_ru": "LLVM · CIL · проверки оптимизаций",
-        "hint_en": "LLVM · CIL · optimization legality",
+        "id": "03", "title_ru": "Compiler / Program Analysis",
+        "title_en": "Compiler / Program Analysis",
+        "hint_ru": "LLVM · Roslyn · проверка корректности",
+        "hint_en": "LLVM · Roslyn · correctness checks",
     },
 }
 

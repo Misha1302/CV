@@ -2570,97 +2570,169 @@
           "ru": "03_Runtime_Compiler",
           "en": "03_Runtime_Compiler_EN"
         },
-        "audience_ru": "Performance / Compiler / Runtime",
-        "audience_en": "Performance / Compiler / Runtime",
+        "audience_ru": "Compilers / Runtime / Program Analysis",
+        "audience_en": "Compilers / Runtime / Program Analysis",
         "ru": {
-          "role": "SOFTWARE ENGINEER · COMPILERS, RUNTIME & PERFORMANCE",
-          "summary": "Разрабатываю компиляторные и runtime-компоненты на C#/.NET и C++/LLVM: от проверки допустимости преобразований до генерации и проверки исполняемого кода. В SharpChecker (ИСП РАН) работаю с символьным анализом C#, в МЦСТ занимался LLVM/LICM. Для экспериментальных оптимизаций отделяю проверку корректности от измерений производительности.",
+          "role": "SOFTWARE ENGINEER · COMPILERS, RUNTIME & PROGRAM ANALYSIS",
+          "summary": "Разрабатываю компиляторную инфраструктуру, средства анализа программ и runtime-компоненты на C#/.NET, C++/LLVM и Rust. В ИСП РАН работаю с символьными вычислениями в SharpChecker; в МЦСТ проходил стажировку по компиляторам. В собственных проектах занимаюсь LLVM IR-преобразованиями, Roslyn CFG/data-flow, CIL и x86-64 codegen; корректность проверяю регрессионными и дифференциальными тестами.",
           "skills": [
-            "C#/.NET, CIL/CLR, DynamicMethod, Reflection.Emit, Roslyn, BenchmarkDotNet; interpreter/CIL backends",
-            "C++23/LLVM 22, IR/CFG/SSA, LICM, анализ эффектов, Rust/x86-64 (SysV ABI), differential testing, Git/Linux"
+            "Компиляторы и runtime: C#/.NET, CIL/CLR, Roslyn, DynamicMethod, Reflection.Emit; C++23, LLVM 22, LLVM IR; Rust, x86-64 SysV ABI",
+            "Анализ и проверки: CFG/SSA, data-flow, анализ эффектов, проверка допустимости преобразований, register allocation, phi lowering, differential/regression testing; Python, Git, Linux"
           ],
           "projects": [
             {
               "id": "wist",
               "title": "UniversalToolchain · compiler/runtime-инфраструктура",
-              "text": "Контракты модулей и зависимости проверяются в LanguagePlan до исполнения; раздельные interpreter/CIL backends позволяют сравнивать результаты одного языка. Есть отдельные сценарии проверки паритета.",
+              "text": "Разрабатываю модульную инфраструктуру языков с Bytecode/AIR и маршрутами interpreter/CIL. Типизированный LanguagePlan проверяет компоненты и зависимости до исполнения; тесты сопоставляют результаты разных способов выполнения.",
               "evidence_refs": [
                 "project_universaltoolchain"
               ]
             },
             {
               "id": "globaliv",
-              "title": "LLVM Global IV / LICM · допустимость оптимизаций",
-              "text": "Анализ межпроцедурных эффектов отделён от PromotionLegality и IR-преобразования. Volatile/atomic доступы, неизвестные вызовы и неподдерживаемый CFG приводят к отказу от оптимизации; есть негативные регрессии.",
+              "title": "LLVM Global IV · межпроцедурная оптимизация",
+              "text": "Экспериментальный LLVM 22 pass локализует поддерживаемые обращения к целочисленным globals в циклах. Анализ эффектов и PromotionLegality отделены от IR-преобразования. На LLVM 22.1.8 пройдены 29/29 сценариев преобразований и консервативных отказов.",
               "evidence_refs": [
-                "project_global_iv",
-                "experience_mcst_2026"
-              ]
+                "project_global_iv"
+              ],
+              "source_url": "https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization/tree/0d759dcf3af7a5652432eb0fea5b9ca27ec88f74"
+            },
+            {
+              "id": "deref",
+              "title": "DerefAfterNullAnalyzer · Roslyn CFG / data-flow",
+              "text": "Разработал fixed-point анализ null-state с учётом ветвлений, циклов и слияния состояний. На зафиксированном Git-снимке пройдены 18/18 тестов. Это отдельный проект, не заявленная интеграция в SharpChecker.",
+              "evidence_refs": [
+                "project_deref_after_null"
+              ],
+              "source_url": "https://github.com/Misha1302/DerefAfterNullAnalyzer/tree/a18102e988dbf854e67b356a44e1d81caba5b080"
             },
             {
               "id": "codegen",
-              "title": "x86-64 codegen · Rust",
-              "text": "Пайплайн SSA/CFG → liveness → register allocation → x86-64. Отдельный verifier проверяет назначения регистров и spills; native execution сравнивается с эталонным IR-интерпретатором.",
+              "title": "x86-64 Codegen & Register Allocation Lab · Rust",
+              "text": "Экспериментальный backend для ограниченного IR: SSA/CFG, liveness, register allocation, spills и phi lowering. Назначения регистров проверяются независимо; результаты native-кода сравниваются с эталонным IR-интерпретатором.",
               "evidence_refs": [
                 "project_x86_codegen"
               ]
-            },
-            {
-              "id": "quark2",
-              "title": "Quark2 · измерение вызовов сгенерированного кода",
-              "text": "DynamicMethod/Reflection.Emit и RuntimeMethodHandle; BenchmarkDotNet сравнивает reflection Invoke, delegate и вызов по указателю для сгенерированного метода.",
-              "evidence_refs": [
-                "history_quark2"
-              ]
             }
           ],
-          "education": "НИУ ВШЭ — ФКН, Программная инженерия.",
-          "recognition": "«Юниор» НИЯУ МИФИ, диплом I степени (2026); доклад LangDev 2026."
+          "education": "НИУ ВШЭ, ФКН — Программная инженерия, с 2026 года.",
+          "recognition": "Конкурс «Юниор» НИЯУ МИФИ — диплом I степени (2025 и 2026). Доклад об UniversalToolchain на LangDev 2026",
+          "recognition_link": {
+            "label": "Официальная видеозапись",
+            "url": "https://youtu.be/2jqmw-1c7kE"
+          }
         },
         "en": {
-          "role": "SOFTWARE ENGINEER · COMPILERS, RUNTIME & PERFORMANCE",
-          "summary": "I build compiler/runtime components in C#/.NET and C++/LLVM, from optimization-legality checks to generated-code validation. At ISP RAS I work on C# symbolic analysis in SharpChecker; at MCST I worked on LLVM/LICM. I keep correctness evidence and performance measurements separate for experimental optimizations.",
+          "role": "SOFTWARE ENGINEER · COMPILERS, RUNTIME & PROGRAM ANALYSIS",
+          "summary": "I develop compiler infrastructure, program analysis tools and runtime components in C#/.NET, C++/LLVM and Rust. At ISP RAS, I work on symbolic computation in SharpChecker; at MCST, I completed a compiler engineering internship. My projects cover LLVM IR transformations, Roslyn CFG/data-flow analysis, CIL and x86-64 code generation, with regression and differential correctness tests.",
           "skills": [
-            "C#/.NET, CIL/CLR, DynamicMethod, Reflection.Emit, Roslyn, BenchmarkDotNet; interpreter/CIL backends",
-            "C++23/LLVM 22, IR/CFG/SSA, LICM, effect analysis, Rust/x86-64 (SysV ABI), differential testing, Git/Linux"
+            "Compilers and runtime: C#/.NET, CIL/CLR, Roslyn, DynamicMethod, Reflection.Emit; C++23, LLVM 22, LLVM IR; Rust, x86-64 SysV ABI",
+            "Analysis and verification: CFG/SSA, data-flow and effect analysis, transformation legality checks, register allocation, phi lowering, differential/regression testing; Python, Git, Linux"
           ],
           "projects": [
             {
               "id": "wist",
-              "title": "UniversalToolchain · compiler/runtime infrastructure",
-              "text": "Module contracts and dependencies are checked in LanguagePlan before execution. Separate interpreter/CIL backends allow result comparisons for the same language, with dedicated parity scenarios.",
+              "title": "UniversalToolchain · C#/.NET compiler/runtime infrastructure",
+              "text": "Developing modular language infrastructure with Bytecode/AIR and interpreter/CIL execution paths. A typed LanguagePlan validates module composition and dependencies before runtime; tests compare results between backends.",
               "evidence_refs": [
                 "project_universaltoolchain"
               ]
             },
             {
               "id": "globaliv",
-              "title": "LLVM Global IV / LICM · optimization legality",
-              "text": "Interprocedural effect analysis is separated from PromotionLegality and the IR transformation. Volatile/atomic accesses, unknown calls and unsupported CFG conservatively reject optimization; negative regression cases cover unsafe paths.",
+              "title": "LLVM Global IV · interprocedural optimization",
+              "text": "An experimental LLVM 22 pass promotes selected integer-global accesses inside loops. Effect analysis and PromotionLegality precede IR transformation. Passed 29/29 regression cases on LLVM 22.1.8, including supported and rejected transformations.",
               "evidence_refs": [
-                "project_global_iv",
+                "project_global_iv"
+              ],
+              "source_url": "https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization/tree/0d759dcf3af7a5652432eb0fea5b9ca27ec88f74"
+            },
+            {
+              "id": "deref",
+              "title": "DerefAfterNullAnalyzer · Roslyn CFG / data-flow",
+              "text": "Built fixed-point null-state propagation across branches, loops and state joins. Passed 18/18 tests on a pinned Git revision. This is a separate project, not a claimed SharpChecker integration.",
+              "evidence_refs": [
+                "project_deref_after_null"
+              ],
+              "source_url": "https://github.com/Misha1302/DerefAfterNullAnalyzer/tree/a18102e988dbf854e67b356a44e1d81caba5b080"
+            },
+            {
+              "id": "codegen",
+              "title": "x86-64 Codegen & Register Allocation Lab · Rust",
+              "text": "An experimental backend for a restricted IR: SSA/CFG, liveness, register allocation, spills and phi lowering. Register assignments are checked independently; native results are compared against a reference IR interpreter.",
+              "evidence_refs": [
+                "project_x86_codegen"
+              ]
+            }
+          ],
+          "education": "HSE University, Faculty of Computer Science — Software Engineering, since 2026.",
+          "recognition": "MEPhI Junior competition — first-degree diploma (2025 and 2026). Presented UniversalToolchain at LangDev 2026",
+          "recognition_link": {
+            "label": "Official recording",
+            "url": "https://youtu.be/2jqmw-1c7kE"
+          }
+        },
+        "experience": {
+          "ru": [
+            {
+              "id": "isp",
+              "title": "ИСП РАН · SharpChecker",
+              "date": "октябрь 2026 — н. в.",
+              "text": "Работаю над символьными вычислениями для статического анализа программ на C#/.NET.",
+              "evidence_refs": [
+                "experience_isp_ras_2026"
+              ]
+            },
+            {
+              "id": "mcst",
+              "title": "МЦСТ · стажировка по разработке компиляторов",
+              "date": "июль — август 2026",
+              "text": "C++23/LLVM 22: экспериментальный LICM, проверка условий допустимости преобразований и сравнение поведения до/после с помощью Python.",
+              "evidence_refs": [
                 "experience_mcst_2026"
               ]
             },
             {
-              "id": "codegen",
-              "title": "x86-64 codegen · Rust",
-              "text": "SSA/CFG → liveness → register allocation → x86-64 pipeline. An independent verifier checks register assignments and spills; native execution is compared against a reference IR interpreter.",
+              "id": "commercial",
+              "title": "Заказная разработка · C#/.NET и Unity",
+              "date": "отдельные проекты с 2023 года",
+              "text": "Разработал API лицензирования KeyAuth на ASP.NET Core с EF Core/PostgreSQL, интеграцией с Unity-клиентами и последующей поддержкой совместимости.",
               "evidence_refs": [
-                "project_x86_codegen"
-              ]
-            },
-            {
-              "id": "quark2",
-              "title": "Quark2 · generated-code invocation measurements",
-              "text": "DynamicMethod/Reflection.Emit and RuntimeMethodHandle; BenchmarkDotNet compares reflection Invoke, delegate and pointer calls on generated methods.",
-              "evidence_refs": [
-                "history_quark2"
+                "project_keyauth_2023_2024",
+                "experience_paid_unity_2023"
               ]
             }
           ],
-          "education": "HSE University — Software Engineering.",
-          "recognition": "MEPhI Junior 2026, 1st-degree diploma; LangDev 2026 speaker."
+          "en": [
+            {
+              "id": "isp",
+              "title": "ISP RAS · SharpChecker",
+              "date": "Oct 2026 — present",
+              "text": "Working on symbolic computation for C#/.NET static program analysis.",
+              "evidence_refs": [
+                "experience_isp_ras_2026"
+              ]
+            },
+            {
+              "id": "mcst",
+              "title": "MCST · Compiler Engineering Internship",
+              "date": "Jul — Aug 2026",
+              "text": "C++23/LLVM 22: experimental LICM, conservative transformation legality checks and Python-based before/after behavior comparison.",
+              "evidence_refs": [
+                "experience_mcst_2026"
+              ]
+            },
+            {
+              "id": "commercial",
+              "title": "Client software development · C#/.NET and Unity",
+              "date": "individual projects since 2023",
+              "text": "Built the KeyAuth ASP.NET Core licensing API using EF Core/PostgreSQL, with Unity client integration and subsequent compatibility support.",
+              "evidence_refs": [
+                "project_keyauth_2023_2024",
+                "experience_paid_unity_2023"
+              ]
+            }
+          ]
         }
       }
     },

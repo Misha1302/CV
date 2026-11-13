@@ -159,6 +159,24 @@ def validate_semantic_boundaries(by_id: dict[str, dict]) -> None:
     require("independently" in boundary and "active" in boundary and "paying" in boundary,
             "LMS 40-user claim must not be upgraded to independent active/paying users")
 
+    # Regression receipts must remain tied to immutable revisions, toolchain
+    # and test scope; neither count proves production use or speedup.
+    for asset_id, commit, total in (
+        ("project_global_iv", "0d759dcf3af7a5652432eb0fea5b9ca27ec88f74", "29"),
+        ("project_deref_after_null", "a18102e988dbf854e67b356a44e1d81caba5b080", "18"),
+    ):
+        asset = by_id.get(asset_id)
+        require(asset is not None and "LOCAL_REPRODUCED" in asset.get("evidence_level", []),
+                f"Missing local verification provenance for {asset_id}")
+        receipt = asset.get("regression_replay_2026_11_13", {})
+        require(receipt.get("source_commit") == commit
+                and receipt.get("date") == "2026-11-13"
+                and total in str(receipt.get("observed", "")),
+                f"Missing pinned scoped regression receipt for {asset_id}")
+        limit = str(receipt.get("limitation", "")).lower()
+        require("not" in limit and ("production" in limit or "sharpchecker" in limit),
+                f"Overbroad or missing boundary for {asset_id}")
+
     langdev = by_id.get("achievement_langdev_2026")
     require(langdev is not None, "missing LangDev achievement asset")
     require(

@@ -28,6 +28,20 @@ def main():
         lms_copy = lms_rows[0]["text"].lower()
         require("40" in lms_copy and qualifier in lms_copy,
                 f"Systems LMS usage must be self-attributed and approximate ({lang})")
+    runtime = site["application_cvs"]["variants"]["runtime"]
+    for lang in LANGS:
+        project_ids = [p["id"] for p in runtime[lang]["projects"]]
+        require(project_ids == ["wist", "globaliv", "deref", "codegen"],
+                f"Compiler resume project selection changed unexpectedly: {lang} {project_ids}")
+        global_iv = runtime[lang]["projects"][1]
+        require(global_iv["evidence_refs"] == ["project_global_iv"],
+                f"Independent Global IV project must not imply MCST internship delivery: {lang}")
+        for project_id, count in (("globaliv", "29/29"), ("deref", "18/18")):
+            project = next(p for p in runtime[lang]["projects"] if p["id"] == project_id)
+            require(count in project["text"], f"Compiler regression count missing: {lang} {project_id}")
+    require("achievement_mephi_junior_2025_2026" in
+            {a["id"] for a in kb["assets"]},
+            "Missing primary-grounded competition source")
     report=[]
     for kind in KINDS:
         for lang in LANGS:
@@ -74,6 +88,12 @@ def main():
             require(sizes and min(sizes)>=8.3,f"PDF small fonts {stem}: {min(sizes) if sizes else '-'}")
             links=[x.get("uri") for x in page.get_links() if x.get("uri")]
             require(len(links)>=5,f"PDF clickable links missing {stem}")
+            for proj in cv["projects"]:
+                if proj.get("source_url"):
+                    require(proj["source_url"] in links,
+                            f"PDF is not linked to pinned project revision {stem}:{proj['id']}")
+                    require(proj["source_url"] in rel,
+                            f"DOCX is not linked to pinned project revision {stem}:{proj['id']}")
             if cv.get("recognition_link"):
                 require(cv["recognition_link"]["url"] in links,f"PDF recording link missing: {stem}")
                 require(cv["recognition_link"]["url"] in rel,f"DOCX recording link missing: {stem}")

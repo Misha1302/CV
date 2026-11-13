@@ -11,7 +11,8 @@
     "PRIOR_REPO_FORENSICS": "Claim established by a prior repository-forensics pass against historical code/commits; retain provenance and re-audit before making it a headline if the exact date matters.",
     "INFERENCE": "Analyst interpretation. Never present as a raw fact.",
     "NEEDS_VERIFICATION": "Potentially useful claim with insufficient evidence for strong resume wording.",
-    "PUBLIC_SELF_AUTHORED": "Public material authored by the user (article/profile/project description). Good evidence of authorship/communication, not independent validation of stronger claims."
+    "PUBLIC_SELF_AUTHORED": "Public material authored by the user (article/profile/project description). Good evidence of authorship/communication, not independent validation of stronger claims.",
+    "LOCAL_REPRODUCED": "Clean source snapshot built and tested locally on the stated date and toolchain; only the explicitly described cases and checks passed. Not independent production validation."
   },
   "canonical_positioning": {
     "primary": {
@@ -200,7 +201,8 @@
       "name": "LLVM Interprocedural Global IV Optimization",
       "time": "2026",
       "evidence_level": [
-        "PUBLIC_REPO_DIRECT"
+        "PUBLIC_REPO_DIRECT",
+        "LOCAL_REPRODUCED"
       ],
       "public_sources": [
         "https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization"
@@ -231,7 +233,16 @@
         "MCST internship project",
         "production LLVM optimization",
         "general ScalarEvolution replacement"
-      ]
+      ],
+      "regression_replay_2026_11_13": {
+        "source_commit": "0d759dcf3af7a5652432eb0fea5b9ca27ec88f74",
+        "date": "2026-11-13",
+        "environment": "LLVM 22.1.8, clean git-archive source, freshly compiled GlobalIVPass.so on Fedora",
+        "observed": "passed=29 failed=0 warnings=0",
+        "checks": "LLVM IR verification, structural expectations, second-pass idempotence; executable before/after equivalence for selected cases",
+        "provenance": "Local reproduced verification, with separate dated November 12 dossier replay",
+        "limitation": "Selected self-authored suite only, not general correctness, production LLVM/MCST integration, performance speedup or a formal proof"
+      }
     },
     {
       "id": "project_x86_codegen",
@@ -321,7 +332,8 @@
       "name": "DerefAfterNullAnalyzer",
       "time": "2026",
       "evidence_level": [
-        "PUBLIC_REPO_DIRECT"
+        "PUBLIC_REPO_DIRECT",
+        "LOCAL_REPRODUCED"
       ],
       "public_sources": [
         "https://github.com/Misha1302/DerefAfterNullAnalyzer"
@@ -346,7 +358,17 @@
         "program_analysis",
         "compiler"
       ],
-      "resume_priority": "HIGH"
+      "resume_priority": "HIGH",
+      "regression_replay_2026_11_13": {
+        "source_commit": "a18102e988dbf854e67b356a44e1d81caba5b080",
+        "date": "2026-11-13",
+        "environment": ".NET 10, clean git-archive source, dotnet test on Fedora",
+        "observed": "Passed: 18; Failed: 0; Skipped: 0",
+        "checks": "Roslyn analyzer tests for null checks, branches, loops, joins, assignments and safe/unsafe dereferences",
+        "provenance": "Local reproduced test run; prior dossier replay on 2026-11-12",
+        "limitation": "Test-suite pass is not integration into SharpChecker, industrial deployment, soundness for arbitrary C#, or comprehensive coverage",
+        "dependency_note": "Test dependency System.Security.Cryptography.Pkcs 9.0.6 emits NU1902 and NU1903; maintenance is separate"
+      }
     },
     {
       "id": "project_vpnmediator",
