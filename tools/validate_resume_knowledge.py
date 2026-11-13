@@ -177,6 +177,25 @@ def validate_semantic_boundaries(by_id: dict[str, dict]) -> None:
         require("not" in limit and ("production" in limit or "sharpchecker" in limit),
                 f"Overbroad or missing boundary for {asset_id}")
 
+    # C++ profile: a failed expanded smoke suite is not an industrial defect
+    # claim, and the official MCST selection test result was not replayed.
+    ps = by_id.get("project_ps_form")
+    mcst = by_id.get("experience_mcst_2026")
+    require(ps is not None and mcst is not None, "Missing C++/MCST evidence assets")
+    require("LOCAL_REPRODUCED" in ps.get("evidence_level", []), "PS-form local smoke provenance required")
+    require("LOCAL_REPRODUCED" in mcst.get("evidence_level", []), "Graph fixture provenance required")
+    smoke = ps.get("local_smoke_replay_2026_11_13", {})
+    require(smoke.get("source_commit") == "758001fdadba56b4f2bd7601464bd6fe0cd2b388"
+            and "907 passed" in smoke.get("observed", "")
+            and "5 failed" in smoke.get("observed", "")
+            and "not" in smoke.get("boundary", "").lower(),
+            "PS-form 907/912 limits must remain recorded")
+    graph = mcst.get("graph_fixture_replay_2026_11_13", {})
+    require(graph.get("source_commit") == "1b840dae228dc10008e5b49f3bec1940be5e8c30"
+            and "14/14" in graph.get("observed", "")
+            and "no complete lint" in graph.get("boundary", "").lower(),
+            "C++23 graph fixture verification must not imply full lint or selection result")
+
     langdev = by_id.get("achievement_langdev_2026")
     require(langdev is not None, "missing LangDev achievement asset")
     require(

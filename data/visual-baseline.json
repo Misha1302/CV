@@ -75,12 +75,12 @@
     }
   },
   "ru-cpp-systems.html|desktop": {
-    "dhash": "3e4b3fcf3dcc257e0f36263a177f1f6f1f6f2672223627b225b6231e07fb1cb3",
+    "dhash": "3cca35cf23e42776057626721f6716673f7726722766257c2372233007b21fc3",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 4975,
+    "page_height": 4469,
     "h1": "Михаил Разаков",
-    "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
+    "role": "C++ / Systems Engineer — LLVM · Compiler Tooling",
     "structure": {
       "sectionIds": [
         "top",
@@ -93,8 +93,8 @@
       ],
       "timelineItems": 2,
       "projectRows": 0,
-      "stackRows": 4,
-      "recognitionItems": 4,
+      "stackRows": 3,
+      "recognitionItems": 3,
       "contactPanels": 1,
       "profileCards": 0
     }
@@ -175,12 +175,12 @@
     }
   },
   "ru-cpp-systems.html|mobile": {
-    "dhash": "659728fd2aff1f7e39ff1e6f3dff38df28df18df5bcf5bf76e7f797f27ff2cff",
+    "dhash": "4adb28fb2ddb72b7379f189f3a9f3f1f2abf38ff16995cb354ff63dc2cfb2ceb",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 8423,
+    "page_height": 7186,
     "h1": "Михаил Разаков",
-    "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
+    "role": "C++ / Systems Engineer — LLVM · Compiler Tooling",
     "structure": {
       "sectionIds": [
         "top",
@@ -193,8 +193,8 @@
       ],
       "timelineItems": 2,
       "projectRows": 0,
-      "stackRows": 4,
-      "recognitionItems": 4,
+      "stackRows": 3,
+      "recognitionItems": 3,
       "contactPanels": 1,
       "profileCards": 0
     }

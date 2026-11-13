@@ -267,12 +267,15 @@ def experience_section(lang: str, profile: dict[str, Any], compact: bool = False
 <section class="shell section" id="experience"><div class="section-heading"><p class="section-label">01 · {'Опыт' if lang == 'ru' else 'Experience'}</p><div><h2>{esc(heading)}</h2>{f'<p class=\"section-intro\">{esc(intro)}</p>' if intro else ''}</div></div><div class="timeline">{''.join(articles)}</div>{note_html}</section>"""
 
 
-def project_card(data: dict[str, Any], lang: str, project_id: str, featured: bool = False) -> str:
+def project_card(data: dict[str, Any], lang: str, project_id: str, featured: bool = False, profile: dict[str, Any] | None = None) -> str:
     project = data["projects"][project_id]
     case_url = project[f"case_{lang}"]
     problem = project[f"problem_{lang}"]
     solution = project[f"solution_{lang}"]
     result = project[f"result_{lang}"]
+    owned_copy = (profile or {}).get("systems_project_copy", {}).get(project_id)
+    if owned_copy:
+        solution, result = owned_copy["solution"], owned_copy["result"]
     type_label = project[f"type_{lang}"]
     labels = {
         "problem": "Проблема" if lang == "ru" else "Problem",
@@ -284,7 +287,8 @@ def project_card(data: dict[str, Any], lang: str, project_id: str, featured: boo
     }
     links = [f'<a href="{esc(case_url)}">{labels["case"]} ↗</a>']
     if project.get("repo"):
-        links.append(f'<a href="{esc(project["repo"])}" rel="noopener noreferrer" target="_blank">{labels["repo"]} ↗</a>')
+        source_url = (profile or {}).get("systems_project_copy", {}).get(project_id, {}).get("source_url", project["repo"])
+        links.append(f'<a href="{esc(source_url)}" rel="noopener noreferrer" target="_blank">{labels["repo"]} ↗</a>')
     if project.get("docs"):
         links.append(f'<a href="{esc(project["docs"])}" rel="noopener noreferrer" target="_blank">{labels["docs"]} ↗</a>')
     points = f"""<ul class="project-points"><li><strong>{labels['problem']}</strong>{esc(problem)}</li><li><strong>{labels['solution']}</strong>{esc(solution)}</li><li><strong>{labels['result']}</strong>{esc(result)}</li></ul>"""
@@ -295,8 +299,8 @@ def project_card(data: dict[str, Any], lang: str, project_id: str, featured: boo
 
 def projects_section(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     ids = profile["project_ids"]
-    featured = project_card(data, lang, ids[0], True)
-    rest = "".join(project_card(data, lang, project_id) for project_id in ids[1:])
+    featured = project_card(data, lang, ids[0], True, profile)
+    rest = "".join(project_card(data, lang, project_id, profile=profile) for project_id in ids[1:])
     heading = "Проекты как инженерные кейсы" if lang == "ru" else "Projects as engineering cases"
     intro = "Каждый кейс показывает исходную проблему, принятое решение и проверяемый результат." if lang == "ru" else "Each case presents the original problem, the chosen design, and a verifiable outcome."
     return f"""
@@ -328,7 +332,11 @@ def skills_section(lang: str, profile: dict[str, Any], compact: bool = False) ->
 
 
 def recognition_section(data: dict[str, Any], lang: str, profile: dict[str, Any], compact: bool = False) -> str:
-    rows = "".join(f'<article class="recognition-item"><span class="recognition-year">{esc(year)}</span><div><h3>{esc(title)}</h3><p>{esc(body)}</p></div></article>' for year, title, body in recognition_items(data, lang, profile))
+    rows = ""
+    for item in recognition_items(data, lang, profile):
+        year, title, body = item[:3]
+        link = "" if len(item) < 4 else f' <a href="{esc(item[3])}" rel="noopener noreferrer" target="_blank">{"Видео" if lang == "ru" else "Video"} ↗</a>'
+        rows += f'<article class="recognition-item"><span class="recognition-year">{esc(year)}</span><div><h3>{esc(title)}</h3><p>{esc(body)}{link}</p></div></article>'
     heading = ("Достижения" if lang == "ru" else "Recognition") if compact else ("Внешние результаты и техническая коммуникация." if lang == "ru" else "External results and technical communication.")
     return f'<section class="shell section" id="recognition"><div class="section-heading"><p class="section-label">04 · {"Достижения" if lang == "ru" else "Recognition"}</p><div><h2>{heading}</h2></div></div><div class="recognition-list">{rows}</div></section>'
 
@@ -341,8 +349,12 @@ def education_section(data: dict[str, Any], lang: str) -> str:
 
 def contact_section(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     p = data["person"]
+    exports = ""
+    if profile.get("systems_project_copy"):
+        stem = "pdf/" + profile["pdf"].removesuffix(".pdf")
+        exports = f'<a class="button" href="{esc(stem)}.docx" download>DOCX</a><a class="button" href="{esc(stem)}.md" download>Markdown</a>'
     return f"""
-<section class="shell contact-section" id="contact"><div class="contact-panel"><div><h2>{esc(profile['contact_heading'])}</h2><p>{esc(p[f'location_{lang}'])}</p></div><div class="contact-links"><a class="button primary" href="mailto:{esc(p['email'])}">{'Почта' if lang == 'ru' else 'Email'}</a><a class="button" href="{esc(p['telegram'])}" target="_blank" rel="noopener noreferrer">Telegram</a><a class="button" href="{esc(p['github'])}" target="_blank" rel="noopener noreferrer">GitHub</a><a class="button" href="pdf/{esc(profile['pdf'])}" download>PDF</a></div></div></section>"""
+<section class="shell contact-section" id="contact"><div class="contact-panel"><div><h2>{esc(profile['contact_heading'])}</h2><p>{esc(p[f'location_{lang}'])}</p></div><div class="contact-links"><a class="button primary" href="mailto:{esc(p['email'])}">{'Почта' if lang == 'ru' else 'Email'}</a><a class="button" href="{esc(p['telegram'])}" target="_blank" rel="noopener noreferrer">Telegram</a><a class="button" href="{esc(p['github'])}" target="_blank" rel="noopener noreferrer">GitHub</a><a class="button" href="pdf/{esc(profile['pdf'])}" download>PDF</a>{exports}</div></div></section>"""
 
 
 def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
@@ -362,7 +374,7 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     if profile["filename"] in {"ru-architecture.html", "en-architecture.html"}:
         contacts += f'<br><a href="{esc(data["site_url"])}">misha1302.github.io/CV</a>'
     proofs = "".join(f'<div class="pcv-proof"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["proofs"])
-    proof_block = "" if is_compiler_print else f'<div class="pcv-proofs">{proofs}</div>'
+    proof_block = "" if (is_compiler_print or profile.get("omit_proof_strip")) else f'<div class="pcv-proofs">{proofs}</div>'
     experiences = []
     for item in profile["experience"][:int(profile.get("print_experience_limit", 3))]:
         bullets = "".join(f"<li>{esc(text)}</li>" for text in item["bullets"][:2])
@@ -388,7 +400,8 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
     if recognition_limit > 1:
         recognition = "".join(
             f'<div class="pcv-recognition"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>'
-            for _, title, body in recognition_data[:recognition_limit]
+            for item in recognition_data[:recognition_limit]
+            for _, title, body in [item[:3]]
         )
     else:
         recognition = f'<p>{esc(recognition_data[0][2])}</p>'
@@ -410,7 +423,8 @@ def profile_page(data: dict[str, Any], profile_key: str, lang: str) -> str:
         else:
             main_content = f"{compiler_hero(data, lang, profile)}{trajectory_section(data, lang, profile)}{experience_section(lang, profile, compact=True)}{compiler_projects_section(data, lang, profile)}{skills_section(lang, profile, compact=True)}{recognition_section(data, lang, profile, compact=True)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
     else:
-        main_content = f"{hero(data, lang, profile)}{proof_strip(profile)}{experience_section(lang, profile)}{projects_section(data, lang, profile)}{skills_section(lang, profile)}{recognition_section(data, lang, profile)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
+        proof_block = "" if profile.get("omit_proof_strip") else proof_strip(profile)
+        main_content = f"{hero(data, lang, profile)}{proof_block}{experience_section(lang, profile)}{projects_section(data, lang, profile)}{skills_section(lang, profile)}{recognition_section(data, lang, profile)}{education_section(data, lang)}{contact_section(data, lang, profile)}"
     body_class = f"profile-{esc(profile_key)}"
     if profile.get("print_spacious"):
         body_class += " profile-print-spacious"

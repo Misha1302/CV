@@ -687,154 +687,218 @@
       "ru": {
         "filename": "ru-cpp-systems.html",
         "pdf": "Mikhail_Razakov_CPP_Systems_RU.pdf",
-        "title": "Михаил Разаков — C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
-        "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
-        "brand": "C++23 · LLVM · x86-64 · algorithms",
-        "eyebrow": "Compiler optimization · machine code · program analysis",
-        "summary": "Разрабатываю C++/LLVM и системные компоненты: безопасные преобразования IR, генерацию x86-64 и анализ зависимостей памяти. Для аффинных случаев использую точный подсчёт, для остальных — консервативные проверки и независимые тестовые оракулы.",
-        "description": "C++ / Systems Engineer Михаил Разаков: C++23, LLVM 22, x86-64 code generation, register allocation, algorithms, program analysis и differential execution.",
+        "title": "Михаил Разаков — C++ / Systems Engineer | LLVM · Compiler Tooling",
+        "role": "C++ / Systems Engineer — LLVM · Compiler Tooling",
+        "brand": "C++23 · GNU C17 · LLVM 22 · Rust/x86-64",
+        "eyebrow": "Compiler optimization · memory dependence · correctness",
+        "summary": "Разрабатываю C++/LLVM-инструменты для анализа программ и консервативных преобразований IR. В МЦСТ работал над экспериментальным LLVM LICM, сейчас занимаюсь символьными вычислениями в SharpChecker (ИСП РАН). В собственных проектах реализую анализ зависимостей памяти (GNU C17), LLVM Global IV (C++23) и x86-64 backend на Rust. Проверяю результаты регрессионными и дифференциальными тестами.",
+        "description": "C++/LLVM, анализ зависимостей памяти, консервативные преобразования IR, C++23-алгоритмы и Rust/x86-64 codegen с проверяемыми тестами.",
         "proofs": [
           [
-            "Профессиональная и проектная база",
-            "ИСП РАН: SharpChecker, символьные вычисления · МЦСТ: LLVM 22/C++23."
+            "C++/LLVM",
+            "Экспериментальный LICM в МЦСТ; отдельный Global IV pass — 29/29 тестов на LLVM 22.1.8."
           ],
           [
-            "x86-64 pipeline",
-            "SSA/CFG validation, liveness/interference, linear scan, seeded simulated annealing, SysV codegen и differential execution."
+            "Алгоритмы",
+            "RPO, Dijkstra, Dinic, Tarjan SCC на C++23; 14/14 локальных fixture-тестов."
           ],
           [
-            "Conservative optimization",
-            "LLVM Global-IV: APInt affine evolution, transitive effects, explicit legality и 29 verifier/idempotence/execution regressions."
+            "Low-level",
+            "Rust/x86-64 codegen: SSA, liveness, spills, phi lowering, verifier и эталонное исполнение."
           ]
         ],
         "experience": [
           {
             "fact_ref": "isp_ras",
             "date": "октябрь 2026 — настоящее время",
-            "title": "ИСП РАН — разработка SharpChecker",
-            "org": "C#/.NET · статический анализ · символьные вычисления",
+            "title": "ИСП РАН · SharpChecker",
+            "org": "C#/.NET · статический анализ",
             "bullets": [
-              "Работаю над символьными вычислениями в SharpChecker — инструменте статического анализа C#/.NET."
+              "Работаю над символьными вычислениями для статического анализа программ на C#/.NET."
             ]
           },
           {
-            "date": "1 июля — 31 августа 2026",
-            "title": "МЦСТ — стажёр по разработке компиляторов",
-            "org": "LLVM 22 · C++23 · Python · 0,25 ставки",
+            "date": "июль — август 2026",
+            "title": "МЦСТ · стажировка по разработке компиляторов",
+            "org": "C++23 · LLVM 22 · Python",
             "bullets": [
-              "Реализовал LLVM LICM-pass на C++: допустимость преобразования определяется по структуре цикла, обращениям к памяти, side effects и speculative safety.",
-              "Построил Python-harness для сравнения исполнения до/после оптимизации и явной проверки transformation / no-transformation cases; также реализовал RPO, Dijkstra, Dinic и Tarjan SCC на C++23."
+              "Разрабатывал экспериментальный LLVM LICM с проверкой структуры цикла, обращений к памяти и допустимости переноса инструкций; сравнивал поведение до/после на Python.",
+              "Реализовал на C++23 алгоритмы RPO, Dijkstra, Dinic и Tarjan SCC; локальный прогон из Git-снимка прошёл 14/14 fixture-тестов."
             ]
           }
         ],
         "project_ids": [
           "globaliv",
-          "codegen",
-          "psform"
+          "psform",
+          "codegen"
         ],
         "skills": [
           [
-            "C++ / toolchain",
-            "C++23, C17, LLVM 22, CMake, Linux, clang-tidy, ASan/UBSan"
+            "C++ и инструменты",
+            "C++23, GNU C17 (POSIX), LLVM 22/IR, CMake, GCC/Clang, Git, Linux, Python"
           ],
           [
-            "Algorithms / analysis",
-            "graph algorithms, CFG, dominance, SSA, SCC, dataflow, memory dependence"
+            "Алгоритмы и компиляторы",
+            "CFG/SSA, dominance, data-flow, межпроцедурные эффекты, memory dependence; графовые алгоритмы, Rust/x86-64 SysV ABI"
           ],
           [
-            "Machine-level systems",
-            "x86-64 SysV, code generation, liveness/interference, register allocation, generated-code analysis"
-          ],
-          [
-            "Verification",
-            "exact/reference oracles, differential/metamorphic testing, isolated execution, reproducible counterexamples"
+            "Проверки",
+            "Регрессионные и дифференциальные тесты, эталонные оракулы, ASan/UBSan, анализ контрпримеров, консервативная проверка допустимости"
           ]
         ],
-        "contact_heading": "Целевые роли: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
-        "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
+        "contact_heading": "Целевые роли: C++ systems · LLVM · compiler tooling · program analysis",
+        "footer": "C++ / Systems Engineer · LLVM · Compiler Tooling",
         "print_project_limit": 3,
-        "updated_at": "2026-10-16",
-        "print_recognition_limit": 2,
+        "updated_at": "2026-11-13",
+        "print_recognition_limit": 3,
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": true,
-        "portrait_asset": "assets/portrait.jpg"
+        "portrait_asset": "assets/portrait.jpg",
+        "omit_proof_strip": true,
+        "systems_project_copy": {
+          "globaliv": {
+            "solution": "LLVM 22 pass локализует поддерживаемые обращения к целочисленным глобальным переменным в циклах. Анализ эффектов и отдельная PromotionLegality предшествуют IR-преобразованию.",
+            "result": "На зафиксированном LLVM 22.1.8 пройдены 29/29 регрессионных сценариев с положительными и консервативно отклонёнными преобразованиями.",
+            "source_url": "https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization/tree/0d759dcf3af7a5652432eb0fea5b9ca27ec88f74"
+          },
+          "psform": {
+            "solution": "GNU C17-анализатор пересечений памяти между разными итерациями. Точный подсчёт для поддерживаемых аффинных случаев, модульные/НОД-проверки, ограниченный перебор.",
+            "result": "В неразрешённых случаях возвращает консервативное maybe; проект выполнен как техническое задание отбора МЦСТ, не промышленный анализатор.",
+            "source_url": "https://github.com/Misha1302/ps_form_analizer/tree/758001fdadba56b4f2bd7601464bd6fe0cd2b388"
+          },
+          "codegen": {
+            "solution": "На Rust реализован экспериментальный backend для ограниченного IR: SSA/CFG, liveness, register allocation, spills, phi lowering и SysV x86-64.",
+            "result": "Независимый verifier проверяет назначения регистров/stack slots, а результаты native-кода сравниваются с эталонным IR-интерпретатором.",
+            "source_url": "https://github.com/Misha1302/x86-64-codegen-ra-playground"
+          }
+        },
+        "recognition": [
+          [
+            "2026",
+            "Отбор МЦСТ — LLVM/C++",
+            "По письму организатора: единственная оценка 5,0/5,0 и единственное решение с 104/104 официальных тестов среди 49 работ."
+          ],
+          [
+            "2025–2026",
+            "«Юниор» НИЯУ МИФИ",
+            "Дипломы I степени в секции информационных технологий за 2025 и 2026 годы."
+          ],
+          [
+            "2026",
+            "LangDev — UniversalToolchain",
+            "Доклад 9 октября 2026 года; опубликована видеозапись организаторов.",
+            "https://youtu.be/2jqmw-1c7kE"
+          ]
+        ]
       },
       "en": {
         "filename": "en-cpp-systems.html",
         "pdf": "Mikhail_Razakov_CPP_Systems_EN.pdf",
-        "title": "Mikhail Razakov — C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
-        "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
-        "brand": "C++23 · LLVM · x86-64 · algorithms",
-        "eyebrow": "Compiler optimization · machine code · program analysis",
-        "summary": "I build C++/LLVM and low-level systems components: conservative IR transformations, x86-64 code generation, and memory-dependence analysis. Exact affine counting, bounded algorithms, and independent oracles constrain what the tools may claim.",
-        "description": "Mikhail Razakov — C++ / Systems Engineer: C++23, LLVM 22, x86-64 code generation, register allocation, algorithms, program analysis, and differential execution.",
+        "title": "Mikhail Razakov — C++ / Systems Engineer | LLVM · Compiler Tooling",
+        "role": "C++ / Systems Engineer — LLVM · Compiler Tooling",
+        "brand": "C++23 · GNU C17 · LLVM 22 · Rust/x86-64",
+        "eyebrow": "Compiler optimization · memory dependence · correctness",
+        "summary": "I develop C++/LLVM tools for program analysis and conservative IR transformations. I worked on experimental LLVM LICM during my internship at MCST and now work on symbolic computation in SharpChecker (ISP RAS). My independent projects cover memory-dependence analysis (GNU C17), LLVM Global IV (C++23) and a Rust x86-64 backend. I use regression and differential tests to evaluate correctness.",
+        "description": "C++/LLVM, memory-dependence analysis, conservative IR transformations, C++23 algorithms and Rust/x86-64 code generation with bounded verification.",
         "proofs": [
           [
-            "Professional and project evidence",
-            "ISP RAS: SharpChecker symbolic computation · MCST: LLVM 22/C++23."
+            "C++/LLVM",
+            "Experimental LICM at MCST; separate Global IV pass with 29/29 cases on LLVM 22.1.8."
           ],
           [
-            "x86-64 pipeline",
-            "SSA/CFG validation, liveness/interference, linear scan, seeded simulated annealing, SysV codegen, and differential execution."
+            "Algorithms",
+            "RPO, Dijkstra, Dinic and Tarjan SCC in C++23; 14/14 local fixture tests."
           ],
           [
-            "Conservative optimization",
-            "LLVM Global-IV: APInt affine evolution, transitive effects, explicit legality, and 29 verifier/idempotence/execution regressions."
+            "Low-level",
+            "Rust/x86-64 codegen: SSA, liveness, spills, phi lowering, verifier and reference execution."
           ]
         ],
         "experience": [
           {
             "fact_ref": "isp_ras",
             "date": "October 2026 — present",
-            "title": "ISP RAS — SharpChecker development",
-            "org": "C#/.NET · static analysis · symbolic computation",
+            "title": "ISP RAS · SharpChecker",
+            "org": "C#/.NET · static analysis",
             "bullets": [
-              "Work on symbolic computation in SharpChecker, a C#/.NET static-analysis tool."
+              "Working on symbolic computation for C#/.NET static program analysis."
             ]
           },
           {
-            "date": "July 1 — August 31, 2026",
-            "title": "MCST — Compiler Engineering Intern",
-            "org": "LLVM 22 · C++23 · Python · 0.25 FTE",
+            "date": "July — August 2026",
+            "title": "MCST · Compiler Engineering Internship",
+            "org": "C++23 · LLVM 22 · Python",
             "bullets": [
-              "Implemented an LLVM LICM pass in C++; transformation legality is derived from loop structure, memory accesses, side effects, and speculative-safety constraints.",
-              "Built a Python harness comparing execution before/after optimization and checking explicit transformation / no-transformation cases; also implemented RPO, Dijkstra, Dinic, and Tarjan SCC in C++23."
+              "Worked on an experimental LLVM LICM transformation, checking loop structure, memory accesses and transformation legality; compared before/after behavior using Python.",
+              "Implemented RPO, Dijkstra, Dinic and Tarjan SCC in C++23; the local run from a Git snapshot passed 14/14 fixture tests."
             ]
           }
         ],
         "project_ids": [
           "globaliv",
-          "codegen",
-          "psform"
+          "psform",
+          "codegen"
         ],
         "skills": [
           [
-            "C++ / toolchain",
-            "C++23, C17, LLVM 22, CMake, Linux, clang-tidy, ASan/UBSan"
+            "C++ and tooling",
+            "C++23, GNU C17 (POSIX), LLVM 22/IR, CMake, GCC/Clang, Git, Linux, Python"
           ],
           [
-            "Algorithms / analysis",
-            "graph algorithms, CFG, dominance, SSA, SCC, dataflow, memory dependence"
-          ],
-          [
-            "Machine-level systems",
-            "x86-64 SysV, code generation, liveness/interference, register allocation, generated-code analysis"
+            "Algorithms and compilers",
+            "CFG/SSA, dominance, data-flow, interprocedural effects, memory dependence; graph algorithms, Rust/x86-64 SysV ABI"
           ],
           [
             "Verification",
-            "exact/reference oracles, differential/metamorphic testing, isolated execution, reproducible counterexamples"
+            "Regression and differential testing, reference oracles, ASan/UBSan, counterexamples and conservative transformation-legality checks"
           ]
         ],
-        "contact_heading": "Target roles: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
-        "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
+        "contact_heading": "Target roles: C++ systems · LLVM · compiler tooling · program analysis",
+        "footer": "C++ / Systems Engineer · LLVM · Compiler Tooling",
         "print_project_limit": 3,
-        "updated_at": "2026-10-16",
-        "print_recognition_limit": 2,
+        "updated_at": "2026-11-13",
+        "print_recognition_limit": 3,
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": true,
-        "portrait_asset": "assets/portrait.jpg"
+        "portrait_asset": "assets/portrait.jpg",
+        "omit_proof_strip": true,
+        "systems_project_copy": {
+          "globaliv": {
+            "solution": "An LLVM 22 pass promotes selected integer-global accesses within loops. Effect analysis and a separate PromotionLegality gate precede IR rewriting.",
+            "result": "Passed 29/29 positive and conservative-rejection regression scenarios on pinned LLVM 22.1.8.",
+            "source_url": "https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization/tree/0d759dcf3af7a5652432eb0fea5b9ca27ec88f74"
+          },
+          "psform": {
+            "solution": "A GNU C17 analyzer for overlapping memory accesses across distinct loop iterations, combining exact counting for supported affine cases with modular/GCD checks and bounded fallback.",
+            "result": "Unresolved cases return conservative maybe. Built as an MCST technical-selection task, not a production dependence-analysis system.",
+            "source_url": "https://github.com/Misha1302/ps_form_analizer/tree/758001fdadba56b4f2bd7601464bd6fe0cd2b388"
+          },
+          "codegen": {
+            "solution": "An experimental Rust backend for restricted IR with SSA/CFG, liveness, register allocation, spills, phi lowering and SysV x86-64 code generation.",
+            "result": "An independent verifier checks register/stack assignments; native results are compared against a reference IR interpreter.",
+            "source_url": "https://github.com/Misha1302/x86-64-codegen-ra-playground"
+          }
+        },
+        "recognition": [
+          [
+            "2026",
+            "MCST LLVM/C++ selection",
+            "According to organizer correspondence: the only 5.0/5.0 score and only 104/104 official-test submission among 49 entries."
+          ],
+          [
+            "2025–2026",
+            "MEPhI Junior",
+            "First-degree diplomas in the Information Technologies section in both 2025 and 2026."
+          ],
+          [
+            "2026",
+            "LangDev — UniversalToolchain",
+            "Presented on 9 October 2026; the organizer published a talk recording.",
+            "https://youtu.be/2jqmw-1c7kE"
+          ]
+        ]
       }
     },
     "quant": {

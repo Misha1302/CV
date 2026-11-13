@@ -15,6 +15,7 @@ import fitz
 from bs4 import BeautifulSoup
 
 from build_site import ROOT, build_outputs, load_data, write_or_check
+from validate_cpp_systems_cv import validate as validate_cpp_systems_cv
 
 STALE_MARKERS = [
     "до 20 часов в неделю",
@@ -461,6 +462,7 @@ def main() -> None:
         "external_links": [{"url": url, "status": status} for url, status in link_results],
         "pdfs": pdf_results,
     }
+    report["cpp_systems_ats"] = validate_cpp_systems_cv(data, args.pdf_dir)
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

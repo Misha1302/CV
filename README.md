@@ -71,6 +71,30 @@ The checks enforce:
 - desktop, mobile, and JavaScript-disabled screenshot regression/smoke checks;
 - recursive SHA-256 manifest integrity.
 
+## C++ / Systems Engineer — specialized ATS resume (13 November 2026)
+
+The C++/LLVM-focused specialist route [RU](ru-cpp-systems.html) /
+[EN](en-cpp-systems.html) is authored in the single canonical
+`data/site.json -> profiles.systems` model. Its one-column, text-extractable
+A4 PDF is optimized for ATS; the editorial website remains available for
+direct technical outreach. Both languages have generated companion
+DOCX and Markdown exports in the `pdf/` directory:
+
+- RU: [PDF](pdf/Mikhail_Razakov_CPP_Systems_RU.pdf) ·
+  [DOCX](pdf/Mikhail_Razakov_CPP_Systems_RU.docx) ·
+  [Markdown](pdf/Mikhail_Razakov_CPP_Systems_RU.md)
+- EN: [PDF](pdf/Mikhail_Razakov_CPP_Systems_EN.pdf) ·
+  [DOCX](pdf/Mikhail_Razakov_CPP_Systems_EN.docx) ·
+  [Markdown](pdf/Mikhail_Razakov_CPP_Systems_EN.md)
+
+Rebuild using `python tools/build_cv.py --output-dir pdf`. Verify using
+`python tools/validate_cv.py --pdf-dir pdf`; this checks the C++ PDF reading
+order and the DOCX/Markdown synchronization as well as all existing profiles.
+The LLVM 29/29 and MCST graph 14/14 cases are local, version-scoped
+verification. An extended PS-form smoke suite passed 907/912 cases, with
+five conservative `maybe` answers where the oracle expected `no`; these
+are not the 104 official MCST selection cases.
+
 ## CV release — 2026-11-03
 
 Send-ready, one-page C#/.NET resumes (Russian): **[choose the right version](releases/2026-11-03/README.md)**.

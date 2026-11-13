@@ -42,7 +42,8 @@
       "evidence_level": [
         "USER_ATTESTED",
         "PUBLIC_REPO_DIRECT",
-        "PRIVATE_DOCUMENT"
+        "PRIVATE_DOCUMENT",
+        "LOCAL_REPRODUCED"
       ],
       "public_sources": [
         "https://github.com/Misha1302/ps_form_analizer",
@@ -84,6 +85,14 @@
         "attribution_boundary": "The organizer's group email identifies the sole top scorer by school/location, while the user's reply identifies himself as having scored 5.0. Do not represent the broadcast as a publicly named personal diploma.",
         "denominator_boundary": "49 solutions submitted; separate count of 87 initial applicants and 6 eventual internship places is not the denominator for this technical ranking.",
         "stage_boundary": "A technical selection result, not an internship-project performance metric."
+      },
+      "graph_fixture_replay_2026_11_13": {
+        "source_commit": "1b840dae228dc10008e5b49f3bec1940be5e8c30",
+        "date": "2026-11-13",
+        "observed": "14/14 fixture tests passed",
+        "environment": "C++23, GCC15.3, disposable checkout; CMake configured with clang-tidy explicitly disabled after initial build timeout",
+        "cases": "RPO/cycle, Dijkstra, Dinic and Tarjan SCC",
+        "boundary": "Local fixed input-output suite only; first build with clang-tidy was interrupted by timeout; no complete lint or industrial acceptance."
       }
     },
     {
@@ -292,7 +301,8 @@
       "time": "2026",
       "evidence_level": [
         "PUBLIC_REPO_DIRECT",
-        "PUBLIC_REPO_ATTRIBUTED"
+        "PUBLIC_REPO_ATTRIBUTED",
+        "LOCAL_REPRODUCED"
       ],
       "public_sources": [
         "https://github.com/Misha1302/ps_form_analizer"
@@ -324,7 +334,16 @@
         "quantdev",
         "quant"
       ],
-      "resume_priority": "HIGH"
+      "resume_priority": "HIGH",
+      "local_smoke_replay_2026_11_13": {
+        "source_commit": "758001fdadba56b4f2bd7601464bd6fe0cd2b388",
+        "build": "GCC 15.3.1 -O2 -std=c17, standalone command-line solver",
+        "command": "python3 psf_total_harness_v3.py ./psf --profile smoke --random-count 10 --strict-output --validate-contract fail --progress off",
+        "date": "2026-11-13",
+        "observed": "912 cases, 907 passed, 5 failed (wrong-answer oracle expects no, solver returned maybe)",
+        "failure_scope": "Five extended generator cases for cubic differences modulo 9. Returned maybe is conservative/incomplete, rather than a false proof of independence or overlap.",
+        "boundary": "Not the 104 official MCST tests; local extended smoke suite does not all pass. No general completeness/production correctness claim."
+      }
     },
     {
       "id": "project_deref_after_null",
