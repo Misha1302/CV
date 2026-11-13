@@ -1,9 +1,9 @@
 {
   "ru.html|desktop": {
-    "dhash": "39a333e3323c0d260f4e0e4f3e160ade31fe3d9e2d8625360a180f7806582602",
+    "dhash": "33e333e334b40da626160f763646044e3cf73dfe2da62c361a22073006781602",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 3350,
+    "page_height": 3112,
     "h1": "Михаил Разаков",
     "role": "Compiler Infrastructure / Language Tooling Engineer",
     "structure": {
@@ -18,7 +18,7 @@
       ],
       "timelineItems": 2,
       "projectRows": 3,
-      "stackRows": 4,
+      "stackRows": 3,
       "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0
@@ -100,10 +100,10 @@
     }
   },
   "ru.html|mobile": {
-    "dhash": "73d949df7fe949d74adf3b3f25bf576f3bff2eff3dbf51bf7bb76d9b5baf585f",
+    "dhash": "7343530f7fb363d249ff516726935cdf55bf2d2f5b4f576f674b753f74ee78e3",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 5789,
+    "page_height": 5172,
     "h1": "Михаил Разаков",
     "role": "Compiler Infrastructure / Language Tooling Engineer",
     "structure": {
@@ -118,7 +118,7 @@
       ],
       "timelineItems": 2,
       "projectRows": 3,
-      "stackRows": 4,
+      "stackRows": 3,
       "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0
@@ -200,10 +200,10 @@
     }
   },
   "ru.html|no-js": {
-    "dhash": "301a35a339a3296308e7326732702b0039260da64d2633042b020e0e0b0c0f56",
+    "dhash": "301a272333e318e3096736e736f01780392e0db64da636442e02263e0f370e66",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 3350,
+    "page_height": 3112,
     "h1": "Михаил Разаков",
     "role": "Compiler Infrastructure / Language Tooling Engineer",
     "structure": {
@@ -218,7 +218,7 @@
       ],
       "timelineItems": 2,
       "projectRows": 3,
-      "stackRows": 4,
+      "stackRows": 3,
       "recognitionItems": 4,
       "contactPanels": 1,
       "profileCards": 0

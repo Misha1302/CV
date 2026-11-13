@@ -29,9 +29,21 @@ def validate(data: dict, output_dir: Path, profile_key: str = "systems") -> list
         require(md_path.read_text(encoding="utf-8") == markdown(data, lang, profile_key),
                 f"Stale C++ Systems Markdown: {stem}")
         text_md = md_path.read_text(encoding="utf-8")
-        counts = ("104/104", "29/29", "14/14") if profile_key == "systems" else ("104/104", "29/29", "18/18")
+        counts = {
+            "systems": ("104/104", "29/29", "14/14"),
+            "program_analysis": ("104/104", "29/29", "18/18"),
+            "general": ("104/104", "29/29"),
+        }[profile_key]
         require("907/912" not in text_md and all(count in text_md for count in counts),
                 f"Broken bounded statistics or overly detailed smoke outcome in the CV: {stem}")
+        if profile_key == "general":
+            require(text_md.index("UniversalToolchain / Wist2") < text_md.index("LLVM Interprocedural Global IV Optimization")
+                    < text_md.index("x86-64 Compiler Backend & Register Allocation"),
+                    f"Compiler Infrastructure priority order incorrect: {stem}")
+            require("PlanFuzz" in text_md and "1324" in text_md.replace(",", "").replace(" ", ""),
+                    f"Missing test-manifest/PlanFuzz boundary: {stem}")
+            require("manifest" in text_md.lower() or "манифест" in text_md.lower(),
+                    f"Unattributed 1324-test claim: {stem}")
         if profile_key == "program_analysis":
             require(text_md.index("DerefAfterNullAnalyzer") < text_md.index("LLVM Interprocedural Global IV Optimization")
                     < text_md.index("PS-form Memory Dependence Analyzer"),
@@ -82,6 +94,11 @@ def validate(data: dict, output_dir: Path, profile_key: str = "systems") -> list
                 f"Invalid C++ DOCX document structure: {stem}")
         require("SharpChecker" in text and all(count in text for count in counts),
                 f"Key bounded achievements missing: {stem}")
+        if profile_key == "general":
+            require("LanguagePlan" in text and "PlanFuzz" in text and "LLVM" in text,
+                    f"Compiler Infrastructure architectural evidence missing: {stem}")
+            require("1324" in "".join(c for c in text if c.isdigit()) or "1324" in text.replace(",", "").replace(" ", ""),
+                    f"Missing bounded 1324-manifest claim: {stem}")
         if profile_key == "program_analysis":
             require("Roslyn" in text and "fixed-point" in text.lower()
                     and "18/18" in text and "29/29" in text,

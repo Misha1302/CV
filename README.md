@@ -120,6 +120,33 @@ these do not prove arbitrary program soundness, production integration or speedu
 The PS-form extended smoke run of 907/912 is recorded separately, with
 five conservative `maybe` returns where the oracle expected `no`.
 
+## Compiler Infrastructure / Language Tooling — ATS pair (13 November 2026)
+
+The canonical infrastructure CV uses `data/site.json -> profiles.general`, with
+editorial HTML at [RU](ru.html) and [EN](en.html). Its one-column ATS-compatible
+PDF, DOCX and Markdown are generated from that same canonical profile,
+without editing any exported artifacts directly.
+
+- RU: [PDF](pdf/Mikhail_Razakov_Compiler_Infrastructure_RU.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Compiler_Infrastructure_RU.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Compiler_Infrastructure_RU.md)
+- EN: [PDF](pdf/Mikhail_Razakov_Compiler_Infrastructure_EN.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Compiler_Infrastructure_EN.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Compiler_Infrastructure_EN.md)
+
+Build only this specialist with
+`python tools/build_cv.py --output-dir pdf --profile general`.
+Then regenerate the site manifest with `python tools/build_site.py --manifest`
+and run `python tools/validate_cv.py --pdf-dir pdf`.
+
+Evidence limits: UniversalToolchain's checked-in test manifest declares
+1,324 expected passes; this is not presented as a freshly rerun whole-suite
+result. The LLVM Global IV result is tied to a fixed LLVM 22.1.8 commit and
+29/29 selected tests. PlanFuzz is an experimental UT subsystem with replay
+and counterexample reduction, not a complete compiler fuzzer or an
+independent proof of compiler correctness. The Rust x86-64 codegen is
+experimental and separate from LLVM/UT production integration.
+
 ## CV release — 2026-11-03
 
 Send-ready, one-page C#/.NET resumes (Russian): **[choose the right version](releases/2026-11-03/README.md)**.

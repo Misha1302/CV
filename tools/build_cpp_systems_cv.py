@@ -1,4 +1,4 @@
-"""Canonical one-column ATS exports for C++ Systems and Program Analysis.
+"""Canonical one-column ATS exports for selected specialized CV profiles.
 
 The separate website retains its editorial layout. PDF, DOCX and Markdown
 are rendered from data/site.json -> specialized profile copy.
@@ -22,6 +22,7 @@ PROFILE_KEY = "systems"
 SUPPORTED_PROFILES = {
     "systems": (["globaliv", "psform", "codegen"], "systems_project_copy"),
     "program_analysis": (["deref", "globaliv", "psform"], "project_summaries"),
+    "general": (["wist", "globaliv", "codegen"], "project_summaries"),
 }
 
 
@@ -44,7 +45,8 @@ def snapshot(data: dict[str, Any], lang: str, profile_key: str = PROFILE_KEY) ->
         item = project_copy[project_id]
         if not all(item.get(key) for key in ("solution", "result", "source_url")):
             raise ValueError(f"Unclear project proof in {lang}: {project_id}")
-    if len(profile["experience"]) != 2 or len(profile["recognition"]) != 3:
+    expected_recognition = 4 if profile_key == "general" else 3
+    if len(profile["experience"]) != 2 or len(profile["recognition"]) != expected_recognition:
         raise ValueError(f"Missing owned experience/recognition for {profile_key} CV")
     return {
         "profile_key": profile_key,
@@ -309,9 +311,11 @@ def save_docx(data: dict[str, Any], lang: str, path: Path, profile_key: str = PR
             hyperlink(q, labels["recording"], item[3])
 
     doc.core_properties.title = p["role"]
-    doc.core_properties.subject = ("C++ / Systems Engineer CV"
-                                   if profile_key == "systems"
-                                   else "Static Analysis / Program Analysis Engineer CV")
+    doc.core_properties.subject = {
+        "systems": "C++ / Systems Engineer CV",
+        "program_analysis": "Static Analysis / Program Analysis Engineer CV",
+        "general": "Compiler Infrastructure / Language Tooling Engineer CV",
+    }[profile_key]
     doc.core_properties.author = m["name"]
     doc.save(path)
     normalize_docx_container(path)
