@@ -1,48 +1,48 @@
 # Mikhail Razakov
 
-**SYSTEMS / PLATFORM ENGINEER · .NET**
+**SOFTWARE ENGINEER · .NET SYSTEMS & RELIABILITY**
 
 Moscow / remote · [razakov.mikhail@outlook.com](mailto:razakov.mikhail@outlook.com) · [Telegram](https://t.me/Micodiy) · [GitHub](https://github.com/Misha1302)
 
 ## Profile
 
-I design and build .NET services and infrastructure with explicit module boundaries and recoverable, testable state. VpnMediator handles duplicate payment events and access recovery; UniversalToolchain checks dependencies before execution; in the LMS I own architectural invariants and review. Approx. one year of aggregate commercial development across a mixed stack.
+I build .NET services with explicit state boundaries and recovery paths. VpnMediator handles duplicate payment events, access reconciliation and deployment rollback; UniversalToolchain validates module contracts before execution. I built the client licensing API KeyAuth and design access-control boundaries for TuringSquare-LMS.
 
 ## Technical skills
 
-- C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await, Git/Linux
-- Idempotency, payment/access state, reconciliation, recovery/rollback; typed module contracts, dependency graphs, invariant checks
+- Stack: C#, .NET, ASP.NET Core, EF Core, REST/OpenAPI, SQL, PostgreSQL, SQLite; Python, C++/LLVM; Git, Linux, Docker Compose, systemd
+- Engineering: idempotency, state machines, background workers, state reconciliation and recovery, coordinated backup/rollback, contract validation and regression testing
 
 ## Experience
 
+**Client software development · C#/.NET and Unity · individual projects, 2023–2024**
+
+Built KeyAuth, an ASP.NET Core license registration and activation API using EF Core/PostgreSQL, with Unity client integration. Delivered the components and supported authentication and compatibility with older clients.
+
 **ISP RAS · SharpChecker · Oct 2026 — present**
 
-Symbolic computation and structured C# code/declaration metadata for static analysis and AI-assisted defect recognition.
+Working on symbolic computation for C#/.NET static program analysis.
 
-**MCST · compiler engineering internship · Jul — Aug 2026**
+**MCST · Compiler Engineering Internship · Jul — Aug 2026**
 
-C++23/LLVM 22: experimental LICM with conservative legality checks; Python differential checks of before/after behavior.
-
-**Commercial development · C#/.NET & adjacent technologies · approx. 1 year total**
-
-Application and backend work with C#/.NET, Unity, ASP.NET Core, SQL/PostgreSQL, file I/O and servers. Duration is candidate-reported.
+C++23/LLVM 22: experimental LICM, conservative legality checks and Python-based before/after behavior comparison.
 
 ## Projects
 
-**[UniversalToolchain · module contracts before runtime](https://github.com/Misha1302/UniversalToolchain)**
+**[VpnMediator · payment and access consistency](https://misha1302.github.io/CV/cases/en-vpn.html)**
 
-Module contracts and dependencies form a validated LanguagePlan before runtime. Separate interpreter/CIL routes allow execution results to be compared instead of relying on module registration order.
+Two-service .NET/Python system with separate payment/access state, idempotent duplicate handling and reconciliation. The updater coordinates backups of two SQLite databases, switches releases and rolls back services after failed health checks.
 
-**[VpnMediator · payment/access consistency](https://misha1302.github.io/CV/cases/en-vpn.html)**
+**[UniversalToolchain · validated module contracts](https://github.com/Misha1302/UniversalToolchain)**
 
-Payment events and access entitlements are separate. Duplicate events are processed idempotently, provider state is reconciled, and operational scripts provide backup, health gates and rollback.
+Building modular language infrastructure: LanguagePlan validates module composition, execution routes and ordering constraints before runtime. Interpreter and CIL backends are checked with execution-parity tests.
 
-**[TuringSquare-LMS · access control and implementation review](https://misha1302.github.io/CV/cases/en-lms.html)**
+**[TuringSquare-LMS · learning platform](https://misha1302.github.io/CV/cases/en-lms.html)**
 
-Role/course-access invariants and acceptance criteria for T-Bank sandbox payments. The project is in development; my focus is architecture decisions and review of agent-produced implementation.
+I design role/course/material-access rules and review agent-produced implementation. The platform has approximately 40 users by my account (November 2026). Full task publication and judging are not yet production-verified.
 
 ## Education and recognition
 
-HSE University — Software Engineering.
+HSE University, Faculty of Computer Science — Software Engineering, since 2026.
 
-MEPhI Junior 2026, 1st-degree diploma; LangDev 2026 UniversalToolchain talk.
+First-degree diploma, MEPhI Junior competition (2026); presented UniversalToolchain at LangDev 2026 — [Official recording](https://youtu.be/2jqmw-1c7kE)

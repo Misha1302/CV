@@ -11,7 +11,9 @@
     "PRIOR_REPO_FORENSICS": "Claim established by a prior repository-forensics pass against historical code/commits; retain provenance and re-audit before making it a headline if the exact date matters.",
     "INFERENCE": "Analyst interpretation. Never present as a raw fact.",
     "NEEDS_VERIFICATION": "Potentially useful claim with insufficient evidence for strong resume wording.",
-    "PUBLIC_SELF_AUTHORED": "Public material authored by the user (article/profile/project description). Good evidence of authorship/communication, not independent validation of stronger claims."
+    "PUBLIC_SELF_AUTHORED": "Public material authored by the user (article/profile/project description). Good evidence of authorship/communication, not independent validation of stronger claims.",
+    "LOCAL_REPRODUCED": "Clean source snapshot built and tested locally on the stated date and toolchain; only the explicitly described cases and checks passed. Not independent production validation.",
+    "PRIVATE_LOCAL_REPRODUCED": "Private local research files were inspected and their structural validators rerun on the authorized machine on the stated date. The source and raw data are not public; the checks are not independently reproducible or evidence of predictive/financial effectiveness."
   },
   "canonical_positioning": {
     "primary": {
@@ -41,7 +43,8 @@
       "evidence_level": [
         "USER_ATTESTED",
         "PUBLIC_REPO_DIRECT",
-        "PRIVATE_DOCUMENT"
+        "PRIVATE_DOCUMENT",
+        "LOCAL_REPRODUCED"
       ],
       "public_sources": [
         "https://github.com/Misha1302/ps_form_analizer",
@@ -83,6 +86,14 @@
         "attribution_boundary": "The organizer's group email identifies the sole top scorer by school/location, while the user's reply identifies himself as having scored 5.0. Do not represent the broadcast as a publicly named personal diploma.",
         "denominator_boundary": "49 solutions submitted; separate count of 87 initial applicants and 6 eventual internship places is not the denominator for this technical ranking.",
         "stage_boundary": "A technical selection result, not an internship-project performance metric."
+      },
+      "graph_fixture_replay_2026_11_13": {
+        "source_commit": "1b840dae228dc10008e5b49f3bec1940be5e8c30",
+        "date": "2026-11-13",
+        "observed": "14/14 fixture tests passed",
+        "environment": "C++23, GCC15.3, disposable checkout; CMake configured with clang-tidy explicitly disabled after initial build timeout",
+        "cases": "RPO/cycle, Dijkstra, Dinic and Tarjan SCC",
+        "boundary": "Local fixed input-output suite only; first build with clang-tidy was interrupted by timeout; no complete lint or industrial acceptance."
       }
     },
     {
@@ -200,7 +211,8 @@
       "name": "LLVM Interprocedural Global IV Optimization",
       "time": "2026",
       "evidence_level": [
-        "PUBLIC_REPO_DIRECT"
+        "PUBLIC_REPO_DIRECT",
+        "LOCAL_REPRODUCED"
       ],
       "public_sources": [
         "https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization"
@@ -231,7 +243,16 @@
         "MCST internship project",
         "production LLVM optimization",
         "general ScalarEvolution replacement"
-      ]
+      ],
+      "regression_replay_2026_11_13": {
+        "source_commit": "0d759dcf3af7a5652432eb0fea5b9ca27ec88f74",
+        "date": "2026-11-13",
+        "environment": "LLVM 22.1.8, clean git-archive source, freshly compiled GlobalIVPass.so on Fedora",
+        "observed": "passed=29 failed=0 warnings=0",
+        "checks": "LLVM IR verification, structural expectations, second-pass idempotence; executable before/after equivalence for selected cases",
+        "provenance": "Local reproduced verification, with separate dated November 12 dossier replay",
+        "limitation": "Selected self-authored suite only, not general correctness, production LLVM/MCST integration, performance speedup or a formal proof"
+      }
     },
     {
       "id": "project_x86_codegen",
@@ -239,7 +260,8 @@
       "name": "x86-64 Codegen & Register Allocation Lab",
       "time": "2026",
       "evidence_level": [
-        "PUBLIC_REPO_DIRECT"
+        "PUBLIC_REPO_DIRECT",
+        "LOCAL_REPRODUCED"
       ],
       "public_sources": [
         "https://github.com/Misha1302/x86-64-codegen-ra-playground"
@@ -272,7 +294,54 @@
         "production backend",
         "security sandbox",
         "complete AVX backend"
-      ]
+      ],
+      "local_replay_2026_11_14": {
+        "source_commit": "dd0693c3af06dc9a3612b68ecb94f9637d6b0514",
+        "date": "2026-11-14",
+        "environment": "Fedora Linux x86-64, Rust 1.93.1, clean git archive of pinned public commit",
+        "debug_command": "cargo test --workspace --all-targets --offline",
+        "debug_observed": "42 passed, 0 failed, 0 ignored across 28 test report groups",
+        "format_command": "cargo fmt --all -- --check",
+        "format_observed": "PASS",
+        "clippy_command": "cargo clippy --workspace --all-targets --offline -- -D warnings",
+        "clippy_observed": "PASS",
+        "cli_scenarios": [
+          {
+            "example": "basicblock",
+            "allocator": "linear-scan",
+            "regs": 0,
+            "differential": "37 passed"
+          },
+          {
+            "example": "trace",
+            "allocator": "sim-anneal",
+            "regs": 2,
+            "differential": "49 passed"
+          },
+          {
+            "example": "loop-sum",
+            "allocator": "linear-scan",
+            "regs": 1,
+            "differential": "44 passed"
+          },
+          {
+            "example": "phi-swap-loop",
+            "allocator": "sim-anneal",
+            "regs": 2,
+            "differential": "34 passed"
+          }
+        ],
+        "release_command": "cargo test --release --workspace --all-targets --offline",
+        "release_status": "NOT_VERIFIED; dependency archive build failed with Disk quota exceeded (os error 122) before running release tests",
+        "public_ci": {
+          "run_id": 34896109843,
+          "url": "https://github.com/Misha1302/x86-64-codegen-ra-playground/actions/runs/34896109843",
+          "head_sha": "dd0693c3af06dc9a3612b68ecb94f9637d6b0514",
+          "conclusion": "success",
+          "created_at": "2026-09-14T20:58:41Z"
+        },
+        "boundary": "Selected tests and scenarios for a restricted IR and test environment; no full x86-64 ISA, production LLVM target backend, formal correctness or security sandbox. Release tests were not verified locally; GitHub CI belongs to pinned revision only."
+      }
     },
     {
       "id": "project_ps_form",
@@ -281,7 +350,8 @@
       "time": "2026",
       "evidence_level": [
         "PUBLIC_REPO_DIRECT",
-        "PUBLIC_REPO_ATTRIBUTED"
+        "PUBLIC_REPO_ATTRIBUTED",
+        "LOCAL_REPRODUCED"
       ],
       "public_sources": [
         "https://github.com/Misha1302/ps_form_analizer"
@@ -313,7 +383,16 @@
         "quantdev",
         "quant"
       ],
-      "resume_priority": "HIGH"
+      "resume_priority": "HIGH",
+      "local_smoke_replay_2026_11_13": {
+        "source_commit": "758001fdadba56b4f2bd7601464bd6fe0cd2b388",
+        "build": "GCC 15.3.1 -O2 -std=c17, standalone command-line solver",
+        "command": "python3 psf_total_harness_v3.py ./psf --profile smoke --random-count 10 --strict-output --validate-contract fail --progress off",
+        "date": "2026-11-13",
+        "observed": "912 cases, 907 passed, 5 failed (wrong-answer oracle expects no, solver returned maybe)",
+        "failure_scope": "Five extended generator cases for cubic differences modulo 9. Returned maybe is conservative/incomplete, rather than a false proof of independence or overlap.",
+        "boundary": "Not the 104 official MCST tests; local extended smoke suite does not all pass. No general completeness/production correctness claim."
+      }
     },
     {
       "id": "project_deref_after_null",
@@ -321,7 +400,8 @@
       "name": "DerefAfterNullAnalyzer",
       "time": "2026",
       "evidence_level": [
-        "PUBLIC_REPO_DIRECT"
+        "PUBLIC_REPO_DIRECT",
+        "LOCAL_REPRODUCED"
       ],
       "public_sources": [
         "https://github.com/Misha1302/DerefAfterNullAnalyzer"
@@ -346,7 +426,17 @@
         "program_analysis",
         "compiler"
       ],
-      "resume_priority": "HIGH"
+      "resume_priority": "HIGH",
+      "regression_replay_2026_11_13": {
+        "source_commit": "a18102e988dbf854e67b356a44e1d81caba5b080",
+        "date": "2026-11-13",
+        "environment": ".NET 10, clean git-archive source, dotnet test on Fedora",
+        "observed": "Passed: 18; Failed: 0; Skipped: 0",
+        "checks": "Roslyn analyzer tests for null checks, branches, loops, joins, assignments and safe/unsafe dereferences",
+        "provenance": "Local reproduced test run; prior dossier replay on 2026-11-12",
+        "limitation": "Test-suite pass is not integration into SharpChecker, industrial deployment, soundness for arbitrary C#, or comprehensive coverage",
+        "dependency_note": "Test dependency System.Security.Cryptography.Pkcs 9.0.6 emits NU1902 and NU1903; maintenance is separate"
+      }
     },
     {
       "id": "project_vpnmediator",
@@ -390,7 +480,8 @@
       "name": "CompilationLabLMS",
       "time": "2026",
       "evidence_level": [
-        "PUBLIC_REPO_DIRECT"
+        "PUBLIC_REPO_DIRECT",
+        "USER_ATTESTED"
       ],
       "public_sources": [
         "https://github.com/Misha1302/CompilationLabLMS"
@@ -413,7 +504,19 @@
         "architecture",
         "backend"
       ],
-      "resume_priority": "MEDIUM"
+      "resume_priority": "MEDIUM",
+      "user_attested_current_users": {
+        "as_of": "2026-11-13",
+        "reported_count": "approximately 40",
+        "subject": "TuringSquare-LMS users",
+        "provenance": "Candidate's direct statement, 13 November 2026; not verified against database, server analytics or service logs",
+        "safe_ru": "По данным автора, у TuringSquare-LMS примерно 40 пользователей по состоянию на ноябрь 2026.",
+        "safe_en": "According to the candidate, TuringSquare-LMS has approximately 40 users as of November 2026.",
+        "boundary": "No independently measured registered, active, monthly active, paying or concurrent user totals. Does not establish full production readiness or the published Judge workflow."
+      },
+      "gaps": [
+        "Independent privacy-safe aggregate evidence for the approximate 40-user claim and clearly defined metric (registered vs active); production Judge publication is separately gated."
+      ]
     },
     {
       "id": "teaching_nasm_course",
@@ -1336,6 +1439,159 @@
       "gaps": [
         "Independent work dates and employer references not supplied."
       ]
+    },
+    {
+      "id": "project_keyauth_2023_2024",
+      "category": "project",
+      "name": "KeyAuth — client licensing API and Unity integration",
+      "time": "2023-11..2024-04 (source history and client support)",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT",
+        "PRIVATE_DOCUMENT",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/KeyAuth",
+        "https://github.com/Misha1302/LoginAsset"
+      ],
+      "claims": {
+        "safe_ru": "Разработал исторический ASP.NET Core API регистрации и активации лицензий с EF Core/PostgreSQL и Unity-клиентские компоненты; приватная переписка подтверждает передачу и сопровождение клиентской авторизации в 2024 году.",
+        "safe_en": "Built an ASP.NET Core license registration/activation API with EF Core/PostgreSQL and Unity client components; dated private correspondence supports delivery and client authentication support in 2024."
+      },
+      "strongest_evidence": [
+        "Public source and commits date separate Unity client prototype and ASP.NET Core server to November 2023.",
+        "Private correspondence from February–April 2024 supports component handoff, ongoing authorization support, and compatibility troubleshooting.",
+        "Client anti-piracy outcome is only candidate-attested as of November 12, 2026 and has no independent usage or infringement statistics."
+      ],
+      "recruiter_signals": [
+        "client-facing backend implementation",
+        "ASP.NET Core and PostgreSQL",
+        "API/client compatibility",
+        "post-delivery support"
+      ],
+      "role_fit": [
+        "backend",
+        "systems"
+      ],
+      "resume_priority": "HIGH",
+      "boundaries": [
+        "Historical public source is not proved to be the deployed April 2024 server build; no security audit is claimed.",
+        "The candidate-reported end of illicit copying is excluded from the one-page ATS CV without independent verification.",
+        "Do not attribute entire Unity client games to this license API implementation or imply uninterrupted full-time employment."
+      ]
+    },
+    {
+      "id": "experience_paid_unity_2023",
+      "category": "experience",
+      "name": "Paid Unity interactive application delivery (client project)",
+      "time": "2023 (individual paid client delivery)",
+      "evidence_level": [
+        "PRIVATE_DOCUMENT",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [],
+      "claims": {
+        "safe_ru": "В 2023 году выполнил отдельный платный заказ на интерактивное Unity-приложение с отдельным экраном; переписка содержит передачу исправленной сборки и согласование оплаты.",
+        "safe_en": "Delivered an individual paid Unity interactive-application project with a separate display in 2023; private correspondence includes revised build handoff and payment acknowledgement."
+      },
+      "strongest_evidence": [
+        "Dated private correspondence supports client request, revised delivery and acknowledgment of payment in August 2023."
+      ],
+      "recruiter_signals": [
+        "client delivery",
+        "commercial software experience predating 2026",
+        "Unity/C#"
+      ],
+      "role_fit": [
+        "backend",
+        "general"
+      ],
+      "resume_priority": "SECONDARY",
+      "boundaries": [
+        "A customer message is not an independent bank record; no fee amount is asserted.",
+        "A 2023 paid project does not prove uninterrupted full-time work for several years.",
+        "Client identity and private messages are excluded from public CV artifacts."
+      ]
+    },
+    {
+      "id": "research_channel_tracker_benchmark",
+      "category": "research_project",
+      "name": "Simple Parallel Channel Tracker — XAGUSD OHLC benchmark",
+      "time": "2026-09-17, structural replay 2026-11-14",
+      "evidence_level": [
+        "PRIVATE_LOCAL_REPRODUCED",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [],
+      "source_visibility": "private_local_only__public_cv_uses_aggregate_nonconfidential_description",
+      "claims": {
+        "safe_ru": "Детерминированный Python-пакет обработки XAGUSD OHLC с 10 таймфреймами, 31 эвристически размеченным benchmark-case, 6 вложенными парами и 3 переходами old/break/new; структурный валидатор завершился VALIDATION_OK.",
+        "safe_en": "A deterministic Python research package over XAGUSD OHLC with 10 timeframes, 31 heuristic machine-labeled benchmark cases, six nested pairs and three channel-successor sequences; structural validator returned VALIDATION_OK."
+      },
+      "checks": {
+        "date": "2026-11-14",
+        "source_snapshots_sha256": {
+          "README.md": "ca3ab565546e6f2c2a23776b7b2b9cfbfd0b5e453620fb165c5fddd6fc26c0d6",
+          "benchmark_builder": "63a0d71e3bc8447196827825ed2ce5afe42e3f13d6e0f87caea8d0760bfbf93b",
+          "benchmark_summary": "4c47b21b957ad67c95eda68bbd2007c30511ad4ee700321bc05f0f6413751daf"
+        },
+        "validator": "scripts/validate_benchmark.py",
+        "observed": "VALIDATION_OK; cases=31, positive=25 machine-labeled, negative=6, nested_pairs=6, successor_pairs=3; timeframes=10",
+        "source_rows": "179857 recent intraday rows and 3173 saved daily rows",
+        "boundary": "Structural validity only; 25 accepted labels are machine heuristic, not expert ground truth; 3M/6M/12M timeframes have insufficient long history for quality coverage."
+      },
+      "recruiter_signals": [
+        "time-series data engineering",
+        "Python NumPy/pandas/SciPy",
+        "deterministic dataset validation",
+        "financial OHLC workflow"
+      ],
+      "role_fit": [
+        "quantdev",
+        "quant"
+      ],
+      "resume_priority": "HIGH_FOR_QUANTDEV",
+      "boundaries": [
+        "Source, raw OHLC, private audio and potential client rules are not published in CV/GitHub.",
+        "No measured predictive accuracy, backtest profitability, execution simulation, transaction cost model, external user adoption or expert gold validation."
+      ]
+    },
+    {
+      "id": "research_channel_tracker_calibration",
+      "category": "research_project",
+      "name": "Simple Parallel Channel Tracker — blinded expert calibration package",
+      "time": "2026-09-17, structural replay 2026-11-14",
+      "evidence_level": [
+        "PRIVATE_LOCAL_REPRODUCED",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [],
+      "source_visibility": "private_local_only__no_source_data_published",
+      "claims": {
+        "safe_ru": "Подготовлен и структурно проверен blind-calibration интерфейс для 20 индивидуальных кейсов и 8 отношений (5 вложенных и 3 successor), включая 20 изображений; экспертная gold-разметка не собрана.",
+        "safe_en": "A blind-calibration interface structurally validated for 20 individual cases and eight relationships (five nested and three successor), with 20 images; no expert gold annotations have been collected."
+      },
+      "checks": {
+        "date": "2026-11-14",
+        "validator": "calibration/validate_pack.py",
+        "observed": "CALIBRATION_VALIDATION_OK; cases=20, relations=8, images=20",
+        "expert_gold": "NOT_COLLECTED; compiled gold folder absent",
+        "boundary": "The UI and export protocol exist and pass static validation, but no expert answers, precision/recall, prediction quality or profitable trading results were measured."
+      },
+      "recruiter_signals": [
+        "blind calibration UI",
+        "human-in-the-loop evaluation design",
+        "separation of bootstrap labels from expert truth"
+      ],
+      "role_fit": [
+        "quantdev",
+        "quant"
+      ],
+      "resume_priority": "HIGH_FOR_QUANTDEV",
+      "boundaries": [
+        "Validation covers structure and artifacts, not expert approval or model accuracy.",
+        "No raw data, original client materials, voice notes or proprietary strategy details are published."
+      ]
     }
   ],
   "skills": [
@@ -1679,6 +1935,8 @@
       "thesis": "Algorithmic and systems experimentation with exact/reference oracles, controlled corpora, deterministic replay, counterexamples and performance-aware implementations.",
       "top_assets": [
         "project_ps_form",
+        "research_channel_tracker_benchmark",
+        "research_channel_tracker_calibration",
         "research_contract_reverification",
         "research_planfuzz",
         "project_global_iv",
@@ -1691,7 +1949,7 @@
       ],
       "project_slots": [
         "project_ps_form",
-        "research_contract_reverification",
+        "research_channel_tracker_benchmark",
         "project_global_iv"
       ],
       "preserve_signal": [
@@ -1700,7 +1958,7 @@
         "algorithms",
         "C++/systems"
       ],
-      "avoid": "Do not imply finance/trading production experience."
+      "avoid": "Do not imply profitable trading, validated alpha, expert gold labels, financial production experience, or publication rights for the private tracker."
     }
   },
   "repository_triage": {

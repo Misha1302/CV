@@ -8,6 +8,7 @@ import fitz
 from weasyprint import HTML
 
 from build_site import ROOT, build_outputs, load_data, write_or_check
+from build_cpp_systems_cv import render_files as render_cpp_systems_files
 
 
 def validate_pdf(path: Path, expected_role: str, expected_projects: list[str], expected_education: str) -> dict[str, object]:
@@ -58,6 +59,7 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, default=ROOT / "pdf")
     parser.add_argument("--evidence-dir", type=Path)
     parser.add_argument("--report", type=Path)
+    parser.add_argument("--profile", help="Render only one specialist profile, leaving other generated PDFs unchanged")
     args = parser.parse_args()
 
     data = load_data()
@@ -66,14 +68,25 @@ def main() -> None:
     if args.evidence_dir:
         args.evidence_dir.mkdir(parents=True, exist_ok=True)
 
+    if args.profile and args.profile not in data["profiles"]:
+        parser.error(f"Unknown profile: {args.profile}")
     report = []
     for key in data["profile_order"]:
+        if args.profile and key != args.profile:
+            continue
         for lang in ("ru", "en"):
             profile = data["profiles"][key][lang]
             html_path = ROOT / profile["filename"]
             pdf_path = args.output_dir / profile["pdf"]
-            HTML(filename=str(html_path), base_url=str(ROOT)).write_pdf(str(pdf_path))
-            expected_titles = [data["projects"][project_id]["title"] for project_id in profile["project_ids"][:int(profile.get("print_project_limit", 3))]]
+            if key in ("systems", "program_analysis", "general", "compiler_backend", "quantdev", "quant"):
+                render_cpp_systems_files(data, lang, args.output_dir, profile_key=key)
+            else:
+                HTML(filename=str(html_path), base_url=str(ROOT)).write_pdf(str(pdf_path))
+            expected_titles = [
+                (data["projects"][project_id]["title"] if project_id in data["projects"]
+                 else profile.get("project_entries", {})[project_id]["title"])
+                for project_id in profile["project_ids"][:int(profile.get("print_project_limit", 3))]
+            ]
             result = validate_pdf(pdf_path, profile["role"], expected_titles, data["person"][f"education_{lang}"])
             if args.evidence_dir:
                 doc = fitz.open(pdf_path)
