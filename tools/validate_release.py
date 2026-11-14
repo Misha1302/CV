@@ -21,14 +21,41 @@ def main():
     out=args.output_dir or ROOT/site["application_cvs"]["release_dir"]
     kb=json.loads((ROOT/"knowledge/resume-evidence.json").read_text(encoding="utf-8"))
     ids={a["id"] for a in kb["assets"]}
-    report=[]
+    lead = site["application_cvs"]["variants"]["lead"]
+    for lang, qualifier in (("ru", "по моим данным"), ("en", "by my account")):
+        lms_rows = [p for p in lead[lang]["projects"] if p["id"] == "lms"]
+        require(len(lms_rows) == 1, f"Systems CV must retain one LMS project ({lang})")
+        lms_copy = lms_rows[0]["text"].lower()
+        require("40" in lms_copy and qualifier in lms_copy,
+                f"Systems LMS usage must be self-attributed and approximate ({lang})")
+    runtime = site["application_cvs"]["variants"]["runtime"]
     for lang in LANGS:
-        for ex in site["application_cvs"]["experience"][lang]:
-            require(bool(ex.get("evidence_refs")),f"missing experience evidence: {ex['id']}")
-            require(set(ex["evidence_refs"])<=ids,f"unknown experience evidence: {ex['id']}")
+        project_ids = [p["id"] for p in runtime[lang]["projects"]]
+        require(project_ids == ["wist", "globaliv", "deref", "codegen"],
+                f"Compiler resume project selection changed unexpectedly: {lang} {project_ids}")
+        global_iv = runtime[lang]["projects"][1]
+        require(global_iv["evidence_refs"] == ["project_global_iv"],
+                f"Independent Global IV project must not imply MCST internship delivery: {lang}")
+        for project_id, count in (("globaliv", "29/29"), ("deref", "18/18")):
+            project = next(p for p in runtime[lang]["projects"] if p["id"] == project_id)
+            require(count in project["text"], f"Compiler regression count missing: {lang} {project_id}")
+    require("achievement_mephi_junior_2025_2026" in
+            {a["id"] for a in kb["assets"]},
+            "Missing primary-grounded competition source")
+    report=[]
+    for kind in KINDS:
+        for lang in LANGS:
+            for ex in record(site,kind,lang)[1]:
+                require(bool(ex.get("evidence_refs")),f"missing experience evidence: {ex['id']}")
+                require(set(ex["evidence_refs"])<=ids,f"unknown experience evidence: {ex['id']}")
     for kind in KINDS:
         for lang in LANGS:
             cv,experiences,stem=record(site,kind,lang)
+            if kind=="lead":
+                old_stem=site["application_cvs"]["variants"][kind]["legacy_basename"][lang]
+                for extension in (".md",".docx",".pdf"):
+                    require((out/(old_stem+extension)).exists(),f"Legacy download missing: {old_stem+extension}")
+                    require((out/(old_stem+extension)).read_bytes()==(out/(stem+extension)).read_bytes(),f"Legacy alias stale: {old_stem+extension}")
             for proj in cv["projects"]:
                 require(proj["id"] in site["projects"],f"unknown project {proj['id']}")
                 require(bool(proj.get("evidence_refs")),f"missing project evidence {proj['id']}")
@@ -61,6 +88,15 @@ def main():
             require(sizes and min(sizes)>=8.3,f"PDF small fonts {stem}: {min(sizes) if sizes else '-'}")
             links=[x.get("uri") for x in page.get_links() if x.get("uri")]
             require(len(links)>=5,f"PDF clickable links missing {stem}")
+            for proj in cv["projects"]:
+                if proj.get("source_url"):
+                    require(proj["source_url"] in links,
+                            f"PDF is not linked to pinned project revision {stem}:{proj['id']}")
+                    require(proj["source_url"] in rel,
+                            f"DOCX is not linked to pinned project revision {stem}:{proj['id']}")
+            if cv.get("recognition_link"):
+                require(cv["recognition_link"]["url"] in links,f"PDF recording link missing: {stem}")
+                require(cv["recognition_link"]["url"] in rel,f"DOCX recording link missing: {stem}")
             fonts=d.get_page_fonts(0)
             require(fonts and any("DejaVu" in str(f) for f in fonts),f"Cyrillic-capable font not seen {stem}")
             report.append({"name":stem,"lang":lang,"pages":1,"chars":len(text),"min_font":round(min(sizes),2),"pdf_links":len(links),"docx":"valid","md":"synced"})
@@ -73,6 +109,10 @@ def main():
         for variant in report:
             for suffix in (".md",".docx",".pdf"):
                 require(variant["name"]+suffix in names,f"ZIP missing {variant['name']+suffix}")
+        for lang in LANGS:
+            stem=site["application_cvs"]["variants"]["lead"]["legacy_basename"][lang]
+            for suffix in (".md",".docx",".pdf"):
+                require(stem+suffix in names,f"ZIP missing legacy alias: {stem+suffix}")
         require("04_Evidence_Research_and_Review.md" not in names,"private research exposed in ZIP")
         require("MANIFEST.sha256" in names,"internal manifest not packaged")
     print(json.dumps({"status":"PASS","variants":report,"zip_entries":len(names),"evidence_assets":len(ids)},ensure_ascii=False,indent=2))

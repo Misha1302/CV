@@ -71,12 +71,193 @@ The checks enforce:
 - desktop, mobile, and JavaScript-disabled screenshot regression/smoke checks;
 - recursive SHA-256 manifest integrity.
 
+## C++ / Systems Engineer — specialized ATS resume (13 November 2026)
+
+The C++/LLVM-focused specialist route [RU](ru-cpp-systems.html) /
+[EN](en-cpp-systems.html) is authored in the single canonical
+`data/site.json -> profiles.systems` model. Its one-column, text-extractable
+A4 PDF is optimized for ATS; the editorial website remains available for
+direct technical outreach. Both languages have generated companion
+DOCX and Markdown exports in the `pdf/` directory:
+
+- RU: [PDF](pdf/Mikhail_Razakov_CPP_Systems_RU.pdf) ·
+  [DOCX](pdf/Mikhail_Razakov_CPP_Systems_RU.docx) ·
+  [Markdown](pdf/Mikhail_Razakov_CPP_Systems_RU.md)
+- EN: [PDF](pdf/Mikhail_Razakov_CPP_Systems_EN.pdf) ·
+  [DOCX](pdf/Mikhail_Razakov_CPP_Systems_EN.docx) ·
+  [Markdown](pdf/Mikhail_Razakov_CPP_Systems_EN.md)
+
+Rebuild using `python tools/build_cv.py --output-dir pdf`. Verify using
+`python tools/validate_cv.py --pdf-dir pdf`; this checks the C++ PDF reading
+order and the DOCX/Markdown synchronization as well as all existing profiles.
+The LLVM 29/29 and MCST graph 14/14 cases are local, version-scoped
+verification. An extended PS-form smoke suite passed 907/912 cases, with
+five conservative `maybe` answers where the oracle expected `no`; these
+are not the 104 official MCST selection cases.
+
+## Static Analysis / Program Analysis — ATS specialist (13 November 2026)
+
+The specialist route [RU](ru-program-analysis.html) / [EN](en-program-analysis.html)
+keeps the editorial HTML presentation while producing single-column, text-extractable
+A4 PDF, DOCX and Markdown from the canonical model
+`data/site.json -> profiles.program_analysis`.
+
+- RU: [PDF](pdf/Mikhail_Razakov_Program_Analysis_RU.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Program_Analysis_RU.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Program_Analysis_RU.md)
+- EN: [PDF](pdf/Mikhail_Razakov_Program_Analysis_EN.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Program_Analysis_EN.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Program_Analysis_EN.md)
+
+Generate only this specialist without changing unrelated PDFs:
+`python tools/build_cv.py --output-dir pdf --profile program_analysis`.
+
+Checks: `python tools/validate_cv.py --pdf-dir pdf` verifies ATS reading order,
+pinned project links and synchronized DOCX/MD alongside the C++ specialist.
+DerefAfterNullAnalyzer is a separate public project from ISP RAS SharpChecker.
+The reproducible pinned runs are 18/18 Roslyn and 29/29 LLVM 22.1.8;
+these do not prove arbitrary program soundness, production integration or speedup.
+The PS-form extended smoke run of 907/912 is recorded separately, with
+five conservative `maybe` returns where the oracle expected `no`.
+
+## Compiler Infrastructure / Language Tooling — ATS pair (13 November 2026)
+
+The canonical infrastructure CV uses `data/site.json -> profiles.general`, with
+editorial HTML at [RU](ru.html) and [EN](en.html). Its one-column ATS-compatible
+PDF, DOCX and Markdown are generated from that same canonical profile,
+without editing any exported artifacts directly.
+
+- RU: [PDF](pdf/Mikhail_Razakov_Compiler_Infrastructure_RU.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Compiler_Infrastructure_RU.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Compiler_Infrastructure_RU.md)
+- EN: [PDF](pdf/Mikhail_Razakov_Compiler_Infrastructure_EN.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Compiler_Infrastructure_EN.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Compiler_Infrastructure_EN.md)
+
+Build only this specialist with
+`python tools/build_cv.py --output-dir pdf --profile general`.
+Then regenerate the site manifest with `python tools/build_site.py --manifest`
+and run `python tools/validate_cv.py --pdf-dir pdf`.
+
+Evidence limits: UniversalToolchain's checked-in test manifest declares
+1,324 expected passes; this is not presented as a freshly rerun whole-suite
+result. The LLVM Global IV result is tied to a fixed LLVM 22.1.8 commit and
+29/29 selected tests. PlanFuzz is an experimental UT subsystem with replay
+and counterexample reduction, not a complete compiler fuzzer or an
+independent proof of compiler correctness. The Rust x86-64 codegen is
+experimental and separate from LLVM/UT production integration.
+
+## Compiler Backend / Code Generation — ATS specialist (14 November 2026)
+
+The specialist [RU](ru-compiler-backend.html) and
+[EN](en-compiler-backend.html) pages are generated from
+`data/site.json -> profiles.compiler_backend`. The editorial HTML
+remains separate from the one-column ATS PDF, DOCX and Markdown exports:
+
+- RU: [PDF](pdf/Mikhail_Razakov_Compiler_Backend_RU.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Compiler_Backend_RU.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Compiler_Backend_RU.md)
+- EN: [PDF](pdf/Mikhail_Razakov_Compiler_Backend_EN.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Compiler_Backend_EN.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Compiler_Backend_EN.md)
+
+Regenerate without touching other specialty PDF files:
+
+```bash
+python tools/build_site.py
+python tools/build_cv.py --output-dir pdf --profile compiler_backend
+python tools/build_site.py --manifest
+python tools/validate_cv.py --pdf-dir pdf
+```
+
+The Rust backend's local verification is pinned to commit
+`dd0693c3af06dc9a3612b68ecb94f9637d6b0514` (42/42 debug
+tests, fmt and strict Clippy on 2026-11-14). The release-test attempt
+did not reach testing because the local build exceeded disk quota.
+GitHub Actions run 34896109843 independently reports success for the
+same commit on 2026-09-14. This is a restricted i64 IR playground,
+not a full x86-64 target backend or a security sandbox. The separate
+LLVM IR Global IV project passed 29/29 selected tests on pinned LLVM
+22.1.8; the UT 1324 figure refers to the checked-in test manifest,
+not a freshly rerun entire test suite.
+
+## Quant Developer / Research Software Engineer — ATS specialist (14 November 2026)
+
+The [Russian](ru-quant-dev.html) and [English](en-quant-dev.html) Quant Developer
+profile is authored in data/site.json -> profiles.quantdev, separately from
+profiles.quant (Quantitative Research Candidate). It generates an ATS-friendly,
+single-column, one-page A4 PDF and companion editable DOCX and Markdown.
+
+- RU: [PDF](pdf/Mikhail_Razakov_Quant_Developer_RU.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Quant_Developer_RU.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Quant_Developer_RU.md)
+- EN: [PDF](pdf/Mikhail_Razakov_Quant_Developer_EN.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Quant_Developer_EN.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Quant_Developer_EN.md)
+
+Run the profile-scoped renderer and validators:
+
+    python tools/build_site.py
+    python tools/build_cv.py --output-dir pdf --profile quantdev
+    python tools/build_site.py --manifest
+    python tools/validate_cv.py --pdf-dir pdf
+    python tools/validate_resume_knowledge.py
+
+The financial research example Simple Parallel Channel Tracker is **private
+and unpublished**. Only a brief evidence-bounded textual summary appears
+in the public CV. Do not add its local source path, raw OHLC files, audio
+notes, methodology, input materials or a fake download/case link to the
+public GitHub repo. A separate public project case requires verifying rights
+to disclose its contents; approval of CV copy is not approval of raw-source
+publication.
+
+On 14 November the authorized local private structural validators reported:
+benchmark 31 machine-labeled cases over ten timeframes (six nested and three
+successor relationships), and calibration pack 20 individual cases plus eight
+relationships. Neither test implies expert-labeled gold data, a validated
+market signal, profitability, Sharpe, backtesting performance or user adoption.
+The separate PS-form extended smoke suite had 907/912 cases pass, with five
+conservative maybe outcomes where the oracle expected no. LLVM Global IV's
+29/29 regressions are tied to its pinned LLVM 22.1.8 source.
+
+## Quantitative Research Candidate — ATS pair (14 November 2026)
+
+Quant Research is a separate role from Quant Developer. Canonical source is
+`data/site.json -> profiles.quant`, with existing editorial
+[RU](ru-quant.html) / [EN](en-quant.html) pages, and one-column ATS exports:
+
+- RU: [PDF](pdf/Mikhail_Razakov_Quant_Research_RU.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Quant_Research_RU.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Quant_Research_RU.md)
+- EN: [PDF](pdf/Mikhail_Razakov_Quant_Research_EN.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Quant_Research_EN.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Quant_Research_EN.md)
+
+Rebuild only this pair:
+
+    python tools/build_site.py
+    python tools/build_cv.py --output-dir pdf --profile quant
+    python tools/build_site.py --manifest
+    python tools/validate_cv.py --pdf-dir pdf
+
+Main examples: private Simple Parallel Channel Tracker (XAGUSD benchmark
+and *uncompleted* expert blind calibration), public UniversalToolchain
+contract-guided reverification experiment, and public PS-form exact
+supported-case reasoning. The financial project's 31 examples were
+machine-labeled retrospectively and include future-outcome-based case
+selection: they are not independent out-of-sample predictions or proof
+of financial returns. The 20+8 calibration pack has no collected expert
+gold labels. The compiler experiments are not financial-market tests.
+Source, raw OHLC, client materials, voice recordings and private strategy
+details are not published; an independent rights/disclosure check would
+be required before creating a public case page.
+
 ## CV release — 2026-11-03
 
 Send-ready, one-page C#/.NET resumes (Russian): **[choose the right version](releases/2026-11-03/README.md)**.
 
 - [Backend / ATS PDF](releases/2026-11-03/01_Backend_ATS.pdf) — default for HR applications.
-- [Tech Lead PDF](releases/2026-11-03/02_Tech_Lead.pdf) — for direct engineering outreach.
+- [Systems / Reliability PDF](releases/2026-11-03/02_Systems_Platform.pdf) — for direct engineering outreach (legacy 02_Tech_Lead link preserved).
 - [Runtime / Compiler PDF](releases/2026-11-03/03_Runtime_Compiler.pdf) — for systems and compiler teams.
 - [Full package ZIP](releases/2026-11-03/Mikhail_Razakov_CV_Complete_Package_2026-11-03.zip) — PDFs, editable DOCX, Markdown, evidence review and outreach texts.
 
@@ -106,8 +287,8 @@ data/site.json application_cvs variant records as PDF/DOCX/Markdown.
 | Target | Russian website | English website |
 | --- | --- | --- |
 | C#/.NET Backend / ATS | [RU](ru-backend-ats.html) | [EN](en-backend-ats.html) |
-| Backend / Engineering Lead | [RU](ru-tech-lead.html) | [EN](en-tech-lead.html) |
-| Runtime / Compilers / Performance | [RU](ru-runtime-compiler.html) | [EN](en-runtime-compiler.html) |
+| Systems / Reliability | [RU](ru-systems-platform.html) | [EN](en-systems-platform.html) |
+| Compiler / Runtime / Program Analysis | [RU](ru-runtime-compiler.html) | [EN](en-runtime-compiler.html) |
 
 Each page contains the full CV profile, all three professional experience rows,
 all variant-specific technical skills and project claims, detailed problem/approach/
@@ -133,8 +314,8 @@ bounded by knowledge/resume-evidence.json.
 
 The existing November 3 release is retargeted: **02 Systems / Platform** and **03 Compiler / Runtime / Performance**. Legacy filenames and page URLs are preserved for previously shared links; visible headings and role selectors are updated. 01 Backend ATS remains unchanged.
 
-- Systems / Platform: [RU](ru-tech-lead.html) / [EN](en-tech-lead.html)
-- Compiler / Runtime / Performance: [RU](ru-runtime-compiler.html) / [EN](en-runtime-compiler.html)
+- Systems / Reliability: [RU](ru-systems-platform.html) / [EN](en-systems-platform.html) (legacy Tech Lead URLs retained)
+- Compiler / Runtime / Program Analysis: [RU](ru-runtime-compiler.html) / [EN](en-runtime-compiler.html)
 - [Independent review and measurement roadmap](reviews/PERFORMANCE_SYSTEMS_CV_REVIEW_2026-11-07.md)
 
 Application CVs and generated HTML, DOCX, PDF and Markdown are all owned by data/site.json, with claim boundaries in knowledge/resume-evidence.json. Never hand-edit generated outputs.
