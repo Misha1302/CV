@@ -945,152 +945,242 @@
       "ru": {
         "filename": "ru-quant.html",
         "pdf": "Mikhail_Razakov_Quant_Research_RU.pdf",
-        "title": "Михаил Разаков — Quantitative Research Candidate | C++ · Python",
-        "role": "Quantitative Research Candidate | C++ · Python",
-        "brand": "C++ · Python · controlled experiments · algorithms",
-        "eyebrow": "Controlled experiments · exact oracles · алгоритмическое исследование",
-        "summary": "Инженер с профессиональным опытом разработки компиляторов и практикой C++/Python. Проектирую контролируемые эксперименты, эталонные и точные проверки, randomized/metamorphic тесты и воспроизводимые исследования контрпримеров; основная доказательная база — алгоритмы, анализ программ и systems research.",
-        "description": "Quantitative Research Candidate Михаил Разаков: C++, Python, controlled experiments, exact/reference oracles, randomized/metamorphic validation и алгоритмическое исследование.",
+        "title": "Михаил Разаков — Quantitative Research Candidate | Python · C++ · Time-Series Research",
+        "role": "Quantitative Research Candidate — Python · C++ · Time-Series Research",
+        "brand": "Python · C++ · финансовые данные · эксперименты",
+        "eyebrow": "Time-series research · controlled experiments · exact oracles",
+        "summary": "Занимаюсь алгоритмическими исследованиями и воспроизводимой экспериментальной проверкой на Python и C++. Подготовил исследовательский XAGUSD OHLC benchmark и интерфейс слепой калибровки ценовых каналов. В других проектах сравниваю альтернативные политики проверки на зафиксированных наборах ошибок и контрольных случаях. В ИСП РАН работаю над символьными вычислениями; ранее проходил стажировку по C++/LLVM в МЦСТ. Финансовая прогностическая эффективность пока не установлена.",
+        "description": "Исследовательское ПО для XAGUSD OHLC, воспроизводимые эксперименты, математические тестовые оракулы, Python/NumPy/pandas/SciPy и C++.",
         "proofs": [
           [
-            "Controlled experiments",
-            "UniversalToolchain: frozen corpus, valid controls, post-freeze holdouts, paired comparison и repeated timing runs."
+            "XAGUSD: структурная проверка",
+            "10 таймфреймов, 31 машинный пример; 20 слепых случаев и 8 отношений без expert gold set."
           ],
           [
-            "Математическое и алгоритмическое reasoning",
-            "PS-form: normalization, modular/GCD reasoning, exact affine analysis и independent exact oracle."
+            "Контролируемые эксперименты",
+            "UniversalToolchain: четыре политики верификации, искусственно сконструированные ошибки, контрольные примеры, post-freeze проверки."
           ],
           [
-            "C++ / Python research tooling",
-            "LLVM, Python harnesses, randomized/metamorphic testing, reproducible counterexamples и differential execution."
+            "Математические алгоритмы",
+            "PS-form: точный подсчёт поддерживаемых аффинных случаев, НОД/модульные проверки, независимый оракул."
           ]
         ],
         "experience": [
           {
             "fact_ref": "isp_ras",
             "date": "октябрь 2026 — настоящее время",
-            "title": "ИСП РАН — разработка SharpChecker",
-            "org": "C#/.NET · статический анализ · символьные вычисления",
+            "title": "ИСП РАН · SharpChecker",
+            "org": "C#/.NET · статический анализ",
             "bullets": [
-              "Работаю над символьными вычислениями в SharpChecker — инструменте статического анализа C#/.NET."
+              "Работаю над символьными вычислениями для статического анализа программ на C#/.NET."
             ]
           },
           {
-            "date": "1 июля — 31 августа 2026",
-            "title": "МЦСТ — стажёр по разработке компиляторов",
-            "org": "LLVM 22 · C++23 · Python · 0,25 ставки",
+            "date": "июль — август 2026",
+            "title": "МЦСТ · стажировка по разработке компиляторов",
+            "org": "C++23 · LLVM 22 · Python",
             "bullets": [
-              "Реализовал LLVM LICM-pass на C++: допустимость преобразования определяется по структуре цикла, обращениям к памяти, side effects и speculative safety.",
-              "Построил Python-harness для сравнения исполнения до/после оптимизации и явной проверки transformation / no-transformation cases; также реализовал RPO, Dijkstra, Dinic и Tarjan SCC на C++23."
+              "Работал над экспериментальным LLVM LICM с Python-проверками поведения до/после. Реализовал RPO, Dijkstra, Dinic и Tarjan SCC; локально пройдены 14/14 fixture-тестов."
             ]
           }
         ],
         "project_ids": [
+          "parallel_channel_tracker",
           "wist",
-          "psform",
-          "globaliv"
+          "psform"
         ],
         "skills": [
           [
-            "Programming",
-            "C++23, Python, C17, C#"
+            "Языки и данные",
+            "Python, NumPy, pandas, SciPy, C++23, GNU C17, SQL, Git, Linux"
           ],
           [
-            "Experimental methods",
-            "controlled experiments, exact/reference oracles, randomized/metamorphic testing, reproducibility"
+            "Математика и алгоритмы",
+            "Целочисленная арифметика, аффинные модели, модульные/НОД-проверки, графы, обработка OHLC и временных рядов"
           ],
           [
-            "Algorithms & CS",
-            "data structures, graph algorithms, program analysis, CFG/SSA, compiler optimizations"
-          ],
-          [
-            "Research tooling",
-            "Python harnesses, Linux, Git, CMake, counterexample analysis"
+            "Исследовательская проверка",
+            "Детерминированные эксперименты, контрольные случаи, эталонные оракулы, blind calibration, randomized/metamorphic testing, анализ контрпримеров"
           ]
         ],
-        "contact_heading": "Целевые роли: Quantitative Research internships / research roles, где ценятся алгоритмы и строгая экспериментальная проверка",
-        "footer": "Quantitative Research Candidate · C++ · Python",
+        "contact_heading": "Целевые роли: Quant Research Internship · Time-Series Research · Research Assistant",
+        "footer": "Quantitative Research Candidate · Python · C++ · Time-Series Research",
         "print_project_limit": 3,
-        "updated_at": "2026-10-16",
+        "updated_at": "2026-11-14",
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": true,
-        "portrait_asset": "assets/portrait.jpg"
+        "portrait_asset": "assets/portrait.jpg",
+        "project_entries": {
+          "parallel_channel_tracker": {
+            "title": "Simple Parallel Channel Tracker",
+            "privacy_status": "private_unpublished",
+            "type_ru": "Python · XAGUSD OHLC · закрытый проект",
+            "type_en": "Python · XAGUSD OHLC · private research project"
+          }
+        },
+        "dedicated_ats_export": true,
+        "omit_proof_strip": true,
+        "print_recognition_limit": 3,
+        "print_show_trajectory": false,
+        "project_summaries": {
+          "parallel_channel_tracker": {
+            "problem": "Подготовить воспроизводимую основу для проверки гипотезы о ценовых каналах XAGUSD.",
+            "solution": "Создал частный Python-прототип анализа многомасштабных OHLC и детерминированный benchmark из 31 эвристически размеченного случая на 10 таймфреймах.",
+            "result": "Оба структурных валидатора прошли; blind calibration — 20 случаев и 8 отношений. Разметка ретроспективная, экспертного gold set и доказанной прогностической точности или прибыльности нет; исходники закрыты.",
+            "privacy_status": "private_unpublished"
+          },
+          "wist": {
+            "problem": "Сравнить альтернативные политики обнаружения и локализации некорректных compiler components.",
+            "solution": "Разработал экспериментальную инфраструктуру для сравнения четырёх политик: фиксированные искусственные ошибки, валидные контрольные случаи, дополнительные post-freeze сценарии и независимые оракулы.",
+            "result": "Результаты воспроизводимы на исследовательских наборах UniversalToolchain, но корпуса сконструированы внутри проекта и внешняя применимость ограничена; это не эксперимент на финансовых данных.",
+            "source_url": "https://github.com/Misha1302/UniversalToolchain/blob/master/UniversalToolchain/Experiments/UniversalToolchain.ContractExperiments/README.md"
+          },
+          "psform": {
+            "problem": "Определить пересечения параметрических обращений к памяти в цикле с обоснованными ответами.",
+            "solution": "Разработал GNU C17-анализатор точного подсчёта в поддерживаемых аффинных случаях, модульных/НОД-проверок и сравнения с независимым оракулом.",
+            "result": "В расширенном тестовом прогоне выявлены пять консервативных ответов maybe там, где оракул ожидал no. Это неполнота анализа, не оценка финансового прогноза.",
+            "source_url": "https://github.com/Misha1302/ps_form_analizer/tree/758001fdadba56b4f2bd7601464bd6fe0cd2b388"
+          }
+        },
+        "recognition": [
+          [
+            "2025–2026",
+            "«Юниор» НИЯУ МИФИ",
+            "Дипломы I степени в секции информационных технологий в 2025 и 2026 годах."
+          ],
+          [
+            "2026",
+            "Отбор МЦСТ — LLVM/C++",
+            "По письму организатора: 5,0/5,0 и 104/104 официальных тестов среди 49 представленных решений."
+          ],
+          [
+            "2026",
+            "LangDev — UniversalToolchain",
+            "Доклад 9 октября 2026 года; опубликована видеозапись.",
+            "https://youtu.be/2jqmw-1c7kE"
+          ]
+        ]
       },
       "en": {
         "filename": "en-quant.html",
         "pdf": "Mikhail_Razakov_Quant_Research_EN.pdf",
-        "title": "Mikhail Razakov — Quantitative Research Candidate | C++ · Python",
-        "role": "Quantitative Research Candidate | C++ · Python",
-        "brand": "C++ · Python · controlled experiments · algorithms",
-        "eyebrow": "Controlled experiments · exact oracles · algorithmic research",
-        "summary": "Research-oriented engineer with professional compiler experience and hands-on C++/Python. I design controlled experiments, exact/reference oracles, randomized/metamorphic checks, and reproducible counterexample studies; my strongest evidence is in algorithms, program analysis, and systems research.",
-        "description": "Mikhail Razakov — Quantitative Research Candidate: C++, Python, controlled experiments, exact/reference oracles, randomized/metamorphic validation, and algorithmic research.",
+        "title": "Mikhail Razakov — Quantitative Research Candidate | Python · C++ · Time-Series Research",
+        "role": "Quantitative Research Candidate — Python · C++ · Time-Series Research",
+        "brand": "Python · C++ · financial data · experiments",
+        "eyebrow": "Time-series research · controlled experiments · exact oracles",
+        "summary": "I work on algorithmic research and reproducible experiments in Python and C++. I prepared an XAGUSD OHLC benchmark and a blind price-channel calibration interface. My other projects compare verification policies using frozen fault cases, valid controls and reference oracles. I work on symbolic computation at ISP RAS and previously completed a C++/LLVM compiler internship at MCST. Predictive financial effectiveness is not established.",
+        "description": "XAGUSD OHLC research tooling, reproducible experiments, exact reference oracles, Python/NumPy/pandas/SciPy and C++.",
         "proofs": [
           [
+            "XAGUSD structural data",
+            "10 timeframes, 31 machine-labeled examples; 20 blind cases and eight relationships without expert gold labels."
+          ],
+          [
             "Controlled experiments",
-            "UniversalToolchain: frozen corpus, valid controls, post-freeze holdouts, paired comparison, and repeated timing runs."
+            "UniversalToolchain: four verification policies, author-designed faults, valid controls and post-freeze cases."
           ],
           [
-            "Mathematical & algorithmic reasoning",
-            "PS-form: normalization, modular/GCD reasoning, exact affine analysis, and an independent exact oracle."
-          ],
-          [
-            "C++ / Python research tooling",
-            "LLVM, Python harnesses, randomized/metamorphic testing, reproducible counterexamples, and differential execution."
+            "Mathematical algorithms",
+            "PS-form: exact supported affine cases, modular/GCD reasoning and independent reference oracle."
           ]
         ],
         "experience": [
           {
             "fact_ref": "isp_ras",
             "date": "October 2026 — present",
-            "title": "ISP RAS — SharpChecker development",
-            "org": "C#/.NET · static analysis · symbolic computation",
+            "title": "ISP RAS · SharpChecker",
+            "org": "C#/.NET · static analysis",
             "bullets": [
-              "Work on symbolic computation in SharpChecker, a C#/.NET static-analysis tool."
+              "Working on symbolic computation for C#/.NET static program analysis."
             ]
           },
           {
-            "date": "July 1 — August 31, 2026",
-            "title": "MCST — Compiler Engineering Intern",
-            "org": "LLVM 22 · C++23 · Python · 0.25 FTE",
+            "date": "July — August 2026",
+            "title": "MCST · Compiler Engineering Internship",
+            "org": "C++23 · LLVM 22 · Python",
             "bullets": [
-              "Implemented an LLVM LICM pass in C++; transformation legality is derived from loop structure, memory accesses, side effects, and speculative-safety constraints.",
-              "Built a Python harness comparing execution before/after optimization and checking explicit transformation / no-transformation cases; also implemented RPO, Dijkstra, Dinic, and Tarjan SCC in C++23."
+              "Worked on experimental LLVM LICM with Python before/after checks. Implemented RPO, Dijkstra, Dinic and Tarjan SCC; a local fixture run passed 14/14 tests."
             ]
           }
         ],
         "project_ids": [
+          "parallel_channel_tracker",
           "wist",
-          "psform",
-          "globaliv"
+          "psform"
         ],
         "skills": [
           [
-            "Programming",
-            "C++23, Python, C17, C#"
+            "Languages and data",
+            "Python, NumPy, pandas, SciPy, C++23, GNU C17, SQL, Git, Linux"
           ],
           [
-            "Experimental methods",
-            "controlled experiments, exact/reference oracles, randomized/metamorphic testing, reproducibility"
+            "Mathematics and algorithms",
+            "Integer arithmetic, affine models, modular/GCD checks, graph algorithms, OHLC and time-series processing"
           ],
           [
-            "Algorithms & CS",
-            "data structures, graph algorithms, program analysis, CFG/SSA, compiler optimizations"
-          ],
-          [
-            "Research tooling",
-            "Python harnesses, Linux, Git, CMake, counterexample analysis"
+            "Research validation",
+            "Deterministic experiments, valid controls, reference oracles, blind calibration, randomized/metamorphic testing and counterexample analysis"
           ]
         ],
-        "contact_heading": "Target roles: Quantitative Research internships / research roles valuing algorithms and rigorous experimental validation",
-        "footer": "Quantitative Research Candidate · C++ · Python",
+        "contact_heading": "Target roles: Quant Research Internship · Time-Series Research · Research Assistant",
+        "footer": "Quantitative Research Candidate · Python · C++ · Time-Series Research",
         "print_project_limit": 3,
-        "updated_at": "2026-10-16",
+        "updated_at": "2026-11-14",
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": true,
-        "portrait_asset": "assets/portrait.jpg"
+        "portrait_asset": "assets/portrait.jpg",
+        "project_entries": {
+          "parallel_channel_tracker": {
+            "title": "Simple Parallel Channel Tracker",
+            "privacy_status": "private_unpublished",
+            "type_ru": "Python · XAGUSD OHLC · закрытый проект",
+            "type_en": "Python · XAGUSD OHLC · private research project"
+          }
+        },
+        "dedicated_ats_export": true,
+        "omit_proof_strip": true,
+        "print_recognition_limit": 3,
+        "print_show_trajectory": false,
+        "project_summaries": {
+          "parallel_channel_tracker": {
+            "problem": "Establish an auditable basis for testing XAGUSD price-channel hypotheses.",
+            "solution": "Built a private Python multi-timeframe OHLC research prototype and a deterministic benchmark of 31 heuristically labeled cases across 10 timeframes.",
+            "result": "Both structural validators passed; blind calibration has 20 cases and eight relations. Labels were constructed retrospectively; there is no expert gold set, validated prediction or established profitability. Source remains private.",
+            "privacy_status": "private_unpublished"
+          },
+          "wist": {
+            "problem": "Compare alternatives for detecting and localizing invalid compiler-component contracts.",
+            "solution": "Built an experimental comparison of four policies with frozen author-designed faults, valid controls, additional post-freeze cases and independent oracles.",
+            "result": "The outcomes are reproducible within the UniversalToolchain study, but internally designed corpora limit external validity. This is compiler-systems research, not a financial-market experiment.",
+            "source_url": "https://github.com/Misha1302/UniversalToolchain/blob/master/UniversalToolchain/Experiments/UniversalToolchain.ContractExperiments/README.md"
+          },
+          "psform": {
+            "problem": "Determine memory-access overlap between iterations with mathematically justified results.",
+            "solution": "Built a GNU C17 analyzer using exact counting for supported affine cases, modular/GCD reasoning and comparisons to an independent oracle.",
+            "result": "An extended test run found five conservative maybe results where the oracle expected no. This reflects analysis incompleteness, not a financial forecast.",
+            "source_url": "https://github.com/Misha1302/ps_form_analizer/tree/758001fdadba56b4f2bd7601464bd6fe0cd2b388"
+          }
+        },
+        "recognition": [
+          [
+            "2025–2026",
+            "MEPhI Junior",
+            "First-degree diplomas in the Information Technologies section in 2025 and 2026."
+          ],
+          [
+            "2026",
+            "MCST LLVM/C++ selection",
+            "According to organizer correspondence: 5.0/5.0 and 104/104 official tests among 49 submitted solutions."
+          ],
+          [
+            "2026",
+            "LangDev — UniversalToolchain",
+            "Presented on 9 October 2026; organizer published the talk recording.",
+            "https://youtu.be/2jqmw-1c7kE"
+          ]
+        ]
       }
     },
     "quantdev": {

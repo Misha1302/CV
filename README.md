@@ -220,6 +220,38 @@ The separate PS-form extended smoke suite had 907/912 cases pass, with five
 conservative maybe outcomes where the oracle expected no. LLVM Global IV's
 29/29 regressions are tied to its pinned LLVM 22.1.8 source.
 
+## Quantitative Research Candidate — ATS pair (14 November 2026)
+
+Quant Research is a separate role from Quant Developer. Canonical source is
+`data/site.json -> profiles.quant`, with existing editorial
+[RU](ru-quant.html) / [EN](en-quant.html) pages, and one-column ATS exports:
+
+- RU: [PDF](pdf/Mikhail_Razakov_Quant_Research_RU.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Quant_Research_RU.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Quant_Research_RU.md)
+- EN: [PDF](pdf/Mikhail_Razakov_Quant_Research_EN.pdf) /
+  [DOCX](pdf/Mikhail_Razakov_Quant_Research_EN.docx) /
+  [Markdown](pdf/Mikhail_Razakov_Quant_Research_EN.md)
+
+Rebuild only this pair:
+
+    python tools/build_site.py
+    python tools/build_cv.py --output-dir pdf --profile quant
+    python tools/build_site.py --manifest
+    python tools/validate_cv.py --pdf-dir pdf
+
+Main examples: private Simple Parallel Channel Tracker (XAGUSD benchmark
+and *uncompleted* expert blind calibration), public UniversalToolchain
+contract-guided reverification experiment, and public PS-form exact
+supported-case reasoning. The financial project's 31 examples were
+machine-labeled retrospectively and include future-outcome-based case
+selection: they are not independent out-of-sample predictions or proof
+of financial returns. The 20+8 calibration pack has no collected expert
+gold labels. The compiler experiments are not financial-market tests.
+Source, raw OHLC, client materials, voice recordings and private strategy
+details are not published; an independent rights/disclosure check would
+be required before creating a public case page.
+
 ## CV release — 2026-11-03
 
 Send-ready, one-page C#/.NET resumes (Russian): **[choose the right version](releases/2026-11-03/README.md)**.

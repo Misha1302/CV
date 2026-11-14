@@ -467,6 +467,7 @@ def main() -> None:
     report["compiler_infrastructure_ats"] = validate_cpp_systems_cv(data, args.pdf_dir, "general")
     report["compiler_backend_ats"] = validate_cpp_systems_cv(data, args.pdf_dir, "compiler_backend")
     report["quantdev_ats"] = validate_cpp_systems_cv(data, args.pdf_dir, "quantdev")
+    report["quant_research_ats"] = validate_cpp_systems_cv(data, args.pdf_dir, "quant")
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

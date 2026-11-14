@@ -35,9 +35,31 @@ def validate(data: dict, output_dir: Path, profile_key: str = "systems") -> list
             "general": ("104/104", "29/29"),
             "compiler_backend": ("104/104", "29/29", "42/42"),
             "quantdev": ("104/104", "29/29", "14/14", "31", "20", "8"),
+            "quant": ("104/104", "14/14", "31", "20"),
         }[profile_key]
         require("907/912" not in text_md and all(count in text_md for count in counts),
                 f"Broken bounded statistics or overly detailed smoke outcome in the CV: {stem}")
+        if profile_key == "quant":
+            require(text_md.index("Simple Parallel Channel Tracker") <
+                    text_md.index("UniversalToolchain / Wist2") <
+                    text_md.index("PS-form Memory Dependence Analyzer"),
+                    f"Quant Research project order incorrect: {stem}")
+            require("XAGUSD" in text_md and "31" in text_md and "10" in text_md
+                    and "20" in text_md and "8" in text_md,
+                    f"Quant Research needs bounded market-data artifacts: {stem}")
+            require(("gold set" in text_md.lower()) and
+                    (("прибыльност" in text_md.lower()) if lang == "ru"
+                     else "profitability" in text_md.lower()),
+                    f"Quant Research needs explicit missing gold labels and profitability: {stem}")
+            require("four" in text_md.lower() if lang == "en" else "четырёх" in text_md.lower(),
+                    f"Quant Research study must identify comparison of four policies: {stem}")
+            require("not a financial" in text_md.lower() if lang == "en" else
+                    "не эксперимент на финансовых" in text_md.lower(),
+                    f"Compiler-controlled research must not be presented as financial experiment: {stem}")
+            private = [p for p in info["projects"] if p.get("privacy_status") == "private_unpublished"]
+            require(len(private) == 1 and private[0]["id"] == "parallel_channel_tracker"
+                    and not private[0].get("source_url"),
+                    f"Private Quant Research project must not publish its source: {stem}")
         if profile_key == "quantdev":
             require(text_md.index("PS-form Memory Dependence Analyzer")
                     < text_md.index("Simple Parallel Channel Tracker")
@@ -110,6 +132,10 @@ def validate(data: dict, output_dir: Path, profile_key: str = "systems") -> list
             *(p["source_url"] for p in info["projects"] if p.get("source_url")),
         }
         require(expected_urls <= urls, f"Broken/missing PDF hyperlinks: {stem}")
+        if profile_key == "quant":
+            require(len(urls) == 6 and not any("file://" in url or
+                    "Parallel Channel Tracker" in url for url in urls),
+                    f"Private Quant Research source was exposed: {stem}")
         if profile_key == "quantdev":
             require(len(urls) == 6 and not any("file://" in url or
                     "Parallel Channel Tracker" in url for url in urls),
@@ -129,6 +155,12 @@ def validate(data: dict, output_dir: Path, profile_key: str = "systems") -> list
                 f"Invalid C++ DOCX document structure: {stem}")
         require("SharpChecker" in text and all(count in text for count in counts),
                 f"Key bounded achievements missing: {stem}")
+        if profile_key == "quant":
+            require("XAGUSD" in text and "31" in text and "104/104" in text
+                    and ("8" in text if lang == "ru" else "eight" in text.lower()),
+                    f"Quant Research data and bounded selection evidence missing: {stem}")
+            require("LangDev" in text and "PS-form" in text,
+                    f"Quant Research project/recognition missing: {stem}")
         if profile_key == "quantdev":
             require("XAGUSD" in text and "31" in text and "29/29" in text
                     and "104/104" in text and "14/14" in text,

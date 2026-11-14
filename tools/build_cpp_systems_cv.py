@@ -25,6 +25,7 @@ SUPPORTED_PROFILES = {
     "general": (["wist", "globaliv", "codegen"], "project_summaries"),
     "compiler_backend": (["codegen", "globaliv", "wist"], "project_summaries"),
     "quantdev": (["psform", "parallel_channel_tracker", "globaliv"], "project_summaries"),
+    "quant": (["parallel_channel_tracker", "wist", "psform"], "project_summaries"),
 }
 
 
@@ -338,6 +339,7 @@ def save_docx(data: dict[str, Any], lang: str, path: Path, profile_key: str = PR
         "general": "Compiler Infrastructure / Language Tooling Engineer CV",
         "compiler_backend": "Compiler Backend / Code Generation Engineer CV",
         "quantdev": "Quant Developer / Research Software Engineer CV",
+        "quant": "Quantitative Research Candidate CV",
     }[profile_key]
     doc.core_properties.author = m["name"]
     doc.save(path)
