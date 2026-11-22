@@ -20,7 +20,7 @@
 <link rel="alternate" hreflang="en" href="https://misha1302.github.io/CV/en-backend-ats.html">
 <link rel="alternate" hreflang="x-default" href="https://misha1302.github.io/CV/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/application-sites.css?v=2026-11-07-performance-systems-cv">
+<link rel="stylesheet" href="assets/application-sites.css?v=2026-11-22-production-scale-agentic-cv">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","url":"https://misha1302.github.io/CV/ru-backend-ats.html","inLanguage":"ru","mainEntity":{"@type":"Person","name":"Михаил Разаков","jobTitle":"C# / .NET BACKEND DEVELOPER","email":"razakov.mikhail@outlook.com","url":"https://misha1302.github.io/CV/","sameAs":["https://github.com/Misha1302","https://t.me/Micodiy"],"alumniOf":{"@type":"CollegeOrUniversity","name":"HSE University"}}}</script>
 </head>
 <body class="ap ap-ats"><a class="skip-link" href="#content">К содержанию</a>
@@ -102,7 +102,7 @@
             <div class="ap-case-technical"><div class="ap-case-detail"><h4>Задача</h4><p>Frontend, семантические компоненты, IR/optimization passes и execution backends должны развиваться независимо, но собираться в один детерминированный toolchain без скрытой зависимости от registration order.</p></div><div class="ap-case-detail"><h4>Решение</h4><p>Typed contracts/capabilities, dependency/conflict resolution, deterministic contribution ordering и типизированные маршруты артефактов сводятся к одному LanguagePlan до materialization runtime.</p></div><div class="ap-case-detail"><h4>Результат и границы</h4><p>Реализован end-to-end pipeline: frontend, IR, optimization passes, interpreter и CIL backend; текущий exact test manifest — 1 324/1 324.</p></div></div>
           </article><article class="ap-case" id="case-lms">
             <div class="ap-case-identity"><div class="ap-case-index">03 <span>/ 03</span></div>
-              <p class="ap-case-type">Разрабатываемая образовательная платформа · агентная реализация</p>
+              <p class="ap-case-type">.NET backend · production LMS · judge · роли · доступы</p>
               <h3>TuringSquare-LMS · в разработке</h3>
               <p class="ap-case-summary">Архитектура и ревью course entitlements, ролей и T-Bank sandbox; повторная проверка платежей у провайдера. Часть кода реализована агентами; production-запуска нет.</p>
               <div class="ap-case-links">
@@ -110,7 +110,7 @@
 
               </div>
             </div>
-            <div class="ap-case-technical"><div class="ap-case-detail"><h4>Задача</h4><p>Роли администратора, преподавателя, куратора и ученика, доступ к курсам и разовые/подписочные платежи должны работать согласованно при повторах и сетевых сбоях.</p></div><div class="ap-case-detail"><h4>Решение</h4><p>Проектирую и проверяю серверные контракты ASP.NET Core/PostgreSQL и требования к интеграции T-Bank: идемпотентность заказа, проверка состояния у провайдера перед выдачей доступа; реализация частично выполнена AI-агентами.</p></div><div class="ap-case-detail"><h4>Результат и границы</h4><p>Продукт в разработке: проверяемые сценарии и sandbox-платежи не эквивалентны production-релизу. Баланса внутренних монет нет.</p></div></div>
+            <div class="ap-case-technical"><div class="ap-case-detail"><h4>Задача</h4><p>Роли администратора, преподавателя, куратора и ученика, доступ к курсам, платежи и автоматическая проверка решений должны сохранять инварианты при повторных запросах, сетевых сбоях, миграциях и одновременной работе нескольких judge-воркеров.</p></div><div class="ap-case-detail"><h4>Решение</h4><p>Явные роли и состояния, ledger-подход к балансу, проверяемые webhooks, идемпотентное завершение платежей и critical-flow gates; изолированный judge с четырьмя параллельными воркерами, lease-механизмом и воспроизводимым release/recovery-процессом.</p></div><div class="ap-case-detail"><h4>Результат и границы</h4><p>Платформа в production и выдерживает рабочую нагрузку: 150+ учеников (данные владельца продукта, 22.11.2026), тур из пяти задач и 514 реальных тестов с автоматической проверкой C++17 и Python3, judge на четырёх параллельных воркерах. Нагрузочные прогоны на изолированном контуре: 959 последовательных запросов без ошибок (p95 52–78 мс) и 2 880 синхронизированных запросов без единого 5xx.</p></div></div>
           </article></section><section class="ap-section ap-skills" id="skills">
         <div class="ap-section-aside"><span class="ap-number">03 / 04</span><h2>Технологии</h2>
           <p>Список технологий соответствует выбранному профилю CV; контекст применения — в кейсах.</p></div>

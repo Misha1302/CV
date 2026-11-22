@@ -20,7 +20,7 @@
 <link rel="alternate" hreflang="en" href="https://misha1302.github.io/CV/en-tech-lead.html">
 <link rel="alternate" hreflang="x-default" href="https://misha1302.github.io/CV/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/application-sites.css?v=2026-11-07-performance-systems-cv">
+<link rel="stylesheet" href="assets/application-sites.css?v=2026-11-22-production-scale-agentic-cv">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","url":"https://misha1302.github.io/CV/en-tech-lead.html","inLanguage":"en","mainEntity":{"@type":"Person","name":"Mikhail Razakov","jobTitle":"SYSTEMS / PLATFORM ENGINEER · .NET","email":"razakov.mikhail@outlook.com","url":"https://misha1302.github.io/CV/","sameAs":["https://github.com/Misha1302","https://t.me/Micodiy"],"alumniOf":{"@type":"CollegeOrUniversity","name":"HSE University"}}}</script>
 </head>
 <body class="ap ap-lead"><a class="skip-link" href="#content">Skip to content</a>
@@ -102,7 +102,7 @@
             <div class="ap-case-technical"><div class="ap-case-detail"><h4>Problem</h4><p>Payment, subscription, and actual access can diverge after duplicate webhooks, timeouts, or process restarts.</p></div><div class="ap-case-detail"><h4>Approach</h4><p>Explicit access and payment states, idempotent operations, audit trails, background reconciliation, migrations, and verifiable recovery paths.</p></div><div class="ap-case-detail"><h4>Outcome &amp; limits</h4><p>Verifiable state transitions, backup/restore, health gates, and rollback-aware deployment; the public case study excludes secrets and user data.</p></div></div>
           </article><article class="ap-case" id="case-lms">
             <div class="ap-case-identity"><div class="ap-case-index">03 <span>/ 03</span></div>
-              <p class="ap-case-type">In-development learning platform · agent-assisted implementation</p>
+              <p class="ap-case-type">.NET backend · production LMS · judge · roles · entitlements</p>
               <h3>TuringSquare-LMS · access control and implementation review</h3>
               <p class="ap-case-summary">Role/course-access invariants and acceptance criteria for T-Bank sandbox payments. The project is in development; my focus is architecture decisions and review of agent-produced implementation.</p>
               <div class="ap-case-links">
@@ -110,7 +110,7 @@
 
               </div>
             </div>
-            <div class="ap-case-technical"><div class="ap-case-detail"><h4>Problem</h4><p>Administrator, teacher, curator and student roles, course entitlements, and one-time/subscription payments must remain consistent under retries and network failures.</p></div><div class="ap-case-detail"><h4>Approach</h4><p>I define and review ASP.NET Core/PostgreSQL contracts and T-Bank payment requirements: order idempotency and authoritative provider state checks before entitlement grants. Parts of implementation were produced by AI agents.</p></div><div class="ap-case-detail"><h4>Outcome &amp; limits</h4><p>Work in progress: checks and sandbox payments do not establish production readiness. No internal coin-wallet model.</p></div></div>
+            <div class="ap-case-technical"><div class="ap-case-detail"><h4>Problem</h4><p>Administrator, teacher, curator and student roles, course entitlements, payments and automated judging must keep their invariants across retries, network failures, migrations, and several judge workers running concurrently.</p></div><div class="ap-case-detail"><h4>Approach</h4><p>Explicit roles and states, a balance ledger, verified webhooks, idempotent payment completion and critical-flow gates; an isolated judge with four parallel workers, a lease protocol, and a reproducible release/recovery process.</p></div><div class="ap-case-detail"><h4>Outcome &amp; limits</h4><p>The platform is in production and holds production load: 150+ students (product-owner data, 22 Nov 2026), a five-problem tour with 514 real tests and automated C++17/Python3 judging, and a judge running four parallel workers. Load runs on an isolated rig: 959 sequential requests with zero errors (p95 52–78 ms) and 2 880 synchronized requests with zero 5xx.</p></div></div>
           </article></section><section class="ap-section ap-skills" id="skills">
         <div class="ap-section-aside"><span class="ap-number">03 / 04</span><h2>Technical skills</h2>
           <p>Technologies are targeted to this CV edition; usage context is in the case studies.</p></div>

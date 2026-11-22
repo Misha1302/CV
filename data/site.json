@@ -1,6 +1,6 @@
 {
-  "version": "2026-11-07-performance-systems-cv",
-  "updated_at": "2026-11-07",
+  "version": "2026-11-22-production-scale-agentic-cv",
+  "updated_at": "2026-11-22",
   "site_url": "https://misha1302.github.io/CV/",
   "person": {
     "name_ru": "Михаил Разаков",
@@ -126,6 +126,16 @@
             ]
           },
           {
+            "date": "2026 — настоящее время",
+            "title": "Агентные LLM-пайплайны — оркестратор, роли, верификация",
+            "org": "декомпозиция задач · изоляция контекста · независимая проверка",
+            "bullets": [
+              "Спроектировал оркестратор, который раздаёт подзадачи отдельным ролям в чистых контекстах и собирает результат из сжатых отчётов с локаторами вместо пересказа сырья.",
+              "Разделил исполнение и проверку: критик фактов, критик логики и верификатор с заранее написанными проверками, включая негативный контроль на намеренно испорченный результат."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "fact_ref": "mcst",
             "date": "июль — август 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
@@ -139,6 +149,7 @@
         "project_ids": [
           "wist",
           "planfuzz",
+          "agentic",
           "globaliv"
         ],
         "skills": [
@@ -157,6 +168,10 @@
           [
             "Проверка",
             "регрессионные тесты, LLVM Verifier, сравнение interpreter/backend, differential execution"
+          ],
+          [
+            "LLM-агенты",
+            "оркестрация ролей, декомпозиция, изоляция контекста, независимая критика и верификация, сжатые отчёты с локаторами"
           ]
         ],
         "contact_heading": "Целевые роли: Compiler Infrastructure · Language Tooling · Compiler Engineer · LLVM Infrastructure",
@@ -183,6 +198,10 @@
           "planfuzz": {
             "solution": "Экспериментально проверяю программы и варианты конфигурации: изолированный replay, контрольные и fault-сценарии, минимизация контрпримеров с сохранением fingerprint.",
             "result": "Фиксированные fault/control корпусы и воспроизводимые артефакты помогают исследовать ошибки планирования без заявлений о формальной верификации."
+          },
+          "agentic": {
+            "solution": "Оркестратор с явными ролями и контрактами передачи; каждая роль в чистом контексте возвращает сжатый отчёт с локаторами.",
+            "result": "Исследователь, автор, критики и верификатор; проверки пишутся до исполнения, негативный контроль ловит подделку."
           }
         },
         "show_trajectory": true,
@@ -225,6 +244,16 @@
             ]
           },
           {
+            "date": "2026 — present",
+            "title": "Agentic LLM pipelines — orchestrator, roles, verification",
+            "org": "task decomposition · context isolation · independent verification",
+            "bullets": [
+              "Designed an orchestrator that dispatches subtasks to separate roles in clean contexts and assembles results from compressed reports with locators instead of raw dumps.",
+              "Separated execution from verification: a fact critic, a logic critic and a verifier with checks written in advance, including negative controls on deliberately corrupted results."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "fact_ref": "mcst",
             "date": "July — August 2026",
             "title": "MCST — Compiler Engineering Intern",
@@ -238,6 +267,7 @@
         "project_ids": [
           "wist",
           "planfuzz",
+          "agentic",
           "globaliv"
         ],
         "skills": [
@@ -256,6 +286,10 @@
           [
             "Verification",
             "regression suites, LLVM Verifier, interpreter/backend parity, differential execution"
+          ],
+          [
+            "LLM agents",
+            "role orchestration, task decomposition, context isolation, independent critique and verification, compressed reports with locators"
           ]
         ],
         "contact_heading": "Target roles: Compiler Infrastructure · Language Tooling · Compiler Engineer · LLVM Infrastructure",
@@ -282,6 +316,10 @@
           "planfuzz": {
             "solution": "Experimental testing of programs and configuration plans: isolated replay, control/fault cases, and counterexample reduction that preserves failure fingerprints.",
             "result": "Frozen fault/control corpora and replayable artifacts make planning defects inspectable without claiming formal proof."
+          },
+          "agentic": {
+            "solution": "An orchestrator with explicit roles and handoff contracts; each role returns a compressed report with locators.",
+            "result": "Researcher, author, critics and verifier; checks written before execution, negative controls catch fabrication."
           }
         },
         "show_trajectory": true,
@@ -326,6 +364,16 @@
             ]
           },
           {
+            "date": "2026 — настоящее время",
+            "title": "Агентные LLM-пайплайны — оркестратор, роли, верификация",
+            "org": "декомпозиция задач · изоляция контекста · независимая проверка",
+            "bullets": [
+              "Спроектировал оркестратор, который раздаёт подзадачи отдельным ролям в чистых контекстах и собирает результат из сжатых отчётов с локаторами вместо пересказа сырья.",
+              "Разделил исполнение и проверку: критик фактов, критик логики и верификатор с заранее написанными проверками, включая негативный контроль на намеренно испорченный результат."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "fact_ref": "mcst",
             "date": "июль — август 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
@@ -357,6 +405,10 @@
           [
             "Correctness / Tooling",
             "LLVM Verifier, консервативный отказ, регрессионные проверки, differential execution, Linux, CMake"
+          ],
+          [
+            "LLM-агенты",
+            "оркестрация ролей, декомпозиция, изоляция контекста, независимая критика и верификация, сжатые отчёты с локаторами"
           ]
         ],
         "contact_heading": "Целевые роли: Compiler Engineer · LLVM Engineer · Static / Program Analysis · Compiler Infrastructure",
@@ -428,6 +480,16 @@
             ]
           },
           {
+            "date": "2026 — present",
+            "title": "Agentic LLM pipelines — orchestrator, roles, verification",
+            "org": "task decomposition · context isolation · independent verification",
+            "bullets": [
+              "Designed an orchestrator that dispatches subtasks to separate roles in clean contexts and assembles results from compressed reports with locators instead of raw dumps.",
+              "Separated execution from verification: a fact critic, a logic critic and a verifier with checks written in advance, including negative controls on deliberately corrupted results."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "fact_ref": "mcst",
             "date": "July — August 2026",
             "title": "MCST — Compiler Engineering Intern",
@@ -459,6 +521,10 @@
           [
             "Correctness / Tooling",
             "LLVM Verifier, conservative rejection, regression checks, differential execution, Linux, CMake"
+          ],
+          [
+            "LLM agents",
+            "role orchestration, task decomposition, context isolation, independent critique and verification, compressed reports with locators"
           ]
         ],
         "contact_heading": "Fallback: Compiler Engineer · LLVM Engineer · Static / Program Analysis · Compiler Infrastructure",
@@ -505,8 +571,8 @@
         "role": "C# / .NET Backend Developer · Systems & Reliability",
         "brand": ".NET · payment state · recovery · platform reliability",
         "eyebrow": "ASP.NET Core · idempotency · recovery · rollback",
-        "summary": "C#/.NET backend-разработчик: коммерческая практика на смешанном стеке — около года суммарно (по данным автора). Работаю в ИСП РАН над SharpChecker, ранее — LLVM в МЦСТ. Поддерживаю работающий VpnMediator; в UniversalToolchain исследую compiler/runtime, в LMS проектирую и проверяю платежные сценарии.",
-        "description": "Михаил Разаков: ASP.NET Core, SQL/PostgreSQL, действующий VpnMediator, SharpChecker в ИСП РАН, LLVM в МЦСТ и UniversalToolchain.",
+        "summary": "C#/.NET backend-разработчик: коммерческая практика на смешанном стеке — около года суммарно (по данным автора). Символьные вычисления в SharpChecker (ИСП РАН), ранее LLVM-оптимизация в МЦСТ. Довёл учебную LMS до production: автоматическая проверка решений, judge на четырёх воркерах, 150+ учеников. Строю агентные LLM-пайплайны с разделением исполнения и проверки.",
+        "description": "Михаил Разаков: ASP.NET Core, SQL/PostgreSQL, production LMS с автоматической проверкой решений, действующий VpnMediator, SharpChecker в ИСП РАН и агентные LLM-пайплайны.",
         "proofs": [
           [
             "Payment correctness",
@@ -532,6 +598,16 @@
             ]
           },
           {
+            "date": "2026 — настоящее время",
+            "title": "Агентные LLM-пайплайны — оркестратор, роли, верификация",
+            "org": "декомпозиция задач · изоляция контекста · независимая проверка",
+            "bullets": [
+              "Спроектировал оркестратор, который раздаёт подзадачи отдельным ролям в чистых контекстах и собирает результат из сжатых отчётов с локаторами вместо пересказа сырья.",
+              "Разделил исполнение и проверку: критик фактов, критик логики и верификатор с заранее написанными проверками, включая негативный контроль на намеренно испорченный результат."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "fact_ref": "mcst",
             "date": "июль — август 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
@@ -552,8 +628,9 @@
         ],
         "project_ids": [
           "vpn",
-          "wist",
           "lms",
+          "agentic",
+          "wist",
           "quark2"
         ],
         "skills": [
@@ -572,21 +649,29 @@
           [
             "Operations / Platform",
             "Linux, Docker Compose, nginx, systemd, health gates, versioned releases, atomic switch, rollback"
+          ],
+          [
+            "LLM-агенты",
+            "оркестрация ролей, декомпозиция, изоляция контекста, независимая критика и верификация, сжатые отчёты с локаторами"
           ]
         ],
         "contact_heading": "Целевые роли: .NET Backend / Platform Engineer с ответственностью за состояние, recovery и эксплуатационную корректность",
         "footer": "NET Backend / Platform Engineer · State & Reliability",
         "updated_at": "2026-11-03",
         "print_spacious": true,
-        "print_project_limit": 3,
+        "print_project_limit": 4,
         "project_summaries": {
           "botay": {
             "solution": "Реализовал offline-first операции для браузера/Android с клиентскими идентификаторами и атомарным серверным журналом; конфликтующие изменения не перезаписываются молча.",
             "result": "Идемпотентное воспроизведение на сервере и проверка подписанного Android-релиза 0.8.3; число пользователей не заявляется."
+          },
+          "lms": {
+            "solution": "Роли и состояния, ledger баланса, идемпотентные платежи, изолированный judge на четырёх воркерах, release/recovery-процедуры.",
+            "result": "Production: 150+ учеников, тур 5 задач / 514 тестов, реальные вердикты C++17 и Python3, 4 воркера, нагрузочные прогоны."
           }
         },
         "experience_heading": "Профессиональный опыт и клиентская работа",
-        "print_experience_limit": 2,
+        "print_experience_limit": 3,
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg"
       },
@@ -597,8 +682,8 @@
         "role": "C# / .NET Backend Developer · Systems & Reliability",
         "brand": ".NET · payment state · recovery · platform reliability",
         "eyebrow": "ASP.NET Core · idempotency · recovery · rollback",
-        "summary": "C#/.NET backend developer with approximately one year of aggregate commercial experience across related technologies (candidate-reported). I work on SharpChecker at ISP RAS, previously built LLVM tooling at MCST, operate VpnMediator, and design and review LMS payment flows.",
-        "description": "Mikhail Razakov: ASP.NET Core, SQL/PostgreSQL, operational VpnMediator, SharpChecker at ISP RAS, LLVM at MCST, and UniversalToolchain.",
+        "summary": "C#/.NET backend developer: about a year of commercial work across a mixed stack (author-reported). Symbolic computation in SharpChecker at ISP RAS, previously LLVM optimization at MCST. Took a learning LMS to production: automated judging, a four-worker judge, 150+ students. Build agentic LLM pipelines that separate execution from verification.",
+        "description": "Mikhail Razakov: ASP.NET Core, SQL/PostgreSQL, a production LMS with automated judging, a live VpnMediator service, SharpChecker at ISP RAS, and agentic LLM pipelines.",
         "proofs": [
           [
             "Payment correctness",
@@ -624,6 +709,16 @@
             ]
           },
           {
+            "date": "2026 — present",
+            "title": "Agentic LLM pipelines — orchestrator, roles, verification",
+            "org": "task decomposition · context isolation · independent verification",
+            "bullets": [
+              "Designed an orchestrator that dispatches subtasks to separate roles in clean contexts and assembles results from compressed reports with locators instead of raw dumps.",
+              "Separated execution from verification: a fact critic, a logic critic and a verifier with checks written in advance, including negative controls on deliberately corrupted results."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "fact_ref": "mcst",
             "date": "July — August 2026",
             "title": "MCST — Compiler Engineering Intern",
@@ -644,8 +739,9 @@
         ],
         "project_ids": [
           "vpn",
-          "wist",
           "lms",
+          "agentic",
+          "wist",
           "quark2"
         ],
         "skills": [
@@ -664,21 +760,29 @@
           [
             "Operations / Platform",
             "Linux, Docker Compose, nginx, systemd, health gates, versioned releases, atomic switching, rollback"
+          ],
+          [
+            "LLM agents",
+            "role orchestration, task decomposition, context isolation, independent critique and verification, compressed reports with locators"
           ]
         ],
         "contact_heading": "Targeting .NET Backend / Platform Engineer roles with ownership of state, recovery, and operational correctness",
         "footer": ".NET Backend / Platform Engineer · State & Reliability",
         "updated_at": "2026-11-03",
         "print_spacious": true,
-        "print_project_limit": 3,
+        "print_project_limit": 4,
         "project_summaries": {
           "botay": {
             "solution": "Built offline-first browser/Android operations with durable client IDs and atomic server replay records; conflicting lifecycle changes remain explicit.",
             "result": "Idempotent server-side operation replay and signed Android 0.8.3 release checks; no claim about external user count or network exactly-once delivery."
+          },
+          "lms": {
+            "solution": "Roles and states, balance ledger, idempotent payments, an isolated four-worker judge, release/recovery procedures.",
+            "result": "Production: 150+ students, a 5-problem / 514-test tour, real C++17 and Python3 verdicts, 4 workers, load runs."
           }
         },
         "experience_heading": "Professional experience & client work",
-        "print_experience_limit": 2,
+        "print_experience_limit": 3,
         "show_portrait": true,
         "portrait_asset": "assets/portrait.jpg"
       }
@@ -718,6 +822,16 @@
             ]
           },
           {
+            "date": "2026 — настоящее время",
+            "title": "Агентные LLM-пайплайны — оркестратор, роли, верификация",
+            "org": "декомпозиция задач · изоляция контекста · независимая проверка",
+            "bullets": [
+              "Спроектировал оркестратор, который раздаёт подзадачи отдельным ролям в чистых контекстах и собирает результат из сжатых отчётов с локаторами вместо пересказа сырья.",
+              "Разделил исполнение и проверку: критик фактов, критик логики и верификатор с заранее написанными проверками, включая негативный контроль на намеренно испорченный результат."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "date": "1 июля — 31 августа 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM 22 · C++23 · Python · 0,25 ставки",
@@ -748,6 +862,10 @@
           [
             "Verification",
             "exact/reference oracles, differential/metamorphic testing, isolated execution, reproducible counterexamples"
+          ],
+          [
+            "LLM-агенты",
+            "оркестрация ролей, декомпозиция, изоляция контекста, независимая критика и верификация, сжатые отчёты с локаторами"
           ]
         ],
         "contact_heading": "Целевые роли: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
@@ -794,6 +912,16 @@
             ]
           },
           {
+            "date": "2026 — present",
+            "title": "Agentic LLM pipelines — orchestrator, roles, verification",
+            "org": "task decomposition · context isolation · independent verification",
+            "bullets": [
+              "Designed an orchestrator that dispatches subtasks to separate roles in clean contexts and assembles results from compressed reports with locators instead of raw dumps.",
+              "Separated execution from verification: a fact critic, a logic critic and a verifier with checks written in advance, including negative controls on deliberately corrupted results."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "date": "July 1 — August 31, 2026",
             "title": "MCST — Compiler Engineering Intern",
             "org": "LLVM 22 · C++23 · Python · 0.25 FTE",
@@ -824,6 +952,10 @@
           [
             "Verification",
             "exact/reference oracles, differential/metamorphic testing, isolated execution, reproducible counterexamples"
+          ],
+          [
+            "LLM agents",
+            "role orchestration, task decomposition, context isolation, independent critique and verification, compressed reports with locators"
           ]
         ],
         "contact_heading": "Target roles: C++ systems · compiler/runtime · trading infrastructure · performance engineering",
@@ -872,6 +1004,16 @@
             ]
           },
           {
+            "date": "2026 — настоящее время",
+            "title": "Агентные LLM-пайплайны — оркестратор, роли, верификация",
+            "org": "декомпозиция задач · изоляция контекста · независимая проверка",
+            "bullets": [
+              "Спроектировал оркестратор, который раздаёт подзадачи отдельным ролям в чистых контекстах и собирает результат из сжатых отчётов с локаторами вместо пересказа сырья.",
+              "Разделил исполнение и проверку: критик фактов, критик логики и верификатор с заранее написанными проверками, включая негативный контроль на намеренно испорченный результат."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "date": "1 июля — 31 августа 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM 22 · C++23 · Python · 0,25 ставки",
@@ -902,6 +1044,10 @@
           [
             "Research tooling",
             "Python harnesses, Linux, Git, CMake, counterexample analysis"
+          ],
+          [
+            "LLM-агенты",
+            "оркестрация ролей, декомпозиция, изоляция контекста, независимая критика и верификация, сжатые отчёты с локаторами"
           ]
         ],
         "contact_heading": "Целевые роли: Quantitative Research internships / research roles, где ценятся алгоритмы и строгая экспериментальная проверка",
@@ -947,6 +1093,16 @@
             ]
           },
           {
+            "date": "2026 — present",
+            "title": "Agentic LLM pipelines — orchestrator, roles, verification",
+            "org": "task decomposition · context isolation · independent verification",
+            "bullets": [
+              "Designed an orchestrator that dispatches subtasks to separate roles in clean contexts and assembles results from compressed reports with locators instead of raw dumps.",
+              "Separated execution from verification: a fact critic, a logic critic and a verifier with checks written in advance, including negative controls on deliberately corrupted results."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "date": "July 1 — August 31, 2026",
             "title": "MCST — Compiler Engineering Intern",
             "org": "LLVM 22 · C++23 · Python · 0.25 FTE",
@@ -977,6 +1133,10 @@
           [
             "Research tooling",
             "Python harnesses, Linux, Git, CMake, counterexample analysis"
+          ],
+          [
+            "LLM agents",
+            "role orchestration, task decomposition, context isolation, independent critique and verification, compressed reports with locators"
           ]
         ],
         "contact_heading": "Target roles: Quantitative Research internships / research roles valuing algorithms and rigorous experimental validation",
@@ -1024,6 +1184,16 @@
             ]
           },
           {
+            "date": "2026 — настоящее время",
+            "title": "Агентные LLM-пайплайны — оркестратор, роли, верификация",
+            "org": "декомпозиция задач · изоляция контекста · независимая проверка",
+            "bullets": [
+              "Спроектировал оркестратор, который раздаёт подзадачи отдельным ролям в чистых контекстах и собирает результат из сжатых отчётов с локаторами вместо пересказа сырья.",
+              "Разделил исполнение и проверку: критик фактов, критик логики и верификатор с заранее написанными проверками, включая негативный контроль на намеренно испорченный результат."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "date": "1 июля — 31 августа 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
             "org": "LLVM 22 · C++23 · Python · 0,25 ставки",
@@ -1054,6 +1224,10 @@
           [
             "Systems",
             "LLVM 22, x86-64, Linux, CMake, generated-code analysis"
+          ],
+          [
+            "LLM-агенты",
+            "оркестрация ролей, декомпозиция, изоляция контекста, независимая критика и верификация, сжатые отчёты с локаторами"
           ]
         ],
         "contact_heading": "Целевые роли: Quant Developer · Research Engineer · Algorithm / Research Software Engineering",
@@ -1099,6 +1273,16 @@
             ]
           },
           {
+            "date": "2026 — present",
+            "title": "Agentic LLM pipelines — orchestrator, roles, verification",
+            "org": "task decomposition · context isolation · independent verification",
+            "bullets": [
+              "Designed an orchestrator that dispatches subtasks to separate roles in clean contexts and assembles results from compressed reports with locators instead of raw dumps.",
+              "Separated execution from verification: a fact critic, a logic critic and a verifier with checks written in advance, including negative controls on deliberately corrupted results."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "date": "July 1 — August 31, 2026",
             "title": "MCST — Compiler Engineering Intern",
             "org": "LLVM 22 · C++23 · Python · 0.25 FTE",
@@ -1129,6 +1313,10 @@
           [
             "Systems",
             "LLVM 22, x86-64, Linux, CMake, generated-code analysis"
+          ],
+          [
+            "LLM agents",
+            "role orchestration, task decomposition, context isolation, independent critique and verification, compressed reports with locators"
           ]
         ],
         "contact_heading": "Target roles: Quant Developer · Research Engineer · Algorithm / Research Software Engineering",
@@ -1178,6 +1366,16 @@
             ]
           },
           {
+            "date": "2026 — настоящее время",
+            "title": "Агентные LLM-пайплайны — оркестратор, роли, верификация",
+            "org": "декомпозиция задач · изоляция контекста · независимая проверка",
+            "bullets": [
+              "Спроектировал оркестратор, который раздаёт подзадачи отдельным ролям в чистых контекстах и собирает результат из сжатых отчётов с локаторами вместо пересказа сырья.",
+              "Разделил исполнение и проверку: критик фактов, критик логики и верификатор с заранее написанными проверками, включая негативный контроль на намеренно испорченный результат."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "fact_ref": "mcst",
             "date": "июль — август 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
@@ -1209,6 +1407,10 @@
           [
             "Проверка",
             "verifier раскладки, LLVM Verifier, структурные проверки, идемпотентность, differential execution"
+          ],
+          [
+            "LLM-агенты",
+            "оркестрация ролей, декомпозиция, изоляция контекста, независимая критика и верификация, сжатые отчёты с локаторами"
           ]
         ],
         "contact_heading": "Целевые роли: Compiler Backend · Code Generation · Register Allocation · LLVM",
@@ -1273,6 +1475,16 @@
             ]
           },
           {
+            "date": "2026 — present",
+            "title": "Agentic LLM pipelines — orchestrator, roles, verification",
+            "org": "task decomposition · context isolation · independent verification",
+            "bullets": [
+              "Designed an orchestrator that dispatches subtasks to separate roles in clean contexts and assembles results from compressed reports with locators instead of raw dumps.",
+              "Separated execution from verification: a fact critic, a logic critic and a verifier with checks written in advance, including negative controls on deliberately corrupted results."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "fact_ref": "mcst",
             "date": "July — August 2026",
             "title": "MCST — Compiler Engineering Intern",
@@ -1304,6 +1516,10 @@
           [
             "Verification",
             "assignment verifier, LLVM Verifier, structural checks, idempotence, differential execution"
+          ],
+          [
+            "LLM agents",
+            "role orchestration, task decomposition, context isolation, independent critique and verification, compressed reports with locators"
           ]
         ],
         "contact_heading": "Target roles: Compiler Backend · Code Generation · Register Allocation · LLVM",
@@ -1370,6 +1586,16 @@
             ]
           },
           {
+            "date": "2026 — настоящее время",
+            "title": "Агентные LLM-пайплайны — оркестратор, роли, верификация",
+            "org": "декомпозиция задач · изоляция контекста · независимая проверка",
+            "bullets": [
+              "Спроектировал оркестратор, который раздаёт подзадачи отдельным ролям в чистых контекстах и собирает результат из сжатых отчётов с локаторами вместо пересказа сырья.",
+              "Разделил исполнение и проверку: критик фактов, критик логики и верификатор с заранее написанными проверками, включая негативный контроль на намеренно испорченный результат."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "fact_ref": "mcst",
             "date": "июль — август 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
@@ -1401,6 +1627,10 @@
           [
             "Языки / инструменты",
             "C#, C++23, Roslyn, LLVM 22, .NET"
+          ],
+          [
+            "LLM-агенты",
+            "оркестрация ролей, декомпозиция, изоляция контекста, независимая критика и верификация, сжатые отчёты с локаторами"
           ]
         ],
         "contact_heading": "Целевые роли: Static Analysis · Program Analysis · Compiler Analysis · LLVM Analysis",
@@ -1464,6 +1694,16 @@
             ]
           },
           {
+            "date": "2026 — present",
+            "title": "Agentic LLM pipelines — orchestrator, roles, verification",
+            "org": "task decomposition · context isolation · independent verification",
+            "bullets": [
+              "Designed an orchestrator that dispatches subtasks to separate roles in clean contexts and assembles results from compressed reports with locators instead of raw dumps.",
+              "Separated execution from verification: a fact critic, a logic critic and a verifier with checks written in advance, including negative controls on deliberately corrupted results."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "fact_ref": "mcst",
             "date": "July — August 2026",
             "title": "MCST — Compiler Engineering Intern",
@@ -1495,6 +1735,10 @@
           [
             "Languages / Tools",
             "C#, C++23, Roslyn, LLVM 22, .NET"
+          ],
+          [
+            "LLM agents",
+            "role orchestration, task decomposition, context isolation, independent critique and verification, compressed reports with locators"
           ]
         ],
         "contact_heading": "Target roles: Static Analysis · Program Analysis · Compiler Analysis · LLVM Analysis",
@@ -1561,6 +1805,16 @@
             ]
           },
           {
+            "date": "2026 — настоящее время",
+            "title": "Агентные LLM-пайплайны — оркестратор, роли, верификация",
+            "org": "декомпозиция задач · изоляция контекста · независимая проверка",
+            "bullets": [
+              "Спроектировал оркестратор, который раздаёт подзадачи отдельным ролям в чистых контекстах и собирает результат из сжатых отчётов с локаторами вместо пересказа сырья.",
+              "Разделил исполнение и проверку: критик фактов, критик логики и верификатор с заранее написанными проверками, включая негативный контроль на намеренно испорченный результат."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "fact_ref": "mcst",
             "date": "июль — август 2026",
             "title": "МЦСТ — стажёр по разработке компиляторов",
@@ -1592,6 +1846,10 @@
           [
             "Software Protection / Licensing",
             "server-side activation, activation-count limits, Unity integration"
+          ],
+          [
+            "LLM-агенты",
+            "оркестрация ролей, декомпозиция, изоляция контекста, независимая критика и верификация, сжатые отчёты с локаторами"
           ]
         ],
         "contact_heading": "Selective: Compiler Security · Software Protection · LLVM hardening-adjacent roles",
@@ -1660,6 +1918,16 @@
             ]
           },
           {
+            "date": "2026 — present",
+            "title": "Agentic LLM pipelines — orchestrator, roles, verification",
+            "org": "task decomposition · context isolation · independent verification",
+            "bullets": [
+              "Designed an orchestrator that dispatches subtasks to separate roles in clean contexts and assembles results from compressed reports with locators instead of raw dumps.",
+              "Separated execution from verification: a fact critic, a logic critic and a verifier with checks written in advance, including negative controls on deliberately corrupted results."
+            ],
+            "fact_ref": "agentic"
+          },
+          {
             "fact_ref": "mcst",
             "date": "July — August 2026",
             "title": "MCST — Compiler Engineering Intern",
@@ -1691,6 +1959,10 @@
           [
             "Software Protection / Licensing",
             "server-side activation, activation-count limits, Unity integration"
+          ],
+          [
+            "LLM agents",
+            "role orchestration, task decomposition, context isolation, independent critique and verification, compressed reports with locators"
           ]
         ],
         "contact_heading": "Selective: Compiler Security · Software Protection · LLVM hardening-adjacent roles",
@@ -1740,7 +2012,7 @@
           ],
           [
             "Самостоятельная разработка",
-            "UniversalToolchain: компилятор и runtime. botay!: web/Android с офлайн-синхронизацией. VpnMediator: платёжные состояния и восстановление."
+            "UniversalToolchain: компилятор и runtime. botay!: web/Android с офлайн-синхронизацией. VpnMediator: платёжные состояния и восстановление. TuringSquare-LMS: production-платформа с judge на четырёх воркерах."
           ],
           [
             "Внешние результаты",
@@ -1766,6 +2038,16 @@
               "Реализовал LICM-проход для LLVM 22 на C++; перенос выполняется только при выполнении условий по структуре цикла, обращениям к памяти, побочным эффектам и безопасности спекулятивного выполнения.",
               "Собрал Python-обвязку для сравнения поведения программы до/после оптимизации и проверки случаев с преобразованием и без него."
             ]
+          },
+          {
+            "date": "2026 — настоящее время",
+            "title": "Агентные LLM-пайплайны — оркестратор, роли, верификация",
+            "org": "декомпозиция задач · изоляция контекста · независимая проверка",
+            "bullets": [
+              "Спроектировал оркестратор, который раздаёт подзадачи отдельным ролям в чистых контекстах и собирает результат из сжатых отчётов с локаторами вместо пересказа сырья.",
+              "Разделил исполнение и проверку: критик фактов, критик логики и верификатор с заранее написанными проверками, включая негативный контроль на намеренно испорченный результат."
+            ],
+            "fact_ref": "agentic"
           }
         ],
         "project_ids": [
@@ -1789,6 +2071,10 @@
           [
             "Корректность",
             "регрессионные и дифференциальные тесты, LLVM Verifier, инварианты и идемпотентность"
+          ],
+          [
+            "LLM-агенты",
+            "оркестрация ролей, декомпозиция, изоляция контекста, независимая критика и верификация, сжатые отчёты с локаторами"
           ]
         ],
         "contact_heading": "Целевые роли: Software / Systems Engineer · Infrastructure / Platform · Compiler / Runtime",
@@ -1809,6 +2095,10 @@
           "vpn": {
             "solution": "Разработал backend-логику для платежей и подписок: подтверждения провайдера сохраняются отдельно от изменений доступа.",
             "result": "Повторные действия идемпотентны; при расхождениях предусмотрены reconciliation, ручная проверка, backup/restore и откат."
+          },
+          "agentic": {
+            "solution": "Оркестратор с явными ролями и контрактами передачи; каждая роль в чистом контексте возвращает сжатый отчёт с локаторами.",
+            "result": "Исследователь, автор, критики и верификатор; проверки пишутся до исполнения, негативный контроль ловит подделку."
           }
         },
         "print_show_trajectory": false,
@@ -1832,7 +2122,7 @@
           ],
           [
             "Independent engineering",
-            "UniversalToolchain compiler/runtime; botay! web/Android offline sync; VpnMediator payment-state recovery."
+            "UniversalToolchain: compiler and runtime. botay!: web/Android with offline sync. VpnMediator: payment state and recovery. TuringSquare-LMS: a production platform with a four-worker judge."
           ],
           [
             "External results",
@@ -1858,6 +2148,16 @@
               "Implemented a LICM pass for LLVM 22 in C++; hoisting conditions check loop structure, memory access, side effects, and speculative safety.",
               "Built a Python harness comparing program behavior before/after optimization and checking transform/no-transform cases."
             ]
+          },
+          {
+            "date": "2026 — present",
+            "title": "Agentic LLM pipelines — orchestrator, roles, verification",
+            "org": "task decomposition · context isolation · independent verification",
+            "bullets": [
+              "Designed an orchestrator that dispatches subtasks to separate roles in clean contexts and assembles results from compressed reports with locators instead of raw dumps.",
+              "Separated execution from verification: a fact critic, a logic critic and a verifier with checks written in advance, including negative controls on deliberately corrupted results."
+            ],
+            "fact_ref": "agentic"
           }
         ],
         "project_ids": [
@@ -1881,6 +2181,10 @@
           [
             "Correctness",
             "regression and differential tests, LLVM Verifier, invariants, idempotency"
+          ],
+          [
+            "LLM agents",
+            "role orchestration, task decomposition, context isolation, independent critique and verification, compressed reports with locators"
           ]
         ],
         "contact_heading": "Target roles: Software / Systems Engineer · Infrastructure / Platform · Compiler / Runtime",
@@ -1901,6 +2205,10 @@
           "vpn": {
             "solution": "Built backend logic for payments and subscriptions, preserving provider evidence independently of access changes.",
             "result": "Idempotent retries, reconciliation and manual review for conflicts, with backup/restore and rollback safeguards; no scale claim."
+          },
+          "agentic": {
+            "solution": "An orchestrator with explicit roles and handoff contracts; each role returns a compressed report with locators.",
+            "result": "Researcher, author, critics and verifier; checks written before execution, negative controls catch fabrication."
           }
         },
         "print_show_trajectory": false,
@@ -1957,17 +2265,18 @@
     },
     "lms": {
       "title": "TuringSquare-LMS",
-      "type_ru": "Разрабатываемая образовательная платформа · агентная реализация",
-      "type_en": "In-development learning platform · agent-assisted implementation",
-      "problem_ru": "Роли администратора, преподавателя, куратора и ученика, доступ к курсам и разовые/подписочные платежи должны работать согласованно при повторах и сетевых сбоях.",
-      "problem_en": "Administrator, teacher, curator and student roles, course entitlements, and one-time/subscription payments must remain consistent under retries and network failures.",
-      "solution_ru": "Проектирую и проверяю серверные контракты ASP.NET Core/PostgreSQL и требования к интеграции T-Bank: идемпотентность заказа, проверка состояния у провайдера перед выдачей доступа; реализация частично выполнена AI-агентами.",
-      "solution_en": "I define and review ASP.NET Core/PostgreSQL contracts and T-Bank payment requirements: order idempotency and authoritative provider state checks before entitlement grants. Parts of implementation were produced by AI agents.",
-      "result_ru": "Продукт в разработке: проверяемые сценарии и sandbox-платежи не эквивалентны production-релизу. Баланса внутренних монет нет.",
-      "result_en": "Work in progress: checks and sandbox payments do not establish production readiness. No internal coin-wallet model.",
+      "type_ru": ".NET backend · production LMS · judge · роли · доступы",
+      "type_en": ".NET backend · production LMS · judge · roles · entitlements",
+      "problem_ru": "Роли администратора, преподавателя, куратора и ученика, доступ к курсам, платежи и автоматическая проверка решений должны сохранять инварианты при повторных запросах, сетевых сбоях, миграциях и одновременной работе нескольких judge-воркеров.",
+      "problem_en": "Administrator, teacher, curator and student roles, course entitlements, payments and automated judging must keep their invariants across retries, network failures, migrations, and several judge workers running concurrently.",
+      "solution_ru": "Явные роли и состояния, ledger-подход к балансу, проверяемые webhooks, идемпотентное завершение платежей и critical-flow gates; изолированный judge с четырьмя параллельными воркерами, lease-механизмом и воспроизводимым release/recovery-процессом.",
+      "solution_en": "Explicit roles and states, a balance ledger, verified webhooks, idempotent payment completion and critical-flow gates; an isolated judge with four parallel workers, a lease protocol, and a reproducible release/recovery process.",
+      "result_ru": "Платформа в production и выдерживает рабочую нагрузку: 150+ учеников (данные владельца продукта, 22.11.2026), тур из пяти задач и 514 реальных тестов с автоматической проверкой C++17 и Python3, judge на четырёх параллельных воркерах. Нагрузочные прогоны на изолированном контуре: 959 последовательных запросов без ошибок (p95 52–78 мс) и 2 880 синхронизированных запросов без единого 5xx.",
+      "result_en": "The platform is in production and holds production load: 150+ students (product-owner data, 22 Nov 2026), a five-problem tour with 514 real tests and automated C++17/Python3 judging, and a judge running four parallel workers. Load runs on an isolated rig: 959 sequential requests with zero errors (p95 52–78 ms) and 2 880 synchronized requests with zero 5xx.",
       "case_ru": "cases/ru-lms.html",
       "case_en": "cases/en-lms.html",
-      "public": false
+      "public": false,
+      "title_ru": "TuringSquare-LMS"
     },
     "psform": {
       "title": "PS-form Memory Dependence Analyzer",
@@ -2058,10 +2367,31 @@
       "case_ru": "cases/ru-quark2.html",
       "case_en": "cases/en-quark2.html",
       "public": true
+    },
+    "agentic": {
+      "title": "Agentic LLM Orchestration",
+      "title_ru": "Агентная оркестрация LLM",
+      "title_en": "Agentic LLM Orchestration",
+      "type_ru": "LLM-агенты · оркестратор · роли · независимая проверка",
+      "type_en": "LLM agents · orchestrator · roles · independent verification",
+      "problem_ru": "Одна модель в одном контексте не тянет объёмную задачу: чтение десятков файлов, проверка фактов и написание кода конкурируют за контекст, а собственную работу исполнитель проверить не может.",
+      "problem_en": "A single model in one context cannot carry a large task: reading dozens of files, verifying facts and writing code compete for context, and an executor cannot independently verify its own output.",
+      "solution_ru": "Оркестратор с явными ролями и контрактами передачи: исследователь собирает факты, автор пишет артефакт, критик фактов и критик логики проверяют независимо, верификатор принимает по заранее написанным проверкам. Каждая роль работает в чистом контексте и возвращает сжатый отчёт с локаторами.",
+      "solution_en": "An orchestrator with explicit roles and handoff contracts: a researcher gathers facts, an author writes the artifact, a fact critic and a logic critic verify independently, and a verifier accepts against checks written in advance. Each role runs in a clean context and returns a compressed report with locators.",
+      "result_ru": "Пайплайн применён к реальным задачам: доказательные отчёты, ревью кода, аудит документации и реализация по плану. Падение отдельной роли не уничтожает контекст остальных, а проверка отделена от исполнения.",
+      "result_en": "The pipeline has been applied to real work: evidence-backed reports, code review, documentation audits and plan-driven implementation. A failing role does not destroy the others' context, and verification is separated from execution.",
+      "case_ru": "cases/ru-agentic.html",
+      "case_en": "cases/en-agentic.html",
+      "public": false
     }
   },
   "recognition": {
     "ru": [
+      [
+        "2026",
+        "Агентная оркестрация LLM",
+        "Пайплайн с ролями (исследователь, автор, критики, верификатор) и изоляцией контекста применён к доказательным отчётам, ревью кода и реализации по плану."
+      ],
       [
         "2026",
         "Отбор МЦСТ — LLVM / C++",
@@ -2084,6 +2414,11 @@
       ]
     ],
     "en": [
+      [
+        "2026",
+        "Agentic LLM orchestration",
+        "A role-based pipeline (researcher, author, critics, verifier) with context isolation applied to evidence-backed reports, code review, and plan-driven implementation."
+      ],
       [
         "2026",
         "MCST LLVM/C++ selection",
@@ -2140,6 +2475,16 @@
       "title_en": "Commercial C#/.NET and adjacent software development",
       "status": "USER_ATTESTED",
       "date_boundary": "Aggregate duration and stack attested by candidate; individual client timelines and responsibility require employer references."
+    },
+    "agentic": {
+      "date_ru": "2026 — настоящее время",
+      "date_en": "2026 — present",
+      "title_ru": "Агентные LLM-пайплайны — оркестратор, роли, верификация",
+      "title_en": "Agentic LLM pipelines — orchestrator, roles, verification",
+      "status": "USER_CONFIRMED_ACTIVE",
+      "focus_ru": "Оркестрация ролей, изоляция контекста, независимая критика и верификация",
+      "focus_en": "Role orchestration, context isolation, independent critique and verification",
+      "date_boundary": "Start month and scope reported by the author; no third-party benchmark or adoption figures claimed."
     }
   },
   "selector_order": [

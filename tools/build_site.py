@@ -44,6 +44,10 @@ def profile_links(data: dict[str, Any], lang: str) -> list[tuple[str, str]]:
     ]
 
 
+def project_title(project: dict[str, Any], lang: str) -> str:
+    return project.get(f"title_{lang}") or project["title"]
+
+
 def recognition_items(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> list[list[str]]:
     return profile.get("recognition", data["recognition"][lang])
 
@@ -289,8 +293,8 @@ def project_card(data: dict[str, Any], lang: str, project_id: str, featured: boo
         links.append(f'<a href="{esc(project["docs"])}" rel="noopener noreferrer" target="_blank">{labels["docs"]} ↗</a>')
     points = f"""<ul class="project-points"><li><strong>{labels['problem']}</strong>{esc(problem)}</li><li><strong>{labels['solution']}</strong>{esc(solution)}</li><li><strong>{labels['result']}</strong>{esc(result)}</li></ul>"""
     if featured:
-        return f'<article class="project-featured"><div><span class="project-type">{esc(type_label)}</span><h3>{esc(project["title"])}</h3><p>{esc(problem)}</p><div class="project-links">{"".join(links)}</div></div>{points}</article>'
-    return f'<article class="project-card"><span class="project-type">{esc(type_label)}</span><h3>{esc(project["title"])}</h3><div class="project-mini"><p><strong>{labels["problem"]}:</strong> {esc(problem)}</p><p><strong>{labels["solution"]}:</strong> {esc(solution)}</p><p><strong>{labels["result"]}:</strong> {esc(result)}</p></div><div class="project-links">{"".join(links)}</div></article>'
+        return f'<article class="project-featured"><div><span class="project-type">{esc(type_label)}</span><h3>{esc(project_title(project, lang))}</h3><p>{esc(problem)}</p><div class="project-links">{"".join(links)}</div></div>{points}</article>'
+    return f'<article class="project-card"><span class="project-type">{esc(type_label)}</span><h3>{esc(project_title(project, lang))}</h3><div class="project-mini"><p><strong>{labels["problem"]}:</strong> {esc(problem)}</p><p><strong>{labels["solution"]}:</strong> {esc(solution)}</p><p><strong>{labels["result"]}:</strong> {esc(result)}</p></div><div class="project-links">{"".join(links)}</div></article>'
 
 
 def projects_section(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
@@ -313,7 +317,7 @@ def compiler_project_card(data: dict[str, Any], lang: str, profile: dict[str, An
     if project.get("repo"):
         links.append(f'<a href="{esc(project["repo"])}" rel="noopener noreferrer" target="_blank">GitHub ↗</a>')
     type_label = copy.get("type", project[f"type_{lang}"])
-    return f'<article class="project-row"><div><span class="project-type">{esc(type_label)}</span><h3>{esc(project["title"])}</h3></div><div><p>{esc(copy['solution'])}</p><p class="project-result">{esc(copy['result'])}</p><div class="project-links">{"".join(links)}</div></div></article>'
+    return f'<article class="project-row"><div><span class="project-type">{esc(type_label)}</span><h3>{esc(project_title(project, lang))}</h3></div><div><p>{esc(copy['solution'])}</p><p class="project-result">{esc(copy['result'])}</p><div class="project-links">{"".join(links)}</div></div></article>'
 
 
 def compiler_projects_section(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
@@ -380,7 +384,7 @@ def print_cv(data: dict[str, Any], lang: str, profile: dict[str, Any]) -> str:
             project_body = f'<p>{esc(summary.get("solution", ""))}</p><p class="pcv-project-result">{esc(summary.get("result", ""))}</p>'
         else:
             project_body = f'<p>{esc(project[f"result_{lang}"])}</p>'
-        projects.append(f'<article class="pcv-project"><h3><a href="{esc(target)}">{esc(project["title"])}</a></h3>{project_body}</article>')
+        projects.append(f'<article class="pcv-project"><h3><a href="{esc(target)}">{esc(project_title(project, lang))}</a></h3>{project_body}</article>')
     skills = "".join(f'<div class="pcv-skill"><strong>{esc(title)}</strong><span>{esc(body)}</span></div>' for title, body in profile["skills"])
     education = p[f"education_{lang}"]
     recognition_data = recognition_items(data, lang, profile)
@@ -476,7 +480,7 @@ def landing_page(data: dict[str, Any]) -> str:
         )
         case_items.append(
             f'<article class="landing-case"><span class="micro-label">{number:02d} / {esc(project["type_ru"])}</span>'
-            f'<h3>{esc(project["title"])}</h3>'
+            f'<h3>{esc(project_title(project, lang))}</h3>'
             f'<p>{esc(project["problem_ru"])}</p>'
             f'<div class="landing-case-actions"><a href="{esc(project["case_ru"])}">Читать инженерный разбор</a>{code_link}</div>'
             f'</article>'
@@ -504,7 +508,7 @@ def landing_page(data: dict[str, Any]) -> str:
 def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
     project = data["projects"][project_id]
     filename = project[f"case_{lang}"]
-    title = f"{project['title']} — {'архитектурный кейс' if lang == 'ru' else 'architecture case study'}"
+    title = f"{project_title(project, lang)} — {'архитектурный кейс' if lang == 'ru' else 'architecture case study'}"
     description = project[f"result_{lang}"]
     canonical_key = data.get("canonical_profile", "compiler")
     role = data["profiles"][canonical_key][lang]["role"]
@@ -526,7 +530,8 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         "botay": "Офлайн-клиенты могут повторять операции после перезапуска; внешние события, локальное состояние и предложения модели нельзя считать равноправными источниками истины." if lang == "ru" else "Offline clients replay commands after restarts; external observations, local state and model proposals must not share mutation authority.",
         "planfuzz": "Нестабильные исполнения, инфраструктурные сбои и необходимость сохранять точный тип расхождения." if lang == "ru" else "Flaky executions, infrastructure failures, and preserving the exact mismatch category.",
         "vpn": "Повторные webhooks, сетевые таймауты, перезапуски, миграции и невозможность раскрывать production-данные." if lang == "ru" else "Duplicate webhooks, network timeouts, restarts, migrations, and private production data.",
-         "lms": "Роли и course entitlements, повторные заказы и проверка T-Bank; один платеж не даёт доступа без подтверждения провайдера." if lang == "ru" else "Roles, course entitlements, duplicate orders and T-Bank verification; payment intent alone does not grant access.",
+         "lms": "Роли и права доступа к курсам, повторные заказы и проверка у провайдера; одного платёжного намерения недостаточно для доступа. Плюс изоляция judge, lease-протокол и миграции под живой нагрузкой." if lang == "ru" else "Roles and course entitlements, duplicate orders and provider-side verification; a payment intent alone grants nothing. Plus judge isolation, a lease protocol, and migrations under live load.",
+         "agentic": "Длинные чтения и поиск нельзя держать в одном контексте с решением; исполнитель не должен проверять сам себя." if lang == "ru" else "Long reads and search cannot share one context with the decision; an executor must not verify itself.",
         "psform": "Анализ должен быть консервативным, быстрым на больших диапазонах и проверяемым на малых областях." if lang == "ru" else "The analysis must be conservative, fast on large domains, and checkable on small domains.",
         "codegen": "Нужно сравнивать высокоуровневую семантику и машинный код в изолированном процессе с ограничениями ресурсов." if lang == "ru" else "High-level semantics and machine code must be compared in an isolated, resource-limited process.",
         "globaliv": "Transform допустим только при доказанной affine evolution и legality; unsupported CFG/calls должны приводить к отказу, а не к небезопасной оптимизации." if lang == "ru" else "The transform is allowed only when affine evolution and legality are established; unsupported CFG/calls must be rejected rather than optimized unsafely.",
@@ -538,7 +543,8 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         "botay": "Operation IDs and atomic server records, explicit lifecycle conflicts, witness validation, emulator/device checks and signed APK provenance." if lang == "en" else "Идентификаторы операций и атомарные серверные записи, явные конфликты, проверка witness, эмулятор/device-тесты и происхождение подписанного APK.",
         "planfuzz": "Fresh-process confirmation, exact fingerprints, typed outcomes, and deterministic reduction." if lang == "en" else "Подтверждение в свежем процессе, exact fingerprints, типизированные исходы и детерминированное сокращение.",
         "vpn": "State-transition checks, negative webhook cases, audit records, backup/restore rehearsal, health gates, and rollback verification." if lang == "en" else "Проверки переходов состояния, негативные webhook-сценарии, audit records, репетиция backup/restore, health gates и проверка rollback.",
-         "lms": "Review of role and entitlement checks, T-Bank sandbox payment verification, migrations and critical flows; no production launch." if lang == "en" else "Ревью ролей и доступов, перепроверки T-Bank sandbox, миграций и критических flows; без заявления о production-запуске.",
+         "lms": "Live production acceptance: five-problem tour, 514 real tests, real C++17/Python3 verdicts read back after re-login, 128 confirmed student bindings, four-worker judge, isolated load measurements with an explicit NO_GO for unmeasured 200-user capacity." if lang == "en" else "Фактическая production-приёмка: тур из пяти задач, 514 реальных тестов, реальные вердикты C++17/Python3 после повторного входа, 128 подтверждённых учебных привязок, judge на четырёх воркерах, нагрузочные измерения на изолированном контуре и явный NO_GO для неизмеренной ёмкости на 200 пользователей.",
+         "agentic": "Checks written from the definition of done before execution, negative controls on deliberately corrupted results, spot re-verification of load-bearing claims, and replay of the embedded script." if lang == "en" else "Проверки, написанные из критерия готовности до исполнения, негативный контроль на намеренно испорченном результате, выборочная сверка несущих утверждений и воспроизведение встроенного скрипта.",
         "psform": "Exact brute-force oracle on small domains, metamorphic generation, sanitizers, and reproducible WA/TL examples." if lang == "en" else "Точный brute-force oracle на малых областях, метаморфная генерация, sanitizers и воспроизводимые WA/TL-примеры.",
         "codegen": "Differential comparison with an IR interpreter, isolated execution, disassembly, and spill/reload metrics." if lang == "en" else "Дифференциальное сравнение с IR-интерпретатором, изолированный запуск, дизассемблирование и метрики spill/reload.",
         "globaliv": "29 positive/negative IR regressions, LLVM verifier checks, idempotence, and before/after execution comparison." if lang == "en" else "29 positive/negative IR regression cases, LLVM verifier, idempotence и сравнение исполнения до/после преобразования.",
@@ -550,7 +556,8 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         "botay": "Canonical/evidence/projection boundaries, offline command replay, feasibility witnesses, LLM intent limits and native Android release path." if lang == "en" else "Границы канонических данных, внешних наблюдений и проекций; replay офлайн-команд, проверка выполнимости, серверная авторизация LLM-действий и выпуск Android.",
         "planfuzz": "Модель исходов, ядро оракулов, replay, fingerprinting и reducers." if lang == "ru" else "Outcome model, oracle core, replay, fingerprinting, and reducers.",
         "vpn": "Backend-архитектура, состояния, платежные интеграции, recovery, миграции и эксплуатационные gates." if lang == "ru" else "Backend architecture, state transitions, payment integrations, recovery, migrations, and operational gates.",
-         "lms": "Архитектура и критерии приёмки, ревью агентной реализации ролей, прав доступа и T-Bank sandbox." if lang == "ru" else "Architecture and acceptance criteria; review of agent-generated roles, entitlements and T-Bank sandbox payments.",
+         "lms": "Архитектура и критерии приёмки, агентная реализация под моим ревью, judge-контур, release/recovery-процедуры и фактическая production-приёмка." if lang == "ru" else "Architecture and acceptance criteria, agent-produced implementation under my review, the judge pipeline, release/recovery procedures, and the actual production acceptance.",
+         "agentic": "Роли, контракты передачи, критерии приёмки и разделение исполнения и проверки." if lang == "ru" else "Roles, handoff contracts, acceptance criteria, and separation of execution from verification.",
         "psform": "Алгоритм анализа, точный оракул, stress infrastructure и разбор контрпримеров." if lang == "ru" else "Analysis algorithm, exact oracle, stress infrastructure, and counterexample analysis.",
         "codegen": "IR, liveness, register allocation, code emission и differential harness." if lang == "ru" else "IR, liveness, register allocation, code emission, and the differential harness.",
         "globaliv": "Модель affine evolution, interprocedural effects, legality analysis, LLVM IR transform и regression harness." if lang == "ru" else "Affine-evolution model, interprocedural effects, legality analysis, LLVM IR transform, and regression harness.",
@@ -564,9 +571,9 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         links.append(f'<a class="button" href="{esc(project["docs"])}" target="_blank" rel="noopener noreferrer">Documentation</a>')
     return f"""{head}
 <body class="case-page"><header class="site-header"><div class="shell header-inner"><a class="brand" href="../index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(person_name(data, lang))}</strong><span>{'инженерный кейс' if lang == 'ru' else 'engineering case'}</span></span></a><div></div><div class="header-actions"><a class="button compact" href="../{esc(data['profiles'][canonical_key][lang]['filename'])}">{labels['back']}</a></div></div></header>
-<main class="shell case-main" id="main"><section class="case-hero"><p class="eyebrow">{esc(project[f'type_{lang}'])}</p><h1>{esc(project['title'])}</h1><p>{esc(project[f'problem_{lang}'])}</p>{'<div class="case-note">'+esc(labels['private'])+'</div>' if not project['public'] else ''}<div class="hero-actions">{''.join(links)}</div></section>
+<main class="shell case-main" id="main"><section class="case-hero"><p class="eyebrow">{esc(project[f'type_{lang}'])}</p><h1>{esc(project_title(project, lang))}</h1><p>{esc(project[f'problem_{lang}'])}</p>{'<div class="case-note">'+esc(labels['private'])+'</div>' if not project['public'] else ''}<div class="hero-actions">{''.join(links)}</div></section>
 <section class="case-grid"><article><span>01</span><h2>{labels['problem']}</h2><p>{esc(project[f'problem_{lang}'])}</p></article><article><span>02</span><h2>{labels['constraints']}</h2><p>{esc(constraints)}</p></article><article><span>03</span><h2>{labels['solution']}</h2><p>{esc(project[f'solution_{lang}'])}</p></article><article><span>04</span><h2>{labels['result']}</h2><p>{esc(project[f'result_{lang}'])}</p></article><article><span>05</span><h2>{labels['verification']}</h2><p>{esc(verification)}</p></article><article><span>06</span><h2>{labels['role']}</h2><p>{esc(ownership)}</p></article></section></main>
-<footer class="shell site-footer"><span>{esc(project['title'])}</span><span>{'Обновлено' if lang == 'ru' else 'Updated'} {esc(data['updated_at'])}</span></footer></body></html>
+<footer class="shell site-footer"><span>{esc(project_title(project, lang))}</span><span>{'Обновлено' if lang == 'ru' else 'Updated'} {esc(data['updated_at'])}</span></footer></body></html>
 """
 
 

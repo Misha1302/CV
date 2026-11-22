@@ -7,7 +7,7 @@ from pathlib import Path
 import fitz
 from weasyprint import HTML
 
-from build_site import ROOT, build_outputs, load_data, write_or_check
+from build_site import ROOT, build_outputs, load_data, project_title, write_or_check
 
 
 def validate_pdf(path: Path, expected_role: str, expected_projects: list[str], expected_education: str) -> dict[str, object]:
@@ -73,7 +73,10 @@ def main() -> None:
             html_path = ROOT / profile["filename"]
             pdf_path = args.output_dir / profile["pdf"]
             HTML(filename=str(html_path), base_url=str(ROOT)).write_pdf(str(pdf_path))
-            expected_titles = [data["projects"][project_id]["title"] for project_id in profile["project_ids"][:int(profile.get("print_project_limit", 3))]]
+            expected_titles = [
+                project_title(data["projects"][project_id], lang)
+                for project_id in profile["project_ids"][: int(profile.get("print_project_limit", 3))]
+            ]
             result = validate_pdf(pdf_path, profile["role"], expected_titles, data["person"][f"education_{lang}"])
             if args.evidence_dir:
                 doc = fitz.open(pdf_path)
