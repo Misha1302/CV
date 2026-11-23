@@ -121,12 +121,27 @@ class PdfSetCompletenessTests(unittest.TestCase):
         for key in self.data["profile_order"]:
             for lang in ("ru", "en"):
                 _build_pdf(self.pdf_dir / self.data["profiles"][key][lang]["pdf"], "pdf")
+        # Company variants are part of the announced PDF set: a stale or missing
+        # company PDF must fail completeness exactly like a profile PDF.
+        self.company_pdfs = []
+        for variant in validate_cv.load_company_variants():
+            for lang in ("ru", "en"):
+                pdf_name = validate_cv.company_filenames(variant, lang)[1]
+                self.company_pdfs.append(pdf_name)
+                _build_pdf(self.pdf_dir / pdf_name, "pdf")
 
     def tearDown(self):
         self.tmp.cleanup()
 
     def test_complete_set_passes(self):
         validate_cv.validate_pdf_set_completeness(self.data, self.pdf_dir)
+
+    def test_missing_company_pdf_is_rejected(self):
+        self.assertTrue(self.company_pdfs, "no company variants to test completeness against")
+        (self.pdf_dir / self.company_pdfs[0]).unlink()
+        with self.assertRaises(RuntimeError) as caught:
+            validate_cv.validate_pdf_set_completeness(self.data, self.pdf_dir)
+        self.assertIn(self.company_pdfs[0], str(caught.exception))
 
     def test_orphaned_pdf_is_rejected(self):
         # A renamed or dropped profile leaves an old PDF that keeps shipping.
@@ -216,6 +231,8 @@ class WiringTests(unittest.TestCase):
              mock.patch.object(validate_cv, "validate_script"), \
              mock.patch.object(validate_cv, "validate_html", return_value=set()), \
              mock.patch.object(validate_cv, "validate_pdfs", return_value=[]), \
+             mock.patch.object(validate_cv, "validate_company_variants"), \
+             mock.patch.object(validate_cv, "validate_company_pdfs", return_value=[]), \
              mock.patch.object(validate_cv, "validate_manifest"), \
              mock.patch.object(validate_cv, "validate_pdf_set_completeness") as completeness, \
              mock.patch.object(validate_cv, "validate_release_artifacts", return_value=[]) as release, \

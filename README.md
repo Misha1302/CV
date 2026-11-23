@@ -144,3 +144,40 @@ The existing November 3 release is retargeted: **02 Systems / Platform** and **0
 - [Independent review and measurement roadmap](reviews/PERFORMANCE_SYSTEMS_CV_REVIEW_2026-11-07.md)
 
 Application CVs and generated HTML, DOCX, PDF and Markdown are all owned by data/site.json, with claim boundaries in knowledge/resume-evidence.json. Never hand-edit generated outputs.
+
+## 2026-11-24 — company-targeted variants and KeyAuth
+
+Eight employer-targeted one-page CVs (RU/EN) are generated from the same canon:
+
+- Yandex — algorithms / C++ / systems
+- Huawei — LLVM / compiler engineering, olympiad track first
+- MCST — LLVM optimization and microarchitecture
+- Google — algorithms and systems (EN-first)
+- Amazon — backend state, recovery and operations (EN-first)
+- T1 — .NET / SQL / integrations
+- Kaspersky — C++ / low level / code analysis
+- Sber — backend / SQL / algorithms
+
+`data/company-variants.json` only reorders and re-emphasises existing evidence
+(role, summary, three proof rows, skills order, project and experience order,
+recognition order). It cannot introduce new claims: `validate_cv.py` rejects
+unknown project or experience references, a non-permutation recognition order,
+age disclosure, and evidence-bounded forbidden claims. The landing page lists
+them in section 02 · Компании.
+
+KeyAuth is now a first-class project (`projects.keyauth`, `cases/{ru,en}-keyauth.html`)
+with evidence asset `project_keyauth_licensing`. The anti-piracy outcome is
+`USER_ATTESTED` and worded as such; no claim of a verified or impossible-to-bypass
+protection is made.
+
+Rebuild and verify:
+
+    python tools/build_site.py
+    python tools/build_cv.py --output-dir pdf
+    python tools/build_release.py
+    python tools/build_site.py --manifest
+    python tools/validate_cv.py
+    python tools/validate_release.py
+    python tools/validate_application_sites.py
+    python tools/validate_resume_knowledge.py
+    python tools/test_validate_cv.py -v

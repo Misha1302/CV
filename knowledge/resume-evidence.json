@@ -1367,6 +1367,43 @@
       "boundaries": [
         "This is the candidate's working process; it is not a separate employer or a formal team role."
       ]
+    },
+    {
+      "id": "project_keyauth_licensing",
+      "category": "project",
+      "name": "KeyAuth — client licensing service",
+      "time": "2023-11..2024 (public repos Nov 2023; client correspondence Feb/Apr 2024)",
+      "evidence_level": [
+        "PUBLIC_REPO_DIRECT",
+        "PRIVATE_DOCUMENT",
+        "USER_ATTESTED"
+      ],
+      "public_sources": [
+        "https://github.com/Misha1302/KeyAuth",
+        "https://github.com/Misha1302/LoginAsset"
+      ],
+      "claims": {
+        "safe_ru": "ASP.NET Core API регистрации и активации ключей с учётом активаций и проверкой имени приложения, плюс Unity-клиент чтения ключа; переписка 2024 года подтверждает поставку и исправления совместимости.",
+        "safe_en": "An ASP.NET Core key registration and activation API with activation accounting and application-name verification, plus a Unity key-reading client; 2024 correspondence confirms delivery and compatibility fixes."
+      },
+      "boundaries": [
+        "Anti-piracy impact is USER_ATTESTED, not independently measured",
+        "No claim that production server build equals the public November backend",
+        "No claim of impossibility of bypass"
+      ],
+      "recruiter_signals": [
+        "C#/.NET",
+        "ASP.NET Core",
+        "licensing",
+        "Unity",
+        "client delivery"
+      ],
+      "role_fit": [
+        "backend_platform",
+        "software_protection",
+        "architecture"
+      ],
+      "resume_priority": "HIGH"
     }
   ],
   "skills": [

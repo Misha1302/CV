@@ -1,0 +1,817 @@
+{
+  "_comment": "Company-targeted CV variants. Facts only come from data/site.json; this file only reorders and re-emphasises existing evidence and adds a targeted summary. No new claims.",
+  "variants": [
+    {
+      "id": "yandex",
+      "company_ru": "Яндекс",
+      "company_en": "Yandex",
+      "base": "systems",
+      "role": "C++ / Algorithms · Compilers & Systems",
+      "summary_ru": "C++ и алгоритмы как основной инструмент: собственный x86-64 backend с register allocation, LLVM-проход с проверкой допустимости, точный подсчёт пар итераций вместо перебора. Профессионально — LLVM 22 в МЦСТ, символьные вычисления в SharpChecker (ИСП РАН). Алгоритмическая база: графы, SSA/CFG, dominance, dataflow, сложность и краевые случаи.",
+      "summary_en": "C++ and algorithms as the primary tool: a custom x86-64 backend with register allocation, an LLVM pass with explicit legality checks, and exact iteration-pair counting instead of enumeration. Professional work: LLVM 22 at MCST, symbolic computation in SharpChecker at ISP RAS. Algorithmic base: graphs, SSA/CFG, dominance, dataflow, complexity and edge cases.",
+      "proofs_ru": [
+        [
+          "Алгоритмы под нагрузкой",
+          "Точный подсчёт пар итераций для аффинных зависимостей, модульные и GCD-доказательства независимости, явное «maybe» вместо догадки."
+        ],
+        [
+          "Native-codegen",
+          "Валидация SSA/CFG, анализ живости и интерференции, linear scan и simulated annealing, spills, phi lowering, SysV x86-64."
+        ],
+        [
+          "Профессиональный C++",
+          "МЦСТ: LLVM 22/C++23, LICM с консервативными условиями; ИСП РАН: символьные вычисления в SharpChecker."
+        ]
+      ],
+      "proofs_en": [
+        [
+          "Algorithms under load",
+          "Exact iteration-pair counting for affine dependences, modular and GCD disjointness proofs, and an explicit \"maybe\" instead of a guess."
+        ],
+        [
+          "Native codegen",
+          "SSA/CFG validation, liveness/interference, linear scan and simulated annealing, spills, phi lowering, SysV x86-64."
+        ],
+        [
+          "Professional C++",
+          "MCST: LLVM 22/C++23, LICM with conservative guards; ISP RAS: symbolic computation in SharpChecker."
+        ]
+      ],
+      "skills_ru": [
+        [
+          "C++ / алгоритмы",
+          "C++23, C17, STL, анализ сложности, графовые алгоритмы, динамическое программирование, структуры данных"
+        ],
+        [
+          "Компилятор / IR",
+          "LLVM 22/IR, CFG/SSA, доминаторы, циклы, LICM, проверки допустимости, LLVM Verifier"
+        ],
+        [
+          "Системы",
+          "x86-64 SysV, генерация кода, анализ живости и интерференции, register allocation, Linux, CMake"
+        ],
+        [
+          "Проверка",
+          "точные оракулы, дифференциальное и метаморфное тестирование, воспроизводимые контрпримеры"
+        ],
+        [
+          "Backend",
+          "C#/.NET, ASP.NET Core, PostgreSQL — production LMS и сервис с платежами"
+        ]
+      ],
+      "skills_en": [
+        [
+          "C++ / Algorithms",
+          "C++23, C17, STL, complexity analysis, graph algorithms, dynamic programming, data structures"
+        ],
+        [
+          "Compiler / IR",
+          "LLVM 22/IR, CFG/SSA, dominators, loops, LICM, legality checks, LLVM Verifier"
+        ],
+        [
+          "Systems",
+          "x86-64 SysV, code generation, liveness/interference, register allocation, Linux, CMake"
+        ],
+        [
+          "Verification",
+          "exact oracles, differential and metamorphic testing, reproducible counterexamples"
+        ],
+        [
+          "Backend",
+          "C#/.NET, ASP.NET Core, PostgreSQL — a production LMS and a payment service"
+        ]
+      ],
+      "project_ids": [
+        "codegen",
+        "globaliv",
+        "psform"
+      ],
+      "experience_order": [
+        "isp_ras",
+        "mcst",
+        "agentic"
+      ],
+      "recognition_order": [
+        1,
+        0,
+        3,
+        2,
+        4,
+        5
+      ],
+      "why_ru": "Акцент на алгоритмах и C++: контест и алгоритмические интервью решают вход, олимпиады дают преимущество.",
+      "why_en": "Emphasis on algorithms and C++: the contest and algorithmic interviews decide entry, olympiads give an advantage."
+    },
+    {
+      "id": "huawei",
+      "company_ru": "Huawei",
+      "company_en": "Huawei",
+      "base": "compiler",
+      "role": "Compiler Engineer · LLVM / C++",
+      "summary_ru": "Инженер по компиляторам: LLVM 22/C++23 в МЦСТ (LICM-проход с консервативными условиями допустимости), межпроцедурный анализ и IR-преобразования с проверкой, собственный компилятор/рантайм UniversalToolchain с 1324 тестами. Олимпиадная база: диплом I степени «Юниор» НИЯУ МИФИ, дипломант «Высшей пробы», диплом I степени и премия «Совершенство как надежда» Балтийского научно-инженерного конкурса.",
+      "summary_en": "Compiler engineer: LLVM 22/C++23 at MCST (a LICM pass with conservative legality guards), interprocedural analysis and IR transformations with verification, and UniversalToolchain, a compiler/runtime with 1,324 tests. Olympiad record: first-degree diploma at MEPhI Junior, diploma holder at Vysshaya Proba, first-degree diploma and the “Perfection as Hope” prize at the Baltic Science and Engineering Competition.",
+      "proofs_ru": [
+        [
+          "Профессиональный LLVM",
+          "МЦСТ: LLVM 22 compiler engineering, LICM только при выполнении условий по структуре цикла, памяти, побочным эффектам и спекулятивной безопасности."
+        ],
+        [
+          "Собственный компилятор",
+          "UniversalToolchain: frontend, IR, оптимизации, interpreter и CIL backend; 1324/1324 на проверенной ревизии."
+        ],
+        [
+          "Олимпиадный трек",
+          "«Юниор» НИЯУ МИФИ — диплом I степени; «Высшая проба» — дипломант; Балтийский конкурс — диплом I степени и премия «Совершенство как надежда»."
+        ]
+      ],
+      "proofs_en": [
+        [
+          "Professional LLVM",
+          "MCST: LLVM 22 compiler engineering; hoisting only when loop structure, memory, side effects and speculative safety all hold."
+        ],
+        [
+          "Own compiler",
+          "UniversalToolchain: frontend, IR, optimization passes, interpreter and CIL backend; 1,324/1,324 at the inspected revision."
+        ],
+        [
+          "Olympiad track",
+          "MEPhI Junior — first-degree diploma; Vysshaya Proba — diploma holder; Baltic Science and Engineering Competition — first-degree diploma and the “Perfection as Hope” prize."
+        ]
+      ],
+      "skills_ru": [
+        [
+          "Компилятор / LLVM",
+          "C++23, LLVM 22/IR, проходы, LICM, межпроцедурные эффекты, APInt, проверки допустимости, LLVM Verifier"
+        ],
+        [
+          "Архитектура",
+          "x86-64, SysV ABI, register allocation, рассуждения на уровне конвейера, кеши, анализ сгенерированного кода"
+        ],
+        [
+          "Анализ программ",
+          "CFG/SSA, доминаторы, анализ потоков данных до неподвижной точки, Roslyn ControlFlowGraph"
+        ],
+        [
+          "Инженерия",
+          "CMake, Linux, clang-tidy, ASan/UBSan, дифференциальное исполнение, воспроизводимые регрессии"
+        ],
+        [
+          "Языки",
+          "C++23, C#/.NET, Rust, Python"
+        ]
+      ],
+      "skills_en": [
+        [
+          "Compiler / LLVM",
+          "C++23, LLVM 22/IR, passes, LICM, interprocedural effects, APInt, legality, LLVM Verifier"
+        ],
+        [
+          "Architecture",
+          "x86-64, SysV ABI, register allocation, pipeline-level reasoning, caches, generated-code analysis"
+        ],
+        [
+          "Program analysis",
+          "CFG/SSA, dominance, dataflow to fixed point, Roslyn ControlFlowGraph"
+        ],
+        [
+          "Engineering",
+          "CMake, Linux, clang-tidy, ASan/UBSan, differential execution, reproducible regressions"
+        ],
+        [
+          "Languages",
+          "C++23, C#/.NET, Rust, Python"
+        ]
+      ],
+      "project_ids": [
+        "globaliv",
+        "codegen",
+        "wist"
+      ],
+      "experience_order": [
+        "mcst",
+        "isp_ras",
+        "agentic"
+      ],
+      "recognition_order": [
+        2,
+        3,
+        4,
+        0,
+        1,
+        5
+      ],
+      "why_ru": "Профильные олимпиады у Huawei — формальный фильтр для compiler/research-направления, поэтому олимпиадный трек стоит первым.",
+      "why_en": "In Huawei's compiler/research track, subject olympiads act as a formal filter, so the olympiad record leads."
+    },
+    {
+      "id": "mcst",
+      "company_ru": "МЦСТ",
+      "company_en": "MCST",
+      "base": "compiler_backend",
+      "role": "Compiler Engineer · LLVM optimization",
+      "summary_ru": "LLVM-инженер: проходил стажировку в МЦСТ по компиляторам (LLVM 22/C++23, LICM-проход с консервативными условиями применимости, Python-обвязка для сравнения поведения до и после преобразования). Отдельно — межпроцедурный Global-IV проход на LLVM 22 с 29/29 регрессионными сценариями и собственный x86-64 backend с register allocation.",
+      "summary_en": "LLVM engineer: completed a compiler internship at MCST (LLVM 22/C++23, a LICM pass with conservative legality guards, Python harness comparing behaviour before and after the transform). Separately: an interprocedural Global-IV pass on LLVM 22 with 29/29 regression scenarios, and a custom x86-64 backend with register allocation.",
+      "proofs_ru": [
+        [
+          "Работа в МЦСТ",
+          "LLVM 22/C++23: LICM переносится только при выполнении условий по структуре цикла, обращениям к памяти, побочным эффектам и безопасности спекулятивного выполнения."
+        ],
+        [
+          "Оптимизация с проверкой",
+          "Global-IV: аффинная эволюция на APInt, транзитивные эффекты, явные проверки допустимости, 29/29 сценариев."
+        ],
+        [
+          "Codegen",
+          "x86-64 SysV: анализ живости и интерференции, register allocation, spills, phi lowering, verifier раскладки."
+        ]
+      ],
+      "proofs_en": [
+        [
+          "Work at MCST",
+          "LLVM 22/C++23: hoisting only when loop structure, memory accesses, side effects and speculative safety all hold."
+        ],
+        [
+          "Optimization with verification",
+          "Global-IV: APInt affine evolution, transitive effects, explicit legality checks, 29/29 scenarios."
+        ],
+        [
+          "Codegen",
+          "x86-64 SysV: liveness/interference, register allocation, spills, phi lowering, an assignment verifier."
+        ]
+      ],
+      "skills_ru": [
+        [
+          "LLVM",
+          "C++23, LLVM 22/IR, разработка проходов, LICM, межпроцедурный анализ, APInt, LLVM Verifier"
+        ],
+        [
+          "Микроархитектура",
+          "x86-64, SysV ABI, соглашения о вызовах, кеши, конвейер, инспекция сгенерированного кода"
+        ],
+        [
+          "Codegen",
+          "анализ живости и интерференции, register allocation, spills, phi lowering, эксперименты с исполняемой памятью"
+        ],
+        [
+          "Инструменты",
+          "CMake, Linux, clang-tidy, ASan/UBSan, дизассемблирование, дифференциальное исполнение"
+        ],
+        [
+          "Языки",
+          "C++23, C17, C#/.NET, Rust, Python"
+        ]
+      ],
+      "skills_en": [
+        [
+          "LLVM",
+          "C++23, LLVM 22/IR, pass development, LICM, interprocedural analysis, APInt, LLVM Verifier"
+        ],
+        [
+          "Microarchitecture",
+          "x86-64, SysV ABI, calling conventions, caches, pipeline reasoning, generated-code inspection"
+        ],
+        [
+          "Codegen",
+          "liveness/interference, register allocation, spills, phi lowering, executable-memory experiments"
+        ],
+        [
+          "Tooling",
+          "CMake, Linux, clang-tidy, ASan/UBSan, disassembly, differential execution"
+        ],
+        [
+          "Languages",
+          "C++23, C17, C#/.NET, Rust, Python"
+        ]
+      ],
+      "project_ids": [
+        "globaliv",
+        "codegen",
+        "wist"
+      ],
+      "experience_order": [
+        "mcst",
+        "isp_ras",
+        "agentic"
+      ],
+      "recognition_order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "why_ru": "Стажировка в МЦСТ и LLVM-оптимизации стоят первыми: это прямое совпадение с задачами компании.",
+      "why_en": "The MCST internship and LLVM optimization work lead: they map directly onto the company's tasks."
+    },
+    {
+      "id": "google",
+      "company_ru": "Google",
+      "company_en": "Google",
+      "base": "systems",
+      "role": "Software Engineer · Algorithms & Systems",
+      "summary_ru": "Инженер с сильной алгоритмической и системной базой: точные алгоритмы с доказанной сложностью, компиляторные и runtime-компоненты, проверка корректности через оракулы и дифференциальное исполнение. Профессиональный опыт — LLVM 22 в МЦСТ и символьные вычисления в SharpChecker (ИСП РАН); собственные проекты — от x86-64 backend до компилятора с 1324 тестами.",
+      "summary_en": "Engineer with a strong algorithmic and systems base: exact algorithms with proven complexity, compiler and runtime components, and correctness checked through oracles and differential execution. Professional experience: LLVM 22 at MCST and symbolic computation in SharpChecker at ISP RAS; personal projects range from an x86-64 backend to a compiler with 1,324 tests.",
+      "proofs_ru": [
+        [
+          "Алгоритмы с границами",
+          "Точный подсчёт пар итераций, модульные и GCD-доказательства, консервативный отказ вместо недоказанной оптимизации."
+        ],
+        [
+          "Системный уровень",
+          "x86-64 backend: SSA/CFG, анализ живости, register allocation, spills, phi lowering, дифференциальное исполнение против интерпретатора."
+        ],
+        [
+          "Проверяемость",
+          "Оракулы, метаморфное тестирование, воспроизводимые контрпримеры, 29/29 и 18/18 на зафиксированных ревизиях."
+        ]
+      ],
+      "proofs_en": [
+        [
+          "Algorithms with bounds",
+          "Exact iteration-pair counting, modular and GCD proofs, and conservative rejection instead of an unproven optimization."
+        ],
+        [
+          "Systems level",
+          "x86-64 backend: SSA/CFG, liveness, register allocation, spills, phi lowering, differential execution against an interpreter."
+        ],
+        [
+          "Verifiability",
+          "Oracles, metamorphic testing, reproducible counterexamples, 29/29 and 18/18 at fixed revisions."
+        ]
+      ],
+      "skills_ru": [
+        [
+          "Алгоритмы и структуры данных",
+          "графы, динамическое программирование, сортировки и поиск, анализ сложности, точный подсчёт, SCC, доминаторы"
+        ],
+        [
+          "Системы",
+          "C++23, x86-64, модель памяти, генерация кода, Linux, профилирование"
+        ],
+        [
+          "Компилятор / IR",
+          "LLVM 22/IR, CFG/SSA, анализ потоков данных, проверки допустимости, LLVM Verifier"
+        ],
+        [
+          "Языки",
+          "C++23, C#/.NET, Rust, Python, C17"
+        ],
+        [
+          "Проверка",
+          "дифференциальное и метаморфное тестирование, property-based проверки, воспроизводимость"
+        ]
+      ],
+      "skills_en": [
+        [
+          "Algorithms & Data Structures",
+          "graphs, DP, sorting/searching, complexity analysis, exact counting, SCC, dominance"
+        ],
+        [
+          "Systems",
+          "C++23, x86-64, memory model, code generation, Linux, profiling"
+        ],
+        [
+          "Compiler / IR",
+          "LLVM 22/IR, CFG/SSA, dataflow, legality, LLVM Verifier"
+        ],
+        [
+          "Languages",
+          "C++23, C#/.NET, Rust, Python, C17"
+        ],
+        [
+          "Verification",
+          "differential and metamorphic testing, property-based checks, reproducibility"
+        ]
+      ],
+      "project_ids": [
+        "psform",
+        "codegen",
+        "globaliv"
+      ],
+      "experience_order": [
+        "isp_ras",
+        "mcst",
+        "agentic"
+      ],
+      "recognition_order": [
+        1,
+        3,
+        0,
+        2,
+        4,
+        5
+      ],
+      "why_ru": "Вход в Google решают алгоритмические раунды: сначала алгоритмы и сложность, затем системы.",
+      "why_en": "Google entry is decided by algorithmic rounds: algorithms and complexity first, systems second."
+    },
+    {
+      "id": "amazon",
+      "company_ru": "Amazon",
+      "company_en": "Amazon",
+      "base": "backend",
+      "role": "Software Engineer · Backend & Reliability",
+      "summary_ru": "Backend-инженер с ответственностью за состояние и восстановление: платёжные состояния и идемпотентность, durable inbox/outbox, reconciliation, lease-механизмы, релизы с backup, health-гейтами и откатом. Вывел LMS в production (автоматическая проверка решений, 120+ активных учеников), сопровождаю действующий VpnMediator. Профессионально — C#/.NET в ИСП РАН и LLVM в МЦСТ.",
+      "summary_en": "Backend engineer who owns state and recovery: payment state and idempotency, durable inbox/outbox, reconciliation, leases, and releases with backup, health gates and rollback. Took an LMS to production (automated judging, 120+ active students) and maintains the live VpnMediator service. Professional background: C#/.NET at ISP RAS and LLVM at MCST.",
+      "proofs_ru": [
+        [
+          "Ownership состояния",
+          "Платёж не считается завершённым по webhook: повторный запрос к провайдеру и сверка по id, статусу, окружению, metadata, сумме и валюте."
+        ],
+        [
+          "Восстановление",
+          "Durable inbox/outbox, идемпотентность, reconciliation, восстановление после рестарта, lease и ручной разбор конфликтов."
+        ],
+        [
+          "Безопасный релиз",
+          "Версионированные релизы, согласованный backup, атомарное переключение, health-гейты и откат на предыдущую версию."
+        ]
+      ],
+      "proofs_en": [
+        [
+          "State ownership",
+          "A payment is never completed on webhook alone: the provider payment is re-fetched and verified by id, status, environment, metadata, amount and currency."
+        ],
+        [
+          "Recovery",
+          "Durable inbox/outbox, idempotency, reconciliation, restart recovery, leases and manual review for conflicting evidence."
+        ],
+        [
+          "Safe release",
+          "Versioned releases, coordinated backup, atomic switch, health gates and rollback to the previous version."
+        ]
+      ],
+      "skills_ru": [
+        [
+          ".NET / Backend",
+          "C#/.NET, ASP.NET Core, REST/OpenAPI, фоновые сервисы, интеграции с провайдерами"
+        ],
+        [
+          "Состояние и данные",
+          "PostgreSQL, SQLite, транзакции, машины состояний, ключи идемпотентности, inbox/outbox, lease"
+        ],
+        [
+          "Надёжность",
+          "повторная сверка у провайдера, reconciliation, ответственность за повторы, восстановление после рестарта, аудит, backup/restore"
+        ],
+        [
+          "Эксплуатация",
+          "Linux, Docker Compose, nginx, systemd, health-гейты, версионированные релизы, атомарное переключение, откат"
+        ],
+        [
+          "Масштаб",
+          "production LMS: 514 реальных тестов, judge на четырёх воркерах, 120+ активных учеников, изолированные нагрузочные прогоны"
+        ]
+      ],
+      "skills_en": [
+        [
+          ".NET / Backend",
+          "C#/.NET, ASP.NET Core, REST/OpenAPI, background services, provider integrations"
+        ],
+        [
+          "State & Data",
+          "PostgreSQL, SQLite, transactions, state machines, idempotency keys, inbox/outbox, leases"
+        ],
+        [
+          "Reliability",
+          "provider re-verification, reconciliation, retry ownership, restart recovery, audit review, backup/restore"
+        ],
+        [
+          "Operations",
+          "Linux, Docker Compose, nginx, systemd, health gates, versioned releases, atomic switch, rollback"
+        ],
+        [
+          "Scale evidence",
+          "production LMS: 514 real tests, a four-worker judge, 120+ active students, isolated load runs"
+        ]
+      ],
+      "project_ids": [
+        "lms",
+        "vpn",
+        "botay"
+      ],
+      "experience_order": [
+        "isp_ras",
+        "agentic",
+        "mcst",
+        "commercial"
+      ],
+      "recognition_order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "why_ru": "Amazon оценивает ownership и измеримый результат в каждой истории: сначала состояние, восстановление и релизы.",
+      "why_en": "Amazon evaluates ownership and measurable outcomes in every story: state, recovery and releases first."
+    },
+    {
+      "id": "t1",
+      "company_ru": "Т1",
+      "company_en": "T1",
+      "base": "backend",
+      "role": "C# / .NET Backend Developer",
+      "summary_ru": "C#/.NET backend-разработчик: ASP.NET Core, PostgreSQL/SQLite, EF-совместимые транзакционные сценарии, идемпотентность и восстановление после сбоев. Вывел LMS в production — автоматическая проверка решений, judge на четырёх воркерах, 120+ активных учеников; сопровождаю действующий VpnMediator. Клиентские проекты: ASP.NET Core API лицензирования и Unity-клиент, jQuery UI.",
+      "summary_en": "C#/.NET backend developer: ASP.NET Core, PostgreSQL/SQLite, transactional scenarios, idempotency and recovery. Took an LMS to production — automated judging, a four-worker judge, 120+ active students — and maintain the live VpnMediator service. Client work: an ASP.NET Core licensing API with a Unity client, and jQuery UI.",
+      "proofs_ru": [
+        [
+          ".NET backend",
+          "ASP.NET Core, REST/OpenAPI, фоновые сервисы, интеграции с провайдерами, миграции и транзакции."
+        ],
+        [
+          "Production-платформа",
+          "LMS: роли и доступ к курсам, ledger баланса, идемпотентные платежи, judge на четырёх воркерах, 514 тестов."
+        ],
+        [
+          "Надёжность",
+          "Идемпотентность, reconciliation, восстановление после рестарта, health-гейты, версионированные релизы и откат."
+        ]
+      ],
+      "proofs_en": [
+        [
+          ".NET backend",
+          "ASP.NET Core, REST/OpenAPI, background services, provider integrations, migrations and transactions."
+        ],
+        [
+          "Production platform",
+          "LMS: roles and course entitlements, a balance ledger, idempotent payments, a four-worker judge, 514 tests."
+        ],
+        [
+          "Reliability",
+          "Idempotency, reconciliation, restart recovery, health gates, versioned releases and rollback."
+        ]
+      ],
+      "skills_ru": [
+        [
+          "C# / .NET",
+          "C#/.NET, ASP.NET Core, REST API, EF Core-совместимые модели данных, фоновые сервисы"
+        ],
+        [
+          "Базы данных",
+          "PostgreSQL, MS SQL-совместимый SQL, SQLite, транзакции, миграции, индексы"
+        ],
+        [
+          "Практики",
+          "Git, code review, unit-тесты, идемпотентность, обработка ошибок, логирование"
+        ],
+        [
+          "Инфраструктура",
+          "Linux, Docker Compose, nginx, systemd, CI-проверки сборки и релиза"
+        ],
+        [
+          "Проверка",
+          "интеграционные сценарии, негативные кейсы, воспроизводимые регрессии"
+        ]
+      ],
+      "skills_en": [
+        [
+          "C# / .NET",
+          "C#/.NET, ASP.NET Core, REST API, EF Core-compatible data models, background services"
+        ],
+        [
+          "Databases",
+          "PostgreSQL, MS SQL-compatible SQL, SQLite, transactions, migrations, indexes"
+        ],
+        [
+          "Practices",
+          "Git, code review, unit tests, idempotency, error handling, logging"
+        ],
+        [
+          "Infrastructure",
+          "Linux, Docker Compose, nginx, systemd, CI build and release checks"
+        ],
+        [
+          "Verification",
+          "integration scenarios, negative cases, reproducible regressions"
+        ]
+      ],
+      "project_ids": [
+        "lms",
+        "vpn",
+        "wist"
+      ],
+      "experience_order": [
+        "isp_ras",
+        "agentic",
+        "mcst",
+        "commercial"
+      ],
+      "recognition_order": [
+        2,
+        3,
+        4,
+        1,
+        0,
+        5
+      ],
+      "why_ru": "Т1 набирает .NET-стажёров по тесту и резюме: сначала стек .NET/SQL и pet-проекты, потом всё остальное.",
+      "why_en": "T1 hires .NET interns through a test and the resume: .NET/SQL stack and projects first, everything else after."
+    },
+    {
+      "id": "kaspersky",
+      "company_ru": "Kaspersky",
+      "company_en": "Kaspersky",
+      "base": "software_protection",
+      "role": "C++ Engineer · Systems & Binary Analysis",
+      "summary_ru": "C++ и низкий уровень: x86-64 codegen с register allocation, LLVM-преобразования с проверкой допустимости, Roslyn CFG-анализ потоков данных. Исторический опыт лицензирования: серверная активация ключей и Unity-клиент. Профессионально — LLVM 22 в МЦСТ и символьные вычисления в SharpChecker (ИСП РАН).",
+      "summary_en": "C++ and low-level work: x86-64 codegen with register allocation, LLVM transformations with legality checks, and Roslyn CFG data-flow analysis. Prior licensing work: server-side key activation and a Unity client. Professional background: LLVM 22 at MCST and symbolic computation in SharpChecker at ISP RAS.",
+      "proofs_ru": [
+        [
+          "Низкий уровень",
+          "x86-64 SysV: анализ живости и интерференции, register allocation, spills, phi lowering, работа с машинным кодом."
+        ],
+        [
+          "Анализ кода",
+          "Roslyn ControlFlowGraph, анализ потоков данных до неподвижной точки по ветвям и циклам, 18/18 тестов; LLVM Verifier и консервативный отказ."
+        ],
+        [
+          "Лицензирование",
+          "ASP.NET Core API активации ключей с учётом активаций и Unity-клиент проверки лицензии (исторический проект)."
+        ]
+      ],
+      "proofs_en": [
+        [
+          "Low-level",
+          "x86-64 SysV: liveness/interference, register allocation, spills, phi lowering, machine-code work."
+        ],
+        [
+          "Code analysis",
+          "Roslyn ControlFlowGraph, fixed-point dataflow across branches and loops, 18/18 tests; LLVM Verifier and conservative rejection."
+        ],
+        [
+          "Licensing",
+          "An ASP.NET Core key-activation API with activation accounting and a Unity licence-check client (historical project)."
+        ]
+      ],
+      "skills_ru": [
+        [
+          "C++ / STL",
+          "C++23, STL, шаблоны, RAII, ASan/UBSan, отладка сложных программ"
+        ],
+        [
+          "Низкий уровень",
+          "x86-64, SysV ABI, register allocation, анализ сгенерированного кода, дизассемблирование, Linux"
+        ],
+        [
+          "Анализ программ",
+          "CFG/SSA, анализ потоков данных, LLVM Verifier, Roslyn ControlFlowGraph"
+        ],
+        [
+          "Защита и лицензирование",
+          "серверная активация, лимиты активаций, интеграция с Unity"
+        ],
+        [
+          "Инструменты",
+          "CMake, clang-tidy, GDB, дифференциальное исполнение, воспроизводимые регрессии"
+        ]
+      ],
+      "skills_en": [
+        [
+          "C++ / STL",
+          "C++23, STL, templates, RAII, ASan/UBSan, debugging complex programs"
+        ],
+        [
+          "Low-level",
+          "x86-64, SysV ABI, register allocation, generated-code analysis, disassembly, Linux"
+        ],
+        [
+          "Program analysis",
+          "CFG/SSA, dataflow, LLVM Verifier, Roslyn ControlFlowGraph"
+        ],
+        [
+          "Protection / Licensing",
+          "server-side activation, activation-count limits, Unity integration"
+        ],
+        [
+          "Tooling",
+          "CMake, clang-tidy, GDB, differential execution, reproducible regressions"
+        ]
+      ],
+      "project_ids": [
+        "codegen",
+        "deref",
+        "globaliv"
+      ],
+      "experience_order": [
+        "isp_ras",
+        "mcst",
+        "agentic",
+        "commercial"
+      ],
+      "recognition_order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "why_ru": "У Kaspersky вход решает тест по C++ и низкому уровню, а не вуз: поэтому C++, STL и анализ кода стоят первыми.",
+      "why_en": "Kaspersky entry is decided by a C++ and low-level test rather than the university, so C++, STL and code analysis lead."
+    },
+    {
+      "id": "sber",
+      "company_ru": "Сбер",
+      "company_en": "Sber",
+      "base": "backend",
+      "role": "Backend Engineer · .NET / SQL / Algorithms",
+      "summary_ru": "Backend-инженер: ASP.NET Core и SQL, явные состояния и идемпотентность, восстановление после сбоев, релизы с откатом. Production-платформа с автоматической проверкой решений и 120+ активными учениками, действующий сервис с платежами. Алгоритмическая база: графы, динамика, анализ сложности; профессионально — C#/.NET в ИСП РАН, LLVM в МЦСТ.",
+      "summary_en": "Backend engineer: ASP.NET Core and SQL, explicit state machines and idempotency, failure recovery, releases with rollback. A production platform with automated judging and 120+ active students, plus a live payment service. Algorithmic base: graphs, dynamic programming, complexity analysis; professional background in C#/.NET at ISP RAS and LLVM at MCST.",
+      "proofs_ru": [
+        [
+          "Backend и данные",
+          "ASP.NET Core, PostgreSQL/SQL, транзакции, миграции, идемпотентность и обработка повторных операций."
+        ],
+        [
+          "Production",
+          "LMS: роли и доступ к курсам, ledger баланса, judge на четырёх воркерах, 514 реальных тестов."
+        ],
+        [
+          "Алгоритмы",
+          "точный подсчёт пар итераций, модульные и GCD-доказательства, графы и динамика под измеримой сложностью."
+        ]
+      ],
+      "proofs_en": [
+        [
+          "Backend and data",
+          "ASP.NET Core, PostgreSQL/SQL, transactions, migrations, idempotency and duplicate-operation handling."
+        ],
+        [
+          "Production",
+          "LMS: roles and course entitlements, a balance ledger, a four-worker judge, 514 real tests."
+        ],
+        [
+          "Algorithms",
+          "exact iteration-pair counting, modular and GCD proofs, graphs and dynamic programming under measured complexity."
+        ]
+      ],
+      "skills_ru": [
+        [
+          "Backend",
+          "C#/.NET, ASP.NET Core, REST API, фоновые сервисы, интеграции"
+        ],
+        [
+          "SQL и данные",
+          "PostgreSQL, SQL, SQLite, транзакции, миграции, индексы, согласованность"
+        ],
+        [
+          "Алгоритмы",
+          "структуры данных, графы, динамическое программирование, анализ сложности"
+        ],
+        [
+          "Надёжность",
+          "идемпотентность, reconciliation, health-гейты, версионирование и откат релизов"
+        ],
+        [
+          "Инфраструктура",
+          "Linux, Docker Compose, nginx, systemd, CI-проверки"
+        ]
+      ],
+      "skills_en": [
+        [
+          "Backend",
+          "C#/.NET, ASP.NET Core, REST API, background services, integrations"
+        ],
+        [
+          "SQL / Data",
+          "PostgreSQL, SQL, SQLite, transactions, migrations, indexes, consistency"
+        ],
+        [
+          "Algorithms",
+          "data structures, graphs, dynamic programming, complexity analysis"
+        ],
+        [
+          "Reliability",
+          "idempotency, reconciliation, health gates, versioned releases and rollback"
+        ],
+        [
+          "Infrastructure",
+          "Linux, Docker Compose, nginx, systemd, CI checks"
+        ]
+      ],
+      "project_ids": [
+        "lms",
+        "vpn",
+        "botay"
+      ],
+      "experience_order": [
+        "isp_ras",
+        "agentic",
+        "mcst",
+        "commercial"
+      ],
+      "recognition_order": [
+        3,
+        2,
+        4,
+        1,
+        0,
+        5
+      ],
+      "why_ru": "В Сбере отсев идёт на анкете и тесте: backend/SQL и алгоритмы должны читаться в первых строках.",
+      "why_en": "At Sber, screening happens on the application and the test: backend/SQL and algorithms must be readable in the first lines."
+    }
+  ]
+}

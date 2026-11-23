@@ -52,6 +52,195 @@ def recognition_items(data: dict[str, Any], lang: str, profile: dict[str, Any]) 
     return profile.get("recognition", data["recognition"][lang])
 
 
+COMPANY_VARIANTS_PATH = ROOT / "data" / "company-variants.json"
+
+
+def load_company_variants() -> list[dict[str, Any]]:
+    if not COMPANY_VARIANTS_PATH.exists():
+        return []
+    return json.loads(COMPANY_VARIANTS_PATH.read_text(encoding="utf-8"))["variants"]
+
+
+def experience_pool(data: dict[str, Any], lang: str) -> dict[str, dict[str, Any]]:
+    """Canonical experience entries keyed by fact_ref.
+
+    Built from every profile, not from the variant's base profile: some base
+    profiles still carry an older entry without a fact_ref, and a company variant
+    must not silently drop a canonical role for that reason.
+    """
+    pool: dict[str, dict[str, Any]] = {}
+    for key in data["profile_order"]:
+        for item in data["profiles"][key][lang]["experience"]:
+            ref = item.get("fact_ref")
+            if ref and ref not in pool:
+                pool[ref] = item
+    return pool
+
+
+def company_filenames(variant: dict[str, Any], lang: str) -> tuple[str, str]:
+    return (
+        f"{lang}-company-{variant['id']}.html",
+        f"Mikhail_Razakov_{variant['company_en'].replace(' ', '_')}_{lang.upper()}.pdf",
+    )
+
+
+def build_company_profile(data: dict[str, Any], variant: dict[str, Any], lang: str) -> dict[str, Any]:
+    """Derive a company-targeted profile from a canonical one.
+
+    Only emphasis moves: role, summary, proofs, skills order, project and
+    experience order. Every referenced project, experience entry and recognition
+    row must already exist in the canon, otherwise the build fails.
+    """
+    import copy
+
+    base_key = variant["base"]
+    if base_key not in data["profiles"]:
+        raise SystemExit(f"{variant['id']}: unknown base profile {base_key}")
+    profile = copy.deepcopy(data["profiles"][base_key][lang])
+    page, pdf = company_filenames(variant, lang)
+    profile["filename"] = page
+    profile["pdf"] = pdf
+    profile["role"] = variant["role"]
+    profile["summary"] = variant[f"summary_{lang}"]
+    profile["description"] = variant[f"summary_{lang}"]
+    profile["title"] = f"{person_name(data, lang)} — {variant['role']}"
+    profile["proofs"] = [list(row) for row in variant[f"proofs_{lang}"]]
+    profile["skills"] = [list(row) for row in variant[f"skills_{lang}"]]
+
+    project_ids = variant["project_ids"]
+    for project_id in project_ids:
+        if project_id not in data["projects"]:
+            raise SystemExit(f"{variant['id']}: unknown project {project_id}")
+    profile["project_ids"] = project_ids
+    profile["print_project_limit"] = len(project_ids)
+
+    by_ref = experience_pool(data, lang)
+    ordered: list[dict[str, Any]] = []
+    for ref in variant["experience_order"]:
+        if ref not in by_ref:
+            raise SystemExit(f"{variant['id']}/{lang}: unknown experience ref {ref!r}")
+        ordered.append(by_ref[ref])
+    profile["experience"] = ordered
+    profile["print_experience_limit"] = len(ordered)
+
+    canon_rows = data["recognition"][lang]
+    order = variant["recognition_order"]
+    if sorted(order) != list(range(len(canon_rows))):
+        raise SystemExit(
+            f"{variant['id']}/{lang}: recognition_order {order} is not a permutation of 0..{len(canon_rows) - 1}"
+        )
+    profile["recognition"] = [canon_rows[i] for i in order]
+    profile["print_recognition_limit"] = 4
+    profile["contact_heading"] = variant[f"why_{lang}"]
+    for obsolete in ("compiler_layout", "print_show_trajectory", "show_trajectory", "project_summaries"):
+        profile.pop(obsolete, None)
+    return profile
+
+
+def company_print_block(data: dict[str, Any], profile: dict[str, Any], lang: str) -> str:
+    labels = {
+        "ru": ("Профессиональный опыт", "Проекты", "Компетенции", "Образование", "Достижения"),
+        "en": ("Professional experience", "Projects", "Skills", "Education", "Recognition"),
+    }[lang]
+    person = data["person"]
+    contacts = (
+        f'<a href="mailto:{esc(person["email"])}">{esc(person["email"])}</a><br>'
+        f'<a href="{esc(person["telegram"])}">{esc(person["telegram_label"])}</a><br>'
+        f'<a href="{esc(person["github"])}">{esc(person["github_label"])}</a>'
+    )
+    proofs = "".join(
+        f'<div class="pcv-proof"><strong>{esc(t)}</strong><span>{esc(b)}</span></div>'
+        for t, b in profile["proofs"]
+    )
+    experiences = []
+    for item in profile["experience"][: profile["print_experience_limit"]]:
+        bullets = "".join(f"<li>{esc(text)}</li>" for text in item["bullets"][:2])
+        experiences.append(
+            f'<article class="pcv-entry"><div class="pcv-date">{esc(item["date"])}</div>'
+            f'<div><h3>{esc(item["title"])}</h3><ul>{bullets}</ul></div></article>'
+        )
+    projects = []
+    for project_id in profile["project_ids"][: profile["print_project_limit"]]:
+        project = data["projects"][project_id]
+        target = project.get("repo") or project[f"case_{lang}"]
+        projects.append(
+            f'<article class="pcv-project"><h3><a href="{esc(target)}">{esc(project_title(project, lang))}</a></h3>'
+            f'<p>{esc(project[f"result_{lang}"])}</p></article>'
+        )
+    skills = "".join(
+        f'<div class="pcv-skill"><strong>{esc(t)}</strong><span>{esc(b)}</span></div>'
+        for t, b in profile["skills"]
+    )
+    recognition = "".join(
+        f'<div class="pcv-recognition"><strong>{esc(t)}</strong><span>{esc(b)}</span></div>'
+        for _, t, b in profile["recognition"][: profile["print_recognition_limit"]]
+    )
+    return f"""
+<div class="print-cv" aria-label="Company-targeted one-page CV">
+  <header class="pcv-header"><div><h1>{esc(person_name(data, lang))}</h1><h2>{esc(profile['role'])}</h2></div><div class="pcv-contact">{contacts}</div></header>
+  <p class="pcv-summary">{esc(profile['summary'])}</p>
+  <div class="pcv-proofs">{proofs}</div>
+  <div class="pcv-columns"><main class="pcv-main">
+    <section><h2 class="pcv-section-title">{labels[0]}</h2>{''.join(experiences)}</section>
+    <section><h2 class="pcv-section-title">{labels[1]}</h2>{''.join(projects)}</section>
+  </main>
+  <aside class="pcv-side">
+    <section><h2 class="pcv-section-title">{labels[2]}</h2>{skills}</section>
+    <section class="pcv-compact"><h2 class="pcv-section-title">{labels[3]}</h2><p>{esc(person[f'education_{lang}'])}</p></section>
+    <section class="pcv-compact"><h2 class="pcv-section-title">{labels[4]}</h2>{recognition}</section>
+    <section class="pcv-compact"><p>{esc(person[f'location_{lang}'])}</p></section>
+  </aside></div>
+</div>"""
+
+
+def company_page(data: dict[str, Any], variant: dict[str, Any], lang: str) -> str:
+    profile = build_company_profile(data, variant, lang)
+    page_name, pdf_name = company_filenames(variant, lang)
+    company = variant[f"company_{lang}"]
+    labels = {"ru": ("Скачать PDF", "Все версии", "Версия под", "Написать"), "en": ("Download PDF", "All versions", "Variant for", "Email")}[lang]
+    head = common_head(data, lang, page_name, profile["title"], profile["description"], profile["role"])
+    return f"""{head}
+<body class="profile-backend company-variant">{company_print_block(data, profile, lang)}
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(person_name(data, lang))}</strong><span>{esc(labels[2])} {esc(company)}</span></span></a><div></div><div class="header-actions"><a class="button compact" href="index.html">{esc(labels[1])}</a></div></div></header>
+<main class="shell" id="main">
+  <section class="hero" id="top"><div class="hero-copy">
+    <div class="hero-intro"><p class="eyebrow">{esc(labels[2])} {esc(company)}</p><h1>{esc(person_name(data, lang))}</h1><p class="hero-role">{esc(profile['role'])}</p></div>
+    <div class="hero-detail"><p class="hero-summary">{esc(profile['summary'])}</p>
+      <div class="hero-actions"><a class="button primary" href="mailto:{esc(data['person']['email'])}">{esc(labels[3])}</a><a class="button" href="pdf/{esc(pdf_name)}" download>{esc(labels[0])}</a><a class="button" href="index.html">{esc(labels[1])}</a></div>
+      <div class="hero-context"><span>{esc(data['person'][f'location_{lang}'])}</span><span>{esc(data['person'][f'education_{lang}'])}</span></div>
+    </div></div>
+    <aside class="identity-card" aria-label="{'Профиль' if lang == 'ru' else 'Profile'}"><div class="identity-mark identity-monogram" aria-hidden="true">MR</div><strong>{esc(company)}</strong><span>{esc(profile['role'])}</span></aside>
+  </section>
+  <section class="shell section"><div class="section-heading"><p class="section-label">00 · {'Почему эта версия собрана так' if lang == 'ru' else 'Why this version is ordered this way'}</p><div><h2>{esc(company)}</h2><p class="section-intro">{esc(variant[f'why_{lang}'])}</p></div></div></section>
+</main>
+<footer class="shell site-footer"><span>{esc(person_name(data, lang))} · {esc(profile['role'])}</span><span>{esc(labels[2])} {esc(company)}</span></footer>
+</body></html>
+"""
+
+
+def company_section(data: dict[str, Any], lang: str) -> str:
+    variants = load_company_variants()
+    if not variants:
+        return ""
+    cards = []
+    for variant in variants:
+        page_name, pdf_name = company_filenames(variant, lang)
+        cards.append(
+            f'<article class="selector-card company-card"><span>{esc(variant["company_" + lang])}</span>'
+            f'<h2>{esc(variant["role"])}</h2><p>{esc(variant["why_" + lang])}</p>'
+            f'<div class="selector-links"><a href="{esc(page_name)}">{"Страница" if lang == "ru" else "Page"}</a>'
+            f'<a href="pdf/{esc(pdf_name)}" download>PDF</a></div></article>'
+        )
+    heading = "Версии под конкретные компании." if lang == "ru" else "Company-targeted variants."
+    intro = ("Тот же проверенный набор фактов, переставленный под то, что компания проверяет на входе."
+             if lang == "ru" else
+             "The same verified fact set, reordered for what each company screens at entry.")
+    return (f'<section id="companies" class="landing-section"><div class="section-heading">'
+            f'<p class="section-label">02 · {"Компании" if lang == "ru" else "Companies"}</p>'
+            f'<div><h2>{heading}</h2><p class="section-intro">{intro}</p></div>'
+            f'</div><div class="selector-grid">{"".join(cards)}</div></section>')
+
+
 def common_head(data: dict[str, Any], lang: str, filename: str, title: str, description: str, role: str, canonical: str | None = None) -> str:
     canonical_url = canonical or page_url(data, filename)
     other = other_language(lang)
@@ -495,11 +684,12 @@ def landing_page(data: dict[str, Any]) -> str:
     p = data["person"]
     return f"""{head}
 <body class="selector-page">
-<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(p['name_ru'])}</strong><span>{esc(data['profiles']['backend']['ru']['role'])}</span></span></a><nav class="primary-nav"><a href="#download">Резюме</a><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="{esc(data['application_cvs']['pages']['ats']['en'])}" aria-label="English version of the backend CV">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#download">Резюме</a><a href="#profiles">Профили</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a><a href="{esc(data['application_cvs']['pages']['ats']['en'])}">English CV</a></nav></div></details></div></div></header>
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(p['name_ru'])}</strong><span>{esc(data['profiles']['backend']['ru']['role'])}</span></span></a><nav class="primary-nav"><a href="#download">Резюме</a><a href="#profiles">Профили</a><a href="#companies">Компании</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a></nav><div class="header-actions"><a class="button compact" href="{esc(data['application_cvs']['pages']['ats']['en'])}" aria-label="English version of the backend CV">EN</a><a class="button compact" href="#contact">Связаться</a><details class="mobile-menu"><summary>Меню</summary><div class="mobile-panel"><nav><a href="#download">Резюме</a><a href="#profiles">Профили</a><a href="#companies">Компании</a><a href="#cases">Кейсы</a><a href="#contact">Контакты</a><a href="{esc(data['application_cvs']['pages']['ats']['en'])}">English CV</a></nav></div></details></div></div></header>
 <main id="main" class="shell landing-main"><section class="selector-intro landing-hero"><p class="eyebrow">{esc(landing.get('eyebrow_ru', primary['eyebrow']))}</p><h1><span class="landing-name">Михаил Разаков</span><span class="landing-role">C#/.NET Backend Developer</span></h1><p>{esc(data['profiles']['backend']['ru']['summary'])}</p><div class="hero-actions"><a class="button primary" href="ru-backend-ats.html">Открыть Backend-портфолио ↗</a><a class="button" href="releases/2026-11-03/01_Backend_ATS.pdf" download>Резюме PDF ↓</a><a class="button" href="#cases">Посмотреть проекты</a></div>{evidence_block}</section>
 <section class="landing-section application-section" id="download"><div class="section-heading"><p class="section-label">00 · Резюме</p><div><h2>Три сайта. Три специализации.</h2><p class="section-intro">Каждая версия — отдельное актуальное RU/EN портфолио со всем опытом, техническими кейсами и скачиванием PDF, DOCX и Markdown. Достаточно отправить ссылку.</p></div></div><div class="cv-options">{application_cv_links(data,"ru")}</div><p class="cv-alt-langs"><a href="en-backend-ats.html">English backend website</a> · <a href="releases/2026-11-03/README.md">Все форматы RU / EN</a></p></section>
 <section id="profiles" class="landing-section"><div class="section-heading"><p class="section-label">01 · Профили</p><div><h2>Дополнительные направления.</h2><p class="section-intro">{esc(profiles_intro)}</p></div></div><div class="selector-grid">{''.join(cards)}</div></section>
-<section id="cases" class="landing-section"><div class="section-heading"><p class="section-label">02 · Кейсы</p><div><h2>Что спроектировал, реализовал и проверил.</h2><p class="section-intro">Открытые проекты ведут к коду и документации; закрытые — к публичному архитектурному разбору без секретов и пользовательских данных.</p></div></div><div class="project-grid">{project_cases}</div></section>
+{company_section(data, lang)}
+<section id="cases" class="landing-section"><div class="section-heading"><p class="section-label">03 · Кейсы</p><div><h2>Что спроектировал, реализовал и проверил.</h2><p class="section-intro">Открытые проекты ведут к коду и документации; закрытые — к публичному архитектурному разбору без секретов и пользовательских данных.</p></div></div><div class="project-grid">{project_cases}</div></section>
 <section class="contact-section" id="contact"><div class="contact-panel"><div><h2>Связаться по инженерной роли или проекту.</h2><p>{esc(p['location_ru'])}</p></div><div class="contact-links"><a class="button primary" href="mailto:{esc(p['email'])}">Почта</a><a class="button" href="{esc(p['telegram'])}" target="_blank" rel="noopener noreferrer">Telegram</a><a class="button" href="{esc(p['github'])}" target="_blank" rel="noopener noreferrer">GitHub</a></div></div></section></main>
 <footer class="shell site-footer"><span>{esc(p['name_ru'])} · C#/.NET Backend Developer</span><span>Обновлено {esc(data['updated_at'])}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
 """
@@ -537,6 +727,7 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         "globaliv": "Transform допустим только при доказанной affine evolution и legality; unsupported CFG/calls должны приводить к отказу, а не к небезопасной оптимизации." if lang == "ru" else "The transform is allowed only when affine evolution and legality are established; unsupported CFG/calls must be rejected rather than optimized unsafely.",
         "quark2": "Внутренние API CLR нестабильны; микробенчмарки не доказывают общий выигрыш в production." if lang == "ru" else "CLR internals are unstable; microbenchmarks do not prove general production speedups.",
         "deref": "Анализ должен корректно сходиться на ветвлениях, циклах и join points без path explosion." if lang == "ru" else "The analysis must converge correctly across branches, loops, and join points without path explosion.",
+        "keyauth": "Уже распространённые Unity-сборки нельзя ломать сменой схемы; сервер обязан учитывать лимит активаций и отличать приложение, а сетевые сбои не должны выдавать доступ." if lang == "ru" else "Already distributed Unity builds must not break when the scheme changes; the server must enforce activation limits and identify the application, and network failures must not grant access.",
     }[project_id]
     verification = {
         "wist": "Canonical test gate, clean-consumer projects, interpreter/CIL parity, deterministic manifests and replayable failures." if lang == "en" else "Канонический тестовый gate, clean-consumer проекты, parity интерпретатора/CIL, детерминированные манифесты и воспроизводимые падения.",
@@ -550,6 +741,7 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         "globaliv": "29 positive/negative IR regressions, LLVM verifier checks, idempotence, and before/after execution comparison." if lang == "en" else "29 positive/negative IR regression cases, LLVM verifier, idempotence и сравнение исполнения до/после преобразования.",
         "quark2": "BenchmarkDotNet harness and reproducible invocation modes; no production claim." if lang == "en" else "BenchmarkDotNet и воспроизводимые режимы вызова; без production-утверждений.",
         "deref": "Analyzer tests plus fixed-point worklist convergence over the Roslyn CFG, including branches and loops." if lang == "en" else "Analyzer tests и сходимость fixed-point worklist по Roslyn CFG, включая ветвления и циклы.",
+        "keyauth": "Public ASP.NET Core backend and Unity client on GitHub, activation-accounting and application-name checks, plus 2024 client correspondence confirming delivery and post-delivery fixes (private, quoted without content)." if lang == "en" else "Публичные ASP.NET Core backend и Unity-клиент на GitHub, учёт активаций и проверка имени приложения, плюс переписка 2024 года о поставке и последующих исправлениях (приватная, цитируется без содержания).",
     }[project_id]
     ownership = {
         "wist": "Архитектура, ключевые контракты, runtime, SSA, тестовая стратегия и публичная документация." if lang == "ru" else "Architecture, core contracts, runtime, SSA, verification strategy, and public documentation.",
@@ -563,6 +755,7 @@ def case_page(data: dict[str, Any], project_id: str, lang: str) -> str:
         "globaliv": "Модель affine evolution, interprocedural effects, legality analysis, LLVM IR transform и regression harness." if lang == "ru" else "Affine-evolution model, interprocedural effects, legality analysis, LLVM IR transform, and regression harness.",
         "quark2": "Эксперименты с CIL, DynamicMethod и вызовами; результаты интерпретируются как исследовательские." if lang == "ru" else "CIL/DynamicMethod invocation experiments; results remain research-only.",
         "deref": "CFG/data-flow реализация, merge logic, diagnostics и analyzer tests." if lang == "ru" else "CFG/data-flow implementation, merge logic, diagnostics, and analyzer tests.",
+        "keyauth": "Серверная модель ключей и активаций, API, Unity-клиент, совместимость со старыми сборками и поддержка интеграции." if lang == "ru" else "Server-side key and activation model, the API, the Unity client, backward compatibility with older builds, and integration support.",
     }[project_id]
     links = []
     if project.get("repo"):
@@ -590,6 +783,9 @@ def sitemap(data: dict[str, Any]) -> str:
     for key in data["profile_order"]:
         for lang in ["ru", "en"]:
             urls.append(page_url(data, data["profiles"][key][lang]["filename"]))
+    for variant in load_company_variants():
+        for lang in ("ru", "en"):
+            urls.append(page_url(data, company_filenames(variant, lang)[0]))
     for project in data["projects"].values():
         urls.append(page_url(data, project["case_ru"]))
         urls.append(page_url(data, project["case_en"]))
@@ -610,6 +806,10 @@ def build_outputs(data: dict[str, Any]) -> dict[Path, str]:
     for project_id, project in data["projects"].items():
         outputs[ROOT / project["case_ru"]] = case_page(data, project_id, "ru")
         outputs[ROOT / project["case_en"]] = case_page(data, project_id, "en")
+    for variant in load_company_variants():
+        for lang in ("ru", "en"):
+            filename, _ = company_filenames(variant, lang)
+            outputs[ROOT / filename] = company_page(data, variant, lang)
     outputs.update(application_site_outputs(data, ROOT))
     for source, target in data["redirects"].items():
         outputs[ROOT / source] = redirect_page(data, source, target)

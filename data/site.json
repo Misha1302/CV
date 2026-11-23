@@ -1842,8 +1842,8 @@
           }
         ],
         "project_ids": [
-          "globaliv",
           "codegen",
+          "keyauth",
           "deref"
         ],
         "skills": [
@@ -1885,6 +1885,11 @@
             "type": "C# · Roslyn · program analysis · fixed-point data-flow",
             "solution": "Анализатор Roslyn CFG распространяет null-состояния по ветвям до неподвижной точки, учитывает обратные рёбра циклов и объединяет состояния предшественников.",
             "result": "Проверяет разыменования через методы, свойства, индексацию и события; сбрасывает знания после присваивания и ref/out, проверяется отдельными тестами Roslyn."
+          },
+          "keyauth": {
+            "type": "C# · ASP.NET Core · licensing · Unity client",
+            "solution": "Отдельный ASP.NET Core API регистрации и активации ключей с учётом активаций и серверной проверкой имени приложения, плюс Unity-клиент, читающий ключ.",
+            "result": "Рабочая связка клиент → серверная активация с поддержкой выпущенных сборок; по словам заказчика, нелицензионные копии перестали запускаться без ключа (свидетельство автора)."
           }
         },
         "show_portrait": true,
@@ -1956,8 +1961,8 @@
           }
         ],
         "project_ids": [
-          "globaliv",
           "codegen",
+          "keyauth",
           "deref"
         ],
         "skills": [
@@ -1999,6 +2004,11 @@
             "type": "C# · Roslyn · program analysis · fixed-point data flow",
             "solution": "A Roslyn ControlFlowGraph analyzer propagates null state over conditional edges to a fixed point, handles loops/back edges, and merges states from multiple predecessors.",
             "result": "Handles method/property/index/event dereferences and invalidation after assignment/ref/out; dedicated analyzer tests use Microsoft.CodeAnalysis.CSharp.Testing."
+          },
+          "keyauth": {
+            "type": "C# · ASP.NET Core · licensing · Unity client",
+            "solution": "A standalone ASP.NET Core key registration and activation API with activation accounting and server-side application-name verification, plus a Unity key-reading client.",
+            "result": "A working client-to-server activation path with support for shipped builds; per the client, unlicensed copies stopped running without a key (author attestation)."
           }
         },
         "show_portrait": true,
@@ -2401,6 +2411,21 @@
       "case_ru": "cases/ru-agentic.html",
       "case_en": "cases/en-agentic.html",
       "public": false
+    },
+    "keyauth": {
+      "title": "KeyAuth",
+      "type_ru": "C# / ASP.NET Core · лицензирование · Unity-клиент",
+      "type_en": "C# / ASP.NET Core · licensing · Unity client",
+      "problem_ru": "Клиентские Unity-приложения распространялись без контроля: не было серверной выдачи и учёта ключей, а старые сборки нельзя было ломать при смене схемы проверки.",
+      "problem_en": "Client Unity applications shipped without control: no server-side key issuance or accounting, and already distributed builds could not be broken by a change in the verification scheme.",
+      "solution_ru": "Отдельный ASP.NET Core API: регистрация и активация ключей с учётом числа активаций, серверная проверка имени приложения и совместимость с ранее выпущенными клиентами; Unity-клиент читает ключ и получает решение сервера.",
+      "solution_en": "A standalone ASP.NET Core API: key registration and activation with activation counting, server-side application-name verification and compatibility with previously shipped clients; the Unity client reads the key and receives the server decision.",
+      "result_ru": "Рабочая связка «клиент → серверная активация» с учётом активаций и поддержкой выпущенных сборок; по словам заказчика, нелицензионные копии перестали запускаться без действующего ключа (свидетельство автора, не независимый замер).",
+      "result_en": "A working client-to-server activation path with activation accounting and support for shipped builds; per the client, unlicensed copies stopped running without a valid key (author attestation, not an independent measurement).",
+      "repo": "https://github.com/Misha1302/KeyAuth",
+      "public": true,
+      "case_ru": "cases/ru-keyauth.html",
+      "case_en": "cases/en-keyauth.html"
     }
   },
   "recognition": {

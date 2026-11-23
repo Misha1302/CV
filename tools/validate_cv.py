@@ -14,7 +14,16 @@ from urllib.parse import urldefrag, urlparse
 import fitz
 from bs4 import BeautifulSoup
 
-from build_site import ROOT, build_outputs, load_data, write_or_check
+from build_site import (
+    ROOT,
+    build_company_profile,
+    build_outputs,
+    experience_pool,
+    company_filenames,
+    load_company_variants,
+    load_data,
+    write_or_check,
+)
 
 STALE_MARKERS = [
     "до 20 часов в неделю",
@@ -110,6 +119,9 @@ def html_files(data: dict) -> list[Path]:
     for project in data["projects"].values():
         files.append(ROOT / project["case_ru"])
         files.append(ROOT / project["case_en"])
+    for variant in load_company_variants():
+        for lang in ("ru", "en"):
+            files.append(ROOT / company_filenames(variant, lang)[0])
     for source in data["redirects"]:
         files.append(ROOT / source)
     return files
@@ -172,6 +184,42 @@ def validate_source_of_truth(data: dict) -> None:
         matches = list(ROOT.glob(pattern))
         if matches:
             raise RuntimeError(f"Legacy generated artifacts remain for {pattern}: {[p.name for p in matches]}")
+
+
+def validate_company_variants(data: dict) -> None:
+    """Company variants may reorder canon, but must not smuggle new claims."""
+    variants = load_company_variants()
+    if not variants:
+        raise RuntimeError("data/company-variants.json has no variants")
+    ids = [variant["id"] for variant in variants]
+    if len(ids) != len(set(ids)):
+        raise RuntimeError("company-variants.json: duplicate variant ids")
+    recognition_len = len(data["recognition"]["ru"])
+    for variant in variants:
+        raw = json.dumps(variant, ensure_ascii=False)
+        validate_age_privacy(raw, f"company-variants.json:{variant['id']}")
+        for marker in FORBIDDEN_HIGH_RISK_CLAIM_MARKERS:
+            if marker in raw:
+                raise RuntimeError(f"company-variants.json:{variant['id']}: evidence-bounded forbidden claim {marker!r}")
+        if sorted(variant["recognition_order"]) != list(range(recognition_len)):
+            raise RuntimeError(f"company-variants.json:{variant['id']}: recognition_order is not a permutation")
+        if not isinstance(variant.get("role"), str) or not variant["role"].strip():
+            raise RuntimeError(f"company-variants.json:{variant['id']}.role: empty")
+        for lang in ("ru", "en"):
+            for field in ("summary", "why"):
+                value = variant[f"{field}_{lang}"]
+                if not isinstance(value, str) or not value.strip():
+                    raise RuntimeError(f"company-variants.json:{variant['id']}.{field}_{lang}: empty")
+            # The variant may only reorder experience that exists in the canon.
+            pool = experience_pool(data, lang)
+            unknown = [ref for ref in variant["experience_order"] if ref not in pool]
+            if unknown:
+                raise RuntimeError(f"company-variants.json:{variant['id']}: unknown experience refs {unknown}")
+            missing_projects = [p for p in variant["project_ids"] if p not in data["projects"]]
+            if missing_projects:
+                raise RuntimeError(f"company-variants.json:{variant['id']}: unknown projects {missing_projects}")
+            if len(variant[f"proofs_{lang}"]) != 3:
+                raise RuntimeError(f"company-variants.json:{variant['id']}: expected three proof rows ({lang})")
 
 
 def validate_universal_positioning(data: dict) -> None:
@@ -431,6 +479,42 @@ def validate_pdfs(data: dict, pdf_dir: Path) -> list[dict[str, object]]:
 
 
 
+def validate_company_pdfs(data: dict, pdf_dir: Path) -> list[dict[str, object]]:
+    """Company variants must be rebuilt from the current canon, not left stale.
+
+    They are derived files: if data/company-variants.json or data/site.json
+    changes and the PDF is not rebuilt, the site keeps serving a CV whose role
+    and summary no longer match the page it links from.
+    """
+    results = []
+    for variant in load_company_variants():
+        for lang in ("ru", "en"):
+            profile = build_company_profile(data, variant, lang)
+            path = pdf_dir / profile["pdf"]
+            if not path.exists() or not path.stat().st_size:
+                raise RuntimeError(f"Missing company PDF {path.name}")
+            with fitz.open(path) as document:
+                if document.page_count != 1:
+                    raise RuntimeError(f"{path.name}: expected one page")
+                page = document[0]
+                text = normalized(page.get_text("text"))
+                validate_age_privacy(text, path.name)
+                if profile["role"].casefold() not in text.casefold():
+                    raise RuntimeError(f"{path.name}: role mismatch")
+                require_fragment(pdf_flow_text(page), profile["summary"], path.name)
+                links = [link.get("uri") for link in page.get_links() if link.get("uri")]
+                if len(links) < 3:
+                    raise RuntimeError(f"{path.name}: too few links ({len(links)})")
+                results.append({
+                    "file": path.name,
+                    "variant": variant["id"],
+                    "lang": lang,
+                    "text_chars": len(text),
+                    "links": len(links),
+                })
+    return results
+
+
 def compare_pdf_sets(generated_dir: Path, committed_dir: Path, data: dict) -> None:
     for key in data["profile_order"]:
         for lang in ("ru", "en"):
@@ -459,6 +543,13 @@ def validate_pdf_set_completeness(data: dict, pdf_dir: Path) -> None:
     expected = {data["profiles"][key][lang]["pdf"] for key in data["profile_order"] for lang in ("ru", "en")}
     if len(expected) != len(data["profile_order"]) * 2:
         raise RuntimeError("Duplicate PDF filenames in data/site.json profiles")
+    company_pdfs = {
+        company_filenames(variant, lang)[1]
+        for variant in load_company_variants() for lang in ("ru", "en")
+    }
+    if len(company_pdfs) != len(load_company_variants()) * 2:
+        raise RuntimeError("Duplicate PDF filenames in data/company-variants.json")
+    expected |= company_pdfs
     if not pdf_dir.is_dir():
         raise RuntimeError(f"PDF directory is missing: {pdf_dir}")
     on_disk = {path.name for path in pdf_dir.glob("*.pdf")}
@@ -537,6 +628,7 @@ def main() -> None:
 
     data = load_data()
     validate_source_of_truth(data)
+    validate_company_variants(data)
     validate_universal_positioning(data)
     validate_script()
     external = validate_html(data)
@@ -545,6 +637,7 @@ def main() -> None:
         for url in sorted(external):
             link_results.append(check_external_url(url))
     pdf_results = validate_pdfs(data, args.pdf_dir)
+    company_results = validate_company_pdfs(data, args.pdf_dir)
     validate_pdf_set_completeness(data, args.pdf_dir)
     release_results = validate_release_artifacts(data)
     if args.compare_dir:
@@ -557,6 +650,7 @@ def main() -> None:
         "pages": len(html_files(data)),
         "external_links": [{"url": url, "status": status} for url, status in link_results],
         "pdfs": pdf_results,
+        "company_pdfs": company_results,
         "release_artifacts": release_results,
     }
     if args.report:

@@ -11,7 +11,7 @@ from pathlib import Path
 from PIL import Image
 from playwright.sync_api import Browser, Page, sync_playwright
 
-from build_site import ROOT, load_data
+from build_site import ROOT, company_filenames, load_company_variants, load_data
 
 BASELINE_PATH = ROOT / "data" / "visual-baseline.json"
 # Keep pixel baselines on stable CV pages. The landing selector is intentionally
@@ -46,6 +46,11 @@ def smoke_cases(data: dict) -> list[tuple[str, str, int, int, bool]]:
     for key in data["profile_order"]:
         for lang in ("ru", "en"):
             candidates.append(data["profiles"][key][lang]["filename"])
+    # Company variants are public routes; a broken layout there would otherwise
+    # never be exercised because they are not part of the golden-image set.
+    for variant in load_company_variants():
+        for lang in ("ru", "en"):
+            candidates.append(company_filenames(variant, lang)[0])
     for filename in candidates:
         for mode, width, height, js_enabled in VIEW_MODES:
             if (filename, mode) not in covered:

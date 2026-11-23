@@ -7,7 +7,16 @@ from pathlib import Path
 import fitz
 from weasyprint import HTML
 
-from build_site import ROOT, build_outputs, load_data, project_title, write_or_check
+from build_site import (
+    ROOT,
+    build_company_profile,
+    build_outputs,
+    company_filenames,
+    load_company_variants,
+    load_data,
+    project_title,
+    write_or_check,
+)
 
 
 def validate_pdf(path: Path, expected_role: str, expected_projects: list[str], expected_education: str) -> dict[str, object]:
@@ -67,22 +76,32 @@ def main() -> None:
         args.evidence_dir.mkdir(parents=True, exist_ok=True)
 
     report = []
-    for key in data["profile_order"]:
+    targets: list[tuple[dict, str, str]] = [
+        (data["profiles"][key][lang], data["profiles"][key][lang]["filename"], data["profiles"][key][lang]["pdf"])
+        for key in data["profile_order"] for lang in ("ru", "en")
+    ]
+    # Company-targeted variants are derived from the same canon and must be
+    # rebuilt whenever their HTML changes; otherwise the site links a stale PDF.
+    for variant in load_company_variants():
         for lang in ("ru", "en"):
-            profile = data["profiles"][key][lang]
-            html_path = ROOT / profile["filename"]
-            pdf_path = args.output_dir / profile["pdf"]
-            HTML(filename=str(html_path), base_url=str(ROOT)).write_pdf(str(pdf_path))
-            expected_titles = [
-                project_title(data["projects"][project_id], lang)
-                for project_id in profile["project_ids"][: int(profile.get("print_project_limit", 3))]
-            ]
-            result = validate_pdf(pdf_path, profile["role"], expected_titles, data["person"][f"education_{lang}"])
-            if args.evidence_dir:
-                doc = fitz.open(pdf_path)
-                pix = doc[0].get_pixmap(matrix=fitz.Matrix(1.6, 1.6), alpha=False)
-                pix.save(args.evidence_dir / f"{pdf_path.stem}.png")
-            report.append(result | {"html": html_path.name})
+            profile = build_company_profile(data, variant, lang)
+            html_name, pdf_name = company_filenames(variant, lang)
+            targets.append((profile, html_name, pdf_name))
+    for profile, html_name, pdf_name in targets:
+        lang = "ru" if html_name.startswith("ru") else "en"
+        html_path = ROOT / html_name
+        pdf_path = args.output_dir / pdf_name
+        HTML(filename=str(html_path), base_url=str(ROOT)).write_pdf(str(pdf_path))
+        expected_titles = [
+            project_title(data["projects"][project_id], lang)
+            for project_id in profile["project_ids"][: int(profile.get("print_project_limit", 3))]
+        ]
+        result = validate_pdf(pdf_path, profile["role"], expected_titles, data["person"][f"education_{lang}"])
+        if args.evidence_dir:
+            doc = fitz.open(pdf_path)
+            pix = doc[0].get_pixmap(matrix=fitz.Matrix(1.6, 1.6), alpha=False)
+            pix.save(args.evidence_dir / f"{pdf_path.stem}.png")
+        report.append(result | {"html": html_path.name})
 
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)
