@@ -11,7 +11,6 @@ Run: python3 tools/test_validate_cv.py -v
 from __future__ import annotations
 
 import copy
-import importlib.util
 import sys
 import tempfile
 import unittest
