@@ -25,15 +25,39 @@ sys.path.insert(0, str(ROOT / "tools"))
 import validate_cv  # noqa: E402
 
 
+def _find_cyrillic_font() -> Path | None:
+    """Locate a Cyrillic-capable TTF across distributions.
+
+    The path differs between Fedora and Debian/Ubuntu CI images, so a single
+    hard-coded location would silently skip these tests in CI and the mutation
+    protection would disappear exactly where it matters.
+    """
+    candidates = [
+        "/usr/share/fonts/dejavu-sans-fonts/DejaVuSans.ttf",   # Fedora
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",     # Debian/Ubuntu
+        "/usr/share/fonts/TTF/DejaVuSans.ttf",                 # Arch
+        "/usr/share/fonts/dejavu/DejaVuSans.ttf",
+    ]
+    for candidate in candidates:
+        if Path(candidate).is_file():
+            return Path(candidate)
+    found = sorted(Path("/usr/share/fonts").rglob("DejaVuSans.ttf")) if Path("/usr/share/fonts").is_dir() else []
+    return found[0] if found else None
+
+
 def _build_pdf(path: Path, text: str) -> None:
     """Render `text` into a one-page PDF that actually contains a Cyrillic text layer.
 
     PyMuPDF's built-in Helvetica has no Cyrillic glyphs and silently extracts as
     a row of dots, so the font must be embedded explicitly.
     """
-    font_path = Path("/usr/share/fonts/dejavu-sans-fonts/DejaVuSans.ttf")
-    if not font_path.is_file():
-        raise unittest.SkipTest(f"Cyrillic-capable font missing: {font_path}")
+    font_path = _find_cyrillic_font()
+    if font_path is None:
+        # A skip here would silently drop the mutation protection, and the repo
+        # cannot build its own PDFs without this font (validate_release asserts
+        # DejaVu is embedded). Fail loudly instead of passing quietly.
+        raise RuntimeError("Cyrillic-capable font missing (DejaVuSans.ttf); "
+                           "install fonts-dejavu-core")
     document = fitz.open()
     page = document.new_page()
     page.insert_font(fontname="dejavu", fontfile=str(font_path))

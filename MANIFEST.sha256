@@ -4,7 +4,7 @@ cecbcd04cc3956c1a67481a505930f909f2a61bfae3f3a20d6f7368cab96a4a1  ./.github/work
 f929fed3e9ee2dda0e2118b0da5ae0e430108ca50532fb89b91228f44db364fe  ./.github/workflows/pr-trigger-probe.yml
 244e152126404a2788f1c27cdc38fd430c5467d92351ba271bb8f750097e22de  ./.github/workflows/rebalance-interests.yml
 b375356cadd42301764d2314761df88b39d7cde6ac0bc4233ca101156cdeeed5  ./.github/workflows/rebuild-cv-assets.yml
-5ae754ad4637684198e689a5a14c056b65aefbf51a961008f441ee661a08addc  ./.github/workflows/validate-cv.yml
+778e8fc4ea8503039f36a0a7679eb200fd9dd3d8d92bcf1294e2e281268ee6b7  ./.github/workflows/validate-cv.yml
 d65300fa28fff004f984d38430eb4c424d1cafd95b47c48d76ec0491aaed3d70  ./.gitignore
 6acb443e1cb29bd550d2278bfd3ed12da6e7408ab61b35a0173266635e7d7ffe  ./ARCHITECTURE-PROFILE-REVIEW-2026-09-15.md
 e7cdf10cb9f1000f265fd7c145bd5f89dc8ccd093ecc1a487a9ab049ff040924  ./CI-OWNERSHIP.md
@@ -56,7 +56,7 @@ dfb685cd0eb3233c5dae7bdb002a6a4db8df27f531611ddf02c707daaa166a7f  ./cases/ru-qua
 f3f8a38686c865595695ac98737e6e17f4cc7f1a5fb31af61335926e52d74048  ./cases/ru-vpn.html
 715501d35b6b60573477a5d83e701a913636a663a80677b5bb08c2e22dc488cc  ./cases/ru-wist.html
 9ca9730539a0ed68d7f03b0fb4730e0a2e6274f3aa6d55298e683d3df64b83b3  ./data/site.json
-0d4d170c6aa7fe8547423e1283d34f703db318f2a8654fb0f9addfe5c88364d7  ./data/visual-baseline.json
+6ecbefa9a1f7f5af8448dec6f9bdb63806de3ab3229bcdbc8ba4b2185db54955  ./data/visual-baseline.json
 cfc6058cdb00691811e99a5755d283e07f1ed72778f855cf99b12db115f0909a  ./en-algorithms.html
 89896e93215ea48f98e65a0f98d3a7c789b5108552634edac7634144d00b564e  ./en-architecture.html
 1b2d713e4f512219cc30a70601c00de40d9e2abfad1bc3a759b0296503d1d051  ./en-backend-ats.html
@@ -179,7 +179,7 @@ bbc359e75db41431e66077ff0eee7d6d364de75537bcd1cb51df20e6179df7e4  ./tools/build_
 bb577b4671d0b5171f543da6ba8a9368fbad2adaa34883b701d1f029ce7544a1  ./tools/reposition_quant_profiles_20260908.py
 650b718c3c17ed511f24ffdd2d6f4dfb7d934f559d1db1efb4414d94d88de25a  ./tools/reposition_quant_profiles_20260908_v2.py
 353d30f4df98fced800a1a5c9b95defcbdd9ae45d7a8fb3af82e233d4a33d837  ./tools/reposition_quant_profiles_20260908_v3.py
-49769048e78c39547020fb01cbf6f2d4c35dadf0c2580b4a21a44d70f9223153  ./tools/test_validate_cv.py
+97372aaaa78d786a1930f9f5271f6603ee65ad57284e350bfcf1e11a90366979  ./tools/test_validate_cv.py
 c8ddff3411f9c7936e7116c74523f87cac84644e13060ab4027d5f27780d5ce3  ./tools/tmp_quant_profile_refresh_20260820.py
 adca7d76ea7fa2fbfd6039de8affadebd3d2b3c668db471fe647d16eb03a5f72  ./tools/validate_application_sites.py
 fb079a7f48e1a9f3cccde734f1bd51dcadefbeb054e651a3470a9ae549a22557  ./tools/validate_cv.py

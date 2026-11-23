@@ -1,9 +1,9 @@
 {
   "ru.html|desktop": {
-    "dhash": "39a333e3323c0d260f4e0e4f3e160ade31fe3d9e2d8625360a180f7806582602",
+    "dhash": "33e332e32d342f260b4e0e3636c624ce299639e62dce223e199c27d82bc00e42",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 3350,
+    "page_height": 3830,
     "h1": "Михаил Разаков",
     "role": "Compiler Infrastructure / Language Tooling Engineer",
     "structure": {
@@ -16,19 +16,19 @@
         "education",
         "contact"
       ],
-      "timelineItems": 2,
-      "projectRows": 3,
-      "stackRows": 4,
-      "recognitionItems": 4,
+      "timelineItems": 3,
+      "projectRows": 4,
+      "stackRows": 5,
+      "recognitionItems": 6,
       "contactPanels": 1,
       "profileCards": 0
     }
   },
   "ru-compiler.html|desktop": {
-    "dhash": "31a32be32f1c0f4e34473e161cf63db639b60d262c0e341a0b180f7806982602",
+    "dhash": "336313e3271c0b4e0e7636261e763df62da60da62e56311e09d827d82bc00e02",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 3194,
+    "page_height": 3503,
     "h1": "Михаил Разаков",
     "role": "Compiler & Program Analysis Engineer",
     "structure": {
@@ -41,19 +41,19 @@
         "education",
         "contact"
       ],
-      "timelineItems": 2,
+      "timelineItems": 3,
       "projectRows": 3,
-      "stackRows": 4,
-      "recognitionItems": 4,
+      "stackRows": 5,
+      "recognitionItems": 6,
       "contactPanels": 1,
       "profileCards": 0
     }
   },
   "ru-backend.html|desktop": {
-    "dhash": "3acb32c72ddc25fe0f0e26320e77184f39cf05e6266c24fc277c663407b31f93",
+    "dhash": "3aca38c601dc073e273e06761d5719df1dcf1e00266c247e20fa26e007b21f97",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 5218,
+    "page_height": 6496,
     "h1": "Михаил Разаков",
     "role": "C# / .NET Backend Developer · Systems & Reliability",
     "structure": {
@@ -66,19 +66,19 @@
         "education",
         "contact"
       ],
-      "timelineItems": 3,
+      "timelineItems": 4,
       "projectRows": 0,
-      "stackRows": 4,
-      "recognitionItems": 4,
+      "stackRows": 5,
+      "recognitionItems": 6,
       "contactPanels": 1,
       "profileCards": 0
     }
   },
   "ru-cpp-systems.html|desktop": {
-    "dhash": "3e4b3fcf3dcc257e0f36263a177f1f6f1f6f2672223627b225b6231e07fb1cb3",
+    "dhash": "3acb3dc70ddc23760f0626320f7f1b6f3b7f2670246e24fa24ea26f003b21997",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 4975,
+    "page_height": 5289,
     "h1": "Михаил Разаков",
     "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
     "structure": {
@@ -91,19 +91,19 @@
         "education",
         "contact"
       ],
-      "timelineItems": 2,
+      "timelineItems": 3,
       "projectRows": 0,
-      "stackRows": 4,
-      "recognitionItems": 4,
+      "stackRows": 5,
+      "recognitionItems": 6,
       "contactPanels": 1,
       "profileCards": 0
     }
   },
   "ru.html|mobile": {
-    "dhash": "73d949df7fe949d74adf3b3f25bf576f3bff2eff3dbf51bf7bb76d9b5baf585f",
+    "dhash": "73433b6769da48ff173f233f0d9f7adf73df2d1f5dff75e77fc677af77af534f",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 5789,
+    "page_height": 6655,
     "h1": "Михаил Разаков",
     "role": "Compiler Infrastructure / Language Tooling Engineer",
     "structure": {
@@ -116,19 +116,19 @@
         "education",
         "contact"
       ],
-      "timelineItems": 2,
-      "projectRows": 3,
-      "stackRows": 4,
-      "recognitionItems": 4,
+      "timelineItems": 3,
+      "projectRows": 4,
+      "stackRows": 5,
+      "recognitionItems": 6,
       "contactPanels": 1,
       "profileCards": 0
     }
   },
   "ru-compiler.html|mobile": {
-    "dhash": "73c37cd77a9c3b3f259f347e283f51bf51ff4bcf4dbf2f3f6b9b7cbb5bbf585f",
+    "dhash": "734978ad53ff173f233f2ebb5f1f533f5a4749df4d6d7f2f6bc6778f772f5243",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 5468,
+    "page_height": 6004,
     "h1": "Михаил Разаков",
     "role": "Compiler & Program Analysis Engineer",
     "structure": {
@@ -141,19 +141,19 @@
         "education",
         "contact"
       ],
-      "timelineItems": 2,
+      "timelineItems": 3,
       "projectRows": 3,
-      "stackRows": 4,
-      "recognitionItems": 4,
+      "stackRows": 5,
+      "recognitionItems": 6,
       "contactPanels": 1,
       "profileCards": 0
     }
   },
   "ru-backend.html|mobile": {
-    "dhash": "427f28ff2def3bbf2b3f349f3cdf3c5f3a7f39ef362f770f5cff69f727df3cdf",
+    "dhash": "406b2dff38ff3abf333f34df3cdf3cff39df3a5f3cbf7f0775ef73eb27df3cdf",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 9009,
+    "page_height": 10855,
     "h1": "Михаил Разаков",
     "role": "C# / .NET Backend Developer · Systems & Reliability",
     "structure": {
@@ -166,19 +166,19 @@
         "education",
         "contact"
       ],
-      "timelineItems": 3,
+      "timelineItems": 4,
       "projectRows": 0,
-      "stackRows": 4,
-      "recognitionItems": 4,
+      "stackRows": 5,
+      "recognitionItems": 6,
       "contactPanels": 1,
       "profileCards": 0
     }
   },
   "ru-cpp-systems.html|mobile": {
-    "dhash": "659728fd2aff1f7e39ff1e6f3dff38df28df18df5bcf5bf76e7f797f27ff2cff",
+    "dhash": "526b2dfb2bbe1abf22bf249f3abf387f3abf3e9f576759ef73e3532727ed1cfb",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 8423,
+    "page_height": 8897,
     "h1": "Михаил Разаков",
     "role": "C++ / Systems Engineer | LLVM · x86-64 · Algorithms",
     "structure": {
@@ -191,19 +191,19 @@
         "education",
         "contact"
       ],
-      "timelineItems": 2,
+      "timelineItems": 3,
       "projectRows": 0,
-      "stackRows": 4,
-      "recognitionItems": 4,
+      "stackRows": 5,
+      "recognitionItems": 6,
       "contactPanels": 1,
       "profileCards": 0
     }
   },
   "ru.html|no-js": {
-    "dhash": "301a35a339a3296308e7326732702b0039260da64d2633042b020e0e0b0c0f56",
+    "dhash": "301a272333e31ae309e736673270268032082da64da616062e10210e032e0b46",
     "width": 1440,
     "viewport_height": 1100,
-    "page_height": 3350,
+    "page_height": 3830,
     "h1": "Михаил Разаков",
     "role": "Compiler Infrastructure / Language Tooling Engineer",
     "structure": {
@@ -216,19 +216,19 @@
         "education",
         "contact"
       ],
-      "timelineItems": 2,
-      "projectRows": 3,
-      "stackRows": 4,
-      "recognitionItems": 4,
+      "timelineItems": 3,
+      "projectRows": 4,
+      "stackRows": 5,
+      "recognitionItems": 6,
       "contactPanels": 1,
       "profileCards": 0
     }
   },
   "ru-backend.html|no-js": {
-    "dhash": "53d340c128c476cb536f506628b66a5f2b4f247e757948c180e0016049684968",
+    "dhash": "53d340c128c476cb536f506624a3554f36cf604e61e904c18060016049688170",
     "width": 390,
     "viewport_height": 844,
-    "page_height": 9009,
+    "page_height": 10855,
     "h1": "Михаил Разаков",
     "role": "C# / .NET Backend Developer · Systems & Reliability",
     "structure": {
@@ -241,10 +241,10 @@
         "education",
         "contact"
       ],
-      "timelineItems": 3,
+      "timelineItems": 4,
       "projectRows": 0,
-      "stackRows": 4,
-      "recognitionItems": 4,
+      "stackRows": 5,
+      "recognitionItems": 6,
       "contactPanels": 1,
       "profileCards": 0
     }
