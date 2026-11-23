@@ -68,8 +68,14 @@ The checks enforce:
 - valid internal links and optional live external-link checks;
 - local portrait asset, no remote avatar dependency;
 - one-page A4 PDFs with text layers and links;
+- **PDFs rebuilt from the current `data/site.json`**: each profile PDF must contain its profile summary verbatim, and the PDF set must match `profile_order` exactly (no orphaned or missing files). This catches the case where the source is edited and the PDFs are left at the previous revision, so the site and the PDF describe different CVs;
+- **release artifacts built from the current source**: every `.md` and `.pdf` in `releases/<date>/` must contain the current variant summary and project texts. Once a single PDF was stale while its Markdown was fresh, and nothing failed;
 - desktop, mobile, and JavaScript-disabled screenshot regression/smoke checks;
 - recursive SHA-256 manifest integrity.
+
+The artifact checks are regression-tested by `tools/test_validate_cv.py`, which CI runs
+after the validators. Each test is paired with a mutation: deleting the check makes the
+test fail. Run it locally with `python3 tools/test_validate_cv.py -v`.
 
 ## CV release — 2026-11-03
 

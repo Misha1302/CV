@@ -1314,14 +1314,14 @@
     {
       "id": "experience_commercial_aggregate_2026",
       "category": "experience",
-      "name": "Aggregate commercial development (candidate-attested)",
-      "time": "approx. one year total; individual dates not independently verified",
+      "name": "Commercial client and product development (candidate-attested)",
+      "time": "multiple engagements across 2023–2026; individual dates and scope to be confirmed with references",
       "evidence_level": [
         "USER_ATTESTED"
       ],
       "public_sources": [],
       "claims": [
-        "Approximately one year of combined commercial work involving C#/.NET, Unity, ASP.NET Core, PostgreSQL, file systems and servers, according to the candidate."
+        "Commercial work on C#/.NET, Unity, ASP.NET Core, PostgreSQL, file systems and servers for private clients and product teams, according to the candidate."
       ],
       "recruiter_signals": [
         "Commercial exposure to .NET and adjacent software development."
@@ -1335,6 +1335,37 @@
       "strongest_evidence": "Candidate's account from November 2026; no independent duration or employer-level employment certificate verified.",
       "gaps": [
         "Independent work dates and employer references not supplied."
+      ]
+    },
+    {
+      "id": "experience_agentic_orchestration_2026",
+      "category": "experience",
+      "name": "Agentic LLM orchestration used for paid product delivery",
+      "time": "2026 — present",
+      "evidence_level": [
+        "USER_ATTESTED",
+        "PUBLIC_REPO_DIRECT"
+      ],
+      "public_sources": [],
+      "claims": [
+        "Operates a role-based agent pipeline (researcher, author, fact/logic critics, verifier with pre-written checks and negative controls) as the delivery process for commissioned product work, including the TuringSquare-LMS build.",
+        "No external benchmark or adoption metric is claimed for the orchestration itself."
+      ],
+      "recruiter_signals": [
+        "AI-assisted engineering practice",
+        "verification discipline",
+        "delivery ownership"
+      ],
+      "role_fit": [
+        "backend_platform",
+        "architecture"
+      ],
+      "resume_priority": "MEDIUM",
+      "gaps": [
+        "No third-party measurement of pipeline throughput or defect rates."
+      ],
+      "boundaries": [
+        "This is the candidate's working process; it is not a separate employer or a formal team role."
       ]
     }
   ],

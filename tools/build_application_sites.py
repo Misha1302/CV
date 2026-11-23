@@ -252,8 +252,8 @@ def render(data: dict[str, Any], kind: str, lang: str, filename: str | None = No
       </section>"""
     notes = loc(
         lang,
-        "Совокупный коммерческий стаж указан по данным кандидата. Доступность исходников, манифест тестов и успешное прохождение тестов — разные виды доказательств. TuringSquare-LMS в разработке: реализация частично агентная, платежи — sandbox. Ни одно из этих утверждений не выдаётся за независимую проверку production.",
-        "Aggregate commercial tenure is candidate-reported. Source availability, a test manifest and freshly executed tests are different evidence levels. TuringSquare-LMS is in development: parts are agent-implemented, payments are sandbox only. None of these statements claim independently verified production behavior.",
+        "Совокупный коммерческий стаж охватывает несколько заказчиков и продуктовых задач и указан по данным кандидата. Доступность исходников, манифест тестов и свежее исполнение тестов — разные уровни доказательств. TuringSquare-LMS прошла production-приёмку (тур из пяти задач, 514 тестов, четыре judge-воркера); часть реализации — агентная, платежи в sandbox-режиме. Ни одно из этих утверждений не выдаётся за независимую проверку production-поведения.",
+        "Commercial experience spans several clients and product engagements and is candidate-attested. Source availability, a test manifest and freshly executed tests are different evidence levels. TuringSquare-LMS passed production acceptance (five-problem tour, 514 tests, four judge workers); parts are agent-implemented and payments run in sandbox. None of these statements claims independently verified production behaviour.",
     )
     edu = f"""<section class="ap-section ap-education" id="education">
         <div class="ap-section-aside"><span class="ap-number">04 / 04</span><h2>{detail['education']}</h2></div>

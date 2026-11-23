@@ -6,7 +6,7 @@ Moscow / remote · [razakov.mikhail@outlook.com](mailto:razakov.mikhail@outlook.
 
 ## Profile
 
-I design and build .NET services and infrastructure with explicit module boundaries and recoverable, testable state. VpnMediator handles duplicate payment events and access recovery; UniversalToolchain checks dependencies before execution; in the LMS I own architectural invariants and review. Approx. one year of aggregate commercial development across a mixed stack.
+I design and build .NET services and infrastructure with explicit module boundaries and recoverable, testable state. VpnMediator handles duplicate payment events and access recovery; UniversalToolchain checks dependencies before execution; in the LMS I own production invariants, judging and review. Before that — commercial C#/.NET projects.
 
 ## Technical skills
 
@@ -23,9 +23,9 @@ Symbolic computation and structured C# code/declaration metadata for static anal
 
 C++23/LLVM 22: experimental LICM with conservative legality checks; Python differential checks of before/after behavior.
 
-**Commercial development · C#/.NET & adjacent technologies · approx. 1 year total**
+**Commercial development · C#/.NET & adjacent technologies · commercial projects**
 
-Application and backend work with C#/.NET, Unity, ASP.NET Core, SQL/PostgreSQL, file I/O and servers. Duration is candidate-reported.
+Application and backend work in C#/.NET and Unity for private clients and product teams: ASP.NET Core, SQL/PostgreSQL, file I/O and server environments, integrations and maintenance of shipped builds.
 
 ## Projects
 
@@ -37,12 +37,12 @@ Module contracts and dependencies form a validated LanguagePlan before runtime. 
 
 Payment events and access entitlements are separate. Duplicate events are processed idempotently, provider state is reconciled, and operational scripts provide backup, health gates and rollback.
 
-**[TuringSquare-LMS · access control and implementation review](https://misha1302.github.io/CV/cases/en-lms.html)**
+**[TuringSquare-LMS · production, judging and entitlements](https://misha1302.github.io/CV/cases/en-lms.html)**
 
-Role/course-access invariants and acceptance criteria for T-Bank sandbox payments. The project is in development; my focus is architecture decisions and review of agent-produced implementation.
+Live in production: roles and course entitlements, a balance ledger, idempotent payments with provider re-verification, an isolated four-worker judge, and release/recovery procedures. 120+ active students.
 
 ## Education and recognition
 
 HSE University — Software Engineering.
 
-MEPhI Junior 2026, 1st-degree diploma; LangDev 2026 UniversalToolchain talk.
+MEPhI Junior, 1st-degree diploma; LangDev UniversalToolchain talk.

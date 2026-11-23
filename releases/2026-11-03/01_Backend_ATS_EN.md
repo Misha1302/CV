@@ -6,7 +6,7 @@ Moscow / remote · [razakov.mikhail@outlook.com](mailto:razakov.mikhail@outlook.
 
 ## Profile
 
-I build C#/.NET backend services and maintain the operational VpnMediator project. Approx. one year of aggregate commercial development on C#/.NET and adjacent technologies (candidate-reported), alongside ISP RAS work and an MCST internship. Focus: APIs, data integrity, idempotency and recovery.
+C#/.NET backend developer focused on payment state, idempotency and recovery. Took an LMS to production — automated judging, a four-worker judge, 120+ active students — and maintain the live VpnMediator service. Alongside that: symbolic computation in SharpChecker at ISP RAS and LLVM optimization at MCST.
 
 ## Technical skills
 
@@ -23,26 +23,26 @@ Symbolic computation and structured C# code/declaration metadata for static anal
 
 C++23/LLVM 22: experimental LICM with conservative legality checks; Python differential checks of before/after behavior.
 
-**Commercial development · C#/.NET & adjacent technologies · approx. 1 year total**
+**Commercial development · C#/.NET & adjacent technologies · commercial projects**
 
-Application and backend work with C#/.NET, Unity, ASP.NET Core, SQL/PostgreSQL, file I/O and servers. Duration is candidate-reported.
+Application and backend work in C#/.NET and Unity for private clients and product teams: ASP.NET Core, SQL/PostgreSQL, file I/O and server environments, integrations and maintenance of shipped builds.
 
 ## Projects
 
 **[VpnMediator / Razaltush VPN · operational service](https://misha1302.github.io/CV/cases/en-vpn.html)**
 
-ASP.NET Core access/device backend, Python Telegram/payment bot and SQLite. Source includes payment event inbox, reconciliation and backup/rollback workflows; user numbers are candidate-reported.
+ASP.NET Core access/device backend, Python Telegram/payment bot and SQLite. The source includes a payment event inbox, idempotency, reconciliation and backup/rollback workflows.
 
 **[UniversalToolchain · C#/.NET](https://github.com/Misha1302/UniversalToolchain)**
 
 Extensible language infrastructure with a typed LanguagePlan, interpreter/CIL backends and execution-parity tests.
 
-**[TuringSquare-LMS · in development](https://misha1302.github.io/CV/cases/en-lms.html)**
+**[TuringSquare-LMS · production, judging and entitlements](https://misha1302.github.io/CV/cases/en-lms.html)**
 
-Architecture and review of entitlements, roles and T-Bank sandbox payment verification. Some code is agent-implemented; no production launch claimed.
+Live in production: roles and course entitlements, a balance ledger, idempotent payments with provider re-verification, an isolated four-worker judge, and release/recovery procedures. 120+ active students.
 
 ## Education and recognition
 
 HSE University, Faculty of Computer Science — Software Engineering.
 
-1st-degree diploma, MEPhI Junior 2026 (UniversalToolchain); LangDev 2026 speaker.
+1st-degree diploma, MEPhI Junior (UniversalToolchain); LangDev speaker.

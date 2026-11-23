@@ -50,6 +50,8 @@ jobs:
         run: |
           python tools/validate_release.py
           python tools/validate_application_sites.py
+      - name: Validate the artifact checks themselves
+        run: python tools/test_validate_cv.py -v
       - name: Ensure generators are deterministic
         run: python tools/build_site.py --check
       - uses: actions/upload-artifact@v4

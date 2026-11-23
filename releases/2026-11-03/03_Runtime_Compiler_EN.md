@@ -23,9 +23,9 @@ Symbolic computation and structured C# code/declaration metadata for static anal
 
 C++23/LLVM 22: experimental LICM with conservative legality checks; Python differential checks of before/after behavior.
 
-**Commercial development · C#/.NET & adjacent technologies · approx. 1 year total**
+**Commercial development · C#/.NET & adjacent technologies · commercial projects**
 
-Application and backend work with C#/.NET, Unity, ASP.NET Core, SQL/PostgreSQL, file I/O and servers. Duration is candidate-reported.
+Application and backend work in C#/.NET and Unity for private clients and product teams: ASP.NET Core, SQL/PostgreSQL, file I/O and server environments, integrations and maintenance of shipped builds.
 
 ## Projects
 
@@ -49,4 +49,4 @@ DynamicMethod/Reflection.Emit and RuntimeMethodHandle; BenchmarkDotNet compares 
 
 HSE University — Software Engineering.
 
-MEPhI Junior 2026, 1st-degree diploma; LangDev 2026 speaker.
+MEPhI Junior, 1st-degree diploma; LangDev speaker.

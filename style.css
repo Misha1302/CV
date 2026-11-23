@@ -825,10 +825,24 @@ body.profile-compiler::before {
     font-size: 8.65pt;
     line-height: 1.32;
   }
+  .profile-architecture .pcv-recognition,
+  .profile-backend .pcv-recognition {
+    margin-bottom: 1.8mm;
+    break-inside: avoid;
+  }
+  .profile-architecture .pcv-recognition strong,
+  .profile-backend .pcv-recognition strong {
+    display: block;
+    font-size: 8.6pt;
+    line-height: 1.2;
+  }
   .profile-architecture .pcv-recognition span,
   .profile-backend .pcv-recognition span {
-    font-size: 8.55pt;
-    line-height: 1.31;
+    display: block;
+    margin-top: .5mm;
+    color: #4e4547;
+    font-size: 8.2pt;
+    line-height: 1.28;
   }
   .profile-architecture .pcv-section-title,
   .profile-backend .pcv-section-title {

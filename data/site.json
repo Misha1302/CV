@@ -108,7 +108,7 @@
           ],
           [
             "Длительная история компиляторных проектов",
-            "Публичные compiler/runtime-проекты с 2022; native x86-64 codegen — с 2023."
+            "Публичные компиляторные и runtime-проекты: от собственных VM и bytecode до native x86-64 codegen."
           ],
           [
             "Текущий основной проект",
@@ -208,7 +208,8 @@
         "experience_heading": "Профессиональный опыт",
         "print_experience_limit": 2,
         "show_portrait": true,
-        "portrait_asset": "assets/portrait.jpg"
+        "portrait_asset": "assets/portrait.jpg",
+        "print_recognition_limit": 5
       },
       "en": {
         "filename": "en.html",
@@ -226,7 +227,7 @@
           ],
           [
             "Compiler lineage",
-            "Public compiler/runtime projects since 2022; native x86-64 codegen by 2023."
+            "Public compiler/runtime projects: from custom VMs and bytecode to native x86-64 codegen."
           ],
           [
             "Current flagship",
@@ -326,7 +327,8 @@
         "experience_heading": "Professional Experience",
         "print_experience_limit": 2,
         "show_portrait": true,
-        "portrait_asset": "assets/portrait.jpg"
+        "portrait_asset": "assets/portrait.jpg",
+        "print_recognition_limit": 5
       }
     },
     "compiler": {
@@ -346,7 +348,7 @@
           ],
           [
             "Эволюция проектов",
-            "2022 compiler/VM → 2023 MSIL/native x64 → 2024 AST→IR→x64."
+            "Собственные VM → MSIL и native x64 → AST→IR→x64 pipeline."
           ],
           [
             "Ключевые публичные работы",
@@ -443,7 +445,7 @@
         "experience_heading": "Профессиональный опыт",
         "show_web_proofs": false,
         "print_show_trajectory": false,
-        "print_recognition_limit": 3,
+        "print_recognition_limit": 5,
         "print_experience_limit": 2
       },
       "en": {
@@ -462,7 +464,7 @@
           ],
           [
             "Compiler lineage",
-            "2022 compiler/VM → 2023 MSIL/native x64 → 2024 AST→IR→x64."
+            "Custom VMs → MSIL and native x64 → AST→IR→x64 pipeline."
           ],
           [
             "Current proof points",
@@ -543,7 +545,7 @@
           "codegen": {
             "type": "Rust · compiler backend · register allocation · SysV x86-64",
             "solution": "A compiler backend with SSA/CFG validation, liveness/interference analysis, linear-scan and seeded simulated-annealing allocators, spills, phi lowering, and a SysV x86-64 emitter.",
-            "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves; a separate public native-codegen lineage starts with Visk (2023) and Wist4 (2024)."
+            "result": "An independent assignment verifier plus native-vs-interpreter differential execution; tests cover branches, loops, spills, and parallel phi moves; a separate public native-codegen lineage starts with Visk and Wist4."
           },
           "wist": {
             "solution": "Designed immutable semantic plans binding dependencies, contributions and typed artifact routes before runtime materialization.",
@@ -559,7 +561,7 @@
         "experience_heading": "Professional Experience",
         "show_web_proofs": false,
         "print_show_trajectory": false,
-        "print_recognition_limit": 3,
+        "print_recognition_limit": 5,
         "print_experience_limit": 2
       }
     },
@@ -571,20 +573,20 @@
         "role": "C# / .NET Backend Developer · Systems & Reliability",
         "brand": ".NET · payment state · recovery · platform reliability",
         "eyebrow": "ASP.NET Core · idempotency · recovery · rollback",
-        "summary": "C#/.NET backend-разработчик: коммерческая практика на смешанном стеке — около года суммарно (по данным автора). Символьные вычисления в SharpChecker (ИСП РАН), ранее LLVM-оптимизация в МЦСТ. Довёл учебную LMS до production: автоматическая проверка решений, judge на четырёх воркерах, 150+ учеников. Строю агентные LLM-пайплайны с разделением исполнения и проверки.",
+        "summary": "C#/.NET backend-разработчик: платёжные состояния, идемпотентность и восстановление после сбоев. Вывел LMS в production: автоматическая проверка решений, judge на четырёх воркерах, 120+ активных учеников. Сейчас — символьные вычисления в SharpChecker (ИСП РАН), ранее — LLVM-оптимизация в МЦСТ.",
         "description": "Михаил Разаков: ASP.NET Core, SQL/PostgreSQL, production LMS с автоматической проверкой решений, действующий VpnMediator, SharpChecker в ИСП РАН и агентные LLM-пайплайны.",
         "proofs": [
           [
-            "Payment correctness",
-            "Webhook не считается источником истины: provider payment повторно запрашивается и проверяется по id/status/environment/metadata/amount/currency"
+            "Корректность платежей",
+            "Webhook не считается источником истины: платёж повторно запрашивается у провайдера и сверяется по id, статусу, окружению, metadata, сумме и валюте"
           ],
           [
-            "Recovery ownership",
-            "Durable inbox/outbox, idempotency, reconciliation, restart recovery, leases и manual review для конфликтующих evidence"
+            "Ответственность за восстановление",
+            "Durable inbox/outbox, идемпотентность, reconciliation, восстановление после рестарта, lease-механизмы и ручной разбор конфликтующих данных"
           ],
           [
-            "Release safety",
-            "Versioned releases, coordinated backup, atomic switch, health gates и rollback на предыдущую версию"
+            "Безопасность релиза",
+            "Версионированные релизы, согласованный backup, атомарное переключение, health-гейты и откат на предыдущую версию"
           ]
         ],
         "experience": [
@@ -618,12 +620,14 @@
             ]
           },
           {
-            "date": "2025 — подтверждено",
-            "title": "Клиентская разработка — Diploma.school",
-            "org": "jQuery · адаптивная навигация · UI regression fixes",
+            "date": "клиентские проекты",
+            "title": "Коммерческая разработка — KeyAuth, Diploma.school",
+            "org": "ASP.NET Core · лицензирование · Unity-клиент · jQuery UI",
             "bullets": [
-              "Реализовал jQuery dropdown-компоненты, адаптивную mobile/desktop-навигацию и исправления UI-регрессий; работа подтверждена не позднее января 2025 года."
-            ]
+              "KeyAuth: ASP.NET Core API регистрации и активации ключей с учётом активаций; отдельный Unity-клиент проверки лицензии и поддержка ранее выпущенных сборок.",
+              "Diploma.school: jQuery dropdown-компоненты, адаптивная mobile/desktop-навигация и исправления UI-регрессий."
+            ],
+            "fact_ref": "commercial"
           }
         ],
         "project_ids": [
@@ -658,7 +662,7 @@
         "contact_heading": "Целевые роли: .NET Backend / Platform Engineer с ответственностью за состояние, recovery и эксплуатационную корректность",
         "footer": "NET Backend / Platform Engineer · State & Reliability",
         "updated_at": "2026-11-03",
-        "print_spacious": true,
+        "print_spacious": false,
         "print_project_limit": 4,
         "project_summaries": {
           "botay": {
@@ -667,13 +671,14 @@
           },
           "lms": {
             "solution": "Роли и состояния, ledger баланса, идемпотентные платежи, изолированный judge на четырёх воркерах, release/recovery-процедуры.",
-            "result": "Production: 150+ учеников, тур 5 задач / 514 тестов, реальные вердикты C++17 и Python3, 4 воркера, нагрузочные прогоны."
+            "result": "Production: 120+ активных учеников, тур 5 задач / 514 тестов, реальные вердикты C++17 и Python3, judge на 4 воркерах."
           }
         },
         "experience_heading": "Профессиональный опыт и клиентская работа",
-        "print_experience_limit": 3,
+        "print_experience_limit": 4,
         "show_portrait": true,
-        "portrait_asset": "assets/portrait.jpg"
+        "portrait_asset": "assets/portrait.jpg",
+        "print_recognition_limit": 5
       },
       "en": {
         "filename": "en-backend.html",
@@ -682,20 +687,20 @@
         "role": "C# / .NET Backend Developer · Systems & Reliability",
         "brand": ".NET · payment state · recovery · platform reliability",
         "eyebrow": "ASP.NET Core · idempotency · recovery · rollback",
-        "summary": "C#/.NET backend developer: about a year of commercial work across a mixed stack (author-reported). Symbolic computation in SharpChecker at ISP RAS, previously LLVM optimization at MCST. Took a learning LMS to production: automated judging, a four-worker judge, 150+ students. Build agentic LLM pipelines that separate execution from verification.",
+        "summary": "C#/.NET backend developer focused on payment state, idempotency and recovery. Took an LMS to production: automated judging, a four-worker judge, 120+ active students. Currently symbolic computation in SharpChecker at ISP RAS, previously LLVM optimization at MCST.",
         "description": "Mikhail Razakov: ASP.NET Core, SQL/PostgreSQL, a production LMS with automated judging, a live VpnMediator service, SharpChecker at ISP RAS, and agentic LLM pipelines.",
         "proofs": [
           [
             "Payment correctness",
-            "A webhook is not treated as ground truth: provider payment state is re-fetched and checked for id/status/environment/metadata/amount/currency"
+            "The webhook is not the source of truth: the provider payment is re-fetched and verified by id, status, environment, metadata, amount and currency"
           ],
           [
             "Recovery ownership",
-            "Durable inbox/outbox, idempotency, reconciliation, restart recovery, leases, and manual review for conflicting evidence"
+            "Durable inbox/outbox, idempotency, reconciliation, restart recovery, leases and manual review for conflicting evidence"
           ],
           [
             "Release safety",
-            "Versioned releases, coordinated backup, atomic switching, health gates, and rollback to the previous release"
+            "Versioned releases, coordinated backup, atomic switch, health gates and rollback to the previous version"
           ]
         ],
         "experience": [
@@ -729,12 +734,14 @@
             ]
           },
           {
-            "date": "2025 — confirmed",
-            "title": "Client development — Diploma.school",
-            "org": "jQuery · responsive navigation · UI regression fixes",
+            "date": "client projects",
+            "title": "Commercial development — KeyAuth, Diploma.school",
+            "org": "ASP.NET Core · licensing · Unity client · jQuery UI",
             "bullets": [
-              "Implemented jQuery dropdown components, responsive mobile/desktop navigation, and UI regression fixes; the work is confirmed no later than January 2025."
-            ]
+              "KeyAuth: an ASP.NET Core key registration/activation API with activation accounting, a separate Unity licence-check client, and backward compatibility for previously shipped builds.",
+              "Diploma.school: jQuery dropdown components, responsive mobile/desktop navigation and UI regression fixes."
+            ],
+            "fact_ref": "commercial"
           }
         ],
         "project_ids": [
@@ -769,7 +776,7 @@
         "contact_heading": "Targeting .NET Backend / Platform Engineer roles with ownership of state, recovery, and operational correctness",
         "footer": ".NET Backend / Platform Engineer · State & Reliability",
         "updated_at": "2026-11-03",
-        "print_spacious": true,
+        "print_spacious": false,
         "print_project_limit": 4,
         "project_summaries": {
           "botay": {
@@ -778,13 +785,14 @@
           },
           "lms": {
             "solution": "Roles and states, balance ledger, idempotent payments, an isolated four-worker judge, release/recovery procedures.",
-            "result": "Production: 150+ students, a 5-problem / 514-test tour, real C++17 and Python3 verdicts, 4 workers, load runs."
+            "result": "Production: 120+ active students, a 5-problem / 514-test tour, real C++17 and Python3 verdicts, a four-worker judge."
           }
         },
         "experience_heading": "Professional experience & client work",
-        "print_experience_limit": 3,
+        "print_experience_limit": 4,
         "show_portrait": true,
-        "portrait_asset": "assets/portrait.jpg"
+        "portrait_asset": "assets/portrait.jpg",
+        "print_recognition_limit": 5
       }
     },
     "systems": {
@@ -804,11 +812,11 @@
           ],
           [
             "x86-64 pipeline",
-            "SSA/CFG validation, liveness/interference, linear scan, seeded simulated annealing, SysV codegen и differential execution."
+            "Валидация SSA/CFG, анализ живости и интерференции, linear scan, seeded simulated annealing, SysV codegen и дифференциальное исполнение."
           ],
           [
             "Conservative optimization",
-            "LLVM Global-IV: APInt affine evolution, transitive effects, explicit legality и 29 verifier/idempotence/execution regressions."
+            "LLVM Global-IV: аффинная эволюция на APInt, транзитивные эффекты, явные проверки допустимости и 29 verifier/idempotence/execution-сценариев."
           ]
         ],
         "experience": [
@@ -872,7 +880,7 @@
         "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
         "print_project_limit": 3,
         "updated_at": "2026-10-16",
-        "print_recognition_limit": 2,
+        "print_recognition_limit": 5,
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": true,
@@ -962,7 +970,7 @@
         "footer": "C++ / Systems Engineer · LLVM · x86-64 · Algorithms",
         "print_project_limit": 3,
         "updated_at": "2026-10-16",
-        "print_recognition_limit": 2,
+        "print_recognition_limit": 5,
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": true,
@@ -981,16 +989,16 @@
         "description": "Quantitative Research Candidate Михаил Разаков: C++, Python, controlled experiments, exact/reference oracles, randomized/metamorphic validation и алгоритмическое исследование.",
         "proofs": [
           [
-            "Controlled experiments",
-            "UniversalToolchain: frozen corpus, valid controls, post-freeze holdouts, paired comparison и repeated timing runs."
+            "Контролируемые эксперименты",
+            "UniversalToolchain: замороженный корпус, корректные контроли, holdout после заморозки, парное сравнение и повторные замеры времени."
           ],
           [
             "Математическое и алгоритмическое reasoning",
-            "PS-form: normalization, modular/GCD reasoning, exact affine analysis и independent exact oracle."
+            "PS-form: нормализация, модулярные и GCD-рассуждения, точный аффинный анализ и независимый точный оракул."
           ],
           [
             "C++ / Python research tooling",
-            "LLVM, Python harnesses, randomized/metamorphic testing, reproducible counterexamples и differential execution."
+            "LLVM, Python-harness, рандомизированное и метаморфное тестирование, воспроизводимые контрпримеры и дифференциальное исполнение."
           ]
         ],
         "experience": [
@@ -1057,7 +1065,8 @@
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": true,
-        "portrait_asset": "assets/portrait.jpg"
+        "portrait_asset": "assets/portrait.jpg",
+        "print_recognition_limit": 5
       },
       "en": {
         "filename": "en-quant.html",
@@ -1146,7 +1155,8 @@
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": true,
-        "portrait_asset": "assets/portrait.jpg"
+        "portrait_asset": "assets/portrait.jpg",
+        "print_recognition_limit": 5
       }
     },
     "quantdev": {
@@ -1166,11 +1176,11 @@
           ],
           [
             "Алгоритмы и исследование",
-            "PS-form: conservative solver, exact oracle, randomized/metamorphic validation; UniversalToolchain: controlled verifier experiment."
+            "PS-form: консервативный решатель, точный оракул, рандомизированная и метаморфная проверка; UniversalToolchain: контролируемый эксперимент с verifier-ом."
           ],
           [
             "C++ / Python research tooling",
-            "LLVM, Python harnesses, graph algorithms, differential execution, reproducible counterexamples и test oracles."
+            "LLVM, Python-harness, графовые алгоритмы, дифференциальное исполнение, воспроизводимые контрпримеры и тестовые оракулы."
           ]
         ],
         "experience": [
@@ -1237,7 +1247,8 @@
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": true,
-        "portrait_asset": "assets/portrait.jpg"
+        "portrait_asset": "assets/portrait.jpg",
+        "print_recognition_limit": 5
       },
       "en": {
         "filename": "en-quant-dev.html",
@@ -1255,7 +1266,7 @@
           ],
           [
             "Algorithms & research",
-            "PS-form: conservative solver, exact oracle, randomized/metamorphic validation; UniversalToolchain: controlled verifier experiment."
+            "PS-form: conservative solver, exact oracle, randomized and metamorphic validation; UniversalToolchain: a controlled verifier experiment."
           ],
           [
             "C++ / Python research tooling",
@@ -1326,7 +1337,8 @@
         "print_spacious": true,
         "print_experience_limit": 2,
         "show_portrait": true,
-        "portrait_asset": "assets/portrait.jpg"
+        "portrait_asset": "assets/portrait.jpg",
+        "print_recognition_limit": 5
       }
     },
     "compiler_backend": {
@@ -1348,11 +1360,11 @@
           ],
           [
             "Native codegen до стажировки",
-            "Visk: x86-64 в 2023 · Wist4: AST→IR→x64 в 2024."
+            "Visk: native x86-64 codegen · Wist4: AST→IR→x64 pipeline."
           ],
           [
             "Современная проверка",
-            "Verifier раскладки + native-vs-interpreter differential execution на ветвлениях, циклах и spills."
+            "Verifier раскладки и дифференциальное исполнение native-кода против интерпретатора на ветвлениях, циклах и spills."
           ]
         ],
         "experience": [
@@ -1419,7 +1431,7 @@
           "codegen": {
             "type": "Rust · x86-64 backend · register allocation",
             "solution": "Проверка SSA/CFG → анализ живости и интерференции → register allocation/spills → phi lowering → генерация SysV x86-64.",
-            "result": "Verifier раскладки + сравнение native execution с эталонным интерпретатором; актуальный CI проекта зелёный; отдельная публичная линия native-codegen начинается с Visk (2023) и Wist4 (2024)."
+            "result": "Verifier раскладки + сравнение native execution с эталонным интерпретатором; актуальный CI проекта зелёный; отдельная публичная линия native-codegen начинается с Visk и продолжается в Wist4."
           },
           "globaliv": {
             "type": "C++23 · LLVM 22 · межпроцедурный анализ · преобразования",
@@ -1437,7 +1449,8 @@
         "print_project_limit": 3,
         "show_trajectory": true,
         "experience_heading": "Профессиональный опыт",
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "print_recognition_limit": 5
       },
       "en": {
         "compiler_layout": true,
@@ -1457,7 +1470,7 @@
           ],
           [
             "Native codegen before the internship",
-            "Visk: x86-64 in 2023 · Wist4: AST→IR→x64 in 2024."
+            "Visk: native x86-64 codegen · Wist4: AST→IR→x64 pipeline."
           ],
           [
             "Current verification",
@@ -1528,7 +1541,7 @@
           "codegen": {
             "type": "Rust · x86-64 compiler backend · register allocation",
             "solution": "SSA/CFG validation → liveness/interference → register allocation/spills → phi lowering → SysV x86-64 emission.",
-            "result": "Assignment verifier plus native-vs-interpreter differential execution; the current project CI is green; a separate public native-codegen lineage starts with Visk (2023) and Wist4 (2024)."
+            "result": "Assignment verifier plus native-vs-interpreter differential execution; the current project CI is green; a separate public native-codegen lineage starts with Visk and Wist4."
           },
           "globaliv": {
             "type": "C++23 · LLVM 22 · interprocedural analysis · transformations",
@@ -1546,7 +1559,8 @@
         "print_project_limit": 3,
         "show_trajectory": true,
         "experience_heading": "Professional Experience",
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "print_recognition_limit": 5
       }
     },
     "program_analysis": {
@@ -1568,11 +1582,11 @@
           ],
           [
             "Два уровня анализа",
-            "Roslyn CFG fixed point + межпроцедурные LLVM effects/affine evolution."
+            "Roslyn CFG fixed point и межпроцедурный LLVM-анализ эффектов и аффинной эволюции."
           ],
           [
             "Компиляторная база",
-            "Публичные compiler/runtime-проекты с 2022; MSIL и native x86-64 — в 2023–2024."
+            "Публичные компиляторные и runtime-проекты: MSIL backend и native x86-64 codegen."
           ]
         ],
         "experience": [
@@ -1656,7 +1670,8 @@
         "print_project_limit": 3,
         "show_trajectory": true,
         "experience_heading": "Профессиональный опыт",
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "print_recognition_limit": 5
       },
       "en": {
         "compiler_layout": true,
@@ -1680,7 +1695,7 @@
           ],
           [
             "Compiler foundation",
-            "Public compiler/runtime projects since 2022; MSIL and native x86-64 work in 2023–2024."
+            "Public compiler/runtime projects: an MSIL backend and native x86-64 codegen."
           ]
         ],
         "experience": [
@@ -1764,7 +1779,8 @@
         "print_project_limit": 3,
         "show_trajectory": true,
         "experience_heading": "Professional Experience",
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "print_recognition_limit": 5
       }
     },
     "software_protection": {
@@ -1782,11 +1798,11 @@
         "description": "Михаил Разаков — selective Compiler / Software Protection Engineer: LLVM, program analysis, x86-64 codegen и bounded Unity licensing evidence.",
         "proofs": [
           [
-            "Compiler foundation",
-            "Профессиональный LLVM 22 + conservative legality/interprocedural transformation work."
+            "Компиляторная база",
+            "Профессиональный LLVM 22: консервативные проверки допустимости и межпроцедурные преобразования."
           ],
           [
-            "Low-level + analysis",
+            "Низкий уровень и анализ",
             "x86-64 codegen/register allocation и Roslyn fixed-point data-flow analysis."
           ],
           [
@@ -1879,7 +1895,8 @@
           "title": "Отдельные личные проекты (не работа по найму)",
           "text": "Unity licensing prototype: серверная активация и лимиты ключей; VpnMediator: состояние подписок и восстановление доступа. Ни один из этих проектов не заявлен как профессиональная должность."
         },
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "print_recognition_limit": 5
       },
       "en": {
         "compiler_layout": true,
@@ -1992,7 +2009,8 @@
           "title": "Independent work (not employment)",
           "text": "Unity licensing prototype: server-side key activation and limits; VpnMediator: subscription/access state and recovery. Neither project is represented as an employed role."
         },
-        "print_experience_limit": 2
+        "print_experience_limit": 2,
+        "print_recognition_limit": 5
       }
     },
     "architecture": {
@@ -2102,7 +2120,7 @@
           }
         },
         "print_show_trajectory": false,
-        "print_recognition_limit": 2,
+        "print_recognition_limit": 5,
         "print_spacious": true,
         "print_experience_limit": 2
       },
@@ -2212,7 +2230,7 @@
           }
         },
         "print_show_trajectory": false,
-        "print_recognition_limit": 2,
+        "print_recognition_limit": 5,
         "print_spacious": true,
         "print_experience_limit": 2
       }
@@ -2271,8 +2289,8 @@
       "problem_en": "Administrator, teacher, curator and student roles, course entitlements, payments and automated judging must keep their invariants across retries, network failures, migrations, and several judge workers running concurrently.",
       "solution_ru": "Явные роли и состояния, ledger-подход к балансу, проверяемые webhooks, идемпотентное завершение платежей и critical-flow gates; изолированный judge с четырьмя параллельными воркерами, lease-механизмом и воспроизводимым release/recovery-процессом.",
       "solution_en": "Explicit roles and states, a balance ledger, verified webhooks, idempotent payment completion and critical-flow gates; an isolated judge with four parallel workers, a lease protocol, and a reproducible release/recovery process.",
-      "result_ru": "Платформа в production и выдерживает рабочую нагрузку: 150+ учеников (данные владельца продукта, 22.11.2026), тур из пяти задач и 514 реальных тестов с автоматической проверкой C++17 и Python3, judge на четырёх параллельных воркерах. Нагрузочные прогоны на изолированном контуре: 959 последовательных запросов без ошибок (p95 52–78 мс) и 2 880 синхронизированных запросов без единого 5xx.",
-      "result_en": "The platform is in production and holds production load: 150+ students (product-owner data, 22 Nov 2026), a five-problem tour with 514 real tests and automated C++17/Python3 judging, and a judge running four parallel workers. Load runs on an isolated rig: 959 sequential requests with zero errors (p95 52–78 ms) and 2 880 synchronized requests with zero 5xx.",
+      "result_ru": "Платформа запущена в production: 120+ активных учеников по данным репозитория, тур из пяти задач и 514 реальных тестов с автоматической проверкой C++17 и Python3, judge на четырёх параллельных воркерах. Нагрузочные прогоны на изолированном контуре: 959 последовательных запросов без ошибок (p95 52–78 мс) и 2 880 синхронизированных запросов без единого 5xx.",
+      "result_en": "The platform is live in production: 120+ active students as recorded in the repository, a five-problem tour with 514 real tests and automated C++17/Python3 judging, and a judge running four parallel workers. Load runs on an isolated rig: 959 sequential requests with zero errors (p95 52–78 ms) and 2 880 synchronized requests with zero 5xx.",
       "case_ru": "cases/ru-lms.html",
       "case_en": "cases/en-lms.html",
       "public": false,
@@ -2316,8 +2334,8 @@
       "problem_en": "The pass must recognize affine evolution of global IVs across calls and transform IR only when correctness conditions are established.",
       "solution_ru": "Affine b + k·x на APInt, transitive function/module effects, loop/dominator/must-execute reasoning и отдельная conservative legality-фаза с отказом на unsupported CFG/calls.",
       "solution_en": "APInt affine b + k·x evolution, transitive function/module effects, loop/dominator/must-execute reasoning, and a separate conservative legality phase that rejects unsupported CFG/calls.",
-      "result_ru": "Консервативный LLVM 22 prototype/MVP с реальным IR transform; 29 positive/negative regression cases проверяют verifier validity, idempotence и before/after execution.",
-      "result_en": "A conservative LLVM 22 prototype/MVP with an actual IR transform; 29 positive/negative regression cases cover verifier validity, idempotence, and before/after execution.",
+      "result_ru": "Консервативный LLVM 22 prototype/MVP с реальным IR transform; 29 из 29 positive/negative regression cases проходят на зафиксированной ревизии и проверяют verifier validity, idempotence и before/after execution.",
+      "result_en": "A conservative LLVM 22 prototype/MVP with an actual IR transform; 29 of 29 positive/negative regression cases pass at a fixed revision and cover verifier validity, idempotence, and before/after execution.",
       "repo": "https://github.com/Misha1302/LLVM-interprocedural-global-IV-optimization",
       "public": true,
       "case_ru": "cases/ru-globaliv.html",
@@ -2331,8 +2349,8 @@
       "problem_en": "The analyzer must detect potentially unsafe dereferences after a possible null while accounting for branches, loops, and control-flow joins.",
       "solution_ru": "Roslyn ControlFlowGraph и forward fixed-point data-flow analysis: состояния Unknown/MaybeNull/NotNull передаются между basic blocks и объединяются на join points.",
       "solution_en": "Roslyn ControlFlowGraph with forward fixed-point data-flow analysis: Unknown/MaybeNull/NotNull states propagate across basic blocks and merge at join points.",
-      "result_ru": "Диагностика потенциально небезопасных dereference paths поверх реального CFG, включая повторную обработку successors до стабилизации состояния.",
-      "result_en": "Diagnostics for potentially unsafe dereference paths over the real CFG, with successor reprocessing until the data-flow state reaches a fixed point.",
+      "result_ru": "Диагностика потенциально небезопасных dereference paths поверх реального CFG с повторной обработкой successors до стабилизации; 18 из 18 тестов проходят на чистом снимке HEAD.",
+      "result_en": "Diagnostics for potentially unsafe dereference paths over the real CFG with successor reprocessing to a fixed point; 18 of 18 tests pass from a clean HEAD snapshot.",
       "repo": "https://github.com/Misha1302/DerefAfterNullAnalyzer",
       "public": true,
       "case_ru": "cases/ru-deref.html",
@@ -2388,56 +2406,66 @@
   "recognition": {
     "ru": [
       [
-        "2026",
-        "Агентная оркестрация LLM",
-        "Пайплайн с ролями (исследователь, автор, критики, верификатор) и изоляцией контекста применён к доказательным отчётам, ревью кода и реализации по плану."
+        "Компиляторы",
+        "МЦСТ — отбор на стажировку LLVM / C++",
+        "Единственная оценка 5,0/5,0 и единственное решение, прошедшее 104/104 теста, среди 49 работ (письмо организатора)."
       ],
       [
-        "2026",
-        "Отбор МЦСТ — LLVM / C++",
-        "По письму организатора: единственная оценка 5,0/5,0 и единственное решение, прошедшее 104/104 теста, среди 49 присланных работ."
+        "Языки",
+        "LangDev — доклад об архитектуре UniversalToolchain",
+        "Типизированный план языка, backends и границы абстракций; запись опубликована: youtu.be/2jqmw-1c7kE"
       ],
       [
-        "2026",
-        "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-        "9 октября 2026 выступил на LangDev с докладом об архитектуре UniversalToolchain."
+        "Олимпиады",
+        "«Юниор» НИЯУ МИФИ — диплом I степени",
+        "За UniversalToolchain: инженерная секция, защита проекта и письменная часть."
       ],
       [
-        "2026",
+        "Олимпиады",
+        "«Высшая проба» — промышленное программирование",
+        "Дипломант олимпиады НИУ ВШЭ."
+      ],
+      [
+        "Проекты",
+        "Балтийский научно-инженерный конкурс",
+        "Диплом I степени и премия «Совершенство как надежда»."
+      ],
+      [
+        "Открытый код",
         "ФКН НИУ ВШЭ — конкурс проектов с открытым кодом",
-        "UniversalToolchain / Wist2 — один из победителей конкурса проектов с открытым кодом студентов ФКН."
-      ],
-      [
-        "2025–2026",
-        "Другие достижения",
-        "«Юниор» НИЯУ МИФИ: победитель ИТ-секции в 2025 и диплом I степени в 2026; дипломант «Высшей пробы» по промышленному программированию; Балтийский конкурс: диплом I степени и премия «Совершенство как надежда»."
+        "UniversalToolchain / Wist2 — один из победителей."
       ]
     ],
     "en": [
       [
-        "2026",
-        "Agentic LLM orchestration",
-        "A role-based pipeline (researcher, author, critics, verifier) with context isolation applied to evidence-backed reports, code review, and plan-driven implementation."
+        "Compilers",
+        "MCST — LLVM / C++ internship selection",
+        "The only 5.0/5.0 score and the only solution passing 104/104 tests among 49 submissions (organizer letter)."
       ],
       [
-        "2026",
-        "MCST LLVM/C++ selection",
-        "Organizer correspondence: only 5.0/5.0 score and only solution passing all 104/104 tests among 49 submissions."
+        "Languages",
+        "LangDev — talk on the UniversalToolchain architecture",
+        "A typed language plan, backends and abstraction boundaries; recording published: youtu.be/2jqmw-1c7kE"
       ],
       [
-        "2026",
-        "LangDev’26 — Build the Language, Then Make the Abstractions Disappear",
-        "Delivered the UniversalToolchain architecture talk at LangDev on 9 October 2026."
+        "Olympiads",
+        "MEPhI Junior — first-degree diploma",
+        "For UniversalToolchain: engineering section, project defence and written part."
       ],
       [
-        "2026",
-        "HSE Faculty of Computer Science — open-source projects competition",
-        "Selected as one of the winners with UniversalToolchain / Wist2."
+        "Olympiads",
+        "Vysshaya Proba — industrial programming",
+        "Diploma holder at the HSE olympiad."
       ],
       [
-        "2025–2026",
-        "Earlier distinctions",
-        "MEPhI Junior: Information Technologies section winner in 2025 and first-degree diploma in 2026; HSE Vysshaya Proba Industrial Programming diploma holder; Baltic Science and Engineering Competition: first-degree diploma and the “Perfection as Hope” prize."
+        "Projects",
+        "Baltic Science and Engineering Competition",
+        "First-degree diploma and the “Perfection as Hope” prize."
+      ],
+      [
+        "Open source",
+        "HSE Faculty of Computer Science — open-source competition",
+        "UniversalToolchain / Wist2 — one of the winners."
       ]
     ]
   },
@@ -2469,8 +2497,8 @@
       "title_en": "MCST — Compiler Engineering Intern"
     },
     "commercial": {
-      "date_ru": "суммарно около 1 года",
-      "date_en": "approximately 1 year total",
+      "date_ru": "коммерческие проекты",
+      "date_en": "commercial projects",
       "title_ru": "Коммерческая разработка C#/.NET и смежного ПО",
       "title_en": "Commercial C#/.NET and adjacent software development",
       "status": "USER_ATTESTED",
@@ -2497,46 +2525,46 @@
   "trajectory": {
     "ru": [
       {
-        "period": "2022",
+        "period": "Этап 1",
         "label": "Компиляторы / VM",
         "detail": "BigSharpCompiler и OwnAssembler: lexer/parser/preprocessor, собственные bytecode/VM и assembler-like эксперименты."
       },
       {
-        "period": "2023",
+        "period": "Этап 2",
         "label": "CIL + native x86-64",
         "detail": "Wist/Wist2Msil и Visk: runtime, MSIL backend, генерация и исполнение native x86-64 machine code."
       },
       {
-        "period": "2024–2025",
+        "period": "Этап 3",
         "label": "AST / IR / backends → toolchain",
-        "detail": "Vl13.2, Wist4, Quark2 → Unified/UniversalToolchain: AST/IR, native x64, bytecode/VM, MSIL и затем модульная композиция."
+        "detail": "Vl13.2, Wist4, Quark2 → Unified/UniversalToolchain: AST/IR, native x64, bytecode/VM, MSIL и модульная композиция."
       },
       {
-        "period": "2026 →",
+        "period": "Сейчас",
         "label": "LLVM + program analysis",
-        "detail": "2026: LLVM 22/C++ в МЦСТ; текущая работа в ИСП РАН над символьными вычислениями в SharpChecker. Отдельный Roslyn C#/.NET analyzer был выполнен как отборочное задание."
+        "detail": "LLVM 22/C++ в МЦСТ; текущая работа в ИСП РАН над символьными вычислениями в SharpChecker. Отдельный Roslyn C#/.NET analyzer выполнен как отборочное задание."
       }
     ],
     "en": [
       {
-        "period": "2022",
+        "period": "Stage 1",
         "label": "Compilers / VMs",
         "detail": "BigSharpCompiler and OwnAssembler: lexer/parser/preprocessor work plus custom bytecode/VM and assembler-like experiments."
       },
       {
-        "period": "2023",
+        "period": "Stage 2",
         "label": "CIL + native x86-64",
         "detail": "Wist/Wist2Msil and Visk: runtime work, an MSIL backend, and native x86-64 machine-code generation and execution."
       },
       {
-        "period": "2024–2025",
+        "period": "Stage 3",
         "label": "AST / IR / backends → toolchain",
         "detail": "Vl13.2, Wist4, Quark2 → Unified/UniversalToolchain: AST/IR, native x64, bytecode/VM, MSIL, then modular composition."
       },
       {
-        "period": "2026 →",
+        "period": "Now",
         "label": "LLVM + program analysis",
-        "detail": "2026: LLVM 22/C++ work at MCST; current ISP RAS work on symbolic computation in SharpChecker. A separate Roslyn C#/.NET analyzer was completed as a selection task."
+        "detail": "LLVM 22/C++ at MCST; current ISP RAS work on symbolic computation in SharpChecker. A separate Roslyn C#/.NET analyzer was completed as a selection task."
       }
     ]
   },
@@ -2544,9 +2572,9 @@
   "landing": {
     "eyebrow_ru": "C# / .NET BACKEND  ·  SYSTEMS & COMPILER ENGINEERING",
     "hero_evidence_ru": [
-      "Коммерческая разработка: около 1 года суммарно (по данным автора)",
+      "LMS в production с автоматической проверкой решений; действующий VpnMediator",
       "ИСП РАН / SharpChecker — символьные вычисления; МЦСТ / LLVM 22",
-      "VpnMediator — работающий сервис; UniversalToolchain — .NET compiler/runtime"
+      "UniversalToolchain — .NET compiler/runtime · доклад на LangDev"
     ],
     "profiles_intro_ru": "Базовый маршрут — новое C#/.NET Backend портфолио. Ниже сохранены специализированные инженерные направления и прежние адреса для обратной совместимости.",
     "project_ids": [
@@ -2582,8 +2610,8 @@
         {
           "id": "commercial",
           "title": "Коммерческая разработка · C#/.NET и смежный стек",
-          "date": "суммарно около 1 года",
-          "text": "Прикладные и серверные задачи на C#/.NET и Unity: ASP.NET Core, SQL/PostgreSQL, файловая система и серверное окружение. Продолжительность — по данным кандидата.",
+          "date": "коммерческие проекты",
+          "text": "Прикладные и серверные задачи на C#/.NET и Unity для частных заказчиков и продуктовых команд: ASP.NET Core, SQL/PostgreSQL, файловая система и серверное окружение, интеграции и поддержка выпущенных сборок.",
           "evidence_refs": [
             "experience_commercial_aggregate_2026"
           ]
@@ -2611,8 +2639,8 @@
         {
           "id": "commercial",
           "title": "Commercial development · C#/.NET & adjacent technologies",
-          "date": "approx. 1 year total",
-          "text": "Application and backend work with C#/.NET, Unity, ASP.NET Core, SQL/PostgreSQL, file I/O and servers. Duration is candidate-reported.",
+          "date": "commercial projects",
+          "text": "Application and backend work in C#/.NET and Unity for private clients and product teams: ASP.NET Core, SQL/PostgreSQL, file I/O and server environments, integrations and maintenance of shipped builds.",
           "evidence_refs": [
             "experience_commercial_aggregate_2026"
           ]
@@ -2629,7 +2657,7 @@
         "audience_en": "HR / ATS · default application",
         "ru": {
           "role": "C# / .NET BACKEND DEVELOPER",
-          "summary": "Разрабатываю backend-сервисы на C#/.NET и сопровождаю работающий VpnMediator. Около 1 года совокупной коммерческой практики на C#/.NET и смежном стеке (по данным автора). Отдельно — работа в ИСП РАН и стажировка в МЦСТ. Фокус: API, данные, идемпотентность и восстановление после сбоев.",
+          "summary": "Backend-разработчик на C#/.NET: платёжные состояния, идемпотентность и восстановление после сбоев. Вывел LMS в production — автоматическая проверка решений, judge на четырёх воркерах, 120+ активных учеников; сопровождаю действующий VpnMediator. Параллельно — символьные вычисления в SharpChecker (ИСП РАН) и LLVM-оптимизация в МЦСТ.",
           "skills": [
             "C#, .NET, ASP.NET Core, REST API, OpenAPI, SQL, PostgreSQL, SQLite, EF Core",
             "Транзакции, миграции, фоновые задачи, платежные состояния, идемпотентность; Git, Linux, Docker Compose, nginx, systemd"
@@ -2638,7 +2666,7 @@
             {
               "id": "vpn",
               "title": "VpnMediator / Razaltush VPN · действующий сервис",
-              "text": "ASP.NET Core — доступ и устройства, Python — Telegram-бот и платежные сценарии, SQLite. В исходниках есть payment-event inbox, idempotency/reconciliation и механизмы backup/rollback; число пользователей сообщено автором.",
+              "text": "ASP.NET Core — доступ и устройства, Python — Telegram-бот и платежные сценарии, SQLite. В исходниках — payment-event inbox, идемпотентность, reconciliation и механизмы backup/rollback.",
               "evidence_refs": [
                 "project_vpnmediator"
               ]
@@ -2653,19 +2681,19 @@
             },
             {
               "id": "lms",
-              "title": "TuringSquare-LMS · в разработке",
-              "text": "Архитектура и ревью course entitlements, ролей и T-Bank sandbox; повторная проверка платежей у провайдера. Часть кода реализована агентами; production-запуска нет.",
+              "title": "TuringSquare-LMS · production, judge и доступы",
+              "text": "Платформа в production: роли и доступ к курсам, ledger баланса, идемпотентные платежи с повторной проверкой у провайдера, изолированный judge на четырёх воркерах, release/recovery-процедуры. 120+ активных учеников.",
               "evidence_refs": [
                 "project_compilationlab_lms"
               ]
             }
           ],
           "education": "НИУ ВШЭ, ФКН — Программная инженерия.",
-          "recognition": "Диплом I степени конкурса «Юниор» НИЯУ МИФИ (2026) за UniversalToolchain; доклад LangDev 2026."
+          "recognition": "Диплом I степени конкурса «Юниор» НИЯУ МИФИ за UniversalToolchain; доклад LangDev."
         },
         "en": {
           "role": "C# / .NET BACKEND DEVELOPER",
-          "summary": "I build C#/.NET backend services and maintain the operational VpnMediator project. Approx. one year of aggregate commercial development on C#/.NET and adjacent technologies (candidate-reported), alongside ISP RAS work and an MCST internship. Focus: APIs, data integrity, idempotency and recovery.",
+          "summary": "C#/.NET backend developer focused on payment state, idempotency and recovery. Took an LMS to production — automated judging, a four-worker judge, 120+ active students — and maintain the live VpnMediator service. Alongside that: symbolic computation in SharpChecker at ISP RAS and LLVM optimization at MCST.",
           "skills": [
             "C#, .NET, ASP.NET Core, REST API, OpenAPI, SQL, PostgreSQL, SQLite, EF Core",
             "Transactions, migrations, background work, payment state, idempotency; Git, Linux, Docker Compose, nginx, systemd"
@@ -2674,7 +2702,7 @@
             {
               "id": "vpn",
               "title": "VpnMediator / Razaltush VPN · operational service",
-              "text": "ASP.NET Core access/device backend, Python Telegram/payment bot and SQLite. Source includes payment event inbox, reconciliation and backup/rollback workflows; user numbers are candidate-reported.",
+              "text": "ASP.NET Core access/device backend, Python Telegram/payment bot and SQLite. The source includes a payment event inbox, idempotency, reconciliation and backup/rollback workflows.",
               "evidence_refs": [
                 "project_vpnmediator"
               ]
@@ -2689,15 +2717,15 @@
             },
             {
               "id": "lms",
-              "title": "TuringSquare-LMS · in development",
-              "text": "Architecture and review of entitlements, roles and T-Bank sandbox payment verification. Some code is agent-implemented; no production launch claimed.",
+              "title": "TuringSquare-LMS · production, judging and entitlements",
+              "text": "Live in production: roles and course entitlements, a balance ledger, idempotent payments with provider re-verification, an isolated four-worker judge, and release/recovery procedures. 120+ active students.",
               "evidence_refs": [
                 "project_compilationlab_lms"
               ]
             }
           ],
           "education": "HSE University, Faculty of Computer Science — Software Engineering.",
-          "recognition": "1st-degree diploma, MEPhI Junior 2026 (UniversalToolchain); LangDev 2026 speaker."
+          "recognition": "1st-degree diploma, MEPhI Junior (UniversalToolchain); LangDev speaker."
         }
       },
       "lead": {
@@ -2709,7 +2737,7 @@
         "audience_en": "Systems / Platform · architecture & reliability",
         "ru": {
           "role": "SYSTEMS / PLATFORM ENGINEER · .NET",
-          "summary": "Проектирую и реализую .NET-сервисы и инфраструктурные компоненты с явными границами модулей и состояниями, которые можно проверить и восстановить. В VpnMediator — обработка повторных событий оплаты и восстановление доступа; в UniversalToolchain — проверка зависимостей до исполнения; в LMS — архитектурные инварианты и ревью. Коммерческая практика на смешанном стеке — около года суммарно.",
+          "summary": "Проектирую и реализую .NET-сервисы и инфраструктурные компоненты с явными границами модулей и состояниями, которые можно проверить и восстановить. В VpnMediator — обработка повторных событий оплаты и восстановление доступа; в UniversalToolchain — проверка зависимостей до исполнения; в LMS — production-инварианты, judge и ревью. До этого — коммерческие проекты на C#/.NET.",
           "skills": [
             "C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await, Git/Linux",
             "Идемпотентность, состояния оплаты и доступа, reconciliation, восстановление/rollback; контракты модулей, графы зависимостей, проверка инвариантов"
@@ -2733,19 +2761,19 @@
             },
             {
               "id": "lms",
-              "title": "TuringSquare-LMS · права доступа и контроль реализации",
-              "text": "Проектирование инвариантов ролей, доступа к курсам и критериев проверки платежей T-Bank в sandbox. Проект в разработке; мой фокус — архитектурные решения и ревью агентной реализации.",
+              "title": "TuringSquare-LMS · production, judge и доступы",
+              "text": "Платформа в production: роли и доступ к курсам, ledger баланса, идемпотентные платежи с повторной проверкой у провайдера, изолированный judge на четырёх воркерах, release/recovery-процедуры. 120+ активных учеников.",
               "evidence_refs": [
                 "project_compilationlab_lms"
               ]
             }
           ],
           "education": "НИУ ВШЭ — ФКН, Программная инженерия.",
-          "recognition": "«Юниор» НИЯУ МИФИ, диплом I степени (2026); LangDev 2026, доклад об UniversalToolchain."
+          "recognition": "«Юниор» НИЯУ МИФИ, диплом I степени; LangDev, доклад об UniversalToolchain."
         },
         "en": {
           "role": "SYSTEMS / PLATFORM ENGINEER · .NET",
-          "summary": "I design and build .NET services and infrastructure with explicit module boundaries and recoverable, testable state. VpnMediator handles duplicate payment events and access recovery; UniversalToolchain checks dependencies before execution; in the LMS I own architectural invariants and review. Approx. one year of aggregate commercial development across a mixed stack.",
+          "summary": "I design and build .NET services and infrastructure with explicit module boundaries and recoverable, testable state. VpnMediator handles duplicate payment events and access recovery; UniversalToolchain checks dependencies before execution; in the LMS I own production invariants, judging and review. Before that — commercial C#/.NET projects.",
           "skills": [
             "C#/.NET, ASP.NET Core, EF Core, SQL/PostgreSQL, SQLite, REST/OpenAPI, async/await, Git/Linux",
             "Idempotency, payment/access state, reconciliation, recovery/rollback; typed module contracts, dependency graphs, invariant checks"
@@ -2769,15 +2797,15 @@
             },
             {
               "id": "lms",
-              "title": "TuringSquare-LMS · access control and implementation review",
-              "text": "Role/course-access invariants and acceptance criteria for T-Bank sandbox payments. The project is in development; my focus is architecture decisions and review of agent-produced implementation.",
+              "title": "TuringSquare-LMS · production, judging and entitlements",
+              "text": "Live in production: roles and course entitlements, a balance ledger, idempotent payments with provider re-verification, an isolated four-worker judge, and release/recovery procedures. 120+ active students.",
               "evidence_refs": [
                 "project_compilationlab_lms"
               ]
             }
           ],
           "education": "HSE University — Software Engineering.",
-          "recognition": "MEPhI Junior 2026, 1st-degree diploma; LangDev 2026 UniversalToolchain talk."
+          "recognition": "MEPhI Junior, 1st-degree diploma; LangDev UniversalToolchain talk."
         }
       },
       "runtime": {
@@ -2830,7 +2858,7 @@
             }
           ],
           "education": "НИУ ВШЭ — ФКН, Программная инженерия.",
-          "recognition": "«Юниор» НИЯУ МИФИ, диплом I степени (2026); доклад LangDev 2026."
+          "recognition": "«Юниор» НИЯУ МИФИ, диплом I степени; доклад LangDev."
         },
         "en": {
           "role": "SOFTWARE ENGINEER · COMPILERS, RUNTIME & PERFORMANCE",
@@ -2875,7 +2903,7 @@
             }
           ],
           "education": "HSE University — Software Engineering.",
-          "recognition": "MEPhI Junior 2026, 1st-degree diploma; LangDev 2026 speaker."
+          "recognition": "MEPhI Junior, 1st-degree diploma; LangDev speaker."
         }
       }
     },

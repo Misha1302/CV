@@ -62,6 +62,43 @@ def normalized(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip()
 
 
+def pdf_flow_text(page) -> str:
+    """Extract PDF text for comparison against the data source.
+
+    PDF extraction can put a line break inside a hyphenated or slashed token
+    ("LLVM-\\nанализ", "release/recovery-\\nпроцедуры"), so a naive substring
+    check reports false mismatches on every wrapped compound word.
+    """
+    raw = page.get_text("text")
+    raw = re.sub(r"([-/])\n(?=\S)", r"\1", raw)
+    return normalized(raw)
+
+
+def describe_mismatch(expected: str, actual: str) -> str:
+    """Explain where `expected` stops appearing verbatim inside `actual`."""
+    low, high = 0, len(expected)
+    while low < high:
+        middle = (low + high + 1) // 2
+        if expected[:middle] in actual:
+            low = middle
+        else:
+            high = middle - 1
+    if low == len(expected):
+        return "содержится"
+    return f"совпало {low} символов, дальше ожидалось {expected[low:low + 80]!r}"
+
+
+def require_fragment(actual: str, expected: str, label: str) -> None:
+    expected = normalized(expected)
+    if not expected:
+        raise RuntimeError(f"{label}: empty expected fragment")
+    if expected not in actual:
+        raise RuntimeError(
+            f"{label}: text from data/site.json missing in artifact "
+            f"({describe_mismatch(expected, actual)}) — the artifact was not rebuilt"
+        )
+
+
 def html_files(data: dict) -> list[Path]:
     files = [ROOT / "index.html", ROOT / "ru-engineering.html", ROOT / "en-engineering.html"]
     files.extend(ROOT / pages[lang]
@@ -377,6 +414,10 @@ def validate_pdfs(data: dict, pdf_dir: Path) -> list[dict[str, object]]:
             validate_age_privacy(text, path.name)
             if profile["role"].casefold() not in text.casefold():
                 raise RuntimeError(f"{path.name}: role mismatch")
+            # The PDF is generated from data/site.json. If the summary is not in
+            # the rendered text, the PDF is from an older revision: HTML and PDF
+            # then describe different CVs and nobody notices.
+            require_fragment(pdf_flow_text(page), profile["summary"], path.name)
             for marker in STALE_MARKERS:
                 if marker.casefold() in text.casefold():
                     raise RuntimeError(f"{path.name}: stale marker {marker}")
@@ -407,6 +448,60 @@ def compare_pdf_sets(generated_dir: Path, committed_dir: Path, data: dict) -> No
                 committed_links = sorted(link.get("uri", "") for link in committed[0].get_links() if link.get("uri"))
                 if generated_links != committed_links:
                     raise RuntimeError(f"{profile['pdf']}: committed PDF links differ from clean rebuild")
+
+
+def validate_pdf_set_completeness(data: dict, pdf_dir: Path) -> None:
+    """Every profile must have exactly one RU and one EN PDF, and nothing else.
+
+    A stale extra PDF (renamed profile, dropped locale) keeps shipping to
+    recruiters even though the generator no longer produces it.
+    """
+    expected = {data["profiles"][key][lang]["pdf"] for key in data["profile_order"] for lang in ("ru", "en")}
+    if len(expected) != len(data["profile_order"]) * 2:
+        raise RuntimeError("Duplicate PDF filenames in data/site.json profiles")
+    if not pdf_dir.is_dir():
+        raise RuntimeError(f"PDF directory is missing: {pdf_dir}")
+    on_disk = {path.name for path in pdf_dir.glob("*.pdf")}
+    orphaned = sorted(on_disk - expected)
+    missing = sorted(expected - on_disk)
+    if orphaned or missing:
+        raise RuntimeError(f"PDF set mismatch: orphaned={orphaned} missing={missing}")
+    empty = sorted(path.name for path in pdf_dir.glob("*.pdf") if path.stat().st_size == 0)
+    if empty:
+        raise RuntimeError(f"Empty PDF files: {empty}")
+
+
+def validate_release_artifacts(data: dict, release_dir: Path | None = None) -> list[dict[str, object]]:
+    """Fail when the packaged release was not rebuilt from the current source.
+
+    Release files are compared by content, not by mtime: a fresh git checkout
+    assigns arbitrary modification times, so mtime can prove nothing about the
+    source revision an artifact came from.
+    """
+    release_dir = release_dir or ROOT / data["application_cvs"]["release_dir"]
+    if not release_dir.is_dir():
+        raise RuntimeError(f"Release directory is missing: {release_dir}")
+    variants = data["application_cvs"]["variants"]
+    results = []
+    for kind, variant in variants.items():
+        for lang in ("ru", "en"):
+            stem = variant["basename"][lang]
+            payload = variant[lang]
+            for suffix in (".md", ".docx", ".pdf"):
+                path = release_dir / (stem + suffix)
+                if not path.is_file() or path.stat().st_size == 0:
+                    raise RuntimeError(f"Release artifact missing or empty: {path.name}")
+            markdown_text = normalized((release_dir / (stem + ".md")).read_text(encoding="utf-8"))
+            require_fragment(markdown_text, payload["summary"], f"{stem}.md")
+            page_text = ""
+            with fitz.open(release_dir / (stem + ".pdf")) as document:
+                page_text = pdf_flow_text(document[0])
+            require_fragment(page_text, payload["summary"], f"{stem}.pdf")
+            for project in payload["projects"]:
+                require_fragment(markdown_text, project["text"], f"{stem}.md:{project['id']}")
+                require_fragment(page_text, project["text"], f"{stem}.pdf:{project['id']}")
+            results.append({"stem": stem, "lang": lang, "kind": kind})
+    return results
 
 
 def validate_manifest() -> None:
@@ -450,6 +545,8 @@ def main() -> None:
         for url in sorted(external):
             link_results.append(check_external_url(url))
     pdf_results = validate_pdfs(data, args.pdf_dir)
+    validate_pdf_set_completeness(data, args.pdf_dir)
+    release_results = validate_release_artifacts(data)
     if args.compare_dir:
         validate_pdfs(data, args.compare_dir)
         compare_pdf_sets(args.pdf_dir, args.compare_dir, data)
@@ -460,6 +557,7 @@ def main() -> None:
         "pages": len(html_files(data)),
         "external_links": [{"url": url, "status": status} for url, status in link_results],
         "pdfs": pdf_results,
+        "release_artifacts": release_results,
     }
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)
