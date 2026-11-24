@@ -194,14 +194,29 @@ def company_print_block(data: dict[str, Any], profile: dict[str, Any], lang: str
 
 
 def company_page(data: dict[str, Any], variant: dict[str, Any], lang: str) -> str:
+    """Full shareable page for a company variant.
+
+    The print container alone is invisible on screen, so the page must also
+    carry the real sections: experience, projects, skills, education,
+    recognition and contact — otherwise a recruiter opening the link sees a
+    hero and one paragraph and assumes nothing was built.
+    """
     profile = build_company_profile(data, variant, lang)
     page_name, pdf_name = company_filenames(variant, lang)
     company = variant[f"company_{lang}"]
-    labels = {"ru": ("Скачать PDF", "Все версии", "Версия под", "Написать"), "en": ("Download PDF", "All versions", "Variant for", "Email")}[lang]
+    labels = {
+        "ru": ("Скачать PDF", "Все версии", "Версия под", "Написать", "Почему эта версия собрана так"),
+        "en": ("Download PDF", "All versions", "Variant for", "Email", "Why this version is ordered this way"),
+    }[lang]
+    nav = {
+        "ru": (("experience", "Опыт"), ("work", "Проекты"), ("skills", "Стек"), ("recognition", "Достижения"), ("contact", "Контакты")),
+        "en": (("experience", "Experience"), ("work", "Projects"), ("skills", "Skills"), ("recognition", "Recognition"), ("contact", "Contact")),
+    }[lang]
+    links = "".join(f'<a href="#{key}">{esc(label)}</a>' for key, label in nav)
     head = common_head(data, lang, page_name, profile["title"], profile["description"], profile["role"])
     return f"""{head}
 <body class="profile-backend company-variant">{company_print_block(data, profile, lang)}
-<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(person_name(data, lang))}</strong><span>{esc(labels[2])} {esc(company)}</span></span></a><div></div><div class="header-actions"><a class="button compact" href="index.html">{esc(labels[1])}</a></div></div></header>
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><span class="brand-mark">MR</span><span class="brand-copy"><strong>{esc(person_name(data, lang))}</strong><span>{esc(labels[2])} {esc(company)}</span></span></a><nav class="primary-nav" aria-label="{'Разделы' if lang == 'ru' else 'Sections'}">{links}</nav><div class="header-actions"><a class="button compact" href="pdf/{esc(pdf_name)}" download>PDF</a><a class="button compact" href="index.html">{esc(labels[1])}</a></div></div></header>
 <main class="shell" id="main">
   <section class="hero" id="top"><div class="hero-copy">
     <div class="hero-intro"><p class="eyebrow">{esc(labels[2])} {esc(company)}</p><h1>{esc(person_name(data, lang))}</h1><p class="hero-role">{esc(profile['role'])}</p></div>
@@ -211,10 +226,16 @@ def company_page(data: dict[str, Any], variant: dict[str, Any], lang: str) -> st
     </div></div>
     <aside class="identity-card" aria-label="{'Профиль' if lang == 'ru' else 'Profile'}"><div class="identity-mark identity-monogram" aria-hidden="true">MR</div><strong>{esc(company)}</strong><span>{esc(profile['role'])}</span></aside>
   </section>
-  <section class="shell section"><div class="section-heading"><p class="section-label">00 · {'Почему эта версия собрана так' if lang == 'ru' else 'Why this version is ordered this way'}</p><div><h2>{esc(company)}</h2><p class="section-intro">{esc(variant[f'why_{lang}'])}</p></div></div></section>
+{proof_strip(profile)}
+{experience_section(lang, profile)}
+{projects_section(data, lang, profile)}
+{skills_section(lang, profile)}
+{recognition_section(data, lang, profile)}
+{education_section(data, lang)}
+  <section class="shell section" id="why"><div class="section-heading"><p class="section-label">06 · {esc(labels[4])}</p><div><h2>{esc(company)}</h2><p class="section-intro">{esc(variant[f'why_{lang}'])}</p></div></div></section>
+{contact_section(data, lang, profile)}
 </main>
-<footer class="shell site-footer"><span>{esc(person_name(data, lang))} · {esc(profile['role'])}</span><span>{esc(labels[2])} {esc(company)}</span></footer>
-</body></html>
+<footer class="shell site-footer"><span>{esc(person_name(data, lang))} · {esc(profile['role'])}</span><span>{esc(labels[2])} {esc(company)}</span></footer><script src="script.js?v={esc(data['version'])}" defer></script></body></html>
 """
 
 

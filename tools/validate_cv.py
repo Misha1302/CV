@@ -387,6 +387,24 @@ def validate_html(data: dict) -> set[str]:
                 raise RuntimeError(f"{path.relative_to(ROOT)}: local accessible portrait missing")
             if not show_portrait and img:
                 raise RuntimeError(f"{path.relative_to(ROOT)}: portrait present despite show_portrait=false")
+    # A company page that only renders the hero and the "why" paragraph is a
+    # public, shareable URL with no CV on it. Require the real sections.
+    for variant in load_company_variants():
+        for lang in ("ru", "en"):
+            filename = company_filenames(variant, lang)[0]
+            soup = BeautifulSoup((ROOT / filename).read_text(encoding="utf-8"), "html.parser")
+            profile = build_company_profile(data, variant, lang)
+            for section_id in ("experience", "work", "skills", "recognition", "education", "contact"):
+                if not soup.find(id=section_id):
+                    raise RuntimeError(f"{filename}: missing visible section #{section_id}")
+            main_text = normalized(soup.select_one("main").get_text(" "))
+            for item in profile["experience"]:
+                if normalized(item["title"]) not in main_text:
+                    raise RuntimeError(f"{filename}: experience entry missing from page: {item['title']}")
+            for project_id in profile["project_ids"]:
+                title = data["projects"][project_id].get(f"title_{lang}") or data["projects"][project_id]["title"]
+                if normalized(title) not in main_text:
+                    raise RuntimeError(f"{filename}: project missing from page: {title}")
     landing_soup = BeautifulSoup((ROOT / "index.html").read_text(encoding="utf-8"), "html.parser")
     wanted_cards = len(data["selector_order"]) - 1
     cards = landing_soup.select("#profiles .selector-card")
